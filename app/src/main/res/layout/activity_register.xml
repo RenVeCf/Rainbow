@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_phone"
+        style="@style/AccountEditTextStyle"
+        android:drawableLeft="@mipmap/icon_phone"
+        android:hint="请输入您的手机号"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:paddingTop="50dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/et_phone">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_sms"
+            style="@style/AccountEditTextStyle"
+            android:drawableLeft="@mipmap/icon_sms"
+            android:maxLength="6"
+            android:hint="请输入短信验证码"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/tv_get_sms"
+            style="@style/SmallTextStyle"
+            android:background="@drawable/selector_sms_btn"
+            android:paddingBottom="6dp"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:paddingTop="6dp"
+            android:text="获取验证码"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@id/et_sms"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_password"
+        style="@style/AccountEditTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:drawableLeft="@mipmap/icon_password"
+        android:hint="请输入新登录密码(数字+字母组合)"
+        android:maxLength="16"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/cl_sms" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_invite_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/et_password">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_invite_code"
+            style="@style/AccountEditTextStyle"
+            android:drawableLeft="@mipmap/invite_code"
+            android:maxLength="15"
+            android:hint="介绍码"
+            android:inputType="number" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:text="选填"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@id/et_invite_code"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_agent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/et_password"
+        app:layout_constraintTop_toBottomOf="@id/cl_invite_code">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:checked="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="我已阅读并同意" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="《它嗅宠物用户协议》"
+            android:textColor="#3792FB" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@style/AccountBtnStyle"
+        android:layout_marginTop="20dp"
+        android:text="立即注册"
+        app:layout_constraintTop_toBottomOf="@id/ll_user_agent" />
+
+
+</android.support.constraint.ConstraintLayout>

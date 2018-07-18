@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/base_padding"
+    app:layout_collapseMode="parallax"
+    app:layout_collapseParallaxMultiplier="0.7">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/index_header_bg"
+        android:padding="@dimen/base_padding">
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/avatar_default"
+            app:border_color1="@color/white"
+            app:border_width1="2dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/civ_avatar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/BaseTextStyle"
+                    android:layout_toRightOf="@id/civ_avatar"
+                    android:text="二哈背着包去流浪"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/civ_avatar"
+                    android:text="我是男孩纸"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="我已经"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="9个月15天"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="啦~"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_user_info"
+        android:layout_marginTop="@dimen/small_padding">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_cur_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_home_time_bg"
+            android:paddingBottom="6dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="6dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/tv_cur_time"
+                style="@style/TitleTextStyle"
+                android:text="9个月15天"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="2018.05.06"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_cur_time" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/base_padding"
+                android:src="@mipmap/orange_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_cur_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:src="@mipmap/orange_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tv_cur_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginRight="15dp"
+            android:text="9个月14天"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/cl_cur_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="15dp"
+            android:text="9个月16天"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/cl_cur_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_below="@id/cl_time_layout"
+        android:layout_marginTop="@dimen/small_padding"
+        android:drawableLeft="@mipmap/left_shuangyinhao"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/right_shuangyinhao"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:text="我能独自一个人在外面找到自己的家,还可以不迷路,随时随地找到家的方向~汪汪汪,陌生人带不走我~" />
+
+</RelativeLayout>
+

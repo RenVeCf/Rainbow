@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_sub_boutique_lable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/sub_boutique_icon"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+    <TextView
+        android:layout_marginLeft="@dimen/small_padding"
+        android:id="@+id/tv_title"
+        style="@style/TitleTextStyle"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="你家宠物有什么特别的癖好?"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toRightOf="@id/iv_sub_boutique_lable"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        style="@style/SmallTextStyle"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="毛孩子都天生自带萌属性，有些则有自己独特的撒娇卖萌方式:抱着人腿或手臂就不松手，是小妖精变得吧"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <com.ipd.taxiu.widget.RoundImageView
+        android:id="@+id/iv_classroom_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_image_height"
+        android:layout_marginTop="@dimen/small_padding"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/boutique_taxiu_image"
+        app:corner_radius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_desc"
+        app:type="round" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/iv_classroom_image">
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/views_icon"
+            android:drawablePadding="8dp"
+            android:text="3243"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/comment_icon"
+            android:drawablePadding="8dp"
+            android:text="924"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/favorite_icon"
+            android:drawablePadding="8dp"
+            android:text="284"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/zan_icon"
+            android:drawablePadding="8dp"
+            android:text="537"
+            android:textColor="@color/LightGrey" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

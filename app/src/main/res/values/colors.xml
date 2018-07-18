@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#EC601E</color>
+    <color name="colorAccent">#EC601E</color>
+    <color name="main_status_bar_color">#55000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="main_tab_color">#FFFFFF</color>
+    <color name="dialog_bg_color">#CCFFFFFF</color>
+    <color name="window_bg_color">#ECF0F0</color>
+    <color name="line_color">#DDDEDF</color>
+    <color name="rangoon_green">#C2CCD3</color>
+    <color name="home_checked_color">#19A0B7</color>
+    <color name="ucla_gold">#F2B000</color>
+    <color name="black">#525455</color>
+    <color name="pattens_blue">#E4F3FD</color>
+    <color name="riptide">#8CD5D4</color>
+    <color name="powder_blue">#B1E4E8</color>
+    <color name="gray_shape">#EDEEEF</color>
+    <color name="pacific_blue">#00A2BB</color>
+    <color name="mikado_yellow">#FFBE11</color>
+    <color name="atlantis">#88C833</color>
+    <color name="conifer">#AEDE51</color>
+    <color name="integral_sub">#36D38D</color>
+    <color name="integral_add">#EF732F</color>
+    <color name="iris_blue">#00ADBA</color>
+    <color name="geyser">#C8CFD2</color>
+    <color name="charcoal">#454647</color>
+    <color name="toolbar_color">#000000</color>
+    <color name="pumice">#C4C5C6</color>
+    <color name="deep_carrot_orange">#EF732F</color>
+    <color name="LightGrey">#9C9C9C</color>
+    <color name="iron">#CBCCCD</color>
+    <color name="login_text_color">#D7D8D9</color>
+
+    <color name="sleep_color">#E6E6E6</color>
+    <color name="muse_color">#2C2541</color>
+
+    <color name="c_999999">#999999</color>
+
+    <color name="full_screen_overlay">#55525455</color>
+
+
+    <color name="partTranslucent">#00000000</color>
+    <color name="curious_blue">#1998DE</color>
+    <color name="white_smoke">#F2F2F2</color>
+
+
+    <color name="value_color_1">#88FFBE11</color>
+    <color name="value_color_2">#8888C833</color>
+    <color name="value_color_3">#88AEDE51</color>
+    <color name="value_color_4">#88EF732F</color>
+
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+</resources>

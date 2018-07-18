@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:text="取消"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:text="确认"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.wheelview.WheelView
+        android:id="@+id/wv_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

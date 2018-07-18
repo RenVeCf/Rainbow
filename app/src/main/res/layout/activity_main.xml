@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_tab"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main_tab_color"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/ll_home"
+            style="@style/HomeTab">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                style="@style/HomeTabImageStyle"
+                android:src="@drawable/selector_home_tab" />
+
+            <TextView
+                android:id="@+id/tv_home"
+                style="@style/HomeTabTextStyle"
+                android:text="主页" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_store"
+            style="@style/HomeTab">
+
+            <ImageView
+                android:id="@+id/iv_store"
+                style="@style/HomeTabImageStyle"
+                android:src="@drawable/selector_store_tab" />
+
+            <TextView
+                android:id="@+id/tv_store"
+                style="@style/HomeTabTextStyle"
+                android:text="商城" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_taxiu"
+            style="@style/HomeTab">
+
+            <ImageView
+                android:id="@+id/iv_taxiu"
+                style="@style/HomeTabImageStyle"
+                android:src="@drawable/selector_taxiu_tab" />
+
+            <TextView
+                android:id="@+id/tv_taxiu"
+                style="@style/HomeTabTextStyle"
+                android:text="@string/taxiu" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_cart"
+            style="@style/HomeTab">
+
+            <ImageView
+                android:id="@+id/iv_cart"
+                style="@style/HomeTabImageStyle"
+                android:src="@drawable/selector_cart_tab" />
+
+            <TextView
+                android:id="@+id/tv_cart"
+                style="@style/HomeTabTextStyle"
+                android:text="购物车" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_mine"
+            style="@style/HomeTab">
+
+            <ImageView
+                android:id="@+id/iv_mine"
+                style="@style/HomeTabImageStyle"
+                android:src="@drawable/selector_mine_tab" />
+
+            <TextView
+                android:id="@+id/tv_mine"
+                style="@style/HomeTabTextStyle"
+                android:text="我的" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

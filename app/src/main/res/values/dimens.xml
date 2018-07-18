@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="base_text_size">14sp</dimen>
+    <dimen name="title_text_size">16sp</dimen>
+    <dimen name="big_title_text_size">17sp</dimen>
+    <dimen name="banner_height">143dp</dimen>
+    <dimen name="home_image_height">143dp</dimen>
+    <dimen name="home_talk_avatar_size">25dp</dimen>
+
+
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="base_padding">12dp</dimen>
+    <dimen name="big_padding">16dp</dimen>
+    <dimen name="home_tab_height">80dp</dimen>
+
+
+    <dimen name="refresh_header_height_twitter">80dp</dimen>
+    <dimen name="registration_date_item_height">160dp</dimen>
+</resources>

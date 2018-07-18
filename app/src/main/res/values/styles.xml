@@ -1,0 +1,185 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowBackground">@color/window_bg_color</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/toolbar_color
+        </item>
+        <item name="android:actionMenuTextColor">@color/black</item>
+    </style>
+
+
+    <style name="FullScreenStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowBackground">@color/window_bg_color</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">
+            @color/full_screen_overlay
+        </item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/full_screen_overlay
+        </item>
+
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="WhiteTitleActionBar" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TransparentTitleActionBar" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/transparent</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="BaseTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/base_text_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="TitleTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="HomeCardStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/base_padding</item>
+        <item name="android:layout_marginRight">@dimen/base_padding</item>
+        <item name="android:layout_marginTop">@dimen/small_padding</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="cardCornerRadius">10dp</item>
+    </style>
+
+
+    <style name="AccountBtnStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/selector_account_btn</item>
+        <item name="layout_constraintWidth_percent">0.7</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="SmallTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="BaseEditTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/base_text_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AccountEditTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/base_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="layout_constraintWidth_percent">0.8</item>
+    </style>
+
+
+    <style name="HomeTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
+    <style name="HomeTabImageStyle">
+        <item name="android:layout_width">23dp</item>
+        <item name="android:layout_height">23dp</item>
+    </style>
+
+    <style name="HomeTabTextStyle" parent="SmallTextStyle">
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textColor">@drawable/selector_tab_text_color</item>
+    </style>
+
+
+    <style name="PetStageCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_pet_stage</item>
+    </style>
+
+
+    <style name="BasePadding">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+    </style>
+
+    <style name="ViewLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2px</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+
+
+    <style name="BaseTableStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:padding">14dp</item>
+    </style>
+
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+    </style>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ipd.taxiu">
+
+    <application
+        android:name=".platform.global.GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <activity-alias
+            android:name=".launcher"
+            android:targetActivity=".ui.activity.account.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask" />
+
+        <!-- account-->
+        <activity android:name=".ui.activity.account.LoginActivity" />
+        <activity android:name=".ui.activity.account.PhoneLoginActivity" />
+        <activity android:name=".ui.activity.account.RegisterActivity" />
+        <activity android:name=".ui.activity.account.LostPwdActivity" />
+        <activity android:name=".ui.activity.account.PetStageActivity" />
+        <activity android:name=".ui.activity.account.PetKindActivity" />
+        <activity android:name=".ui.activity.account.PetKindListActivity" />
+
+        <!-- topic-->
+        <activity android:name=".ui.activity.topic.TopicIndexActivity" />
+
+    </application>
+
+</manifest>

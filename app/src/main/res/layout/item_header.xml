@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/banner_pager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_height"
+        android:background="@mipmap/banner_default"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.v7.widget.CardView
+        style="@style/HomeCardStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banner_pager">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding">
+
+            <LinearLayout
+                android:id="@+id/ll_topic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ll_taxiu">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/topic" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="话题" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_taxiu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toRightOf="@id/ll_topic"
+                app:layout_constraintRight_toLeftOf="@id/ll_talk">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/taxiu_home" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="@string/taxiu" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_talk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toRightOf="@id/ll_taxiu"
+                app:layout_constraintRight_toLeftOf="@id/ll_classroom">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/talk" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="问答" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_classroom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toRightOf="@id/ll_talk"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/classroom" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="课堂" />
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>

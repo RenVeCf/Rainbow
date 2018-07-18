@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_pet"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.ipd.taxiu.widget.RoundImageView
+            android:id="@+id/iv_pet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:corner_radius="10dp"
+            app:type="round"
+            tools:src="@mipmap/pet_kind1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_pet_kind_item_bg" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_pet_name"
+        style="@style/BaseTextStyle"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="6dp"
+        android:text="阿拉斯加雪橇犬"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/rl_pet"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

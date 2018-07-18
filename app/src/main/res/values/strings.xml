@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">TaXiu</string>
+
+
+    <string name="skip">跳过</string>
+    <string name="pet_kind_choose">已选择:%1s</string>
+    <string name="taxiu">它秀</string>
+
+
+    <string name="home_scroll_view_behavior">com.ipd.taxiu.widget.HomeScrollBehavior</string>
+
+
+    <!--上拉刷新下拉加载-->
+    <string name="refreshview_header_hint_normal">下拉刷新</string>
+    <string name="refreshview_header_hint_ready">松开立即刷新</string>
+    <string name="refreshview_header_hint_refreshing">正在刷新数据中...</string>
+    <string name="refreshview_header_hint_loading">正在刷新数据中...</string>
+    <string name="refreshview_header_hint_loaded">刷新成功</string>
+    <string name="refreshview_header_hint_loaded_fail">刷新失败</string>
+    <string name="refreshview_header_last_time">上次更新时间：</string>
+    <string name="refreshview_footer_hint_normal">加载完成</string>
+    <string name="refreshview_footer_hint_fail">加载失败，请重试</string>
+    <string name="refreshview_footer_hint_complete">已无更多数据</string>
+    <string name="refreshview_footer_hint_click">上拉加载</string>
+    <string name="refreshview_footer_hint_release">松开加载更多</string>
+    <string name="refreshview_footer_hint_ready">松开载入更多</string>
+    <string name="refreshview_never_refresh">从未刷新</string>
+    <string name="refreshview_refresh_justnow">刚刚刷新</string>
+    <string name="refreshview_refresh_minutes_ago">%1s分钟之前刷新</string>
+    <string name="refreshview_refresh_hours_ago">%1s小时之前刷新</string>
+    <string name="refreshview_refresh_days_ago">%1s天之前刷新</string>
+    <string name="NO_MORE_DATA">没有更多数据了</string>
+    <string name="EMPTY_DATA">没有发现数据</string>
+    <string name="loading_error">加载失败...</string>
+
+
+    <string name="camera">从相册选择</string>
+    <string name="photo">拍照</string>
+    <string name="save">保存</string>
+    <string name="new_project">发布</string>
+    <string name="commit">提交</string>
+
+
+</resources>

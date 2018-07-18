@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/HomeCardStyle">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding">
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/boutique_icon"
+            app:layout_constraintBottom_toBottomOf="@id/tv_hint"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_hint" />
+
+        <TextView
+            android:id="@+id/tv_hint"
+            style="@style/TitleTextStyle"
+            android:layout_marginLeft="4dp"
+            android:text="它秀精选"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/boutique_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="@dimen/base_padding"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boutique_view_pager" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
+
+
+

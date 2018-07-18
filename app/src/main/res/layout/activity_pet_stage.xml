@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_hint"
+        style="@style/SmallTextStyle"
+        android:layout_marginTop="20dp"
+        android:text="请选择"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_pet_stage_title"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="您目前处于养宠的阶段"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hint" />
+
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/AccountBtnStyle"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="下一步"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintBottom_toTopOf="@id/btn_next"
+        app:layout_constraintTop_toBottomOf="@id/tv_pet_stage_title">
+
+        <FrameLayout
+            android:id="@+id/fl_pet_level_old"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pet_level_old" />
+
+            <ImageView
+                android:id="@+id/iv_old"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/checkbox_pet_stage" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_pet_level_new"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_pet_level_old">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pet_level_new" />
+
+            <ImageView
+                android:id="@+id/iv_new"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/checkbox_pet_stage" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_pet_level_ready"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_pet_level_old">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pet_level_ready" />
+
+            <ImageView
+                android:id="@+id/iv_ready"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/checkbox_pet_stage" />
+
+        </FrameLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>
