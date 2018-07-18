@@ -38,6 +38,10 @@
         <!-- topic-->
         <activity android:name=".ui.activity.topic.TopicIndexActivity" />
 
+
+        <!-- 裁剪-->
+        <activity android:name=".ui.activity.CropActivity" />
+
     </application>
 
 </manifest>
