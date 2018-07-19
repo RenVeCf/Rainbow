@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/base_padding"
+            android:paddingTop="@dimen/base_padding">
+
+
+            <com.ipd.taxiu.widget.RoundImageView
+                android:id="@+id/iv_classroom_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_image_height"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:layout_marginRight="@dimen/base_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/hot_classroom_image"
+                app:corner_radius="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:type="round" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hot_classroom_lable"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toTopOf="@id/iv_classroom_image" />
+
+
+            <TextView
+                android:id="@+id/tv_classroom_name"
+                style="@style/TitleTextStyle"
+                android:layout_marginTop="@dimen/small_padding"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="宠物健康及心理健康咨询课程"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toBottomOf="@id/iv_classroom_image" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_classroom_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_padding"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tv_classroom_name">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:text="课堂时长"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="120分钟" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2px"
+                    android:layout_height="match_parent"
+                    android:background="@color/window_bg_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:text="开课时间"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="07.18 14:00" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2px"
+                    android:layout_height="match_parent"
+                    android:background="@color/window_bg_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:text="主讲老师"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="王明义" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_line"
+                style="@style/ViewLine"
+                android:layout_height="@dimen/base_padding"
+                android:layout_marginTop="@dimen/base_padding"
+                android:background="@color/window_bg_color"
+                app:layout_constraintTop_toBottomOf="@id/ll_classroom_info" />
+
+            <ImageView
+                android:id="@+id/iv_how_join_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_padding"
+                android:src="@mipmap/how_join_icon"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:text="如何进入课堂？"
+                app:layout_constraintBottom_toBottomOf="@id/iv_how_join_icon"
+                app:layout_constraintLeft_toRightOf="@id/iv_how_join_icon"
+                app:layout_constraintTop_toTopOf="@id/iv_how_join_icon" />
+
+            <LinearLayout
+                android:id="@+id/ll_join_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_padding"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/iv_how_join_icon">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/join_step1" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="购买课堂" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/join_step2" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="获取二维码" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/join_step3" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="扫描二维码" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/join_step4" />
+
+                    <TextView
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:text="进入课堂" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/view_line2"
+                style="@style/ViewLine"
+                android:layout_height="@dimen/base_padding"
+                android:layout_marginTop="@dimen/base_padding"
+                android:background="@color/window_bg_color"
+                app:layout_constraintTop_toBottomOf="@id/ll_join_step" />
+
+            <ImageView
+                android:id="@+id/iv_classroom_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_padding"
+                android:src="@mipmap/class_room_content_icon"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toBottomOf="@id/view_line2" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:text="课堂介绍"
+                app:layout_constraintBottom_toBottomOf="@id/iv_classroom_content"
+                app:layout_constraintLeft_toRightOf="@id/iv_classroom_content"
+                app:layout_constraintTop_toTopOf="@id/iv_classroom_content" />
+
+            <View
+                android:id="@+id/view_line3"
+                style="@style/ViewLine"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/small_padding"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintRight_toRightOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toBottomOf="@id/iv_classroom_content" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_content"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/small_padding"
+                app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintRight_toRightOf="@id/iv_classroom_image"
+                app:layout_constraintTop_toBottomOf="@id/view_line3"
+                tools:text="反倒是发送到了减肥开始的进口量圣诞节lfks" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingTop="6dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <RelativeLayout
+                android:paddingBottom="6dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="6dp"
+                android:background="@drawable/shape_buy_bg"
+                android:layout_centerInParent="true"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_centerVertical="true"
+                    android:text="￥1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="购买课堂"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_collect" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/menu_share_icon" />
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

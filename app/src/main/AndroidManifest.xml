@@ -53,6 +53,9 @@
         <activity android:name=".ui.activity.talk.TalkDetailActivity" />
         <activity android:name=".ui.activity.talk.PublishTalkActivity" />
 
+        <!-- classRoom-->
+        <activity android:name=".ui.activity.classroom.ClassRoomIndexActivity" />
+        <activity android:name=".ui.activity.classroom.ClassRoomDetailActivity" />
 
 
         <!-- 裁剪-->

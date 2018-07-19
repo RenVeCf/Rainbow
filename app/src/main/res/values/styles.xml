@@ -156,7 +156,7 @@
     <style name="ViewLine">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2px</item>
-        <item name="android:background">@color/line_color</item>
+        <item name="android:background">@color/window_bg_color</item>
     </style>
 
 

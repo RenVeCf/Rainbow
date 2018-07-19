@@ -1,10 +1,14 @@
 package com.ipd.taxiu.imageload;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.platform.http.HttpUrl;
 
@@ -35,6 +39,18 @@ public class ImageLoader {
         Glide.with(context).load(path).into(view);
     }
 
+    public static void getBitmapFromUrl(Context context, String url, final OnResourceReadyListener listener) {
+        Glide.with(context)
+                .asDrawable()
+                .load(url)
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        if (listener != null) listener.onResourceReady(resource);
+                    }
+                });
+    }
+
     public static void loadAvatar(final Context context, Object url, final ImageView view) {
         Glide.with(context).asBitmap().load(HttpUrl.IMAGE_URL + url)
                 .apply(new RequestOptions()
@@ -52,5 +68,9 @@ public class ImageLoader {
 //                        view.setImageDrawable(circularBitmapDrawable);
 //                    }
 //                });
+    }
+
+    public interface OnResourceReadyListener {
+        void onResourceReady(Drawable resource);
     }
 }
