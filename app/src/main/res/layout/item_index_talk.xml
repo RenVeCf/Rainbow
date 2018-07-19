@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="10dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TitleTextStyle"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="威尔士可基11个月大，昨天早上吃完狗粮就吐了，没有在意以为吃的没有在意以为吃的"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_publisher_avatar"
+            android:layout_width="@dimen/home_talk_avatar_size"
+            android:layout_height="@dimen/home_talk_avatar_size"
+            android:layout_marginTop="@dimen/small_padding"
+            android:src="@mipmap/talk_avatar1"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="柯基大大"
+            app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
+            app:layout_constraintLeft_toRightOf="@id/civ_publisher_avatar"
+            app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
+
+        <TextView
+            android:id="@+id/tv_publisher_hint"
+            style="@style/BaseTextStyle"
+            android:layout_marginTop="5dp"
+            android:text="发布了问答，并奖励"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintTop_toBottomOf="@id/civ_publisher_avatar" />
+
+        <TextView
+            android:id="@+id/tv_award_integral"
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="4dp"
+            android:text="10"
+            android:textColor="@color/red"
+            app:layout_constraintLeft_toRightOf="@id/tv_publisher_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_publisher_hint" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="4dp"
+            android:text="积分"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintLeft_toRightOf="@id/tv_award_integral"
+            app:layout_constraintTop_toTopOf="@id/tv_publisher_hint" />
+
+        <View
+            android:id="@+id/view_line"
+            style="@style/ViewLine"
+            android:layout_marginTop="@dimen/base_padding"
+            app:layout_constraintTop_toBottomOf="@id/tv_award_integral" />
+
+
+        <TextView
+            android:id="@+id/tv_talk_desc"
+            style="@style/BaseTextStyle"
+            android:layout_marginTop="@dimen/base_padding"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_answer_avatar"
+            android:layout_width="@dimen/home_talk_avatar_size"
+            android:layout_height="@dimen/home_talk_avatar_size"
+            android:layout_marginTop="@dimen/small_padding"
+            android:src="@mipmap/talk_avatar2"
+            app:layout_constraintTop_toBottomOf="@id/tv_talk_desc" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="宠物医生Mr.r"
+            app:layout_constraintBottom_toBottomOf="@id/civ_answer_avatar"
+            app:layout_constraintLeft_toRightOf="@id/civ_answer_avatar"
+            app:layout_constraintTop_toTopOf="@id/civ_answer_avatar" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:text="给出了答案"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="@id/civ_answer_avatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/civ_answer_avatar" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

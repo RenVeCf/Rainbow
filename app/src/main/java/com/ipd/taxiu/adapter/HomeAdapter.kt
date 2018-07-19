@@ -10,9 +10,9 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.ui.activity.talk.TalkIndexActivity
 import com.ipd.taxiu.ui.activity.topic.TopicIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
-import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_hot_talk.view.*
 import kotlinx.android.synthetic.main.item_index_taxiu.view.*
@@ -94,6 +94,9 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 holder.itemView.ll_topic.setOnClickListener {
                     TopicIndexActivity.launch(context as Activity)
                 }//话题
+                holder.itemView.ll_talk.setOnClickListener {
+                    TalkIndexActivity.launch(context as Activity)
+                }//问答
 
             }
             ItemType.TAXIU_BOUTIQUE -> {

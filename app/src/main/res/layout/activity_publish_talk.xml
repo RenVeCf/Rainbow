@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+
+    <EditText
+        android:id="@+id/et_content"
+        style="@style/BaseEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:gravity="left|top"
+        android:hint="填写你此刻的疑惑~（500字以内）"
+        android:maxLength="500"
+        android:padding="@dimen/base_padding"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/ViewLine"
+        app:layout_constraintLeft_toLeftOf="@id/et_content"
+        app:layout_constraintRight_toRightOf="@id/et_content"
+        app:layout_constraintTop_toBottomOf="@id/et_content" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/view_line">
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="奖励积分" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginRight="5dp"
+            android:text="当前可用积分:"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintRight_toLeftOf="@id/tv_available_integral" />
+
+        <TextView
+            android:id="@+id/tv_available_integral"
+            style="@style/SmallTextStyle"
+            android:text="4594"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            style="@style/BaseEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@drawable/shape_award_integral_edit_bg"
+            android:hint="不填则不奖励积分"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:paddingTop="8dp"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toBottomOf="@id/tv_available_integral" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -21,7 +21,7 @@ class HotTalkPagerAdapter(val context: Context, val list: List<TalkBean>?) : Pag
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
-        val mContentView = mInflater.inflate(R.layout.item_talk, null, false)
+        val mContentView = mInflater.inflate(R.layout.item_index_talk, null, false)
         container.addView(mContentView)
         return mContentView
     }

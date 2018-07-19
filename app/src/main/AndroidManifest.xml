@@ -48,6 +48,12 @@
         <activity android:name=".ui.activity.topic.TopicPeopleCommentActivity" />
         <activity android:name=".ui.activity.topic.MoreCommentActivity" />
 
+        <!-- talk-->
+        <activity android:name=".ui.activity.talk.TalkIndexActivity" />
+        <activity android:name=".ui.activity.talk.TalkDetailActivity" />
+        <activity android:name=".ui.activity.talk.PublishTalkActivity" />
+
+
 
         <!-- 裁剪-->
         <activity android:name=".ui.activity.CropActivity" />
