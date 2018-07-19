@@ -47,7 +47,7 @@ class TalkDetailFragment : ListFragment<List<TalkCommentBean>, TalkCommentBean>(
         if (mAdapter == null) {
             mAdapter = TalkDetailAdapter(mActivity, data, {
                 //itemClick
-                
+
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
