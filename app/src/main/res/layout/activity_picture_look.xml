@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <com.ipd.taxiu.widget.ViewPagerFix
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding"
+        android:src="@mipmap/back_white" />
+
+
+    <TextView
+        android:id="@+id/tv_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/base_padding"
+        android:text="1/1"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>

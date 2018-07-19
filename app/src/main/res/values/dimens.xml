@@ -6,6 +6,8 @@
     <dimen name="big_title_text_size">17sp</dimen>
     <dimen name="banner_height">143dp</dimen>
     <dimen name="home_image_height">143dp</dimen>
+    <dimen name="topic_image_height">143dp</dimen>
+    <dimen name="topic_comment_img_height">100dp</dimen>
     <dimen name="home_talk_avatar_size">25dp</dimen>
 
 

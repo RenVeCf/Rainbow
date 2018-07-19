@@ -7,6 +7,7 @@ import com.ipd.taxiu.adapter.TopicAdapter
 import com.ipd.taxiu.bean.TopicBean
 import com.ipd.taxiu.bean.TopicListBean
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import rx.Observable
 
 class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
@@ -50,7 +51,7 @@ class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
         if (mAdapter == null) {
             mAdapter = TopicAdapter(mActivity, data, {
                 //itemClick
-
+                TopicDetailActivity.launch(mActivity)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

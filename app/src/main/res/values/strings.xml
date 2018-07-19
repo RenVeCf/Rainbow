@@ -5,6 +5,8 @@
     <string name="skip">跳过</string>
     <string name="pet_kind_choose">已选择:%1s</string>
     <string name="taxiu">它秀</string>
+    <string name="topic_detail_menu_index">首页</string>
+    <string name="publish">发布</string>
 
 
     <string name="home_scroll_view_behavior">com.ipd.taxiu.widget.HomeScrollBehavior</string>

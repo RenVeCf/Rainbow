@@ -148,6 +148,11 @@
         <item name="android:paddingRight">12dp</item>
     </style>
 
+    <style name="BaseMargin">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+    </style>
+
     <style name="ViewLine">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2px</item>

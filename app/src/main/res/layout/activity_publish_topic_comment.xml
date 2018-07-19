@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_content"
+        style="@style/BaseEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:gravity="left|top"
+        android:hint="填写参与内容"
+        android:maxLength="300"
+        android:padding="@dimen/base_padding"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.ipd.taxiu.widget.PictureRecyclerView
+        android:id="@+id/picture_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/et_content" />
+
+    <TextView
+        android:paddingLeft="@dimen/base_padding"
+        android:background="@color/white"
+        style="@style/SmallTextStyle"
+        android:paddingTop="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding"
+        android:layout_width="match_parent"
+        android:text="最多上传3张图片"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintTop_toBottomOf="@id/picture_recycler_view" />
+
+</android.support.constraint.ConstraintLayout>

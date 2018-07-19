@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_local_picture"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/add_picture" />
+
+        <TextView
+            android:id="@+id/tv_directory_name"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:text="文件夹"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+
+</LinearLayout>
