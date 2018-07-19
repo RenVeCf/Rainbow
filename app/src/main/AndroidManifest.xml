@@ -45,6 +45,8 @@
         <activity android:name=".ui.activity.topic.TopicIndexActivity" />
         <activity android:name=".ui.activity.topic.TopicDetailActivity" />
         <activity android:name=".ui.activity.topic.PublishTopicCommentActivity" />
+        <activity android:name=".ui.activity.topic.TopicPeopleCommentActivity" />
+        <activity android:name=".ui.activity.topic.MoreCommentActivity" />
 
 
         <!-- 裁剪-->

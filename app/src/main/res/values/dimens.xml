@@ -9,6 +9,7 @@
     <dimen name="topic_image_height">143dp</dimen>
     <dimen name="topic_comment_img_height">100dp</dimen>
     <dimen name="home_talk_avatar_size">25dp</dimen>
+    <dimen name="topic_people_comment_avatar_size">40dp</dimen>
 
 
     <dimen name="small_padding">8dp</dimen>

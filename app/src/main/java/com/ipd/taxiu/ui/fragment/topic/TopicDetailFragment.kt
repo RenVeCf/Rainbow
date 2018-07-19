@@ -5,6 +5,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TopicDetailAdapter
 import com.ipd.taxiu.bean.TopicCommentBean
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.topic.TopicPeopleCommentActivity
 import rx.Observable
 
 class TopicDetailFragment : ListFragment<List<TopicCommentBean>, TopicCommentBean>() {
@@ -19,7 +20,7 @@ class TopicDetailFragment : ListFragment<List<TopicCommentBean>, TopicCommentBea
             val list = arrayListOf<TopicCommentBean>()
             for (i: Int in 0 until 30) {
                 val info = TopicCommentBean()
-                info.images = arrayListOf()
+                info.images = arrayListOf<Int>()
                 for (j: Int in 0 until i % 4) {
                     info.images.add(R.mipmap.topic_detail_image)
                 }
@@ -39,7 +40,7 @@ class TopicDetailFragment : ListFragment<List<TopicCommentBean>, TopicCommentBea
         if (mAdapter == null) {
             mAdapter = TopicDetailAdapter(mActivity, data, {
                 //itemClick
-
+                TopicPeopleCommentActivity.launch(mActivity)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
