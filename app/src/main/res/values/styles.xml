@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -170,7 +170,11 @@
     </style>
 
 
-    <style name="dialog" parent="@android:style/Theme.Dialog">
+    <style name="dialog" parent="dialogWithoutAnim">
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+    </style>
+
+    <style name="dialogWithoutAnim" parent="@android:style/Theme.Dialog">
         <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <!-- 半透明 -->
@@ -184,7 +188,6 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 无标题 -->
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
     </style>
 
 </resources>

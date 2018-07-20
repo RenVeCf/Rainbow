@@ -12,6 +12,12 @@
     <dimen name="topic_people_comment_avatar_size">40dp</dimen>
     <dimen name="taxiu_video_img_height">200dp</dimen>
 
+
+    <dimen name="cart_product_img_width">60dp</dimen>
+    <dimen name="cart_product_img_height">80dp</dimen>
+    <dimen name="grid_product_img_height">140dp</dimen>
+    <dimen name="cart_operation_height">30dp</dimen>
+
     <dimen name="classroom_code_image_size">150dp</dimen>
 
 

@@ -17,7 +17,7 @@ public class MessageDialog extends Dialog {
     private TextView tv_title, tv_message, tv_cancel, tv_commit;
 
     public MessageDialog(@NonNull Context context) {
-        super(context, R.style.dialog);
+        super(context, R.style.dialogWithoutAnim);
         init(context);
     }
 
@@ -42,6 +42,7 @@ public class MessageDialog extends Dialog {
     }
 
     private void setTitle(String title) {
+        tv_title.setVisibility(View.VISIBLE);
         tv_title.setText(title);
     }
 
