@@ -58,4 +58,6 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation project(':jumpboxlibrary')
     implementation project(':indexlib')
+
+    implementation 'q.rorbin:badgeview:1.1.2'
 }

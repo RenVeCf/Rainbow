@@ -69,6 +69,8 @@
             android:name=".ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
 
+        <activity android:name=".ui.activity.order.MyOrderActivity"/>
+        <activity android:name=".ui.activity.order.OrderDetailActivity"/>
     </application>
 
 </manifest>

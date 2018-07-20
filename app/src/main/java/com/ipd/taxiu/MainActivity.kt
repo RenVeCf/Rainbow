@@ -65,7 +65,7 @@ class MainActivity : BaseActivity() {
     private var storeFragment: StoreFragment? = null
     private var taxiuFragment: TaxiuFragment? = null
     private var cartFragment: CartFragment? = null
-    private var mineFragment: MineFragment? = null
+    private var mineFragment: PersonFragment? = null
 
     /**
      * 选中的页面
@@ -101,7 +101,7 @@ class MainActivity : BaseActivity() {
                 transaction.show(cartFragment)
             }
             4 -> if (mineFragment == null) {
-                mineFragment = MineFragment()
+                mineFragment = PersonFragment()
                 transaction.add(R.id.fl_container, mineFragment)
             } else {
                 transaction.show(mineFragment)
@@ -141,7 +141,7 @@ class MainActivity : BaseActivity() {
             is StoreFragment -> storeFragment = fragment
             is TaxiuFragment -> taxiuFragment = fragment
             is CartFragment -> cartFragment = fragment
-            is MineFragment -> mineFragment = fragment
+            is PersonFragment -> mineFragment = fragment
         }
     }
 

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/order_detail_bg"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_padding"
+            android:src="@mipmap/detail_wait_pay" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/base_padding"
+            android:text="@string/wait_pay"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/delivery_address" />
+
+        <TextView
+            android:id="@+id/tv_delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_delivery_address"
+            android:text="@string/delivery_address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_delivery_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_delivery_address"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_delivery_address"
+            android:text="黄埔正雄"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_delivery_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_delivery_address"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/tv_delivery_name"
+            android:text="176****5640"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_delivery_phone"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/iv_delivery_address"
+            android:text="上海 上海市 青浦区 华徐公路888号1号楼2楼"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/address_line" />
+
+    <TextView
+        android:id="@+id/commodity_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="共1件商品"
+        android:textSize="@dimen/base_text_size"
+        android:textStyle="bold"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/base_text_size"
+        android:padding="@dimen/small_padding"/>
+</LinearLayout>
