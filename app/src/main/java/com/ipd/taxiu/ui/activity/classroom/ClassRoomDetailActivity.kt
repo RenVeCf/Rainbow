@@ -34,6 +34,7 @@ class ClassRoomDetailActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
+        rl_buy.setOnClickListener { OwnedClassRoomActivity.launch(mActivity) }
     }
 
 

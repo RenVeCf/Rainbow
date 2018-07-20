@@ -9,6 +9,9 @@
     <string name="publish">发布</string>
 
 
+    <string name="classroom_hint">请将二维码保存至相册，课堂开课时，在微信中\n扫描二维码界面，选择"相册"打开二维码，即\n可进入课堂，参与课堂互动</string>
+
+
     <string name="home_scroll_view_behavior">com.ipd.taxiu.widget.HomeScrollBehavior</string>
 
 

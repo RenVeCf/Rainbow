@@ -11,6 +11,8 @@
     <dimen name="home_talk_avatar_size">25dp</dimen>
     <dimen name="topic_people_comment_avatar_size">40dp</dimen>
 
+    <dimen name="classroom_code_image_size">150dp</dimen>
+
 
     <dimen name="small_padding">8dp</dimen>
     <dimen name="base_padding">12dp</dimen>

@@ -56,6 +56,7 @@
         <!-- classRoom-->
         <activity android:name=".ui.activity.classroom.ClassRoomIndexActivity" />
         <activity android:name=".ui.activity.classroom.ClassRoomDetailActivity" />
+        <activity android:name=".ui.activity.classroom.OwnedClassRoomActivity" />
 
 
         <!-- 裁剪-->
