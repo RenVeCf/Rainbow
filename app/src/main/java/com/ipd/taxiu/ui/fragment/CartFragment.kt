@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.base_toolbar.view.*
 
 class CartFragment : BaseUIFragment() {
 
-    override fun getContentLayout(): Int = R.layout.fragment_store
+    override fun getContentLayout(): Int = R.layout.fragment_cart
 
     override fun initTitle() {
         super.initTitle()

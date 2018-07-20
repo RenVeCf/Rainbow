@@ -13,9 +13,9 @@ import java.util.List;
 
 public class FlowLayout extends ViewGroup {
 	public Context context;
-	public int horizontalSpac = DensityUtil.dip2px(getContext(),15);
-	public int verticalSpac = DensityUtil.dip2px(getContext(),15);
-	public static final String TAG = "MORETEXTVIEW";
+	public int horizontalSpac = DensityUtil.dip2px(getContext(),12);
+	public int verticalSpac = DensityUtil.dip2px(getContext(),12);
+	public static final String TAG = "FlowLayout";
 
 	public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
