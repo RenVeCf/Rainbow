@@ -67,7 +67,7 @@
     </LinearLayout>
 
 
-    <com.ipd.taxiu.widget.ImageRecyclerView
+    <com.ipd.taxiu.widget.MediaRecyclerView
         android:id="@+id/image_recycler_view"
         android:layout_width="0dp"
         android:layout_height="@dimen/topic_comment_img_height"

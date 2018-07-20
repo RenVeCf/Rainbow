@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
 import com.ipd.taxiu.bean.TaxiuBean
@@ -95,6 +96,11 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 holder.itemView.ll_topic.setOnClickListener {
                     TopicIndexActivity.launch(context as Activity)
                 }//话题
+                holder.itemView.ll_taxiu.setOnClickListener {
+                    if (context is MainActivity) {
+                        context.switchToTaxiu()
+                    }
+                }//它秀
                 holder.itemView.ll_talk.setOnClickListener {
                     TalkIndexActivity.launch(context as Activity)
                 }//问答

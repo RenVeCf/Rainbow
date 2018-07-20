@@ -58,6 +58,9 @@
         <activity android:name=".ui.activity.classroom.ClassRoomDetailActivity" />
         <activity android:name=".ui.activity.classroom.OwnedClassRoomActivity" />
 
+        <!-- taxiu-->
+        <activity android:name=".ui.activity.taxiu.TaxiuDetailActivity" />
+
 
         <!-- 裁剪-->
         <activity android:name=".ui.activity.CropActivity" />

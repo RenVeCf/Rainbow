@@ -27,10 +27,10 @@
         app:layout_constraintLeft_toRightOf="@id/civ_publisher_avatar"
         app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
 
-    <com.ipd.taxiu.widget.ImageRecyclerView
+    <com.ipd.taxiu.widget.MediaRecyclerView
         android:id="@+id/image_recycler_view"
         android:layout_width="0dp"
-        android:layout_height="@dimen/topic_comment_img_height"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_padding"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

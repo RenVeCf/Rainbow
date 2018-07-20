@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:background="@color/white"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BaseEditTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_comment_edit_bg"
+            android:drawableLeft="@mipmap/search_icon"
+            android:drawablePadding="10dp"
+            android:hint="搜索你想看的内容"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding" />
+
+
+    </LinearLayout>
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab_layout"
+        app:layout_constraintTop_toBottomOf="@id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="top"
+        android:background="@color/colorPrimary"
+        app:tl_indicator_color="@color/colorPrimaryDark"
+        app:tl_indicator_corner_radius="20dp"
+        app:tl_indicator_margin_left="2dp"
+        app:tl_indicator_margin_right="2dp"
+        app:tl_indicator_style="BLOCK"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="@color/white"
+        app:tl_textUnselectColor="@color/black" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout">
+
+    </android.support.v4.view.ViewPager>
+
+
+</android.support.constraint.ConstraintLayout>

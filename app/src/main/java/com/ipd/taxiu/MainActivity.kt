@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.view.View
 import android.widget.LinearLayout
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.fragment.*
@@ -36,6 +37,10 @@ class MainActivity : BaseActivity() {
                 changePage(index)
             }
         }
+
+        iv_taxiu_checked.setOnClickListener {
+
+        }//发布它秀
     }
 
 
@@ -51,6 +56,8 @@ class MainActivity : BaseActivity() {
             layout.getChildAt(0).isSelected = pos == index
             layout.getChildAt(1).isSelected = pos == index
         }
+        tabs[2].visibility = if (pos == 2) View.INVISIBLE else View.VISIBLE
+        iv_taxiu_checked.visibility = if (pos == 2) View.VISIBLE else View.GONE
     }
 
 
@@ -136,6 +143,10 @@ class MainActivity : BaseActivity() {
             is CartFragment -> cartFragment = fragment
             is MineFragment -> mineFragment = fragment
         }
+    }
+
+    fun switchToTaxiu(){
+        changePage(2)
     }
 
 
