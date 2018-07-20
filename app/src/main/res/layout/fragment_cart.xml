@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +8,9 @@
     <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipe_load_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_line">
 
         <include
             android:id="@+id/swipe_refresh_header"
@@ -26,6 +29,88 @@
             layout="@layout/layout_load_footer"></include>
 
     </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/ViewLine"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom_menu" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_menu"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cart_product_cb"
+                android:enabled="false"
+                android:paddingRight="@dimen/base_padding" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="全选" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:text="合计:" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="￥"
+                android:textColor="@color/red"
+                android:textSize="8sp" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="588.00"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/shape_buy_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="结算(0)"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/ViewLine"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
