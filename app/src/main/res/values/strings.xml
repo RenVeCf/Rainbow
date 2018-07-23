@@ -45,5 +45,38 @@
     <string name="new_project">发布</string>
     <string name="commit">提交</string>
 
+    <!-- 个人 -->
+    <string name="sign_in">签到</string>
+    <string name="collect">收藏</string>
+    <string name="fans">粉丝</string>
+    <string name="attention">关注</string>
+    <string name="wait_pay">待付款</string>
+    <string name="wait_shipments">待发货</string>
+    <string name="wait_delivery">待收货</string>
+    <string name="off_the_stocks">已完成</string>
+    <string name="all">全部</string>
+    <string name="my_spell_group">我的拼团</string>
+    <string name="discount_coupon">优惠券</string>
+    <string name="account_balance">账户余额</string>
+    <string name="integral">积分</string>
+    <string name="ta_xiu">它秀</string>
+    <string name="classroom">课堂</string>
+    <string name="topics">话题</string>
+    <string name="questions_answers">问答</string>
+    <string name="my_pet">我的宠物</string>
+    <string name="pet_bible">宠物宝典</string>
+    <string name="pet_housekeeper">养宠管家</string>
+    <string name="return_record">退货记录</string>
+    <string name="shipping_address">收货地址</string>
+    <string name="my_recommendation">我的推荐</string>
+    <string name="message">消息</string>
+    <string name="setting">设置</string>
+    <string name="no_order_msg">暂无订单信息</string>
+
+    <!-- 订单-->
+    <string name="order_number">订单号 :</string>
+    <string name="delivery_address">收货地址</string>
+    <string name="pay_way">支付方式</string>
+
 
 </resources>

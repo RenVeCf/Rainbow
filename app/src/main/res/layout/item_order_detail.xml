@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingRight="@dimen/base_padding"
+    android:paddingLeft="@dimen/base_padding">
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/commodity_number"
+        android:background="@color/province_line_border"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_commodity_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_marginTop="@dimen/small_padding">
+
+        <ImageView
+            android:id="@+id/iv_commodity_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/iv_commodity_head" />
+
+        <TextView
+            android:id="@+id/tv_commodity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_commodity_head"
+            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_commodity_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_commodity_name"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_commodity_head"
+            android:text="口味：鸡肉味"
+            android:textSize="@dimen/small_text_size" />
+
+        <TextView
+            android:id="@+id/tv_commodity_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_commodity_explain"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_commodity_head"
+            android:text="￥208.00"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_commodity_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_commodity_explain"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="数量：X1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/rl_commodity_msg"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/province_line_border" />
+
+</RelativeLayout>

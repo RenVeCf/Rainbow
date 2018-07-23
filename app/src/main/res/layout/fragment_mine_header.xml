@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/rl_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/fragment_mine_bg"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingTop="@dimen/big_padding">
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/mine_default_header"
+            app:border_color1="@color/white"
+            app:border_width1="2dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/civ_header">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    style="@style/BaseTextStyle"
+                    android:layout_toRightOf="@id/civ_header"
+                    android:text="爱狗铲屎管"
+                    android:textSize="@dimen/big_title_text_size"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_signature"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:layout_toRightOf="@id/civ_header"
+                    android:text="这个人很懒，什么都没有留下"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/small_text_size"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@mipmap/more"
+                   android:layout_marginRight="@dimen/base_padding"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/ll_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_sign_in_bg"
+            android:layout_below="@id/civ_header"
+            android:padding="@dimen/base_padding"
+            android:layout_marginTop="@dimen/base_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sign_in"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/sign_in"
+                android:textColor="@color/deep_carrot_orange"
+                android:gravity="center"
+                android:textSize="@dimen/base_text_size"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/civ_header"
+            android:layout_toLeftOf="@id/ll_sign_in"
+            android:paddingTop="@dimen/big_padding">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_collect_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/base_text_size"
+                    android:textColor="@color/white"
+                    android:text="23"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/base_text_size"
+                    android:textColor="@color/white"
+                    android:text="@string/collect"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_fans_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1376"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/base_text_size" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/base_text_size"
+                    android:textColor="@color/white"
+                    android:text="@string/fans"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_attention_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/base_text_size"
+                    android:textColor="@color/white"
+                    android:text="132"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/base_text_size"
+                    android:textColor="@color/white"
+                    android:text="@string/attention"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
