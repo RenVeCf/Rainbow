@@ -10,19 +10,19 @@
         android:padding="@dimen/base_padding">
 
         <ImageView
+            android:id="@+id/iv_order_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:paddingRight="@dimen/base_padding"
-            android:src="@mipmap/detail_wait_pay" />
+            android:paddingRight="@dimen/base_padding" />
 
         <TextView
+            android:id="@+id/tv_order_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:paddingLeft="@dimen/base_padding"
-            android:text="@string/wait_pay"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

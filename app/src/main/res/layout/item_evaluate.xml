@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/base_padding"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/evaluate_img" />
+
+        <TextView
+            android:id="@+id/tv_commodity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:background="@color/full_screen_overlay"
+        android:layout_marginTop="@dimen/base_padding"/>
+
+    <EditText
+        android:id="@+id/et_comment_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="您对该商品还满意吗？留下你的感受吧~（500字内）"
+        android:lineSpacingExtra="3dp"
+        android:maxLength="500"
+        android:minHeight="@dimen/cart_product_img_height"
+        android:padding="@dimen/base_padding"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_size" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_padding">
+
+        <LinearLayout
+            android:id="@+id/ll_choose_goods_pic"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/shape_upload_img_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_choose_goods_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@mipmap/upload_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="上传图片"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/small_text_size" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

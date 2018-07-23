@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/base_padding"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/order_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单信息"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/order_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_information"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="订单编号:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/tv_order_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_information"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/order_code"
+        android:text="89348575789576976"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/pay_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_code"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="实付金额:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/tv_pay_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_code"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/pay_money"
+        android:text="￥134.00"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pay_money"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="订单状态:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/tv_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pay_money"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/order_status"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/order_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_status"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="下单时间:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/tv_order_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_status"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/order_time"
+        android:text="2018.07.22  20:03"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/delivery_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_time"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="收货时间:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:id="@+id/tv_delivery_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_time"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/delivery_time"
+        android:text="2018.07.25  20:03"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/tv_delivery_time"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/full_screen_overlay" />
+
+    <TextView
+        android:id="@+id/reason_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="退货原因"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_reason_return_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reason_return"
+        android:background="@color/white"
+        android:text="请描述您的退货原因，以便我们更好的核实~"
+        android:paddingTop="@dimen/base_padding"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_size" />
+
+
+    <ImageView
+        android:id="@+id/return_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/return_img1"
+        android:padding="@dimen/base_padding"
+        android:layout_below="@id/tv_reason_return_content"/>
+
+</RelativeLayout>

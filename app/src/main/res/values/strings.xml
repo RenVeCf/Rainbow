@@ -73,10 +73,12 @@
     <string name="setting">设置</string>
     <string name="no_order_msg">暂无订单信息</string>
 
+
     <!-- 订单-->
     <string name="order_number">订单号 :</string>
     <string name="delivery_address">收货地址</string>
     <string name="pay_way">支付方式</string>
+    <string name="no_return_info">暂无退款退货记录信息</string>
 
 
 </resources>

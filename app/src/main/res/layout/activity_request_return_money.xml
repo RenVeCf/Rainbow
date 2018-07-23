@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_return_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            android:id="@+id/return_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择退款原因"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+        <ImageView
+            android:id="@+id/iv_return_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/tv_return_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择"
+            android:textColor="@color/black"
+            android:layout_toLeftOf="@id/iv_return_reason"
+            android:textSize="@dimen/base_text_size"
+            android:layout_marginRight="@dimen/base_padding"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_return_explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_return_reason"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            android:id="@+id/return_explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="申请退货说明"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_return_explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/return_explanation"
+            android:layout_marginTop="@dimen/base_padding"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_return_explain"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            android:id="@+id/contact_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系客服"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contact_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_service"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="联系电话："
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_contact_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_service"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/contact_phone"
+            android:text="400 000 0000"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_phone"
+            android:text="上午9：00~下午18:00"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/contact_service"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@drawable/shape_call_phone"
+            android:paddingBottom="3dp"
+            android:paddingLeft="@dimen/big_padding"
+            android:paddingRight="@dimen/big_padding"
+            android:paddingTop="3dp"
+            android:text="拨打"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@drawable/shape_order_btn_payment"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size" />
+</RelativeLayout>

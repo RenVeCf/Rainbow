@@ -22,6 +22,11 @@ import java.util.ArrayList;
  * Created by Miss on 2018/7/19
  */
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
+    public static String PAYMENT = "付款";
+    public static String DETAIL = "详情";
+    public static String DELIVERY = "收货";
+    public static String EVALUATE = "评价";
+
     private Context context;
     private ArrayList<OrderBean> list;
 
@@ -53,7 +58,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 holder.confirm.setText("详情");
                 holder.confirm.setVisibility(View.VISIBLE);
                 holder.confirm.setBackgroundResource(R.drawable.shape_order_btn_cancel);
-                holder.confirm.setTextColor(context.getResources().getColor(R.color.black)) ;
+                holder.confirm.setTextColor(context.getResources().getColor(R.color.black));
                 break;
             case 3:
                 holder.order_status.setText("待收货");
@@ -73,19 +78,27 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 break;
         }
 
-        final String confirmText  = holder.confirm.getText().toString();
+        final String confirmText = holder.confirm.getText().toString();
         holder.confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (confirmText.equals("付款")){
-                    Intent intent = new Intent(context, OrderDetailActivity.class);
+                Intent intent;
+                if (confirmText.equals("付款")) {
+                    intent = new Intent(context, OrderDetailActivity.class);
+                    intent.putExtra("order_status", PAYMENT);
                     context.startActivity(intent);
-                }else if (confirmText.equals("详情")){
-                    Toast.makeText(context,"详情",Toast.LENGTH_SHORT).show();
-                }else if (confirmText.equals("收货")){
-                    Toast.makeText(context,"收货",Toast.LENGTH_SHORT).show();
-                }else if (confirmText.equals("评价")){
-                    Toast.makeText(context,"评价",Toast.LENGTH_SHORT).show();
+                } else if (confirmText.equals("详情")) {
+                    intent = new Intent(context, OrderDetailActivity.class);
+                    intent.putExtra("order_status", DETAIL);
+                    context.startActivity(intent);
+                } else if (confirmText.equals("收货")) {
+                    intent = new Intent(context, OrderDetailActivity.class);
+                    intent.putExtra("order_status", DELIVERY);
+                    context.startActivity(intent);
+                } else if (confirmText.equals("评价")) {
+                    intent = new Intent(context, OrderDetailActivity.class);
+                    intent.putExtra("order_status", EVALUATE);
+                    context.startActivity(intent);
                 }
             }
         });
@@ -94,12 +107,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cancelText.equals("取消")){
-                    Toast.makeText(context,"取消",Toast.LENGTH_SHORT).show();
-                }else if (cancelText.equals("物流")){
-                    Toast.makeText(context,"物流",Toast.LENGTH_SHORT).show();
-                }else if (cancelText.equals("再次购买")){
-                    Toast.makeText(context,"再次购买",Toast.LENGTH_SHORT).show();
+                if (cancelText.equals("取消")) {
+                    Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
+                } else if (cancelText.equals("物流")) {
+                    Toast.makeText(context, "物流", Toast.LENGTH_SHORT).show();
+                } else if (cancelText.equals("再次购买")) {
+                    Toast.makeText(context, "再次购买", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -5,13 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderDetailBean;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.ipd.taxiu.adapter.OrderListAdapter.DELIVERY;
+import static com.ipd.taxiu.adapter.OrderListAdapter.DETAIL;
+import static com.ipd.taxiu.adapter.OrderListAdapter.EVALUATE;
+import static com.ipd.taxiu.adapter.OrderListAdapter.PAYMENT;
 
 /**
  * Created by Miss on 2018/7/20
@@ -30,9 +35,12 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     private int TYPE_HEADER = 1001;
     private int TYPE_FOOTER = 1002;
 
-    public OrderDetailAdapter(List<OrderDetailBean> data, Context mContext) {
+    private String orderStatus;
+
+    public OrderDetailAdapter(List<OrderDetailBean> data, Context mContext,String orderStatus) {
         this.data = data;
         this.mContext = mContext;
+        this.orderStatus = orderStatus;
     }
 
     @Override
@@ -103,8 +111,23 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             VIEW_HEADER = headerView;
             notifyItemInserted(0);
 
-            TextView textView = headerView.findViewById(R.id.tv_address);
-            textView.setText("上海 上海市 青浦区 华徐公路888号");
+            TextView tv_order_status = headerView.findViewById(R.id.tv_order_status);
+            ImageView iv_order_status = headerView.findViewById(R.id.iv_order_status);
+
+            if (orderStatus.equals(PAYMENT)){
+                tv_order_status.setText("待付款");
+                iv_order_status.setImageResource(R.mipmap.detail_wait_pay);
+            }else if (orderStatus.equals(DETAIL)){
+                tv_order_status.setText("待发货");
+                iv_order_status.setImageResource(R.mipmap.detail_wait_shipments);
+            }else if (orderStatus.equals(DELIVERY)){
+                tv_order_status.setText("待收货");
+                iv_order_status.setImageResource(R.mipmap.detail_wait_delivery);
+            }else if (orderStatus.equals(EVALUATE)){
+                tv_order_status.setText("已完成");
+                iv_order_status.setImageResource(R.mipmap.detail_off_the_stocks);
+            }
+
         }
 
     }

@@ -2,45 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_order_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/small_padding"
-        android:layout_above="@id/rl_order_operation"/>
-    <RelativeLayout
-        android:id="@+id/rl_order_operation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding"
-        android:layout_alignParentBottom="true">
-        <TextView
-            android:id="@+id/tv_order_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_text_size"
-            android:text="取消订单"
-            android:textColor="@color/black"
-            android:background="@drawable/shape_order_btn_cancel"
-            android:paddingLeft="@dimen/big_padding"
-            android:paddingRight="@dimen/big_padding"
-            android:paddingTop="@dimen/small_padding"
-            android:paddingBottom="@dimen/small_padding"
-            android:layout_marginLeft="60dp"/>
-        <TextView
-            android:id="@+id/tv_order_payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_text_size"
-            android:text="立即付款"
-            android:textColor="@color/white"
-            android:background="@drawable/shape_order_btn_payment"
-            android:paddingLeft="@dimen/big_padding"
-            android:paddingRight="@dimen/big_padding"
-            android:paddingTop="@dimen/small_padding"
-            android:paddingBottom="@dimen/small_padding"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="60dp"/>
-    </RelativeLayout>
+        android:layout_above="@id/layout_order_operation"
+        android:layout_marginBottom="@dimen/small_padding" />
+
+    <include
+        android:id="@+id/layout_order_operation"
+        layout="@layout/footer_order_button" />
+
 </RelativeLayout>
