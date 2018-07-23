@@ -34,8 +34,7 @@
     <color name="iron">#CBCCCD</color>
     <color name="login_text_color">#D7D8D9</color>
 
-    <color name="sleep_color">#E6E6E6</color>
-    <color name="muse_color">#2C2541</color>
+    <color name="store_pet_kind_bg_color">#66000000</color>
 
     <color name="c_999999">#999999</color>
 
@@ -46,11 +45,6 @@
     <color name="curious_blue">#1998DE</color>
     <color name="white_smoke">#F2F2F2</color>
 
-
-    <color name="value_color_1">#88FFBE11</color>
-    <color name="value_color_2">#8888C833</color>
-    <color name="value_color_3">#88AEDE51</color>
-    <color name="value_color_4">#88EF732F</color>
 
 
     <integer-array name="gplus_colors">

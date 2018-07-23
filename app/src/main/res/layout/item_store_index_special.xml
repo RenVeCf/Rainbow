@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/StoreCardStyle">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding">
+
+        <View
+            style="@style/ViewLine"
+            android:layout_width="45dp"
+            android:layout_height="3px"
+            android:layout_marginRight="@dimen/base_padding"
+            android:background="#EFEFEF"
+            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
+            app:layout_constraintRight_toLeftOf="@id/iv_special_icon"
+            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
+
+        <ImageView
+            android:id="@+id/iv_special_icon"
+            android:layout_width="22dp"
+            android:layout_height="13dp"
+            android:layout_marginRight="@dimen/small_padding"
+            android:src="@mipmap/special_dog_food"
+            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
+            app:layout_constraintRight_toLeftOf="@id/tv_special_name"
+            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
+
+        <TextView
+            android:id="@+id/tv_special_name"
+            style="@style/BaseTextStyle"
+            android:text="狗粮专区"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <View
+            style="@style/ViewLine"
+            android:layout_width="45dp"
+            android:layout_height="3px"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:background="#EFEFEF"
+            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
+            app:layout_constraintLeft_toRightOf="@id/tv_special_name"
+            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
+
+        <com.ipd.taxiu.widget.FlowLayout
+            android:id="@+id/lable_flow_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/base_padding"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_special_name" />
+
+        <com.ipd.taxiu.widget.RoundImageView
+            android:id="@+id/iv_special_banner"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/store_banner_height_small"
+            android:layout_marginTop="@dimen/small_padding"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/store_special_banner"
+            app:corner_radius="@dimen/base_radius"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lable_flow_layout"
+            app:type="round" />
+
+        <com.ipd.taxiu.widget.NotVerticalScrollRecyclerView
+            android:id="@+id/special_product_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            app:layout_constraintTop_toBottomOf="@id/iv_special_banner" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@drawable/shape_store_special_more_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="4dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/special_product_recycler_view">
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="查看更多"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/arrow_right_primary_dark" />
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

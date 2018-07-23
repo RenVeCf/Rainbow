@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ipd.taxiu.widget.AutoScrollerViewPager
+        android:id="@+id/store_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/store_banner_height"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/store_banner_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/store_banner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_store_menu"
+        style="@style/StoreCardStyle"
+        app:layout_constraintBottom_toTopOf="@id/cl_dog_pent"
+        app:layout_constraintTop_toBottomOf="@id/store_banner">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/ll_dog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_store_left_menu"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ll_cat"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/store_dog_icon" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="5dp"
+                    android:text="汪星人"
+                    android:textColor="@color/LightGrey" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_cat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_store_right_menu"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                app:layout_constraintLeft_toRightOf="@id/ll_dog"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/store_cat_icon" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="5dp"
+                    android:text="汪星人"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/dog_category_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_dog"
+                app:spanCount="4" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_dog_pent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintLeft_toLeftOf="@id/cv_store_menu"
+        app:layout_constraintRight_toRightOf="@id/cv_store_menu"
+        app:layout_constraintTop_toBottomOf="@id/cv_store_menu">
+
+
+        <FrameLayout
+            android:id="@+id/fl_young_cat"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/store_dog_pent_img_height"
+            android:layout_marginRight="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/fl_adult_cat">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/young_cat" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_store_pet_kind_bg" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="幼猫专区"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_adult_cat"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/store_dog_pent_img_height"
+            android:layout_marginLeft="4dp"
+            app:layout_constraintLeft_toRightOf="@id/fl_young_cat"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/adult_cat" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_store_pet_kind_bg" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="成猫专区"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_special"
+        style="@style/StoreCardStyle"
+        app:layout_constraintTop_toBottomOf="@id/cl_dog_pent">
+
+        <include layout="@layout/layout_store_home_function" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <com.ipd.taxiu.widget.AutoScrollerViewPager
+        android:id="@+id/store_banner_small"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/store_banner_height_small"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/cv_special" />
+
+    <LinearLayout
+        android:id="@+id/small_banner_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/store_banner_small"
+        app:layout_constraintLeft_toLeftOf="@id/store_banner_small"
+        app:layout_constraintRight_toRightOf="@id/store_banner_small" />
+
+
+</android.support.constraint.ConstraintLayout>

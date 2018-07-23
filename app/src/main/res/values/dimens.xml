@@ -5,18 +5,25 @@
     <dimen name="title_text_size">16sp</dimen>
     <dimen name="big_title_text_size">17sp</dimen>
     <dimen name="banner_height">143dp</dimen>
+    <dimen name="store_banner_height">143dp</dimen>
+    <dimen name="store_banner_height_small">98dp</dimen>
     <dimen name="home_image_height">143dp</dimen>
     <dimen name="topic_image_height">143dp</dimen>
     <dimen name="topic_comment_img_height">100dp</dimen>
     <dimen name="home_talk_avatar_size">25dp</dimen>
     <dimen name="topic_people_comment_avatar_size">40dp</dimen>
     <dimen name="taxiu_video_img_height">200dp</dimen>
+    <dimen name="store_menu_category_img_size">55dp</dimen>
+    <dimen name="base_radius">12dp</dimen>
+    <dimen name="store_dog_pent_img_height">75dp</dimen>
 
 
     <dimen name="cart_product_img_width">60dp</dimen>
     <dimen name="cart_product_img_height">80dp</dimen>
     <dimen name="grid_product_img_height">140dp</dimen>
+    <dimen name="special_product_img_height">100dp</dimen>
     <dimen name="cart_operation_height">30dp</dimen>
+    <dimen name="store_recommend_video_height">80dp</dimen>
 
     <dimen name="classroom_code_image_size">150dp</dimen>
 

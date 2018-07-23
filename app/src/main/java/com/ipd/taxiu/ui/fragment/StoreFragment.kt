@@ -1,27 +1,67 @@
 package com.ipd.taxiu.ui.fragment
 
-import android.os.Bundle
 import com.ipd.taxiu.R
-import com.ipd.taxiu.ui.BaseUIFragment
-import kotlinx.android.synthetic.main.base_toolbar.view.*
+import com.ipd.taxiu.adapter.StoreAdapter
+import com.ipd.taxiu.bean.StoreIndexBean
+import com.ipd.taxiu.bean.StoreIndexHeaderBean
+import com.ipd.taxiu.bean.StoreIndexVideoBean
+import com.ipd.taxiu.bean.StoreRecommendProductHeaderBean
+import com.ipd.taxiu.ui.ListFragment
+import kotlinx.android.synthetic.main.fragment_store.view.*
+import rx.Observable
 
-class StoreFragment : BaseUIFragment() {
+class StoreFragment : ListFragment<StoreIndexBean, Any>() {
+    override fun getTitleLayout(): Int = R.layout.store_toolbar
 
     override fun getContentLayout(): Int = R.layout.fragment_store
 
-    override fun initTitle() {
-        super.initTitle()
-        mHeaderView.tv_title.text = "商城"
-    }
-
-    override fun initView(bundle: Bundle?) {
-
-    }
-
-    override fun loadData() {
-    }
-
     override fun initListener() {
+        super.initListener()
+        mContentView.iv_scroll_top.setOnClickListener {
+            recycler_view.smoothScrollToPosition(0)
+        }
     }
+
+    private var mType = StoreIndexBean.DOG
+    override fun loadListData(): Observable<StoreIndexBean> {
+        return Observable.create<StoreIndexBean> {
+            val storeInfo = StoreIndexBean(mType)
+            storeInfo.headerInfo = StoreIndexHeaderBean(mType)
+            storeInfo.recommendVideo = StoreIndexVideoBean()
+            storeInfo.buildSpecialList()
+            storeInfo.buildProductList()
+            it.onNext(storeInfo)
+            it.onCompleted()
+        }
+    }
+
+    override fun isNoMoreData(result: StoreIndexBean): Int {
+        return NORMAL
+    }
+
+    private var mAdapter: StoreAdapter? = null
+    override fun setOrNotifyAdapter() {
+        if (mAdapter == null) {
+            mAdapter = StoreAdapter(mActivity, data, { type ->
+                mType = type
+                isCreate = true
+                onRefresh()
+            })
+            recycler_view.adapter = mAdapter
+        } else {
+            mAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    override fun addData(isRefresh: Boolean, result: StoreIndexBean) {
+        if (isRefresh) {
+            data?.add(result.headerInfo)
+            data?.addAll(result.specialList)
+            data?.add(result.recommendVideo)
+            data?.add(StoreRecommendProductHeaderBean())
+        }
+        data?.addAll(result.productList)
+    }
+
 
 }

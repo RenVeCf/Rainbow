@@ -35,7 +35,7 @@ public class FlowLayout extends ViewGroup {
 		// 控件宽度
 		int width = MeasureSpec.getSize(widthMeasureSpec);
 		viewWidth = width - getPaddingLeft() - getPaddingRight() - horizontalSpac * 2;
-		Log.e(TAG, "ViewWidth:" + viewWidth);
+//		Log.e(TAG, "ViewWidth:" + viewWidth);
 		if (lineList != null) {
 			lineList.clear();
 		}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/shape_store_right_menu_enable" android:state_selected="true" />
+    <item android:drawable="@drawable/shape_store_right_menu_disable" android:state_selected="false" />
+</selector>

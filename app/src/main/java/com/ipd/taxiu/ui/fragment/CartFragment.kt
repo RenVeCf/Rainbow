@@ -4,9 +4,11 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.CartAdapter
 import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.trade.ConfirmOrderActivity
 import com.ipd.taxiu.utils.CartCallback
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.base_toolbar.view.*
+import kotlinx.android.synthetic.main.fragment_cart.view.*
 import rx.Observable
 import java.util.*
 
@@ -19,6 +21,14 @@ class CartFragment : ListFragment<ShopCartBean, Any>(), CartCallback {
     override fun initTitle() {
         super.initTitle()
         mHeaderView.tv_title.text = "购物车"
+    }
+
+    override fun initListener() {
+        super.initListener()
+        mContentView.tv_confirm.setOnClickListener {
+            //结算
+            ConfirmOrderActivity.launch(mActivity)
+        }
     }
 
     override fun loadListData(): Observable<ShopCartBean> {

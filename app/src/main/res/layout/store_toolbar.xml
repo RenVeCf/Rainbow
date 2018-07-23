@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    android:navigationIcon="@mipmap/back">
+
+    <TextView
+        style="@style/BaseEditTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginRight="@dimen/small_padding"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/shape_comment_edit_bg"
+        android:drawableLeft="@mipmap/search_icon"
+        android:drawablePadding="10dp"
+        android:hint="搜索关键字"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding" />
+
+    <ImageView
+        android:paddingRight="@dimen/base_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/store_category"/>
+
+
+
+</LinearLayout>
+
+

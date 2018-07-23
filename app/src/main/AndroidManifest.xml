@@ -62,6 +62,10 @@
         <activity android:name=".ui.activity.taxiu.TaxiuDetailActivity" />
 
 
+        <!-- trade-->
+        <activity android:name=".ui.activity.trade.ConfirmOrderActivity" />
+
+
         <!-- 裁剪-->
         <activity android:name=".ui.activity.CropActivity" />
         <activity android:name=".ui.activity.PhotoSelectActivity" />

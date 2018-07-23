@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ipd.taxiu.widget.ChoosePayTypeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/tv_pay_type_title"
+        style="@style/BaseTextStyle"
+        android:text="选择支付方式"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/ViewLine"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/tv_pay_type_title" />
+
+    <LinearLayout
+        android:id="@+id/ll_alipay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/view_line">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pay_alipay" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="1"
+            android:text="使用支付宝支付" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cb_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_cart_product_cb"
+            android:clickable="false"
+            android:enabled="false"
+            android:focusable="false"  />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/ll_alipay">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pay_wechat" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="1"
+            android:text="使用微信支付" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cb_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_cart_product_cb"
+            android:clickable="false"
+            android:enabled="false"
+            android:focusable="false"  />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/ll_wechat">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pay_balance" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="使用余额支付" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="1"
+            android:text="余额：￥3899.00"
+            android:textColor="@color/LightGrey" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cb_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_cart_product_cb"
+            android:clickable="false"
+            android:enabled="false"
+            android:focusable="false" />
+
+    </LinearLayout>
+
+
+</com.ipd.taxiu.widget.ChoosePayTypeLayout>

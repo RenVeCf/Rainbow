@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/base_padding">
+
+    <ImageView
+        android:id="@+id/iv_guess_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/guess_favorite" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_toRightOf="@id/iv_guess_icon"
+        android:text="猜你喜欢"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
