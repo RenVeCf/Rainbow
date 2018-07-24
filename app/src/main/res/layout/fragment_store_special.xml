@@ -17,7 +17,7 @@
             android:id="@+id/swipe_refresh_header"
             layout="@layout/layout_refresh_header"></include>
 
-        <com.ipd.taxiu.widget.StoreRecyclerView
+        <com.ipd.taxiu.widget.StoreSpecialRecyclerView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,6 +30,11 @@
             layout="@layout/layout_load_footer"></include>
 
     </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+
+    <include
+        android:id="@+id/screen_layout"
+        layout="@layout/item_store_special_screen"
+        android:visibility="gone" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
@@ -45,6 +50,14 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/scroll_top"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_store_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_padding"
+            android:src="@mipmap/store_index_icon"
+            app:layout_constraintBottom_toTopOf="@id/iv_scroll_top" />
 
     </android.support.constraint.ConstraintLayout>
 

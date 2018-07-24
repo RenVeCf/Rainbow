@@ -6,6 +6,7 @@
     <color name="colorAccent">#EC601E</color>
     <color name="main_status_bar_color">#55000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="mystic">#DFE6EB</color>
     <color name="main_tab_color">#FFFFFF</color>
     <color name="dialog_bg_color">#CCFFFFFF</color>
     <color name="window_bg_color">#ECF0F0</color>

@@ -65,6 +65,10 @@
         <!-- trade-->
         <activity android:name=".ui.activity.trade.ConfirmOrderActivity" />
 
+        <!-- store-->
+        <activity android:name=".ui.activity.store.StoreSecondIndexActivity" />
+        <activity android:name=".ui.activity.store.StoreSpecialActivity" />
+
 
         <!-- 裁剪-->
         <activity android:name=".ui.activity.CropActivity" />
@@ -73,8 +77,8 @@
             android:name=".ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
 
-        <activity android:name=".ui.activity.order.MyOrderActivity"/>
-        <activity android:name=".ui.activity.order.OrderDetailActivity"/>
+        <activity android:name=".ui.activity.order.MyOrderActivity" />
+        <activity android:name=".ui.activity.order.OrderDetailActivity" />
     </application>
 
 </manifest>

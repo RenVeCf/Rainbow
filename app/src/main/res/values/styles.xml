@@ -111,6 +111,11 @@
         <item name="android:textSize">@dimen/title_text_size</item>
     </style>
 
+    <style name="ScreenViewStyle">
+        <item name="android:paddingTop">@dimen/base_padding</item>
+        <item name="android:paddingBottom">@dimen/base_padding</item>
+    </style>
+
     <style name="SmallTextStyle" parent="BaseTextStyle">
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
@@ -230,6 +235,7 @@
         <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/racharge_dialog_animation</item>
     </style>
+
     <style name="racharge_dialog_animation" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
