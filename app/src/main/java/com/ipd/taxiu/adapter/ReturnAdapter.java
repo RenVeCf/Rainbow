@@ -1,6 +1,7 @@
 package com.ipd.taxiu.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.bean.ReturnBean;
 import com.ipd.taxiu.ui.activity.order.OrderDetailActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnDetailActivity;
+import com.ipd.taxiu.ui.activity.order.ReturnNoPassActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnRecordDetailActivity;
 
 import java.util.ArrayList;
@@ -79,6 +81,18 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ReturnRecordDetailActivity.class);
+                    intent.putExtra("returnStatus", returnStatus);
+                    intent.putExtra("returnType", returnType);
+                    context.startActivity(intent);
+                }
+            });
+        }
+
+        if (list.get(position).getStatusStr().equals("未通过")) {
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ReturnNoPassActivity.class);
                     intent.putExtra("returnStatus", returnStatus);
                     intent.putExtra("returnType", returnType);
                     context.startActivity(intent);

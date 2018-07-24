@@ -98,11 +98,17 @@ public class ReturnInfoFragment extends ListFragment<ReturnListBean, ReturnBean>
                         }
                     }
                 }
-//                else if (categoryId == 2) {
-//                    for (int i = 0; i < 3; i++) {
-//                        bean.list.add(new ReturnBean());
-//                    }
-//                }
+                else if (categoryId == 2) {
+                    for (int i = 0; i < 3; i++) {
+                        if (i == 0) {
+                            bean.list.add(new ReturnBean("未通过",2, 4));
+                        }else if (i == 1){
+                            bean.list.add(new ReturnBean("未通过",1, 2));
+                        }else {
+                            bean.list.add(new ReturnBean("未通过",1, 3));
+                        }
+                    }
+                }
                 subscriber.onNext(bean);
                 subscriber.onCompleted();
             }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+    <ImageView
+        android:id="@+id/iv_about_us_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/about_us_logo"
+        android:layout_centerHorizontal="true"/>
+    <ImageView
+        android:id="@+id/iv_ta_xiu_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ta_xiu_pet"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/iv_about_us_logo"/>
+    <TextView
+        android:id="@+id/company_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/big_padding"
+        android:text="杭州华元宠物用品有限公司是一家从事宠物用品的电子商务公司，成立于2007年，公司旗下有HOOPET、酷奇思、妙慕等20个品牌；涉及洗浴用品、狗窝、玩具、狗粮零食、保健用品、医药用品等多个领域。"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size"
+        android:layout_below="@id/iv_ta_xiu_pet"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/big_padding"
+        android:paddingRight="@dimen/big_padding"
+        android:text="其中华元宠物用品专营店是HOOPET在天猫商城上的宠物用品旗舰店，主营商品为高档宠物窝具、宠物食品、宠物服饰、日用品等宠物用品。"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size"
+        android:layout_below="@id/company_explain"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        android:textColor="@color/text_gray"
+        android:text="Copyright © 杭州华元宠物用品有限公司 版权所有"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/base_padding"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

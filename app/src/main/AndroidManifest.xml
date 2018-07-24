@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
 
     <application
@@ -88,6 +89,16 @@
         <activity android:name=".ui.activity.order.ReturnDetailActivity"/>
         <activity android:name=".ui.activity.order.ReturnRecordDetailActivity"/>
         <activity android:name=".ui.activity.order.ExpressInfoActivity"/>
+        <activity android:name=".ui.activity.order.ReturnNoPassActivity"/>
+
+        <!-- 设置-->
+        <activity android:name=".ui.activity.setting.SettingActivity"/>
+        <activity android:name=".ui.activity.setting.UpdatePasswordActivity"/>
+        <activity android:name=".ui.activity.setting.AboutUsActivity"/>
+        <activity android:name=".ui.activity.setting.CommonProblemActivity"/>
+
+        <!-- 消息-->
+        <activity android:name=".ui.activity.message.MessageActivity"/>
     </application>
 
 </manifest>
