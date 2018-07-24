@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_pay_way_bg"
+    android:padding="@dimen/base_padding">
+    <TextView
+        android:id="@+id/tv_photo_shoot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="拍摄图片"
+        android:layout_centerHorizontal="true"/>
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/tv_photo_shoot"
+        android:background="@color/full_screen_overlay"
+        android:layout_marginTop="@dimen/base_padding"/>
+    <TextView
+        android:id="@+id/tv_album_choose"
+        android:layout_below="@id/line1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="从相册选择"
+        android:layout_marginTop="@dimen/base_padding"
+        android:layout_centerHorizontal="true"/>
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/tv_album_choose"
+        android:background="@color/full_screen_overlay"
+        android:layout_marginTop="@dimen/base_padding"/>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_below="@id/line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        android:textColor="@color/black"
+        android:text="取消"
+        android:layout_marginTop="@dimen/base_padding"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

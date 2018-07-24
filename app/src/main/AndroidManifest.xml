@@ -77,8 +77,17 @@
             android:name=".ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
 
-        <activity android:name=".ui.activity.order.MyOrderActivity" />
-        <activity android:name=".ui.activity.order.OrderDetailActivity" />
+        <!-- 订单 -->
+        <activity android:name=".ui.activity.order.MyOrderActivity"/>
+        <activity android:name=".ui.activity.order.OrderDetailActivity"/>
+        <activity android:name=".ui.activity.order.LogisticsDetailActivity"/>
+        <activity android:name=".ui.activity.order.EvaluateActivity"/>
+        <activity android:name=".ui.activity.order.RequestReturnActivity"/>
+        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity"/>
+        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity"/>
+        <activity android:name=".ui.activity.order.ReturnDetailActivity"/>
+        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity"/>
+        <activity android:name=".ui.activity.order.ExpressInfoActivity"/>
     </application>
 
 </manifest>

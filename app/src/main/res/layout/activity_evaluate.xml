@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_evaluate"
+        android:layout_marginBottom="@dimen/small_padding"/>
+
+    <Button
+        android:id="@+id/btn_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@drawable/shape_order_btn_payment"
+        android:text="立即发表"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size"
+        android:layout_margin="@dimen/base_padding"/>
+</RelativeLayout>
+

@@ -10,6 +10,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.BaseUIFragment;
 import com.ipd.taxiu.ui.activity.order.MyOrderActivity;
+import com.ipd.taxiu.ui.activity.order.ReturnMoneyCommodityActivity;
 import com.ipd.taxiu.widget.MessageDialog;
 
 import org.jetbrains.annotations.Nullable;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PersonFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout rl_all_order,rl_wait_pay,rl_wait_shipments,rl_wait_delivery,rl_off_the_stocks;
+    private RelativeLayout rl_return_record;
 
     @Override
     protected int getBaseLayout() {
@@ -43,11 +45,13 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_wait_shipments.setOnClickListener(this);
         rl_wait_delivery.setOnClickListener(this);
         rl_off_the_stocks.setOnClickListener(this);
+//        rl_return_record.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), MyOrderActivity.class);;
+        Intent intent = new Intent(getActivity(), MyOrderActivity.class);
+        Intent intent1;
         switch (v.getId()){
             case R.id.rl_all_order:
                 intent.putExtra("status",0);
@@ -69,6 +73,10 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("status",4);
                 startActivity(intent);
                 break;
+            case R.id.rl_return_record:
+                intent1 = new Intent(getActivity(), ReturnMoneyCommodityActivity.class);
+                startActivity(intent1);
+                break;
         }
     }
 
@@ -80,5 +88,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_wait_shipments = rootView.findViewById(R.id.rl_wait_shipments);
         rl_wait_delivery = rootView.findViewById(R.id.rl_wait_delivery);
         rl_off_the_stocks = rootView.findViewById(R.id.rl_off_the_stocks);
+        rl_return_record = rootView.findViewById(R.id.rl_return_record);
     }
 }

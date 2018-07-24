@@ -1,35 +1,35 @@
 package com.ipd.taxiu.ui.activity.order;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseUIActivity;
-import com.ipd.taxiu.ui.fragment.order.OrderListFragment;
-import com.ipd.taxiu.ui.fragment.topic.TopicListFragment;
+import com.ipd.taxiu.ui.fragment.order.ReturnInfoFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Miss on 2018/7/19
- * 订单信息
+ * 退款退货
  */
-public class MyOrderActivity extends BaseUIActivity {
-    private String[] titles = {"全部","待付款","待发货","待收货","已完成"};
+public class ReturnMoneyCommodityActivity extends BaseUIActivity {
+    private String[] titles = {"审核中","已通过","未通过"};
     private ViewPager viewPager;
     private SlidingTabLayout tab_layout;
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_order_index;
+        return R.layout.activity_return_index;
     }
 
     @Override
@@ -41,28 +41,9 @@ public class MyOrderActivity extends BaseUIActivity {
 
     @Override
     protected void loadData() {
-        OrderAdapter adapter = new OrderAdapter(getSupportFragmentManager());
+        ReturnAdapter adapter = new ReturnAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tab_layout.setViewPager(viewPager, titles);
-        Intent intent = getIntent();
-        int status = intent.getIntExtra("status",0);
-        switch (status){
-            case 1:
-                tab_layout.setCurrentTab(1);
-                break;
-            case 2:
-                tab_layout.setCurrentTab(2);
-                break;
-            case 3:
-                tab_layout.setCurrentTab(3);
-                break;
-            case 4:
-                tab_layout.setCurrentTab(4);
-                break;
-           default:
-               tab_layout.setCurrentTab(0);
-               break;
-        }
     }
 
     @Override
@@ -73,18 +54,18 @@ public class MyOrderActivity extends BaseUIActivity {
     @NotNull
     @Override
     protected String getToolbarTitle() {
-        return "我的订单";
+        return "退款退货";
     }
 
-    class OrderAdapter extends FragmentPagerAdapter{
+    class ReturnAdapter extends FragmentPagerAdapter{
 
-        public OrderAdapter(FragmentManager fm) {
+        public ReturnAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            return OrderListFragment.newInstance(position);
+            return ReturnInfoFragment.newInstance(position);
         }
 
         @Override
