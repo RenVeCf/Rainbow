@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/base_padding"/>
+    <Button
+        android:id="@+id/btn_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加收货地址"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/base_text_size"
+        android:background="@drawable/shape_order_btn_payment"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/base_padding"/>
+</RelativeLayout>

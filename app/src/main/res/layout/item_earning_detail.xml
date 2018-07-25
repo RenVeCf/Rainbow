@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:id="@+id/civ_friend_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_header" />
+
+    <TextView
+        android:id="@+id/tv_friend_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_toRightOf="@id/civ_friend_header"
+        android:text="拎着背包去流浪"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_friend_nickname"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_toRightOf="@id/civ_friend_header"
+        android:text="2018.07.25  00:00"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/base_text_size"
+        android:layout_marginTop="@dimen/small_padding"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:text="+ 1000"
+        android:textColor="@color/earning_text"
+        android:textSize="@dimen/base_text_size"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/full_screen_overlay"
+        android:layout_below="@id/civ_friend_header"
+        android:layout_marginTop="@dimen/base_padding"/>
+</RelativeLayout>

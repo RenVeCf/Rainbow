@@ -61,6 +61,9 @@
     <color name="gplus_color_4">#b23424</color>
 
     <color name="text_gray">#888</color>
+    <color name="referral_code_bg">#5A5D64</color>
+    <color name="friend_text_bg">#8ACD8A</color>
+    <color name="earning_text">#8E9Fda</color>
 
 
 </resources>

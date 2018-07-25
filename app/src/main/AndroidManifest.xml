@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 
     <application
@@ -79,26 +79,30 @@
             android:theme="@style/FullScreenStyle" />
 
         <!-- 订单 -->
-        <activity android:name=".ui.activity.order.MyOrderActivity"/>
-        <activity android:name=".ui.activity.order.OrderDetailActivity"/>
-        <activity android:name=".ui.activity.order.LogisticsDetailActivity"/>
-        <activity android:name=".ui.activity.order.EvaluateActivity"/>
-        <activity android:name=".ui.activity.order.RequestReturnActivity"/>
-        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity"/>
-        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity"/>
-        <activity android:name=".ui.activity.order.ReturnDetailActivity"/>
-        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity"/>
-        <activity android:name=".ui.activity.order.ExpressInfoActivity"/>
-        <activity android:name=".ui.activity.order.ReturnNoPassActivity"/>
+        <activity android:name=".ui.activity.order.MyOrderActivity" />
+        <activity android:name=".ui.activity.order.OrderDetailActivity" />
+        <activity android:name=".ui.activity.order.LogisticsDetailActivity" />
+        <activity android:name=".ui.activity.order.EvaluateActivity" />
+        <activity android:name=".ui.activity.order.RequestReturnActivity" />
+        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity" />
+        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity" />
+        <activity android:name=".ui.activity.order.ReturnDetailActivity" />
+        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity" />
+        <activity android:name=".ui.activity.order.ExpressInfoActivity" />
+        <activity android:name=".ui.activity.order.ReturnNoPassActivity" />
 
         <!-- 设置-->
-        <activity android:name=".ui.activity.setting.SettingActivity"/>
-        <activity android:name=".ui.activity.setting.UpdatePasswordActivity"/>
-        <activity android:name=".ui.activity.setting.AboutUsActivity"/>
-        <activity android:name=".ui.activity.setting.CommonProblemActivity"/>
-
-        <!-- 消息-->
-        <activity android:name=".ui.activity.message.MessageActivity"/>
+        <activity android:name=".ui.activity.setting.SettingActivity" />
+        <activity android:name=".ui.activity.setting.UpdatePasswordActivity" />
+        <activity android:name=".ui.activity.setting.AboutUsActivity" />
+        <activity android:name=".ui.activity.setting.CommonProblemActivity" />
+        <activity android:name=".ui.activity.message.MessageActivity" />
+        <activity android:name=".ui.activity.referral.ReferralCodeActivity" />
+        <activity android:name=".ui.activity.referral.FriendListActivity" />
+        <activity android:name=".ui.activity.referral.HomepageActivity"/>
+        <activity android:name=".ui.activity.referral.RecommendEarningsActivity"/>
+        <activity android:name=".ui.activity.address.AddAddressActivity"/>
+        <activity android:name=".ui.activity.address.DeliveryAddressActivity"/>
     </application>
 
 </manifest>
