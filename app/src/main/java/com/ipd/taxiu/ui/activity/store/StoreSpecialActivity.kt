@@ -7,6 +7,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.store.StoreSpecialFragment
 import kotlinx.android.synthetic.main.second_store_toolbar.*
+import kotlinx.android.synthetic.main.store_toolbar.view.*
 
 class StoreSpecialActivity : BaseUIActivity() {
 
@@ -30,5 +31,9 @@ class StoreSpecialActivity : BaseUIActivity() {
 
     override fun initListener() {
         iv_back.setOnClickListener { finish() }
+
+        tv_search.setOnClickListener {
+            StoreSearchActivity.launch(mActivity)
+        }
     }
 }

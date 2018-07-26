@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.*
+import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.StoreSecondIndexActivity
 import com.ipd.taxiu.ui.activity.store.StoreSpecialActivity
 import com.ipd.taxiu.utils.IndicatorHelper
@@ -265,8 +266,8 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.productList, {
-                    //itemClick
-
+                    //商品详情
+                    ProductDetailActivity.launch(context as Activity)
                 })
             }
             ItemType.RECOMMEND_VIDEO -> {
@@ -276,6 +277,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
             }
             else -> {
+                holder.itemView.setOnClickListener {
+                    //商品详情
+                    ProductDetailActivity.launch(context as Activity)
+                }
 
             }
         }

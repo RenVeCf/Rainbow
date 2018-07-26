@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="@dimen/evaluate_avatar_size"
+        android:layout_height="@dimen/evaluate_avatar_size"
+        android:src="@mipmap/avatar_default" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/evaluate_avatar_size"
+        android:layout_marginLeft="@dimen/small_padding"
+        app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/civ_avatar">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:text="领着**流浪"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="2018.03.24 13:21"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <com.hedgehog.ratingbar.RatingBar
+            android:id="@+id/rating_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_padding"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:starCount="0"
+            app:starEmpty="@mipmap/evaluate_star"
+            app:starFill="@mipmap/evaluate_star_checked"
+            app:starImageHeight="12dp"
+            app:starImageWidth="15dp"
+            app:starNum="5" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="很大一包哦，快递很快，还没给狗狗吃，给狗狗换个品牌吃，看起来不错，吃了以后再来评价"
+        app:layout_constraintTop_toBottomOf="@id/civ_avatar" />
+
+    <com.ipd.taxiu.widget.MediaRecyclerView
+        android:id="@+id/image_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/tv_content"
+        app:layout_goneMarginTop="0dp" />
+
+
+</android.support.constraint.ConstraintLayout>

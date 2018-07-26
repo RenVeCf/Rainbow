@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.StoreIndexVideoBean
 import com.ipd.taxiu.bean.StoreProductScreenBean
 import com.ipd.taxiu.bean.StoreSpecialHeaderBean
+import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.layout_menu.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
@@ -122,6 +124,10 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
 
             }
             else -> {
+                holder.itemView.setOnClickListener {
+                    //商品详情
+                    ProductDetailActivity.launch(context as Activity)
+                }
 
             }
         }

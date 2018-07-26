@@ -68,6 +68,9 @@
         <!-- store-->
         <activity android:name=".ui.activity.store.StoreSecondIndexActivity" />
         <activity android:name=".ui.activity.store.StoreSpecialActivity" />
+        <activity android:name=".ui.activity.store.StoreSearchActivity" />
+        <activity android:name=".ui.activity.store.ProductListActivity" />
+        <activity android:name=".ui.activity.store.ProductDetailActivity" />
 
 
         <!-- 裁剪-->
@@ -78,16 +81,16 @@
             android:theme="@style/FullScreenStyle" />
 
         <!-- 订单 -->
-        <activity android:name=".ui.activity.order.MyOrderActivity"/>
-        <activity android:name=".ui.activity.order.OrderDetailActivity"/>
-        <activity android:name=".ui.activity.order.LogisticsDetailActivity"/>
-        <activity android:name=".ui.activity.order.EvaluateActivity"/>
-        <activity android:name=".ui.activity.order.RequestReturnActivity"/>
-        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity"/>
-        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity"/>
-        <activity android:name=".ui.activity.order.ReturnDetailActivity"/>
-        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity"/>
-        <activity android:name=".ui.activity.order.ExpressInfoActivity"/>
+        <activity android:name=".ui.activity.order.MyOrderActivity" />
+        <activity android:name=".ui.activity.order.OrderDetailActivity" />
+        <activity android:name=".ui.activity.order.LogisticsDetailActivity" />
+        <activity android:name=".ui.activity.order.EvaluateActivity" />
+        <activity android:name=".ui.activity.order.RequestReturnActivity" />
+        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity" />
+        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity" />
+        <activity android:name=".ui.activity.order.ReturnDetailActivity" />
+        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity" />
+        <activity android:name=".ui.activity.order.ExpressInfoActivity" />
     </application>
 
 </manifest>

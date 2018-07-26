@@ -60,10 +60,15 @@ class StoreSecondIndexActivity : BaseUIActivity() {
         iv_back.setOnClickListener { finish() }
         iv_store_home.setOnClickListener { finish() }
         iv_scroll_top.setOnClickListener {
-            if (view_pager.adapter != null && view_pager.adapter is CurFragmentPagerAdapter){
+            if (view_pager.adapter != null && view_pager.adapter is CurFragmentPagerAdapter) {
                 val curFragmentPagerAdapter = view_pager.adapter as CurFragmentPagerAdapter
                 (curFragmentPagerAdapter.mCurrentFragment as StoreSecondIndexFragment).scrollTop()
             }
+        }
+
+
+        tv_search.setOnClickListener {
+            StoreSearchActivity.launch(mActivity)
         }
 
     }

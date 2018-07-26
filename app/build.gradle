@@ -54,6 +54,7 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:8.6.0'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    implementation 'com.hedgehog.ratingbar:app:1.1.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation project(':jumpboxlibrary')
