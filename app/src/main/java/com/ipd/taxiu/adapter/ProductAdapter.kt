@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
+import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -26,6 +27,7 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
         mType = if (mType == ItemType.LIST) ItemType.GRID else ItemType.LIST
         return mType
     }
+
     override fun getItemViewType(position: Int): Int {
         return mType
     }
@@ -46,12 +48,14 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
         val info = list!![position]
         when (getItemViewType(position)) {
             ItemType.LIST -> {
+                holder.itemView.iv_new_product.visibility = if (info.isNew) View.VISIBLE else View.GONE
 
             }
             ItemType.GRID -> {
 
             }
         }
+        holder.itemView.setOnClickListener { itemClick.invoke(info) }
 
     }
 

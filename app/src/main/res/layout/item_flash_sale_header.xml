@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/flash_sale_header_bg"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView style="@style/StoreCardStyle">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.ipd.taxiu.widget.RoundImageView
+                android:id="@+id/iv_cheapest_img"
+                android:layout_width="@dimen/list_product_img_width"
+                android:layout_height="@dimen/list_product_img_height"
+                android:layout_marginBottom="@dimen/small_padding"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/product_img1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:leftTop_corner_radius="10dp"
+                app:rightTop_corner_radius="10dp"
+                app:type="round" />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginRight="@dimen/small_padding"
+                app:layout_constraintBottom_toBottomOf="@id/iv_cheapest_img"
+                app:layout_constraintLeft_toRightOf="@id/iv_cheapest_img"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_cheapest_img">
+
+                <TextView
+                    android:id="@+id/tv_cheapest_name"
+                    style="@style/BaseTextStyle"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="法国皇家ROYAL CANIN中型犬" />
+
+                <com.ipd.taxiu.widget.PercentTextProgressBar
+                    android:id="@+id/sale_progress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="4dp"
+                    android:indeterminateDrawable="@color/white"
+                    android:max="100"
+                    android:progress="30"
+                    android:progressDrawable="@drawable/flash_sale_progress_bar_style"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cheapest_name" />
+
+                <TextView
+                    android:id="@+id/tv_cheapest_progress"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="4dp"
+                    android:text="已有3235人抢购"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintTop_toBottomOf="@id/sale_progress" />
+
+                <TextView
+                    android:id="@+id/tv_cheapest_price"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginTop="4dp"
+                    android:text="￥580"
+                    android:textColor="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_cheapest_old_price"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:text="￥580"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/tv_cheapest_price" />
+
+                <TextView
+                    android:id="@+id/tv_cheapest_buy"
+                    style="@style/SmallTextStyle"
+                    android:background="@drawable/shape_buy_bg"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="6dp"
+                    android:text="马上抢"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/today_cheapest"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <com.ipd.taxiu.widget.FlashSaleTabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding">
+
+            <ImageView
+                android:id="@+id/today_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_today_flash_sale_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_toRightOf="@id/today_icon"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/today_title"
+                    style="@style/TitleTextStyle"
+                    android:text="今日抢购"
+                    android:textColor="@drawable/selector_flash_sale_tab_text_color" />
+
+                <TextView
+                    android:id="@+id/today_time"
+                    style="@style/BaseTextStyle"
+                    android:text="9:00~17:00"
+                    android:textColor="@drawable/selector_flash_sale_tab_text_color" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_tomorrow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding">
+
+            <ImageView
+                android:id="@+id/tomorrow_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_tomorrow_flash_sale_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_toRightOf="@id/tomorrow_icon"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tomorrow_title"
+                    style="@style/TitleTextStyle"
+                    android:text="明日预告"
+                    android:textColor="@drawable/selector_flash_sale_tab_text_color" />
+
+                <TextView
+                    android:id="@+id/tomorrow_time"
+                    style="@style/BaseTextStyle"
+                    android:text="9:00~17:00"
+                    android:textColor="@drawable/selector_flash_sale_tab_text_color" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </com.ipd.taxiu.widget.FlashSaleTabLayout>
+
+</LinearLayout>

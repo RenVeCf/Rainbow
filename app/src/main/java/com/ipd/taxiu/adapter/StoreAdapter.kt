@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.*
-import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
-import com.ipd.taxiu.ui.activity.store.StoreSecondIndexActivity
-import com.ipd.taxiu.ui.activity.store.StoreSpecialActivity
+import com.ipd.taxiu.ui.activity.store.*
+import com.ipd.taxiu.ui.activity.store.flashsale.FlashSaleActivity
+import com.ipd.taxiu.ui.activity.store.grouppurchase.GroupPurchaseActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StorePetSpecialType
 import kotlinx.android.synthetic.main.item_lable.view.*
@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.item_store_index_special.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_cat_header.view.*
 import kotlinx.android.synthetic.main.layout_store_dog_header.view.*
+import kotlinx.android.synthetic.main.layout_store_home_function.view.*
 import kotlinx.android.synthetic.main.layout_store_menu.view.*
 import kotlinx.android.synthetic.main.layout_store_second_header.view.*
 import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
@@ -115,45 +116,6 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     onPetTypeChange(StoreIndexBean.CAT)
                 }
 
-                holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
-                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
-                if (!holder.itemView.store_banner.isAutoScroll) {
-                    holder.itemView.store_banner.startAutoScroll()
-                }
-
-                holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.bannerList)
-                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
-                if (!holder.itemView.store_banner_small.isAutoScroll) {
-                    holder.itemView.store_banner_small.startAutoScroll()
-                }
-
-                holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
-                    //专区
-                    StoreSpecialActivity.launch(context as Activity)
-                })
-
                 holder.itemView.fl_small_dog.setOnClickListener {
                     StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.SMALL_DOG)
                 }
@@ -165,6 +127,8 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
 
 
+
+                setPublishListener(holder, headerInfo)
             }
             ItemType.HEADER_CAT -> {
                 val headerInfo = list!![position] as StoreIndexHeaderBean
@@ -177,46 +141,6 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     onPetTypeChange(StoreIndexBean.DOG)
                 }
 
-                holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
-                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
-                if (!holder.itemView.store_banner.isAutoScroll) {
-                    holder.itemView.store_banner.startAutoScroll()
-                }
-
-                holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.bannerList)
-                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
-                if (!holder.itemView.store_banner_small.isAutoScroll) {
-                    holder.itemView.store_banner_small.startAutoScroll()
-                }
-
-                holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
-                    //专区
-                    StoreSpecialActivity.launch(context as Activity)
-                })
-
-
                 holder.itemView.fl_young_cat.setOnClickListener {
                     StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.YOUNG_CAT)
                 }
@@ -224,6 +148,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.ADULT_CAT)
                 }
 
+                setPublishListener(holder, headerInfo)
 
             }
             ItemType.SECOND_HEADER -> {
@@ -231,17 +156,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
+                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, null)
                 if (!holder.itemView.store_banner.isAutoScroll) {
                     holder.itemView.store_banner.startAutoScroll()
                 }
@@ -285,6 +200,47 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
             }
         }
 
+    }
+
+    private fun setPublishListener(holder: ViewHolder, headerInfo: StoreIndexHeaderBean) {
+        //顶部大banner
+        holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
+        IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
+                .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, null)
+        if (!holder.itemView.store_banner.isAutoScroll) {
+            holder.itemView.store_banner.startAutoScroll()
+        }
+
+        //下方小banner
+        holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.smallBannerList)
+        IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
+                .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, null)
+        if (!holder.itemView.store_banner_small.isAutoScroll) {
+            holder.itemView.store_banner_small.startAutoScroll()
+        }
+
+        //专区分类
+        holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
+            //专区
+            StoreSpecialActivity.launch(context as Activity)
+        })
+
+        holder.itemView.iv_store_purchase.setOnClickListener {
+            //限时抢购
+            FlashSaleActivity.launch(context as Activity)
+        }
+        holder.itemView.iv_store_spell.setOnClickListener {
+            //团购
+            GroupPurchaseActivity.launch(context as Activity)
+        }
+        holder.itemView.iv_store_new.setOnClickListener {
+            //上新
+            NewProductListActivity.launch(context as Activity)
+        }
+        holder.itemView.iv_store_clear.setOnClickListener {
+            //清仓
+            ClearanceProductActivity.launch(context as Activity)
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

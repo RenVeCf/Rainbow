@@ -34,7 +34,8 @@
     <color name="LightGrey">#9C9C9C</color>
     <color name="iron">#CBCCCD</color>
     <color name="login_text_color">#D7D8D9</color>
-
+    <color name="karry">#FEDCC7</color>
+    <color name="tuft_bush">#FDDECA</color>
     <color name="store_pet_kind_bg_color">#66000000</color>
 
     <color name="c_999999">#999999</color>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+
+    <com.ipd.taxiu.widget.RoundImageView
+        android:id="@+id/iv_group_purchase_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_image_height"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/hot_classroom_image"
+        app:corner_radius="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="round" />
+
+
+    <TextView
+        android:id="@+id/tv_group_purchase_name"
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/small_padding"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="海瑞特 鲜肉62+系列 全价中大型犬幼犬犬粮"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_group_purchase_img" />
+
+    <TextView
+        android:id="@+id/tv_group_purchase_price"
+        style="@style/TitleTextStyle"
+        android:text="￥64.00"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/tv_group_purchase_name" />
+
+    <TextView
+        android:id="@+id/tv_group_purchase_info"
+        style="@style/SmallTextStyle"
+        android:layout_marginLeft="20dp"
+        android:text="2人团，1人已参团"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintBottom_toBottomOf="@id/tv_group_purchase_price"
+        app:layout_constraintLeft_toRightOf="@id/tv_group_purchase_price" />
+
+    <TextView
+        android:id="@+id/tv_group_purchase_end_time_title"
+        style="@style/SmallTextStyle"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="距结束还剩："
+        android:textColor="@color/LightGrey"
+        app:layout_constraintTop_toBottomOf="@id/tv_group_purchase_price" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/tv_group_purchase_end_time_title"
+        app:layout_constraintTop_toTopOf="@id/tv_group_purchase_end_time_title">
+
+        <TextView
+            android:id="@+id/tv_group_purchase_hours"
+            style="@style/SmallTextStyle"
+            android:background="@drawable/shape_time_bg"
+            android:text="15"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:text=":"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_group_purchase_minute"
+            style="@style/SmallTextStyle"
+            android:background="@drawable/shape_time_bg"
+            android:text="15"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:text=":"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_group_purchase_second"
+            style="@style/SmallTextStyle"
+            android:background="@drawable/shape_time_bg"
+            android:text="15"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_group_purchase_buy"
+        style="@style/SmallTextStyle"
+        android:background="@drawable/shape_buy_bg"
+        android:paddingBottom="6dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="6dp"
+        android:text="立即参团"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
