@@ -1,9 +1,7 @@
 package com.ipd.taxiu.widget;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
@@ -12,40 +10,33 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.ui.activity.CropActivity;
-import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Created by Miss on 2018/7/20
+ * 选择性别
  */
-public class ChooseImageDialog extends Dialog implements View.OnClickListener {
-    private TextView tv_photo_shoot,tv_album_choose,tv_cancel;
+public class ChooseSexDialog extends Dialog implements View.OnClickListener {
+    private ImageView iv_sex_boy,iv_sex_girl;
     private Context context;
-    private String takePhoto;
+    private TextView textView;
 
 
-    public ChooseImageDialog(@NonNull Context context, int themeResId ,String takePhoto) {
+    public ChooseSexDialog(@NonNull Context context, int themeResId,TextView textView) {
         super(context, themeResId);
         this.context = context;
-        this.takePhoto = takePhoto;
+        this.textView = textView;
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_choose_image);
+        setContentView(R.layout.dialog_choose_sex);
         initWidget();
         setOnClickListener();
         Window dialogWindow = getWindow();
@@ -57,17 +48,13 @@ public class ChooseImageDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initWidget() {
-        tv_photo_shoot = findViewById(R.id.tv_photo_shoot);
-        tv_album_choose = findViewById(R.id.tv_album_choose);
-        tv_cancel = findViewById(R.id.tv_cancel);
-
-        tv_photo_shoot.setText(takePhoto);
+        iv_sex_boy = findViewById(R.id.iv_sex_boy);
+        iv_sex_girl = findViewById(R.id.iv_sex_girl);
     }
 
     private void setOnClickListener() {
-        tv_photo_shoot.setOnClickListener(this);
-        tv_album_choose.setOnClickListener(this);
-        tv_cancel.setOnClickListener(this);
+        iv_sex_boy.setOnClickListener(this);
+        iv_sex_girl.setOnClickListener(this);
     }
 
 
@@ -76,13 +63,12 @@ public class ChooseImageDialog extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_photo_shoot:
-                ToastCommom.getInstance().show(context,takePhoto);
-                break;
-            case R.id.tv_album_choose:
+            case R.id.iv_sex_boy:
+                textView.setText("男");
                 dismiss();
                 break;
-            case R.id.tv_cancel:
+            case R.id.iv_sex_girl:
+                textView.setText("女");
                 dismiss();
                 break;
         }

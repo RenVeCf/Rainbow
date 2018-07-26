@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_card_view"
+    android:layout_marginLeft="@dimen/big_padding"
+    android:layout_marginRight="@dimen/base_padding"
+    android:layout_marginTop="@dimen/base_padding">
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:id="@+id/civ_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_pet_header"
+        android:layout_margin="@dimen/base_padding"/>
+    <TextView
+        android:id="@+id/tv_pet_nickname"
+        style="@style/BaseTextStyle"
+        android:text="我的名字叫小七"
+        android:layout_toRightOf="@id/civ_header"
+        android:layout_marginTop="@dimen/base_padding"
+        android:layout_marginLeft="@dimen/base_padding"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/boy"
+        android:layout_toRightOf="@id/tv_pet_nickname"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"/>
+
+    <TextView
+        android:id="@+id/tv_pet_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生日：2018.10.09"
+        android:layout_toRightOf="@id/civ_header"
+        android:layout_below="@id/tv_pet_nickname"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"/>
+
+    <TextView
+        android:id="@+id/tv_pet_kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="贵宾犬"
+        android:background="@drawable/shape_my_pet_bg"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@id/tv_pet_birthday"
+        android:layout_toRightOf="@id/civ_header"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:paddingLeft="@dimen/big_padding"
+        android:paddingRight="@dimen/big_padding"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginBottom="@dimen/base_padding"/>
+
+    <TextView
+        android:id="@+id/tv_marital_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="寻求配偶"
+        android:background="@drawable/shape_my_pet_bg"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@id/tv_pet_birthday"
+        android:layout_toRightOf="@id/tv_pet_kind"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:paddingLeft="@dimen/big_padding"
+        android:paddingRight="@dimen/big_padding"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginBottom="@dimen/base_padding"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_right"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/base_padding"/>
+</RelativeLayout>

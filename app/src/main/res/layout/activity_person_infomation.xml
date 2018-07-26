@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="头像" />
+
+        <ImageView
+            android:id="@+id/iv_choose_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_header"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_choose_header"
+            android:src="@mipmap/mine_default_header" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line1"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_header" />
+
+    <RelativeLayout
+        android:id="@+id/rl_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="昵称" />
+
+        <ImageView
+            android:id="@+id/iv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <EditText
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_nickname"
+            android:background="@null"
+            android:hint="主人_23788"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_nickname" />
+
+    <RelativeLayout
+        android:id="@+id/rl_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line2"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="手机号码" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:hint="13687874563"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size"
+            android:inputType="number"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line3"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_phone_number" />
+
+    <RelativeLayout
+        android:id="@+id/rl_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line3"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="真实姓名" />
+
+        <ImageView
+            android:id="@+id/iv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_name"
+            android:hint="未设置"
+            android:background="@null"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line4"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_name" />
+
+    <RelativeLayout
+        android:id="@+id/rl_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="生日" />
+
+        <ImageView
+            android:id="@+id/iv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_birthday"
+            android:hint="选择生日"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line5"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_birthday" />
+
+    <RelativeLayout
+        android:id="@+id/rl_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line5"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="性别" />
+
+        <ImageView
+            android:id="@+id/iv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_sex"
+            android:hint="选择性别"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size"  />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line6"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_sex" />
+
+    <RelativeLayout
+        android:id="@+id/rl_how_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line6"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="养宠时长" />
+
+        <ImageView
+            android:id="@+id/iv_how_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_how_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_how_long"
+            android:hint="选择"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line7"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_how_long" />
+
+    <RelativeLayout
+        android:id="@+id/rl_person_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line7"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="个人标签" />
+
+        <ImageView
+            android:id="@+id/iv_person_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_person_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_person_tag"
+            android:hint="未设置"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

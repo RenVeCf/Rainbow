@@ -6,12 +6,12 @@
     android:padding="@dimen/base_padding">
     <TextView
         android:id="@+id/tv_photo_shoot"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/base_text_size"
         android:textColor="@color/colorPrimaryDark"
         android:text="拍摄图片"
-        android:layout_centerHorizontal="true"/>
+        android:gravity="center"/>
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
@@ -22,13 +22,13 @@
     <TextView
         android:id="@+id/tv_album_choose"
         android:layout_below="@id/line1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/base_text_size"
         android:textColor="@color/colorPrimaryDark"
         android:text="从相册选择"
         android:layout_marginTop="@dimen/base_padding"
-        android:layout_centerHorizontal="true"/>
+        android:gravity="center"/>
     <View
         android:id="@+id/line2"
         android:layout_width="match_parent"
@@ -40,12 +40,13 @@
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_below="@id/line2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/base_text_size"
         android:textColor="@color/black"
         android:text="取消"
         android:layout_marginTop="@dimen/base_padding"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 
 </RelativeLayout>

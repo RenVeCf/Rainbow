@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_pay_way_bg">
+
+    <RelativeLayout
+        android:id="@+id/rl_choose_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_choose_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/birthday_choose" />
+
+        <TextView
+            android:id="@+id/tv_choose_birthday"
+            style="@style/BaseTextStyle"
+            android:layout_toRightOf="@id/iv_choose_birthday"
+            android:text="选择您的生日" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/base_padding"
+        android:src="@mipmap/pay_close" />
+
+    <LinearLayout
+        android:id="@+id/timepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_close"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_padding">
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/year"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/month"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/day"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/hour"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/min"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/second"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timepicker"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/class_room_buy_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size"
+        android:gravity="center"
+        android:text="确定"
+        android:paddingBottom="@dimen/small_padding"/>
+</RelativeLayout>

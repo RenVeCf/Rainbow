@@ -4,41 +4,48 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
+import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
+import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.activity.CropActivity;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
+import java.util.logging.Logger;
+
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 /**
  * Created by Miss on 2018/7/20
  */
-public class ChooseImageDialog extends Dialog implements View.OnClickListener {
+public class SettingHeaderDialog extends Dialog implements View.OnClickListener {
     private TextView tv_photo_shoot,tv_album_choose,tv_cancel;
     private Context context;
-    private String takePhoto;
 
 
-    public ChooseImageDialog(@NonNull Context context, int themeResId ,String takePhoto) {
+    public SettingHeaderDialog(@NonNull Context context, int themeResId ) {
         super(context, themeResId);
         this.context = context;
-        this.takePhoto = takePhoto;
     }
 
 
@@ -60,8 +67,6 @@ public class ChooseImageDialog extends Dialog implements View.OnClickListener {
         tv_photo_shoot = findViewById(R.id.tv_photo_shoot);
         tv_album_choose = findViewById(R.id.tv_album_choose);
         tv_cancel = findViewById(R.id.tv_cancel);
-
-        tv_photo_shoot.setText(takePhoto);
     }
 
     private void setOnClickListener() {
@@ -77,9 +82,10 @@ public class ChooseImageDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_photo_shoot:
-                ToastCommom.getInstance().show(context,takePhoto);
+                ToastCommom.getInstance().show(context,"拍照");
                 break;
             case R.id.tv_album_choose:
+                PhotoSelectActivity.launch((Activity) context,1);
                 dismiss();
                 break;
             case R.id.tv_cancel:

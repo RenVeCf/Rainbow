@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/my_pet_bg">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/back_white_style"
+        android:padding="@dimen/base_padding"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的爱宠"
+        android:textColor="@color/white"
+        android:textSize="@dimen/big_title_text_size"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/base_padding"/>
+    <TextView
+        android:id="@+id/tv_add_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加爱宠"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/base_padding"/>
+</RelativeLayout>

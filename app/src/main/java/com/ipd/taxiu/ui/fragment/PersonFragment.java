@@ -4,15 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
 import com.ipd.taxiu.ui.activity.message.MessageActivity;
+import com.ipd.taxiu.ui.activity.mine.PersonInformationActivity;
 import com.ipd.taxiu.ui.activity.order.MyOrderActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnMoneyCommodityActivity;
+import com.ipd.taxiu.ui.activity.pet.MyPetActivity;
+import com.ipd.taxiu.ui.activity.pet.PetBibleActivity;
 import com.ipd.taxiu.ui.activity.referral.ReferralCodeActivity;
 import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 
@@ -24,7 +29,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PersonFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout rl_all_order,rl_wait_pay,rl_wait_shipments,rl_wait_delivery,rl_off_the_stocks;
-    private RelativeLayout rl_return_record,rl_setting,rl_message,rl_referral,rl_delivery_address;
+    private RelativeLayout rl_return_record,rl_setting,rl_message,rl_referral,rl_delivery_address,rl_pet_bible,
+            rl_my_pet;
+    private CircleImageView civ_header;
+    private LinearLayout ll_sign_in;
 
     @Override
     protected int getBaseLayout() {
@@ -53,6 +61,10 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_message.setOnClickListener(this);
         rl_referral.setOnClickListener(this);
         rl_delivery_address.setOnClickListener(this);
+        civ_header.setOnClickListener(this);
+        rl_pet_bible.setOnClickListener(this);
+        rl_my_pet.setOnClickListener(this);
+        ll_sign_in.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +112,21 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 intent1 = new Intent(getActivity(), DeliveryAddressActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.civ_header:
+                intent1 = new Intent(getActivity(), PersonInformationActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_pet_bible:
+                intent1 = new Intent(getActivity(), PetBibleActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_my_pet:
+                intent1 = new Intent(getActivity(), MyPetActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.ll_sign_in:
+                toastShow("签到");
+                break;
         }
     }
 
@@ -116,5 +143,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_message = rootView.findViewById(R.id.rl_message);
         rl_referral = rootView.findViewById(R.id.rl_referral);
         rl_delivery_address = rootView.findViewById(R.id.rl_delivery_address);
+        civ_header = rootView.findViewById(R.id.civ_header);
+        rl_pet_bible = rootView.findViewById(R.id.rl_pet_bible);
+        rl_my_pet = rootView.findViewById(R.id.rl_my_pet);
+        ll_sign_in = rootView.findViewById(R.id.ll_sign_in);
     }
 }

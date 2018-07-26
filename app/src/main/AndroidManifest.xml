@@ -106,10 +106,13 @@
         <activity android:name=".ui.activity.message.MessageActivity" />
         <activity android:name=".ui.activity.referral.ReferralCodeActivity" />
         <activity android:name=".ui.activity.referral.FriendListActivity" />
-        <activity android:name=".ui.activity.referral.HomepageActivity"/>
-        <activity android:name=".ui.activity.referral.RecommendEarningsActivity"/>
-        <activity android:name=".ui.activity.address.AddAddressActivity"/>
-        <activity android:name=".ui.activity.address.DeliveryAddressActivity"/>
+        <activity android:name=".ui.activity.referral.HomepageActivity" />
+        <activity android:name=".ui.activity.referral.RecommendEarningsActivity" />
+        <activity android:name=".ui.activity.address.AddAddressActivity" />
+        <activity android:name=".ui.activity.address.DeliveryAddressActivity" />
+        <activity android:name=".ui.activity.mine.PersonInformationActivity" />
+        <activity android:name=".ui.activity.pet.PetBibleActivity"/>
+        <activity android:name=".ui.activity.pet.MyPetActivity"/>
     </application>
 
 </manifest>

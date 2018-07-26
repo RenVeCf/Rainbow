@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/header_my_pet"/>
+    <TextView
+        android:id="@+id/empty_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去添加"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/base_text_size"
+        android:background="@drawable/shape_upload_img_bg"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/cart_product_img_height"/>
+    <ImageView
+        android:id="@+id/iv_empty_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/empty_pet"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        android:textColor="@color/text_gray"
+        android:text="您还未添加爱宠"
+        android:layout_below="@id/iv_empty_pet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/big_padding"/>
+</RelativeLayout>

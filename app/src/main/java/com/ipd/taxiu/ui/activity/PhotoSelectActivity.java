@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil;
+import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.LocalPictureAdapter;
 import com.ipd.taxiu.adapter.PictureDirectoryAdapter;
@@ -209,6 +210,7 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
                 intent.putExtra("pictureList", checkedPicturePath);
                 setResult(RESULT_OK, intent);
                 finish();
+                CropActivity.launch(getMActivity(),checkedPicturePath.get(0).path);
                 break;
             case R.id.tv_preview://预览
                 if (adapter == null) {

@@ -1,1 +1,1 @@
-include ':app',':jumpboxlibrary',':indexlib'
+include ':app',':jumpboxlibrary',':indexlib',':wheelview',':pickerview'
