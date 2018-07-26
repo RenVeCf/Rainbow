@@ -40,6 +40,7 @@ class FlashSaleAdapter(val context: Context, private val list: List<ProductBean>
         val info = list!![position]
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
+//                holder.itemView.
 
             }
             ItemType.CONTENT -> {
