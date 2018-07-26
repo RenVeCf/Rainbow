@@ -9,7 +9,7 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="top"
         android:background="@color/colorPrimary"
         app:tl_indicator_color="@color/colorPrimaryDark"
         app:tl_indicator_corner_radius="20dp"

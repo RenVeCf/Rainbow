@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include
+        android:id="@+id/layout_return"
+        layout="@layout/return_detail_info" />
+
+    <TextView
+        android:id="@+id/submit_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_return"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/base_padding"
+        android:paddingLeft="@dimen/base_padding"
+        android:text="提交时间： 2018.07.23 14:00" />
+
+    <TextView
+        android:id="@+id/auditing_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submit_time"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding"
+        android:text="审核反馈"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/feedback_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/auditing_feedback"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:text="很是抱歉，由于您上传的图片并不能描述您所说的问题，存在虚假退货嫌疑，导致退货申请不能通过，谢谢您的反馈。"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_size" />
+
+    <TextView
+        android:id="@+id/pass_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feedback_info"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingTop="@dimen/base_padding"
+        android:text="如有疑问，可拨打他嗅宠物售后电话咨询：021—6697021"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_size" />
+
+    <TextView
+        android:id="@+id/verification_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pass_verification"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding"
+        android:text="审核时间： 2018.07.23 14:00" />
+
+</RelativeLayout>

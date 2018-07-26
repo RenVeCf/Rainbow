@@ -6,16 +6,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_above="@id/btn_express_information">
+        android:layout_above="@id/btn_express_information"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <include
-                android:id="@+id/layout_return"
-                layout="@layout/return_detail_info" />
+            android:id="@+id/layout_return"
+            layout="@layout/return_detail_info" />
 
             <TextView
                 android:id="@+id/submit_time"
@@ -74,18 +74,88 @@
                 android:text="审核时间： 2018.07.23 14:00" />
 
 
+            <RelativeLayout
+                android:id="@+id/rl_back_express_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/verification_time"
+                android:layout_marginTop="@dimen/small_padding"
+                android:background="@color/white"
+                android:padding="@dimen/base_padding">
+
+                <TextView
+                    android:id="@+id/back_express_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="回寄快递信息"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/base_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/back_express_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/back_express_message"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="回寄快递单号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/base_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_back_express_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/back_express_message"
+                    android:layout_marginLeft="@dimen/small_padding"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:layout_toRightOf="@id/back_express_code"
+                    android:text="89348575789576"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/base_text_size" />
+
+                <TextView
+                    android:id="@+id/express_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_back_express_code"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="快递公司:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/base_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_express_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_back_express_code"
+                    android:layout_marginLeft="@dimen/small_padding"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:layout_toRightOf="@id/express_company"
+                    android:text="顺丰快递"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/base_text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_express_company"
+                    android:background="@color/white"
+                    android:text="提交时间： 2018.07.23 14:00"
+                    android:layout_marginTop="@dimen/base_padding"/>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_express_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_order_btn_payment"
-        android:text="填写快递信息"
-        android:textColor="@color/white"
-        android:textSize="@dimen/base_text_size"
-        android:layout_margin="@dimen/base_padding"/>
+    android:id="@+id/btn_express_information"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="@dimen/base_padding"
+    android:background="@drawable/shape_order_btn_payment"
+    android:text="填写快递信息"
+    android:textColor="@color/white"
+    android:textSize="@dimen/base_text_size"
+    android:layout_margin="@dimen/base_padding"/>
 </RelativeLayout>

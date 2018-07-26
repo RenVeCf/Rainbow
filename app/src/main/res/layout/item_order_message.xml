@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/HomeCardStyle"
+    android:layout_marginBottom="@dimen/base_padding">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/reminder_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待付款提醒"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2018.07.24 15:01"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/order_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reminder_payment"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="订单编号:"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tv_order_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reminder_payment"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/order_code"
+                android:text="89348575789576976"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_code"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="实付金额:"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tv_pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_code"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/pay_money"
+                android:text="￥134.00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pay_money"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="下单时间:"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tv_order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pay_money"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/order_time"
+                android:text="2018.07.22  20:03"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/delivery_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_time"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="收货时间:"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tv_delivery_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_time"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/delivery_time"
+                android:text="2018.07.25  20:03"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/delivery_time"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="快递单号:"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/base_text_size" />
+
+            <TextView
+                android:id="@+id/tv_tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/delivery_time"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/tracking_number"
+                android:text="3455465477657"
+                android:textColor="@color/black"
+                android:textSize="@dimen/base_text_size" />
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

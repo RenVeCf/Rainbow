@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.ui.BaseFragment;
-import com.ipd.taxiu.ui.BaseUIFragment;
+import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
+import com.ipd.taxiu.ui.activity.message.MessageActivity;
 import com.ipd.taxiu.ui.activity.order.MyOrderActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnMoneyCommodityActivity;
-import com.ipd.taxiu.widget.MessageDialog;
+import com.ipd.taxiu.ui.activity.referral.ReferralCodeActivity;
+import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PersonFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout rl_all_order,rl_wait_pay,rl_wait_shipments,rl_wait_delivery,rl_off_the_stocks;
-    private RelativeLayout rl_return_record;
+    private RelativeLayout rl_return_record,rl_setting,rl_message,rl_referral,rl_delivery_address;
 
     @Override
     protected int getBaseLayout() {
@@ -45,7 +48,11 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_wait_shipments.setOnClickListener(this);
         rl_wait_delivery.setOnClickListener(this);
         rl_off_the_stocks.setOnClickListener(this);
-//        rl_return_record.setOnClickListener(this);
+        rl_return_record.setOnClickListener(this);
+        rl_setting.setOnClickListener(this);
+        rl_message.setOnClickListener(this);
+        rl_referral.setOnClickListener(this);
+        rl_delivery_address.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +84,22 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 intent1 = new Intent(getActivity(), ReturnMoneyCommodityActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.rl_setting:
+                intent1 = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_message:
+                intent1 = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_referral:
+                intent1 = new Intent(getActivity(), ReferralCodeActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_delivery_address:
+                intent1 = new Intent(getActivity(), DeliveryAddressActivity.class);
+                startActivity(intent1);
+                break;
         }
     }
 
@@ -89,5 +112,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_wait_delivery = rootView.findViewById(R.id.rl_wait_delivery);
         rl_off_the_stocks = rootView.findViewById(R.id.rl_off_the_stocks);
         rl_return_record = rootView.findViewById(R.id.rl_return_record);
+        rl_setting = rootView.findViewById(R.id.rl_setting);
+        rl_message = rootView.findViewById(R.id.rl_message);
+        rl_referral = rootView.findViewById(R.id.rl_referral);
+        rl_delivery_address = rootView.findViewById(R.id.rl_delivery_address);
     }
 }
