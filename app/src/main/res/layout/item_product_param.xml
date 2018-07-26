@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/tv_param_name"
+        style="@style/BaseTextStyle"
+        android:layout_width="100dp"
+        android:ellipsize="end"
+        android:layout_height="wrap_content"
+        android:text="原产地"
+        android:layout_marginTop="@dimen/base_padding"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_param_value"
+        style="@style/BaseTextStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="中国"
+        app:layout_constraintLeft_toRightOf="@id/tv_param_name"
+        app:layout_constraintBottom_toTopOf="@id/view_line"
+        android:layout_marginBottom="@dimen/base_padding"
+        app:layout_constraintTop_toTopOf="@id/tv_param_name" />
+
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/ViewLine"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

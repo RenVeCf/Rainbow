@@ -10,10 +10,11 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseFragment
-import kotlinx.android.synthetic.main.layout_web.view.*
+import com.ipd.taxiu.widget.ProductParamDialog
+import kotlinx.android.synthetic.main.layout_product_detail_bottom.view.*
 
 class ProductDetailBottomFragment : BaseFragment() {
-    override fun getBaseLayout(): Int = R.layout.layout_web
+    override fun getBaseLayout(): Int = R.layout.layout_product_detail_bottom
 
     override fun initView(bundle: Bundle?) {
     }
@@ -51,6 +52,9 @@ class ProductDetailBottomFragment : BaseFragment() {
     }
 
     override fun initListener() {
+        mRootView?.ll_product_param?.setOnClickListener {
+            ProductParamDialog(mActivity).show()
+        }
     }
 
 }

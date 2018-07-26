@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AbsListView;
+import android.widget.LinearLayout;
 
 import com.ipd.taxiu.R;
 
@@ -36,6 +36,16 @@ public class ProductModelDialog extends Dialog {
     private void init(Context context) {
         mContentView = LayoutInflater.from(context).inflate(R.layout.layout_product_model, null);
         setContentView(mContentView);
+
+        LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
+        for (int i = 0; i < 2; i++) {
+            ViewGroup productLayout = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.item_product_model, null);
+            ProductModelView productModelView = productLayout.findViewById(R.id.product_model_view);
+            for (int j = 0; j < 10; j++) {
+                productModelView.addView();
+            }
+            ll_product_model.addView(productLayout);
+        }
 
         getWindow().setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams params = getWindow().getAttributes();

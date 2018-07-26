@@ -26,11 +26,23 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_product_img" />
 
+    <LinearLayout
+        android:id="@+id/ll_product_model"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_price">
+
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl_num_operation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_product_price">
+        app:layout_constraintTop_toBottomOf="@id/ll_product_model">
 
         <TextView
             style="@style/SmallTextStyle"

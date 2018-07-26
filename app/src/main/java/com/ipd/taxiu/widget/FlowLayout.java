@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlowLayout extends ViewGroup {
-	public Context context;
 	public int horizontalSpac = DensityUtil.dip2px(getContext(),12);
 	public int verticalSpac = DensityUtil.dip2px(getContext(),12);
 	public static final String TAG = "FlowLayout";
