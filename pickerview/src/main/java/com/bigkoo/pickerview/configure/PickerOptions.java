@@ -96,10 +96,10 @@ public class PickerOptions {
 
     public int textSizeSubmitCancel = 17;//确定取消按钮大小
     public int textSizeTitle = 18;//标题文字大小
-    public int textSizeContent = 18;//内容文字大小
+    public int textSizeContent = 14;//内容文字大小
 
     public int textColorOut = 0xFFa8a8a8; //分割线以外的文字颜色
-    public int textColorCenter = 0xFF2a2a2a; //分割线之间的文字颜色
+    public int textColorCenter = 0xFF525455; //分割线之间的文字颜色
     public int dividerColor = 0xFFd5d5d5; //分割线的颜色
     public int backgroundId = -1; //显示时的外部背景色颜色,默认是灰色
 

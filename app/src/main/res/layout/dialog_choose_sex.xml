@@ -13,12 +13,13 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
+            android:id="@+id/icon_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/pay_way" />
+            android:src="@mipmap/icon_sex"/>
         <TextView
+            android:id="@+id/text_title"
             style="@style/BaseTextStyle"
-            android:text="选择您的性别"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/small_padding"/>
     </LinearLayout>
@@ -41,8 +42,8 @@
                 android:src="@mipmap/sex_boy"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/sex_boy"
                 style="@style/BaseTextStyle"
-                android:text="男"
                 android:layout_below="@id/iv_sex_boy"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="@dimen/base_padding"/>
@@ -58,8 +59,8 @@
                 android:src="@mipmap/sex_girl"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/sex_girl"
                 style="@style/BaseTextStyle"
-                android:text="女"
                 android:paddingTop="@dimen/base_padding"
                 android:layout_below="@id/iv_sex_girl"
                 android:layout_centerHorizontal="true"/>

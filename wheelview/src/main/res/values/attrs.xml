@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="pickerview">
         <attr name="wheelview_gravity">
-            <enum name="center" value="17"/>
+            <enum name="center" value="14"/>
             <enum name="left" value="3"/>
             <enum name="right" value="5"/>
         </attr>

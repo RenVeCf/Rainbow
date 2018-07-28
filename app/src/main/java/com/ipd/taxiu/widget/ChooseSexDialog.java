@@ -24,12 +24,19 @@ public class ChooseSexDialog extends Dialog implements View.OnClickListener {
     private ImageView iv_sex_boy,iv_sex_girl;
     private Context context;
     private TextView textView;
+    private TextView boy,girl,title;
+
+    private String sexBoy,sexGirl,sexTitle;
 
 
-    public ChooseSexDialog(@NonNull Context context, int themeResId,TextView textView) {
+    public ChooseSexDialog(@NonNull Context context, int themeResId,TextView textView,String sexTitle,
+                           String sexBoy, String sexGirl){
         super(context, themeResId);
         this.context = context;
         this.textView = textView;
+        this.sexBoy = sexBoy;
+        this.sexGirl = sexGirl;
+        this.sexTitle = sexTitle;
     }
 
 
@@ -50,6 +57,13 @@ public class ChooseSexDialog extends Dialog implements View.OnClickListener {
     private void initWidget() {
         iv_sex_boy = findViewById(R.id.iv_sex_boy);
         iv_sex_girl = findViewById(R.id.iv_sex_girl);
+        boy = findViewById(R.id.sex_boy);
+        girl = findViewById(R.id.sex_girl);
+        title = findViewById(R.id.text_title);
+
+        boy.setText(sexBoy);
+        girl.setText(sexGirl);
+        title.setText(sexTitle);
     }
 
     private void setOnClickListener() {
@@ -64,11 +78,11 @@ public class ChooseSexDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_sex_boy:
-                textView.setText("男");
+                textView.setText(boy.getText().toString());
                 dismiss();
                 break;
             case R.id.iv_sex_girl:
-                textView.setText("女");
+                textView.setText(girl.getText().toString());
                 dismiss();
                 break;
         }

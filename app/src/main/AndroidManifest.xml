@@ -113,6 +113,14 @@
         <activity android:name=".ui.activity.mine.PersonInformationActivity" />
         <activity android:name=".ui.activity.pet.PetBibleActivity"/>
         <activity android:name=".ui.activity.pet.MyPetActivity"/>
+        <activity android:name=".ui.activity.pet.PetInformationActivity"/>
+        <activity android:name=".ui.activity.pet.AddPetActivity"/>
+        <activity android:name=".ui.activity.mine.EditTagActivity"/>
+        <activity android:name=".ui.activity.setting.MyCollectActivity"/>
+        <activity android:name=".ui.activity.setting.SocialContactActivity"/>
+        <activity android:name=".ui.activity.group.GroupBookingActivity"/>
+        <activity android:name=".ui.activity.group.GroupDetailActivity"/>
+
     </application>
 
 </manifest>

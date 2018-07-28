@@ -1,5 +1,6 @@
 package com.ipd.taxiu.ui.activity.pet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,11 +85,17 @@ public class MyPetActivity extends BaseActivity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.tv_add_pet:
-                toastShow("添加爱宠");
+                startActivity();
                 break;
             case R.id.empty_add:
-                toastShow("添加爱宠");
+                startActivity();
                 break;
         }
+    }
+
+    public void startActivity() {
+        Intent intent = new Intent(this,AddPetActivity.class);
+        intent.putExtra("petWay","AddPet");
+        startActivity(intent);
     }
 }

@@ -56,7 +56,7 @@ public class ReferralCodeActivity extends BaseUIActivity implements View.OnClick
         Intent intent;
         switch (v.getId()){
             case R.id.btn_invite_friends:
-                ChooseFriendDialog dialog = new ChooseFriendDialog(this,R.style.recharge_pay_dialog);
+                ChooseFriendDialog dialog = new ChooseFriendDialog(this,R.style.recharge_pay_dialog,1);
                 dialog.show();
                 break;
             case R.id.tv_friend_list:

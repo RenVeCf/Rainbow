@@ -102,22 +102,24 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 getDate(tv_birthday, "选择您的生日");
                 break;
             case R.id.tv_sex:
-                ChooseSexDialog sexDialog = new ChooseSexDialog(this, R.style.recharge_pay_dialog, tv_sex);
+                ChooseSexDialog sexDialog = new ChooseSexDialog(this, R.style.recharge_pay_dialog,tv_sex,
+                        "选择您的性别","男","女");
                 sexDialog.show();
                 break;
             case R.id.tv_how_long:
                 getDate(tv_how_long, "选择首次养宠时间");
                 break;
             case R.id.tv_person_tag:
-                toastShow("个人标签");
+                Intent intent = new Intent(this,EditTagActivity.class);
+                startActivity(intent);
                 break;
         }
     }
 
     //获取选择日期弹框
     private void getDate(TextView textView, String title) {
-        PickerUtil.initLunarPicker(this, textView, title);
-        PickerUtil.show();
+        PickerUtil pickerUtil = new PickerUtil();
+        pickerUtil.initLunarPicker(this, textView, title);
     }
 
     @Override
