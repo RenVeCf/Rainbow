@@ -22,27 +22,20 @@
         style="@style/BaseEditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/small_padding"
         android:layout_weight="1"
         android:background="@drawable/shape_comment_edit_bg"
         android:drawableLeft="@mipmap/search_icon"
         android:drawablePadding="10dp"
+        android:singleLine="true"
+        android:maxLength="20"
         android:hint="搜索关键字"
         android:imeOptions="actionSearch"
-        android:maxLength="20"
         android:paddingBottom="@dimen/small_padding"
         android:paddingLeft="@dimen/small_padding"
         android:paddingRight="@dimen/small_padding"
-        android:paddingTop="@dimen/small_padding"
-        android:singleLine="true" />
+        android:paddingTop="@dimen/small_padding" />
 
-    <ImageView
-        android:id="@+id/iv_show_type"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingLeft="@dimen/base_padding"
-        android:paddingRight="@dimen/base_padding"
-        android:src="@mipmap/product_list_grid" />
 
 
 </LinearLayout>

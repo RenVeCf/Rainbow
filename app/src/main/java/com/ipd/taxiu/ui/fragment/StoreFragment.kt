@@ -7,6 +7,7 @@ import com.ipd.taxiu.bean.StoreIndexHeaderBean
 import com.ipd.taxiu.bean.StoreIndexVideoBean
 import com.ipd.taxiu.bean.StoreRecommendProductHeaderBean
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.store.ProductCategoryActivity
 import com.ipd.taxiu.ui.activity.store.StoreSearchActivity
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import kotlinx.android.synthetic.main.store_toolbar.view.*
@@ -24,6 +25,9 @@ class StoreFragment : ListFragment<StoreIndexBean, Any>() {
         }
         mHeaderView.tv_search.setOnClickListener {
             StoreSearchActivity.launch(mActivity)
+        }
+        mHeaderView.iv_category.setOnClickListener {
+            ProductCategoryActivity.launch(mActivity)
         }
     }
 

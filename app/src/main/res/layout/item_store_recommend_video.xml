@@ -35,8 +35,14 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_recommend_video_icon" />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/iv_recommend_video_icon">
 
-            <include layout="@layout/item_recommend_video" />
+                <include layout="@layout/item_recommend_video" />
+
+            </FrameLayout>
 
 
         </android.support.constraint.ConstraintLayout>

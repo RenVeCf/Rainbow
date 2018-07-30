@@ -1,8 +1,8 @@
 package com.ipd.taxiu.bean;
 
-import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
+import me.yokeyword.indexablerv.IndexableEntity;
 
-public class PetInfoBean extends BaseIndexPinyinBean {
+public class PetInfoBean implements IndexableEntity {
     public int res;
     public String name;
 
@@ -12,7 +12,17 @@ public class PetInfoBean extends BaseIndexPinyinBean {
     }
 
     @Override
-    public String getTarget() {
+    public String getFieldIndexBy() {
         return name;
+    }
+
+    @Override
+    public void setFieldIndexBy(String indexField) {
+        this.name = indexField;
+
+    }
+
+    @Override
+    public void setFieldPinyinIndexBy(String pinyin) {
     }
 }

@@ -52,7 +52,7 @@ public class ListPopupUtils {
         wv_view.setCurrentItem(1);
         wv_view.setVisibleItems(7);
 
-        mPopupWindow = PopupUtils.showViewAtBottom(activity, view, activity.getWindow(), parent);
+        mPopupWindow = PopupUtils.showViewAtBottom(activity, view, activity.getWindow(), parent,null);
     }
 
 
@@ -92,6 +92,6 @@ public class ListPopupUtils {
         wv_view.setVisibleItems(7);
 
 
-        mPopupWindow = PopupUtils.showViewAtBottom(activity, view, activity.getWindow(), parent);
+        mPopupWindow = PopupUtils.showViewAtBottom(activity, view, activity.getWindow(), parent,null);
     }
 }

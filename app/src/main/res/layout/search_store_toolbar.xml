@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
         android:src="@mipmap/back" />
 
     <EditText
@@ -20,7 +21,6 @@
         style="@style/BaseEditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/small_padding"
         android:layout_marginRight="@dimen/small_padding"
         android:layout_weight="1"
         android:background="@drawable/shape_comment_edit_bg"

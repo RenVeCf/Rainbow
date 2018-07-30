@@ -12,8 +12,8 @@
         android:layout_marginTop="@dimen/small_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/cl_recommend_video2"
-        app:layout_constraintTop_toBottomOf="@id/iv_recommend_video_icon">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cl_recommend_video2">
 
         <com.ipd.taxiu.widget.RoundImageView
             android:id="@+id/iv_recommend_video1"

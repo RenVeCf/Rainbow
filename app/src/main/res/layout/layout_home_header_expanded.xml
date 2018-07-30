@@ -13,7 +13,7 @@
         android:id="@+id/rl_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/index_header_bg"
+        android:background="@color/colorPrimaryDark"
         android:padding="@dimen/base_padding">
 
         <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView

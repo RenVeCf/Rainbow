@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/small_padding"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_category_img"
+        android:layout_width="@dimen/product_category_img_size"
+        android:layout_height="@dimen/product_category_img_size"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/category_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/small_padding"
+        android:maxLines="1"
+        android:text="你家主子有什么特别的撒娇方式?"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_category_img" />
+
+
+</android.support.constraint.ConstraintLayout>

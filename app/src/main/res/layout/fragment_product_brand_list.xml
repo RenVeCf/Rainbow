@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_parent"
     android:layout_width="match_parent"
@@ -17,23 +17,26 @@
             android:id="@+id/swipe_refresh_header"
             layout="@layout/layout_refresh_header"></include>
 
-        <me.yokeyword.indexablerv.IndexableLayout
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            app:indexBar_background="#08000000"
-            app:indexBar_layout_width="24dp"
-            app:indexBar_selectedTextColor="#f33737"
-            app:indexBar_textColor="#000000"
-            app:indexBar_textSize="14sp"
-            app:indexBar_textSpace="6dp" />
+            android:background="@color/white" />
 
 
         <include
             android:id="@+id/swipe_load_more_footer"
-            layout="@layout/layout_load_footer"></include>
+            layout="@layout/layout_load_footer" />
 
     </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
 
-</LinearLayout>
+
+    <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
+        android:id="@+id/index_bar"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        app:indexBarPressBackground="@color/partTranslucent"
+        app:indexBarTextColor="@color/black"
+        app:indexBarTextSize="16sp" />
+</RelativeLayout>

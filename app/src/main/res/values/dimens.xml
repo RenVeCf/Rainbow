@@ -17,6 +17,7 @@
     <dimen name="store_menu_category_img_size">55dp</dimen>
     <dimen name="base_radius">12dp</dimen>
     <dimen name="store_dog_pent_img_height">75dp</dimen>
+    <dimen name="product_category_img_size">85dp</dimen>
 
 
     <dimen name="cart_product_img_width">60dp</dimen>

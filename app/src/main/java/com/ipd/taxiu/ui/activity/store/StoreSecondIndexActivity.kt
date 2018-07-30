@@ -71,5 +71,9 @@ class StoreSecondIndexActivity : BaseUIActivity() {
             StoreSearchActivity.launch(mActivity)
         }
 
+        iv_category.setOnClickListener {
+            ProductCategoryActivity.launch(mActivity)
+        }
+
     }
 }

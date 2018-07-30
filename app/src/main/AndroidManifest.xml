@@ -78,6 +78,7 @@
         <activity android:name=".ui.activity.store.ClearanceProductActivity" />
         <activity android:name=".ui.activity.store.video.StoreVideoIndexActivity" />
         <activity android:name=".ui.activity.store.video.StoreVideoDetailActivity" />
+        <activity android:name=".ui.activity.store.ProductCategoryActivity" />
 
 
         <!-- 裁剪-->

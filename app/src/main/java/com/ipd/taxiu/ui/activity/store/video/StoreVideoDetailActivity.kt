@@ -3,6 +3,8 @@ package com.ipd.taxiu.ui.activity.store.video
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductAdapter
 import com.ipd.taxiu.bean.ProductBean
@@ -33,5 +35,23 @@ class StoreVideoDetailActivity : BaseUIActivity() {
 
     override fun initListener() {
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_share, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_share) {
+            //分享
+
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
 }
