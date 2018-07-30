@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/big_padding">
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_header"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/my_pet_header" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/camera"
+            android:layout_below="@id/civ_header"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-30dp"
+            android:layout_toRightOf="@id/civ_header"/>
+
+        <TextView
+            android:id="@+id/tv_pet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/civ_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base_padding"
+            android:text="上传头像"
+            android:textColor="@color/black"
+            android:textSize="@dimen/small_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_header"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="昵称" />
+
+        <ImageView
+            android:id="@+id/iv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <EditText
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_nickname"
+            android:background="@null"
+            android:hint="给爱宠起个昵称吧~"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size"
+            android:gravity="center_vertical|right"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_nickname" />
+
+    <RelativeLayout
+        android:id="@+id/rl_pet_kind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line2"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="品种" />
+
+        <ImageView
+            android:id="@+id/iv_pet_kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_pet_kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_pet_kind"
+            android:hint="泰迪犬"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line3"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_pet_kind" />
+
+    <RelativeLayout
+        android:id="@+id/rl_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line3"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="生日" />
+
+        <ImageView
+            android:id="@+id/iv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_birthday"
+            android:hint="选择生日"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/line4"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_birthday" />
+
+    <RelativeLayout
+        android:id="@+id/rl_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="性别" />
+
+        <ImageView
+            android:id="@+id/iv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_sex"
+            android:text="选择性别"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line5"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_sex" />
+
+    <RelativeLayout
+        android:id="@+id/rl_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line5"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_centerVertical="true"
+            android:text="状态" />
+
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_toLeftOf="@id/iv_status"
+            android:text="选择状态"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_status"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="是否在首页显示"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:button="@drawable/checkbox_default_address"
+            android:checked="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

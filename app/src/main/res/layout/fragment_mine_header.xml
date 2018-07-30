@@ -103,6 +103,7 @@
             android:layout_toLeftOf="@id/ll_sign_in"
             android:paddingTop="@dimen/big_padding">
             <LinearLayout
+                android:id="@+id/ll_my_collect"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -125,6 +126,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_my_fans"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -148,6 +150,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_attention_num"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

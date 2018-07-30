@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1px">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ipd.taxiu.widget.RoundImageView
+            android:id="@+id/iv_product_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/grid_product_img_height"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/cart_product_img2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftTop_corner_radius="10dp"
+            app:rightTop_corner_radius="10dp"
+            app:type="round" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_product_img">
+
+            <TextView
+                android:id="@+id/tv_product_name"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="比瑞吉 博美成犬粮天然狗粮"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="4dp"
+                android:text="￥588.00"
+                android:textColor="@color/red"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+
+            <TextView
+                android:id="@+id/tv_product_evalute"
+                style="@style/SmallTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="评价 1312"
+                android:textColor="@color/LightGrey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_price" />
+
+            <TextView
+                android:id="@+id/tv_product_sales"
+                style="@style/SmallTextStyle"
+                android:layout_width="wrap_content"
+                android:text="销量 13132"
+                android:textColor="@color/LightGrey"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_product_evalute" />
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

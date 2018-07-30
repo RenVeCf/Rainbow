@@ -50,7 +50,7 @@ public class EvaluateAdapter extends RecyclerView.Adapter<EvaluateAdapter.ViewHo
             holder.choose_goods_pic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChooseImageDialog dialog = new ChooseImageDialog(mContext,R.style.recharge_pay_dialog);
+                    ChooseImageDialog dialog = new ChooseImageDialog(mContext,R.style.recharge_pay_dialog,"拍摄图片");
                     dialog.show();
                 }
             });

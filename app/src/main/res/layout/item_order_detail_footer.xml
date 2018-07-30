@@ -13,14 +13,14 @@
             android:layout_height="wrap_content"
             android:text="商品金额："
             android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"/>
+            android:textSize="@dimen/small_text_size"/>
         <TextView
             android:id="@+id/tv_commodity_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="￥208.00"
             android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
+            android:textSize="@dimen/small_text_size"
             android:layout_alignParentRight="true"/>
 
         <TextView
@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:text="运费："
             android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
+            android:textSize="@dimen/small_text_size"
             android:layout_below="@id/tv_commodity_price"
-            android:layout_marginTop="@dimen/base_padding"/>
+            android:layout_marginTop="@dimen/small_padding"/>
         <TextView
             android:id="@+id/tv_commodity_freight"
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:text="+￥00"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size"
-            android:layout_marginTop="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_commodity_price"/>
 
@@ -47,17 +47,17 @@
             android:layout_height="wrap_content"
             android:text="优惠券抵扣："
             android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
+            android:textSize="@dimen/small_text_size"
             android:layout_below="@id/tv_commodity_freight"
-            android:layout_marginTop="@dimen/base_padding"/>
+            android:layout_marginTop="@dimen/small_padding"/>
         <TextView
             android:id="@+id/tv_discount_coupon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-￥20.00"
             android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
-            android:layout_marginTop="@dimen/base_padding"
+            android:textSize="@dimen/small_text_size"
+            android:layout_marginTop="@dimen/small_padding"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_commodity_freight"/>
 
@@ -70,12 +70,8 @@
            android:layout_marginTop="@dimen/base_padding"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_text_size"
-            android:textColor="@color/black"
+            style="@style/BaseTextStyle"
             android:text="订单实付金额："
-            android:textStyle="bold"
             android:layout_below="@id/line"
             android:layout_marginTop="@dimen/base_padding"
             android:layout_centerVertical="true"/>
@@ -83,10 +79,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/big_title_text_size"
+            android:textSize="@dimen/base_text_size"
             android:textColor="@color/colorPrimaryDark"
             android:text="￥188.00"
-            android:textStyle="bold"
             android:layout_below="@id/line"
             android:layout_marginTop="@dimen/base_padding"
             android:layout_alignParentRight="true"/>
@@ -100,19 +95,24 @@
         android:background="@color/white"
         android:layout_marginTop="@dimen/small_padding">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="发票信息："
-            android:textStyle="bold"
-            android:textSize="@dimen/base_text_size"/>
+            android:id="@+id/invoice_information"
+            style="@style/BaseTextStyle"
+            android:text="发票信息："/>
         <TextView
+            android:id="@+id/tv_invoice_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/full_screen_overlay"
             android:text="个人"
             android:textSize="@dimen/base_text_size"
             android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/tv_invoice_title"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/invoice_information"
+            android:text="发票抬头：杭州华元宠物有限公司"
+            android:layout_marginTop="@dimen/small_padding"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -123,32 +123,23 @@
         android:layout_marginTop="@dimen/small_padding">
         <TextView
             android:id="@+id/order_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            style="@style/SmallTextStyle"
             android:text="订单编号："
-            android:textSize="@dimen/base_text_size"
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/tv_order_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            style="@style/SmallTextStyle"
             android:text="201807200000000"
-            android:textSize="@dimen/base_text_size"
             android:layout_toRightOf="@id/order_code"
             android:layout_centerVertical="true"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            style="@style/SmallTextStyle"
             android:text="复制"
             android:background="@drawable/shape_order_btn_cancel"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
-            android:textSize="@dimen/base_text_size"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
@@ -160,20 +151,39 @@
         android:paddingRight="@dimen/base_padding"
         android:paddingBottom="@dimen/base_padding">
         <TextView
-            android:id="@+id/orders_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="下单时间："
-            android:textSize="@dimen/base_text_size"/>
+        android:id="@+id/orders_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_gray"
+        android:text="下单时间："
+        android:textSize="@dimen/small_text_size"/>
         <TextView
             android:id="@+id/tv_orders_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/text_gray"
             android:text="2018.07.20 14:29"
             android:layout_toRightOf="@id/orders_time"
-            android:textSize="@dimen/base_text_size"/>
+            android:textSize="@dimen/small_text_size"/>
+
+        <TextView
+            android:id="@+id/payment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="付款时间：2018.07.20 14:29"
+            android:layout_below="@id/orders_time"
+            android:textSize="@dimen/small_text_size"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="付款方式：微信"
+            android:layout_below="@id/payment_time"
+            android:textSize="@dimen/small_text_size"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </LinearLayout>

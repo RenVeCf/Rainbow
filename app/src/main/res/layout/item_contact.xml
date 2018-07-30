@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_friend_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:id="@+id/civ_friend_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_header" />
+
+    <TextView
+        android:id="@+id/tv_friend_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_toRightOf="@id/civ_friend_header"
+        android:text="拎着背包去流浪"
+        android:textColor="@color/black"
+        android:textSize="@dimen/base_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_friend_nickname"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/civ_friend_header"
+        android:text="注册日期:2018.07.25"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/base_text_size" />
+
+    <LinearLayout
+        android:id="@+id/add_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_individual_resume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@drawable/shape_buy_bg"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="6dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/attention" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="4dp"
+            android:text="关注"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/done_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_individual_resume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@drawable/shape_order_btn_cancel"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="6dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/done_attention" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text_size"
+            android:layout_marginLeft="4dp"
+            android:text="已关注"
+            android:textColor="@color/text_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_individual_resume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@drawable/shape_order_btn_cancel"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="6dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text_size"
+            android:layout_marginLeft="4dp"
+            android:text="相互关注"
+            android:textColor="@color/text_gray" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/civ_friend_header"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/full_screen_overlay" />
+</RelativeLayout>

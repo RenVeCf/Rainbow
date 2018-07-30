@@ -3,63 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:background="@mipmap/friend_homepage_bg">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding"
+            android:src="@mipmap/back_white_style" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_layout_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp">
 
-            <RelativeLayout
-                android:id="@+id/rl_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/friend_homepage_bg">
+        <include layout="@layout/item_friend_honmpage_header" />
+    </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/iv_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/base_padding"
-                    android:src="@mipmap/back_white_style" />
-            </RelativeLayout>
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@mipmap/my_header" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="45dp">
-
-                <include layout="@layout/item_friend_honmpage_header" />
-            </RelativeLayout>
-
-            <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:src="@mipmap/my_header" />
-
-            <RelativeLayout
-                android:id="@+id/friend_list1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rl_header"
-                android:layout_marginTop="@dimen/small_padding">
-
-                <include layout="@layout/item_friend_list1" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/friend_list1"
-                android:layout_marginBottom="@dimen/base_padding">
-
-                <include layout="@layout/item_friend_list2" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@id/rl_layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/big_padding"/>
 </RelativeLayout>
