@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ipd.taxiu.widget.StickyNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/stickynavlayout_topview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:drawablePadding="5dp"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:paddingTop="@dimen/base_padding"
+            android:paddingLeft="@dimen/base_padding"
+            android:drawableLeft="@mipmap/recommend_store_video_icon"
+            android:text="今日推荐视频" />
+
+        <include layout="@layout/item_store_video" />
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabTextColor="@color/black" />
+
+    <View style="@style/ViewLine" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.ipd.taxiu.widget.StickyNavLayout>

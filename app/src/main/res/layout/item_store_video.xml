@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/base_padding">
+
+
+    <com.ipd.taxiu.widget.RoundImageView
+        android:id="@+id/iv_taxiu_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_image_height"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/store_video_img"
+        app:corner_radius="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="round" />
+
+    <TextView
+        android:id="@+id/tv_taxiu_name"
+        style="@style/BaseTextStyle"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="P.L.A.Y摇摆漏食球 储存漏食一体 摇一摇美味漏出"
+        app:layout_constraintTop_toBottomOf="@id/iv_taxiu_image" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/play"
+        app:layout_constraintBottom_toBottomOf="@id/iv_taxiu_image"
+        app:layout_constraintLeft_toLeftOf="@id/iv_taxiu_image"
+        app:layout_constraintRight_toRightOf="@id/iv_taxiu_image"
+        app:layout_constraintTop_toTopOf="@id/iv_taxiu_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tv_taxiu_name">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/views_icon" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="5dp"
+                android:text="3243"
+                android:textColor="@color/LightGrey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duration_icon" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="5dp"
+                android:text="00:18"
+                android:textColor="@color/LightGrey" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

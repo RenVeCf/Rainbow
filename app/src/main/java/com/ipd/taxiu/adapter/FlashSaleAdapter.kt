@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
+import kotlinx.android.synthetic.main.item_flash_sale_header.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class FlashSaleAdapter(val context: Context, private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit) : RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
+class FlashSaleAdapter(val context: Context, private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit,val tabListener: (pos: Int) -> Unit) : RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -40,7 +41,9 @@ class FlashSaleAdapter(val context: Context, private val list: List<ProductBean>
         val info = list!![position]
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
-//                holder.itemView.
+                holder.itemView.tab_layout.setTabListener {
+                    tabListener?.invoke(it)
+                }
 
             }
             ItemType.CONTENT -> {

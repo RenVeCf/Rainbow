@@ -42,12 +42,12 @@
             android:focusable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:starCount="0"
+            app:starCount="2"
             app:starEmpty="@mipmap/evaluate_star"
             app:starFill="@mipmap/evaluate_star_checked"
             app:starImageHeight="12dp"
             app:starImageWidth="15dp"
-            app:starNum="5" />
+            app:starNum="3" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -76,6 +76,8 @@
         <activity android:name=".ui.activity.store.grouppurchase.GroupPurchaseActivity" />
         <activity android:name=".ui.activity.store.NewProductListActivity" />
         <activity android:name=".ui.activity.store.ClearanceProductActivity" />
+        <activity android:name=".ui.activity.store.video.StoreVideoIndexActivity" />
+        <activity android:name=".ui.activity.store.video.StoreVideoDetailActivity" />
 
 
         <!-- 裁剪-->

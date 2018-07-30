@@ -12,6 +12,7 @@ import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.ui.activity.store.*
 import com.ipd.taxiu.ui.activity.store.flashsale.FlashSaleActivity
 import com.ipd.taxiu.ui.activity.store.grouppurchase.GroupPurchaseActivity
+import com.ipd.taxiu.ui.activity.store.video.StoreVideoIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StorePetSpecialType
 import kotlinx.android.synthetic.main.item_lable.view.*
@@ -240,6 +241,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         holder.itemView.iv_store_clear.setOnClickListener {
             //清仓
             ClearanceProductActivity.launch(context as Activity)
+        }
+        holder.itemView.iv_store_video.setOnClickListener {
+            //视频
+            StoreVideoIndexActivity.launch(context as Activity)
         }
     }
 

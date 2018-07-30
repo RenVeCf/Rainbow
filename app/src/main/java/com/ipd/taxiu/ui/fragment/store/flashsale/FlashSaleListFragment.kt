@@ -17,12 +17,14 @@ class FlashSaleListFragment : ListFragment<FlashSaleProductBean, ProductBean>() 
         }
     }
 
+    private var mType = 0
     override fun loadListData(): Observable<FlashSaleProductBean> {
         return Observable.create<FlashSaleProductBean> {
             val flashSaleProductBean = FlashSaleProductBean()
             flashSaleProductBean.cheapestProduct = ProductBean()
             flashSaleProductBean.productList = ArrayList()
             for (index: Int in 0 until 10) {
+                flashSaleProductBean.isStart = mType == 0
                 flashSaleProductBean.productList.add(ProductBean())
             }
             it.onNext(flashSaleProductBean)
@@ -40,6 +42,11 @@ class FlashSaleListFragment : ListFragment<FlashSaleProductBean, ProductBean>() 
             mAdapter = FlashSaleAdapter(mActivity, data, {
                 //商品详情
                 ProductDetailActivity.launch(mActivity)
+            }, {
+                //tab切换
+                mType = it
+                isCreate = true
+                onRefresh()
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
