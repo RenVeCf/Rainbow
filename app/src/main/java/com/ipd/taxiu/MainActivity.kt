@@ -48,7 +48,10 @@ class MainActivity : BaseActivity() {
         val contentView = LayoutInflater.from(mActivity).inflate(R.layout.layout_sign_in, null)
         val popupWindow = PopupUtils.getPopup(mActivity, contentView, window)
         contentView.iv_close.setOnClickListener { popupWindow.dismiss() }
-        contentView.tv_sign_in.setOnClickListener { SignInActivity.launch(mActivity) }
+        contentView.tv_sign_in.setOnClickListener {
+            popupWindow.dismiss()
+            SignInActivity.launch(mActivity)
+        }
         popupWindow.isFocusable = false
         popupWindow.isOutsideTouchable = false
         popupWindow.width = (window.decorView.measuredWidth / 10f * 6f).toInt()

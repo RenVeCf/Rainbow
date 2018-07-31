@@ -30,12 +30,27 @@
         app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
 
     <ImageView
+        android:id="@+id/iv_best_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
-        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar"
         android:src="@mipmap/best_answer"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
+
+    <TextView
+        android:id="@+id/tv_choose_best_answer"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/best_answer_normal"
+        android:drawablePadding="5dp"
+        android:src="@mipmap/best_answer"
+        android:text="选为最佳答案"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
 
 
     <TextView

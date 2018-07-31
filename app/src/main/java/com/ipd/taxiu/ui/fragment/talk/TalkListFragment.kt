@@ -31,7 +31,12 @@ class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
             val list: ArrayList<TalkBean> = ArrayList()
             if (categoryId != 2) {
                 for (i: Int in 0 until 10) {
-                    list.add(TalkBean())
+                    val info = TalkBean()
+                    if (categoryId == -1) {
+                        //我发布的问答
+                        info.isMine = true
+                    }
+                    list.add(info)
                 }
             }
             it.onNext(list)
@@ -49,7 +54,7 @@ class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
         if (mAdapter == null) {
             mAdapter = TalkAdapter(mActivity, data, {
                 //itemClick
-                TalkDetailActivity.launch(mActivity)
+                TalkDetailActivity.launch(mActivity,it)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

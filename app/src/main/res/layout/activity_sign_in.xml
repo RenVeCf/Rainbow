@@ -1,6 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/sign_in_bg" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_integral_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_integral"
+                style="@style/TitleTextStyle"
+                android:text="4387"
+                android:textColor="@color/white"
+                android:textSize="26sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:src="@mipmap/arrow_right_white"
+                app:layout_constraintBottom_toBottomOf="@id/tv_integral"
+                app:layout_constraintLeft_toRightOf="@id/tv_integral"
+                app:layout_constraintTop_toTopOf="@id/tv_integral" />
+
+
+            <TextView
+                android:id="@+id/tv_integral_title"
+                style="@style/SmallTextStyle"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="当前积分"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/tv_integral" />
+
+            <TextView
+                android:id="@+id/tv_continue_sign_left"
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="30dp"
+                android:text="已连续签到"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toRightOf="@id/tv_integral_title"
+                app:layout_constraintTop_toTopOf="@id/tv_integral_title" />
+
+            <TextView
+                android:id="@+id/tv_continue_sign"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="4dp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tv_integral_title"
+                app:layout_constraintLeft_toRightOf="@id/tv_continue_sign_left" />
+
+            <TextView
+                android:id="@+id/tv_continue_sign_right"
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="4dp"
+                android:text="天"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toRightOf="@id/tv_continue_sign"
+                app:layout_constraintTop_toTopOf="@id/tv_integral_title" />
+
+            <TextView
+                android:id="@+id/tv_sign_in"
+                style="@style/TitleTextStyle"
+                android:layout_marginTop="4dp"
+                android:background="@mipmap/sign_in_btn_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:text="签到领积分"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <com.ipd.taxiu.widget.SignInView
+            android:id="@+id/sign_in_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_integral_info">
+
+            <LinearLayout
+                android:id="@+id/ll_sign_in_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/sign_in_top_bg"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/TitleTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="2018年6月" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_padding">
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="日" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="一" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="二" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="三" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="四" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="五" />
+
+                    <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:gravity="center"
+                        android:text="六" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sign_in_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_sign_in_bottom_bg"
+                android:paddingBottom="@dimen/base_padding"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:layout_constraintLeft_toLeftOf="@id/ll_sign_in_title"
+                app:layout_constraintRight_toRightOf="@id/ll_sign_in_title"
+                app:layout_constraintTop_toBottomOf="@id/ll_sign_in_title"
+                app:spanCount="7" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@mipmap/link_icon"
+                app:layout_constraintBottom_toTopOf="@id/sign_in_recycler_view"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_sign_in_title" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:src="@mipmap/link_icon"
+                app:layout_constraintBottom_toTopOf="@id/sign_in_recycler_view"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_sign_in_title" />
+
+
+        </com.ipd.taxiu.widget.SignInView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_padding"
+            android:background="@drawable/shape_msg_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/base_padding"
+            app:layout_constraintLeft_toLeftOf="@id/sign_in_view"
+            app:layout_constraintRight_toRightOf="@id/sign_in_view"
+            app:layout_constraintTop_toBottomOf="@id/sign_in_view">
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:drawableLeft="@mipmap/sign_in_rule"
+                android:drawablePadding="5dp"
+                android:text="签到规则" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:lineSpacingExtra="6dp"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/sign_in_rule"
+                android:textColor="@color/LightGrey" />
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

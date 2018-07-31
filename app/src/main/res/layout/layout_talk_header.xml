@@ -114,35 +114,41 @@
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/iv_zan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_padding"
-        android:src="@mipmap/topic_detail_zan"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_comment_operation" />
-
-    <TextView
-        android:id="@+id/tv_zan"
-        style="@style/BaseTextStyle"
-        android:text="232"
-        android:textColor="@color/LightGrey"
-        app:layout_constraintLeft_toLeftOf="@id/iv_zan"
-        app:layout_constraintRight_toRightOf="@id/iv_zan"
-        app:layout_constraintTop_toBottomOf="@id/iv_zan" />
-
-    <RelativeLayout
-        android:id="@+id/rl_share"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_share"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_padding"
-        app:layout_constraintTop_toBottomOf="@id/tv_zan">
+        app:layout_constraintTop_toBottomOf="@id/ll_comment_operation">
 
-        <include layout="@layout/layout_share_menu" />
-    </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:src="@mipmap/topic_detail_zan"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_zan"
+            style="@style/BaseTextStyle"
+            android:text="232"
+            android:textColor="@color/LightGrey"
+            app:layout_constraintLeft_toLeftOf="@id/iv_zan"
+            app:layout_constraintRight_toRightOf="@id/iv_zan"
+            app:layout_constraintTop_toBottomOf="@id/iv_zan" />
+
+        <RelativeLayout
+            android:id="@+id/rl_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            app:layout_constraintTop_toBottomOf="@id/tv_zan">
+
+            <include layout="@layout/layout_share_menu" />
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <View
         android:id="@+id/view_line"
@@ -150,7 +156,7 @@
         android:layout_height="15dp"
         android:layout_marginTop="@dimen/base_padding"
         android:background="@color/window_bg_color"
-        app:layout_constraintTop_toBottomOf="@id/rl_share" />
+        app:layout_constraintTop_toBottomOf="@id/cl_share" />
 
     <RelativeLayout
         android:layout_width="0dp"

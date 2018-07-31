@@ -1,4 +1,7 @@
 package com.ipd.taxiu.bean;
 
-public class TalkBean {
+import java.io.Serializable;
+
+public class TalkBean implements Serializable{
+    public boolean isMine = false;
 }

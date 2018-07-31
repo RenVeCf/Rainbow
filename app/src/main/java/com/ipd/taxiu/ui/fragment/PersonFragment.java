@@ -9,12 +9,15 @@ import android.widget.RelativeLayout;
 
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
 import com.ipd.taxiu.ui.activity.group.GroupBookingActivity;
 import com.ipd.taxiu.ui.activity.message.MessageActivity;
 import com.ipd.taxiu.ui.activity.mine.PersonInformationActivity;
+import com.ipd.taxiu.ui.activity.mine.published.MineClassRoomActivity;
+import com.ipd.taxiu.ui.activity.mine.published.MineJoinTopicActivity;
+import com.ipd.taxiu.ui.activity.mine.published.PublishedTalkActivity;
+import com.ipd.taxiu.ui.activity.mine.published.PublishedTaxiuActivity;
 import com.ipd.taxiu.ui.activity.order.MyOrderActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnMoneyCommodityActivity;
 import com.ipd.taxiu.ui.activity.pet.MyPetActivity;
@@ -30,12 +33,12 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Created by Miss on 2018/7/19
  */
-public class PersonFragment extends BaseFragment implements View.OnClickListener{
-    private RelativeLayout rl_all_order,rl_wait_pay,rl_wait_shipments,rl_wait_delivery,rl_off_the_stocks;
-    private RelativeLayout rl_return_record,rl_setting,rl_message,rl_referral,rl_delivery_address,rl_pet_bible,
-            rl_my_pet,rl_pet_housekeeper;
+public class PersonFragment extends BaseFragment implements View.OnClickListener {
+    private RelativeLayout rl_all_order, rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_off_the_stocks;
+    private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
+            rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
     private CircleImageView civ_header;
-    private LinearLayout ll_sign_in,ll_my_collect,ll_my_fans,ll_attention_num;
+    private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
     private RelativeLayout rl_my_group;
 
     @Override
@@ -74,31 +77,36 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         ll_attention_num.setOnClickListener(this);
         rl_my_group.setOnClickListener(this);
         rl_pet_housekeeper.setOnClickListener(this);
+
+        rl_published_taxiu.setOnClickListener(this);
+        rl_mine_classroom.setOnClickListener(this);
+        rl_mine_join_topic.setOnClickListener(this);
+        rl_mine_talk.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(getActivity(), MyOrderActivity.class);
         Intent intent1;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_all_order:
-                intent.putExtra("status",0);
+                intent.putExtra("status", 0);
                 startActivity(intent);
                 break;
             case R.id.rl_wait_pay:
-                intent.putExtra("status",1);
+                intent.putExtra("status", 1);
                 startActivity(intent);
                 break;
             case R.id.rl_wait_shipments:
-                intent.putExtra("status",2);
+                intent.putExtra("status", 2);
                 startActivity(intent);
                 break;
             case R.id.rl_wait_delivery:
-                intent.putExtra("status",3);
+                intent.putExtra("status", 3);
                 startActivity(intent);
                 break;
             case R.id.rl_off_the_stocks:
-                intent.putExtra("status",4);
+                intent.putExtra("status", 4);
                 startActivity(intent);
                 break;
             case R.id.rl_return_record:
@@ -137,25 +145,37 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 toastShow("签到");
                 break;
             case R.id.ll_my_collect:
-                intent1 = new Intent(getActivity(),MyCollectActivity.class);
+                intent1 = new Intent(getActivity(), MyCollectActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.ll_my_fans:
-                intent1 = new Intent(getActivity(),SocialContactActivity.class);
-                intent1.putExtra("contact","fans");
+                intent1 = new Intent(getActivity(), SocialContactActivity.class);
+                intent1.putExtra("contact", "fans");
                 startActivity(intent1);
                 break;
             case R.id.ll_attention_num:
-                intent1 = new Intent(getActivity(),SocialContactActivity.class);
-                intent1.putExtra("contact","attention");
+                intent1 = new Intent(getActivity(), SocialContactActivity.class);
+                intent1.putExtra("contact", "attention");
                 startActivity(intent1);
                 break;
             case R.id.rl_my_group:
-                intent1 = new Intent(getActivity(),GroupBookingActivity.class);
+                intent1 = new Intent(getActivity(), GroupBookingActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_pet_housekeeper:
-               toastShow("此功能暂未开发，敬请期待");
+                toastShow("此功能暂未开发，敬请期待");
+                break;
+            case R.id.rl_published_taxiu:
+                PublishedTaxiuActivity.Companion.launch(getMActivity());
+                break;
+            case R.id.rl_mine_classroom:
+                MineClassRoomActivity.Companion.launch(getMActivity());
+                break;
+            case R.id.rl_mine_join_topic:
+                MineJoinTopicActivity.Companion.launch(getMActivity());
+                break;
+            case R.id.rl_mine_talk:
+                PublishedTalkActivity.Companion.launch(getMActivity());
                 break;
         }
     }
@@ -182,5 +202,10 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         ll_attention_num = rootView.findViewById(R.id.ll_attention_num);
         rl_my_group = rootView.findViewById(R.id.rl_my_group);
         rl_pet_housekeeper = rootView.findViewById(R.id.rl_pet_housekeeper);
+
+        rl_published_taxiu = rootView.findViewById(R.id.rl_published_taxiu);
+        rl_mine_classroom = rootView.findViewById(R.id.rl_mine_classroom);
+        rl_mine_join_topic = rootView.findViewById(R.id.rl_mine_join_topic);
+        rl_mine_talk = rootView.findViewById(R.id.rl_mine_talk);
     }
 }

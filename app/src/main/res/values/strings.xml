@@ -9,6 +9,9 @@
     <string name="publish">发布</string>
 
 
+    <string name="sign_in_rule">1.VIP1,VIP2,VIP3,每天签到可获得不同积分;\n2.连续签到7天，可分别获得更多积分;\n如果连续签到中断，则需要重新开始</string>
+
+
     <string name="classroom_hint">请将二维码保存至相册，课堂开课时，在微信中\n扫描二维码界面，选择"相册"打开二维码，即\n可进入课堂，参与课堂互动</string>
 
 

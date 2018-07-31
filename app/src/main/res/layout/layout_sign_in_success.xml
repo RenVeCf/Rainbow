@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_pop_sign_in_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/sign_in_success" />
+
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_marginTop="5dp"
+            android:text="签到成功"
+            android:textSize="19sp" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginTop="5dp"
+            android:text="获得50积分"
+            android:textColor="@color/LightGrey" />
+
+    </LinearLayout>
+
+</LinearLayout>

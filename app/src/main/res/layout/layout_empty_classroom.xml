@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_empty_class_room"
         style="@style/BaseTextStyle"
         android:text="暂无课堂信息"
         android:textColor="@color/LightGrey"
