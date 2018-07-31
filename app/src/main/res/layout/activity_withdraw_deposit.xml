@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tips_bg"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/tips" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_tips"
+            android:text="提示：您本月还可提现3次，每次最多提现1000元；"
+            android:textColor="@color/colorPrimaryDark" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_tips"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <TextView
+            android:id="@+id/tv_to_bank"
+            style="@style/BaseTextStyle"
+            android:text="到账银行"
+            android:textColor="@color/text_gray" />
+
+        <RelativeLayout
+            android:id="@+id/rl_choose_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_to_bank">
+
+            <TextView
+                android:id="@+id/tv_choose_bank"
+                style="@style/BaseTextStyle"
+                android:paddingTop="@dimen/base_padding"
+                android:paddingBottom="@dimen/base_padding"
+                android:text="选择银行" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/arrow_right"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <View
+            android:id="@+id/line"
+           style="@style/ViewLine"
+            android:layout_below="@id/rl_choose_bank"/>
+        <TextView
+            style="@style/SmallTextStyle"
+            android:textColor="@color/text_gray"
+            android:layout_below="@id/line"
+            android:paddingTop="@dimen/base_padding"
+            android:text="说明：提现申请提交后，需后台审核，审核通过后，会在3-5个工作日到账。"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding"
+        android:layout_below="@id/rl_bank"
+        android:layout_marginTop="@dimen/small_padding">
+        <TextView
+            android:id="@+id/tv_withdrawal_amount"
+            style="@style/BaseTextStyle"
+            android:text="提现金额"
+            android:textColor="@color/text_gray"/>
+        
+        <RelativeLayout
+            android:id="@+id/rl_edit_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_edit_bg"
+            android:layout_below="@id/tv_withdrawal_amount"
+            android:padding="@dimen/big_padding"
+            android:layout_marginTop="@dimen/small_padding">
+            <TextView
+                android:id="@+id/symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/black"
+                android:textSize="@dimen/big_title_text_size"/>
+            <EditText
+                android:id="@+id/et_money"
+                android:layout_toRightOf="@id/symbol"
+                android:layout_width="wrap_content"
+                android:minWidth="100dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:textSize="@dimen/big_title_text_size"
+                android:text="0"
+                android:inputType="number"/>
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="不得少于100元"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/text_gray"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/account_balance"
+            style="@style/SmallTextStyle"
+            android:textColor="@color/text_gray"
+            android:text="账户余额:￥"
+            android:layout_below="@id/rl_edit_money"
+            android:layout_marginTop="@dimen/small_padding"/>
+        <TextView
+            android:id="@+id/tv_account_balance"
+            style="@style/SmallTextStyle"
+            android:textColor="@color/text_gray"
+            android:text="547.00"
+            android:layout_toRightOf="@+id/account_balance"
+            android:layout_below="@id/rl_edit_money"
+            android:layout_marginTop="@dimen/small_padding"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_btn_disable"
+        android:layout_below="@id/rl_money"
+        android:layout_marginTop="@dimen/big_padding"
+        android:text="确认提现"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:gravity="center"
+        android:paddingTop="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding"/>
+
+</RelativeLayout>

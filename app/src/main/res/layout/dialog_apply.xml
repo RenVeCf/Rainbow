@@ -48,7 +48,7 @@
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
             android:paddingTop="15dp"
-            android:src="@mipmap/dialog_apply_sueccess"
+            android:src="@mipmap/submit_success"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_message" />

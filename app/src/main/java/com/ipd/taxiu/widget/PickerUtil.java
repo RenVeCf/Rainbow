@@ -15,6 +15,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.contrarywind.view.WheelView;
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 
@@ -30,7 +31,7 @@ import java.util.List;
 public class PickerUtil {
 
     private TimePickerView pvCustomLunar;
-    private OptionsPickerView pvCustomOptions;
+    private OptionsPickerView pvCustomOptions,bankCardOption;
 
     /**
      * 选择日期
@@ -141,5 +142,54 @@ public class PickerUtil {
 
         pvCustomOptions.setPicker(list);//添加数据
         pvCustomOptions.show();
+    }
+
+    /**
+     * 选择银行卡
+     */
+    public void initBankCardOption(final Context context, final List<String> list, final TextView textView) {
+        bankCardOption = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+
+                String tx = list.get(options1);
+                textView.setText(tx);
+            }
+        })
+                .setLayoutRes(R.layout.dialog_choice_bank_card, new CustomListener() {
+                    @Override
+                    public void customLayout(View v) {
+                        TextView tvSubmit = v.findViewById(R.id.btn_submit);
+                        ImageView tvClose = v.findViewById(R.id.iv_close);
+                        RelativeLayout rl_item = v.findViewById(R.id.rl_item);
+                        rl_item.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                        tvSubmit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bankCardOption.returnData();
+                                bankCardOption.dismiss();
+                            }
+                        });
+
+                        tvClose.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bankCardOption.dismiss();
+                            }
+                        });
+
+                    }
+                })
+                .isDialog(false)
+                .build();
+
+        bankCardOption.setPicker(list);//添加数据
+        bankCardOption.show();
     }
 }

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_record_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/exchange_record_detail" />
+
+        <TextView
+            android:id="@+id/tv_record_title"
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_record_header"
+            android:text="100元 单品类优惠券" />
+
+        <TextView
+            android:id="@+id/tv_record_explain"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_record_title"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_record_header"
+            android:text="满300减100"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_record_integral"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_record_explain"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_record_header"
+            android:text="100"
+            android:textColor="@color/red" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_record_explain"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_toRightOf="@id/tv_record_integral"
+            android:text="积分"
+            android:textColor="@color/text_gray" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        style="@style/ViewLine"
+        android:layout_below="@id/rl_record" />
+
+    <RelativeLayout
+        android:id="@+id/rl_exchange_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_exchange_success_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/exchange_success" />
+
+        <TextView
+            android:id="@+id/tv_exchange_success"
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_exchange_success_image"
+            android:text="兑换成功"
+            android:textSize="@dimen/big_title_text_size" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_exchange_success"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_exchange_success_image"
+            android:text="兑换时间：2018.10.09 13:05"
+            android:textColor="@color/text_gray" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_exchange_success"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_discounts_coupon_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/recommend_earning_detail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_discounts_coupon_detail"
+            android:text="优惠券详情"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+
+        <View
+            android:id="@+id/line1"
+            style="@style/ViewLine"
+            android:layout_below="@id/iv_discounts_coupon_detail"
+            android:layout_marginTop="@dimen/base_padding" />
+
+        <TextView
+            android:id="@+id/tv_instructions"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/line1"
+            android:paddingTop="@dimen/base_padding"
+            android:text="使用说明" />
+
+        <TextView
+            android:id="@+id/amount"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_instructions"
+            android:layout_marginTop="@dimen/base_padding"
+            android:text="面额："
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_amount"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_instructions"
+            android:layout_marginTop="@dimen/base_padding"
+            android:layout_toRightOf="@id/amount"
+            android:text="200元" />
+
+        <TextView
+            android:id="@+id/astrict"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/amount"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="可使用品类："
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_astrict"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/amount"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/astrict"
+            android:text="全品类" />
+
+        <TextView
+            android:id="@+id/commodity"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/astrict"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="使用商品："
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_commodity"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/astrict"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/commodity"
+            android:text="小犬型奶糕 1kg" />
+
+        <TextView
+            android:id="@+id/condition"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/commodity"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="使用条件："
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_condition"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/commodity"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/condition"
+            android:text="满700元可使用，不可与其他优惠券叠加使用" />
+
+        <TextView
+            android:id="@+id/validity"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/condition"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="有效期："
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_validity"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/condition"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/validity"
+            android:text="兑换后5天内使用" />
+
+        <TextView
+            android:id="@+id/tv_conversion_process"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/validity"
+            android:paddingTop="@dimen/base_padding"
+            android:text="兑换流程" />
+
+        <TextView
+            android:id="@+id/tv_conversion_process1"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_conversion_process"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="1.点击【立即兑换】，确认兑换后，优惠券发放至兑换账户；"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_conversion_process2"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_conversion_process1"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="2.优惠券信息可在“我的-优惠券”中查看"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_announcements"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_conversion_process2"
+            android:paddingTop="@dimen/base_padding"
+            android:text="注意事项" />
+
+        <TextView
+            android:id="@+id/tv_announcements1"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_announcements"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="1.此优惠券兑换后，仅兑换账户使用；"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_announcements2"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_announcements1"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="2.优惠券兑换后不予退还；"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_announcements3"
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_announcements2"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="3.如有疑问，请联系客服 400 888 8888"
+            android:textColor="@color/text_gray" />
+    </RelativeLayout>
+</RelativeLayout>

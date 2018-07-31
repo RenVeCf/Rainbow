@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_integral_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/integral_bg"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/account_integral_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="账户积分总数"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_text_size" />
+
+        <TextView
+            android:id="@+id/tv_account_integral_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/account_integral_num"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base_padding"
+            android:text="997980"
+            android:textColor="@color/white"
+            android:textSize="@dimen/big_title_text_size"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_integral_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_integral_num"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_recommend_earning_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding"
+            android:src="@mipmap/recommend_earning_detail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_recommend_earning_detail"
+            android:padding="@dimen/base_padding"
+            android:text="积分账单"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/rl_integral_money"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:background="@color/full_screen_overlay" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_exchange"
+        android:layout_below="@id/line" />
+
+    <TextView
+        android:id="@+id/btn_exchange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/base_padding"
+        android:background="@drawable/shape_buy_bg"
+        android:gravity="center"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:text="我要兑换"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size" />
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rl_account_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/bank_bg"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/account_balance"
+                style="@style/BaseTextStyle"
+                android:layout_centerHorizontal="true"
+                android:text="账户余额"
+                android:textColor="#725420"/>
+
+            <TextView
+                android:id="@+id/tv_account_balance"
+                style="@style/BaseTextStyle"
+                android:layout_below="@id/account_balance"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/big_padding"
+                android:text="￥2547.00"
+                android:textStyle="bold"
+                android:textColor="#573B0C"
+                android:padding="@dimen/base_padding"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btn_withdraw_deposit"
+            style="@style/BaseTextStyle"
+            android:layout_width="160dp"
+            android:layout_below="@id/rl_account_balance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
+            android:background="@drawable/shape_buy_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:text="我要提现"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_withdraw_deposit"
+            android:padding="@dimen/big_padding"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/btn_account_balance"
+               style="@style/BaseTextStyle"
+                android:background="@drawable/shape_order_btn_cancel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="账户余额"/>
+            <TextView
+                android:id="@+id/btn_my_bank_card"
+                style="@style/BaseTextStyle"
+                android:background="@drawable/shape_order_btn_cancel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="我的银行卡"
+                android:layout_toRightOf="@id/btn_account_balance"
+                android:layout_marginLeft="40dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/base_padding"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/base_padding">
+        <ImageView
+            android:id="@+id/iv_balance_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/balance_explain"/>
+        <TextView
+            android:text="余额说明"
+            style="@style/BaseTextStyle"
+            android:layout_toRightOf="@id/iv_balance_explain"
+            android:layout_marginLeft="@dimen/base_padding"/>
+        
+        <TextView
+            android:id="@+id/tv_source"
+           style="@style/SmallTextStyle"
+            android:text="1.来源：来之于订单的退款"
+            android:layout_below="@id/iv_balance_explain"
+            android:layout_marginTop="@dimen/base_padding"/>
+        <TextView
+            android:id="@+id/tv_use"
+           style="@style/SmallTextStyle"
+            android:text="2.使用：可用提现到银行卡、永远订单支付"
+            android:layout_below="@id/tv_source"
+            android:layout_marginTop="@dimen/small_padding"/>
+        <TextView
+            android:id="@+id/tv_rule"
+           style="@style/SmallTextStyle"
+            android:text="3.规则：每个用户可提现3次，每次最多提现1000元"
+            android:layout_below="@id/tv_use"
+            android:layout_marginTop="@dimen/small_padding"/>
+        <TextView
+           style="@style/SmallTextStyle"
+            android:text="注：提现申请提交后，需后台审核，审核通过后，会在3~5个工作日到账"
+            android:layout_below="@id/tv_rule"
+            android:layout_marginTop="@dimen/base_padding"/>
+    </RelativeLayout>
+</RelativeLayout>

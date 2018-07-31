@@ -123,7 +123,19 @@
         <activity android:name=".ui.activity.setting.SocialContactActivity"/>
         <activity android:name=".ui.activity.group.GroupBookingActivity"/>
         <activity android:name=".ui.activity.group.GroupDetailActivity"/>
-
+        <activity android:name=".ui.activity.coupon.MyIntegralActivity"/>
+        <activity android:name=".ui.activity.coupon.IntegralRuleActivity"/>
+        <activity android:name=".ui.activity.coupon.IntegralExchangeActivity"/>
+        <activity android:name=".ui.activity.coupon.CouponDetailActivity"/>
+        <activity android:name=".ui.activity.coupon.ExchangeRecordActivity"/>
+        <activity android:name=".ui.activity.coupon.ExchangeRecordDetailActivity"/>
+        <activity android:name=".ui.activity.coupon.DiscountCouponActivity"/>
+        <activity android:name=".ui.activity.balance.MyBalanceActivity"/>
+        <activity android:name=".ui.activity.balance.BalanceBillActivity"/>
+        <activity android:name=".ui.activity.balance.WithdrawDepositActivity"/>
+        <activity android:name=".ui.activity.balance.BankCardActivity"/>
+        <activity android:name=".ui.activity.balance.AddBankCardActivity"/>
+        <activity android:name=".ui.activity.balance.UpdateBankCardActivity"/>
     </application>
 
 </manifest>

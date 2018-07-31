@@ -12,6 +12,9 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
+import com.ipd.taxiu.ui.activity.balance.MyBalanceActivity;
+import com.ipd.taxiu.ui.activity.coupon.DiscountCouponActivity;
+import com.ipd.taxiu.ui.activity.coupon.MyIntegralActivity;
 import com.ipd.taxiu.ui.activity.group.GroupBookingActivity;
 import com.ipd.taxiu.ui.activity.message.MessageActivity;
 import com.ipd.taxiu.ui.activity.mine.PersonInformationActivity;
@@ -36,7 +39,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             rl_my_pet,rl_pet_housekeeper;
     private CircleImageView civ_header;
     private LinearLayout ll_sign_in,ll_my_collect,ll_my_fans,ll_attention_num;
-    private RelativeLayout rl_my_group;
+    private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
 
     @Override
     protected int getBaseLayout() {
@@ -74,6 +77,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         ll_attention_num.setOnClickListener(this);
         rl_my_group.setOnClickListener(this);
         rl_pet_housekeeper.setOnClickListener(this);
+        rl_my_integral.setOnClickListener(this);
+        rl_discount_coupon.setOnClickListener(this);
+        rl_my_balance.setOnClickListener(this);
     }
 
     @Override
@@ -157,6 +163,18 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             case R.id.rl_pet_housekeeper:
                toastShow("此功能暂未开发，敬请期待");
                 break;
+            case R.id.rl_my_integral:
+                intent1 = new Intent(getActivity(),MyIntegralActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_discount_coupon:
+                intent1 = new Intent(getActivity(),DiscountCouponActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_my_balance:
+                intent1 = new Intent(getActivity(),MyBalanceActivity.class);
+                startActivity(intent1);
+                break;
         }
     }
 
@@ -182,5 +200,8 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         ll_attention_num = rootView.findViewById(R.id.ll_attention_num);
         rl_my_group = rootView.findViewById(R.id.rl_my_group);
         rl_pet_housekeeper = rootView.findViewById(R.id.rl_pet_housekeeper);
+        rl_my_integral = rootView.findViewById(R.id.rl_my_integral);
+        rl_discount_coupon = rootView.findViewById(R.id.rl_discount_coupon);
+        rl_my_balance = rootView.findViewById(R.id.rl_my_balance);
     }
 }

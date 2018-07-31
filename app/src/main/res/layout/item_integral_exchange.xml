@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:id="@+id/rl_item">
+
+    <ImageView
+        android:id="@+id/iv_discount_coupon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/discount_coupon_image"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingTop="@dimen/base_padding"/>
+
+    <TextView
+        android:id="@+id/tv_discount_coupon_name"
+        style="@style/SmallTextStyle"
+        android:layout_below="@id/iv_discount_coupon"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="50元 全品类优惠券"
+        android:paddingLeft="@dimen/base_padding"/>
+
+    <TextView
+        android:id="@+id/tv_integral_num"
+        style="@style/BaseTextStyle"
+        android:layout_below="@id/tv_discount_coupon_name"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="500"
+        android:paddingLeft="@dimen/base_padding"
+        android:textColor="@color/red" />
+
+    <TextView
+        style="@style/SmallTextStyle"
+        android:layout_below="@id/tv_discount_coupon_name"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_toRightOf="@id/tv_integral_num"
+        android:text="积分"
+        android:textColor="@color/text_gray" />
+    <View
+        style="@style/ViewLine"
+        android:layout_below="@id/tv_integral_num"
+        android:layout_marginTop="@dimen/base_padding"/>
+</RelativeLayout>
