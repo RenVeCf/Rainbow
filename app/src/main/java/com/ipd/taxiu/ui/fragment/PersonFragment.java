@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseFragment;
+import com.ipd.taxiu.ui.activity.SignInActivity;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
 import com.ipd.taxiu.ui.activity.group.GroupBookingActivity;
 import com.ipd.taxiu.ui.activity.message.MessageActivity;
@@ -26,8 +27,11 @@ import com.ipd.taxiu.ui.activity.referral.ReferralCodeActivity;
 import com.ipd.taxiu.ui.activity.setting.MyCollectActivity;
 import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 import com.ipd.taxiu.ui.activity.setting.SocialContactActivity;
+import com.ipd.taxiu.widget.SignInView;
 
 import org.jetbrains.annotations.Nullable;
+
+import javax.crypto.Mac;
 
 
 /**
@@ -142,7 +146,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.ll_sign_in:
-                toastShow("签到");
+                SignInActivity.Companion.launch(getMActivity());
                 break;
             case R.id.ll_my_collect:
                 intent1 = new Intent(getActivity(), MyCollectActivity.class);
