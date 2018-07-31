@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
+import kotlinx.android.synthetic.main.item_list_classroom.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -23,7 +24,7 @@ class ClassRoomAdapter(val context: Context, private val list: List<ClassRoomBea
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-
+        holder.itemView.classroom_layout.setData(info)
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)
         }
