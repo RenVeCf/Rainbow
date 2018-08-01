@@ -32,6 +32,7 @@
     <dimen name="product_model_img_size">120dp</dimen>
 
     <dimen name="classroom_code_image_size">150dp</dimen>
+    <dimen name="mine_avatar_img_size">68dp</dimen>
 
 
     <dimen name="small_padding">8dp</dimen>

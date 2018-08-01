@@ -16,15 +16,15 @@
 
         <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
             android:id="@+id/civ_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/mine_avatar_img_size"
+            android:layout_height="@dimen/mine_avatar_img_size"
             android:src="@mipmap/mine_default_header"
             app:border_color1="@color/white"
             app:border_width1="2dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/mine_avatar_img_size"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_toRightOf="@id/civ_header">
 
@@ -36,7 +36,7 @@
 
                 <TextView
                     android:id="@+id/tv_nickname"
-                    style="@style/BaseTextStyle"
+                    style="@style/TitleTextStyle"
                     android:layout_toRightOf="@id/civ_header"
                     android:text="爱狗铲屎管"
                     android:textColor="@color/white"
