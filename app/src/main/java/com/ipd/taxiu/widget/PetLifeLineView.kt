@@ -47,6 +47,7 @@ class PetLifeLineView : LinearLayout {
         lifeLineList.forEachIndexed { index, info ->
             val lifeLineView = mInflater.inflate(R.layout.item_pet_life_line, this, false)
             lifeLineView.tv_pet_life_line.text = info.lifeStr
+            lifeLineView.tv_pet_life_line_date.text = info.date
             val params = lifeLineView.layoutParams
             params.width = getItemWidth()
             addView(lifeLineView)

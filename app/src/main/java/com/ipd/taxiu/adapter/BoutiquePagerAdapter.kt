@@ -21,7 +21,7 @@ class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?) : P
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
-        val mContentView = mInflater.inflate(R.layout.item_boutique, container, false)
+        val mContentView = mInflater.inflate(R.layout.item_taxiu, container, false)
         container.addView(mContentView)
         return mContentView
     }

@@ -31,12 +31,11 @@
         android:text="宠物健康及心理健康咨询课程"
         android:maxLength="15"
         android:ellipsize="end"
-        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/iv_classroom_image" />
 
     <TextView
         android:id="@+id/tv_classroom_desc"
-        style="@style/BaseTextStyle"
+        style="@style/SmallTextStyle"
         android:text="开课时间：2018.06.18  14:00"
         android:textColor="@color/LightGrey"
         app:layout_constraintTop_toBottomOf="@id/tv_classroom_name" />
