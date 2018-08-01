@@ -15,6 +15,7 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.activity.SignInActivity
 import com.ipd.taxiu.ui.fragment.*
+import com.ipd.taxiu.widget.PublishTaxiuDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_sign_in.view.*
 import rx.Observable
@@ -67,6 +68,7 @@ class MainActivity : BaseActivity() {
         }
 
         iv_taxiu_checked.setOnClickListener {
+            PublishTaxiuDialog(mActivity).show()
 
         }//发布它秀
     }

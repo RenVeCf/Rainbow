@@ -63,6 +63,7 @@
 
         <!-- taxiu-->
         <activity android:name=".ui.activity.taxiu.TaxiuDetailActivity" />
+        <activity android:name=".ui.activity.taxiu.PublishTaxiuActivity" />
 
 
         <!-- trade-->

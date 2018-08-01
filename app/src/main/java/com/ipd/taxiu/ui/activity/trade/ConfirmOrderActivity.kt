@@ -7,6 +7,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ConfirmOrderProductAdapter
 import com.ipd.taxiu.bean.CartProductBean
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.layout_order_product.*
 
@@ -37,6 +38,10 @@ class ConfirmOrderActivity : BaseUIActivity() {
         tv_confirm.setOnClickListener {
             toastShow(true, "支付成功")
             finish()
+        }
+        cv_address.setOnClickListener {
+            val intent = Intent(mActivity, DeliveryAddressActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -6,15 +6,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
+import com.ipd.taxiu.bean.LifeLineBean
 import com.ipd.taxiu.bean.TaxiuBean
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomIndexActivity
 import com.ipd.taxiu.ui.activity.talk.TalkIndexActivity
 import com.ipd.taxiu.ui.activity.topic.TopicIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import com.ipd.taxiu.widget.PetLifeLineView
 import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_hot_talk.view.*
 import kotlinx.android.synthetic.main.item_index_taxiu.view.*
@@ -90,9 +93,40 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
 
     }
 
+    private val petLifeLineList: List<LifeLineBean> = listOf(
+            LifeLineBean("9个月11天", "2018-05-25"),
+            LifeLineBean("9个月12天", "2018-05-26"),
+            LifeLineBean("9个月13天", "2018-05-27"),
+            LifeLineBean("9个月14天", "2018-05-28"),
+            LifeLineBean("9个月15天", "2018-05-29"),
+            LifeLineBean("9个月16天", "2018-05-30"),
+            LifeLineBean("9个月17天", "2018-05-31"),
+            LifeLineBean("9个月18天", "2018-06-01"),
+            LifeLineBean("9个月19天", "2018-06-02"),
+            LifeLineBean("9个月20天", "2018-06-03"),
+            LifeLineBean("9个月21天", "2018-06-04"),
+            LifeLineBean("9个月22天", "2018-06-05")
+    )
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
+                holder.itemView.pet_life_line_view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        holder.itemView.pet_life_line_view.viewTreeObserver.removeGlobalOnLayoutListener(this)
+                        holder.itemView.pet_life_line_view.setLifeLineData(petLifeLineList)
+                    }
+                })
+
+
+                holder.itemView.pet_life_line_view.setPositionChangeListener(object : PetLifeLineView.OnPositionChangeListener {
+                    override fun onChange(pos: Int) {
+                        val lifeLineInfo = petLifeLineList[pos]
+                        holder.itemView.tv_life_line_title.text = lifeLineInfo.lifeStr
+                        holder.itemView.tv_cur_date.text = lifeLineInfo.date
+                    }
+                })
+
                 holder.itemView.ll_topic.setOnClickListener {
                     TopicIndexActivity.launch(context as Activity)
                 }//话题

@@ -1,22 +1,15 @@
 package com.ipd.taxiu.ui.fragment
 
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.HomeAdapter
 import com.ipd.taxiu.bean.HomeBean
 import com.ipd.taxiu.ui.ListFragment
-import kotlinx.android.synthetic.main.fragment_home.view.*
 import rx.Observable
 
 class HomeFragment : ListFragment<HomeBean, Any>() {
 
     override fun getContentLayout(): Int = R.layout.fragment_home
-
-    override fun initView(bundle: Bundle?) {
-        super.initView(bundle)
-        mContentView.toolbar.title = "背着二哈去流浪"
-    }
 
     override fun loadListData(): Observable<HomeBean> {
         return Observable.create {
