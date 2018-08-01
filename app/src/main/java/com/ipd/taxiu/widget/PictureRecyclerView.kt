@@ -24,6 +24,10 @@ class PictureRecyclerView : RecyclerView {
         adapter = PictureAdapter(context, pictureList, MAX_IMAGE_COUNT)
     }
 
+    override fun getAdapter(): PictureAdapter {
+        return super.getAdapter() as PictureAdapter
+    }
+
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
