@@ -34,13 +34,13 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
     private Context mContext;
     private List<PictureBean> list;
     private int maxImageCount = 0;
+    private OnItemClickListener mOnItemClickListener;
 
     public PictureAdapter(Context context, List<PictureBean> list, int maxImageCount) {
         mContext = context;
         this.list = list;
         this.maxImageCount = maxImageCount;
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -101,10 +101,12 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
                 Log.e("tag", "onClick:" + position);
                 if (position == list.size()) {
                     //添加图片
-                    reqAvatar();
+                    if (mOnItemClickListener != null) mOnItemClickListener.choosePicture();
+                    else choosePicture();
                 } else {
                     //删除
-                    showDeleteDialog(position);
+                    if (mOnItemClickListener != null) mOnItemClickListener.showDeleteDialog();
+                    else showDeleteDialog(position);
                 }
             }
         });
@@ -134,7 +136,7 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
     }
 
     // 头像
-    private void reqAvatar() {
+    private void choosePicture() {
         PhotoSelectActivity.launch((Activity) mContext, maxImageCount - list.size());
     }
 
@@ -161,5 +163,16 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
             }
         });
         builder.show();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+
+    public interface OnItemClickListener {
+        void choosePicture();
+
+        void showDeleteDialog();
     }
 }
