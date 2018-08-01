@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
+
     <RelativeLayout
         android:id="@+id/rl_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/fragment_mine_bg"
+        android:paddingBottom="20dp"
         android:paddingLeft="@dimen/base_padding"
         android:paddingTop="@dimen/big_padding">
 
@@ -18,8 +20,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/mine_default_header"
             app:border_color1="@color/white"
-            app:border_width1="2dp"
-            />
+            app:border_width1="2dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -38,8 +39,8 @@
                     style="@style/BaseTextStyle"
                     android:layout_toRightOf="@id/civ_header"
                     android:text="爱狗铲屎管"
-                    android:textSize="@dimen/big_title_text_size"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/big_title_text_size"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +50,7 @@
                     android:layout_toRightOf="@id/civ_header"
                     android:text="这个人很懒，什么都没有留下"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/small_text_size"/>
+                    android:textSize="@dimen/small_text_size" />
 
             </LinearLayout>
 
@@ -62,76 +63,84 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-               <ImageView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@mipmap/more"
-                   android:layout_marginRight="@dimen/base_padding"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/base_padding"
+                    android:src="@mipmap/more" />
             </LinearLayout>
 
         </RelativeLayout>
+
         <LinearLayout
+            android:layout_below="@id/civ_header"
             android:id="@+id/ll_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
             android:background="@drawable/shape_sign_in_bg"
-            android:layout_below="@id/civ_header"
-            android:padding="@dimen/base_padding"
-            android:layout_marginTop="@dimen/base_padding">
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/sign_in"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/sign_in" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:text="@string/sign_in"
                 android:textColor="@color/deep_carrot_orange"
-                android:gravity="center"
-                android:textSize="@dimen/base_text_size"
-                android:layout_marginLeft="5dp"/>
+                android:textSize="@dimen/base_text_size" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@id/civ_header"
             android:layout_toLeftOf="@id/ll_sign_in"
+            android:orientation="horizontal"
             android:paddingTop="@dimen/big_padding">
+
             <LinearLayout
                 android:id="@+id/ll_my_collect"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_collect_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text_size"
+                    android:text="23"
                     android:textColor="@color/white"
-                    android:text="23"/>
+                    android:textSize="@dimen/base_text_size" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text_size"
+                    android:text="@string/collect"
                     android:textColor="@color/white"
-                    android:text="@string/collect"/>
+                    android:textSize="@dimen/base_text_size" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_my_fans"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_fans_num"
@@ -140,35 +149,38 @@
                     android:text="1376"
                     android:textColor="@color/white"
                     android:textSize="@dimen/base_text_size" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text_size"
+                    android:text="@string/fans"
                     android:textColor="@color/white"
-                    android:text="@string/fans"/>
+                    android:textSize="@dimen/base_text_size" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_attention_num"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_attention_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text_size"
+                    android:text="132"
                     android:textColor="@color/white"
-                    android:text="132"/>
+                    android:textSize="@dimen/base_text_size" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text_size"
+                    android:text="@string/attention"
                     android:textColor="@color/white"
-                    android:text="@string/attention"/>
+                    android:textSize="@dimen/base_text_size" />
 
             </LinearLayout>
         </LinearLayout>
