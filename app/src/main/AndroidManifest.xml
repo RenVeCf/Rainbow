@@ -146,6 +146,8 @@
         <activity android:name=".ui.activity.mine.published.MineJoinTopicActivity" />
         <activity android:name=".ui.activity.mine.published.PublishedTalkActivity" />
 
+        <activity android:name=".ui.activity.message.MessageDetailActivity"/>
+        <activity android:name=".ui.activity.pet.ChoosePetActivity"/>
     </application>
 
 </manifest>

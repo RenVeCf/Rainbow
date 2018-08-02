@@ -154,7 +154,8 @@
             android:layout_height="wrap_content"
             android:button="@drawable/checkbox_default_address"
             android:checked="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/base_padding"/>
     </RelativeLayout>
 
     <Button
@@ -164,7 +165,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/base_padding"
         android:layout_marginTop="@dimen/cart_operation_height"
-        android:background="@drawable/shape_order_btn_payment"
+        android:background="@drawable/shape_buy_bg"
         android:text="保存"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />

@@ -27,6 +27,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.activity.CropActivity;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
+import com.ipd.taxiu.utils.PictureChooseUtils;
 
 import java.io.File;
 import java.util.List;
@@ -40,10 +41,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class SettingHeaderDialog extends Dialog implements View.OnClickListener {
     private TextView tv_photo_shoot,tv_album_choose,tv_cancel;
-    private Context context;
+    private Activity context;
 
 
-    public SettingHeaderDialog(@NonNull Context context, int themeResId ) {
+    public SettingHeaderDialog(@NonNull Activity context, int themeResId ) {
         super(context, themeResId);
         this.context = context;
     }
@@ -76,16 +77,15 @@ public class SettingHeaderDialog extends Dialog implements View.OnClickListener 
     }
 
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_photo_shoot:
-                ToastCommom.getInstance().show(context,"拍照");
+                PictureChooseUtils.toTakePhoto(context);
+                dismiss();
                 break;
             case R.id.tv_album_choose:
-                PhotoSelectActivity.launch((Activity) context,1);
+                PhotoSelectActivity.launch(context,1);
                 dismiss();
                 break;
             case R.id.tv_cancel:

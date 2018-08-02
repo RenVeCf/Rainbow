@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_qr_code"
         android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_order_btn_payment"
+        android:background="@drawable/shape_buy_bg"
         android:text="邀请好友"
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"

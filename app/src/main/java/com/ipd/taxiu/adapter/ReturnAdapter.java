@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -26,6 +27,7 @@ import com.ipd.taxiu.ui.activity.order.ReturnNoPassActivity;
 import com.ipd.taxiu.ui.activity.order.ReturnRecordDetailActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Miss on 2018/7/19
@@ -35,9 +37,14 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
     private Context context;
     private ArrayList<ReturnBean> list;
 
+    private ReturnPictureAdapter mAdapter;
+    private List<String> picture;
+
     public ReturnAdapter(Context context, ArrayList<ReturnBean> list) {
+        init();
         this.context = context;
         this.list = list;
+        mAdapter = new ReturnPictureAdapter(context,picture);
     }
 
     @Override
@@ -55,14 +62,15 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
         ss.setSpan(colorSpan, 0, 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         holder.tv_return_reason.setText(ss);
 
+
+        holder.recycler_view.setLayoutManager(new GridLayoutManager(context,4));
+        holder.recycler_view.setAdapter(mAdapter);
         final int returnStatus = list.get(position).getReturnStatus();
         final int returnType = list.get(position).getReturnType();
         if (returnType == 1) {
-            holder.return_image.setVisibility(View.GONE);
             holder.tv_return_type.setText("退款");
         }
         if (returnType == 2) {
-            holder.return_image.setVisibility(View.VISIBLE);
             holder.tv_return_type.setText("退货");
         }
         if (list.get(position).getStatusStr().equals("审核中")) {
@@ -109,16 +117,23 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_return_reason, tv_return_type;
         RelativeLayout relativeLayout;
-        ImageView return_image;
+        RecyclerView recycler_view;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv_return_reason = itemView.findViewById(R.id.tv_return_reason);
             relativeLayout = itemView.findViewById(R.id.rl_item);
-            return_image = itemView.findViewById(R.id.return_image);
             tv_return_type = itemView.findViewById(R.id.tv_return_type);
+            recycler_view = itemView.findViewById(R.id.recycler_view);
         }
 
+    }
+
+    private void init(){
+        picture = new ArrayList<>();
+        for (int i = 0;i<2;i++){
+            picture.add("");
+        }
     }
 
 }

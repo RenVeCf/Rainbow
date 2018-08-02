@@ -1,12 +1,15 @@
 package com.ipd.taxiu.ui.activity.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.AuditSuccessDialog;
+import com.ipd.taxiu.widget.PictureRecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,8 +20,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public class RequestReturnActivity extends BaseUIActivity {
     private Button btn_submit;
+    private PictureRecyclerView pictureRecyclerView;
     @Override
     protected int getContentLayout() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return R.layout.activity_request_return;
     }
 
@@ -26,11 +31,12 @@ public class RequestReturnActivity extends BaseUIActivity {
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
         btn_submit = findViewById(R.id.btn_submit);
+        pictureRecyclerView = findViewById(R.id.picture_recycler_view);
     }
 
     @Override
     protected void loadData() {
-
+        pictureRecyclerView.initTwo();
     }
 
     @Override
@@ -62,5 +68,11 @@ public class RequestReturnActivity extends BaseUIActivity {
         });
         builder.getDialog().show();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        pictureRecyclerView.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

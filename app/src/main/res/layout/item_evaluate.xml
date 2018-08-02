@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="@dimen/base_padding"
     android:background="@color/white"
-    android:padding="@dimen/base_padding">
+    android:padding="@dimen/base_padding"
+    android:id="@+id/item">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/evaluate_img" />
@@ -52,34 +55,15 @@
 
 
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="@dimen/base_padding">
-
-        <LinearLayout
-            android:id="@+id/ll_choose_goods_pic"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:background="@drawable/shape_upload_img_bg"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_choose_goods_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@mipmap/upload_img" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="上传图片"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/small_text_size" />
-        </LinearLayout>
+        <com.ipd.taxiu.widget.PictureRecyclerView
+            android:id="@+id/picture_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

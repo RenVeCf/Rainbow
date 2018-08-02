@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingBottom="@dimen/base_padding">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_add_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="@dimen/small_padding">
+
+        <com.ipd.taxiu.widget.RoundImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:corner_radius="5dp"
+            app:type="round"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:max="100"
+            android:progress="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_error"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="#88000000"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="点击重试"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_delete_picture"
+        android:layout_toRightOf="@id/rl_add_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-10dp"
+        android:src="@mipmap/delete_image"/>
+</RelativeLayout>

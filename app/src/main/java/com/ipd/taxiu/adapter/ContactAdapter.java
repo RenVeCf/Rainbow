@@ -36,7 +36,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         if (datas.get(position).getStatus() == 1){
             holder.done_attention.setVisibility(View.VISIBLE);
             holder.add_attention.setVisibility(View.GONE);
@@ -45,6 +45,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             holder.done_attention.setVisibility(View.GONE);
             holder.add_attention.setVisibility(View.VISIBLE);
             holder.attention.setVisibility(View.GONE);
+
+            holder.add_attention.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.attention.setVisibility(View.VISIBLE);
+                    holder.add_attention.setVisibility(View.GONE);
+                }
+            });
         }else {
             holder.done_attention.setVisibility(View.GONE);
             holder.add_attention.setVisibility(View.GONE);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
@@ -21,12 +22,17 @@ import com.ipd.taxiu.widget.SettingHeaderDialog;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Miss on 2018/7/26
  * 个人资料
  */
-public class EditTagActivity extends BaseUIActivity{
+public class EditTagActivity extends BaseUIActivity {
+    @BindView(R.id.et_signature)
+    EditText editText;
 
     @Override
     protected int getContentLayout() {
@@ -35,6 +41,7 @@ public class EditTagActivity extends BaseUIActivity{
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
+        ButterKnife.bind(this);
         initToolbar();
     }
 
@@ -63,7 +70,10 @@ public class EditTagActivity extends BaseUIActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.item_save) {
-           finish();
+            Intent intent = new Intent();
+            intent.putExtra("signature", editText.getText().toString());
+            setResult(RESULT_OK,intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

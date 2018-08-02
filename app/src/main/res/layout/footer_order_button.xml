@@ -86,7 +86,7 @@
                 android:id="@+id/tv_order_button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_order_btn_payment"
+                android:background="@drawable/shape_buy_bg"
                 android:paddingBottom="@dimen/small_padding"
                 android:paddingLeft="@dimen/base_padding"
                 android:paddingRight="@dimen/base_padding"

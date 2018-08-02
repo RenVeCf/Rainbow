@@ -12,6 +12,9 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.SignInActivity;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
+import com.ipd.taxiu.ui.activity.balance.MyBalanceActivity;
+import com.ipd.taxiu.ui.activity.coupon.DiscountCouponActivity;
+import com.ipd.taxiu.ui.activity.coupon.MyIntegralActivity;
 import com.ipd.taxiu.ui.activity.group.GroupBookingActivity;
 import com.ipd.taxiu.ui.activity.message.MessageActivity;
 import com.ipd.taxiu.ui.activity.mine.PersonInformationActivity;
@@ -40,8 +43,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
     private CircleImageView civ_header;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
-    private RelativeLayout rl_my_group;
-    private LinearLayout ll_sign_in,ll_my_collect,ll_my_fans,ll_attention_num;
     private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
 
     @Override

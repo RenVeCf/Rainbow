@@ -1,21 +1,33 @@
 package com.ipd.taxiu.ui.activity.pet;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
+import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
+import com.ipd.taxiu.ChoosePetKindEvent;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.PictureBean;
+import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.BaseUIActivity;
-import com.ipd.taxiu.ui.activity.account.PetKindActivity;
-import com.ipd.taxiu.widget.ChooseImageDialog;
+import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
+import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
-import com.ipd.taxiu.widget.MessageDialog;
 import com.ipd.taxiu.widget.PickerUtil;
+import com.ipd.taxiu.widget.SettingHeaderDialog;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,6 +64,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
+
     }
 
     @Override
@@ -61,6 +74,18 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
         tv_birthday.setOnClickListener(this);
         tv_sex.setOnClickListener(this);
         tv_status.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onViewAttach() {
+        super.onViewAttach();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        EventBus.getDefault().unregister(this);
     }
 
     @NotNull
@@ -98,11 +123,11 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.civ_header:
-                ChooseImageDialog dialog = new ChooseImageDialog(this, R.style.recharge_pay_dialog, "拍照");
+                SettingHeaderDialog dialog = new SettingHeaderDialog(this, R.style.recharge_pay_dialog);
                 dialog.show();
                 break;
             case R.id.tv_pet_kind:
-                Intent intent = new Intent(this, PetKindActivity.class);
+                Intent intent = new Intent(this, ChoosePetActivity.class);
                 startActivity(intent);
                 break;
             case R.id.tv_birthday:
@@ -127,6 +152,34 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
         data.add("寻求好心人领养");
         data.add("寻求配偶");
         data.add("走失了");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PhotoSelectActivity.REQUEST_CODE) {
+            if (data != null) {
+                List<PictureBean> list = (List<PictureBean>) data.getSerializableExtra("pictureList");
+                Bitmap mBitmap = BitmapFactory.decodeFile(list.get(0).path);
+                civ_header.setImageBitmap(mBitmap);
+            }
+        }
+        if (requestCode == PictureChooseUtils.PHOTOTAKE) {
+            Bitmap mBitmap = BitmapFactory.decodeFile(CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
+                    Environment.DIRECTORY_PICTURES)+"/"+PictureChooseUtils.getPhotoSaveName());
+            civ_header.setImageBitmap(mBitmap);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    protected void Event(ChoosePetKindEvent event){
+        switch (event.type){
+            case 0:
+                tv_pet_kind.setText(event.petKind.name);
+                break;
+            case 1:
+                tv_pet_kind.setText(event.petKind.name);
+                break;
+        }
     }
 
 }

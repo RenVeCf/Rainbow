@@ -1,25 +1,19 @@
 package com.ipd.taxiu.ui.activity.order;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.EvaluateAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.widget.RatingBar;
 import com.ipd.taxiu.widget.SpaceItemDecoration;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,12 +26,15 @@ import java.util.List;
  * Created by Miss on 2018/7/21
  * 评价商品
  */
-public class EvaluateActivity extends BaseUIActivity implements View.OnClickListener{
+public class EvaluateActivity extends BaseUIActivity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private EvaluateAdapter mAdapter;
     private List<String> datas;
     private Button button;
+
+
+
     @Override
     protected int getContentLayout() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -58,7 +55,6 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new SpaceItemDecoration(24));
         mRecyclerView.setAdapter(mAdapter);
-
         mAdapter.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer_evaluvate, null));
     }
 
@@ -76,17 +72,21 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
     private void initData() {
         datas = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            datas.add(i+"");
+            datas.add(i + "");
         }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_evaluate:
-               toastShow("评价成功");
+                toastShow("评价成功");
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mAdapter.setReset(requestCode, resultCode, data,mAdapter.getSelectPosition());
+    }
 }

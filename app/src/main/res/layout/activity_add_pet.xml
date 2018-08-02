@@ -241,6 +241,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/base_padding"
             android:button="@drawable/checkbox_default_address"
             android:checked="true" />
     </RelativeLayout>

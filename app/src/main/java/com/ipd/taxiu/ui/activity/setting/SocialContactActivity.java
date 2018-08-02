@@ -47,10 +47,10 @@ public class SocialContactActivity extends BaseUIActivity {
         tab_layout.setViewPager(viewPager, titles);
         String contact = getIntent().getStringExtra("contact");
         if (contact.equals("fans")){
-            tab_layout.setCurrentTab(0);
+            tab_layout.setCurrentTab(1);
         }
         if (contact.equals("attention")){
-            tab_layout.setCurrentTab(1);
+            tab_layout.setCurrentTab(0);
         }
     }
 

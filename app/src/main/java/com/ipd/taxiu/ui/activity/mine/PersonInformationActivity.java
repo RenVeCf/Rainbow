@@ -17,15 +17,18 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.LocalPictureBean;
+import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
-import com.ipd.taxiu.widget.ChooseImageDialog;
+import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
 import com.ipd.taxiu.widget.PickerUtil;
 import com.ipd.taxiu.widget.SettingHeaderDialog;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +42,8 @@ import java.util.List;
 public class PersonInformationActivity extends BaseUIActivity implements View.OnClickListener {
     private CircleImageView circleImageView;
     private TextView tv_birthday, tv_sex, tv_how_long, tv_person_tag;
+
+    public static int REQUEST_CODE = 7879;
 
     @Override
     protected int getContentLayout() {
@@ -102,19 +107,20 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 getDate(tv_birthday, "选择您的生日");
                 break;
             case R.id.tv_sex:
-                ChooseSexDialog sexDialog = new ChooseSexDialog(this, R.style.recharge_pay_dialog,tv_sex,
-                        "选择您的性别","男","女");
+                ChooseSexDialog sexDialog = new ChooseSexDialog(this, R.style.recharge_pay_dialog, tv_sex,
+                        "选择您的性别", "男", "女");
                 sexDialog.show();
                 break;
             case R.id.tv_how_long:
                 getDate(tv_how_long, "选择首次养宠时间");
                 break;
             case R.id.tv_person_tag:
-                Intent intent = new Intent(this,EditTagActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(this, EditTagActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
                 break;
         }
     }
+
 
     //获取选择日期弹框
     private void getDate(TextView textView, String title) {
@@ -124,9 +130,26 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
+        if (requestCode == PhotoSelectActivity.REQUEST_CODE) {
+            if (data != null) {
+                List<PictureBean> list = (List<PictureBean>) data.getSerializableExtra("pictureList");
+                Bitmap mBitmap = BitmapFactory.decodeFile(list.get(0).path);
+                circleImageView.setImageBitmap(mBitmap);
+            }
         }
-        Bitmap mBitmap = BitmapFactory.decodeFile(CommonUtils.getPhotoSavePath(GlobalApplication.Companion.getMContext()) + "/" + "avatar.png");
-        circleImageView.setImageBitmap(mBitmap);
+        if (requestCode == PictureChooseUtils.PHOTOTAKE) {
+            String path = CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
+                    Environment.DIRECTORY_PICTURES)+"/"+PictureChooseUtils.getPhotoSaveName();
+            Bitmap mBitmap = BitmapFactory.decodeFile(path);
+            circleImageView.setImageBitmap(mBitmap);
+        }
+
+        if (requestCode == REQUEST_CODE){
+            if (data!=null){
+                String str = data.getStringExtra("signature");
+                tv_person_tag.setText(str);
+            }
+        }
     }
+
 }

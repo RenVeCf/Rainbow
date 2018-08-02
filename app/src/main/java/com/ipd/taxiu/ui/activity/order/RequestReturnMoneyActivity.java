@@ -11,18 +11,24 @@ import android.widget.TextView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.AuditSuccessDialog;
+import com.ipd.taxiu.widget.PickerUtil;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Miss on 2018/7/23
  * 申请退款
  */
-public class RequestReturnMoneyActivity extends BaseUIActivity implements View.OnClickListener{
+public class RequestReturnMoneyActivity extends BaseUIActivity implements View.OnClickListener {
     private TextView tv_return_explanation;
     private Button btn_submit;
     private TextView tv_return_reason;
+    private List<String> returnReason;
+
     @Override
     protected int getContentLayout() {
         return R.layout.activity_request_return_money;
@@ -42,7 +48,7 @@ public class RequestReturnMoneyActivity extends BaseUIActivity implements View.O
 
     @Override
     protected void loadData() {
-
+        initData();
     }
 
     @Override
@@ -57,11 +63,11 @@ public class RequestReturnMoneyActivity extends BaseUIActivity implements View.O
         return "申请退款";
     }
 
-    private void initDialog(){
+    private void initDialog() {
         AuditSuccessDialog.Builder builder = new AuditSuccessDialog.Builder(this);
         builder.setTitle("您的退款申请已提交");
         builder.setMessage("正在等待管理员审核");
-        builder.setCommit("我知道了",new AuditSuccessDialog.OnClickListener() {
+        builder.setCommit("我知道了", new AuditSuccessDialog.OnClickListener() {
             @Override
             public void onClick(AuditSuccessDialog.Builder builder) {
                 builder.getDialog().dismiss();
@@ -74,14 +80,24 @@ public class RequestReturnMoneyActivity extends BaseUIActivity implements View.O
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_submit:
                 initDialog();
                 break;
             case R.id.tv_return_reason:
-                toastShow("请选择退款原因");
+                PickerUtil pickerUtil = new PickerUtil();
+                pickerUtil.initRetrunMoneyOption(this, returnReason, tv_return_reason);
                 break;
         }
 
+    }
+
+    private void initData() {
+        returnReason = new ArrayList<>();
+        returnReason.add("订单不能按时发货");
+        returnReason.add("商品缺货，无法发货");
+        returnReason.add("订单信息填写有误");
+        returnReason.add("不想买了");
+        returnReason.add("重复下单");
     }
 }

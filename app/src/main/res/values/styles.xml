@@ -279,4 +279,10 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
 
+    <style name="RatingStyle" parent="@android:style/Widget.RatingBar">
+        <!-- 定义星星图片 -->
+        <item name="android:progressDrawable">@drawable/layer_live_rating_bar</item>
+        <item name="android:minHeight">15dp</item>
+    </style>
+
 </resources>

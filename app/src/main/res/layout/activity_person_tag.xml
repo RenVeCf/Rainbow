@@ -5,6 +5,7 @@
     android:background="@color/white"
     android:paddingBottom="@dimen/big_padding">
     <EditText
+        android:id="@+id/et_signature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/base_padding"

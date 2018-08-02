@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_pay_way_bg"
+    android:padding="@dimen/base_padding"
+    android:id="@+id/rl_item">
+    <LinearLayout
+        android:id="@+id/ll_choose_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/icon_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_city"/>
+        <TextView
+            android:text="选择所在城市"
+            android:id="@+id/text_title"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/small_padding"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/pay_close"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/base_padding"/>
+
+    <LinearLayout
+        android:id="@+id/optionspicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_close"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"/>
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionspicker"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/class_room_buy_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size"
+        android:gravity="center"
+        android:text="确定"
+        android:paddingBottom="@dimen/small_padding"/>
+</RelativeLayout>

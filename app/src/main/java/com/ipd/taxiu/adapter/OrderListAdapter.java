@@ -3,17 +3,15 @@ package com.ipd.taxiu.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderBean;
-import com.ipd.taxiu.bean.OrderListBean;
+import com.ipd.taxiu.ui.activity.order.LogisticsDetailActivity;
 import com.ipd.taxiu.ui.activity.order.OrderDetailActivity;
 
 import java.util.ArrayList;
@@ -108,11 +106,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             @Override
             public void onClick(View v) {
                 if (cancelText.equals("取消")) {
-                    Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                 } else if (cancelText.equals("物流")) {
-                    Toast.makeText(context, "物流", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context,LogisticsDetailActivity.class);
+                    context.startActivity(intent);
                 } else if (cancelText.equals("再次购买")) {
-                    Toast.makeText(context, "再次购买", Toast.LENGTH_SHORT).show();
                 }
             }
         });

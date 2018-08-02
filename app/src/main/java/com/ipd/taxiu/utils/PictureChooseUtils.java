@@ -10,6 +10,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.MySelfSheetDialog;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.platform.global.GlobalApplication;
+import com.ipd.taxiu.ui.activity.CropActivity;
 
 import java.io.File;
 
@@ -51,5 +52,16 @@ public class PictureChooseUtils {
 
     public static String getPhotoSaveName() {
         return photoSaveName;
+    }
+
+    public static void toTakePhoto(Activity activity) {
+        photoSaveName = String.valueOf(System.currentTimeMillis()) + ".png";
+        Uri imageUri = null;
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        imageUri = Uri.fromFile(new File(CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
+                Environment.DIRECTORY_PICTURES), photoSaveName));
+        openCameraIntent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        activity.startActivityForResult(openCameraIntent, PictureChooseUtils.PHOTOTAKE);
     }
 }

@@ -48,7 +48,7 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:layout_toRightOf="@id/order_code"
                 android:text="89348575789576976"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="@dimen/base_text_size" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:layout_toRightOf="@id/pay_money"
                 android:text="￥134.00"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="@dimen/base_text_size" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:layout_toRightOf="@id/order_time"
                 android:text="2018.07.22  20:03"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="@dimen/base_text_size" />
 
             <TextView
@@ -113,7 +113,7 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:layout_toRightOf="@id/delivery_time"
                 android:text="2018.07.25  20:03"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="@dimen/base_text_size" />
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>

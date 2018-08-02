@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/base_padding">
+
+    <com.ipd.taxiu.widget.RoundImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:corner_radius="5dp"
+        app:type="round" />
+</LinearLayout>

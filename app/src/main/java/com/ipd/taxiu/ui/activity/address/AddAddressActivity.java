@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,9 @@ import static com.ipd.taxiu.adapter.OrderListAdapter.EVALUATE;
 public class AddAddressActivity extends BaseUIActivity implements View.OnClickListener{
     private String addressType;
     private Button button;
+    private RelativeLayout rl_address;
+    private PickerUtil pickerUtil = new PickerUtil();
+    private TextView tv_choose_city;
     @Override
     protected int getContentLayout() {
         addressType = getIntent().getStringExtra("addressType");
@@ -52,16 +56,19 @@ public class AddAddressActivity extends BaseUIActivity implements View.OnClickLi
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
         button = findViewById(R.id.btn_save);
+        rl_address = findViewById(R.id.rl_address);
+        tv_choose_city = findViewById(R.id.tv_choose_city);
     }
 
     @Override
     protected void loadData() {
-
+        pickerUtil.initJsonData(this);
     }
 
     @Override
     protected void initListener() {
         button.setOnClickListener(this);
+        rl_address.setOnClickListener(this);
     }
 
     @NotNull
@@ -99,6 +106,9 @@ public class AddAddressActivity extends BaseUIActivity implements View.OnClickLi
                     toastShow("修改成功");
                     finish();
                 }
+                break;
+            case R.id.rl_address:
+                pickerUtil.showPickerView(this,tv_choose_city);
                 break;
         }
     }

@@ -184,6 +184,25 @@
             android:layout_below="@id/payment_time"
             android:textSize="@dimen/small_text_size"
             android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_shipments_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="发货时间： 2018.07.20 14:29"
+            android:layout_below="@id/payment_method"
+            android:textSize="@dimen/small_text_size"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_delivery_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="收货时间：2018.07.20 14:29"
+            android:layout_below="@id/tv_shipments_time"
+            android:textSize="@dimen/small_text_size"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </LinearLayout>

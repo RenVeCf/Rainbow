@@ -2,6 +2,8 @@ package com.ipd.taxiu.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderMessageBean;
+import com.ipd.taxiu.ui.activity.message.MessageDetailActivity;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,13 @@ public class OtherMessageAdapter extends RecyclerView.Adapter<OtherMessageAdapte
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final OtherMessageAdapter.ViewHolder holder, int position) {
-
+        holder.tv_message_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  intent = new Intent(context,MessageDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -44,8 +53,10 @@ public class OtherMessageAdapter extends RecyclerView.Adapter<OtherMessageAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        CardView tv_message_time;
         public ViewHolder(View itemView) {
             super(itemView);
+            tv_message_time = itemView.findViewById(R.id.tv_message_time);
         }
 
     }

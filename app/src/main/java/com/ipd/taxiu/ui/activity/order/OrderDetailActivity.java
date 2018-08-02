@@ -164,6 +164,7 @@ public class OrderDetailActivity extends BaseUIActivity implements View.OnClickL
             public void onClick(MessageDialog.Builder builder) {
                 toastShow(toastMsg);
                 builder.getDialog().dismiss();
+                finish();
             }
         });
         builder.setCancel(cancelStr, new MessageDialog.OnClickListener() {
@@ -198,6 +199,10 @@ public class OrderDetailActivity extends BaseUIActivity implements View.OnClickL
             case R.id.tv_order_button2:
                 if (orderStatus.equals(DETAIL)) {
                    startReturnActivity();
+                }else if (orderStatus.equals(EVALUATE)){
+                    startLogisticsActivity();
+                }else if (orderStatus.equals(DELIVERY)){
+                    startLogisticsActivity();
                 }
                 break;
             case R.id.tv_order_button3:
@@ -221,6 +226,11 @@ public class OrderDetailActivity extends BaseUIActivity implements View.OnClickL
 
     private void startReturnActivity(){
         Intent intent = new Intent(this,RequestReturnMoneyActivity.class);
+        startActivity(intent);
+    }
+
+    private void startLogisticsActivity(){
+        Intent intent = new Intent(this,LogisticsDetailActivity.class);
         startActivity(intent);
     }
 

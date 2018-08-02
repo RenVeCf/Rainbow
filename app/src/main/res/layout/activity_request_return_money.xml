@@ -135,7 +135,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/base_padding"
         android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_order_btn_payment"
+        android:background="@drawable/shape_buy_bg"
         android:text="提交"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />
