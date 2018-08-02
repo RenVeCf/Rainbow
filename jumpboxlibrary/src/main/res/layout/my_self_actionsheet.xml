@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:background="@drawable/shape_pay_way_bg">
 
     <!-- 我的界面 dialog弹出框自定义样式 -->
 
@@ -33,18 +33,16 @@
             android:id="@+id/lLayout_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+        </LinearLayout>
     </ScrollView>
-
     <TextView
         android:id="@+id/my_self_dialog_off"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/my_self_single_selector"
         android:gravity="center"
-        android:text="返回"
-        android:textColor="#FD4A2E"
+        android:text="取消"
+        android:textColor="#525455"
         android:textSize="14sp" />
 
 </LinearLayout>

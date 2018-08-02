@@ -39,5 +39,6 @@
     <color name="LightGrey">#808080</color>
 
     <color name="drawer_line_color">#6C515C</color>
+    <color name="view_line">#DDDEDE</color>
 
 </resources>

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -145,29 +146,29 @@ public class MySelfSheetDialog {
 			textView.setGravity(Gravity.CENTER);
 
 			// 背景图片
-			if (size == 1) {
-				if (showTitle) {
-					textView.setBackgroundResource(R.drawable.my_self_image_selector);
-				} else {
-					textView.setBackgroundResource(R.drawable.my_self_single_selector);
-				}
-			} else {
-				if (showTitle) {
-					if (i >= 1 && i < size) {
-						textView.setBackgroundResource(R.drawable.my_self_middle_selector);
-					} else {
-						textView.setBackgroundResource(R.drawable.my_self_image_selector);
-					}
-				} else {
-					if (i == 1) {
-						textView.setBackgroundResource(R.drawable.my_self_top_selector);
-					} else if (i < size) {
-						textView.setBackgroundResource(R.drawable.my_self_middle_selector);
-					} else {
-						textView.setBackgroundResource(R.drawable.my_self_image_selector);
-					}
-				}
-			}
+//			if (size == 1) {
+//				if (showTitle) {
+//					textView.setBackgroundResource(R.drawable.my_self_image_selector);
+//				} else {
+//					textView.setBackgroundResource(R.drawable.my_self_single_selector);
+//				}
+//			} else {
+//				if (showTitle) {
+//					if (i >= 1 && i < size) {
+//						textView.setBackgroundResource(R.drawable.my_self_middle_selector);
+//					} else {
+//						textView.setBackgroundResource(R.drawable.my_self_image_selector);
+//					}
+//				} else {
+//					if (i == 1) {
+//						textView.setBackgroundResource(R.drawable.my_self_top_selector);
+//					} else if (i < size) {
+//						textView.setBackgroundResource(R.drawable.my_self_middle_selector);
+//					} else {
+//						textView.setBackgroundResource(R.drawable.my_self_image_selector);
+//					}
+//				}
+//			}
 
 			// 字体颜色
 			if (color == null) {
@@ -190,8 +191,11 @@ public class MySelfSheetDialog {
 					dialog.dismiss();
 				}
 			});
-
+			View view = new View(context);
+			view.setBackgroundColor(context.getResources().getColor(R.color.view_line));
+			view.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,1));
 			lLayout_content.addView(textView);
+			lLayout_content.addView(view);
 		}
 	}
 
@@ -217,7 +221,7 @@ public class MySelfSheetDialog {
 	}
 
 	public enum SheetItemColor {
-		Blue("#17a4e6"), Red("#FD4A2E"), Black("#000000"), Gray("#999a9a"),Orange("#EA762D");
+		Blue("#17a4e6"), Red("#FD4A2E"), Black("#000000"), Gray("#999a9a"),Orange("#EA762D"),colorPrimaryDark("#EC601E");
 
 		private String name;
 

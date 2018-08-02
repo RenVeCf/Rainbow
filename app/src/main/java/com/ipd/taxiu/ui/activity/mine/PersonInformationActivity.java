@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
@@ -34,6 +35,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.ipd.taxiu.utils.PictureChooseUtils.PHOTOZOOM;
+
 
 /**
  * Created by Miss on 2018/7/26
@@ -44,6 +47,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     private TextView tv_birthday, tv_sex, tv_how_long, tv_person_tag;
 
     public static int REQUEST_CODE = 7879;
+    private String path;
 
     @Override
     protected int getContentLayout() {
@@ -100,8 +104,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.civ_header:
-                SettingHeaderDialog dialog = new SettingHeaderDialog(this, R.style.recharge_pay_dialog);
-                dialog.show();
+                PictureChooseUtils.showDialog(this);
                 break;
             case R.id.tv_birthday:
                 getDate(tv_birthday, "选择您的生日");
@@ -116,7 +119,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 break;
             case R.id.tv_person_tag:
                 Intent intent = new Intent(this, EditTagActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE);
                 break;
         }
     }
@@ -130,24 +133,33 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PhotoSelectActivity.REQUEST_CODE) {
-            if (data != null) {
-                List<PictureBean> list = (List<PictureBean>) data.getSerializableExtra("pictureList");
-                Bitmap mBitmap = BitmapFactory.decodeFile(list.get(0).path);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PictureChooseUtils.PHOTOTAKE) {
+                path = CommonUtils.getPhotoSavePath(this, Environment.DIRECTORY_PICTURES) + "/" + PictureChooseUtils.getPhotoSaveName();
+                CropActivity.launch(this, path);
+            }
+
+            if (requestCode == PictureChooseUtils.PHOTOZOOM) {
+                if (data == null)
+                    return;
+                path = BitmapUtils.getInstance().getPath(this, data.getData());
+                CropActivity.launch(this, path);
+
+            }
+
+            if (requestCode == PictureChooseUtils.IMAGE_COMPLETE) {//截图返回
+                if (data == null) return;
+                path = data.getStringExtra("path");
+                Bitmap mBitmap = BitmapFactory.decodeFile(path);
                 circleImageView.setImageBitmap(mBitmap);
             }
-        }
-        if (requestCode == PictureChooseUtils.PHOTOTAKE) {
-            String path = CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
-                    Environment.DIRECTORY_PICTURES)+"/"+PictureChooseUtils.getPhotoSaveName();
-            Bitmap mBitmap = BitmapFactory.decodeFile(path);
-            circleImageView.setImageBitmap(mBitmap);
-        }
 
-        if (requestCode == REQUEST_CODE){
-            if (data!=null){
-                String str = data.getStringExtra("signature");
-                tv_person_tag.setText(str);
+
+            if (requestCode == REQUEST_CODE) {
+                if (data != null) {
+                    String str = data.getStringExtra("signature");
+                    tv_person_tag.setText(str);
+                }
             }
         }
     }

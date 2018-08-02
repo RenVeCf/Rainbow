@@ -81,7 +81,7 @@ public class SettingHeaderDialog extends Dialog implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_photo_shoot:
-                PictureChooseUtils.toTakePhoto(context);
+//                PictureChooseUtils.toTakePhoto(context);
                 dismiss();
                 break;
             case R.id.tv_album_choose:

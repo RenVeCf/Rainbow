@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
@@ -19,6 +20,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.activity.CropActivity;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
 import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
@@ -45,6 +47,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     private List<String> data;
     private String petWay;
+    private String path;
 
     @Override
     protected int getContentLayout() {
@@ -123,8 +126,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.civ_header:
-                SettingHeaderDialog dialog = new SettingHeaderDialog(this, R.style.recharge_pay_dialog);
-                dialog.show();
+                PictureChooseUtils.showDialog(this);
                 break;
             case R.id.tv_pet_kind:
                 Intent intent = new Intent(this, ChoosePetActivity.class);
@@ -156,17 +158,27 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PhotoSelectActivity.REQUEST_CODE) {
-            if (data != null) {
-                List<PictureBean> list = (List<PictureBean>) data.getSerializableExtra("pictureList");
-                Bitmap mBitmap = BitmapFactory.decodeFile(list.get(0).path);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PictureChooseUtils.PHOTOTAKE) {
+                path = CommonUtils.getPhotoSavePath(this, Environment.DIRECTORY_PICTURES) + "/" + PictureChooseUtils.getPhotoSaveName();
+                CropActivity.launch(this, path);
+            }
+
+            if (requestCode == PictureChooseUtils.PHOTOZOOM) {
+                if (data == null)
+                    return;
+                path = BitmapUtils.getInstance().getPath(this, data.getData());
+                CropActivity.launch(this, path);
+
+            }
+
+            if (requestCode == PictureChooseUtils.IMAGE_COMPLETE) {//截图返回
+                if (data == null) return;
+                path = data.getStringExtra("path");
+                Bitmap mBitmap = BitmapFactory.decodeFile(path);
                 civ_header.setImageBitmap(mBitmap);
             }
-        }
-        if (requestCode == PictureChooseUtils.PHOTOTAKE) {
-            Bitmap mBitmap = BitmapFactory.decodeFile(CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
-                    Environment.DIRECTORY_PICTURES)+"/"+PictureChooseUtils.getPhotoSaveName());
-            civ_header.setImageBitmap(mBitmap);
+
         }
     }
 

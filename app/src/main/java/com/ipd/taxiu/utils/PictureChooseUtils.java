@@ -26,7 +26,7 @@ public class PictureChooseUtils {
 
     public static void showDialog(final Activity activity) {
         new MySelfSheetDialog(activity).builder().addSheetItem(activity.getResources().getString(R.string.photo),
-                MySelfSheetDialog.SheetItemColor.Black, new MySelfSheetDialog.OnSheetItemClickListener() {
+                MySelfSheetDialog.SheetItemColor.colorPrimaryDark, new MySelfSheetDialog.OnSheetItemClickListener() {
 
                     @Override
                     public void onClick(int which) {
@@ -39,7 +39,7 @@ public class PictureChooseUtils {
                         openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         activity.startActivityForResult(openCameraIntent, PHOTOTAKE);
                     }
-                }).addSheetItem(activity.getResources().getString(R.string.camera), MySelfSheetDialog.SheetItemColor.Black, new MySelfSheetDialog.OnSheetItemClickListener() {
+                }).addSheetItem(activity.getResources().getString(R.string.camera), MySelfSheetDialog.SheetItemColor.colorPrimaryDark, new MySelfSheetDialog.OnSheetItemClickListener() {
 
             @Override
             public void onClick(int which) {
@@ -52,16 +52,5 @@ public class PictureChooseUtils {
 
     public static String getPhotoSaveName() {
         return photoSaveName;
-    }
-
-    public static void toTakePhoto(Activity activity) {
-        photoSaveName = String.valueOf(System.currentTimeMillis()) + ".png";
-        Uri imageUri = null;
-        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        imageUri = Uri.fromFile(new File(CommonUtils.getExternalFilesDirPath(GlobalApplication.Companion.getMContext(),
-                Environment.DIRECTORY_PICTURES), photoSaveName));
-        openCameraIntent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
-        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        activity.startActivityForResult(openCameraIntent, PictureChooseUtils.PHOTOTAKE);
     }
 }
