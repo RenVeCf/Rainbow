@@ -63,19 +63,17 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         //如果是recyclerView 根据判断第一个元素是哪个位置可以判断是否消耗
         //这里判断如果第一个元素的位置是大于TOP_CHILD_FLING_THRESHOLD的
         //认为已经被消耗，在animateScroll里不会对velocityY<0时做处理
-
-        //暂时不处理，在onInterceptTouchEvent处理了滑动
-//        if (target instanceof RecyclerView && velocityY < 0) {
-//            final RecyclerView recyclerView = (RecyclerView) target;
-//            final View firstChild = recyclerView.getChildAt(0);
-//            final int childAdapterPosition = recyclerView.getChildAdapterPosition(firstChild);
-//            consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD;
-//        }
-//        if (!consumed) {
-//            animateScroll(velocityY, computeDuration(0), consumed);
-//        } else {
-//            animateScroll(velocityY, computeDuration(velocityY), consumed);
-//        }
+        if (target instanceof RecyclerView && velocityY < 0) {
+            final RecyclerView recyclerView = (RecyclerView) target;
+            final View firstChild = recyclerView.getChildAt(0);
+            final int childAdapterPosition = recyclerView.getChildAdapterPosition(firstChild);
+            consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD;
+        }
+        if (!consumed) {
+            animateScroll(velocityY, computeDuration(0), consumed);
+        } else {
+            animateScroll(velocityY, computeDuration(velocityY), consumed);
+        }
         return true;
     }
 
@@ -174,9 +172,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mMaximumVelocity = ViewConfiguration.get(context)
                 .getScaledMaximumFlingVelocity();
-//        mMinimumVelocity = ViewConfiguration.get(context)
-//                .getScaledMinimumFlingVelocity();
-        mMinimumVelocity = 500;
+        mMinimumVelocity = ViewConfiguration.get(context)
+                .getScaledMinimumFlingVelocity();
+//        mMinimumVelocity = 500;
 
     }
 
@@ -194,51 +192,8 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     }
 
     private float mInterceptLastY = 0f, mInterceptLastX = 0f;
-
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent event) {
-//        initVelocityTrackerIfNotExists();
-//        mVelocityTracker.addMovement(event);
-//        switch (event.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                if (!mScroller.isFinished())
-//                    mScroller.abortAnimation();
-//                mInterceptLastY = event.getY();
-//                mInterceptLastX = event.getX();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                float dx = event.getX() - mInterceptLastX;
-//                float dy = event.getY() - mInterceptLastY;
-//
-//                mInterceptLastX = event.getX();
-//                mInterceptLastY = event.getY();
-//
-//                if (Math.abs(dy) - Math.abs(dx) > 5 && getScrollY() < mTopViewHeight) {
-//                    return true;
-//                }
-//                break;
-//            case MotionEvent.ACTION_CANCEL:
-//                recycleVelocityTracker();
-//                if (!mScroller.isFinished()) {
-//                    mScroller.abortAnimation();
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
-////                int velocityY = (int) mVelocityTracker.getYVelocity();
-////                if (Math.abs(velocityY) > mMinimumVelocity) {
-////                    fling(-velocityY);
-////                }
-//                recycleVelocityTracker();
-//                break;
-//        }
-//
-//        return super.onInterceptTouchEvent(event);
-//    }
-
-
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         initVelocityTrackerIfNotExists();
         mVelocityTracker.addMovement(event);
         switch (event.getAction()) {
@@ -247,7 +202,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
                     mScroller.abortAnimation();
                 mInterceptLastY = event.getY();
                 mInterceptLastX = event.getX();
-                break;
+                getParent().requestDisallowInterceptTouchEvent(true);
+                return true;
+//                break;
             case MotionEvent.ACTION_MOVE:
                 float dx = event.getX() - mInterceptLastX;
                 float dy = event.getY() - mInterceptLastY;
@@ -256,14 +213,16 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
                 mInterceptLastY = event.getY();
 
                 if (Math.abs(dy) - Math.abs(dx) > 2 && getScrollY() < mTopViewHeight) {
-                    if (!mDragging && Math.abs(dy) > mTouchSlop) {
-                        mDragging = true;
-                    }
-                    if (mDragging) {
+//                    if (!mDragging && Math.abs(dy) > mTouchSlop) {
+//                        mDragging = true;
+//                    }
+//                    if (mDragging) {
                         scrollBy(0, (int) -dy);
-                    }
+//                    }
+                    return true;
 
                 }
+                getParent().requestDisallowInterceptTouchEvent(false);
                 break;
 
             case MotionEvent.ACTION_CANCEL:
@@ -285,7 +244,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
                 break;
 
         }
-        return super.onInterceptTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 
     @Override

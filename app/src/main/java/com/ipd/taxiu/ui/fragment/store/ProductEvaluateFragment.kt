@@ -10,7 +10,6 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductEvaluateAdapter
 import com.ipd.taxiu.bean.ProductEvaluateBean
 import com.ipd.taxiu.ui.ListFragment
-import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import rx.Observable
 
 class ProductEvaluateFragment : ListFragment<List<ProductEvaluateBean>, ProductEvaluateBean>() {
@@ -23,6 +22,8 @@ class ProductEvaluateFragment : ListFragment<List<ProductEvaluateBean>, ProductE
             return topicListFragment
         }
     }
+
+    override fun getContentLayout(): Int = R.layout.fragment_product_evaluate_list
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
@@ -51,9 +52,9 @@ class ProductEvaluateFragment : ListFragment<List<ProductEvaluateBean>, ProductE
                 //itemClick
 
             })
-            recycler_view.addItemDecoration(object :RecyclerView.ItemDecoration(){
+            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-                    outRect?.bottom = DensityUtil.dip2px(mActivity,8f)
+                    outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
                 }
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)

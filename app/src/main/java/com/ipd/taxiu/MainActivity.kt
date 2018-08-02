@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.ipd.jumpbox.jumpboxlibrary.utils.PopupUtils
 import com.ipd.taxiu.platform.http.RxScheduler
@@ -82,12 +84,21 @@ class MainActivity : BaseActivity() {
 
     private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_home, ll_store, ll_taxiu, ll_cart, ll_mine) }
     private fun setTabChecked(pos: Int) {
+        tabs[2].visibility = if (pos == 2) View.INVISIBLE else View.VISIBLE
+        iv_taxiu_checked.visibility = if (pos == 2) View.VISIBLE else View.GONE
+
         tabs.forEachIndexed { index, layout ->
             layout.getChildAt(0).isSelected = pos == index
             layout.getChildAt(1).isSelected = pos == index
+            if (pos == index) {
+                var animView: View = layout.getChildAt(0)
+                if (pos == 2) {
+                    animView = iv_taxiu_checked
+                }
+                val mainTabAnim = AnimationUtils.loadAnimation(mActivity, R.anim.main_tab_anim)
+                animView.startAnimation(mainTabAnim)
+            }
         }
-        tabs[2].visibility = if (pos == 2) View.INVISIBLE else View.VISIBLE
-        iv_taxiu_checked.visibility = if (pos == 2) View.VISIBLE else View.GONE
     }
 
 

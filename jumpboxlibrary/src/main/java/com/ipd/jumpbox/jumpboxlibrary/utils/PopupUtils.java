@@ -16,7 +16,7 @@ public class PopupUtils {
 
     public static PopupWindow showView(Context context, View contentView, final Window window, View dropDownView) {
         PopupWindow popup = getPopup(context, contentView, window);
-
+        backgroundAlpha(window, 0.5f);
         popup.showAsDropDown(dropDownView);
         popup.setOnDismissListener(new OnDismissListener() {
 
@@ -30,6 +30,7 @@ public class PopupUtils {
 
     public static PopupWindow showViewAtBottom(Context context, View view, final Window window, View parent, final OnDismissListener dismissListener) {
         final PopupWindow popup = getPopup(context, view, window);
+        backgroundAlpha(window, 0.5f);
         popup.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         popup.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
@@ -49,7 +50,7 @@ public class PopupUtils {
     public static PopupWindow showViewAtCenter(Context context, View view, final Window window, View parent,
                                                final OnMessageDismissListener listener) {
         PopupWindow popup = getPopup(context, view, window);
-
+        backgroundAlpha(window, 0.5f);
         popup.showAtLocation(parent, Gravity.CENTER, 0, 0);
         popup.setOnDismissListener(new OnDismissListener() {
 
@@ -67,6 +68,7 @@ public class PopupUtils {
 
     public static PopupWindow showViewAtCenter(PopupWindow popup, final Window window, View parent,
                                                final OnMessageDismissListener listener) {
+        backgroundAlpha(window, 0.5f);
         popup.showAtLocation(parent, Gravity.CENTER, 0, 0);
         popup.setOnDismissListener(new OnDismissListener() {
 
@@ -95,7 +97,6 @@ public class PopupUtils {
         popup.setContentView(contentView);
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.setFocusable(true);
-        backgroundAlpha(window, 0.5f);
         return popup;
     }
 

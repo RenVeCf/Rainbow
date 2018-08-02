@@ -8,15 +8,15 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/screen_layout"
-        layout="@layout/item_store_special_screen" />
+        android:id="@+id/screen_layout_container"
+        layout="@layout/layout_product_screen" />
 
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipe_load_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/screen_layout">
+        android:layout_below="@id/screen_layout_container">
 
         <include
             android:id="@+id/swipe_refresh_header"

@@ -2,13 +2,19 @@ package com.ipd.taxiu.ui.fragment.store
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.ViewTreeObserver
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.BannerPagerAdapter
+import com.ipd.taxiu.adapter.PackageProductAdapter
 import com.ipd.taxiu.bean.BannerBean
+import com.ipd.taxiu.bean.TalkBean
 import com.ipd.taxiu.ui.BaseUIFragment
 import com.ipd.taxiu.utils.IndicatorHelper
+import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
+import kotlinx.android.synthetic.main.layout_option_package.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 
 class ProductDetailTopFragment : BaseUIFragment() {
@@ -45,13 +51,20 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
                 })
         mContentView.store_banner.startAutoScroll()
+
+
+        mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+        mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, listOf(TalkBean(), TalkBean(), TalkBean(),TalkBean()), {
+
+        })
     }
 
     override fun initListener() {
         mContentView.ll_coupon.setOnClickListener {
             //领券
-
+            ProductCouponDialog(mActivity).show()
         }
+
     }
 
     override fun onDestroy() {

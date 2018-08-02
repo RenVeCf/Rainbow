@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View style="@style/ViewLine" />
+
+    <LinearLayout
+        android:id="@+id/ll_normal_sort"
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="综合排序"
+            android:textColor="@drawable/selector_screen_text_color" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/selector_normal_screen_img" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_comment_sort"
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="评论由高到低"
+            android:textColor="@drawable/selector_screen_text_color" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/selector_normal_screen_img" />
+
+    </LinearLayout>
+
+</LinearLayout>

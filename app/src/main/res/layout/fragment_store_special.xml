@@ -32,8 +32,8 @@
     </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
 
     <include
-        android:id="@+id/screen_layout"
-        layout="@layout/item_store_special_screen"
+        android:id="@+id/screen_layout_container"
+        layout="@layout/layout_product_screen"
         android:visibility="gone" />
 
     <android.support.constraint.ConstraintLayout

@@ -1,5 +1,6 @@
 package com.ipd.taxiu.ui.fragment.store
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
@@ -12,9 +13,9 @@ import com.ipd.taxiu.bean.StoreProductScreenBean
 import com.ipd.taxiu.bean.StoreSpecialBean
 import com.ipd.taxiu.bean.StoreSpecialHeaderBean
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.widget.ScreenLayout
 import com.ipd.taxiu.widget.StoreSpecialRecyclerView
 import kotlinx.android.synthetic.main.fragment_store_special.view.*
-import kotlinx.android.synthetic.main.item_store_special_screen.view.*
 import rx.Observable
 
 class StoreSpecialFragment : ListFragment<StoreSpecialBean, Any>() {
@@ -29,6 +30,12 @@ class StoreSpecialFragment : ListFragment<StoreSpecialBean, Any>() {
     override fun getContentLayout(): Int = R.layout.fragment_store_special
 
 
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        val screenLayout = mRootView?.findViewById<ScreenLayout>(R.id.screen_layout_container)
+        screenLayout?.setBackgroupView(recycler_view)
+    }
+
     override fun initListener() {
         super.initListener()
         mContentView.iv_scroll_top.setOnClickListener {
@@ -42,8 +49,8 @@ class StoreSpecialFragment : ListFragment<StoreSpecialBean, Any>() {
             override fun onChange(isShow: Boolean) {
                 LogUtils.e("tag", isShow.toString())
                 val visibility = if (isShow) View.VISIBLE else View.GONE
-                if (mContentView.screen_layout.visibility == visibility) return
-                mContentView.screen_layout.visibility = visibility
+                if (mContentView.screen_layout_container.visibility == visibility) return
+                mContentView.screen_layout_container.visibility = visibility
             }
 
         })

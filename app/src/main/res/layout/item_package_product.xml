@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <com.ipd.taxiu.widget.RoundImageView
+        android:id="@+id/iv_product_img"
+        android:layout_width="@dimen/package_product_img_height"
+        android:layout_height="@dimen/package_product_img_height"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/product_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftTop_corner_radius="10dp"
+        app:rightTop_corner_radius="10dp"
+        app:type="round" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_product_img">
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="比瑞吉 博美成犬粮天然狗粮"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            style="@style/SmallTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="￥588.00"
+            android:textColor="@color/red"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

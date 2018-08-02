@@ -1,5 +1,6 @@
 package com.ipd.taxiu.ui.fragment.store
 
+import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.MainActivity
@@ -8,6 +9,7 @@ import com.ipd.taxiu.adapter.ProductAdapter
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
+import com.ipd.taxiu.widget.ScreenLayout
 import kotlinx.android.synthetic.main.fragment_product_list.view.*
 import rx.Observable
 
@@ -22,6 +24,11 @@ class ProductListFragment : ListFragment<List<ProductBean>, ProductBean>() {
 
     override fun getContentLayout(): Int = R.layout.fragment_product_list
 
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        val screenLayout = mRootView?.findViewById<ScreenLayout>(R.id.screen_layout_container)
+        screenLayout?.setBackgroupView(recycler_view)
+    }
 
     override fun initListener() {
         super.initListener()

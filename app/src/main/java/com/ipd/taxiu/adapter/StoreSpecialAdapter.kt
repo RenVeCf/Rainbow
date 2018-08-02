@@ -13,6 +13,7 @@ import com.ipd.taxiu.bean.StoreSpecialHeaderBean
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.layout_menu.view.*
+import kotlinx.android.synthetic.main.layout_product_screen.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
 
@@ -62,7 +63,7 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_recommend_video, parent, false))
             }
             ItemType.PRODUCT_SCREEN -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_special_screen, parent, false))
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_product_screen, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -118,9 +119,12 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
 
             }
             ItemType.PRODUCT_SCREEN -> {
+                holder.itemView.screen_layout.disallowClickable()
                 holder.itemView.setOnClickListener {
                     onScreenItemClick.invoke(position)
+                    return@setOnClickListener
                 }
+
 
             }
             else -> {

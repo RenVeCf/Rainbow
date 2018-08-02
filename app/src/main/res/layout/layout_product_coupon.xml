@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_pay_way_bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding"
+    android:paddingTop="@dimen/base_padding">
+
+
+    <TextView
+        android:id="@+id/tv_product_coupon"
+        style="@style/TitleTextStyle"
+        android:layout_gravity="center_horizontal"
+        android:text="优惠券" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/coupon_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/base_padding"
+        android:src="@mipmap/publish_close" />
+
+</LinearLayout>
