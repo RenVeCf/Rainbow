@@ -23,7 +23,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/base_padding"
-                android:paddingTop="@dimen/small_padding">
+                android:paddingTop="@dimen/base_padding">
 
                 <RelativeLayout
                     android:id="@+id/rl_wait_pay"
@@ -34,9 +34,7 @@
 
                     <ImageView
                         android:id="@+id/wait_pay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        style="@style/MineOrderMenuImgStyle"
                         android:src="@mipmap/wait_pay" />
 
                     <TextView
@@ -44,10 +42,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/wait_pay"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/small_padding"
                         android:text="@string/wait_pay"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:layout_marginTop="@dimen/small_padding"/>
+                        android:textSize="@dimen/small_text_size" />
 
                     <TextView
                         android:layout_width="15dp"
@@ -70,9 +68,7 @@
 
                     <ImageView
                         android:id="@+id/wait_shipments"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        style="@style/MineOrderMenuImgStyle"
                         android:src="@mipmap/wait_shipments" />
 
                     <TextView
@@ -80,10 +76,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/wait_shipments"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/small_padding"
                         android:text="@string/wait_shipments"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:layout_marginTop="@dimen/small_padding"/>
+                        android:textSize="@dimen/small_text_size" />
 
                     <TextView
                         android:layout_width="15dp"
@@ -106,9 +102,7 @@
 
                     <ImageView
                         android:id="@+id/wait_delivery"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        style="@style/MineOrderMenuImgStyle"
                         android:src="@mipmap/wait_delivery" />
 
                     <TextView
@@ -116,10 +110,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/wait_delivery"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/small_padding"
                         android:text="@string/wait_delivery"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:layout_marginTop="@dimen/small_padding"/>
+                        android:textSize="@dimen/small_text_size" />
 
                     <TextView
                         android:layout_width="15dp"
@@ -142,9 +136,7 @@
 
                     <ImageView
                         android:id="@+id/off_the_stocks"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        style="@style/MineOrderMenuImgStyle"
                         android:src="@mipmap/off_the_stocks" />
 
                     <TextView
@@ -152,10 +144,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/off_the_stocks"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/small_padding"
                         android:text="@string/off_the_stocks"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:layout_marginTop="@dimen/small_padding"/>
+                        android:textSize="@dimen/small_text_size" />
 
                     <TextView
                         android:layout_width="15dp"
@@ -183,9 +175,7 @@
 
                     <ImageView
                         android:id="@+id/all_order"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        style="@style/MineOrderMenuImgStyle"
                         android:src="@mipmap/all_order" />
 
                     <TextView
@@ -193,10 +183,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/all_order"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/small_padding"
                         android:text="@string/all"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:layout_marginTop="@dimen/small_padding"/>
+                        android:textSize="@dimen/small_text_size" />
 
                     <TextView
                         android:layout_width="15dp"

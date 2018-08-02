@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/et_content"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white"
+                android:gravity="left|top"
+                android:hint="写下此刻你的想法~"
+                android:maxLength="300"
+                android:padding="@dimen/base_padding"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_video"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="@dimen/base_padding"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:background="@drawable/shape_publish_choose_video_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_content">
+
+                <com.ipd.taxiu.widget.RoundImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/upload_video"
+                    app:corner_radius="5dp"
+                    app:type="round" />
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="6dp"
+                    android:text="上传视频"
+                    android:textColor="@color/LightGrey" />
+
+            </LinearLayout>
+
+
+            <com.ipd.taxiu.widget.PictureRecyclerView
+                android:id="@+id/picture_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/et_content" />
+        </android.support.constraint.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_lable_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_padding"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding"
+            app:layout_constraintTop_toBottomOf="@id/cl_content">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/choose_taxiu_lable_icon"
+                android:drawablePadding="5dp"
+                android:text="选择标签" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/arrow_bottom_gray" />
+
+        </LinearLayout>
+
+        <com.ipd.taxiu.widget.TaxiuLableView
+            android:id="@+id/lable_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding"
+            app:layout_constraintBottom_toTopOf="@id/ll_copyright"
+            app:layout_constraintTop_toBottomOf="@id/ll_lable_title" />
+
+        <LinearLayout
+            android:id="@+id/ll_copyright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/base_padding"
+            app:layout_constraintTop_toBottomOf="@id/lable_layout">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_copyright_cb"
+                android:paddingRight="@dimen/small_padding" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="我已阅读并同意" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:text="《版权说明》"
+                android:textColor="#3792FB" />
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

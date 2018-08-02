@@ -65,7 +65,7 @@
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:drawableLeft="@mipmap/favorite_icon"
+            android:drawableLeft="@mipmap/collect_normal"
             android:drawablePadding="8dp"
             android:text="284"
             android:textColor="@color/LightGrey" />

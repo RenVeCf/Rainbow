@@ -20,7 +20,7 @@
         android:ellipsize="end"
         android:layout_marginTop="@dimen/small_padding"
         android:maxLines="1"
-        android:text="你家主子有什么特别的撒娇方式?"
+        android:text="罐头湿粮"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_category_img" />

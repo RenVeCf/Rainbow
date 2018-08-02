@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_pet_life_line"
+        style="@style/SmallTextStyle"
+        android:text="9个月16天"
+        android:textColor="@color/LightGrey" />
+
+    <TextView
+        android:id="@+id/tv_pet_life_line_date"
+        style="@style/SmallTextStyle"
+        android:text="2018-05-25"
+        android:textColor="@color/LightGrey" />
+
+</LinearLayout>

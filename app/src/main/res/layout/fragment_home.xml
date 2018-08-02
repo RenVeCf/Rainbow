@@ -10,26 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:collapsedTitleTextAppearance="@style/WhiteTitleActionBar"
-            app:contentScrim="@color/colorPrimaryDark"
-            app:expandedTitleTextAppearance="@style/TransparentTitleActionBar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
-            <include layout="@layout/layout_home_header_expanded" />
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
+        <include layout="@layout/layout_home_header_expanded" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -48,9 +30,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/small_padding" />
+            android:layout_height="match_parent" />
 
 
         <include

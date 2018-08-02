@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="250dp"
@@ -11,34 +11,33 @@
         android:background="@drawable/shape_msg_bg">
 
         <TextView
-            android:visibility="gone"
             android:id="@id/tv_title"
-            style="@style/TitleTextStyle"
+            style="@style/BaseTextStyle"
             android:layout_marginTop="15dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
             android:text="我是标题"
-            android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_message"
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingBottom="15dp"
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
             android:paddingTop="15dp"
-            tools:text="我是消息我是消息我是消息我是消息我是消息我是消息我是消息我是消息我是消息"
             android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="我是消息我是消息我是消息我是消息我是消息我是消息我是消息我是消息我是消息" />
 
         <TextView
             android:id="@+id/tv_confirm"

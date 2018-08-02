@@ -121,7 +121,6 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="宠物健康及心理健康咨询课程"
-                android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
