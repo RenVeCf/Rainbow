@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Created by Miss on 2018/7/25
- * 收藏-商品adapter
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     private Context context;

@@ -44,6 +44,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private CircleImageView civ_header;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
     private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
+    private RelativeLayout rl_header;
 
     @Override
     protected int getBaseLayout() {
@@ -72,7 +73,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_message.setOnClickListener(this);
         rl_referral.setOnClickListener(this);
         rl_delivery_address.setOnClickListener(this);
-        civ_header.setOnClickListener(this);
         rl_pet_bible.setOnClickListener(this);
         rl_my_pet.setOnClickListener(this);
         ll_sign_in.setOnClickListener(this);
@@ -89,6 +89,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_my_integral.setOnClickListener(this);
         rl_discount_coupon.setOnClickListener(this);
         rl_my_balance.setOnClickListener(this);
+        rl_header.setOnClickListener(this);
     }
 
     @Override
@@ -136,7 +137,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 intent1 = new Intent(getActivity(), DeliveryAddressActivity.class);
                 startActivity(intent1);
                 break;
-            case R.id.civ_header:
+            case R.id.rl_header:
                 intent1 = new Intent(getActivity(), PersonInformationActivity.class);
                 startActivity(intent1);
                 break;
@@ -229,5 +230,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_my_integral = rootView.findViewById(R.id.rl_my_integral);
         rl_discount_coupon = rootView.findViewById(R.id.rl_discount_coupon);
         rl_my_balance = rootView.findViewById(R.id.rl_my_balance);
+        rl_header = rootView.findViewById(R.id.rl_header);
     }
 }

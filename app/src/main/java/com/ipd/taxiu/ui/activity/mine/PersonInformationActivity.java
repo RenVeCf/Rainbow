@@ -159,6 +159,8 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 if (data != null) {
                     String str = data.getStringExtra("signature");
                     tv_person_tag.setText(str);
+                }else {
+                    tv_person_tag.setText("未设置");
                 }
             }
         }

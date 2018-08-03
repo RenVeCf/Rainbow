@@ -66,7 +66,6 @@ public class UpdateBankCardActivity extends BaseUIActivity implements View.OnCli
         int id = item.getItemId();
         if (id == R.id.delete_address) {
             initMessageDialog();
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -80,6 +79,7 @@ public class UpdateBankCardActivity extends BaseUIActivity implements View.OnCli
             public void onClick(MessageDialog.Builder builder) {
                 toastShow(true, "删除成功");
                 builder.getDialog().dismiss();
+                finish();
             }
         });
         builder.setCancel("暂不删除", new MessageDialog.OnClickListener() {

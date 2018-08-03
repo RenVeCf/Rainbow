@@ -10,15 +10,17 @@
         android:layout_above="@id/btn_evaluate"
         android:layout_marginBottom="@dimen/small_padding" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_evaluate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/base_padding"
-        android:layout_marginTop="@dimen/base_padding"
         android:background="@drawable/shape_buy_bg"
         android:text="立即发表"
+        android:gravity="center"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />
 </RelativeLayout>

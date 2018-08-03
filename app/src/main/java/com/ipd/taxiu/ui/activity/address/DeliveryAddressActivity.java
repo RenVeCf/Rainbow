@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
@@ -25,7 +26,7 @@ public class DeliveryAddressActivity extends BaseUIActivity implements View.OnCl
     private List<String> data;
     private RecyclerView recycler_view;
     private DeliveryAddressAdapter mAdapter;
-    private Button btn_add_address;
+    private TextView btn_add_address;
 
     @Override
     protected int getContentLayout() {

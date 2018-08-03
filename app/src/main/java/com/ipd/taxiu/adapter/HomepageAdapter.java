@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity;
 import com.ipd.taxiu.ui.activity.pet.PetInformationActivity;
+import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity;
 
 import java.util.List;
 
@@ -31,6 +34,8 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
         switch (position) {
             case 0:
                 return ITEM_TYPE.ITEM1.ordinal();
+            case 1:
+                return ITEM_TYPE.ITEM1.ordinal();
         }
         return ITEM_TYPE.ITEM2.ordinal();
     }
@@ -44,13 +49,32 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE.ITEM1.ordinal()) {
             return new HomepageAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_friend_list1, parent, false));
-        }else {
+        } else {
             return new HomepageAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_friend_list2, parent, false));
         }
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (position == ITEM_TYPE.ITEM1.ordinal()) {
+            if (holder.item1 == null) return;
+            holder.item1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, TaxiuDetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            if (holder.item2 == null) return;
+            holder.item2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, TaxiuDetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -59,8 +83,12 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout item1, item2;
+
         public ViewHolder(View itemView) {
             super(itemView);
+            item1 = itemView.findViewById(R.id.item1);
+            item2 = itemView.findViewById(R.id.item2);
         }
     }
 }

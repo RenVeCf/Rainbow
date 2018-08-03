@@ -133,6 +133,7 @@
             android:layout_toRightOf="@id/order_code"
             android:layout_centerVertical="true"/>
         <TextView
+            android:id="@+id/tv_copy"
             style="@style/SmallTextStyle"
             android:text="复制"
             android:background="@drawable/shape_order_btn_cancel"

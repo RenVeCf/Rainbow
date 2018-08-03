@@ -63,7 +63,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     private void initData(){
         data = new ArrayList<>();
-        for (int i= 0; i<2;i++){
+        for (int i= 0; i<4;i++){
             data.add("");
         }
     }

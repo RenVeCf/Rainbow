@@ -17,6 +17,7 @@
         app:tl_indicator_margin_right="@dimen/base_padding"
         app:tl_tab_space_equal="true"
         app:tl_indicator_style="BLOCK"
+        app:tl_indicator_width="120dp"
         app:tl_textSelectColor="@color/white"
         app:tl_textUnselectColor="@color/black" />
 

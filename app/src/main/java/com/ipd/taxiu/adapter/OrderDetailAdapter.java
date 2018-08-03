@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderDetailBean;
+import com.ipd.taxiu.ui.BaseUIActivity;
 
 import java.util.List;
 
@@ -140,6 +143,19 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             footerView.setLayoutParams(params);
             VIEW_FOOTER = footerView;
             notifyItemInserted(getItemCount() - 1);
+
+            TextView tv_copy = footerView.findViewById(R.id.tv_copy);
+            final TextView tv_order_code = footerView.findViewById(R.id.tv_order_code);
+
+            tv_copy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager cmb = (ClipboardManager)mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    cmb.setText(tv_order_code.getText().toString());
+                    ToastCommom toastCommom = new ToastCommom();
+                    toastCommom.show(mContext,"已复制");
+                }
+            });
         }
     }
 

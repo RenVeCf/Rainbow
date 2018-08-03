@@ -158,7 +158,7 @@
             android:paddingLeft="@dimen/base_padding"/>
     </RelativeLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -167,6 +167,9 @@
         android:layout_marginTop="@dimen/cart_operation_height"
         android:background="@drawable/shape_buy_bg"
         android:text="保存"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />
 
