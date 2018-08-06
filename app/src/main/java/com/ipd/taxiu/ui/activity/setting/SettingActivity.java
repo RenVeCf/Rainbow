@@ -1,8 +1,10 @@
 package com.ipd.taxiu.ui.activity.setting;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class SettingActivity extends BaseUIActivity implements View.OnClickListener{
     private RelativeLayout rl_update_password,rl_about_us,rl_clear_cache,rl_common_problem;
-    private TextView tv_service_phone;
+    private TextView tv_service_phone,exit_account;
     private String phoneNum;
     @Override
     protected int getContentLayout() {
@@ -37,6 +39,7 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
         phoneNum = tv_service_phone.getText().toString();
         rl_clear_cache = findViewById(R.id.rl_clear_cache);
         rl_common_problem = findViewById(R.id.rl_common_problem);
+        exit_account = findViewById(R.id.exit_account);
     }
 
     @Override
@@ -51,6 +54,7 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
         tv_service_phone.setOnClickListener(this);
         rl_clear_cache.setOnClickListener(this);
         rl_common_problem.setOnClickListener(this);
+        exit_account.setOnClickListener(this);
     }
 
     @NotNull
@@ -81,6 +85,9 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
                 intent = new Intent(this,CommonProblemActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.exit_account:
+                initExitDialog();
+                break;
         }
     }
 
@@ -106,5 +113,24 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
             }
         });
         builder.getDialog().show();
+    }
+
+    private void initExitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("确定要退出该登录账户吗？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }

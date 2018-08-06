@@ -66,6 +66,7 @@
             android:layout_toLeftOf="@id/iv_nickname"
             android:background="@null"
             android:hint="主人_23788"
+            android:minWidth="100dp"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
             android:gravity="center_vertical|right"/>
@@ -98,6 +99,7 @@
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
             android:inputType="number"
+            android:minWidth="100dp"
             android:gravity="center_vertical|right"/>
     </RelativeLayout>
 
@@ -133,6 +135,7 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_name"
             android:hint="未设置"
+            android:minWidth="100dp"
             android:background="@null"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
@@ -172,6 +175,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_birthday"
             android:hint="选择生日"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
@@ -209,6 +214,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_sex"
             android:text="选择性别"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"  />
     </RelativeLayout>
@@ -246,6 +253,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_how_long"
             android:hint="选择"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
@@ -282,7 +291,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_person_tag"
-            android:text="未设置"
+            android:hint="未设置"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>

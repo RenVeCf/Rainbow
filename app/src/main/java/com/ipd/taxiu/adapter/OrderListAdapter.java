@@ -143,7 +143,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         builder.setCommit("确认取消", new MessageDialog.OnClickListener() {
             @Override
             public void onClick(MessageDialog.Builder builder) {
-                ToastCommom.getInstance().show(context, "取消成功");
+                new ToastCommom().show(context, "取消成功");
                 builder.getDialog().dismiss();
                 activity.finish();
             }
