@@ -14,66 +14,72 @@
         android:paddingLeft="@dimen/base_padding"
         android:paddingTop="20dp">
 
-        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-            android:id="@+id/civ_header"
-            android:layout_width="@dimen/mine_avatar_img_size"
-            android:layout_height="@dimen/mine_avatar_img_size"
-            android:src="@mipmap/mine_default_header"
-            app:border_color1="@color/white"
-            app:border_width1="2dp" />
-
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/mine_avatar_img_size"
-            android:layout_marginLeft="@dimen/base_padding"
-            android:layout_toRightOf="@id/civ_header">
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+                android:id="@+id/civ_header"
+                android:layout_width="@dimen/mine_avatar_img_size"
+                android:layout_height="@dimen/mine_avatar_img_size"
+                android:src="@mipmap/mine_default_header"
+                app:border_color1="@color/white"
+                app:border_width1="2dp" />
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_height="@dimen/mine_avatar_img_size"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:layout_toRightOf="@id/civ_header">
 
-                <TextView
-                    android:id="@+id/tv_nickname"
-                    style="@style/TitleTextStyle"
-                    android:layout_toRightOf="@id/civ_header"
-                    android:text="爱狗铲屎管"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/big_title_text_size"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_signature"
-                    style="@style/SmallTextStyle"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:layout_toRightOf="@id/civ_header"
-                    android:text="这个人很懒，什么都没有留下"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/small_text_size" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/base_padding"
-                    android:src="@mipmap/more" />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        style="@style/TitleTextStyle"
+                        android:layout_toRightOf="@id/civ_header"
+                        android:text="爱狗铲屎管"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/big_title_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_signature"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:layout_toRightOf="@id/civ_header"
+                        android:text="这个人很懒，什么都没有留下"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/small_text_size" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/base_padding"
+                        android:src="@mipmap/more" />
+                </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_below="@id/civ_header"
+            android:layout_below="@id/rl_header"
             android:id="@+id/ll_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,7 +110,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/civ_header"
+            android:layout_below="@id/rl_header"
             android:layout_toLeftOf="@id/ll_sign_in"
             android:orientation="horizontal"
             android:paddingTop="@dimen/big_padding">

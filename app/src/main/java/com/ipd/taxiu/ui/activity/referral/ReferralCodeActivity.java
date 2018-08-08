@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * 我的推荐码
  */
 public class ReferralCodeActivity extends BaseUIActivity implements View.OnClickListener{
-    private Button btn_invite_friends;
+    private TextView btn_invite_friends;
     private TextView tv_friend_list,tv_recommend_earning;
     @Override
     protected int getContentLayout() {

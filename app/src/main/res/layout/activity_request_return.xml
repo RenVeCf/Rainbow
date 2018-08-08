@@ -114,7 +114,7 @@
         </RelativeLayout>
     </ScrollView>
 
-    <Button
+    <TextView
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,6 +123,9 @@
         android:layout_marginTop="@dimen/base_padding"
         android:background="@drawable/shape_buy_bg"
         android:text="提交"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />
 </RelativeLayout>

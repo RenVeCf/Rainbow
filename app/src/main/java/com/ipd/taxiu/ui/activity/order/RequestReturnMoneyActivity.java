@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class RequestReturnMoneyActivity extends BaseUIActivity implements View.OnClickListener {
     private TextView tv_return_explanation;
-    private Button btn_submit;
+    private TextView btn_submit;
     private TextView tv_return_reason;
     private List<String> returnReason;
 

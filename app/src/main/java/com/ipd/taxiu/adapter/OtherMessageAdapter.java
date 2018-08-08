@@ -38,7 +38,7 @@ public class OtherMessageAdapter extends RecyclerView.Adapter<OtherMessageAdapte
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final OtherMessageAdapter.ViewHolder holder, int position) {
-        holder.tv_message_time.setOnClickListener(new View.OnClickListener() {
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent  intent = new Intent(context,MessageDetailActivity.class);
@@ -53,10 +53,10 @@ public class OtherMessageAdapter extends RecyclerView.Adapter<OtherMessageAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        CardView tv_message_time;
+        CardView card_view;
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_message_time = itemView.findViewById(R.id.tv_message_time);
+            card_view = itemView.findViewById(R.id.card_view);
         }
 
     }

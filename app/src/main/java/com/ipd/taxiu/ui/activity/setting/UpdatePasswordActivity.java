@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * 修改登录密码
  */
 public class UpdatePasswordActivity extends BaseUIActivity implements View.OnClickListener {
-    private Button btn_submit;
+    private TextView btn_submit;
     private TextView tips;
     private EditText et_original_password, et_new_password, et_affirm_new_password;
 

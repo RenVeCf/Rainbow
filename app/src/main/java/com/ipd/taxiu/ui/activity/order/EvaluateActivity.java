@@ -31,7 +31,7 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
     private RecyclerView mRecyclerView;
     private EvaluateAdapter mAdapter;
     private List<String> datas;
-    private Button button;
+    private TextView button;
 
 
 
@@ -71,7 +71,7 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
 
     private void initData() {
         datas = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             datas.add(i + "");
         }
     }

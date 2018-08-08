@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseUIActivity;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
  * 申请退货
  */
 public class RequestReturnActivity extends BaseUIActivity {
-    private Button btn_submit;
+    private TextView btn_submit;
     private PictureRecyclerView pictureRecyclerView;
     @Override
     protected int getContentLayout() {

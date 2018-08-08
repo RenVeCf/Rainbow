@@ -67,6 +67,7 @@
             android:layout_toLeftOf="@id/iv_nickname"
             android:background="@null"
             android:hint="给爱宠起个昵称吧~"
+            android:minWidth="100dp"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
             android:gravity="center_vertical|right"/>
@@ -105,6 +106,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_pet_kind"
             android:hint="泰迪犬"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
@@ -142,6 +145,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_birthday"
             android:hint="选择生日"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
@@ -179,7 +184,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_sex"
-            android:text="选择性别"
+            android:hint="选择性别"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
@@ -216,7 +223,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_status"
-            android:text="选择状态"
+            android:hint="选择状态"
+            android:minWidth="100dp"
+            android:gravity="center_vertical|right"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>

@@ -42,7 +42,7 @@ import static com.ipd.taxiu.adapter.OrderListAdapter.EVALUATE;
  */
 public class AddAddressActivity extends BaseUIActivity implements View.OnClickListener{
     private String addressType;
-    private Button button;
+    private TextView button;
     private RelativeLayout rl_address;
     private PickerUtil pickerUtil = new PickerUtil();
     private TextView tv_choose_city;

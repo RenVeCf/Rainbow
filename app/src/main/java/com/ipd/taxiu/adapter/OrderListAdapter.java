@@ -1,6 +1,7 @@
 package com.ipd.taxiu.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.ui.activity.order.LogisticsDetailActivity;
 import com.ipd.taxiu.ui.activity.order.OrderDetailActivity;
+import com.ipd.taxiu.widget.MessageDialog;
 
 import java.util.ArrayList;
 
@@ -106,6 +109,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             @Override
             public void onClick(View v) {
                 if (cancelText.equals("取消")) {
+                    initMessageDialog((Activity) context);
                 } else if (cancelText.equals("物流")) {
                     Intent intent = new Intent(context,LogisticsDetailActivity.class);
                     context.startActivity(intent);
@@ -132,4 +136,24 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
     }
 
+    private void initMessageDialog(final Activity activity) {
+        MessageDialog.Builder builder = new MessageDialog.Builder(context);
+        builder.setTitle("确认要取消该订单吗？");
+        builder.setMessage("订单取消后不可恢复，需重新购买，请谨慎操作。");
+        builder.setCommit("确认取消", new MessageDialog.OnClickListener() {
+            @Override
+            public void onClick(MessageDialog.Builder builder) {
+                new ToastCommom().show(context, "取消成功");
+                builder.getDialog().dismiss();
+                activity.finish();
+            }
+        });
+        builder.setCancel("暂不取消", new MessageDialog.OnClickListener() {
+            @Override
+            public void onClick(MessageDialog.Builder builder) {
+                builder.getDialog().dismiss();
+            }
+        });
+        builder.getDialog().show();
+    }
 }

@@ -35,6 +35,19 @@ class OwnedClassRoomActivity : BaseUIActivity() {
     override fun initListener() {
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_classroom_detail, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.classroom_detail) {
+            ClassRoomDetailActivity.launch(this)
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
 }

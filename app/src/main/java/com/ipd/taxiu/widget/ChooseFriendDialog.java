@@ -75,13 +75,14 @@ public class ChooseFriendDialog extends Dialog implements View.OnClickListener{
 
 
     private void inviteShow(){
+        ToastCommom toastCommom = new ToastCommom();
         if (inviteType == 1) {
             icon_title.setText("选择的邀请好友");
-            ToastCommom.getInstance().show(context, "分享成功");
+            toastCommom.show(context, "分享成功");
             dismiss();
         }else if (inviteType == 2){
             icon_title.setText("邀请好友参团");
-            ToastCommom.getInstance().show(context, "邀请成功");
+            toastCommom.show(context, "邀请成功");
             dismiss();
         }
     }

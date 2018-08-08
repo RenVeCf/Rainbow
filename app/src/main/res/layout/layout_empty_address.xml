@@ -19,7 +19,7 @@
         android:layout_below="@id/iv_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/base_padding"/>
-    <Button
+    <TextView
         android:id="@+id/btn_add_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +29,8 @@
         android:background="@drawable/shape_buy_bg"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
         android:textColor="@color/white"
         android:layout_margin="@dimen/base_padding"/>
 </RelativeLayout>
