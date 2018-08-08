@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -141,6 +142,11 @@ public class SwipeToLoadLayout extends ViewGroup {
      * a switcher indicate whiter load more function is enabled
      */
     private boolean mLoadMoreEnabled = true;
+    /**
+     * <b>ATTRIBUTE:</b>
+     * auto load more function is enabled
+     */
+    private boolean mAutoLoadMoreEnable = true;
 
     /**
      * <b>ATTRIBUTE:</b>
@@ -349,6 +355,64 @@ public class SwipeToLoadLayout extends ViewGroup {
         }
         if (mFooterView != null && mFooterView instanceof SwipeTrigger) {
             mFooterView.setVisibility(GONE);
+        }
+
+        if (isAutoLoadMoreEnabled()) initAutoLoadMore();
+    }
+
+    private void initAutoLoadMore() {
+        if (mTargetView instanceof RecyclerView) {
+            RecyclerView recyclerView = (RecyclerView) mTargetView;
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+                public boolean isLastReflash;
+
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && isLastReflash) {
+                        if (recyclerView.computeVerticalScrollExtent() + recyclerView.computeVerticalScrollOffset() >= recyclerView.computeVerticalScrollRange()) {
+                            setStatus(STATUS.STATUS_RELEASE_TO_LOAD_MORE);
+                            scrollDefaultToLoadingMore();
+
+                        }
+                    }
+                }
+
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if (dy > 0) {
+                        isLastReflash = true;
+                    } else {
+                        isLastReflash = false;
+                    }
+                }
+            });
+        } else if (mTargetView instanceof AbsListView) {
+            final AbsListView absListView = (AbsListView) mTargetView;
+            absListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                        if (view.getChildCount() == 0) return;
+                        if (view.getLastVisiblePosition() + 1 == view.getChildCount()) {
+                            View bottomView = absListView.getChildAt(view.getLastVisiblePosition() - view.getFirstVisiblePosition());
+                            if (absListView.getHeight() >= bottomView.getBottom()) {
+                                setStatus(STATUS.STATUS_RELEASE_TO_LOAD_MORE);
+                                scrollDefaultToLoadingMore();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                }
+            });
+
         }
     }
 
@@ -670,6 +734,24 @@ public class SwipeToLoadLayout extends ViewGroup {
      */
     public void setLoadMoreEnabled(boolean enable) {
         this.mLoadMoreEnabled = enable;
+    }
+
+    /**
+     * is auto load more function is enabled
+     *
+     * @return
+     */
+    public boolean isAutoLoadMoreEnabled() {
+        return mAutoLoadMoreEnable;
+    }
+
+    /**
+     * switch auto load more function on or off
+     *
+     * @param enable
+     */
+    public void setAutoLoadMoreEnable(boolean enable) {
+        this.mAutoLoadMoreEnable = enable;
     }
 
     /**
