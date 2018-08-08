@@ -146,7 +146,7 @@ public class SwipeToLoadLayout extends ViewGroup {
      * <b>ATTRIBUTE:</b>
      * auto load more function is enabled
      */
-    private boolean mAutoLoadMoreEnable = true;
+    private boolean mAutoLoadMoreEnable = false;
 
     /**
      * <b>ATTRIBUTE:</b>
