@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.MyIntegralAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.fragment.coupon.MyIntegralFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,37 +24,30 @@ import java.util.List;
  * Created by Miss on 2018/7/30
  * 我的积分
  */
-public class MyIntegralActivity extends BaseUIActivity implements View.OnClickListener{
-    private RecyclerView recycler_view;
-    private MyIntegralAdapter mAdapter;
-    private List<String> datas;
+public class MyIntegralActivity extends BaseUIActivity{
 
     private TextView btn_exchange;
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_my_integral;
+        return R.layout.activity_container;
     }
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        recycler_view = findViewById(R.id.recycler_view);
         btn_exchange = findViewById(R.id.btn_exchange);
 
     }
 
     @Override
     protected void loadData() {
-        initData();
-        mAdapter = new MyIntegralAdapter(datas,this);
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        recycler_view.setAdapter(mAdapter);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, MyIntegralFragment.newInstance()).commit();
     }
 
     @Override
     protected void initListener() {
-        btn_exchange.setOnClickListener(this);
+
     }
 
     @NotNull
@@ -76,23 +70,5 @@ public class MyIntegralActivity extends BaseUIActivity implements View.OnClickLi
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private void initData() {
-        datas = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            datas.add("");
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_exchange:
-                Intent intent = new Intent(this,IntegralExchangeActivity.class);
-                startActivity(intent);
-                break;
-        }
     }
 }

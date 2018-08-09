@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.BalanceBillAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.fragment.balance.BalanceBillFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,27 +20,19 @@ import java.util.List;
  * 余额账单
  */
 public class BalanceBillActivity extends BaseUIActivity{
-    private RecyclerView recyclerView;
-    private List<String> data;
-    private BalanceBillAdapter mAdapter;
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_balance_bill;
+        return R.layout.activity_container;
     }
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        recyclerView = findViewById(R.id.recycler_view);
     }
 
     @Override
     protected void loadData() {
-        initData();
-        mAdapter = new BalanceBillAdapter(data,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mAdapter);
-
+     getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, BalanceBillFragment.newInstance()).commit();
     }
 
     @Override
@@ -51,12 +44,5 @@ public class BalanceBillActivity extends BaseUIActivity{
     @Override
     protected String getToolbarTitle() {
         return "余额账单";
-    }
-
-    private void initData(){
-        data = new ArrayList<>();
-        for (int i = 0; i <5;i++){
-            data.add("");
-        }
     }
 }

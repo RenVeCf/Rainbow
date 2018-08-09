@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.ui.activity.coupon.CouponDetailActivity;
 import com.ipd.taxiu.ui.activity.coupon.IntegralExchangeActivity;
 
@@ -18,10 +19,10 @@ import java.util.List;
  */
 public class IntegralExchangeAdapter extends RecyclerView.Adapter<IntegralExchangeAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<ExchangeBean> data;
     private Context mContext;
 
-    public IntegralExchangeAdapter(List<String> data, Context mContext) {
+    public IntegralExchangeAdapter(List<ExchangeBean> data, Context mContext) {
         this.data = data;
         this.mContext = mContext;
     }

@@ -86,7 +86,8 @@
 
             <TextView
                 android:id="@+id/tv_choose_city"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_toRightOf="@id/tv_the_city"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_padding"
                 android:layout_toLeftOf="@id/iv_choose_city"

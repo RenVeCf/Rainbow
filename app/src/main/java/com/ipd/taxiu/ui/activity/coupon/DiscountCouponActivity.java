@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DiscountExchangeAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.fragment.coupon.DiscountCouponFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -22,45 +23,20 @@ import java.util.List;
  * 我的优惠券
  */
 public class DiscountCouponActivity extends BaseUIActivity {
-    private List<String> data;
-    private RecyclerView recyclerView;
-    private DiscountExchangeAdapter mAdapter;
-
     @Override
     protected int getContentLayout() {
-        initData();
-        if (data.size() == 0) {
-            return R.layout.layout_empty_coupon;
-        } else
-            return R.layout.activity_discount_coupon;
-    }
-
-    private void initData() {
-        data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            data.add("");
-        }
+        return R.layout.activity_container;
     }
 
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        recyclerView = findViewById(R.id.recycler_view);
     }
 
     @Override
     protected void loadData() {
-        if (data.size() != 0){
-            mAdapter = new DiscountExchangeAdapter(data, this);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(mAdapter);
-        }
-    }
-
-    @Override
-    protected void initListener() {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, DiscountCouponFragment.newInstance()).commit();
     }
 
     @NotNull
@@ -84,5 +60,10 @@ public class DiscountCouponActivity extends BaseUIActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 }

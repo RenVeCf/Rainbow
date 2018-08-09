@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.FriendBean;
+import com.ipd.taxiu.bean.RecommendEarningsBean;
 import com.ipd.taxiu.ui.activity.referral.HomepageActivity;
 
 import java.util.List;
@@ -20,9 +21,9 @@ import java.util.List;
  */
 public class EarningDetailAdapter extends RecyclerView.Adapter<EarningDetailAdapter.ViewHolder> {
     private Context context;
-    private List<String> datas;
+    private List<RecommendEarningsBean> datas;
 
-    public EarningDetailAdapter(Context context, List<String> datas) {
+    public EarningDetailAdapter(Context context, List<RecommendEarningsBean> datas) {
         this.context = context;
         this.datas = datas;
     }

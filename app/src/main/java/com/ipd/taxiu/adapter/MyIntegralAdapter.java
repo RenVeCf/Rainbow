@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.MyIntegralBean;
 import com.ipd.taxiu.bean.OrderDetailBean;
 
 import java.util.List;
@@ -24,10 +25,10 @@ import static com.ipd.taxiu.adapter.OrderListAdapter.PAYMENT;
  */
 public class MyIntegralAdapter extends RecyclerView.Adapter<MyIntegralAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<MyIntegralBean> data;
     private Context mContext;
 
-    public MyIntegralAdapter(List<String> data, Context mContext) {
+    public MyIntegralAdapter(List<MyIntegralBean> data, Context mContext) {
         this.data = data;
         this.mContext = mContext;
     }

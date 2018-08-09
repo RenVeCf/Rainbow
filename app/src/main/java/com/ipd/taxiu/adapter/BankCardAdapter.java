@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BankCardBean;
 import com.ipd.taxiu.ui.activity.balance.BankCardActivity;
 import com.ipd.taxiu.ui.activity.balance.UpdateBankCardActivity;
 
@@ -18,11 +21,11 @@ import java.util.List;
  */
 public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<BankCardBean> data;
     private Context mContext;
     private String bankType;
 
-    public BankCardAdapter(List<String> data, Context mContext,String bankType) {
+    public BankCardAdapter(List<BankCardBean> data, Context mContext,String bankType) {
         this.data = data;
         this.mContext = mContext;
         this.bankType = bankType;
@@ -35,6 +38,9 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.iv_bank_icon.setImageResource(data.get(position).getIconRes());
+        holder.tv_bank_title.setText(data.get(position).getTitle());
+
         holder.rl_bank_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +63,13 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder{
         RelativeLayout rl_bank_card;
+        ImageView iv_bank_icon;
+        TextView tv_bank_title;
         public ViewHolder(View itemView) {
             super(itemView);
             rl_bank_card = itemView.findViewById(R.id.rl_bank_card);
+            iv_bank_icon = itemView.findViewById(R.id.iv_bank_icon);
+            tv_bank_title = itemView.findViewById(R.id.tv_bank_title);
         }
     }
 }

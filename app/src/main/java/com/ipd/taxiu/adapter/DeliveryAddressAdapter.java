@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.ui.activity.address.AddAddressActivity;
 
 import java.util.List;
@@ -20,9 +21,9 @@ import java.util.List;
  */
 public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddressAdapter.ViewHolder> {
     private Context context;
-    private List<String> datas;
+    private List<AddressBean> datas;
 
-    public DeliveryAddressAdapter(Context context, List<String> datas) {
+    public DeliveryAddressAdapter(Context context, List<AddressBean> datas) {
         this.context = context;
         this.datas = datas;
     }
