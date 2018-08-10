@@ -9,6 +9,7 @@ import android.view.View
 import com.ipd.taxiu.ChoosePetKindEvent
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.pet.AddPetActivity
 import kotlinx.android.synthetic.main.activity_pet_kind.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -45,7 +46,10 @@ class PetKindActivity : BaseUIActivity() {
     override fun initListener() {
         rl_dog.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.DOG) }
         rl_cat.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.CAT) }
-        btn_next.setOnClickListener { }
+        btn_next.setOnClickListener {
+            val intent = Intent(mActivity, AddPetActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     @Subscribe
@@ -76,7 +80,9 @@ class PetKindActivity : BaseUIActivity() {
         val id = item.itemId
         if (id == R.id.action_skip) {
             //跳过
-            finish()
+            val intent = Intent(mActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
             return true
         }
 

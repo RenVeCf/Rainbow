@@ -3,8 +3,11 @@ package com.ipd.taxiu.ui.activity.classroom
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.SearchActivity
 import com.ipd.taxiu.ui.fragment.classroom.ClassRoomListFragment
 
 class ClassRoomIndexActivity : BaseUIActivity() {
@@ -25,11 +28,27 @@ class ClassRoomIndexActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container,ClassRoomListFragment.newInstance()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, ClassRoomListFragment.newInstance()).commit()
 
     }
 
     override fun initListener() {
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_search) {
+            //搜索
+            SearchActivity.launch(mActivity, SearchActivity.SearchType.CLASSROOM)
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

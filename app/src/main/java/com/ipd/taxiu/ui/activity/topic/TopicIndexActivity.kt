@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.Menu
+import android.view.MenuItem
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.SearchActivity
 import com.ipd.taxiu.ui.fragment.topic.TopicListFragment
 import kotlinx.android.synthetic.main.activity_topic_index.*
 
@@ -40,6 +43,23 @@ class TopicIndexActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_search) {
+            //搜索
+            SearchActivity.launch(mActivity, SearchActivity.SearchType.TOPIC)
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

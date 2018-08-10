@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIFragment
+import com.ipd.taxiu.ui.activity.SearchActivity
 import com.ipd.taxiu.ui.fragment.taxiu.TaxiuListFragment
 import kotlinx.android.synthetic.main.fragment_taxiu_index.view.*
 
@@ -32,6 +33,9 @@ class TaxiuFragment : BaseUIFragment() {
 
 
     override fun initListener() {
+        mContentView.tv_search.setOnClickListener {
+            SearchActivity.launch(mActivity, SearchActivity.SearchType.TAXIU)
+        }
     }
 
 }

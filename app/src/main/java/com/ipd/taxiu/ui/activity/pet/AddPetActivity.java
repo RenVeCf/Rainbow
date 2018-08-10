@@ -182,8 +182,8 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    protected void Event(ChoosePetKindEvent event){
+    @Subscribe
+    public void onMainEvent(ChoosePetKindEvent event){
         switch (event.type){
             case 0:
                 tv_pet_kind.setText(event.petKind.name);
