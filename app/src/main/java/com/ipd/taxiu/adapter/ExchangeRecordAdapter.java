@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.ExchangeRecordBean;
 import com.ipd.taxiu.ui.activity.coupon.CouponDetailActivity;
 import com.ipd.taxiu.ui.activity.coupon.ExchangeRecordActivity;
 import com.ipd.taxiu.ui.activity.coupon.ExchangeRecordDetailActivity;
@@ -19,10 +20,10 @@ import java.util.List;
  */
 public class ExchangeRecordAdapter extends RecyclerView.Adapter<ExchangeRecordAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<ExchangeRecordBean> data;
     private Context mContext;
 
-    public ExchangeRecordAdapter(List<String> data, Context mContext) {
+    public ExchangeRecordAdapter(List<ExchangeRecordBean> data, Context mContext) {
         this.data = data;
         this.mContext = mContext;
     }

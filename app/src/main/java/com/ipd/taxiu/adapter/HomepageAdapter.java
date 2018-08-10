@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.HomepageBean;
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity;
 import com.ipd.taxiu.ui.activity.pet.PetInformationActivity;
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHolder> {
     private Context context;
-    private List<String> datas;
+    private List<HomepageBean> datas;
 
     public enum ITEM_TYPE {
         ITEM1,
@@ -40,7 +41,7 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
         return ITEM_TYPE.ITEM2.ordinal();
     }
 
-    public HomepageAdapter(Context context, List<String> datas) {
+    public HomepageAdapter(Context context, List<HomepageBean> datas) {
         this.context = context;
         this.datas = datas;
     }

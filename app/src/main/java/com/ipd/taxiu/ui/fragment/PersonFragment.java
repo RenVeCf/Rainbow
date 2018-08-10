@@ -41,7 +41,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private RelativeLayout rl_all_order, rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_off_the_stocks;
     private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
             rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
-    private CircleImageView civ_header;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
     private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
     private RelativeLayout rl_header;
@@ -213,7 +212,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_message = rootView.findViewById(R.id.rl_message);
         rl_referral = rootView.findViewById(R.id.rl_referral);
         rl_delivery_address = rootView.findViewById(R.id.rl_delivery_address);
-        civ_header = rootView.findViewById(R.id.civ_header);
         rl_pet_bible = rootView.findViewById(R.id.rl_pet_bible);
         rl_my_pet = rootView.findViewById(R.id.rl_my_pet);
         ll_sign_in = rootView.findViewById(R.id.ll_sign_in);

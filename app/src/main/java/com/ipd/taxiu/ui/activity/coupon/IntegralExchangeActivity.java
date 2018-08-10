@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.IntegralExchangeAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.fragment.coupon.IntegralExchangeFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,33 +24,19 @@ import java.util.List;
  * 积分兑换
  */
 public class IntegralExchangeActivity extends BaseUIActivity {
-    private RecyclerView recycler_view;
-    private IntegralExchangeAdapter mAdapter;
-    private List<String> data;
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_integral_exchange;
+        return R.layout.activity_container;
     }
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        recycler_view = findViewById(R.id.recycler_view);
     }
 
     @Override
     protected void loadData() {
-        initData();
-        mAdapter = new IntegralExchangeAdapter(data,this);
-        recycler_view.setLayoutManager(new GridLayoutManager(this,2));
-        recycler_view.setAdapter(mAdapter);
-    }
-
-    private void initData() {
-        data = new ArrayList<>();
-        for (int i = 0 ;i<20;i++){
-            data.add("");
-        }
+       getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, IntegralExchangeFragment.newInstance()).commit();
     }
 
     @Override

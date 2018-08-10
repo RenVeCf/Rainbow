@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.ExchangeRecordAdapter;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.fragment.coupon.ExchangeRecordFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,41 +20,22 @@ import java.util.List;
  * 兑换记录
  */
 public class ExchangeRecordActivity extends BaseUIActivity {
-    private RecyclerView recyclerView;
-    private List<String> data;
-    private ExchangeRecordAdapter mAdapter;
 
     @Override
     protected int getContentLayout() {
-        initData();
-        if (data.size() == 0){
-            return R.layout.layout_empty_record;
-        }else
-        return R.layout.activity_exchange_record;
+        return R.layout.activity_container;
     }
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        recyclerView = findViewById(R.id.recycler_view);
     }
 
     @Override
     protected void loadData() {
-        if (data.size() != 0) {
-            mAdapter = new ExchangeRecordAdapter(data, this);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(mAdapter);
-        }
-
+       getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, ExchangeRecordFragment.newInstance()).commit();
     }
 
-    private void initData() {
-        data = new ArrayList<>();
-        for (int i = 0; i<5;i++){
-            data.add("");
-        }
-    }
 
     @Override
     protected void initListener() {

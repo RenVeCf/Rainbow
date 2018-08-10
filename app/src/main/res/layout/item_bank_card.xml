@@ -10,26 +10,26 @@
 
 
     <ImageView
-        android:id="@+id/civ_friend_header"
+        android:id="@+id/iv_bank_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/bank_of_china" />
 
     <TextView
-        android:id="@+id/tv_friend_nickname"
+        android:id="@+id/tv_bank_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base_padding"
-        android:layout_toRightOf="@id/civ_friend_header"
+        android:layout_toRightOf="@id/iv_bank_icon"
         android:text="中国银行"
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size" />
 
     <TextView
        style="@style/SmallTextStyle"
-        android:layout_below="@id/tv_friend_nickname"
+        android:layout_below="@id/tv_bank_title"
         android:layout_marginLeft="@dimen/base_padding"
-        android:layout_toRightOf="@id/civ_friend_header"
+        android:layout_toRightOf="@id/iv_bank_icon"
         android:text="尾号（0023）"
         android:layout_marginTop="@dimen/small_padding"/>
 
@@ -43,6 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
         android:background="@color/full_screen_overlay"
-        android:layout_below="@id/civ_friend_header"
+        android:layout_below="@id/iv_bank_icon"
         android:layout_marginTop="@dimen/base_padding"/>
 </RelativeLayout>

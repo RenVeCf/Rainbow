@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.HomepageAdapter;
+import com.ipd.taxiu.bean.HomepageBean;
 import com.ipd.taxiu.ui.BaseActivity;
 import com.ipd.taxiu.widget.MessageDialog;
 
@@ -24,7 +25,7 @@ import java.util.List;
 public class HomepageActivity extends BaseActivity implements View.OnClickListener{
     private ImageView iv_back;
     private RecyclerView recycler_view;
-    private List<String> data;
+    private List<HomepageBean> data;
     private HomepageAdapter mAdapter;
 
     @Override
@@ -35,7 +36,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void initView(@Nullable Bundle bundle) {
         iv_back = findViewById(R.id.iv_back);
-        recycler_view = findViewById(R.id.recycler_view);
+        recycler_view = findViewById(R.id.swipe_target);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     private void initData(){
         data = new ArrayList<>();
         for (int i= 0; i<4;i++){
-            data.add("");
+            data.add(new HomepageBean());
         }
     }
 }

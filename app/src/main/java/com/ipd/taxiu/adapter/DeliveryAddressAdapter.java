@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.ui.activity.address.AddAddressActivity;
 
 import java.util.List;
@@ -20,9 +22,9 @@ import java.util.List;
  */
 public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddressAdapter.ViewHolder> {
     private Context context;
-    private List<String> datas;
+    private List<AddressBean> datas;
 
-    public DeliveryAddressAdapter(Context context, List<String> datas) {
+    public DeliveryAddressAdapter(Context context, List<AddressBean> datas) {
         this.context = context;
         this.datas = datas;
     }
@@ -37,7 +39,7 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
         if (position == 0){
             holder.tv_default.setVisibility(View.VISIBLE);
         }
-        holder.iv_edit_address.setOnClickListener(new View.OnClickListener() {
+        holder.rl_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,AddAddressActivity.class);
@@ -54,11 +56,11 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_default;
-        ImageView iv_edit_address;
+        RelativeLayout rl_address;
         public ViewHolder(View itemView) {
             super(itemView);
             tv_default = itemView.findViewById(R.id.tv_default);
-            iv_edit_address = itemView.findViewById(R.id.iv_edit_address);
+            rl_address = itemView.findViewById(R.id.rl_address);
         }
     }
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BalanceBillBean;
 
 import java.util.List;
 
@@ -14,10 +15,10 @@ import java.util.List;
  */
 public class BalanceBillAdapter extends RecyclerView.Adapter<BalanceBillAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<BalanceBillBean> data;
     private Context mContext;
 
-    public BalanceBillAdapter(List<String> data, Context mContext) {
+    public BalanceBillAdapter(List<BalanceBillBean> data, Context mContext) {
         this.data = data;
         this.mContext = mContext;
     }

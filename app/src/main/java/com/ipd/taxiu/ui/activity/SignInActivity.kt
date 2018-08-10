@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.ipd.jumpbox.jumpboxlibrary.utils.PopupUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.coupon.MyIntegralActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : BaseUIActivity() {
@@ -39,6 +41,11 @@ class SignInActivity : BaseUIActivity() {
             popupWindow.width = ViewGroup.LayoutParams.WRAP_CONTENT
             popupWindow.height = ViewGroup.LayoutParams.WRAP_CONTENT
             PopupUtils.showViewAtCenter(popupWindow, window, window.decorView, null)
+        }
+
+        tv_integral.setOnClickListener {
+            val intent = Intent(this, MyIntegralActivity::class.java)
+            startActivity(intent)
         }
     }
 
