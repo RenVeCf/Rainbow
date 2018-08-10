@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuBean
 
-class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?) : PagerAdapter() {
+class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?, val itemClick: (info: TaxiuBean) -> Unit) : PagerAdapter() {
 
     private val mInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
 
@@ -22,6 +22,7 @@ class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?) : P
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
         val mContentView = mInflater.inflate(R.layout.item_taxiu, container, false)
+        mContentView.setOnClickListener { itemClick.invoke(info) }
         container.addView(mContentView)
         return mContentView
     }

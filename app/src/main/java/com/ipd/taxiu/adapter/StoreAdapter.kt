@@ -178,6 +178,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 specialInfo.lableList.forEach {
                     val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.lable_flow_layout, false)
                     lableView.tv_lable_name.text = it
+                    lableView.setOnClickListener {
+                        //商品列表
+                        ProductListActivity.launch(context as Activity)
+                    }
                     holder.itemView.lable_flow_layout.addView(lableView)
                 }
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)

@@ -2,6 +2,7 @@ package com.ipd.taxiu.ui.fragment.store
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
@@ -38,6 +39,14 @@ class StoreSpecialFragment : ListFragment<StoreSpecialBean, Any>() {
 
     override fun initListener() {
         super.initListener()
+        recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (recyclerView == null || recyclerView.childCount <= 0) return
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                mContentView.iv_scroll_top.visibility = if (linearLayoutManager.findFirstVisibleItemPosition() > 0) View.VISIBLE else View.GONE
+            }
+        })
         mContentView.iv_scroll_top.setOnClickListener {
             recycler_view?.smoothScrollToPosition(0)
         }

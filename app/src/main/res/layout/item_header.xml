@@ -18,7 +18,6 @@
             android:id="@+id/cl_time_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.ipd.taxiu.widget.PetLifeLineView
@@ -87,14 +86,14 @@
 
 
         <TextView
+            android:id="@+id/tv_pet_talk"
             style="@style/BaseTextStyle"
             android:layout_marginTop="@dimen/small_padding"
-            android:drawableLeft="@mipmap/left_shuangyinhao"
-            android:drawablePadding="5dp"
-            android:drawableRight="@mipmap/right_shuangyinhao"
+            android:lineSpacingExtra="0dp"
+            android:gravity="center_vertical"
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
-            android:text="我能独自一个人在外面找到自己的家,还可以不迷路,随时随地找到家的方向~汪汪汪,陌生人带不走我~"
+            android:text="@string/home_pet_talk"
             app:layout_constraintTop_toBottomOf="@id/cl_time_layout" />
 
     </android.support.constraint.ConstraintLayout>

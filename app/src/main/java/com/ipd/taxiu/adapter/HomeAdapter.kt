@@ -2,7 +2,13 @@ package com.ipd.taxiu.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +19,12 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
 import com.ipd.taxiu.bean.LifeLineBean
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomIndexActivity
+import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
 import com.ipd.taxiu.ui.activity.talk.TalkIndexActivity
+import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
+import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import com.ipd.taxiu.ui.activity.topic.TopicIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.widget.PetLifeLineView
@@ -142,10 +152,23 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                     ClassRoomIndexActivity.launch(context as Activity)
                 }//课堂
 
+                val text = "“${context.getString(R.string.home_pet_talk)}”"
+                val spannedString = SpannableString(text)
+                spannedString.setSpan(StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannedString.setSpan(AbsoluteSizeSpan(22, true), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannedString.setSpan(StyleSpan(Typeface.BOLD), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannedString.setSpan(AbsoluteSizeSpan(22, true), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                holder.itemView.tv_pet_talk.text = spannedString
+
             }
             ItemType.TAXIU_BOUTIQUE -> {
                 val boutiqueInfo = list!![position] as HomeBean.IndexBoutiqueBean
-                holder.itemView.boutique_view_pager.adapter = BoutiquePagerAdapter(context, boutiqueInfo.taxiuBoutiqueList)
+                holder.itemView.boutique_view_pager.adapter = BoutiquePagerAdapter(context, boutiqueInfo.taxiuBoutiqueList, {
+                    //它秀详情
+                    TaxiuDetailActivity.launch(context as Activity, it)
+                })
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
                         .setIndicator(context, boutiqueInfo.taxiuBoutiqueList.size, holder.itemView.boutique_view_pager, holder.itemView.ll_indicator, object : IndicatorHelper.MyPagerChangeListener {
                             override fun onPageSelected(pos: Int) {
@@ -160,24 +183,40 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                         })
             }
             ItemType.HOT_TOPIC -> {
+                holder.itemView.setOnClickListener {
+                    //话题详情
+                    TopicDetailActivity.launch(context as Activity)
+                }
 
             }
             ItemType.HOT_TALK -> {
                 val talkInfo = list!![position] as HomeBean.IndexTalkBean
                 holder.itemView.talk_view_pager.pageMargin = DensityUtil.dip2px(context, 12f)
-                holder.itemView.talk_view_pager.adapter = HotTalkPagerAdapter(context, talkInfo.talkList)
+                holder.itemView.talk_view_pager.adapter = HotTalkPagerAdapter(context, talkInfo.talkList, {
+                    //问答详情
+                    TalkDetailActivity.launch(context as Activity, it)
+                })
 
             }
             ItemType.HOT_CLASSROOM -> {
+                holder.itemView.setOnClickListener {
+                    //课堂详情
+                    ClassRoomDetailActivity.launch(context as Activity)
+                }
 
             }
             else -> {
+                val taxiuInfo = list!![position] as TaxiuBean
                 if (position > 0 && list!![position - 1] is TaxiuBean) {
                     holder.itemView.cl_taxiu_hint.visibility = View.GONE
                 } else {
                     holder.itemView.cl_taxiu_hint.visibility = View.VISIBLE
                 }
 
+                holder.itemView.setOnClickListener {
+                    //它秀详情
+                    TaxiuDetailActivity.launch(context as Activity, taxiuInfo)
+                }
             }
         }
 

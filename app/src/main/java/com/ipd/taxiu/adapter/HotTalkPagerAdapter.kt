@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TalkBean
 
-class HotTalkPagerAdapter(val context: Context, val list: List<TalkBean>?) : PagerAdapter() {
+class HotTalkPagerAdapter(val context: Context, val list: List<TalkBean>?,val itemClick:(info:TalkBean)->Unit) : PagerAdapter() {
 
     private val mInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
 
@@ -22,6 +22,7 @@ class HotTalkPagerAdapter(val context: Context, val list: List<TalkBean>?) : Pag
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
         val mContentView = mInflater.inflate(R.layout.item_index_talk, null, false)
+        mContentView.setOnClickListener { itemClick.invoke(info) }
         container.addView(mContentView)
         return mContentView
     }
