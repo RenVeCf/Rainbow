@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:countdown="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -117,63 +118,14 @@
             android:textSize="@dimen/small_text_size"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:text="00"
-            android:background="@drawable/shape_time_bg"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
-            android:id="@+id/tv_second_symbol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:layout_toLeftOf="@id/tv_second"
-            android:text=":"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
-            android:id="@+id/tv_minute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:layout_toLeftOf="@id/tv_second_symbol"
-            android:text="00"
-            android:background="@drawable/shape_time_bg"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
-            android:id="@+id/tv_minute_symbol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:layout_toLeftOf="@id/tv_minute"
-            android:text=":"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
+        <com.zy.lib.countdown.CountDownView
             android:id="@+id/tv_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/tv_minute_symbol"
-            android:text="00"
-            android:background="@drawable/shape_time_bg"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/base_text_size" />
+            android:layout_alignParentRight="true"
+            countdown:setDrawable_sub="@drawable/shape_time_bg"
+            countdown:color_text="@color/colorPrimaryDark"
+            countdown:text_size="14"/>
 
         <LinearLayout
             android:id="@+id/ll_group_info"

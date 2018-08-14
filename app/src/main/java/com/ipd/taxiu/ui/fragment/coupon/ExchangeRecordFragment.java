@@ -64,7 +64,7 @@ public class ExchangeRecordFragment extends ListFragment<List<ExchangeRecordBean
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new ExchangeRecordAdapter(getData(),getContext());
+            mAdapter = new ExchangeRecordAdapter(getContext(),getData());
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {

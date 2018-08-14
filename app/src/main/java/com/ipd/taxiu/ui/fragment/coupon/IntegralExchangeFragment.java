@@ -52,7 +52,7 @@ public class IntegralExchangeFragment extends ListFragment<List<ExchangeBean>,Ex
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new IntegralExchangeAdapter( getData(),getContext());
+            mAdapter = new IntegralExchangeAdapter( getContext(),getData());
             recycler_view.setLayoutManager(new GridLayoutManager(getContext(),2));
             recycler_view.setAdapter(mAdapter);
         } else {

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.MessageDialog;
@@ -99,10 +100,7 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
         builder.setCommit(commitStr, new MessageDialog.OnClickListener() {
             @Override
             public void onClick(MessageDialog.Builder builder) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                Uri data = Uri.parse("tel:" + phoneNum);
-                intent.setData(data);
-                startActivity(intent);
+                CommonUtils.callPhone(SettingActivity.this,phoneNum);
                 builder.getDialog().dismiss();
             }
         });

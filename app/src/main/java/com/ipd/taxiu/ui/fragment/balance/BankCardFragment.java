@@ -92,7 +92,7 @@ public class BankCardFragment extends ListFragment<List<BankCardBean>, BankCardB
         Bundle args = getArguments();
         String bankType = args.getString("bankType");
         if (mAdapter == null) {
-            mAdapter = new BankCardAdapter(getData(), getContext(), bankType);
+            mAdapter = new BankCardAdapter(getContext(), getData(), bankType);
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {
@@ -115,8 +115,7 @@ public class BankCardFragment extends ListFragment<List<BankCardBean>, BankCardB
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add_card:
-                Intent intent = new Intent(getContext(), AddBankCardActivity.class);
-                startActivity(intent);
+                AddBankCardActivity.Companion.launch(getMActivity());
                 break;
         }
     }

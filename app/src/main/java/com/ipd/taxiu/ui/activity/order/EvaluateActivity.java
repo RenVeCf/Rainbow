@@ -51,7 +51,7 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
     @Override
     protected void loadData() {
         initData();
-        mAdapter = new EvaluateAdapter(datas, this);
+        mAdapter = new EvaluateAdapter(this, datas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new SpaceItemDecoration(24));
         mRecyclerView.setAdapter(mAdapter);

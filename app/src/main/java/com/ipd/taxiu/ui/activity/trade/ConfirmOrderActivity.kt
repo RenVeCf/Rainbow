@@ -40,8 +40,7 @@ class ConfirmOrderActivity : BaseUIActivity() {
             finish()
         }
         cv_address.setOnClickListener {
-            val intent = Intent(mActivity, DeliveryAddressActivity::class.java)
-            startActivity(intent)
+           DeliveryAddressActivity.launch(this)
         }
     }
 

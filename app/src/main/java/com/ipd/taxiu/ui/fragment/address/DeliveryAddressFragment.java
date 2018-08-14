@@ -106,9 +106,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add_address:
-                Intent intent = new Intent(getContext(), AddAddressActivity.class);
-                intent.putExtra("addressType", "添加地址");
-                startActivity(intent);
+                AddAddressActivity.Companion.launch(getMActivity(),"添加地址");
                 break;
         }
     }

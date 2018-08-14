@@ -1,6 +1,7 @@
 package com.ipd.taxiu.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -41,8 +42,7 @@ public class OtherMessageAdapter extends RecyclerView.Adapter<OtherMessageAdapte
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent = new Intent(context,MessageDetailActivity.class);
-                context.startActivity(intent);
+                MessageDetailActivity.Companion.launch((Activity) context);
             }
         });
     }

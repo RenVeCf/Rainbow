@@ -125,16 +125,14 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.rl_message:
-                intent1 = new Intent(getActivity(), MessageActivity.class);
-                startActivity(intent1);
+                MessageActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_referral:
                 intent1 = new Intent(getActivity(), ReferralCodeActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_delivery_address:
-                intent1 = new Intent(getActivity(), DeliveryAddressActivity.class);
-                startActivity(intent1);
+                DeliveryAddressActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_header:
                 intent1 = new Intent(getActivity(), PersonInformationActivity.class);
@@ -166,8 +164,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.rl_my_group:
-                intent1 = new Intent(getActivity(), GroupBookingActivity.class);
-                startActivity(intent1);
+                GroupBookingActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_pet_housekeeper:
                 toastShow("此功能暂未开发，敬请期待");
@@ -189,12 +186,10 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.rl_discount_coupon:
-                intent1 = new Intent(getActivity(),DiscountCouponActivity.class);
-                startActivity(intent1);
+                DiscountCouponActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_my_balance:
-                intent1 = new Intent(getActivity(),MyBalanceActivity.class);
-                startActivity(intent1);
+                MyBalanceActivity.Companion.launch(getMActivity());
                 break;
         }
     }

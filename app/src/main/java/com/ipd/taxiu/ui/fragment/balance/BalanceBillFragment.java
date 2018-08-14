@@ -53,7 +53,7 @@ public class BalanceBillFragment extends ListFragment<List<BalanceBillBean>,Bala
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new BalanceBillAdapter(getData(),getContext());
+            mAdapter = new BalanceBillAdapter(getContext(),getData());
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {

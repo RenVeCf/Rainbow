@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.OrderDetailBean;
@@ -40,7 +41,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     private String orderStatus;
 
-    public OrderDetailAdapter(List<OrderDetailBean> data, Context mContext,String orderStatus) {
+    public OrderDetailAdapter(List<OrderDetailBean> data, Context mContext, String orderStatus) {
         this.data = data;
         this.mContext = mContext;
         this.orderStatus = orderStatus;
@@ -100,6 +101,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             e.printStackTrace();
         }
     }
+
     private View getLayout(int layoutId) {
         return LayoutInflater.from(mContext).inflate(layoutId, null);
     }
@@ -117,16 +119,16 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             TextView tv_order_status = headerView.findViewById(R.id.tv_order_status);
             ImageView iv_order_status = headerView.findViewById(R.id.iv_order_status);
 
-            if (orderStatus.equals(PAYMENT)){
+            if (orderStatus.equals(PAYMENT)) {
                 tv_order_status.setText("待付款");
                 iv_order_status.setImageResource(R.mipmap.detail_wait_pay);
-            }else if (orderStatus.equals(DETAIL)){
+            } else if (orderStatus.equals(DETAIL)) {
                 tv_order_status.setText("待发货");
                 iv_order_status.setImageResource(R.mipmap.detail_wait_shipments);
-            }else if (orderStatus.equals(DELIVERY)){
+            } else if (orderStatus.equals(DELIVERY)) {
                 tv_order_status.setText("待收货");
                 iv_order_status.setImageResource(R.mipmap.detail_wait_delivery);
-            }else if (orderStatus.equals(EVALUATE)){
+            } else if (orderStatus.equals(EVALUATE)) {
                 tv_order_status.setText("已完成");
                 iv_order_status.setImageResource(R.mipmap.detail_off_the_stocks);
             }
@@ -150,10 +152,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             tv_copy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ClipboardManager cmb = (ClipboardManager)mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                    cmb.setText(tv_order_code.getText().toString());
-                    ToastCommom toastCommom = new ToastCommom();
-                    toastCommom.show(mContext,"已复制");
+                    CommonUtils.copyText(mContext, tv_order_code);
                 }
             });
         }
@@ -176,7 +175,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         return haveFooterView() && position == getItemCount() - 1;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
         }

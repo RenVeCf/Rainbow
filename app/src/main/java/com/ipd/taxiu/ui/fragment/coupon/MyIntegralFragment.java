@@ -98,8 +98,7 @@ public class MyIntegralFragment extends ListFragment<List<MyIntegralBean>,MyInte
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_exchange:
-                Intent intent = new Intent(getContext(),IntegralExchangeActivity.class);
-                startActivity(intent);
+                IntegralExchangeActivity.Companion.launch(getMActivity());
                 break;
         }
     }

@@ -1,10 +1,12 @@
 package com.ipd.jumpbox.jumpboxlibrary.utils;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -205,5 +207,12 @@ public class CommonUtils {
         Matcher m = Pattern.compile(regex).matcher(content);
         return m.matches();
     }
+
+    //复制运单号
+   public static void copyText(Context context,TextView textView){
+       ClipboardManager cmb = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+       cmb.setText(textView.getText().toString());
+       new ToastCommom().show(context,"运单号已复制");
+   }
 
 }

@@ -62,7 +62,7 @@ public class DiscountCouponFragment extends ListFragment<List<CouponBean>,Coupon
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new DiscountExchangeAdapter(getData(),getContext());
+            mAdapter = new DiscountExchangeAdapter(getContext(),getData());
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {

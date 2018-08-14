@@ -29,8 +29,10 @@
             android:id="@+id/tv_return_reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请选择"
+            android:hint="请选择"
             android:textColor="@color/black"
+            android:minWidth="100dp"
+            android:gravity="center|right"
             android:layout_toLeftOf="@id/iv_return_reason"
             android:textSize="@dimen/base_text_size"
             android:layout_marginRight="@dimen/base_padding"/>
@@ -111,6 +113,7 @@
             android:textSize="@dimen/base_text_size" />
 
         <TextView
+            android:id="@+id/tv_call_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -39,7 +39,7 @@ public class CommonProblemActivity extends BaseUIActivity {
     @Override
     protected void loadData() {
         initData();
-        adapter = new CommonProblemAdapter(datas, this);
+        adapter = new CommonProblemAdapter(this, datas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
