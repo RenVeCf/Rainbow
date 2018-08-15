@@ -37,4 +37,20 @@ public interface ApiService {
                                             @Field("PASSWORD") String PASSWORD);
 
 
+    @FormUrlEncoded
+    @POST(HttpUrl.PHONE_LOGIN_SMS_CODE)
+    Observable<BaseResult<String>> phoneLoginSmsCode(@Field("PHONE") String PHONE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PHONE_LOGIN)
+    Observable<BaseResult<LoginBean>> phoneLogin(@Field("CODE") String code,
+                                                 @Field("PHONE") String PHONE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.FORGET_PASSWORD)
+    Observable<BaseResult<LoginBean>> forgetPassword(@Field("CODE") String code,
+                                                     @Field("PHONE") String PHONE,
+                                                     @Field("PASSWORD") String PASSWORD);
+
+
 }

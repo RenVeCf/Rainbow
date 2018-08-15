@@ -12,6 +12,9 @@ public interface HttpUrl {
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
     String REGISTER = "app_user/register.do";
     String LOGIN = "app_user/login.do";
+    String PHONE_LOGIN = "app_user/verifyCode.do";
+    String PHONE_LOGIN_SMS_CODE = "app_user/sendCode2.do";
+    String FORGET_PASSWORD = "app_user/forgetPwd.do";
 
 
     //tools

@@ -11,8 +11,8 @@
         style="@style/AccountEditTextStyle"
         android:drawableLeft="@mipmap/icon_phone"
         android:hint="请输入您的手机号"
-        android:maxLength="11"
         android:inputType="phone"
+        android:maxLength="11"
         android:paddingTop="50dp" />
 
     <android.support.constraint.ConstraintLayout
@@ -25,18 +25,18 @@
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/et_sms"
             style="@style/AccountEditTextStyle"
-            android:maxLength="6"
             android:drawableLeft="@mipmap/icon_sms"
             android:hint="请输入短信验证码"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="6" />
 
         <TextView
             android:id="@+id/tv_get_sms"
             style="@style/SmallTextStyle"
+            android:layout_width="80dp"
             android:background="@drawable/selector_sms_btn"
+            android:gravity="center"
             android:paddingBottom="6dp"
-            android:paddingLeft="@dimen/base_padding"
-            android:paddingRight="@dimen/base_padding"
             android:paddingTop="6dp"
             android:text="获取验证码"
             android:textColor="@color/white"
@@ -49,10 +49,10 @@
 
 
     <Button
-        android:enabled="false"
         android:id="@+id/btn_login"
         style="@style/AccountBtnStyle"
         android:layout_marginTop="40dp"
+        android:enabled="false"
         android:text="登录"
         app:layout_constraintTop_toBottomOf="@id/cl_sms" />
 

@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
+import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.TimeCountHelper
 import kotlinx.android.synthetic.main.activity_phone_login.*
 
-class PhoneLoginActivity : BaseUIActivity(), TextWatcher {
+class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, TextWatcher {
 
     companion object {
         fun launch(activity: Activity) {
@@ -23,6 +26,20 @@ class PhoneLoginActivity : BaseUIActivity(), TextWatcher {
 
     override fun getContentLayout(): Int = R.layout.activity_phone_login
 
+
+    private var mPresenter: AccountPresenter<AccountPresenter.IPhoneLoginView>? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = AccountPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
@@ -34,7 +51,16 @@ class PhoneLoginActivity : BaseUIActivity(), TextWatcher {
         et_phone.addTextChangedListener(this)
         et_sms.addTextChangedListener(this)
 
-        btn_login.setOnClickListener { }
+        tv_get_sms.setOnClickListener {
+            val phone = et_phone.text.toString().trim()
+            mPresenter?.getSmsCode(phone)
+
+        }
+        btn_login.setOnClickListener {
+            val phone = et_phone.text.toString().trim()
+            val code = et_sms.text.toString().trim()
+            mPresenter?.phoneLogin(phone, code)
+        }
 
     }
 
@@ -48,6 +74,54 @@ class PhoneLoginActivity : BaseUIActivity(), TextWatcher {
         val phone = et_phone.text.toString().trim()
         val sms = et_sms.text.toString().trim()
         btn_login.isEnabled = CommonUtils.isMobileNO(phone) && sms.length >= 4
+    }
+
+    private fun initCodeBtn() {
+        tv_get_sms.isEnabled = true
+        tv_get_sms.text = "获取验证码"
+    }
+
+    private var mTimeCountHelper: TimeCountHelper? = null
+    override fun getSmsCodeSuccess() {
+        toastShow(true, "已发送验证码到您的手机")
+        tv_get_sms.isEnabled = false
+
+        if (mTimeCountHelper == null) {
+            mTimeCountHelper = TimeCountHelper.newInstance().setTimeCountListener(
+                    object : TimeCountHelper.TimeCountListener {
+                        override fun onChange(aLong: Long) {
+                            tv_get_sms.text = "${aLong}秒"
+                        }
+
+                        override fun onFinish() {
+                            initCodeBtn()
+                        }
+                    }
+            )
+        }
+
+        mTimeCountHelper?.start()
+    }
+
+    override fun getSmsCodeFail(errMsg: String) {
+        initCodeBtn()
+        toastShow(errMsg)
+    }
+
+    override fun loginSuccess() {
+        toastShow("登录成功")
+        val intent = Intent(mActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
+
+    override fun loginFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mTimeCountHelper?.release()
     }
 
 }

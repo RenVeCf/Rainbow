@@ -16,7 +16,6 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         mModel = BasicModel()
     }
 
-
     fun login(phone: String, password: String) {
         if (mView !is ILoginView) return
         val view = mView as ILoginView
@@ -24,12 +23,38 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         if (!CommonUtils.isMobileNO(phone)) {
             view.loginFail("请输入正确的手机号")
             return
-        } else if (!StringUtils.passwordCheck(password)) {
+        } else if (!CommonUtils.passwordIsLegal(password)) {
             view.loginFail("请输入${Constant.PASSWORD_MIN_LENGHT}至${Constant.PASSWORD_MAX_LENGHT}位密码")
             return
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().login(phone, password),
+                object : Response<BaseResult<LoginBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<LoginBean>) {
+                        if (result.code == 0) {
+                            loginSuccess(result.data)
+                            view.loginSuccess()
+                        } else {
+                            view.loginFail(result.msg)
+                        }
+                    }
+                })
+
+    }
+
+    fun phoneLogin(phone: String, code: String) {
+        if (mView !is IPhoneLoginView) return
+        val view = mView as IPhoneLoginView
+
+        if (!CommonUtils.isMobileNO(phone)) {
+            view.loginFail("请输入正确的手机号")
+            return
+        } else if (code.length < Constant.SMS_CODE_LENGHT) {
+            view.loginFail("请输入正确的验证码")
+            return
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().phoneLogin(code, phone),
                 object : Response<BaseResult<LoginBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<LoginBean>) {
                         if (result.code == 0) {
@@ -53,7 +78,12 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
             return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().registerSmsCode(phone),
+        mModel?.getNormalRequestData(
+                when (mView) {
+                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone)
+                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone)
+                    else -> ApiManager.getService().registerSmsCode(phone)
+                },
                 object : Response<BaseResult<String>>(mContext, true) {
                     override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 0) {
@@ -72,7 +102,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         if (!CommonUtils.isMobileNO(phone)) {
             view.registerFail("请输入正确的手机号")
             return
-        } else if (!StringUtils.passwordCheck(password)) {
+        } else if (!CommonUtils.passwordIsLegal(password)) {
             view.registerFail("请输入${Constant.PASSWORD_MIN_LENGHT}至${Constant.PASSWORD_MAX_LENGHT}位密码")
             return
         } else if (code.length < Constant.SMS_CODE_LENGHT) {
@@ -87,6 +117,33 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
                             view.registerSuccess(result.data)
                         } else {
                             view.registerFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun findPassword(phone: String, password: String, code: String) {
+        if (mView !is IForgetPasswordView) return
+        val view = mView as IForgetPasswordView
+
+        if (!CommonUtils.isMobileNO(phone)) {
+            view.findFail("请输入正确的手机号")
+            return
+        } else if (!CommonUtils.passwordIsLegal(password)) {
+            view.findFail("请输入${Constant.PASSWORD_MIN_LENGHT}至${Constant.PASSWORD_MAX_LENGHT}位密码")
+            return
+        } else if (code.length < Constant.SMS_CODE_LENGHT) {
+            view.findFail("请输入正确的验证码")
+            return
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().forgetPassword(code, phone, password),
+                object : Response<BaseResult<LoginBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<LoginBean>) {
+                        if (result.code == 0) {
+                            view.findSuccess()
+                        } else {
+                            view.findFail(result.msg)
                         }
                     }
                 })
@@ -109,9 +166,19 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         fun loginFail(errMsg: String)
     }
 
+    interface IPhoneLoginView : BaseSmsCodeView {
+        fun loginSuccess()
+        fun loginFail(errMsg: String)
+    }
+
 
     interface IRegisterView : BaseSmsCodeView {
         fun registerSuccess(registerInfo: RegisterBean)
         fun registerFail(errMsg: String)
+    }
+
+    interface IForgetPasswordView : BaseSmsCodeView {
+        fun findSuccess()
+        fun findFail(errMsg: String)
     }
 }

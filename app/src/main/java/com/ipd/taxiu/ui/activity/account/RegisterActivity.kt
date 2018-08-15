@@ -12,11 +12,8 @@ import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.TimeCountHelper
 import kotlinx.android.synthetic.main.activity_register.*
-import rx.Observable
-import rx.Subscriber
-import rx.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
 
 class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextWatcher {
     override fun afterTextChanged(s: Editable?) {
@@ -31,7 +28,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
         val code = et_sms.text.toString().trim()
         val password = et_password.text.toString().trim()
         btn_register.isEnabled = CommonUtils.isMobileNO(phone) &&
-                StringUtils.passwordCheck(password) &&
+                CommonUtils.passwordIsLegal(password) &&
                 code.length >= Constant.SMS_CODE_LENGHT
     }
 
@@ -97,33 +94,26 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
         tv_get_sms.text = "获取验证码"
     }
 
-    private var smsSubscriber: Subscriber<Long>? = null
+    private var mTimeCountHelper: TimeCountHelper? = null
     override fun getSmsCodeSuccess() {
         toastShow(true, "已发送验证码到您的手机")
         tv_get_sms.isEnabled = false
 
-        smsSubscriber = object : Subscriber<Long>() {
-            override fun onCompleted() {
-                unsubscribe()
-                initCodeBtn()
-            }
+        if (mTimeCountHelper == null) {
+            mTimeCountHelper = TimeCountHelper.newInstance().setTimeCountListener(
+                    object : TimeCountHelper.TimeCountListener {
+                        override fun onChange(aLong: Long) {
+                            tv_get_sms.text = "${aLong}秒"
+                        }
 
-            override fun onError(e: Throwable) {
-
-            }
-
-            override fun onNext(aLong: Long) {
-                if (aLong <= 0) {
-                    onCompleted()
-                } else {
-                    tv_get_sms.text = "${aLong}秒"
-                }
-            }
+                        override fun onFinish() {
+                            initCodeBtn()
+                        }
+                    }
+            )
         }
-        Observable.interval(0, 1000, TimeUnit.MILLISECONDS).map { aLong -> 60 - aLong!! }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(smsSubscriber)
 
+        mTimeCountHelper?.start()
     }
 
     override fun getSmsCodeFail(errMsg: String) {
@@ -143,7 +133,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
 
     override fun onDestroy() {
         super.onDestroy()
-        smsSubscriber?.unsubscribe()
+        mTimeCountHelper?.release()
     }
 
 }

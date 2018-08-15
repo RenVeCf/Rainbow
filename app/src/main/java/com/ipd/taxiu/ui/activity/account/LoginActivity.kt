@@ -82,7 +82,7 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
         val phone = et_phone.text.toString().trim()
         val password = et_password.text.toString().trim()
         btn_login.isEnabled = CommonUtils.isMobileNO(phone) &&
-                StringUtils.passwordCheck(password)
+                CommonUtils.passwordIsLegal(password)
     }
 
 }
