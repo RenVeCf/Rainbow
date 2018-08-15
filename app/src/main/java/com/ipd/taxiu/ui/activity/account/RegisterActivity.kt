@@ -3,11 +3,36 @@ package com.ipd.taxiu.ui.activity.account
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_register.*
+import rx.Observable
+import rx.Subscriber
+import rx.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
-class RegisterActivity : BaseUIActivity() {
+class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextWatcher {
+    override fun afterTextChanged(s: Editable?) {
+
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val phone = et_phone.text.toString().trim()
+        val code = et_sms.text.toString().trim()
+        val password = et_password.text.toString().trim()
+        btn_register.isEnabled = CommonUtils.isMobileNO(phone) &&
+                password.length >= Constant.PASSWORD_MIN_LENGHT &&
+                password.length <= Constant.PASSWORD_MAX_LENGHT &&
+                code.length >= Constant.SMS_CODE_LENGHT
+    }
 
     companion object {
         fun launch(activity: Activity) {
@@ -20,6 +45,19 @@ class RegisterActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_register
 
+    private var mPresenter: AccountPresenter<AccountPresenter.IRegisterView>? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = AccountPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
@@ -28,7 +66,81 @@ class RegisterActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
-        btn_register.setOnClickListener { PetStageActivity.launch(mActivity);finish() }
+        et_phone.addTextChangedListener(this)
+        et_sms.addTextChangedListener(this)
+        et_password.addTextChangedListener(this)
+
+        tv_get_sms.setOnClickListener {
+            val phone = et_phone.text.toString().trim()
+            mPresenter?.getSmsCode(phone)
+        }
+
+
+        btn_register.setOnClickListener {
+            //            PetStageActivity.launch(mActivity);finish()
+            if (!cb_user_agent.isChecked) {
+                toastShow("请先同意用户注册协议");return@setOnClickListener
+            }
+            val phone = et_phone.text.toString().trim()
+            val code = et_sms.text.toString().trim()
+            val password = et_password.text.toString().trim()
+            val inviteCode = et_invite_code.text.toString().trim()
+            mPresenter?.register(phone, password, code, inviteCode)
+        }
+
+
+    }
+
+
+    private fun initCodeBtn() {
+        tv_get_sms.isEnabled = true
+        tv_get_sms.text = "获取验证码"
+    }
+
+    private var smsSubscriber: Subscriber<Long>? = null
+    override fun getSmsCodeSuccess() {
+        toastShow(true, "已发送验证码到您的手机")
+        tv_get_sms.isEnabled = false
+
+        smsSubscriber = object : Subscriber<Long>() {
+            override fun onCompleted() {
+                unsubscribe()
+                initCodeBtn()
+            }
+
+            override fun onError(e: Throwable) {
+
+            }
+
+            override fun onNext(aLong: Long) {
+                if (aLong <= 0) {
+                    onCompleted()
+                } else {
+                    tv_get_sms.text = "${aLong}秒"
+                }
+            }
+        }
+        Observable.interval(0, 1000, TimeUnit.MILLISECONDS).map { aLong -> 60 - aLong!! }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(smsSubscriber)
+
+    }
+
+    override fun getSmsCodeFail(errMsg: String) {
+        initCodeBtn()
+        toastShow(errMsg)
+    }
+
+    override fun registerSuccess() {
+    }
+
+    override fun registerFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        smsSubscriber?.unsubscribe()
     }
 
 }
