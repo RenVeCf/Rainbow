@@ -1,5 +1,7 @@
 package com.ipd.taxiu.utils
 
+import com.ipd.taxiu.platform.global.Constant
+
 object StringUtils {
     val ss = 1000
     val mi = ss * 60
@@ -14,5 +16,13 @@ object StringUtils {
 
     private fun formatTimeStr(time: Long): String {
         return if (time < 10) "0$time" else time.toString()
+    }
+
+
+    fun passwordCheck(password: String): Boolean {
+        if (password.length < Constant.PASSWORD_MIN_LENGHT || password.length > Constant.PASSWORD_MAX_LENGHT) {
+            return false
+        }
+        return true
     }
 }

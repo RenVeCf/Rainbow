@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.MessageDialog;
 
@@ -125,8 +126,9 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
                 dialog.dismiss();
+                GlobalParam.onExitUser();
+                GlobalParam.isLoginOrJump();
             }
         });
         builder.show();

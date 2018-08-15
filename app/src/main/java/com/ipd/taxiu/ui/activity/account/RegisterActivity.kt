@@ -7,9 +7,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.RegisterBean
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.activity_register.*
 import rx.Observable
 import rx.Subscriber
@@ -29,8 +31,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
         val code = et_sms.text.toString().trim()
         val password = et_password.text.toString().trim()
         btn_register.isEnabled = CommonUtils.isMobileNO(phone) &&
-                password.length >= Constant.PASSWORD_MIN_LENGHT &&
-                password.length <= Constant.PASSWORD_MAX_LENGHT &&
+                StringUtils.passwordCheck(password) &&
                 code.length >= Constant.SMS_CODE_LENGHT
     }
 
@@ -77,7 +78,6 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
 
 
         btn_register.setOnClickListener {
-            //            PetStageActivity.launch(mActivity);finish()
             if (!cb_user_agent.isChecked) {
                 toastShow("请先同意用户注册协议");return@setOnClickListener
             }
@@ -131,7 +131,10 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
         toastShow(errMsg)
     }
 
-    override fun registerSuccess() {
+    override fun registerSuccess(registerInfo: RegisterBean) {
+        toastShow(true, "注册成功")
+        PetStageActivity.launch(mActivity)
+        finish()
     }
 
     override fun registerFail(errMsg: String) {

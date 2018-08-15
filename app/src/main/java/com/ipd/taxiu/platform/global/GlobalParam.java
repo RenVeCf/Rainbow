@@ -1,8 +1,10 @@
 package com.ipd.taxiu.platform.global;
 
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
+import com.ipd.taxiu.ui.activity.account.LoginActivity;
 
 /**
  * Created by jumpbox on 16/4/19.
@@ -42,14 +44,14 @@ public class GlobalParam {
 
 
     public static boolean isLoginOrJump() {
-//        String userId = getUserId();
-//        if (TextUtils.isEmpty(userId)) {
-//            Intent intent = new Intent(GlobalApplication.Companion.getMContext(), LoginActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            GlobalApplication.Companion.getMContext().startActivity(intent);
-//            return false;
-//        }
+        String userId = getUserId();
+        if (TextUtils.isEmpty(userId)) {
+            Intent intent = new Intent(GlobalApplication.Companion.getMContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            GlobalApplication.Companion.getMContext().startActivity(intent);
+            return false;
+        }
         return true;
     }
 

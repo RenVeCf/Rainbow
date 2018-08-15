@@ -20,7 +20,7 @@
 
         <activity-alias
             android:name=".launcher"
-            android:targetActivity=".ui.activity.account.LoginActivity">
+            android:targetActivity=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -117,38 +117,38 @@
         <activity android:name=".ui.activity.address.AddAddressActivity" />
         <activity android:name=".ui.activity.address.DeliveryAddressActivity" />
         <activity android:name=".ui.activity.mine.PersonInformationActivity" />
-        <activity android:name=".ui.activity.pet.PetBibleActivity"/>
-        <activity android:name=".ui.activity.pet.MyPetActivity"/>
-        <activity android:name=".ui.activity.pet.PetInformationActivity"/>
-        <activity android:name=".ui.activity.pet.AddPetActivity"/>
-        <activity android:name=".ui.activity.mine.EditTagActivity"/>
-        <activity android:name=".ui.activity.setting.MyCollectActivity"/>
-        <activity android:name=".ui.activity.setting.SocialContactActivity"/>
-        <activity android:name=".ui.activity.group.GroupBookingActivity"/>
-        <activity android:name=".ui.activity.group.GroupDetailActivity"/>
-        <activity android:name=".ui.activity.coupon.MyIntegralActivity"/>
-        <activity android:name=".ui.activity.coupon.IntegralRuleActivity"/>
-        <activity android:name=".ui.activity.coupon.IntegralExchangeActivity"/>
-        <activity android:name=".ui.activity.coupon.CouponDetailActivity"/>
-        <activity android:name=".ui.activity.coupon.ExchangeRecordActivity"/>
-        <activity android:name=".ui.activity.coupon.ExchangeRecordDetailActivity"/>
-        <activity android:name=".ui.activity.coupon.DiscountCouponActivity"/>
-        <activity android:name=".ui.activity.balance.MyBalanceActivity"/>
-        <activity android:name=".ui.activity.balance.BalanceBillActivity"/>
-        <activity android:name=".ui.activity.balance.WithdrawDepositActivity"/>
-        <activity android:name=".ui.activity.balance.BankCardActivity"/>
-        <activity android:name=".ui.activity.balance.AddBankCardActivity"/>
-        <activity android:name=".ui.activity.balance.UpdateBankCardActivity"/>
+        <activity android:name=".ui.activity.pet.PetBibleActivity" />
+        <activity android:name=".ui.activity.pet.MyPetActivity" />
+        <activity android:name=".ui.activity.pet.PetInformationActivity" />
+        <activity android:name=".ui.activity.pet.AddPetActivity" />
+        <activity android:name=".ui.activity.mine.EditTagActivity" />
+        <activity android:name=".ui.activity.setting.MyCollectActivity" />
+        <activity android:name=".ui.activity.setting.SocialContactActivity" />
+        <activity android:name=".ui.activity.group.GroupBookingActivity" />
+        <activity android:name=".ui.activity.group.GroupDetailActivity" />
+        <activity android:name=".ui.activity.coupon.MyIntegralActivity" />
+        <activity android:name=".ui.activity.coupon.IntegralRuleActivity" />
+        <activity android:name=".ui.activity.coupon.IntegralExchangeActivity" />
+        <activity android:name=".ui.activity.coupon.CouponDetailActivity" />
+        <activity android:name=".ui.activity.coupon.ExchangeRecordActivity" />
+        <activity android:name=".ui.activity.coupon.ExchangeRecordDetailActivity" />
+        <activity android:name=".ui.activity.coupon.DiscountCouponActivity" />
+        <activity android:name=".ui.activity.balance.MyBalanceActivity" />
+        <activity android:name=".ui.activity.balance.BalanceBillActivity" />
+        <activity android:name=".ui.activity.balance.WithdrawDepositActivity" />
+        <activity android:name=".ui.activity.balance.BankCardActivity" />
+        <activity android:name=".ui.activity.balance.AddBankCardActivity" />
+        <activity android:name=".ui.activity.balance.UpdateBankCardActivity" />
 
         <!-- mine-->
         <activity android:name=".ui.activity.mine.published.PublishedTaxiuActivity" />
         <activity android:name=".ui.activity.mine.published.MineClassRoomActivity" />
         <activity android:name=".ui.activity.mine.published.MineJoinTopicActivity" />
         <activity android:name=".ui.activity.mine.published.PublishedTalkActivity" />
-        <activity android:name=".ui.activity.mine.published.MineTaxiuDetailActivity"/>
+        <activity android:name=".ui.activity.mine.published.MineTaxiuDetailActivity" />
 
-        <activity android:name=".ui.activity.message.MessageDetailActivity"/>
-        <activity android:name=".ui.activity.pet.ChoosePetActivity"/>
+        <activity android:name=".ui.activity.message.MessageDetailActivity" />
+        <activity android:name=".ui.activity.pet.ChoosePetActivity" />
     </application>
 
 </manifest>

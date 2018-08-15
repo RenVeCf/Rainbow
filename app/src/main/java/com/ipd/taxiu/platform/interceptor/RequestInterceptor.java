@@ -49,7 +49,7 @@ public class RequestInterceptor implements Interceptor {
 
         RequestBody newRequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestJsonObj.toString().replaceAll("\\\\", ""));
         Request.Builder builder = request.newBuilder();
-        builder.put(newRequestBody);
+        builder.post(newRequestBody);
         return chain.proceed(builder.build());
     }
 
