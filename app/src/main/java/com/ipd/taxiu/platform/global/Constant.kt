@@ -8,4 +8,6 @@ object Constant {
     const val PASSWORD_MAX_LENGHT = 16
     const val SMS_CODE_LENGHT = 4
     const val SMS_CODE_TIME = 60
+
+
 }

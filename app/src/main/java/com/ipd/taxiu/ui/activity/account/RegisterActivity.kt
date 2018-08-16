@@ -123,7 +123,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
 
     override fun registerSuccess(registerInfo: RegisterBean) {
         toastShow(true, "注册成功")
-        PetStageActivity.launch(mActivity)
+        PetStageActivity.launch(mActivity,registerInfo.USER_ID.toString())
         finish()
     }
 

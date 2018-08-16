@@ -52,5 +52,10 @@ public interface ApiService {
                                                      @Field("PHONE") String PHONE,
                                                      @Field("PASSWORD") String PASSWORD);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_STAGE)
+    Observable<BaseResult<LoginBean>> petStage(@Field("USER_ID") String USER_ID,
+                                               @Field("STEP") String STEP);
+
 
 }

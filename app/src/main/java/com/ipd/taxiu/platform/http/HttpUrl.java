@@ -17,6 +17,10 @@ public interface HttpUrl {
     String FORGET_PASSWORD = "app_user/forgetPwd.do";
 
 
+    //pet
+    String PET_STAGE = "app_user/updateStep.do";
+
+
     //tools
     String UPLOAD_PIC = "app_pic/uploadPic.do";
 
