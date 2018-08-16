@@ -58,13 +58,13 @@ class PetKindActivity : BaseUIActivity() {
             PetKindListActivity.DOG -> {
                 tv_cat.visibility = View.GONE
                 tv_dog.visibility = View.VISIBLE
-                tv_dog.text = String.format(resources.getString(R.string.pet_kind_choose), event.petKind.name)
+                tv_dog.text = String.format(resources.getString(R.string.pet_kind_choose), event.petKind.NAME)
             }
             PetKindListActivity.CAT -> {
                 tv_dog.visibility = View.GONE
                 tv_cat.visibility = View.VISIBLE
-                tv_cat.text = event.petKind.name
-                tv_cat.text = String.format(resources.getString(R.string.pet_kind_choose), event.petKind.name)
+                tv_cat.text = event.petKind.NAME
+                tv_cat.text = String.format(resources.getString(R.string.pet_kind_choose), event.petKind.NAME)
             }
         }
         btn_next.isEnabled = true

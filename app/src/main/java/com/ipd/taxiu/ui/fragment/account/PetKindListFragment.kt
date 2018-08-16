@@ -6,6 +6,8 @@ import com.ipd.taxiu.ChoosePetKindEvent
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.PetKindAdapter
 import com.ipd.taxiu.bean.PetInfoBean
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.account.PetKindListActivity
 import kotlinx.android.synthetic.main.fragment_index_bar_list.view.*
@@ -35,36 +37,48 @@ class PetKindListFragment : ListFragment<List<PetInfoBean>, PetInfoBean>() {
 
     private val mType: Int by lazy { arguments.getInt("type", PetKindListActivity.DOG) }
     override fun loadListData(): Observable<List<PetInfoBean>> {
-        return Observable.create<List<PetInfoBean>> {
-            val list: ArrayList<PetInfoBean> = arrayListOf(
-                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯加雪橇犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "爱尔兰犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "澳大利亚牧羊犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "阿哥廷杜高犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯基犬"),
-                    PetInfoBean(R.mipmap.pet_kind2, "比熊犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "泰迪犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "自主权"),
-                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯加雪橇犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "爱尔兰犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "澳大利亚牧羊犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "阿哥廷杜高犬"),
-                    PetInfoBean(R.mipmap.pet_kind2, "比熊犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "泰迪犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "自主权"),
-                    PetInfoBean(R.mipmap.pet_kind1, "牧羊犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "和马犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "虎犬"),
-                    PetInfoBean(R.mipmap.pet_kind1, "哈士奇")
-            )
-            it.onNext(list)
-            it.onCompleted()
+//        return Observable.create<List<PetInfoBean>> {
+//            val list: ArrayList<PetInfoBean> = arrayListOf(
+//                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯加雪橇犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "爱尔兰犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "澳大利亚牧羊犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "阿哥廷杜高犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯基犬"),
+//                    PetInfoBean(R.mipmap.pet_kind2, "比熊犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "泰迪犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "自主权"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "阿拉斯加雪橇犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "爱尔兰犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "澳大利亚牧羊犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "阿哥廷杜高犬"),
+//                    PetInfoBean(R.mipmap.pet_kind2, "比熊犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "泰迪犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "自主权"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "牧羊犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "和马犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "虎犬"),
+//                    PetInfoBean(R.mipmap.pet_kind1, "哈士奇")
+//            )
+//            it.onNext(list)
+//            it.onCompleted()
+//        }
+        return ApiManager.getService().petKindList(GlobalParam.getUserIdOrJump(),
+                mType.toString()).map {
+            val list = ArrayList<PetInfoBean>()
+            if (it.code == 0) {
+                if (it.data != null) {
+                    it.data.forEach { petInfo ->
+                        list.addAll(petInfo.list)
+                    }
+                }
+            }
+            list
         }
     }
 
     override fun isNoMoreData(result: List<PetInfoBean>): Int {
         if (result == null || result.isEmpty()) {
-            return NO_MORE_DATA
+            return EMPTY_DATA
         }
         return NORMAL
     }

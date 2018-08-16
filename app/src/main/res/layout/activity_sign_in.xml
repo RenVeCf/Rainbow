@@ -2,7 +2,8 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             <TextView
                 android:id="@+id/tv_integral"
                 style="@style/TitleTextStyle"
-                android:text="4387"
+                tools:text="4387"
                 android:textColor="@color/white"
                 android:textSize="26sp" />
 
@@ -60,7 +61,7 @@
                 android:id="@+id/tv_continue_sign"
                 style="@style/BaseTextStyle"
                 android:layout_marginLeft="4dp"
-                android:text="1"
+                tools:text="0"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_integral_title"

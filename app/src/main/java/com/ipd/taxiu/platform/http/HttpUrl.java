@@ -19,6 +19,12 @@ public interface HttpUrl {
 
     //pet
     String PET_STAGE = "app_user/updateStep.do";
+    String PET_KIND_LIST = "app_pet/typeList.do";
+
+    //signin
+    String SIGN_IN_INFO = "app_sign/getInfo.do";
+    String SIGN_IN_LIST = "app_sign/getList.do";
+    String SIGN_IN = "app_sign/add.do";
 
 
     //tools

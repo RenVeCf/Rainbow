@@ -186,10 +186,10 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     public void onMainEvent(ChoosePetKindEvent event){
         switch (event.type){
             case 0:
-                tv_pet_kind.setText(event.petKind.name);
+                tv_pet_kind.setText(event.petKind.NAME);
                 break;
             case 1:
-                tv_pet_kind.setText(event.petKind.name);
+                tv_pet_kind.setText(event.petKind.NAME);
                 break;
         }
     }

@@ -10,8 +10,8 @@ import com.ipd.taxiu.ui.fragment.account.PetKindListFragment
 class PetKindListActivity : BaseUIActivity() {
 
     companion object {
-        val DOG = 0
-        val CAT = 1
+        val DOG = 1
+        val CAT = 2
 
         fun launch(activity: Activity, type: Int) {
             val intent = Intent(activity, PetKindListActivity::class.java)

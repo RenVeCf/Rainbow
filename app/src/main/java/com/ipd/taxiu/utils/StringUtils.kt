@@ -12,7 +12,11 @@ object StringUtils {
         callback.invoke(formatTimeStr(hour), formatTimeStr(minutes), formatTimeStr(second))
     }
 
-    private fun formatTimeStr(time: Long): String {
+    fun formatTimeStr(time: Long): String {
+        return if (time < 10) "0$time" else time.toString()
+    }
+
+    fun formatTimeStr(time: Int): String {
         return if (time < 10) "0$time" else time.toString()
     }
 
