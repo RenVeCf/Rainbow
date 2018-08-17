@@ -1,15 +1,21 @@
 package com.ipd.taxiu.platform.http;
 
 
+import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.LoginBean;
+import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.UpdatePwdBean;
+import com.ipd.taxiu.bean.UserBean;
 
 import java.util.List;
+
+import java.util.ArrayList;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -21,6 +27,17 @@ import rx.Observable;
  */
 
 public interface ApiService {
+    /**
+     * city
+     *
+     * @param REGION_ID
+     * @param USER_ID
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_LIST_ALL)
+    Observable<BaseResult<ArrayList<ProvinceBean>>> getListAll(@Field("REGION_ID") String REGION_ID,
+                                                               @Field("USER_ID") int USER_ID);
 
 
     /**
@@ -87,5 +104,70 @@ public interface ApiService {
     @POST(HttpUrl.SIGN_IN)
     Observable<BaseResult<SignInResuleBean>> signIn(@Field("USER_ID") String USER_ID);
 
+    /**
+     * address
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_LIST_ADDRESS)
+    Observable<BaseResult<List<AddressBean>>> getListAddress(@Field("COUNT") int count,
+                                                             @Field("USER_ID") int user_id,
+                                                             @Field("PAGE") String page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ADD_ADDRESS)
+    Observable<BaseResult<AddressBean>> addAddress(@Field("ADDRESS") String ADDRESS,
+                                                   @Field("CITY") String CITY,
+                                                   @Field("DIST") String DIST,
+                                                   @Field("PROV") String PROV,
+                                                   @Field("RECIPIENT") String RECIPIENT,
+                                                   @Field("STATUS") int STATUS,
+                                                   @Field("TEL") Long TEL,
+                                                   @Field("USER_ID") int USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_ADDRESS_INFO)
+    Observable<BaseResult<AddressBean>> getAddressInfo(@Field("USER_ID") int USER_ID,
+                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ADDRESS_DELETE)
+    Observable<BaseResult<AddressBean>> addressDelete(@Field("USER_ID") int USER_ID,
+                                                      @Field("ADDRESS_ID") String ADDRESS_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ADDRESS_UPDATE)
+    Observable<BaseResult<AddressBean>> addressUpdate(@Field("ADDRESS") String ADDRESS,
+                                                      @Field("CITY") String CITY,
+                                                      @Field("DIST") String DIST,
+                                                      @Field("PROV") String PROV,
+                                                      @Field("RECIPIENT") String RECIPIENT,
+                                                      @Field("STATUS") int STATUS,
+                                                      @Field("TEL") long TEL,
+                                                      @Field("USER_ID") int USER_ID,
+                                                      @Field("ADDRESS_ID") String ADDRESS_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_USER_INFO)
+    Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") int USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.UPDATE_PWD)
+    Observable<BaseResult<UpdatePwdBean>> updatePwd(@Field("USER_ID") int USER_ID,
+                                                    @Field("NEW_PASSWORD") String NEW_PASSWORD,
+                                                    @Field("OLD_PASSWORD") String OLD_PASSWORD);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.USER_UPDATE)
+    Observable<BaseResult<UpdatePwdBean>> updateUser(@Field("BIRTHDAY") String BIRTHDAY,
+                                                     @Field("GENDER") int GENDER,
+                                                     @Field("LOGO") String LOGO,
+                                                     @Field("NICKNAME") String NICKNAME,
+                                                     @Field("PET_TIME") String PET_TIME,
+                                                     @Field("TAG") String TAG,
+                                                     @Field("USERNAME") String USERNAME,
+                                                     @Field("USER_ID") int USER_ID);
 
 }

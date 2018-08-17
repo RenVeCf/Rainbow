@@ -2,6 +2,7 @@ package com.ipd.taxiu.presenter
 
 import android.content.Context
 import com.ipd.taxiu.model.BaseModel
+import com.ipd.taxiu.ui.activity.address.AddAddressActivity
 
 /**
  * Created by jumpbox on 2017/5/24.

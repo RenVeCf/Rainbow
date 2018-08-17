@@ -65,7 +65,8 @@
             android:layout_marginRight="@dimen/base_padding"
             android:layout_toLeftOf="@id/iv_nickname"
             android:background="@null"
-            android:hint="主人_23788"
+            android:hint="请输入昵称"
+            android:maxLength="10"
             android:minWidth="100dp"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
@@ -91,15 +92,17 @@
             android:text="手机号码" />
 
         <EditText
+            android:id="@+id/et_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@null"
-            android:hint="13687874563"
+            android:hint="请输入手机号码"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
             android:inputType="number"
             android:minWidth="100dp"
+            android:maxLength="11"
             android:gravity="center_vertical|right"/>
     </RelativeLayout>
 
@@ -130,6 +133,7 @@
             android:src="@mipmap/arrow_right" />
 
         <EditText
+            android:id="@+id/et_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/base_padding"
@@ -139,6 +143,7 @@
             android:background="@null"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size"
+            android:maxLength="10"
             android:gravity="center_vertical|right"/>
     </RelativeLayout>
 

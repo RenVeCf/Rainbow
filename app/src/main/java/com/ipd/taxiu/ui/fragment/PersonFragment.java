@@ -2,13 +2,19 @@ package com.ipd.taxiu.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.SignInActivity;
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
@@ -31,19 +37,30 @@ import com.ipd.taxiu.ui.activity.setting.MyCollectActivity;
 import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 import com.ipd.taxiu.ui.activity.setting.SocialContactActivity;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static com.ipd.taxiu.platform.http.HttpUrl.IMAGE_URL;
 
 
 /**
  * Created by Miss on 2018/7/19
  */
-public class PersonFragment extends BaseFragment implements View.OnClickListener {
+public class PersonFragment extends BaseFragment implements View.OnClickListener,MinePresenter.IUserInfoView {
     private RelativeLayout rl_all_order, rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_off_the_stocks;
     private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
             rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
     private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
     private RelativeLayout rl_header;
+
+    private MinePresenter mPresenter;
+    private CircleImageView civ_header;
+    private TextView tv_nickname;
+    private TextView tv_signature;
+    private TextView tv_collect_num;
+    private TextView tv_attention_num;
+    private TextView tv_fans_num;
 
     @Override
     protected int getBaseLayout() {
@@ -52,12 +69,31 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
+    }
 
+    @Override
+    protected void onViewAttach() {
+        super.onViewAttach();
+        mPresenter = new MinePresenter<>();
+        mPresenter.attachView(getContext(),this);
+    }
+
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        mPresenter.detachView();
+        mPresenter = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
     protected void loadData() {
-
+        mPresenter.getUserInfo(Integer.parseInt(GlobalParam.getUserId()));
     }
 
     @Override
@@ -224,5 +260,34 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         rl_discount_coupon = rootView.findViewById(R.id.rl_discount_coupon);
         rl_my_balance = rootView.findViewById(R.id.rl_my_balance);
         rl_header = rootView.findViewById(R.id.rl_header);
+
+        civ_header = rootView.findViewById(R.id.civ_header);
+        tv_nickname = rootView.findViewById(R.id.tv_nickname);
+        tv_signature = rootView.findViewById(R.id.tv_signature);
+        tv_collect_num = rootView.findViewById(R.id.tv_collect_num);
+        tv_attention_num = rootView.findViewById(R.id.tv_attention_num);
+        tv_fans_num = rootView.findViewById(R.id.tv_fans_num);
+    }
+
+    @Override
+    public void getInfoSuccess(@NotNull UserBean data) {
+        if (data != null) {
+            ImageLoader.loadImgFromLocal(getContext(), data.LOGO, civ_header);
+            Log.i("url",IMAGE_URL + data.LOGO);
+            tv_nickname.setText(data.NICKNAME);
+            if (data.TAG != "") {
+                tv_signature.setText(data.TAG);
+            }
+            tv_collect_num.setText(data.ATTENTION_NUM+"");
+            if (data.WECHAT != "") {
+                tv_attention_num.setText(data.WECHAT);
+            }
+            tv_fans_num.setText(data.FANS_NUM+"");
+        }
+    }
+
+    @Override
+    public void getInfoFail(@NotNull String errMsg) {
+        toastShow(errMsg);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * @param <T> the element type
  */
 public class ArrayWheelAdapter<T> implements WheelAdapter {
-	
+
 
 	// items
 	private List<T> items;
@@ -22,7 +22,7 @@ public class ArrayWheelAdapter<T> implements WheelAdapter {
 		this.items = items;
 
 	}
-	
+
 	@Override
 	public Object getItem(int index) {
 		if (index >= 0 && index < items.size()) {

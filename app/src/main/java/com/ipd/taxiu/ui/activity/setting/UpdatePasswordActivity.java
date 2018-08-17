@@ -7,7 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,10 +20,12 @@ import org.jetbrains.annotations.Nullable;
  * Created by Miss on 2018/7/24
  * 修改登录密码
  */
-public class UpdatePasswordActivity extends BaseUIActivity implements View.OnClickListener {
+public class UpdatePasswordActivity extends BaseUIActivity implements View.OnClickListener,MinePresenter.IUpdatePwdView{
     private TextView btn_submit;
     private TextView tips;
     private EditText et_original_password, et_new_password, et_affirm_new_password;
+
+    private MinePresenter mPresenter;
 
     @Override
     protected int getContentLayout() {
@@ -38,6 +43,20 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
+    protected void onViewAttach() {
+        super.onViewAttach();
+        mPresenter = new MinePresenter();
+        mPresenter.attachView(this,this);
+    }
+
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        mPresenter.detachView();
+        mPresenter = null;
+    }
+
+    @Override
     protected void loadData() {
 
     }
@@ -45,30 +64,6 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
     @Override
     protected void initListener() {
         btn_submit.setOnClickListener(this);
-        et_original_password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
-                    tips.setVisibility(View.GONE);
-                }
-            }
-        });
-        et_new_password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
-                    tips.setVisibility(View.GONE);
-                }
-            }
-        });
-        et_affirm_new_password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
-                    tips.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 
     @NotNull
@@ -85,31 +80,41 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.btn_submit:
                 if (originalPassword.equals("")){
-                    toastShow("原密码不能为空");
-                    return;
-                }
-                if (newPassword.equals("")){
-                    toastShow("请输入新密码");
-                    return;
-                }
-                if (affirmPassword.equals("")){
-                    toastShow("请输入再次确认密码");
-                    return;
-                }
-                if (!originalPassword.equals("123456")) {
                     tips.setVisibility(View.VISIBLE);
-                    tips.setText("原密码不对");
+                    tips.setText("原密码不能为空");
+                    return;
+                }
+                if (!CommonUtils.passwordIsLegal(newPassword)){
+                    tips.setVisibility(View.VISIBLE);
+                    tips.setText("请输入新登录密码(数字+字母组合)");
+                    return;
+                }
+                if (!CommonUtils.passwordIsLegal(affirmPassword)) {
+                    tips.setVisibility(View.VISIBLE);
+                    tips.setText("请再次输入新登录密码(数字+字母组合)");
                     return;
                 }
                 if (!newPassword.equals(affirmPassword)) {
                     tips.setVisibility(View.VISIBLE);
                     tips.setText("两次密码不一致");
-                }else {
-                    tips.setVisibility(View.GONE);
-                    toastShow("修改成功");
-                    finish();
+                    return;
                 }
+                mPresenter.updatePwd(Integer.parseInt(GlobalParam.getUserId()),newPassword,originalPassword);
                 break;
+
         }
+    }
+
+    @Override
+    public void updateSuccess() {
+        tips.setVisibility(View.GONE);
+        toastShow("修改成功");
+        finish();
+    }
+
+    @Override
+    public void updateFail(@NotNull String errMsg) {
+        tips.setVisibility(View.VISIBLE);
+        tips.setText(errMsg);
     }
 }

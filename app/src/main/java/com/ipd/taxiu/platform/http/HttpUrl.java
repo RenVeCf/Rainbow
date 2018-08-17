@@ -5,8 +5,7 @@ package com.ipd.taxiu.platform.http;
  */
 public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:9386/TX/";
-    String IMAGE_URL = "http://121.199.8.244:9386/";
-
+    String IMAGE_URL = "http://121.199.8.244:9886/";
 
     //account
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
@@ -30,4 +29,18 @@ public interface HttpUrl {
     //tools
     String UPLOAD_PIC = "app_pic/uploadPic.do";
 
+    //city
+    String GET_LIST_ALL ="app_region/getListAll.do";
+
+    //address
+    String ADD_ADDRESS="app_address/add.do";
+    String GET_LIST_ADDRESS="app_address/getList.do";
+    String GET_ADDRESS_INFO="app_address/getInfo.do";
+    String ADDRESS_UPDATE="app_address/update.do";
+    String ADDRESS_DELETE="app_address/delete.do";
+
+    //mine
+    String GET_USER_INFO="app_user/getInfo.do";
+    String UPDATE_PWD="app_user/updatePwd.do";
+    String USER_UPDATE="app_user/update.do";
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AddressBean
 import com.ipd.taxiu.ui.activity.address.AddAddressActivity
@@ -24,8 +25,14 @@ class DeliveryAddressAdapter(val context: Context, private val data: List<Addres
     override fun getItemCount(): Int = data?.size ?:0
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        if (position == 0) holder?.itemView?.tv_default?.visibility = View.VISIBLE
-        holder?.itemView?.setOnClickListener{ AddAddressActivity.launch(context as Activity, "修改地址") }
+        if (data[position].STATUS == 2) holder?.itemView?.tv_default?.visibility = View.VISIBLE
+        holder?.itemView?.setOnClickListener{
+            AddAddressActivity.launch(context as Activity, 2,data[position].ADDRESS_ID)
+        }
+
+        holder?.itemView?.tv_delivery_name?.text = data[position].RECIPIENT
+        holder?.itemView?.tv_delivery_phone?.text = CommonUtils.getEncryPhone(data[position].TEL.toString())
+        holder?.itemView?.tv_delivery_address?.text = data[position].PROV+data[position].CITY+data[position].DIST+data[position].ADDRESS
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

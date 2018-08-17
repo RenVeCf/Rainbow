@@ -1,16 +1,21 @@
 package com.ipd.taxiu.ui.fragment.address;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.bean.AddressBean;
+import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.ui.ListFragment;
 import com.ipd.taxiu.ui.activity.address.AddAddressActivity;
+import com.ipd.taxiu.widget.MessageDialog;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,15 +24,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
- * Created by Miss on 2018/8/6
+ * Created by Miss on 2018/8/17
  */
-public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, AddressBean> implements View.OnClickListener {
-    private DeliveryAddressAdapter mAdapter = null;
-    private TextView btn_add_address;
+public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, AddressBean> {
+    private DeliveryAddressAdapter mAdapter;
     private List<AddressBean> bean = new ArrayList<>();
+    private TextView btn_add;
+    private View view;
+
 
     public static DeliveryAddressFragment newInstance() {
         DeliveryAddressFragment fragment = new DeliveryAddressFragment();
@@ -43,32 +50,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     protected void initView(@Nullable Bundle bundle) {
         super.initView(bundle);
         progress_layout.setEmptyViewRes(R.layout.layout_empty_address);
-        View view = progress_layout.getEmptyViewRes(R.layout.layout_empty_address);
-        initData(bean);
-        if (bean.size() == 0 || bean == null) {
-            btn_add_address = view.findViewById(R.id.btn_add_address);
-        }else {
-            btn_add_address = getMRootView().findViewById(R.id.btn_add_address);
-        }
-
-    }
-
-    private void initData(List<AddressBean> bean) {
-        for (int i = 0; i < 5; i++) {
-            bean.add(new AddressBean());
-        }
-    }
-
-    @NotNull
-    @Override
-    public Observable<List<AddressBean>> loadListData() {
-        return Observable.create(new Observable.OnSubscribe<List<AddressBean>>() {
-            @Override
-            public void call(Subscriber<? super List<AddressBean>> subscriber) {
-                subscriber.onNext(bean);
-                subscriber.onCompleted();
-            }
-        });
+        view = progress_layout.getEmptyViewRes(R.layout.layout_empty_address);
     }
 
     @Override
@@ -96,18 +78,38 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
         getData().addAll(result);
     }
 
+
     @Override
     protected void initListener() {
         super.initListener();
-        btn_add_address.setOnClickListener(this);
+
     }
 
+
+    @NotNull
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_add_address:
-                AddAddressActivity.Companion.launch(getMActivity(),"添加地址");
-                break;
-        }
+    public Observable<List<AddressBean>> loadListData() {
+        return ApiManager.getService().getListAddress(10, Integer.parseInt(GlobalParam.getUserId()), getPage()+"")
+                .map(new Func1<BaseResult<List<AddressBean>>, List<AddressBean>>() {
+                    @Override
+                    public List<AddressBean> call(BaseResult<List<AddressBean>> listBaseResult) {
+                        if (listBaseResult.code == 0) {
+                            bean.addAll(listBaseResult.data);
+                        }
+                        if (bean.size() == 0 || bean == null) {
+                            btn_add = view.findViewById(R.id.btn_add_address);
+                        } else {
+                            btn_add = getMRootView().findViewById(R.id.btn_add_address);
+                        }
+
+                        btn_add.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
+                            }
+                        });
+                        return bean;
+                    }
+                });
     }
 }

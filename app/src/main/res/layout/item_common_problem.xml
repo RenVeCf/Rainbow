@@ -35,7 +35,6 @@
         android:padding="@dimen/small_padding"
         android:background="@drawable/shape_comment_problem_bg"
         android:paddingTop="3dp"
-        android:text="您好,拼团失败后，系统会在1~2个工作日将已支付的款项退还到您的余额中。"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/small_text_size"
         android:visibility="gone"/>

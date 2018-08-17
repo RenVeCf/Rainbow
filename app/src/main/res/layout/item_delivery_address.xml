@@ -15,7 +15,6 @@
         android:id="@+id/tv_delivery_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="黄浦正雄"
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size"/>
     <TextView
@@ -23,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_delivery_name"
-        android:text="176****5640"
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size"
         android:layout_marginLeft="@dimen/big_padding"/>
@@ -45,7 +43,6 @@
         android:id="@+id/tv_delivery_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="上海 上海市 青浦区 华徐公路888号"
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size"
         android:layout_below="@id/tv_delivery_name"

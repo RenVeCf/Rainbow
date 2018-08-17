@@ -43,7 +43,6 @@
                         android:id="@+id/tv_nickname"
                         style="@style/TitleTextStyle"
                         android:layout_toRightOf="@id/civ_header"
-                        android:text="爱狗铲屎管"
                         android:textColor="@color/white"
                         android:textSize="@dimen/big_title_text_size"
                         android:textStyle="bold" />
@@ -127,7 +126,7 @@
                     android:id="@+id/tv_collect_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="23"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/base_text_size" />
 
@@ -152,7 +151,7 @@
                     android:id="@+id/tv_fans_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1376"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/base_text_size" />
 
@@ -177,7 +176,7 @@
                     android:id="@+id/tv_attention_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="132"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/base_text_size" />
 
