@@ -3,6 +3,7 @@ package com.ipd.taxiu.adapter
 import android.content.Context
 import android.content.Intent
 import android.opengl.Visibility
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AttentionBean
 import com.ipd.taxiu.bean.ContactBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.HttpUrl.IMAGE_URL
 import com.ipd.taxiu.presenter.MinePresenter
 import com.ipd.taxiu.ui.activity.referral.HomepageActivity
@@ -68,6 +70,9 @@ class ContactAdapter(val context: Context, private val data: List<AttentionBean>
         holder?.itemView?.tv_create_time?.text = "注册日期：" + CommonUtils.textCut(data[position].CREATETIME, " ")
         holder?.itemView?.setOnClickListener {
             val intent = Intent(context, HomepageActivity::class.java)
+            val bundle= Bundle()
+            bundle.putSerializable("AttentionBean",data[position])
+            intent.putExtras(bundle)
             context.startActivity(intent)
         }
     }

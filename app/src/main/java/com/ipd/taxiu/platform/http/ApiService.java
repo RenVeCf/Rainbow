@@ -4,10 +4,13 @@ package com.ipd.taxiu.platform.http;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.IntegralBean;
+import com.ipd.taxiu.bean.IntegralListBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.PetKindListBean;
+import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
@@ -208,7 +211,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.FRIEND_LIST)
-    Observable<BaseResult<List<UserBean>>> getFriendList(@Field("COUNT") int COUNT,
+    Observable<BaseResult<List<AttentionBean>>> getFriendList(@Field("COUNT") int COUNT,
                                                          @Field("USER_ID") String USER_ID,
                                                          @Field("PAGE") int PAGE);
 
@@ -223,5 +226,17 @@ public interface ApiService {
                                                               @Field("USER_ID") String USER_ID,
                                                               @Field("PAGE") int PAGE,
                                                               @Field("TYPE") int TYPE);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.QUESTION_LIST)
+    Observable<BaseResult<List<QuestionBean>>> questionList(@Field("COUNT") int COUNT,
+                                                            @Field("USER_ID") String USER_ID,
+                                                            @Field("PAGE") int PAGE);
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_LIST)
+    Observable<BaseResult<IntegralListBean>> scoreList(@Field("COUNT") int COUNT,
+                                                       @Field("USER_ID") String USER_ID,
+                                                       @Field("PAGE") int PAGE);
 
 }

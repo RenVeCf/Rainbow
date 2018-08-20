@@ -2,11 +2,14 @@ package com.ipd.taxiu.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.AttentionBean
 import com.ipd.taxiu.bean.FriendBean
 import com.ipd.taxiu.bean.UserBean
 import com.ipd.taxiu.imageload.ImageLoader
@@ -17,7 +20,7 @@ import kotlinx.android.synthetic.main.item_friend_list.view.*
 /**
 Created by Miss on 2018/8/13
  */
-class FriendListAdapter(val context: Context, private val data: List<UserBean>) : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
+class FriendListAdapter(val context: Context, private val data: List<AttentionBean>) : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_friend_list, parent, false))
     }
@@ -29,6 +32,9 @@ class FriendListAdapter(val context: Context, private val data: List<UserBean>) 
         holder?.itemView?.tv_create_time?.text = "注册日期：" + data[position].CREATETIME
         holder?.itemView?.setOnClickListener {
             val intent = Intent(context, HomepageActivity::class.java)
+            val bundle= Bundle()
+            bundle.putSerializable("AttentionBean",data[position])
+            intent.putExtras(bundle)
             context.startActivity(intent)
         }
     }

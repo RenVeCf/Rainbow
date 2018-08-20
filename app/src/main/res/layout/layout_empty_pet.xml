@@ -2,34 +2,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/header_my_pet"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/my_pet_bg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding"
+            android:src="@mipmap/back_white_style" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/base_padding"
+            android:text="我的爱宠"
+            android:textColor="@color/white"
+            android:textSize="@dimen/big_title_text_size" />
+
+        <TextView
+            android:id="@+id/tv_add_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_padding"
+            android:text="添加爱宠"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_text_size" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/empty_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="去添加"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/base_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/cart_product_img_height"
         android:background="@drawable/shape_upload_img_bg"
+        android:paddingBottom="3dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/cart_product_img_height"/>
+        android:text="去添加"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/base_text_size" />
+
     <ImageView
         android:id="@+id/iv_empty_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/empty_pet"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:src="@mipmap/empty_pet" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/base_text_size"
-        android:textColor="@color/text_gray"
-        android:text="您还未添加爱宠"
         android:layout_below="@id/iv_empty_pet"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/big_padding"/>
+        android:layout_marginTop="@dimen/big_padding"
+        android:text="您还未添加爱宠"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/base_text_size" />
 </RelativeLayout>

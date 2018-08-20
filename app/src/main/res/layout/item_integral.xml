@@ -10,29 +10,24 @@
 
     <TextView
         android:id="@+id/integral_title"
-        style="@style/BaseTextStyle"
-        android:text="兑换优惠券" />
+        style="@style/BaseTextStyle"/>
 
     <TextView
         android:id="@+id/integral_explain"
         style="@style/SmallTextStyle"
-        android:layout_below="@id/integral_title"
-        android:text="50元  全品类优惠券" />
+        android:layout_below="@id/integral_title" />
 
     <TextView
         android:id="@+id/integral_time"
         style="@style/SmallTextStyle"
         android:layout_below="@id/integral_explain"
-        android:text="2018.9.10 24:00"
         android:textColor="@color/text_gray" />
 
     <TextView
         android:id="@+id/integral_money"
         style="@style/BaseTextStyle"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="+1200"
-        android:textColor="@color/earning_text" />
+        android:layout_centerVertical="true" />
     <View
         style="@style/ViewLine"
         android:layout_below="@id/integral_time"

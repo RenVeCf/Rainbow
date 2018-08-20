@@ -5,7 +5,7 @@ package com.ipd.taxiu.platform.http;
  */
 public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:9386/TX/";
-    String IMAGE_URL = "http://121.199.8.244:9886/";
+    String IMAGE_URL = "http://pic.csjc19.com/";
 
     //account
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
@@ -51,4 +51,12 @@ public interface HttpUrl {
     String FRIEND_LIST="app_user/friendList.do";
     String ATTENTION="app_user/attention.do";
     String ATTENTION_LIST="app_user/attentionList.do";
+
+    //常见问题
+    String QUESTION_LIST="app_text/questionList.do";
+
+    //积分列表
+    String SCORE_LIST="app_score/getList.do";
+
+
 }

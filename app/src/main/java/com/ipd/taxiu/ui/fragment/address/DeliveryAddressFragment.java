@@ -31,8 +31,6 @@ import rx.functions.Func1;
  */
 public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, AddressBean> {
     private DeliveryAddressAdapter mAdapter;
-    private List<AddressBean> bean = new ArrayList<>();
-    private TextView btn_add;
     private View view;
 
 
@@ -55,11 +53,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
 
     @Override
     public int isNoMoreData(List<AddressBean> result) {
-        if (result == null || result.isEmpty()) {
-            return getEMPTY_DATA();
-        } else {
             return getNORMAL();
-        }
     }
 
     @Override
@@ -82,6 +76,19 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     @Override
     protected void initListener() {
         super.initListener();
+        view.findViewById(R.id.btn_add_address).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
+            }
+        });
+
+        getMRootView().findViewById(R.id.btn_add_address).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
+            }
+        });
 
     }
 
@@ -93,21 +100,10 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
                 .map(new Func1<BaseResult<List<AddressBean>>, List<AddressBean>>() {
                     @Override
                     public List<AddressBean> call(BaseResult<List<AddressBean>> listBaseResult) {
+                        List<AddressBean> bean = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             bean.addAll(listBaseResult.data);
                         }
-                        if (bean.size() == 0 || bean == null) {
-                            btn_add = view.findViewById(R.id.btn_add_address);
-                        } else {
-                            btn_add = getMRootView().findViewById(R.id.btn_add_address);
-                        }
-
-                        btn_add.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
-                            }
-                        });
                         return bean;
                     }
                 });

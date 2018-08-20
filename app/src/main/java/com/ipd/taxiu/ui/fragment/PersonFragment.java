@@ -278,9 +278,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             if (data.TAG != "") {
                 tv_signature.setText(data.TAG);
             }
-            tv_collect_num.setText(data.ATTENTION_NUM+"");
+            tv_attention_num.setText(data.ATTENTION_NUM+"");
             if (data.WECHAT != "") {
-                tv_attention_num.setText(data.WECHAT);
+                tv_collect_num.setText(data.WECHAT);
             }
             tv_fans_num.setText(data.FANS_NUM+"");
         }

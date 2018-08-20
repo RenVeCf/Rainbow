@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.FriendListAdapter;
+import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.platform.global.GlobalParam;
@@ -23,7 +24,7 @@ import rx.functions.Func1;
 /**
  * Created by Miss on 2018/8/6
  */
-public class FriendListFragment extends ListFragment<List<UserBean>,UserBean> {
+public class FriendListFragment extends ListFragment<List<AttentionBean>, AttentionBean> {
     private FriendListAdapter mAdapter = null;
 
     public static FriendListFragment newInstance() {
@@ -36,14 +37,15 @@ public class FriendListFragment extends ListFragment<List<UserBean>,UserBean> {
         super.initView(bundle);
         progress_layout.setEmptyViewRes(R.layout.layout_empty_friends);
     }
+
     @NotNull
     @Override
-    public Observable<List<UserBean>> loadListData() {
-        return ApiManager.getService().getFriendList(10,"1",getPage())
-                .map(new Func1<BaseResult<List<UserBean>>, List<UserBean>>() {
+    public Observable<List<AttentionBean>> loadListData() {
+        return ApiManager.getService().getFriendList(1, "1", getPage())
+                .map(new Func1<BaseResult<List<AttentionBean>>, List<AttentionBean>>() {
                     @Override
-                    public List<UserBean> call(BaseResult<List<UserBean>> listBaseResult) {
-                        List<UserBean> list = new ArrayList<>();
+                    public List<AttentionBean> call(BaseResult<List<AttentionBean>> listBaseResult) {
+                        List<AttentionBean> list = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             list.addAll(listBaseResult.data);
                         }
@@ -53,12 +55,8 @@ public class FriendListFragment extends ListFragment<List<UserBean>,UserBean> {
     }
 
     @Override
-    public int isNoMoreData(List<UserBean> result) {
-        if (result == null || result.isEmpty()) {
-            return getEMPTY_DATA();
-        } else {
-            return getNORMAL();
-        }
+    public int isNoMoreData(List<AttentionBean> result) {
+        return getNORMAL();
     }
 
     @Override
@@ -73,7 +71,7 @@ public class FriendListFragment extends ListFragment<List<UserBean>,UserBean> {
     }
 
     @Override
-    public void addData(boolean isRefresh, List<UserBean> result) {
+    public void addData(boolean isRefresh, List<AttentionBean> result) {
         getData().addAll(result);
     }
 }

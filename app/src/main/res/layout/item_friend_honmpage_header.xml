@@ -22,7 +22,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/base_padding"
-                    android:text="我的名字叫小七"
                     android:textColor="@color/black"
                     android:textSize="@dimen/base_text_size"
                     android:textStyle="bold" />
@@ -119,6 +118,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/add_attention"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ll_individual_resume"
@@ -131,6 +131,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:paddingTop="6dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar">
@@ -145,6 +146,69 @@
                         android:layout_marginLeft="4dp"
                         android:text="关注"
                         android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/done_attention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_individual_resume"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="@dimen/base_padding"
+                    android:layout_marginTop="@dimen/base_padding"
+                    android:background="@drawable/shape_order_btn_cancel"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="6dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/done_attention" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/small_text_size"
+                        android:layout_marginLeft="4dp"
+                        android:text="已关注"
+                        android:textColor="@color/text_gray" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/attention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_individual_resume"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="@dimen/base_padding"
+                    android:layout_marginTop="@dimen/base_padding"
+                    android:background="@drawable/shape_order_btn_cancel"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="6dp"
+                    app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/small_text_size"
+                        android:layout_marginLeft="4dp"
+                        android:text="相互关注"
+                        android:textColor="@color/text_gray" />
 
                 </LinearLayout>
             </RelativeLayout>

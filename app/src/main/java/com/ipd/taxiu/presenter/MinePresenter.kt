@@ -71,7 +71,11 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         if (mView !is IAttentionView) return
         val view = mView as IAttentionView
 
-        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
+        if (attenId == 0){
+            view.onFail("关注ID不能为空!")
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,"1"),
                 object : Response<BaseResult<AttentionBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<AttentionBean>) {
                         if (result.code == 0) {

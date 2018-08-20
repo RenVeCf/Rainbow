@@ -37,30 +37,29 @@ class MyPetFragment : ListFragment<List<PetBean>, PetBean>() {
         progress_layout.setEmptyViewRes(R.layout.layout_empty_pet)
     }
 
+    override fun initListener() {
+        super.initListener()
+        mRootView?.findViewById<ImageView>(R.id.iv_back)!!.setOnClickListener { mActivity.finish()}
+        mRootView?.findViewById<TextView>(R.id.tv_add_pet)!!.setOnClickListener { startActivity() }
+
+        var view:View = progress_layout.getEmptyViewRes(R.layout.layout_empty_pet)
+        view.findViewById<TextView>(R.id.tv_add_pet).setOnClickListener { startActivity() }
+        view.findViewById<TextView>(R.id.empty_add).setOnClickListener { startActivity() }
+        view.findViewById<ImageView>(R.id.iv_back).setOnClickListener { mActivity.finish() }
+    }
+
     override fun loadListData(): Observable<List<PetBean>> {
         return ApiManager.getService().petGetList(10, page, GlobalParam.getUserId())
                 .map {
                     val list = ArrayList<PetBean>()
                     if (it.code == 0) {
                         list.addAll(it.data)
-                        mRootView?.findViewById<ImageView>(R.id.iv_back)!!.setOnClickListener { mActivity.finish()}
-                        mRootView?.findViewById<TextView>(R.id.tv_add_pet)!!.setOnClickListener { startActivity() }
-                    }else{
-                        progress_layout.getEmptyViewRes(R.layout.layout_empty_pet).findViewById<TextView>(R.id.empty_add).setOnClickListener { startActivity() }
-                        progress_layout.getEmptyViewRes(R.layout.layout_empty_pet).findViewById<ImageView>(R.id.iv_back).setOnClickListener { mActivity.finish() }
-                        progress_layout.getEmptyViewRes(R.layout.layout_empty_pet).findViewById<TextView>(R.id.tv_add_pet).setOnClickListener { startActivity() }
                     }
                     list
                 }
     }
 
-    override fun isNoMoreData(result: List<PetBean>): Int {
-        return if (result == null || result.isEmpty()) {
-            EMPTY_DATA
-        } else {
-            NORMAL
-        }
-    }
+    override fun isNoMoreData(result: List<PetBean>): Int = NORMAL
 
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {

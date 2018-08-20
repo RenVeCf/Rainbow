@@ -140,6 +140,31 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_attention_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_attention_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/base_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attention"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/base_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_my_fans"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -164,30 +189,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_attention_num"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_attention_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/base_text_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/attention"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/base_text_size" />
-
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

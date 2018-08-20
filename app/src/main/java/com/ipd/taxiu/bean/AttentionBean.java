@@ -1,5 +1,7 @@
 package com.ipd.taxiu.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Miss on 2018/8/18
  * <p>
@@ -11,7 +13,7 @@ package com.ipd.taxiu.bean;
  * "TAG": "标签2",
  * "IS_ATTEN": 2  关注状态 0未关注  1已关注  2相互关注
  */
-public class AttentionBean {
+public class AttentionBean implements Serializable{
     public int MY_USER_ID;
     public int USER_ID;
     public String CREATETIME;

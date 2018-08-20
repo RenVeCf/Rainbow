@@ -8,6 +8,8 @@
         android:id="@+id/rl_integral_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@mipmap/integral_bg"
         android:gravity="center">
 
@@ -29,6 +31,7 @@
             android:layout_marginTop="@dimen/base_padding"
             android:textColor="@color/white"
             android:textSize="@dimen/big_title_text_size"
+            android:text="0"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -64,40 +67,6 @@
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginRight="@dimen/base_padding"
         android:background="@color/full_screen_overlay" />
-
-    <!--  <android.support.v7.widget.RecyclerView
-          android:id="@+id/recycler_view"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_above="@id/btn_exchange"
-          android:layout_below="@id/line" />-->
-
-    <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
-        android:id="@+id/swipe_load_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btn_exchange"
-        android:layout_below="@id/line">
-
-        <include
-            android:id="@+id/swipe_refresh_header"
-            layout="@layout/layout_refresh_header"></include>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/swipe_target"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/small_padding"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-        <include
-            android:id="@+id/swipe_load_more_footer"
-            layout="@layout/layout_load_footer"></include>
-
-    </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
-
 
     <TextView
         android:id="@+id/btn_exchange"

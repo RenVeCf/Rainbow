@@ -10,6 +10,8 @@ import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ContactBean;
 import com.ipd.taxiu.bean.ContactListBean;
+import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.ListFragment;
@@ -27,7 +29,7 @@ import rx.functions.Func1;
  * Created by Miss on 2018/7/19
  * 社交
  */
-public class SocicalContactFragment extends ListFragment<List<AttentionBean>, AttentionBean> implements MinePresenter.IAttentionView{
+public class SocicalContactFragment extends ListFragment<List<AttentionBean>, AttentionBean> implements MinePresenter.IAttentionView {
     private ContactAdapter mAdapter = null;
 
     private MinePresenter mPresenter;
@@ -35,7 +37,7 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     public static SocicalContactFragment newInstance(int TYPE) {
         SocicalContactFragment fragment = new SocicalContactFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt( "TYPE", TYPE);
+        bundle.putInt("TYPE", TYPE);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -51,7 +53,7 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     protected void onViewAttach() {
         super.onViewAttach();
         mPresenter = new MinePresenter();
-        mPresenter.attachView(getContext(),this);
+        mPresenter.attachView(getContext(), this);
     }
 
     @Override
@@ -64,8 +66,8 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     @Override
     public Observable<List<AttentionBean>> loadListData() {
         Bundle bundle = getArguments();
-        final  int type = bundle.getInt("TYPE");
-        return ApiManager.getService().attentionList(10, "1", getPage(), type)
+        final int type = bundle.getInt("TYPE");
+        return ApiManager.getService().attentionList(10, GlobalParam.getUserId(), getPage(), type)
                 .map(new Func1<BaseResult<List<AttentionBean>>, List<AttentionBean>>() {
                     @Override
                     public List<AttentionBean> call(BaseResult<List<AttentionBean>> listBaseResult) {
@@ -80,17 +82,13 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
 
     @Override
     public int isNoMoreData(List<AttentionBean> result) {
-        if (result == null || result.isEmpty()) {
-            return getEMPTY_DATA();
-        } else {
-            return getNORMAL();
-        }
+        return getNORMAL();
     }
 
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new ContactAdapter(getContext(), getData(),mPresenter);
+            mAdapter = new ContactAdapter(getContext(), getData(), mPresenter);
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {
@@ -105,6 +103,7 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
 
     @Override
     public void onSuccess() {
+
     }
 
     @Override

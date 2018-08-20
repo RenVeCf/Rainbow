@@ -29,11 +29,11 @@
     </RelativeLayout>
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/civ_header"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:src="@mipmap/my_header" />
+        android:layout_marginTop="22.5dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/swipe_target"
@@ -41,8 +41,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rl_layout_header"
         android:clipToPadding="false"
-        android:paddingTop="@dimen/small_padding"
         android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </RelativeLayout>
