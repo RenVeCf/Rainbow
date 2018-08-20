@@ -89,7 +89,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     @NotNull
     @Override
     public Observable<List<AddressBean>> loadListData() {
-        return ApiManager.getService().getListAddress(10, Integer.parseInt(GlobalParam.getUserId()), getPage()+"")
+        return ApiManager.getService().getListAddress(10, GlobalParam.getUserId(), getPage())
                 .map(new Func1<BaseResult<List<AddressBean>>, List<AddressBean>>() {
                     @Override
                     public List<AddressBean> call(BaseResult<List<AddressBean>> listBaseResult) {

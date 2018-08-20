@@ -102,7 +102,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     protected void loadData() {
-        mPresenter.getUserInfo(Integer.parseInt(GlobalParam.getUserId()));
+        mPresenter.getUserInfo();
     }
 
     @Override

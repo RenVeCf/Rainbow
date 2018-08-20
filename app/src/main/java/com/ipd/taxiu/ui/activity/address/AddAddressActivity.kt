@@ -97,7 +97,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     override fun initView(bundle: Bundle?) {
         initToolbar()
         if (addressType == 2){
-            mPresenter?.getAddressInfo(GlobalParam.getUserId().toInt(), addressId)
+            mPresenter?.getAddressInfo(GlobalParam.getUserId(), addressId)
         }
     }
 
@@ -116,7 +116,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     }
 
     override fun loadData() {
-        mPresenterCity?.getCityList("0", GlobalParam.getUserId().toInt())
+        mPresenterCity?.getCityList("0", GlobalParam.getUserId())
         getStatus()
     }
 
@@ -144,10 +144,10 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
             val userId = GlobalParam.getUserId()
             if (addressType == 1) {
                 getStatus()
-                mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId.toInt())
+                mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId)
             } else if (addressType == 2){
                 getStatus()
-                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel.toLong(),userId.toInt(),addressId)
+                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel.toLong(),userId,addressId)
                 finish()
             }
         }
@@ -172,7 +172,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         builder.setTitle("确认要删除该收货地址吗？")
         builder.setMessage("删除后不可恢复，请谨慎操作")
         builder.setCommit("确认删除") { builder ->
-            mPresenterDelete?.deleteAddress(GlobalParam.getUserId().toInt(),addressId)
+            mPresenterDelete?.deleteAddress(GlobalParam.getUserId(),addressId)
             builder.dialog.dismiss()
             finish()
         }

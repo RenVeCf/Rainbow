@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.PetBean;
+import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.MessageDialog;
 
@@ -15,13 +20,37 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Miss on 2018/7/27
  * 宠物资料
  */
-public class PetInformationActivity extends BaseUIActivity implements View.OnClickListener{
+public class PetInformationActivity extends BaseUIActivity implements View.OnClickListener,PetPresenter.IPetInfoView,PetPresenter.IPetDeleteView{
     private TextView btn_delete_pet;
+    private PetPresenter mPresenter;
+    private int petId,petKindId;
+
+    @BindView(R.id.civ_header)
+    CircleImageView civ_header;
+
+    @BindView(R.id.tv_pet_name)
+    TextView tv_pet_name;
+
+    @BindView(R.id.tv_pet_kind)
+    TextView tv_pet_kind;
+
+    @BindView(R.id.tv_pet_birthday)
+    TextView tv_pet_birthday;
+
+    @BindView(R.id.tv_pet_sex)
+    TextView tv_pet_sex;
+
+    @BindView(R.id.tv_pet_status)
+    TextView tv_pet_status;
+
+    @BindView(R.id.icon_sex)
+    ImageView icon_sex;
     @Override
     protected int getContentLayout() {
         return R.layout.activity_pet_information;
@@ -29,13 +58,30 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
+        ButterKnife.bind(this);
         initToolbar();
+        petId = getIntent().getIntExtra("PET_ID",0);
+        petKindId = getIntent().getIntExtra("PET_TYPE_ID",0);
         btn_delete_pet = findViewById(R.id.btn_delete_pet);
     }
 
     @Override
-    protected void loadData() {
+    protected void onViewAttach() {
+        super.onViewAttach();
+        mPresenter = new PetPresenter();
+        mPresenter.attachView(this,this);
+    }
 
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        mPresenter.detachView();
+        mPresenter = null;
+    }
+
+    @Override
+    protected void loadData() {
+        mPresenter.petGetInfo(petId);
     }
 
     @Override
@@ -57,10 +103,19 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.pet_edit){
             Intent intent = new Intent(this,AddPetActivity.class);
+            intent.putExtra("petWay",2);
+            intent.putExtra("PET_ID",petId);
+            intent.putExtra("PET_TYPE_ID",petKindId);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -82,7 +137,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
         builder.setCommit("确认删除", new MessageDialog.OnClickListener() {
             @Override
             public void onClick(MessageDialog.Builder builder) {
-                toastShow("删除成功");
+               mPresenter.petDelete(petId);
                 builder.getDialog().dismiss();
                 finish();
             }
@@ -94,5 +149,53 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
             }
         });
         builder.getDialog().show();
+    }
+
+    @Override
+    public void getInfoSuccess(@NotNull PetBean data) {
+        ImageLoader.loadImgFromLocal(this,data.LOGO,civ_header);
+        tv_pet_name.setText(data.NICKNAME);
+        tv_pet_kind.setText(data.PET_TYPE_NAME);
+        tv_pet_birthday.setText(data.BIRTHDAY);
+        int sex = data.GENDER;
+        if (sex == 1){
+            tv_pet_sex.setText("男孩子");
+            icon_sex.setImageResource(R.mipmap.icon_pet_boy);
+        }
+        if (sex == 2){
+            tv_pet_sex.setText("女孩子");
+            icon_sex.setImageResource(R.mipmap.icon_pet_girl);
+        }
+        int status = data.STATUS;
+        switch (status){
+            case 1:
+                tv_pet_status.setText("正常");
+                break;
+            case 2:
+                tv_pet_status.setText("寻找好心人领养");
+                break;
+            case 3:
+                tv_pet_status.setText("寻求配偶");
+                break;
+            case 4:
+                tv_pet_status.setText("走失了");
+                break;
+        }
+    }
+
+    @Override
+    public void getInfoFail(@NotNull String errMsg) {
+        toastShow(errMsg);
+        civ_header.setImageResource(R.mipmap.mine_default_header);
+    }
+
+    @Override
+    public void deleteSuccess() {
+        toastShow("删除成功");
+    }
+
+    @Override
+    public void deleteFail(@NotNull String errMsg) {
+        toastShow(errMsg);
     }
 }

@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.AttentionBean;
+import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.fragment.collect.CollectClassRoomListFragment;
 import com.ipd.taxiu.ui.fragment.collect.CollectStoreFragment;
@@ -24,7 +26,8 @@ import org.jetbrains.annotations.Nullable;
  * 我的社交
  */
 public class SocialContactActivity extends BaseUIActivity {
-    private String[] titles = {"关注","粉丝"};
+    // TYPE 1关注 2粉丝
+    private String[] titles = {"关注", "粉丝"};
     private ViewPager viewPager;
     private SlidingTabLayout tab_layout;
 
@@ -45,11 +48,10 @@ public class SocialContactActivity extends BaseUIActivity {
         MyCollectAdapter adapter = new MyCollectAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tab_layout.setViewPager(viewPager, titles);
-        String contact = getIntent().getStringExtra("contact");
-        if (contact.equals("fans")){
+        int contact = getIntent().getIntExtra("TYPE",0);
+        if (contact == 2) {
             tab_layout.setCurrentTab(1);
-        }
-        if (contact.equals("attention")){
+        }else {
             tab_layout.setCurrentTab(0);
         }
     }
@@ -65,7 +67,7 @@ public class SocialContactActivity extends BaseUIActivity {
         return "我的社交";
     }
 
-    class MyCollectAdapter extends FragmentPagerAdapter{
+    class MyCollectAdapter extends FragmentPagerAdapter {
 
         public MyCollectAdapter(FragmentManager fm) {
             super(fm);
@@ -73,7 +75,7 @@ public class SocialContactActivity extends BaseUIActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return SocicalContactFragment.newInstance(position);
+            return SocicalContactFragment.newInstance(position+1);
         }
 
         @Override

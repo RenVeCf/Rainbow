@@ -16,7 +16,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
         mModel = BasicModel()
     }
 
-    fun addAddress(address: String, city: String, dist: String, prov: String, recipient: String, status: Int, tel: String, user_id: Int) {
+    fun addAddress(address: String, city: String, dist: String, prov: String, recipient: String, status: Int, tel: String, user_id: String) {
         if (mView !is IAddAddressView) return
         val view = mView as IAddAddressView
         if (recipient == "") {
@@ -48,7 +48,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun getCityList(regionId: String, userId: Int) {
+    fun getCityList(regionId: String, userId: String) {
         if (mView !is ICityView) return
         val view = mView as ICityView
 
@@ -64,7 +64,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun getAddressInfo(userId: Int, addressId: String) {
+    fun getAddressInfo(userId: String, addressId: String) {
         if (mView !is IAddressInfoView) return
         val view = mView as IAddressInfoView
 
@@ -80,7 +80,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun deleteAddress(userId: Int, addressId: String) {
+    fun deleteAddress(userId: String, addressId: String) {
         if (mView !is IAddressDeleteView) return
         val view = mView as IAddressDeleteView
 
@@ -97,7 +97,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     fun getAddressUpdate(address:String,city:String,dist:String,prov:String,
-                       recipient:String,status:Int,tel:Long,userId: Int, addressId: String) {
+                       recipient:String,status:Int,tel:Long,userId: String, addressId: String) {
         if (mView !is IAddressUpdateView) return
         val view = mView as IAddressUpdateView
 

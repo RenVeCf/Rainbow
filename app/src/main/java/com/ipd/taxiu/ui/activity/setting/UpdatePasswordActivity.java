@@ -99,7 +99,7 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
                     tips.setText("两次密码不一致");
                     return;
                 }
-                mPresenter.updatePwd(Integer.parseInt(GlobalParam.getUserId()),newPassword,originalPassword);
+                mPresenter.updatePwd(newPassword,originalPassword);
                 break;
 
         }

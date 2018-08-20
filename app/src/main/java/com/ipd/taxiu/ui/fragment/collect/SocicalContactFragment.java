@@ -1,39 +1,57 @@
 package com.ipd.taxiu.ui.fragment.collect;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.adapter.CollectStoreAdapter;
 import com.ipd.taxiu.adapter.ContactAdapter;
-import com.ipd.taxiu.bean.CollectStoreBean;
-import com.ipd.taxiu.bean.CollectStoreListBean;
+import com.ipd.taxiu.bean.AttentionBean;
+import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ContactBean;
 import com.ipd.taxiu.bean.ContactListBean;
+import com.ipd.taxiu.platform.http.ApiManager;
+import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.ListFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Miss on 2018/7/19
  * 社交
  */
-public class SocicalContactFragment extends ListFragment<ContactListBean, ContactBean> {
+public class SocicalContactFragment extends ListFragment<List<AttentionBean>, AttentionBean> implements MinePresenter.IAttentionView{
     private ContactAdapter mAdapter = null;
 
-    public static SocicalContactFragment newInstance(int categoryId) {
+    private MinePresenter mPresenter;
+
+    public static SocicalContactFragment newInstance(int TYPE) {
         SocicalContactFragment fragment = new SocicalContactFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("categoryId", categoryId);
+        bundle.putInt( "TYPE", TYPE);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        mPresenter.detachView();
+        mPresenter = null;
+    }
+
+    @Override
+    protected void onViewAttach() {
+        super.onViewAttach();
+        mPresenter = new MinePresenter();
+        mPresenter.attachView(getContext(),this);
     }
 
     @Override
@@ -44,36 +62,25 @@ public class SocicalContactFragment extends ListFragment<ContactListBean, Contac
 
     @NotNull
     @Override
-    public Observable<ContactListBean> loadListData() {
+    public Observable<List<AttentionBean>> loadListData() {
         Bundle bundle = getArguments();
-        final int categoryId = bundle.getInt("categoryId");
-        return Observable.create(new Observable.OnSubscribe<ContactListBean>() {
-            @Override
-            public void call(Subscriber<? super ContactListBean> subscriber) {
-                ContactListBean bean = new ContactListBean();
-                bean.list = new ArrayList<>();
-                if (categoryId == 0) {
-                    for (int i = 0; i < 10; i++) {
-                        bean.list.add(new ContactBean(1));
-                    }
-                }else {
-                    for (int i = 0; i < 10; i++) {
-                        if (i==2) {
-                            bean.list.add(new ContactBean(3));
-                        }else {
-                            bean.list.add(new ContactBean(2));
+        final  int type = bundle.getInt("TYPE");
+        return ApiManager.getService().attentionList(10, "1", getPage(), type)
+                .map(new Func1<BaseResult<List<AttentionBean>>, List<AttentionBean>>() {
+                    @Override
+                    public List<AttentionBean> call(BaseResult<List<AttentionBean>> listBaseResult) {
+                        List<AttentionBean> fans = new ArrayList<>();
+                        if (listBaseResult.code == 0) {
+                            fans.addAll(listBaseResult.data);
                         }
+                        return fans;
                     }
-                }
-                subscriber.onNext(bean);
-                subscriber.onCompleted();
-            }
-        });
+                });
     }
 
     @Override
-    public int isNoMoreData(ContactListBean result) {
-        if (result.list == null || result.list.isEmpty()) {
+    public int isNoMoreData(List<AttentionBean> result) {
+        if (result == null || result.isEmpty()) {
             return getEMPTY_DATA();
         } else {
             return getNORMAL();
@@ -83,7 +90,7 @@ public class SocicalContactFragment extends ListFragment<ContactListBean, Contac
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new ContactAdapter(getContext(), getData());
+            mAdapter = new ContactAdapter(getContext(), getData(),mPresenter);
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {
@@ -92,7 +99,16 @@ public class SocicalContactFragment extends ListFragment<ContactListBean, Contac
     }
 
     @Override
-    public void addData(boolean isRefresh, ContactListBean result) {
-        getData().addAll(result.list);
+    public void addData(boolean isRefresh, List<AttentionBean> result) {
+        getData().addAll(result);
+    }
+
+    @Override
+    public void onSuccess() {
+    }
+
+    @Override
+    public void onFail(@NotNull String errMsg) {
+        toastShow(errMsg);
     }
 }

@@ -209,10 +209,31 @@ public class CommonUtils {
     }
 
     //复制运单号
-   public static void copyText(Context context,TextView textView){
-       ClipboardManager cmb = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-       cmb.setText(textView.getText().toString());
-       new ToastCommom().show(context,"运单号已复制");
-   }
+    public static void copyText(Context context, TextView textView) {
+        ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        cmb.setText(textView.getText().toString());
+        new ToastCommom().show(context, "运单号已复制");
+    }
+
+    /**
+     * 去掉某个字符后面的所有字符
+     *
+     * @param text
+     * @param character
+     * @return
+     */
+    public static String textCut(String text, String character) {
+        if (text != "" && text != null) {
+            int i;
+            String newStr = text;
+            if (text.indexOf(character) != -1) {
+                i = text.indexOf(character);
+                newStr = text.substring(0, i);
+            }
+            return newStr;
+        } else {
+            return text;
+        }
+    }
 
 }

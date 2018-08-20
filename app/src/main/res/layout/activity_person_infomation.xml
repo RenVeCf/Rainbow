@@ -28,8 +28,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="@dimen/base_padding"
-            android:layout_toLeftOf="@id/iv_choose_header"
-            android:src="@mipmap/mine_default_header" />
+            android:layout_toLeftOf="@id/iv_choose_header"/>
     </RelativeLayout>
 
     <View

@@ -14,12 +14,10 @@
             android:id="@+id/civ_header"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@mipmap/my_pet_header"
             android:layout_centerHorizontal="true"/>
         <TextView
             android:id="@+id/tv_pet_name"
             style="@style/BaseTextStyle"
-            android:text="我的名字叫小七"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/civ_header"
             android:layout_marginTop="@dimen/base_padding"/>
@@ -49,8 +47,8 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_pet_kind"/>
         <TextView
+            android:id="@+id/tv_pet_kind"
             style="@style/BaseTextStyle"
-            android:text="汪星人-贵宾犬"
             android:layout_toRightOf="@id/icon_kind"
             android:layout_marginLeft="@dimen/base_padding"/>
     </RelativeLayout>
@@ -79,8 +77,8 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_pet_birthday"/>
         <TextView
+            android:id="@+id/tv_pet_birthday"
             style="@style/BaseTextStyle"
-            android:text="2018年1月23日"
             android:layout_toRightOf="@id/icon_birthday"
             android:layout_marginLeft="@dimen/base_padding"/>
     </RelativeLayout>
@@ -109,8 +107,8 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_pet_boy"/>
         <TextView
+            android:id="@+id/tv_pet_sex"
             style="@style/BaseTextStyle"
-            android:text="男孩子"
             android:layout_toRightOf="@id/icon_sex"
             android:layout_marginLeft="@dimen/base_padding"/>
     </RelativeLayout>
@@ -139,8 +137,8 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_marital_status"/>
         <TextView
+            android:id="@+id/tv_pet_status"
             style="@style/BaseTextStyle"
-            android:text="寻求配偶"
             android:layout_toRightOf="@id/icon_status"
             android:layout_marginLeft="@dimen/base_padding"/>
     </RelativeLayout>

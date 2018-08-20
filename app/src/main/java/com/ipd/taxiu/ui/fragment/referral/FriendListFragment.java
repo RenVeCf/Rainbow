@@ -5,22 +5,25 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.FriendListAdapter;
-import com.ipd.taxiu.bean.FriendBean;
-import com.ipd.taxiu.bean.FriendListBean;
+import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.ui.ListFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Miss on 2018/8/6
  */
-public class FriendListFragment extends ListFragment<FriendListBean,FriendBean> {
+public class FriendListFragment extends ListFragment<List<UserBean>,UserBean> {
     private FriendListAdapter mAdapter = null;
 
     public static FriendListFragment newInstance() {
@@ -35,24 +38,23 @@ public class FriendListFragment extends ListFragment<FriendListBean,FriendBean> 
     }
     @NotNull
     @Override
-    public Observable<FriendListBean> loadListData() {
-        return Observable.create(new Observable.OnSubscribe<FriendListBean>() {
-            @Override
-            public void call(Subscriber<? super FriendListBean> subscriber) {
-                FriendListBean bean = new FriendListBean();
-                bean.list = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
-                    bean.list.add(new FriendBean());
-                }
-                subscriber.onNext(bean);
-                subscriber.onCompleted();
-            }
-        });
+    public Observable<List<UserBean>> loadListData() {
+        return ApiManager.getService().getFriendList(10,"1",getPage())
+                .map(new Func1<BaseResult<List<UserBean>>, List<UserBean>>() {
+                    @Override
+                    public List<UserBean> call(BaseResult<List<UserBean>> listBaseResult) {
+                        List<UserBean> list = new ArrayList<>();
+                        if (listBaseResult.code == 0) {
+                            list.addAll(listBaseResult.data);
+                        }
+                        return list;
+                    }
+                });
     }
 
     @Override
-    public int isNoMoreData(FriendListBean result) {
-        if (result.list == null || result.list.isEmpty()) {
+    public int isNoMoreData(List<UserBean> result) {
+        if (result == null || result.isEmpty()) {
             return getEMPTY_DATA();
         } else {
             return getNORMAL();
@@ -71,7 +73,7 @@ public class FriendListFragment extends ListFragment<FriendListBean,FriendBean> 
     }
 
     @Override
-    public void addData(boolean isRefresh, FriendListBean result) {
-        getData().addAll(result.list);
+    public void addData(boolean isRefresh, List<UserBean> result) {
+        getData().addAll(result);
     }
 }

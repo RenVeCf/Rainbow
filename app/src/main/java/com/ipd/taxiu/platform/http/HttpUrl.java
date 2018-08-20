@@ -19,6 +19,11 @@ public interface HttpUrl {
     //pet
     String PET_STAGE = "app_user/updateStep.do";
     String PET_KIND_LIST = "app_pet/typeList.do";
+    String PET_GET_LIST = "app_pet/getList.do";
+    String PET_GET_INFO = "app_pet/getInfo.do";
+    String PET_UPDATE= "app_pet/update.do";
+    String PET_ADD= "app_pet/add.do";
+    String PET_DELETE= "app_pet/delete.do";
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
@@ -43,4 +48,7 @@ public interface HttpUrl {
     String GET_USER_INFO="app_user/getInfo.do";
     String UPDATE_PWD="app_user/updatePwd.do";
     String USER_UPDATE="app_user/update.do";
+    String FRIEND_LIST="app_user/friendList.do";
+    String ATTENTION="app_user/attention.do";
+    String ATTENTION_LIST="app_user/attentionList.do";
 }

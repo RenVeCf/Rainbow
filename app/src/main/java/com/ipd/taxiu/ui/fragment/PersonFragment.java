@@ -93,7 +93,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void loadData() {
-        mPresenter.getUserInfo(Integer.parseInt(GlobalParam.getUserId()));
+        mPresenter.getUserInfo();
     }
 
     @Override
@@ -191,12 +191,12 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 break;
             case R.id.ll_my_fans:
                 intent1 = new Intent(getActivity(), SocialContactActivity.class);
-                intent1.putExtra("contact", "fans");
+                intent1.putExtra("TYPE", 2);
                 startActivity(intent1);
                 break;
             case R.id.ll_attention_num:
                 intent1 = new Intent(getActivity(), SocialContactActivity.class);
-                intent1.putExtra("contact", "attention");
+                intent1.putExtra("TYPE", 1);
                 startActivity(intent1);
                 break;
             case R.id.rl_my_group:

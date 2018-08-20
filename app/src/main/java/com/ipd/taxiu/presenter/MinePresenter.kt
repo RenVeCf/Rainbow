@@ -1,9 +1,8 @@
 package com.ipd.taxiu.presenter
 
 import android.view.View
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.UpdatePwdBean
-import com.ipd.taxiu.bean.UserBean
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -17,11 +16,11 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         mModel = BasicModel()
     }
 
-    fun getUserInfo(userId: Int) {
+    fun getUserInfo() {
         if (mView !is IUserInfoView) return
         val view = mView as IUserInfoView
 
-        mModel?.getNormalRequestData(ApiManager.getService().getUserInfo(userId),
+        mModel?.getNormalRequestData(ApiManager.getService().getUserInfo(GlobalParam.getUserId()),
                 object : Response<BaseResult<UserBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<UserBean>) {
                         if (result.code == 0) {
@@ -33,11 +32,11 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun updatePwd(userId: Int, newPassword: String, oldPassword: String) {
+    fun updatePwd(newPassword: String, oldPassword: String) {
         if (mView !is IUpdatePwdView) return
         val view = mView as IUpdatePwdView
 
-        mModel?.getNormalRequestData(ApiManager.getService().updatePwd(userId, newPassword, oldPassword),
+        mModel?.getNormalRequestData(ApiManager.getService().updatePwd(GlobalParam.getUserId(), newPassword, oldPassword),
                 object : Response<BaseResult<UpdatePwdBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<UpdatePwdBean>) {
                         if (result.code == 0) {
@@ -55,13 +54,30 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         val view = mView as IUpdateUserView
 
         mModel?.getNormalRequestData(ApiManager.getService().updateUser(birthday, gender, logo, nickname
-                , pet_time, tag, username, GlobalParam.getUserId().toInt()),
+                , pet_time, tag, username, GlobalParam.getUserId()),
                 object : Response<BaseResult<UpdatePwdBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<UpdatePwdBean>) {
                         if (result.code == 0) {
                             view.updateUserSuccess()
                         } else {
                             view.updateUserFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    //关注或取消关注
+    fun attention(attenId:Int) {
+        if (mView !is IAttentionView) return
+        val view = mView as IAttentionView
+
+        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
+                object : Response<BaseResult<AttentionBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<AttentionBean>) {
+                        if (result.code == 0) {
+                            view.onSuccess()
+                        } else {
+                            view.onFail(result.code.toString())
                         }
                     }
                 })
@@ -80,5 +96,10 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     interface IUpdateUserView {
         fun updateUserSuccess()
         fun updateUserFail(errMsg: String)
+    }
+
+    interface IAttentionView {
+        fun onSuccess()
+        fun onFail(errMsg: String)
     }
 }

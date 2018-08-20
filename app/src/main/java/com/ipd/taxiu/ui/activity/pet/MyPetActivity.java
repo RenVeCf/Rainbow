@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.MyPetAdapter;
+import com.ipd.taxiu.bean.PetBean;
+import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseActivity;
+import com.ipd.taxiu.ui.fragment.pet.MyPetFragment;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -21,81 +25,31 @@ import java.util.List;
  * Created by Miss on 2018/7/26
  * 我的宠物
  */
-public class MyPetActivity extends BaseActivity implements View.OnClickListener{
-    private RecyclerView recycler_view;
-    private List<String> data = new ArrayList<>();
-    private MyPetAdapter mAdapter;
-
-    private ImageView iv_back;
-    private TextView tv_add_pet,empty_add;
+public class MyPetActivity extends BaseActivity{
 
     @Override
     protected int getBaseLayout() {
-        initData();
-        if (data.size() == 0) {
-            return R.layout.layout_empty_pet;
-        } else
-            return R.layout.activity_my_pet;
+        return R.layout.activity_container;
     }
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        recycler_view = findViewById(R.id.recycler_view);
-        iv_back = findViewById(R.id.iv_back);
-        tv_add_pet = findViewById(R.id.tv_add_pet);
+    }
 
-        if (data.size() != 0) {
-        }else {
-            empty_add = findViewById(R.id.empty_add);
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
     protected void loadData() {
-        if (data.size() != 0) {
-            mAdapter = new MyPetAdapter(this, data);
-            recycler_view.setLayoutManager(new LinearLayoutManager(this));
-            recycler_view.setAdapter(mAdapter);
-        }
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, MyPetFragment.Companion.newInstance()).commit();
     }
 
     @Override
     protected void initListener() {
-        iv_back.setOnClickListener(this);
-        tv_add_pet.setOnClickListener(this);
-        if (data.size() != 0){
-
-        }else {
-            empty_add.setOnClickListener(this);
-        }
 
     }
 
-    private void initData() {
-        for (int i = 0; i < 2; i++) {
-            data.add("");
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.tv_add_pet:
-                startActivity();
-                break;
-            case R.id.empty_add:
-                startActivity();
-                break;
-        }
-    }
-
-    public void startActivity() {
-        Intent intent = new Intent(this,AddPetActivity.class);
-        intent.putExtra("petWay","AddPet");
-        startActivity(intent);
-    }
 }

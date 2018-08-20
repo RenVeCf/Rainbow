@@ -2,8 +2,10 @@ package com.ipd.taxiu.platform.http;
 
 
 import com.ipd.taxiu.bean.AddressBean;
+import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.LoginBean;
+import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.RegisterBean;
@@ -37,7 +39,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.GET_LIST_ALL)
     Observable<BaseResult<ArrayList<ProvinceBean>>> getListAll(@Field("REGION_ID") String REGION_ID,
-                                                               @Field("USER_ID") int USER_ID);
+                                                               @Field("USER_ID") String USER_ID);
 
 
     /**
@@ -89,6 +91,40 @@ public interface ApiService {
     Observable<BaseResult<List<PetKindListBean>>> petKindList(@Field("USER_ID") String USER_ID,
                                                               @Field("CATEGORY") String CATEGORY);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_GET_LIST)
+    Observable<BaseResult<List<PetBean>>> petGetList(@Field("COUNT") int COUNT,
+                                                     @Field("PAGE") int PAGE,
+                                                     @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_GET_INFO)
+    Observable<BaseResult<PetBean>> petGetInfo(@Field("PET_ID") int PET_ID,
+                                               @Field("USER_ID") String USER_ID);
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_DELETE)
+    Observable<BaseResult<PetBean>> petDelete(@Field("PET_ID") int PET_ID,
+                                               @Field("USER_ID") String USER_ID);
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_UPDATE)
+    Observable<BaseResult<PetBean>> petUpdate(@Field("BIRTHDAY") String BIRTHDAY,
+                                               @Field("GENDER") int GENDER,
+                                               @Field("LOGO") String LOGO,
+                                               @Field("NICKNAME") String NICKNAME,
+                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                               @Field("STATUS") int STATUS,
+                                               @Field("PET_ID") int PET_ID,
+                                               @Field("USER_ID") String USER_ID);
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_ADD)
+    Observable<BaseResult<PetBean>> petAdd(@Field("BIRTHDAY") String BIRTHDAY,
+                                               @Field("GENDER") int GENDER,
+                                               @Field("LOGO") String LOGO,
+                                               @Field("NICKNAME") String NICKNAME,
+                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                               @Field("STATUS") int STATUS,
+                                               @Field("USER_ID") String USER_ID);
+
     /**
      * sign in
      */
@@ -112,8 +148,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.GET_LIST_ADDRESS)
     Observable<BaseResult<List<AddressBean>>> getListAddress(@Field("COUNT") int count,
-                                                             @Field("USER_ID") int user_id,
-                                                             @Field("PAGE") String page);
+                                                             @Field("USER_ID") String user_id,
+                                                             @Field("PAGE") int page);
 
     @FormUrlEncoded
     @POST(HttpUrl.ADD_ADDRESS)
@@ -124,16 +160,16 @@ public interface ApiService {
                                                    @Field("RECIPIENT") String RECIPIENT,
                                                    @Field("STATUS") int STATUS,
                                                    @Field("TEL") Long TEL,
-                                                   @Field("USER_ID") int USER_ID);
+                                                   @Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.GET_ADDRESS_INFO)
-    Observable<BaseResult<AddressBean>> getAddressInfo(@Field("USER_ID") int USER_ID,
+    Observable<BaseResult<AddressBean>> getAddressInfo(@Field("USER_ID") String USER_ID,
                                                        @Field("ADDRESS_ID") String ADDRESS_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.ADDRESS_DELETE)
-    Observable<BaseResult<AddressBean>> addressDelete(@Field("USER_ID") int USER_ID,
+    Observable<BaseResult<AddressBean>> addressDelete(@Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 
     @FormUrlEncoded
@@ -145,17 +181,17 @@ public interface ApiService {
                                                       @Field("RECIPIENT") String RECIPIENT,
                                                       @Field("STATUS") int STATUS,
                                                       @Field("TEL") long TEL,
-                                                      @Field("USER_ID") int USER_ID,
+                                                      @Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 
 
     @FormUrlEncoded
     @POST(HttpUrl.GET_USER_INFO)
-    Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") int USER_ID);
+    Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.UPDATE_PWD)
-    Observable<BaseResult<UpdatePwdBean>> updatePwd(@Field("USER_ID") int USER_ID,
+    Observable<BaseResult<UpdatePwdBean>> updatePwd(@Field("USER_ID") String USER_ID,
                                                     @Field("NEW_PASSWORD") String NEW_PASSWORD,
                                                     @Field("OLD_PASSWORD") String OLD_PASSWORD);
 
@@ -168,6 +204,24 @@ public interface ApiService {
                                                      @Field("PET_TIME") String PET_TIME,
                                                      @Field("TAG") String TAG,
                                                      @Field("USERNAME") String USERNAME,
-                                                     @Field("USER_ID") int USER_ID);
+                                                     @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.FRIEND_LIST)
+    Observable<BaseResult<List<UserBean>>> getFriendList(@Field("COUNT") int COUNT,
+                                                         @Field("USER_ID") String USER_ID,
+                                                         @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ATTENTION)
+    Observable<BaseResult<AttentionBean>> attention(@Field("ATTEN_ID") int ATTEN_ID,
+                                                    @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ATTENTION_LIST)
+    Observable<BaseResult<List<AttentionBean>>> attentionList(@Field("COUNT") int COUNT,
+                                                              @Field("USER_ID") String USER_ID,
+                                                              @Field("PAGE") int PAGE,
+                                                              @Field("TYPE") int TYPE);
 
 }

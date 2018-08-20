@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/header_my_pet" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipe_load_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/cart_product_img_height"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cart_product_img_height">
 
+        <include
+            android:id="@+id/swipe_refresh_header"
+            layout="@layout/layout_refresh_header"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        <include
+            android:id="@+id/swipe_load_more_footer"
+            layout="@layout/layout_load_footer"></include>
+
+    </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
 </RelativeLayout>
