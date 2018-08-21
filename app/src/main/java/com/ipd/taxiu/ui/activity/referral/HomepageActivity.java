@@ -50,6 +50,9 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.tv_friend_nickname)
     TextView tv_friend_nickname;
 
+    @BindView(R.id.tv_tag)
+    TextView tv_tag;
+
     @Override
     protected int getBaseLayout() {
         return R.layout.activity_homepage;
@@ -67,6 +70,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
         ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL+bean.LOGO,civ_header);
         tv_friend_nickname.setText(bean.NICKNAME);
+        tv_tag.setText(bean.TAG);
         setAttention();
     }
 
@@ -146,8 +150,8 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    public void onSuccess() {
-
+    public void onSuccess(String msg) {
+        toastShow(msg);
     }
 
     @Override

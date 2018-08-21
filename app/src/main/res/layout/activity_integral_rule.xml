@@ -3,4 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/BaseTextStyle"
+        android:padding="@dimen/base_padding"/>
 </RelativeLayout>

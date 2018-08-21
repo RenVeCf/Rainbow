@@ -5,7 +5,6 @@ import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.IntegralBean;
-import com.ipd.taxiu.bean.IntegralListBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.ProvinceBean;
@@ -15,6 +14,7 @@ import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.TextBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UserBean;
 
@@ -233,10 +233,24 @@ public interface ApiService {
     Observable<BaseResult<List<QuestionBean>>> questionList(@Field("COUNT") int COUNT,
                                                             @Field("USER_ID") String USER_ID,
                                                             @Field("PAGE") int PAGE);
+
+    /**
+     * 积分账单列表
+     * @param COUNT
+     * @param USER_ID
+     * @param PAGE
+     * @return
+     */
     @FormUrlEncoded
     @POST(HttpUrl.SCORE_LIST)
-    Observable<BaseResult<IntegralListBean>> scoreList(@Field("COUNT") int COUNT,
+    Observable<BaseResult<List<IntegralBean>>> scoreList(@Field("COUNT") int COUNT,
                                                        @Field("USER_ID") String USER_ID,
                                                        @Field("PAGE") int PAGE);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TEXT_INFO)
+    Observable<BaseResult<TextBean>> getTextInfo(@Field("CATEGORY") int CATEGORY,
+                                                 @Field("USER_ID") String USER_ID);
 
 }

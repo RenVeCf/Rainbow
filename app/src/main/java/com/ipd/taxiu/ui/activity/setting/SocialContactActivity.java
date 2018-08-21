@@ -75,7 +75,7 @@ public class SocialContactActivity extends BaseUIActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return SocicalContactFragment.newInstance(position+1);
+            return SocicalContactFragment.newInstance(position);
         }
 
         @Override

@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.R
@@ -33,35 +35,28 @@ class ContactAdapter(val context: Context, private val data: List<AttentionBean>
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         when {
+            data[position].IS_ATTEN == 0 -> {
+                holder?.itemView?.add_attention?.visibility = View.VISIBLE
+                holder?.itemView?.done_attention?.visibility = View.GONE
+                holder?.itemView?.attention?.visibility = View.GONE
+
+                onClickListener(holder?.itemView?.add_attention!!, position)
+            }
+
             data[position].IS_ATTEN == 1 -> {
                 holder?.itemView?.done_attention?.visibility = View.VISIBLE
                 holder?.itemView?.add_attention?.visibility = View.GONE
                 holder?.itemView?.attention?.visibility = View.GONE
 
-                holder?.itemView?.done_attention?.setOnClickListener {
-                    mPresenter.attention(data[position].USER_ID)
-                    notifyDataSetChanged()
-                }
+                onClickListener(holder?.itemView?.done_attention!!, position)
             }
-            data[position].IS_ATTEN == 0 -> {
-                holder?.itemView?.done_attention?.visibility = View.GONE
-                holder?.itemView?.add_attention?.visibility = View.VISIBLE
-                holder?.itemView?.attention?.visibility = View.GONE
 
-                holder?.itemView?.add_attention?.setOnClickListener {
-                    mPresenter.attention(data[position].USER_ID)
-                    notifyDataSetChanged()
-                }
-            }
             data[position].IS_ATTEN == 2 -> {
                 holder?.itemView?.done_attention?.visibility = View.GONE
                 holder?.itemView?.add_attention?.visibility = View.GONE
                 holder?.itemView?.attention?.visibility = View.VISIBLE
 
-                holder?.itemView?.attention?.setOnClickListener {
-                    mPresenter.attention(data[position].USER_ID)
-                    notifyDataSetChanged()
-                }
+                onClickListener(holder?.itemView?.attention!!, position)
             }
         }
 
@@ -70,10 +65,16 @@ class ContactAdapter(val context: Context, private val data: List<AttentionBean>
         holder?.itemView?.tv_create_time?.text = "注册日期：" + CommonUtils.textCut(data[position].CREATETIME, " ")
         holder?.itemView?.setOnClickListener {
             val intent = Intent(context, HomepageActivity::class.java)
-            val bundle= Bundle()
-            bundle.putSerializable("AttentionBean",data[position])
+            val bundle = Bundle()
+            bundle.putSerializable("AttentionBean", data[position])
             intent.putExtras(bundle)
             context.startActivity(intent)
+        }
+    }
+
+    private fun onClickListener(lin: LinearLayout, position: Int) {
+        lin.setOnClickListener {
+            mPresenter.attention(data[position].USER_ID)
         }
     }
 

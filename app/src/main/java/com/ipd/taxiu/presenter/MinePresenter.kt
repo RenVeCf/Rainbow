@@ -1,5 +1,6 @@
 package com.ipd.taxiu.presenter
 
+import android.util.Log
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.bean.*
@@ -72,16 +73,16 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         val view = mView as IAttentionView
 
         if (attenId == 0){
-            view.onFail("关注ID不能为空!")
+            view.onFail("关注（取消关注）用户ID不能为空!")
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,"1"),
+        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
                 object : Response<BaseResult<AttentionBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<AttentionBean>) {
                         if (result.code == 0) {
-                            view.onSuccess()
+                            view.onSuccess(result.msg)
                         } else {
-                            view.onFail(result.code.toString())
+                            view.onFail(result.msg)
                         }
                     }
                 })
@@ -103,7 +104,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IAttentionView {
-        fun onSuccess()
+        fun onSuccess(msg : String)
         fun onFail(errMsg: String)
     }
 }

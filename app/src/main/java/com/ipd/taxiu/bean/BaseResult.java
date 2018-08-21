@@ -11,6 +11,7 @@ public class BaseResult<T> {
     public T data;
     @SerializedName("desc")
     public String msg;
+    public int score;
 
     public BaseResult(int code, T data) {
         this.code = code;

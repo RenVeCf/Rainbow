@@ -103,10 +103,10 @@
                         android:src="@mipmap/left_symbol" />
 
                     <TextView
+                        android:id="@+id/tv_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/base_padding"
-                        android:text="我是小七，请叫我小七"
                         android:textColor="@color/black"
                         android:textSize="@dimen/base_text_size" />
 

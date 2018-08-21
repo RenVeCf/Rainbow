@@ -41,7 +41,7 @@ public class FriendListFragment extends ListFragment<List<AttentionBean>, Attent
     @NotNull
     @Override
     public Observable<List<AttentionBean>> loadListData() {
-        return ApiManager.getService().getFriendList(1, "1", getPage())
+        return ApiManager.getService().getFriendList(10, GlobalParam.getUserId(), getPage())
                 .map(new Func1<BaseResult<List<AttentionBean>>, List<AttentionBean>>() {
                     @Override
                     public List<AttentionBean> call(BaseResult<List<AttentionBean>> listBaseResult) {

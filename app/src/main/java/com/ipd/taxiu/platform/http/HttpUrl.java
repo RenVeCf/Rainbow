@@ -58,5 +58,8 @@ public interface HttpUrl {
     //积分列表
     String SCORE_LIST="app_score/getList.do";
 
+    //text
+    String TEXT_INFO="app_text/getInfo.do";
+
 
 }

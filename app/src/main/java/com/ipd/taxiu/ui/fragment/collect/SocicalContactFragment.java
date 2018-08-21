@@ -3,6 +3,7 @@ package com.ipd.taxiu.ui.fragment.collect;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.ContactAdapter;
@@ -67,13 +68,16 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     public Observable<List<AttentionBean>> loadListData() {
         Bundle bundle = getArguments();
         final int type = bundle.getInt("TYPE");
-        return ApiManager.getService().attentionList(10, GlobalParam.getUserId(), getPage(), type)
+        return ApiManager.getService().attentionList(10, GlobalParam.getUserId(), getPage(), type + 1)
                 .map(new Func1<BaseResult<List<AttentionBean>>, List<AttentionBean>>() {
                     @Override
                     public List<AttentionBean> call(BaseResult<List<AttentionBean>> listBaseResult) {
                         List<AttentionBean> fans = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             fans.addAll(listBaseResult.data);
+//                            for (int i = 0; i < listBaseResult.data.size(); i++) {
+//                                Log.i("onRefresh", listBaseResult.data.get(i).NICKNAME + "，关注状态：" + listBaseResult.data.get(i).IS_ATTEN);
+//                            }
                         }
                         return fans;
                     }
@@ -102,12 +106,23 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     }
 
     @Override
-    public void onSuccess() {
-
+    public void onSuccess(String msg) {
+        toastShow(msg);
+        resetData();
+        onRefresh();
     }
 
     @Override
     public void onFail(@NotNull String errMsg) {
         toastShow(errMsg);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            resetData();
+            onRefresh();
+        }
     }
 }
