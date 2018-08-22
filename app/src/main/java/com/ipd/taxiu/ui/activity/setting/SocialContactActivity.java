@@ -1,5 +1,6 @@
 package com.ipd.taxiu.ui.activity.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,6 +31,7 @@ public class SocialContactActivity extends BaseUIActivity {
     private String[] titles = {"关注", "粉丝"};
     private ViewPager viewPager;
     private SlidingTabLayout tab_layout;
+    private MyCollectAdapter adapter;
 
     @Override
     protected int getContentLayout() {
@@ -45,7 +47,7 @@ public class SocialContactActivity extends BaseUIActivity {
 
     @Override
     protected void loadData() {
-        MyCollectAdapter adapter = new MyCollectAdapter(getSupportFragmentManager());
+        adapter = new MyCollectAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tab_layout.setViewPager(viewPager, titles);
         int contact = getIntent().getIntExtra("TYPE",0);
@@ -83,4 +85,5 @@ public class SocialContactActivity extends BaseUIActivity {
             return titles.length;
         }
     }
+
 }

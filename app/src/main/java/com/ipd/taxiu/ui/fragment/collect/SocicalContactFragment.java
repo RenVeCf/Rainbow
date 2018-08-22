@@ -75,13 +75,19 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
                         List<AttentionBean> fans = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             fans.addAll(listBaseResult.data);
-                            for (int i = 0; i < listBaseResult.data.size(); i++) {
-                                Log.i("onRefresh", listBaseResult.data.get(i).NICKNAME + "，关注状态：" + listBaseResult.data.get(i).IS_ATTEN);
-                            }
+//                            for (int i = 0; i < listBaseResult.data.size(); i++) {
+//                                Log.i("onRefresh", listBaseResult.data.get(i).NICKNAME + "，关注状态：" + listBaseResult.data.get(i).IS_ATTEN);
+//                            }
                         }
                         return fans;
                     }
                 });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
     }
 
     @Override
@@ -115,7 +121,6 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     @Override
     public void onSuccess(String msg,int data) {
         toastShow(msg);
-        resetData();
         onRefresh();
     }
 
@@ -128,7 +133,6 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            resetData();
             onRefresh();
         }
     }
