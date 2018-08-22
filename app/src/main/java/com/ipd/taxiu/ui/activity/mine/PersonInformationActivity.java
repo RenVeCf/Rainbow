@@ -18,39 +18,31 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.LocalPictureBean;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
-import com.ipd.taxiu.platform.global.GlobalApplication;
-import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
-import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
 import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
 import com.ipd.taxiu.widget.PickerUtil;
-import com.ipd.taxiu.widget.SettingHeaderDialog;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.ipd.taxiu.utils.PictureChooseUtils.PHOTOZOOM;
 
 
 /**
  * Created by Miss on 2018/7/26
  * 个人资料
  */
-public class PersonInformationActivity extends BaseUIActivity implements View.OnClickListener, MinePresenter.IUserInfoView,MinePresenter.IUpdateUserView{
+public class PersonInformationActivity extends BaseUIActivity implements View.OnClickListener, MinePresenter.IUserInfoView,MinePresenter.IUpdateUserView {
     private CircleImageView circleImageView;
     private TextView tv_birthday, tv_sex, tv_how_long, tv_person_tag;
 
@@ -133,11 +125,11 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
             String birthday = tv_birthday.getText().toString();
             String sex = tv_sex.getText().toString();
             int gender = 0;
-            if (sex.equals("男")){
+            if (sex.equals("男")) {
                 gender = 1;
-            }else if (sex.equals("女")){
+            } else if (sex.equals("女")) {
                 gender = 2;
-            }else {
+            } else {
                 gender = 0;
             }
             String logo = path;
@@ -219,16 +211,16 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     @Override
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
-            ImageLoader.loadImgFromLocal(this,data.LOGO,civ_header);
+            ImageLoader.loadImgFromLocal(this, data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
             et_phone_number.setText(data.PHONE);
             et_name.setText(data.USERNAME);
             tv_birthday.setText(data.BIRTHDAY);
             if (data.GENDER == 1) {
                 tv_sex.setText("男");
-            } else if (data.GENDER == 2){
+            } else if (data.GENDER == 2) {
                 tv_sex.setText("女");
-            }else {
+            } else {
                 tv_sex.setText("未知");
             }
             tv_how_long.setText(data.PET_TIME);
@@ -252,4 +244,5 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     public void updateUserFail(@NotNull String errMsg) {
         toastShow(errMsg);
     }
+
 }

@@ -43,6 +43,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     private LinearLayout attention, add_attention, done_attention;
     private MinePresenter mPresenter;
     private AttentionBean bean;
+    private int attentionId = -1;
 
     @BindView(R.id.civ_header)
     CircleImageView civ_header;
@@ -68,24 +69,25 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
         add_attention = findViewById(R.id.add_attention);
         done_attention = findViewById(R.id.done_attention);
 
-        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL+bean.LOGO,civ_header);
+        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL + bean.LOGO, civ_header);
         tv_friend_nickname.setText(bean.NICKNAME);
         tv_tag.setText(bean.TAG);
+        attentionId = bean.IS_ATTEN;
         setAttention();
     }
 
-    private void setAttention(){
-        if (bean.IS_ATTEN == 0){
+    private void setAttention() {
+        if (attentionId == 0) {
             add_attention.setVisibility(View.VISIBLE);
             done_attention.setVisibility(View.GONE);
             attention.setVisibility(View.GONE);
         }
-        if (bean.IS_ATTEN == 1){
+        if (attentionId == 1) {
             add_attention.setVisibility(View.GONE);
             done_attention.setVisibility(View.VISIBLE);
             attention.setVisibility(View.GONE);
         }
-        if (bean.IS_ATTEN == 2){
+        if (attentionId == 2) {
             add_attention.setVisibility(View.GONE);
             done_attention.setVisibility(View.GONE);
             attention.setVisibility(View.VISIBLE);
@@ -150,12 +152,14 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    public void onSuccess(String msg) {
-        toastShow(msg);
+    public void onFail(@NotNull String errMsg) {
+        toastShow(errMsg);
     }
 
     @Override
-    public void onFail(@NotNull String errMsg) {
-        toastShow(errMsg);
+    public void onSuccess(@NotNull String msg, int data) {
+        attentionId = data;
+        setAttention();
+        toastShow(msg);
     }
 }

@@ -13,7 +13,6 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
-import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.SignInActivity;
@@ -51,7 +50,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
             rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
-    private RelativeLayout rl_my_group,rl_my_integral,rl_discount_coupon,rl_my_balance;
+    private RelativeLayout rl_my_group, rl_my_integral, rl_discount_coupon, rl_my_balance;
     private RelativeLayout rl_header;
 
     private MinePresenter mPresenter;
@@ -75,7 +74,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     protected void onViewAttach() {
         super.onViewAttach();
         mPresenter = new MinePresenter<>();
-        mPresenter.attachView(getContext(),this);
+        mPresenter.attachView(getContext(), this);
     }
 
     @Override
@@ -218,7 +217,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 PublishedTalkActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_my_integral:
-                intent1 = new Intent(getActivity(),MyIntegralActivity.class);
+                intent1 = new Intent(getActivity(), MyIntegralActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_discount_coupon:
@@ -273,16 +272,16 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
             ImageLoader.loadImgFromLocal(getContext(), data.LOGO, civ_header);
-            Log.i("url",IMAGE_URL + data.LOGO);
+            Log.i("url", IMAGE_URL + data.LOGO);
             tv_nickname.setText(data.NICKNAME);
             if (data.TAG != "") {
                 tv_signature.setText(data.TAG);
             }
-            tv_attention_num.setText(data.ATTENTION_NUM+"");
+            tv_attention_num.setText(data.ATTENTION_NUM + "");
             if (data.WECHAT != "") {
                 tv_collect_num.setText(data.WECHAT);
             }
-            tv_fans_num.setText(data.FANS_NUM+"");
+            tv_fans_num.setText(data.FANS_NUM + "");
         }
     }
 
@@ -291,3 +290,4 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         toastShow(errMsg);
     }
 }
+

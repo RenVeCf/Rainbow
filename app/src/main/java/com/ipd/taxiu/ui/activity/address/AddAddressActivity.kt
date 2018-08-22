@@ -213,6 +213,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     }
 
     override fun deleteSuccess() {
+        loadData()
         toastShow("删除成功")
     }
 }

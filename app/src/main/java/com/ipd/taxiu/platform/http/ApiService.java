@@ -22,9 +22,15 @@ import java.util.List;
 
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -104,29 +110,32 @@ public interface ApiService {
     @POST(HttpUrl.PET_GET_INFO)
     Observable<BaseResult<PetBean>> petGetInfo(@Field("PET_ID") int PET_ID,
                                                @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_DELETE)
     Observable<BaseResult<PetBean>> petDelete(@Field("PET_ID") int PET_ID,
-                                               @Field("USER_ID") String USER_ID);
+                                              @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_UPDATE)
     Observable<BaseResult<PetBean>> petUpdate(@Field("BIRTHDAY") String BIRTHDAY,
-                                               @Field("GENDER") int GENDER,
-                                               @Field("LOGO") String LOGO,
-                                               @Field("NICKNAME") String NICKNAME,
-                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
-                                               @Field("STATUS") int STATUS,
-                                               @Field("PET_ID") int PET_ID,
-                                               @Field("USER_ID") String USER_ID);
+                                              @Field("GENDER") int GENDER,
+                                              @Field("LOGO") String LOGO,
+                                              @Field("NICKNAME") String NICKNAME,
+                                              @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                              @Field("STATUS") int STATUS,
+                                              @Field("PET_ID") int PET_ID,
+                                              @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_ADD)
     Observable<BaseResult<PetBean>> petAdd(@Field("BIRTHDAY") String BIRTHDAY,
-                                               @Field("GENDER") int GENDER,
-                                               @Field("LOGO") String LOGO,
-                                               @Field("NICKNAME") String NICKNAME,
-                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
-                                               @Field("STATUS") int STATUS,
-                                               @Field("USER_ID") String USER_ID);
+                                           @Field("GENDER") int GENDER,
+                                           @Field("LOGO") String LOGO,
+                                           @Field("NICKNAME") String NICKNAME,
+                                           @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                           @Field("STATUS") int STATUS,
+                                           @Field("USER_ID") String USER_ID);
 
     /**
      * sign in
@@ -212,12 +221,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.FRIEND_LIST)
     Observable<BaseResult<List<AttentionBean>>> getFriendList(@Field("COUNT") int COUNT,
-                                                         @Field("USER_ID") String USER_ID,
-                                                         @Field("PAGE") int PAGE);
+                                                              @Field("USER_ID") String USER_ID,
+                                                              @Field("PAGE") int PAGE);
 
     @FormUrlEncoded
     @POST(HttpUrl.ATTENTION)
-    Observable<BaseResult<AttentionBean>> attention(@Field("ATTEN_ID") int ATTEN_ID,
+    Observable<BaseResult<Integer>> attention(@Field("ATTEN_ID") int ATTEN_ID,
                                                     @Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
@@ -236,6 +245,7 @@ public interface ApiService {
 
     /**
      * 积分账单列表
+     *
      * @param COUNT
      * @param USER_ID
      * @param PAGE
@@ -244,8 +254,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.SCORE_LIST)
     Observable<BaseResult<List<IntegralBean>>> scoreList(@Field("COUNT") int COUNT,
-                                                       @Field("USER_ID") String USER_ID,
-                                                       @Field("PAGE") int PAGE);
+                                                         @Field("USER_ID") String USER_ID,
+                                                         @Field("PAGE") int PAGE);
 
 
     @FormUrlEncoded

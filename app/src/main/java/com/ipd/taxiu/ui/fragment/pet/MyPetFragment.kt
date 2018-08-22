@@ -59,7 +59,15 @@ class MyPetFragment : ListFragment<List<PetBean>, PetBean>() {
                 }
     }
 
-    override fun isNoMoreData(result: List<PetBean>): Int = NORMAL
+    override fun isNoMoreData(result: List<PetBean>):Int{
+        return if (result == null || result.isEmpty()) {
+            if (page == INIT_PAGE) {
+                EMPTY_DATA
+            } else {
+                NO_MORE_DATA
+            }
+        } else NORMAL
+    }
 
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {

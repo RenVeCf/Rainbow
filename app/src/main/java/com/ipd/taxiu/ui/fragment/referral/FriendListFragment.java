@@ -56,6 +56,13 @@ public class FriendListFragment extends ListFragment<List<AttentionBean>, Attent
 
     @Override
     public int isNoMoreData(List<AttentionBean> result) {
+        if (result == null || result.isEmpty()){
+            if (getPage() == getINIT_PAGE()){
+                return getEMPTY_DATA();
+            }else {
+                return getNO_MORE_DATA();
+            }
+        }
         return getNORMAL();
     }
 

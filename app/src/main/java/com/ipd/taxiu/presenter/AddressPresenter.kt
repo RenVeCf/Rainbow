@@ -85,7 +85,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
         val view = mView as IAddressDeleteView
 
         mModel?.getNormalRequestData(ApiManager.getService().addressDelete(userId, addressId),
-                object : Response<BaseResult<AddressBean>>(mContext, true) {
+                object : Response<BaseResult<AddressBean>>(mContext, false) {
                     override fun _onNext(result: BaseResult<AddressBean>) {
                         if (result.code == 0) {
                             view.deleteSuccess()

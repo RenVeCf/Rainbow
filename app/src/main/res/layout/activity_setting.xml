@@ -171,10 +171,10 @@
             android:textSize="@dimen/base_text_size" />
 
         <TextView
+            android:id="@+id/tv_cache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="0M"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>

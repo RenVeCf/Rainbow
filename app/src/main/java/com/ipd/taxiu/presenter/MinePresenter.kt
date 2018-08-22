@@ -77,10 +77,10 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
-                object : Response<BaseResult<AttentionBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<AttentionBean>) {
+                object : Response<BaseResult<Int>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
-                            view.onSuccess(result.msg)
+                            view.onSuccess(result.msg,result.data)
                         } else {
                             view.onFail(result.msg)
                         }
@@ -104,7 +104,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IAttentionView {
-        fun onSuccess(msg : String)
+        fun onSuccess(msg : String,data:Int)
         fun onFail(errMsg: String)
     }
 }
