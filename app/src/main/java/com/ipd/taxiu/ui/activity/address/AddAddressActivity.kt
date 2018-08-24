@@ -96,9 +96,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
-        if (addressType == 2){
-            mPresenter?.getAddressInfo(GlobalParam.getUserId(), addressId)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -118,6 +115,9 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     override fun loadData() {
         mPresenterCity?.getCityList("0", GlobalParam.getUserId())
         getStatus()
+        if (addressType == 2){
+            mPresenterInfo?.getAddressInfo(GlobalParam.getUserId(), addressId)
+        }
     }
 
     fun getStatus(){
@@ -213,7 +213,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     }
 
     override fun deleteSuccess() {
-        loadData()
         toastShow("删除成功")
     }
 }

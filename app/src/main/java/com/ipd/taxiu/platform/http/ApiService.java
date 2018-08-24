@@ -21,8 +21,10 @@ import com.ipd.taxiu.bean.UserBean;
 import java.util.List;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -30,7 +32,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -262,5 +266,15 @@ public interface ApiService {
     @POST(HttpUrl.TEXT_INFO)
     Observable<BaseResult<TextBean>> getTextInfo(@Field("CATEGORY") int CATEGORY,
                                                  @Field("USER_ID") String USER_ID);
+
+
+    /**
+     * 上传头像
+     * @param params
+     * @return
+     */
+    @Multipart
+    @POST(HttpUrl.UPLOAD_PIC)
+    Observable<BaseResult<String>> uploadPic(@PartMap Map<String, RequestBody> params);
 
 }

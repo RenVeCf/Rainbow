@@ -26,6 +26,7 @@
             android:layout_toRightOf="@id/tv_recipients"
             android:background="@null"
             android:hint="请输入真实姓名"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
 
@@ -56,6 +57,7 @@
             android:layout_marginTop="@dimen/base_padding"
             android:layout_toRightOf="@id/tv_phone_number"
             android:background="@null"
+            android:maxLength="11"
             android:hint="请输入联系手机"
             android:inputType="number"
             android:textColor="@color/black"
@@ -132,6 +134,7 @@
             android:layout_margin="@dimen/base_padding"
             android:background="@null"
             android:hint="请输入如：街道、门牌号等"
+            android:maxLength="30"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>

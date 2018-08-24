@@ -1,6 +1,7 @@
 package com.ipd.taxiu.ui.activity.mine;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,11 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
@@ -23,6 +26,9 @@ import com.ipd.taxiu.bean.LocalPictureBean;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.http.ApiManager;
+import com.ipd.taxiu.platform.http.HttpUpload;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
@@ -34,16 +40,26 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 /**
  * Created by Miss on 2018/7/26
  * 个人资料
  */
-public class PersonInformationActivity extends BaseUIActivity implements View.OnClickListener, MinePresenter.IUserInfoView,MinePresenter.IUpdateUserView {
-    private CircleImageView circleImageView;
+public class PersonInformationActivity extends BaseUIActivity implements View.OnClickListener, MinePresenter.IUserInfoView, MinePresenter.IUpdateUserView {
     private TextView tv_birthday, tv_sex, tv_how_long, tv_person_tag;
 
     public static int REQUEST_CODE = 7879;
@@ -71,7 +87,6 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     protected void initView(@Nullable Bundle bundle) {
         ButterKnife.bind(this);
         initToolbar();
-        circleImageView = findViewById(R.id.civ_header);
         tv_birthday = findViewById(R.id.tv_birthday);
         tv_sex = findViewById(R.id.tv_sex);
         tv_how_long = findViewById(R.id.tv_how_long);
@@ -99,7 +114,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     protected void initListener() {
-        circleImageView.setOnClickListener(this);
+        civ_header.setOnClickListener(this);
         tv_birthday.setOnClickListener(this);
         tv_sex.setOnClickListener(this);
         tv_how_long.setOnClickListener(this);
@@ -132,12 +147,11 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
             } else {
                 gender = 0;
             }
-            String logo = path;
             String nickname = tv_nickname.getText().toString();
             String pet_time = tv_how_long.getText().toString();
             String tag = tv_person_tag.getText().toString();
             String username = et_name.getText().toString();
-            mPresenter.updateUser(birthday,gender,logo,nickname,pet_time,tag,username);
+            mPresenter.updateUser(birthday, gender, HttpUpload.getLogo(), nickname, pet_time, tag, username);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -194,7 +208,14 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 if (data == null) return;
                 path = data.getStringExtra("path");
                 Bitmap mBitmap = BitmapFactory.decodeFile(path);
-                circleImageView.setImageBitmap(mBitmap);
+                civ_header.setImageBitmap(mBitmap);
+            }
+
+            File file = new File(path);
+            if (file.exists()) {
+                List<File> list = new ArrayList<>();
+                list.add(file);
+                HttpUpload.uploadFile(list);
             }
 
             if (requestCode == REQUEST_CODE) {
@@ -211,7 +232,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     @Override
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
-            ImageLoader.loadImgFromLocal(this, data.LOGO, civ_header);
+            ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL+data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
             et_phone_number.setText(data.PHONE);
             et_name.setText(data.USERNAME);

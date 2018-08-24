@@ -13,6 +13,7 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseFragment;
 import com.ipd.taxiu.ui.activity.SignInActivity;
@@ -271,8 +272,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
-            ImageLoader.loadImgFromLocal(getContext(), data.LOGO, civ_header);
-            Log.i("url", IMAGE_URL + data.LOGO);
+            ImageLoader.loadImgFromLocal(getContext(), HttpUrl.IMAGE_URL+data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
             if (data.TAG != "") {
                 tv_signature.setText(data.TAG);
