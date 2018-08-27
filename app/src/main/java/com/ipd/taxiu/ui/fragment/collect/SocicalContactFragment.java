@@ -75,9 +75,9 @@ public class SocicalContactFragment extends ListFragment<List<AttentionBean>, At
                         List<AttentionBean> fans = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             fans.addAll(listBaseResult.data);
-                            for (int i = 0; i < listBaseResult.data.size(); i++) {
-                                Log.i("onRefresh", listBaseResult.data.get(i).LOGO + "，关注状态：" + listBaseResult.data.get(i).IS_ATTEN);
-                            }
+//                            for (int i = 0; i < listBaseResult.data.size(); i++) {
+//                                Log.i("onRefresh", listBaseResult.data.get(i).LOGO + "，关注状态：" + listBaseResult.data.get(i).IS_ATTEN);
+//                            }
                         }
                         return fans;
                     }

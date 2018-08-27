@@ -49,10 +49,10 @@
                             android:textSize="@dimen/base_text_size" />
 
                         <TextView
+                            android:id="@+id/tv_attention_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/base_padding"
-                            android:text="234"
                             android:textColor="@color/black"
                             android:textSize="@dimen/base_text_size"
                             android:textStyle="bold" />
@@ -79,10 +79,10 @@
                             android:textSize="@dimen/base_text_size" />
 
                         <TextView
+                            android:id="@+id/tv_fans_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/base_padding"
-                            android:text="2234"
                             android:textColor="@color/black"
                             android:textSize="@dimen/base_text_size"
                             android:textStyle="bold" />

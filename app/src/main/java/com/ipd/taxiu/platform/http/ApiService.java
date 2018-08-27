@@ -6,6 +6,7 @@ import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
+import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.PetKindListBean;
@@ -201,6 +202,11 @@ public interface ApiService {
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 
 
+    /**
+     * user
+     * @param USER_ID
+     * @return
+     */
     @FormUrlEncoded
     @POST(HttpUrl.GET_USER_INFO)
     Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") String USER_ID);
@@ -246,6 +252,10 @@ public interface ApiService {
     Observable<BaseResult<List<QuestionBean>>> questionList(@Field("COUNT") int COUNT,
                                                             @Field("USER_ID") String USER_ID,
                                                             @Field("PAGE") int PAGE);
+    @FormUrlEncoded
+    @POST(HttpUrl.OTHER)
+    Observable<BaseResult<OtherBean>> other(@Field("USER_ID") String USER_ID,
+                                            @Field("OTHER_USER_ID") String OTHER_USER_ID);
 
     /**
      * 积分账单列表

@@ -14,6 +14,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.HomepageAdapter;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.HomepageBean;
+import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.http.HttpUrl;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by Miss on 2018/7/25
  * 查看他人主页
  */
-public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView {
+public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView,MinePresenter.IOtherView {
     private ImageView iv_back;
     private RecyclerView recycler_view;
     private List<HomepageBean> data;
@@ -53,6 +54,12 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @BindView(R.id.tv_tag)
     TextView tv_tag;
+
+    @BindView(R.id.tv_attention_num)
+    TextView tv_attention_num;
+
+    @BindView(R.id.tv_fans_num)
+    TextView tv_fans_num;
 
     @Override
     protected int getBaseLayout() {
@@ -111,6 +118,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
+        mPresenter.other(bean.USER_ID+"");
         initData();
         mAdapter = new HomepageAdapter(this, data);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -161,5 +169,16 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
         attentionId = data;
         setAttention();
         toastShow(msg);
+    }
+
+    @Override
+    public void onGetOtherSuccess(OtherBean data) {
+        tv_attention_num.setText(data.ATTENTION_NUM+"");
+        tv_fans_num.setText(data.FANS_NUM+"");
+    }
+
+    @Override
+    public void onGetOtherFail(@NotNull String errMsg) {
+        toastShow(errMsg);
     }
 }
