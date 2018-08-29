@@ -176,6 +176,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 break;
             case R.id.tv_person_tag:
                 Intent intent = new Intent(this, EditTagActivity.class);
+                intent.putExtra("Tag",tv_person_tag.getText().toString());
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
         }

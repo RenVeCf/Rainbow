@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by Miss on 2018/7/25
  * 查看他人主页
  */
-public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView,MinePresenter.IOtherView {
+public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView, MinePresenter.IOtherView {
     private ImageView iv_back;
     private RecyclerView recycler_view;
     private List<HomepageBean> data;
@@ -75,12 +75,6 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
         attention = findViewById(R.id.attention);
         add_attention = findViewById(R.id.add_attention);
         done_attention = findViewById(R.id.done_attention);
-
-        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL + bean.LOGO, civ_header);
-        tv_friend_nickname.setText(bean.NICKNAME);
-        tv_tag.setText(bean.TAG);
-        attentionId = bean.IS_ATTEN;
-        setAttention();
     }
 
     private void setAttention() {
@@ -118,7 +112,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
-        mPresenter.other(bean.USER_ID+"");
+        mPresenter.other(bean.USER_ID + "");
         initData();
         mAdapter = new HomepageAdapter(this, data);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -166,15 +160,19 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onSuccess(@NotNull String msg, int data) {
-        attentionId = data;
-        setAttention();
+        mPresenter.other(bean.USER_ID + "");
         toastShow(msg);
     }
 
     @Override
     public void onGetOtherSuccess(OtherBean data) {
-        tv_attention_num.setText(data.ATTENTION_NUM+"");
-        tv_fans_num.setText(data.FANS_NUM+"");
+        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL + data.LOGO, civ_header);
+        tv_friend_nickname.setText(data.NICKNAME);
+        tv_tag.setText(data.TAG);
+        attentionId = data.IS_ATTEN;
+        setAttention(); 
+        tv_attention_num.setText(data.ATTENTION_NUM + "");
+        tv_fans_num.setText(data.FANS_NUM + "");
     }
 
     @Override

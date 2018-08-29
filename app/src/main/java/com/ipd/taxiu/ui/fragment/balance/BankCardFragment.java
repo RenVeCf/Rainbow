@@ -11,6 +11,7 @@ import com.ipd.taxiu.adapter.BankCardAdapter;
 import com.ipd.taxiu.bean.BankCardBean;
 import com.ipd.taxiu.ui.ListFragment;
 import com.ipd.taxiu.ui.activity.balance.AddBankCardActivity;
+import com.ipd.taxiu.ui.activity.balance.MyBalanceActivity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -29,10 +30,10 @@ public class BankCardFragment extends ListFragment<List<BankCardBean>, BankCardB
     private TextView btn_add_card;
     private List<BankCardBean> bean = new ArrayList<>();
 
-    public static BankCardFragment newInstance(String bankType) {
+    public static BankCardFragment newInstance(Integer bankType) {
         BankCardFragment fragment = new BankCardFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("bankType", bankType);
+        bundle.putInt("bankType", bankType);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -90,7 +91,7 @@ public class BankCardFragment extends ListFragment<List<BankCardBean>, BankCardB
     @Override
     public void setOrNotifyAdapter() {
         Bundle args = getArguments();
-        String bankType = args.getString("bankType");
+        Integer bankType = args.getInt("bankType");
         if (mAdapter == null) {
             mAdapter = new BankCardAdapter(getContext(), getData(), bankType);
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -115,7 +116,7 @@ public class BankCardFragment extends ListFragment<List<BankCardBean>, BankCardB
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add_card:
-                AddBankCardActivity.Companion.launch(getMActivity());
+                AddBankCardActivity.Companion.launch(getMActivity(), 1);
                 break;
         }
     }
