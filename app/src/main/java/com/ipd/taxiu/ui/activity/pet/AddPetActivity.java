@@ -23,6 +23,8 @@ import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.global.GlobalApplication;
+import com.ipd.taxiu.platform.http.HttpUpload;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
@@ -38,6 +40,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +62,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     //petWay 1.添加宠物 2.编辑宠物
     private int petWay;
     private String path = "";
+    private boolean isChooseImg = false;
 
     private PetPresenter mPresenter;
     private int petId;
@@ -156,7 +160,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
             if (statusStr.equals("正常")){
                 status = 1;
             }
-            if (statusStr.equals("寻找好心人领养")){
+            if (statusStr.equals("寻求好心人领养")){
                 status = 2;
             }
             if (statusStr.equals("寻求配偶")){
@@ -166,12 +170,14 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 status = 4;
             }
         }
-        String logo = path;
         if (id == R.id.pet_save) {
+            if (isChooseImg){
+                path = HttpUpload.getLogo();
+            }
             if (petWay == 2) {
-                mPresenter.petUpdate(birthday,sex,logo,nickname,petKindId,status,petId);
+                mPresenter.petUpdate(birthday,sex,path,nickname,petKindId,status,petId);
             } else {
-                mPresenter.petAdd(birthday,sex,logo,nickname,petKindId,status);
+                mPresenter.petAdd(birthday,sex,path,nickname,petKindId,status);
             }
         }
         return super.onOptionsItemSelected(item);
@@ -232,8 +238,15 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 path = data.getStringExtra("path");
                 Bitmap mBitmap = BitmapFactory.decodeFile(path);
                 civ_header.setImageBitmap(mBitmap);
+                isChooseImg = true;
             }
 
+            File file = new File(path);
+            if (file.exists()) {
+                List<File> list = new ArrayList<>();
+                list.add(file);
+                HttpUpload.uploadFile(list);
+            }
         }
     }
 
@@ -252,7 +265,8 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     public void getInfoSuccess(@NotNull PetBean data) {
-        ImageLoader.loadImgFromLocal(this,data.LOGO,civ_header);
+        path = data.LOGO;
+        ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL+data.LOGO,civ_header);
         tv_nickname.setText(data.NICKNAME);
         tv_pet_kind.setText(data.PET_TYPE_NAME);
         tv_birthday.setText(data.BIRTHDAY);
@@ -269,7 +283,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 tv_status.setText("正常");
                 break;
             case 2:
-                tv_status.setText("寻找好心人领养");
+                tv_status.setText("寻求好心人领养");
                 break;
             case 3:
                 tv_status.setText("寻求配偶");

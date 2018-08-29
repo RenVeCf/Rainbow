@@ -32,6 +32,7 @@ import rx.functions.Func1;
 public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, AddressBean> {
     private DeliveryAddressAdapter mAdapter;
     private View view;
+    private List<AddressBean> bean;
 
 
     public static DeliveryAddressFragment newInstance() {
@@ -53,7 +54,14 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
 
     @Override
     public int isNoMoreData(List<AddressBean> result) {
-            return getNORMAL();
+        if (result == null || result.isEmpty()){
+            if (getPage() == getINIT_PAGE()){
+                return getEMPTY_DATA();
+            }else {
+                return getNO_MORE_DATA();
+            }
+        }
+        return getNORMAL();
     }
 
     @Override
@@ -100,7 +108,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
                 .map(new Func1<BaseResult<List<AddressBean>>, List<AddressBean>>() {
                     @Override
                     public List<AddressBean> call(BaseResult<List<AddressBean>> listBaseResult) {
-                        List<AddressBean> bean = new ArrayList<>();
+                        bean = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             bean.addAll(listBaseResult.data);
                         }

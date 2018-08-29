@@ -13,8 +13,6 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.pet.AddPetActivity
-import kotlinx.android.synthetic.main.header_my_pet.*
-import org.w3c.dom.Text
 import rx.Observable
 import java.util.ArrayList
 
@@ -59,7 +57,15 @@ class MyPetFragment : ListFragment<List<PetBean>, PetBean>() {
                 }
     }
 
-    override fun isNoMoreData(result: List<PetBean>): Int = NORMAL
+    override fun isNoMoreData(result: List<PetBean>):Int{
+        return if (result == null || result.isEmpty()) {
+            if (page == INIT_PAGE) {
+                EMPTY_DATA
+            } else {
+                NO_MORE_DATA
+            }
+        } else NORMAL
+    }
 
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {

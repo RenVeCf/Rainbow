@@ -67,6 +67,7 @@ public interface HttpUrl {
     String FRIEND_LIST = "app_user/friendList.do";
     String ATTENTION = "app_user/attention.do";
     String ATTENTION_LIST = "app_user/attentionList.do";
+    String OTHER = "app_user/other.do";
 
     //常见问题
     String QUESTION_LIST = "app_text/questionList.do";
@@ -75,7 +76,7 @@ public interface HttpUrl {
     String SCORE_LIST = "app_score/getList.do";
 
     //text
-    String TEXT_INFO = "app_text/getInfo.do";
+    String TEXT_INFO="app_text/getInfo.do";
 
 
 }

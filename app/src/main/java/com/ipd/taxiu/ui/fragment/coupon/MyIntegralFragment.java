@@ -74,6 +74,9 @@ public class MyIntegralFragment extends ListFragment<List<IntegralBean>, Integra
 
     @Override
     public int isNoMoreData(List<IntegralBean> result) {
+        if (result == null || result.isEmpty()){
+            return getNO_MORE_DATA();
+        }
         return getNORMAL();
     }
 

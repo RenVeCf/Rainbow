@@ -16,6 +16,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.JsonBean;
 import com.ipd.taxiu.bean.ProvinceBean;
@@ -63,6 +64,11 @@ public class PickerUtil {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 String newStr = getTime(date).substring(0, getTime(date).indexOf(" "));
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                if (newStr.compareTo(df.format(new Date()))>0) {
+                    new ToastCommom().show(context,"时间不能大于当前日期");
+                    return;
+                }
                 textView.setText(newStr);
             }
         })

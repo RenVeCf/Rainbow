@@ -12,6 +12,7 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.MessageDialog;
@@ -26,10 +27,10 @@ import butterknife.ButterKnife;
  * Created by Miss on 2018/7/27
  * 宠物资料
  */
-public class PetInformationActivity extends BaseUIActivity implements View.OnClickListener,PetPresenter.IPetInfoView,PetPresenter.IPetDeleteView{
+public class PetInformationActivity extends BaseUIActivity implements View.OnClickListener, PetPresenter.IPetInfoView, PetPresenter.IPetDeleteView {
     private TextView btn_delete_pet;
     private PetPresenter mPresenter;
-    private int petId,petKindId;
+    private int petId, petKindId;
 
     @BindView(R.id.civ_header)
     CircleImageView civ_header;
@@ -51,6 +52,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @BindView(R.id.icon_sex)
     ImageView icon_sex;
+
     @Override
     protected int getContentLayout() {
         return R.layout.activity_pet_information;
@@ -60,8 +62,8 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     protected void initView(@Nullable Bundle bundle) {
         ButterKnife.bind(this);
         initToolbar();
-        petId = getIntent().getIntExtra("PET_ID",0);
-        petKindId = getIntent().getIntExtra("PET_TYPE_ID",0);
+        petId = getIntent().getIntExtra("PET_ID", 0);
+        petKindId = getIntent().getIntExtra("PET_TYPE_ID", 0);
         btn_delete_pet = findViewById(R.id.btn_delete_pet);
     }
 
@@ -69,7 +71,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     protected void onViewAttach() {
         super.onViewAttach();
         mPresenter = new PetPresenter();
-        mPresenter.attachView(this,this);
+        mPresenter.attachView(this, this);
     }
 
     @Override
@@ -111,11 +113,11 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.pet_edit){
-            Intent intent = new Intent(this,AddPetActivity.class);
-            intent.putExtra("petWay",2);
-            intent.putExtra("PET_ID",petId);
-            intent.putExtra("PET_TYPE_ID",petKindId);
+        if (id == R.id.pet_edit) {
+            Intent intent = new Intent(this, AddPetActivity.class);
+            intent.putExtra("petWay", 2);
+            intent.putExtra("PET_ID", petId);
+            intent.putExtra("PET_TYPE_ID", petKindId);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -123,7 +125,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_delete_pet:
                 initMessageDialog();
                 break;
@@ -137,7 +139,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
         builder.setCommit("确认删除", new MessageDialog.OnClickListener() {
             @Override
             public void onClick(MessageDialog.Builder builder) {
-               mPresenter.petDelete(petId);
+                mPresenter.petDelete(petId);
                 builder.getDialog().dismiss();
                 finish();
             }
@@ -153,26 +155,26 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @Override
     public void getInfoSuccess(@NotNull PetBean data) {
-        ImageLoader.loadImgFromLocal(this,data.LOGO,civ_header);
+        ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL + data.LOGO, civ_header);
         tv_pet_name.setText(data.NICKNAME);
         tv_pet_kind.setText(data.PET_TYPE_NAME);
         tv_pet_birthday.setText(data.BIRTHDAY);
         int sex = data.GENDER;
-        if (sex == 1){
+        if (sex == 1) {
             tv_pet_sex.setText("男孩子");
             icon_sex.setImageResource(R.mipmap.icon_pet_boy);
         }
-        if (sex == 2){
+        if (sex == 2) {
             tv_pet_sex.setText("女孩子");
             icon_sex.setImageResource(R.mipmap.icon_pet_girl);
         }
         int status = data.STATUS;
-        switch (status){
+        switch (status) {
             case 1:
                 tv_pet_status.setText("正常");
                 break;
             case 2:
-                tv_pet_status.setText("寻找好心人领养");
+                tv_pet_status.setText("寻求好心人领养");
                 break;
             case 3:
                 tv_pet_status.setText("寻求配偶");

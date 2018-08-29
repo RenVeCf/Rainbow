@@ -15,9 +15,11 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.ui.activity.pet.PetInformationActivity;
 
 import java.util.List;
+
 
 /**
  * Created by Miss on 2018/7/25
@@ -38,7 +40,7 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        ImageLoader.loadImgFromLocal(context,datas.get(position).LOGO,holder.civ_header);
+        ImageLoader.loadImgFromLocal(context, HttpUrl.IMAGE_URL+datas.get(position).LOGO,holder.civ_header);
         holder.tv_pet_nickname.setText(datas.get(position).NICKNAME);
         holder.tv_pet_kind.setText(datas.get(position).PET_TYPE_NAME);
         int status = datas.get(position).STATUS;
@@ -47,7 +49,7 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.ViewHolder> 
                 holder.tv_marital_status.setText("正常");
                 break;
             case 2:
-                holder.tv_marital_status.setText("寻找好心人领养");
+                holder.tv_marital_status.setText("寻求好心人领养");
                 break;
             case 3:
                 holder.tv_marital_status.setText("寻求配偶");

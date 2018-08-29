@@ -77,12 +77,32 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
-                object : Response<BaseResult<AttentionBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<AttentionBean>) {
+                object : Response<BaseResult<Int>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
-                            view.onSuccess(result.msg)
+                            view.onSuccess(result.msg,result.data)
                         } else {
                             view.onFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun other(otherUserId:String) {
+        if (mView !is IOtherView) return
+        val view = mView as IOtherView
+
+        if (otherUserId == ""){
+            view.onGetOtherFail("ID不能为空!")
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().other(GlobalParam.getUserId(),otherUserId),
+                object : Response<BaseResult<OtherBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<OtherBean>) {
+                        if (result.code == 0) {
+                            view.onGetOtherSuccess(result.data)
+                        } else {
+                            view.onGetOtherFail(result.msg)
                         }
                     }
                 })
@@ -104,7 +124,12 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IAttentionView {
-        fun onSuccess(msg : String)
+        fun onSuccess(msg : String,data:Int)
         fun onFail(errMsg: String)
+    }
+
+    interface IOtherView {
+        fun onGetOtherSuccess(data:OtherBean)
+        fun onGetOtherFail(errMsg: String)
     }
 }

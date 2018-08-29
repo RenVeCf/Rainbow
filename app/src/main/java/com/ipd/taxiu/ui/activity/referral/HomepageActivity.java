@@ -14,6 +14,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.HomepageAdapter;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.HomepageBean;
+import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.http.HttpUrl;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by Miss on 2018/7/25
  * 查看他人主页
  */
-public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView {
+public class HomepageActivity extends BaseActivity implements View.OnClickListener, MinePresenter.IAttentionView,MinePresenter.IOtherView {
     private ImageView iv_back;
     private RecyclerView recycler_view;
     private List<HomepageBean> data;
@@ -43,6 +44,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     private LinearLayout attention, add_attention, done_attention;
     private MinePresenter mPresenter;
     private AttentionBean bean;
+    private int attentionId = -1;
 
     @BindView(R.id.civ_header)
     CircleImageView civ_header;
@@ -52,6 +54,12 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @BindView(R.id.tv_tag)
     TextView tv_tag;
+
+    @BindView(R.id.tv_attention_num)
+    TextView tv_attention_num;
+
+    @BindView(R.id.tv_fans_num)
+    TextView tv_fans_num;
 
     @Override
     protected int getBaseLayout() {
@@ -68,24 +76,25 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
         add_attention = findViewById(R.id.add_attention);
         done_attention = findViewById(R.id.done_attention);
 
-        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL+bean.LOGO,civ_header);
+        ImageLoader.loadAvatar(this, HttpUrl.IMAGE_URL + bean.LOGO, civ_header);
         tv_friend_nickname.setText(bean.NICKNAME);
         tv_tag.setText(bean.TAG);
+        attentionId = bean.IS_ATTEN;
         setAttention();
     }
 
-    private void setAttention(){
-        if (bean.IS_ATTEN == 0){
+    private void setAttention() {
+        if (attentionId == 0) {
             add_attention.setVisibility(View.VISIBLE);
             done_attention.setVisibility(View.GONE);
             attention.setVisibility(View.GONE);
         }
-        if (bean.IS_ATTEN == 1){
+        if (attentionId == 1) {
             add_attention.setVisibility(View.GONE);
             done_attention.setVisibility(View.VISIBLE);
             attention.setVisibility(View.GONE);
         }
-        if (bean.IS_ATTEN == 2){
+        if (attentionId == 2) {
             add_attention.setVisibility(View.GONE);
             done_attention.setVisibility(View.GONE);
             attention.setVisibility(View.VISIBLE);
@@ -109,6 +118,7 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
+        mPresenter.other(bean.USER_ID+"");
         initData();
         mAdapter = new HomepageAdapter(this, data);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -150,12 +160,25 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    public void onSuccess(String msg) {
+    public void onFail(@NotNull String errMsg) {
+        toastShow(errMsg);
+    }
+
+    @Override
+    public void onSuccess(@NotNull String msg, int data) {
+        attentionId = data;
+        setAttention();
         toastShow(msg);
     }
 
     @Override
-    public void onFail(@NotNull String errMsg) {
+    public void onGetOtherSuccess(OtherBean data) {
+        tv_attention_num.setText(data.ATTENTION_NUM+"");
+        tv_fans_num.setText(data.FANS_NUM+"");
+    }
+
+    @Override
+    public void onGetOtherFail(@NotNull String errMsg) {
         toastShow(errMsg);
     }
 }
