@@ -17,8 +17,8 @@ class TaxiuDetailChildPresenter : PostOperationPresenter<TaxiuDetailChildPresent
 
     fun attention(ATTEN_ID: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().attention(ATTEN_ID, GlobalParam.getUserIdOrJump()),
-                object : Response<BaseResult<AttentionBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<AttentionBean>) {
+                object : Response<BaseResult<Int>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
                         } else {
                         }
