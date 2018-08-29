@@ -4,12 +4,19 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TalkAdapter
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.TalkBean
+import com.ipd.taxiu.event.UpdateTalkListEvent
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
-class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
+class TalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
     companion object {
         fun newInstance(categoryId: Int): TalkListFragment {
             val topicListFragment = TalkListFragment()
@@ -20,32 +27,33 @@ class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
         }
     }
 
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
+
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         progress_layout.setEmptyViewRes(R.layout.layout_empty_talk)
     }
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
-    override fun loadListData(): Observable<List<TalkBean>> {
-        return Observable.create<List<TalkBean>> {
-            val list: ArrayList<TalkBean> = ArrayList()
-            if (categoryId != 2) {
-                for (i: Int in 0 until 10) {
-                    val info = TalkBean()
-                    if (categoryId == -1) {
-                        //我发布的问答
-                        info.isMine = true
-                    }
-                    list.add(info)
-                }
-            }
-            it.onNext(list)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<TalkBean>>> {
+        return ApiManager.getService().talkList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "", "1")
     }
 
-    override fun isNoMoreData(result: List<TalkBean>): Int {
-        if (result == null || result.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<TalkBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
@@ -54,7 +62,7 @@ class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
         if (mAdapter == null) {
             mAdapter = TalkAdapter(mActivity, data, {
                 //itemClick
-                TalkDetailActivity.launch(mActivity,it)
+                TalkDetailActivity.launch(mActivity, it.QUESTION_ID, it.User.NICKNAME, it.USER_ID.toString() == GlobalParam.getUserId())
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -63,8 +71,13 @@ class TalkListFragment : ListFragment<List<TalkBean>, TalkBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<TalkBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<TalkBean>>) {
+        data?.addAll(result.data)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateTalkListEvent) {
+        onRefresh()
     }
 
 }

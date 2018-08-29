@@ -10,6 +10,7 @@
 
 
         <com.ipd.taxiu.widget.TopicLayout
+            android:id="@+id/topic_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />

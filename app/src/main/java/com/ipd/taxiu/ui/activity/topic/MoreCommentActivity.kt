@@ -11,7 +11,6 @@ import com.ipd.taxiu.event.UpdateTaxiuDetailCommentEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.MoreCommentPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.utils.CommentType
 import com.ipd.taxiu.widget.CommentsView
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.activity_more_recommend.*
@@ -72,7 +71,7 @@ class MoreCommentActivity : BaseUIActivity(), MoreCommentPresenter.IMoreCommentV
         if (needProgress) showContent()
         ImageLoader.loadAvatar(mActivity, info.LOGO, civ_sub_publisher_avatar)
         tv_nickname.text = info.NICKNAME
-        tv_content.text = info.CONTENT
+        tv_answer_content.text = info.CONTENT
         tv_sub_comment_time.text = info.CREATETIME
         tv_sub_comment_viewers_num.text = info.BROWSE.toString()
         tv_sub_comment_viewers_num.text = info.BROWSE.toString()
@@ -101,7 +100,7 @@ class MoreCommentActivity : BaseUIActivity(), MoreCommentPresenter.IMoreCommentV
         }
 
         ll_sub_comment_zan.setOnClickListener {
-            mPresenter?.praise(CommentType.TAXIU_PRAISE_REPLY, info.REPLY_ID)
+            mPresenter?.praise(info.REPLY_ID)
         }
 
     }

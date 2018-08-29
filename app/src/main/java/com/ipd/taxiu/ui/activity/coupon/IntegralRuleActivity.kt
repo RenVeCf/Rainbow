@@ -53,7 +53,7 @@ class IntegralRuleActivity : BaseUIActivity(), TextPresenter.ITextView {
 
 
     override fun onSuccess(data: TextBean) {
-        tv_content.text = Html.fromHtml(data.CONTENT, HtmlImageGetter(this, tv_content), null)
+        tv_answer_content.text = Html.fromHtml(data.CONTENT, HtmlImageGetter(this, tv_answer_content), null)
     }
 
     override fun onFail(errMsg: String) {

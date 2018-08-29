@@ -1,6 +1,5 @@
 package com.ipd.taxiu.presenter.store
 
-import com.ipd.taxiu.bean.AttentionBean
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.model.BasicModel
@@ -9,7 +8,7 @@ import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.presenter.PostOperationPresenter
 
-class TaxiuDetailChildPresenter : PostOperationPresenter<TaxiuDetailChildPresenter.ITaxiuDetailChildView>() {
+open class PostDetailChildPresenter : PostOperationPresenter<PostDetailChildPresenter.ITaxiuDetailChildView>() {
     override fun initModel() {
         mModel = BasicModel()
     }

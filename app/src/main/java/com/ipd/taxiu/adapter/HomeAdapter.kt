@@ -185,7 +185,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
             ItemType.HOT_TOPIC -> {
                 holder.itemView.setOnClickListener {
                     //话题详情
-                    TopicDetailActivity.launch(context as Activity)
+//                    TopicDetailActivity.launch(context as Activity)
                 }
 
             }
@@ -194,7 +194,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 holder.itemView.talk_view_pager.pageMargin = DensityUtil.dip2px(context, 12f)
                 holder.itemView.talk_view_pager.adapter = HotTalkPagerAdapter(context, talkInfo.talkList, {
                     //问答详情
-                    TalkDetailActivity.launch(context as Activity, it)
+//                    TalkDetailActivity.launch(context as Activity, it)
                 })
 
             }

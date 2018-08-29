@@ -23,7 +23,7 @@ class TaxiuFragment : BaseUIFragment() {
     override fun loadData() {
         mContentView.view_pager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return TaxiuListFragment.newInstance(position)
+                return TaxiuListFragment.newInstance(position+1)
             }
 
             override fun getCount(): Int = titles.size

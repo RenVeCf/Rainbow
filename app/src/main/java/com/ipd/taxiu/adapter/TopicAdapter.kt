@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TopicBean
-import kotlinx.android.synthetic.main.item_pet_kind.view.*
+import kotlinx.android.synthetic.main.item_topic_list.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,6 +24,8 @@ class TopicAdapter(val context: Context, private val list: List<TopicBean>?, pri
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+
+        holder.itemView.topic_layout.setData(info)
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

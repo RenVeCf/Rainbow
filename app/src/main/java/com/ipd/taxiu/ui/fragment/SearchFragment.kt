@@ -103,7 +103,7 @@ class SearchFragment : ListFragment<List<Any>, Any>() {
             else -> {
                 TopicAdapter(mActivity, data as List<TopicBean>, {
                     //itemClick
-                    TopicDetailActivity.launch(mActivity)
+//                    TopicDetailActivity.launch(mActivity)
                 })
             }
         }

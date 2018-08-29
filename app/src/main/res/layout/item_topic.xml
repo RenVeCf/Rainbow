@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/iv_classroom_image">
 
         <TextView
+            android:id="@+id/tv_viewers_num"
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -54,6 +55,7 @@
             android:text="3243"
             android:textColor="@color/LightGrey" />
         <TextView
+            android:id="@+id/tv_comment_num"
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -62,6 +64,7 @@
             android:text="924"
             android:textColor="@color/LightGrey" />
         <TextView
+            android:id="@+id/tv_collect_num"
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -70,6 +73,7 @@
             android:text="284"
             android:textColor="@color/LightGrey" />
         <TextView
+            android:id="@+id/tv_zan_num"
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"

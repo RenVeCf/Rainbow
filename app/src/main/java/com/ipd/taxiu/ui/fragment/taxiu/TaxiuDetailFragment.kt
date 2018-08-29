@@ -2,6 +2,7 @@ package com.ipd.taxiu.ui.fragment.taxiu
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TaxiuDetailAdapter
 import com.ipd.taxiu.bean.CommentResult
 import com.ipd.taxiu.bean.MoreCommentReplyBean
@@ -11,15 +12,17 @@ import com.ipd.taxiu.event.UpdateTaxiuCommentEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
-import com.ipd.taxiu.presenter.store.TaxiuDetailChildPresenter
+import com.ipd.taxiu.presenter.store.PostDetailChildPresenter
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.topic.TopicPeopleCommentActivity
 import com.ipd.taxiu.utils.CommentType
+import kotlinx.android.synthetic.main.item_topic_comment.view.*
+import kotlinx.android.synthetic.main.layout_topic_header.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
-class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, TaxiuCommentBean>(),TaxiuDetailChildPresenter.ITaxiuDetailChildView {
+class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, TaxiuCommentBean>(), PostDetailChildPresenter.ITaxiuDetailChildView {
 
     companion object {
         fun newInstance(taxiuId: Int): TaxiuDetailFragment {
@@ -31,11 +34,11 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
         }
     }
 
-    private var mPresenter: TaxiuDetailChildPresenter? = null
+    private var mPresenter: PostDetailChildPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
         EventBus.getDefault().register(this)
-        mPresenter = TaxiuDetailChildPresenter()
+        mPresenter = PostDetailChildPresenter()
         mPresenter?.attachView(mActivity, this)
     }
 
@@ -67,9 +70,21 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
     private var mAdapter: TaxiuDetailAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = TaxiuDetailAdapter(mActivity, detailData, data, {
+            mAdapter = TaxiuDetailAdapter(mActivity, detailData, data, { pos, res, info ->
                 //itemClick
-                TopicPeopleCommentActivity.launch(mActivity, it.NICKNAME, CommentType.TAXIU, it.COMMENT_ID)
+                when (res) {
+                    R.id.iv_zan -> {
+                        mPresenter?.praise(pos, CommentType.TAXIU_PRAISE, detailData.SHOW_ID)
+                    }
+                    R.id.ll_comment_zan -> {
+                        mPresenter?.praise(pos, CommentType.TAXIU_PRAISE_COMMENT, info!!.COMMENT_ID)
+                    }
+                    else -> {
+                        if (info != null)
+                            TopicPeopleCommentActivity.launch(mActivity, info.NICKNAME, CommentType.TAXIU, info.COMMENT_ID)
+                    }
+                }
+
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -97,6 +112,29 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
     }
 
     override fun praiseSuccess(pos: Int, category: String) {
+        when (pos) {
+            0 -> {
+                detailData.IS_PRAISE = if (detailData.IS_PRAISE == 1) 0 else 1
+                val holder = recycler_view.findViewHolderForAdapterPosition(pos)
+                if (holder != null) {
+                    holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
+                    var num = holder.itemView.tv_zan.text.toString().toInt()
+                    holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                }
+            }
+            else -> {
+                val info = data?.get(pos - 1)
+                if (info != null) {
+                    info.IS_PRAISE = if (info.IS_PRAISE == 1) 0 else 1
+                    val holder = recycler_view.findViewHolderForAdapterPosition(pos)
+                    if (holder != null) {
+                        holder.itemView.iv_comment_zan.isSelected = info.IS_PRAISE == 1
+                        var num = holder.itemView.tv_comment_zan_num.text.toString().toInt()
+                        holder.itemView.tv_comment_zan_num.text = if (info.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                    }
+                }
+            }
+        }
     }
 
     override fun praiseFail(errMsg: String) {

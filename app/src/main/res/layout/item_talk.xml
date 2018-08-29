@@ -23,6 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_publisher_nickname"
             style="@style/BaseTextStyle"
             android:layout_marginLeft="@dimen/small_padding"
             android:text="柯基大大"
@@ -83,6 +84,7 @@
             app:layout_constraintTop_toBottomOf="@id/ll_award">
 
             <TextView
+                android:id="@+id/tv_publish_time"
                 style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_weight="2"
@@ -100,6 +102,7 @@
                     android:src="@mipmap/views_icon" />
 
                 <TextView
+                    android:id="@+id/tv_viewers_num"
                     style="@style/SmallTextStyle"
                     android:layout_marginLeft="2dp"
                     android:text="3243"
@@ -118,6 +121,7 @@
                     android:src="@mipmap/comment_icon" />
 
                 <TextView
+                    android:id="@+id/tv_comment_num"
                     style="@style/SmallTextStyle"
                     android:layout_marginLeft="2dp"
                     android:text="3243"
@@ -136,6 +140,7 @@
                     android:src="@mipmap/collect_normal" />
 
                 <TextView
+                    android:id="@+id/tv_collect_num"
                     style="@style/SmallTextStyle"
                     android:layout_marginLeft="2dp"
                     android:text="3243"
@@ -155,6 +160,7 @@
 
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_answer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/view_line">
@@ -170,6 +176,7 @@
 
 
             <TextView
+                android:id="@+id/tv_answer_nickname"
                 style="@style/BaseTextStyle"
                 android:layout_marginLeft="@dimen/small_padding"
                 android:text="宠物医生Mr.r"
@@ -187,7 +194,7 @@
                 app:layout_constraintTop_toTopOf="@id/civ_answer_avatar" />
 
             <TextView
-                android:id="@+id/tv_talk_desc"
+                android:id="@+id/tv_answer_content"
                 style="@style/BaseTextStyle"
                 android:layout_marginTop="@dimen/base_padding"
                 android:ellipsize="end"
@@ -201,9 +208,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_padding"
-                app:layout_constraintTop_toBottomOf="@id/tv_talk_desc">
+                app:layout_constraintTop_toBottomOf="@id/tv_answer_content">
 
                 <TextView
+                    android:id="@+id/tv_answer_time"
                     style="@style/SmallTextStyle"
                     android:layout_width="0dp"
                     android:layout_weight="2"
@@ -223,6 +231,7 @@
                         android:src="@mipmap/zan_icon" />
 
                     <TextView
+                        android:id="@+id/tv_answer_zan_num"
                         style="@style/SmallTextStyle"
                         android:layout_marginLeft="2dp"
                         android:text="3243"

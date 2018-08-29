@@ -34,7 +34,7 @@ class TopicIndexActivity : BaseUIActivity() {
     override fun loadData() {
         view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return TopicListFragment.newInstance(position)
+                return TopicListFragment.newInstance(position+1)
             }
 
             override fun getCount(): Int = titles.size

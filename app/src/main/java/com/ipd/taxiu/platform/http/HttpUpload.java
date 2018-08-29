@@ -2,7 +2,7 @@ package com.ipd.taxiu.platform.http;
 
 import android.util.Log;
 
-import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.UploadResultBean;
 
 import java.io.File;
 import java.util.List;
@@ -31,22 +31,22 @@ public class HttpUpload {
                         RequestBody.create(MediaType.parse("image/*"), file));
             }
         }
-        Observable<BaseResult<String>> observable = ApiManager.getService().uploadPic(map);
+        Observable<UploadResultBean> observable = ApiManager.getService().uploadPicture(map);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<BaseResult<String>>() {
+                .subscribe(new Subscriber<UploadResultBean>() {
                     @Override
                     public void onCompleted() {
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("TAG",e.getMessage());
+                        Log.i("TAG", e.getMessage());
                     }
 
                     @Override
-                    public void onNext(BaseResult<String> stringBaseResult) {
+                    public void onNext(UploadResultBean stringBaseResult) {
                         logo = stringBaseResult.data2;
                     }
                 });

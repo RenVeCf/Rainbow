@@ -1,6 +1,5 @@
 package com.ipd.taxiu.presenter.store
 
-import com.ipd.taxiu.bean.AttentionBean
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.model.BasicModel

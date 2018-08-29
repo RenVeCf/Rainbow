@@ -3,14 +3,21 @@ package com.ipd.taxiu.ui.fragment.topic
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
+import com.ipd.taxiu.adapter.TaxiuAdapter
 import com.ipd.taxiu.adapter.TopicAdapter
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.TaxiuBean
 import com.ipd.taxiu.bean.TopicBean
 import com.ipd.taxiu.bean.TopicListBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import rx.Observable
 
-class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
+class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>() {
     companion object {
         fun newInstance(categoryId: Int): TopicListFragment {
             val topicListFragment = TopicListFragment()
@@ -23,26 +30,20 @@ class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
-        progress_layout.setEmptyViewRes(R.layout.layout_empty_topic)
+        progress_layout.setEmptyViewRes(R.layout.layout_empty_taxiu)
     }
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
-    override fun loadListData(): Observable<TopicListBean> {
-        return Observable.create<TopicListBean> {
-            val topicListBean = TopicListBean()
-            topicListBean.list = ArrayList()
-            if (categoryId != 2) {
-                for (i: Int in 0 until 10) {
-                    topicListBean.list.add(TopicBean())
-                }
-            }
-            it.onNext(topicListBean)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<TopicBean>>> {
+        return ApiManager.getService().topicList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "")
     }
 
-    override fun isNoMoreData(result: TopicListBean): Int {
-        if (result.list == null || result.list.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<TopicBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
@@ -51,7 +52,7 @@ class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
         if (mAdapter == null) {
             mAdapter = TopicAdapter(mActivity, data, {
                 //itemClick
-                TopicDetailActivity.launch(mActivity)
+                TopicDetailActivity.launch(mActivity,it.TOPIC_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -60,8 +61,8 @@ class TopicListFragment : ListFragment<TopicListBean, TopicBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: TopicListBean) {
-        data?.addAll(result.list)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<TopicBean>>) {
+        data?.addAll(result.data)
     }
 
 }

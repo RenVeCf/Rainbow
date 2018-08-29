@@ -45,7 +45,7 @@ class CollectTopicListFragment : ListFragment<TopicListBean, TopicBean>() {
         if (mAdapter == null) {
             mAdapter = TopicAdapter(mActivity, data, {
                 //itemClick
-                TopicDetailActivity.launch(mActivity)
+//                TopicDetailActivity.launch(mActivity)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

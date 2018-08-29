@@ -40,6 +40,25 @@ public interface HttpUrl {
     String TAXIU_FIRST_REPLY = "app_show/toReply.do";
     String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
 
+    //话题
+    String TOPIC_LIST = "app_topic/getList.do";
+    String TOPIC_DETAIL = "app_topic/getInfo.do";
+    String TOPIC_COMMENT = "app_topic/commentList.do";
+    String TOPIC_TO_COMMENT = "app_topic/toComment.do";
+    String TOPIC_COMMENT_DETAIL = "app_topic/getComment.do";
+    String TOPIC_REPLY_LIST = "app_topic/replyList.do";
+    String TOPIC_REPLY_MORE = "app_topic/replyMore.do";
+    String TOPIC_FIRST_REPLY = "app_topic/toReply.do";
+    String TOPIC_SECOND_REPLY = "app_topic/toReplyMore.do";
+
+    //问答
+    String PUBLISH_TALK = "app_question/add.do";
+    String TALK_LIST = "app_question/getList.do";
+    String TALK_DETAIL = "app_question/getInfo.do";
+    String TALK_COMMENT = "app_question/commentList.do";
+    String TALK_TO_COMMENT = "app_question/toComment.do";
+    String TALK_FIRST_REPLY = "app_question/toReply.do";
+    String TALK_SECOND_REPLY = "app_question/toReplyMore.do";
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
@@ -76,7 +95,7 @@ public interface HttpUrl {
     String SCORE_LIST = "app_score/getList.do";
 
     //text
-    String TEXT_INFO="app_text/getInfo.do";
+    String TEXT_INFO = "app_text/getInfo.do";
 
 
 }

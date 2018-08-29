@@ -19,7 +19,7 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <EditText
+        <TextView
             android:id="@+id/tv_comment_topic"
             style="@style/BaseEditTextStyle"
             android:layout_width="0dp"
@@ -32,7 +32,7 @@
             android:background="@drawable/shape_comment_edit_bg"
             android:drawableLeft="@mipmap/join_comment_icon"
             android:drawablePadding="10dp"
-            android:hint="添加一条回答"
+            android:hint="添加一条答案"
             android:paddingBottom="@dimen/small_padding"
             android:paddingLeft="@dimen/small_padding"
             android:paddingRight="@dimen/small_padding"
@@ -44,6 +44,7 @@
             android:src="@mipmap/bottom_menu_comment" />
 
         <ImageView
+            android:id="@+id/iv_collect"
             style="@style/BottomMenuStyle"
             android:src="@drawable/selector_collect" />
 

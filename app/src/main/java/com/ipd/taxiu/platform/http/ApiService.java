@@ -18,12 +18,18 @@ import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.TalkBean;
+import com.ipd.taxiu.bean.TalkCommentBean;
+import com.ipd.taxiu.bean.TalkDetailBean;
 import com.ipd.taxiu.bean.TaxiuBean;
 import com.ipd.taxiu.bean.TaxiuCommentBean;
 import com.ipd.taxiu.bean.TaxiuDetailBean;
 import com.ipd.taxiu.bean.TaxiuLableBean;
 import com.ipd.taxiu.bean.TextBean;
+import com.ipd.taxiu.bean.TopicBean;
+import com.ipd.taxiu.bean.TopicCommentBean;
 import com.ipd.taxiu.bean.TopicCommentReplyBean;
+import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
@@ -249,6 +255,127 @@ public interface ApiService {
 
 
     /**
+     * 话题
+     */
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_LIST)
+    Observable<BaseResult<List<TopicBean>>> topicList(@Field("USER_ID") String USER_ID,
+                                                      @Field("COUNT") int COUNT,
+                                                      @Field("PAGE") int PAGE,
+                                                      @Field("TYPE") int TYPE,
+                                                      @Field("KEYWORDS") String KEYWORDS);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_DETAIL)
+    Observable<BaseResult<TopicDetailBean>> topicDetail(@Field("USER_ID") String USER_ID,
+                                                        @Field("TOPIC_ID") int TOPIC_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_COMMENT)
+    Observable<CommentResult<List<TopicCommentBean>>> topicComment(@Field("USER_ID") String USER_ID,
+                                                                   @Field("COUNT") int COUNT,
+                                                                   @Field("PAGE") int PAGE,
+                                                                   @Field("TYPE") int TYPE,
+                                                                   @Field("TOPIC_ID") int TOPIC_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_TO_COMMENT)
+    Observable<BaseResult<TopicCommentBean>> topicToComment(@Field("USER_ID") String USER_ID,
+                                                            @Field("CONTENT") String CONTENT,
+                                                            @Field("PIC") String PIC,
+                                                            @Field("TOPIC_ID") int TOPIC_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_COMMENT_DETAIL)
+    Observable<BaseResult<CommentDetailBean>> topicCommentDetail(@Field("USER_ID") String USER_ID,
+                                                                 @Field("PARTAKE_ID") int PARTAKE_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_REPLY_LIST)
+    Observable<BaseResult<List<TopicCommentReplyBean>>> topicReplyList(@Field("USER_ID") String USER_ID,
+                                                                       @Field("COUNT") int COUNT,
+                                                                       @Field("PAGE") int PAGE,
+                                                                       @Field("PARTAKE_ID") int PARTAKE_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_REPLY_MORE)
+    Observable<BaseResult<MoreCommentReplyBean>> topicReplyMore(@Field("USER_ID") String USER_ID,
+                                                                @Field("REPLY_ID") int REPLY_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_FIRST_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> topicFirstReply(@Field("USER_ID") String USER_ID,
+                                                                 @Field("PARTAKE_ID") int PARTAKE_ID,
+                                                                 @Field("CONTENT") String CONTENT);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TOPIC_SECOND_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> topicSecondReply(@Field("USER_ID") String USER_ID,
+                                                                  @Field("REPLY_ID") int REPLY_ID,
+                                                                  @Field("TARGET_ID") int TARGET_ID,
+                                                                  @Field("CONTENT") String CONTENT);
+
+    /**
+     * 问答
+     */
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_LIST)
+    Observable<BaseResult<List<TalkBean>>> talkList(@Field("USER_ID") String USER_ID,
+                                                    @Field("COUNT") int COUNT,
+                                                    @Field("PAGE") int PAGE,
+                                                    @Field("TYPE") int TYPE,
+                                                    @Field("KEYWORDS") String KEYWORDS,
+                                                    @Field("CATEGORY") String CATEGORY);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PUBLISH_TALK)
+    Observable<BaseResult<TalkBean>> publishTalk(@Field("USER_ID") String USER_ID,
+                                                 @Field("CONTENT") String CONTENT,
+                                                 @Field("SCORE") String SCORE);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_DETAIL)
+    Observable<BaseResult<TalkDetailBean>> talkDetail(@Field("USER_ID") String USER_ID,
+                                                      @Field("QUESTION_ID") int QUESTION_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_COMMENT)
+    Observable<CommentResult<List<TalkCommentBean>>> talkComment(@Field("USER_ID") String USER_ID,
+                                                                 @Field("COUNT") int COUNT,
+                                                                 @Field("PAGE") int PAGE,
+                                                                 @Field("TYPE") int TYPE,
+                                                                 @Field("QUESTION_ID") int QUESTION_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_TO_COMMENT)
+    Observable<BaseResult<TalkCommentBean>> talkToComment(@Field("USER_ID") String USER_ID,
+                                                          @Field("CONTENT") String CONTENT,
+                                                          @Field("QUESTION_ID") int QUESTION_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_FIRST_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> talkFirstReply(@Field("USER_ID") String USER_ID,
+                                                                @Field("ANSWER_ID") int ANSWER_ID,
+                                                                @Field("CONTENT") String CONTENT);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_SECOND_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> talkSecondReply(@Field("USER_ID") String USER_ID,
+                                                                 @Field("ANSWER_ID") int ANSWER_ID,
+                                                                 @Field("TARGET_ID") int TARGET_ID,
+                                                                 @Field("CONTENT") String CONTENT);
+
+    /**
      * address
      *
      * @return
@@ -369,17 +496,6 @@ public interface ApiService {
     @POST(HttpUrl.TEXT_INFO)
     Observable<BaseResult<TextBean>> getTextInfo(@Field("CATEGORY") int CATEGORY,
                                                  @Field("USER_ID") String USER_ID);
-
-
-    /**
-     * 上传头像
-     *
-     * @param params
-     * @return
-     */
-    @Multipart
-    @POST(HttpUrl.UPLOAD_PIC)
-    Observable<BaseResult<String>> uploadPic(@PartMap Map<String, RequestBody> params);
 
 
     //tools

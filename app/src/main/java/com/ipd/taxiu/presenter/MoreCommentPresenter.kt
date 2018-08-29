@@ -4,7 +4,6 @@ import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
-import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.presenter.PostOperationPresenter
 
@@ -15,7 +14,7 @@ class MoreCommentPresenter : PostOperationPresenter<MoreCommentPresenter.IMoreCo
 
 
     fun loadMoreComment(needProgress: Boolean, replyId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().taxiuReplyMore(GlobalParam.getUserIdOrJump(), replyId),
+        mModel?.getNormalRequestData(commentApi.replyMore(GlobalParam.getUserIdOrJump(), replyId),
                 object : Response<BaseResult<MoreCommentReplyBean>>() {
                     override fun _onNext(result: BaseResult<MoreCommentReplyBean>) {
                         if (result.code == 0) {
@@ -32,8 +31,8 @@ class MoreCommentPresenter : PostOperationPresenter<MoreCommentPresenter.IMoreCo
     }
 
     fun reply(replyId: Int, targetId: Int, content: String) {
-        mModel?.getNormalRequestData(ApiManager.getService().taxiuSecondReply(GlobalParam.getUserIdOrJump(), replyId, targetId, content),
-                object : Response<BaseResult<MoreCommentReplyBean>>() {
+        mModel?.getNormalRequestData(commentApi.secondReply(GlobalParam.getUserIdOrJump(), replyId, targetId, content),
+                object : Response<BaseResult<MoreCommentReplyBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<MoreCommentReplyBean>) {
                         if (result.code == 0) {
                             mView?.replySuccess()
@@ -46,6 +45,10 @@ class MoreCommentPresenter : PostOperationPresenter<MoreCommentPresenter.IMoreCo
                         mView?.replyFail("连接服务器失败")
                     }
                 })
+    }
+
+    fun praise(categoryId: Int) {
+        praise(commentApi.getPraiseReplyCategory(), categoryId)
     }
 
 

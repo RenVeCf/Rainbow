@@ -8,11 +8,12 @@ import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.CommentDetailBean
 import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.platform.global.GlobalParam
-import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.topic.TopicPeopleCommentFragment
+import com.ipd.taxiu.utils.comment.CommentApiFactory
+import com.ipd.taxiu.utils.comment.ICommentApi
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.activity_topic_people_recommend.*
 
@@ -32,18 +33,18 @@ class TopicPeopleCommentActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_topic_people_recommend
 
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
-
+    private val commentApi: ICommentApi by lazy { CommentApiFactory.createCommentApi(type) }
     val type by lazy { intent.getIntExtra("type", 0) }
     val commentId by lazy { intent.getIntExtra("commentId", -1) }
     val fragment by lazy { TopicPeopleCommentFragment.newInstance(type, commentId) }
     override fun loadData() {
         showProgress()
-        ApiManager.getService().taxiuCommentDetail(GlobalParam.getUserIdOrJump(), commentId)
-                .compose(RxScheduler.applyScheduler())
+        commentApi.commentDetail(GlobalParam.getUserIdOrJump(), commentId).compose(RxScheduler.applyScheduler())
                 .subscribe(object : Response<BaseResult<CommentDetailBean>>() {
                     override fun _onNext(result: BaseResult<CommentDetailBean>) {
                         if (result.code == 0) {
@@ -65,7 +66,7 @@ class TopicPeopleCommentActivity : BaseUIActivity() {
         tv_reply.setOnClickListener {
             //一级回复
             ReplyDialog(tv_reply.hint.toString(), {
-                ApiManager.getService().taxiuFirstReply(GlobalParam.getUserIdOrJump(), commentId, it)
+                commentApi.firstReply(GlobalParam.getUserIdOrJump(), commentId, it)
                         .compose(RxScheduler.applyScheduler())
                         .subscribe(object : Response<BaseResult<MoreCommentReplyBean>>(mActivity, true) {
                             override fun _onNext(result: BaseResult<MoreCommentReplyBean>) {

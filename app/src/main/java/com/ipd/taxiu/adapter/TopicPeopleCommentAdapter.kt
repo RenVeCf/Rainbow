@@ -88,7 +88,7 @@ class TopicPeopleCommentAdapter(val context: Context, val detailData: CommentDet
                 val info = list!![position - 1]
                 ImageLoader.loadAvatar(context, info.LOGO, holder.itemView.civ_sub_publisher_avatar)
                 holder.itemView.tv_nickname.text = info.NICKNAME
-                holder.itemView.tv_content.text = info.CONTENT
+                holder.itemView.tv_answer_content.text = info.CONTENT
                 holder.itemView.tv_sub_comment_time.text = info.CREATETIME
                 holder.itemView.tv_sub_comment_viewers_num.text = info.BROWSE.toString()
                 holder.itemView.tv_sub_comment_zan_num.text = info.PRAISE.toString()
