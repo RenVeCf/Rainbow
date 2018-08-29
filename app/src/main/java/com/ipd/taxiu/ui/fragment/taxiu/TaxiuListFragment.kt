@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TaxiuAdapter
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
-import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import rx.Observable
 
-class TaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
+class TaxiuListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() {
     companion object {
         fun newInstance(categoryId: Int): TaxiuListFragment {
             val fragment = TaxiuListFragment()
@@ -27,21 +30,26 @@ class TaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
     }
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
-    override fun loadListData(): Observable<List<TaxiuBean>> {
-        return Observable.create<List<TaxiuBean>> {
-            val list: ArrayList<TaxiuBean> = ArrayList()
-            if (categoryId != 2) {
-                for (i: Int in 0 until 10) {
-                    list.add(TaxiuBean())
-                }
-            }
-            it.onNext(list)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<TaxiuBean>>> {
+//        return Observable.create<List<TaxiuBean>> {
+//            val list: ArrayList<TaxiuBean> = ArrayList()
+//            if (categoryId != 2) {
+//                for (i: Int in 0 until 10) {
+//                    list.add(TaxiuBean())
+//                }
+//            }
+//            it.onNext(list)
+//            it.onCompleted()
+//        }
+        return ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "")
     }
 
-    override fun isNoMoreData(result: List<TaxiuBean>): Int {
-        if (result == null || result.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<TaxiuBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
@@ -50,7 +58,7 @@ class TaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
         if (mAdapter == null) {
             mAdapter = TaxiuAdapter(mActivity, data, {
                 //itemClick
-                TaxiuDetailActivity.launch(mActivity)
+                TaxiuDetailActivity.launch(mActivity, it.SHOW_ID, GlobalParam.getUserId() == it.USER_ID.toString())
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -59,8 +67,8 @@ class TaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<TaxiuBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<TaxiuBean>>) {
+        data?.addAll(result.data)
     }
 
 }

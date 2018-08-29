@@ -51,7 +51,7 @@ class PublishedTaxiuFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
         if (mAdapter == null) {
             mAdapter = TaxiuAdapter(mActivity, data, {
                 //itemClick
-                TaxiuDetailActivity.launch(mActivity,it)
+                TaxiuDetailActivity.launch(mActivity)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

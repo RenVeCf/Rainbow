@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuBean
+import kotlinx.android.synthetic.main.item_list_taxiu.view.*
+import kotlinx.android.synthetic.main.item_taxiu.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -23,6 +25,11 @@ class TaxiuAdapter(val context: Context, private val list: List<TaxiuBean>?, pri
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+        holder.itemView.taxiu_layout.setData(info)
+
+        holder.itemView.taxiu_layout.media_recycler_view.setOnTouchListener{v, event ->
+            holder.itemView.onTouchEvent(event)
+        }
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

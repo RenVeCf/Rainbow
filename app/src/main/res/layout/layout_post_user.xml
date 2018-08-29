@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
         android:id="@+id/civ_publisher_avatar"
@@ -10,7 +11,7 @@
         android:layout_height="@dimen/topic_people_comment_avatar_size"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginTop="@dimen/small_padding"
-        android:src="@mipmap/talk_avatar1"
+        tools:src="@mipmap/talk_avatar1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,7 +19,7 @@
         android:id="@+id/tv_nickname"
         style="@style/BaseTextStyle"
         android:layout_marginLeft="@dimen/small_padding"
-        android:text="龟萌萌呆头鸡"
+        tools:text="龟萌萌呆头鸡"
         app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
         app:layout_constraintBottom_toTopOf="@id/tv_user_desc"
         app:layout_constraintLeft_toRightOf="@id/civ_publisher_avatar"
@@ -30,7 +31,7 @@
         style="@style/SmallTextStyle"
         android:ellipsize="end"
         android:maxLength="20"
-        android:text="我是一只胖娃娃"
+        tools:text="我是一只胖娃娃"
         android:textColor="@color/LightGrey"
         app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
         app:layout_constraintLeft_toLeftOf="@id/tv_nickname"

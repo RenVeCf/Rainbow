@@ -5,39 +5,31 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.bean.TaxiuDetailBean
+import com.ipd.taxiu.presenter.store.TaxiuDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.ui.activity.topic.PublishTopicCommentActivity
 import com.ipd.taxiu.ui.fragment.taxiu.TaxiuDetailFragment
 import com.ipd.taxiu.widget.MessageDialog
-import kotlinx.android.synthetic.main.activity_topic_detail.*
+import kotlinx.android.synthetic.main.activity_taxiu_detail.*
 import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
 
-class TaxiuDetailActivity : BaseUIActivity() {
+class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailView {
+
 
     companion object {
-        fun launch(activity: Activity, info: TaxiuBean? = null) {
+        fun launch(activity: Activity, taxiuId: Int = -1, isAdmin: Boolean = false) {
             val intent = Intent(activity, TaxiuDetailActivity::class.java)
-            if (info != null) {
-                val bundle = Bundle()
-                bundle.putSerializable("info", info)
-                intent.putExtras(bundle)
-            }
+            intent.putExtra("taxiuId", taxiuId)
+            intent.putExtra("isAdmin", isAdmin)
             activity.startActivity(intent)
         }
     }
 
-    private val isAdmin: Boolean by lazy {
-        val bundle = intent.extras
-        if (bundle != null) {
-            val info = bundle.getSerializable("info") as TaxiuBean?
-            info?.isMine ?: false
-        }else{
-            false
-        }
-    }
+    private val isAdmin: Boolean by lazy { intent.getBooleanExtra("isAdmin", false) }
+    private val taxiuId: Int by lazy { intent.getIntExtra("taxiuId", -1) }
 
     override fun getToolbarLayout(): Int {
         return if (isAdmin) {
@@ -51,18 +43,35 @@ class TaxiuDetailActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_taxiu_detail
 
+
+    var mPresenter: TaxiuDetailPresenter? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = TaxiuDetailPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
+        ll_bottom_menu.visibility = if (isAdmin) View.GONE else View.VISIBLE
     }
 
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, TaxiuDetailFragment.newInstance()).commit()
+        showProgress()
+        mPresenter?.loadDetail(taxiuId)
     }
 
     override fun initListener() {
         tv_comment_topic.setOnClickListener {
             //参与话题
-            PublishTopicCommentActivity.launch(mActivity)
+            PublishTaxiuCommentActivity.launch(mActivity, taxiuId)
         }
         if (isAdmin) {
             fl_delete.setOnClickListener {
@@ -77,8 +86,38 @@ class TaxiuDetailActivity : BaseUIActivity() {
                         }).show()
             }
         }
+
+        iv_collect.setOnClickListener {
+            //收藏
+            mPresenter?.toCollect(taxiuId)
+
+        }
     }
 
+
+    private var detailInfo: TaxiuDetailBean? = null
+    override fun loadDetailSuccess(detail: TaxiuDetailBean) {
+        showContent()
+        detailInfo = detail
+        iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
+
+        val fragment = TaxiuDetailFragment.newInstance(taxiuId)
+        fragment.setDetailData(detail)
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, fragment).commit()
+    }
+
+    override fun loadDetailFail(errMsg: String) {
+        showError(errMsg)
+    }
+
+    override fun collectSuccess() {
+        detailInfo?.IS_COLLECT = if (detailInfo?.IS_COLLECT == 0) 1 else 0
+        iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
+    }
+
+    override fun collectFail(errMsg: String) {
+        toastShow(errMsg)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (isAdmin) {

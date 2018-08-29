@@ -23,12 +23,16 @@ public class ImageLoader {
             Glide.with(context).load(url).into(view);
             return;
         }
-        Glide.with(context).load( url).into(view);
+        Glide.with(context).load(HttpUrl.IMAGE_URL + url)
+                .apply(new RequestOptions()
+                        .dontTransform())
+                .into(view);
     }
 
     public static void loadImgWithPlaceHolder(Context context, String url, int placeHolderRes, ImageView view) {
-        Glide.with(context).load( url)
+        Glide.with(context).load(HttpUrl.IMAGE_URL + url)
                 .apply(new RequestOptions()
+                        .dontTransform()
                         .placeholder(placeHolderRes)
                         .error(placeHolderRes))
                 .into(view);
@@ -42,7 +46,7 @@ public class ImageLoader {
     public static void getBitmapFromUrl(Context context, String url, final OnResourceReadyListener listener) {
         Glide.with(context)
                 .asDrawable()
-                .load(url)
+                .load(HttpUrl.IMAGE_URL + url)
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
@@ -52,7 +56,7 @@ public class ImageLoader {
     }
 
     public static void loadAvatar(final Context context, Object url, final ImageView view) {
-        Glide.with(context).asBitmap().load( url)
+        Glide.with(context).asBitmap().load(HttpUrl.IMAGE_URL + url)
                 .apply(new RequestOptions()
                         .placeholder(R.mipmap.avatar_default)
                         .error(R.mipmap.avatar_default)

@@ -9,5 +9,7 @@ object Constant {
     const val SMS_CODE_LENGHT = 4
     const val SMS_CODE_TIME = 60
 
+    const val PAGE_SIZE = 10
+
 
 }

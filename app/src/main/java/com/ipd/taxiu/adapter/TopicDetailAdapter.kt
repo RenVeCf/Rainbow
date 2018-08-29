@@ -48,14 +48,14 @@ class TopicDetailAdapter(val context: Context, private val list: List<TopicComme
             }
             ItemType.COMMENT -> {
                 val info = list!![position - 1]
-                if (info.images == null || info.images.isEmpty()) {
-                    holder.itemView.image_recycler_view.visibility = View.GONE
-                } else {
-                    holder.itemView.image_recycler_view.visibility = View.VISIBLE
-                    holder.itemView.image_recycler_view.adapter = TopicCommentImgAdapter(context, info.images, {
-
-                    })
-                }
+//                if (info.images == null || info.images.isEmpty()) {
+//                    holder.itemView.image_recycler_view.visibility = View.GONE
+//                } else {
+//                    holder.itemView.image_recycler_view.visibility = View.VISIBLE
+//                    holder.itemView.image_recycler_view.adapter = TopicCommentImgAdapter(context, info.images, {
+//
+//                    })
+//                }
 
                 holder.itemView.setOnClickListener {
                     itemClick.invoke(info)

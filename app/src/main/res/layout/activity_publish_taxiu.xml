@@ -112,6 +112,7 @@
             app:layout_constraintTop_toBottomOf="@id/lable_layout">
 
             <CheckBox
+                android:id="@+id/cb_user_agent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_copyright_cb"

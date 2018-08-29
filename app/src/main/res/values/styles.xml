@@ -279,6 +279,19 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
 
+    <style name="ReplyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/dialog_bg</item>
+        <!--背景-->
+        <item name="android:windowFrame">@null</item>
+        <!--设置无边框-->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+        <item name="android:windowSoftInputMode">stateAlwaysVisible</item>
+        <!--显示键盘-->
+    </style>
+
     <style name="RatingStyle" parent="@android:style/Widget.RatingBar">
         <!-- 定义星星图片 -->
         <item name="android:progressDrawable">@drawable/layer_live_rating_bar</item>

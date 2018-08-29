@@ -25,7 +25,7 @@ class CommentsView : LinearLayout {
         init()
     }
 
-    private var maxShowNum = -1 //默认完全显示
+    private var hasMore = false //是否还有更多
     private var mDatas: List<CommentReplyBean>? = null
     private var listener: onItemClickListener? = null
 
@@ -34,8 +34,8 @@ class CommentsView : LinearLayout {
         orientation = LinearLayout.VERTICAL
     }
 
-    fun setMaxShowNum(num: Int) {
-        maxShowNum = num
+    fun setHasMore(hasMore: Boolean) {
+        this.hasMore = hasMore
     }
 
     /**
@@ -59,13 +59,11 @@ class CommentsView : LinearLayout {
         val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         layoutParams.setMargins(0, 10, 0, 10)
         mDatas?.forEachIndexed reply@{ index, commentReplyBean ->
-            LogUtils.e("tag","index:$index")
-            if (maxShowNum != -1 && index >= maxShowNum) {
-                addView(getMoreReplyView(index), index, layoutParams)
-                return
-            } else {
-                addView(getView(index), index, layoutParams)
-            }
+            LogUtils.e("tag", "index:$index")
+            addView(getView(index), index, layoutParams)
+        }
+        if (hasMore) {
+            addView(getMoreReplyView(mDatas?.size ?: 0), layoutParams)
         }
     }
 

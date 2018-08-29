@@ -4,27 +4,39 @@ package com.ipd.taxiu.platform.http;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.CommentDetailBean;
+import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
+import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.PetBean;
-import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.PetKindListBean;
+import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.TaxiuBean;
+import com.ipd.taxiu.bean.TaxiuCommentBean;
+import com.ipd.taxiu.bean.TaxiuDetailBean;
+import com.ipd.taxiu.bean.TaxiuLableBean;
 import com.ipd.taxiu.bean.TextBean;
+import com.ipd.taxiu.bean.TopicCommentReplyBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
+import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
 
-import java.util.List;
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import rx.Observable;
 
 /**
@@ -104,29 +116,32 @@ public interface ApiService {
     @POST(HttpUrl.PET_GET_INFO)
     Observable<BaseResult<PetBean>> petGetInfo(@Field("PET_ID") int PET_ID,
                                                @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_DELETE)
     Observable<BaseResult<PetBean>> petDelete(@Field("PET_ID") int PET_ID,
-                                               @Field("USER_ID") String USER_ID);
+                                              @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_UPDATE)
     Observable<BaseResult<PetBean>> petUpdate(@Field("BIRTHDAY") String BIRTHDAY,
-                                               @Field("GENDER") int GENDER,
-                                               @Field("LOGO") String LOGO,
-                                               @Field("NICKNAME") String NICKNAME,
-                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
-                                               @Field("STATUS") int STATUS,
-                                               @Field("PET_ID") int PET_ID,
-                                               @Field("USER_ID") String USER_ID);
+                                              @Field("GENDER") int GENDER,
+                                              @Field("LOGO") String LOGO,
+                                              @Field("NICKNAME") String NICKNAME,
+                                              @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                              @Field("STATUS") int STATUS,
+                                              @Field("PET_ID") int PET_ID,
+                                              @Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.PET_ADD)
     Observable<BaseResult<PetBean>> petAdd(@Field("BIRTHDAY") String BIRTHDAY,
-                                               @Field("GENDER") int GENDER,
-                                               @Field("LOGO") String LOGO,
-                                               @Field("NICKNAME") String NICKNAME,
-                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
-                                               @Field("STATUS") int STATUS,
-                                               @Field("USER_ID") String USER_ID);
+                                           @Field("GENDER") int GENDER,
+                                           @Field("LOGO") String LOGO,
+                                           @Field("NICKNAME") String NICKNAME,
+                                           @Field("PET_TYPE_ID") int PET_TYPE_ID,
+                                           @Field("STATUS") int STATUS,
+                                           @Field("USER_ID") String USER_ID);
 
     /**
      * sign in
@@ -142,6 +157,94 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.SIGN_IN)
     Observable<BaseResult<SignInResuleBean>> signIn(@Field("USER_ID") String USER_ID);
+
+    /**
+     * 它秀
+     */
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_LIST)
+    Observable<BaseResult<List<TaxiuBean>>> taxiuList(@Field("USER_ID") String USER_ID,
+                                                      @Field("COUNT") int COUNT,
+                                                      @Field("PAGE") int PAGE,
+                                                      @Field("TYPE") int TYPE,
+                                                      @Field("KEYWORDS") String KEYWORDS);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_LABLE_LIST)
+    Observable<BaseResult<List<TaxiuLableBean>>> taxiuLableList(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PUBLISH_TAXIU)
+    Observable<BaseResult<TaxiuLableBean>> publishTaxiu(@Field("USER_ID") String USER_ID,
+                                                        @Field("CONTENT") String CONTENT,
+                                                        @Field("LOGO") String LOGO,
+                                                        @Field("PIC") String PIC,
+                                                        @Field("SHOW_TIP_ID") String SHOW_TIP_ID,
+                                                        @Field("TYPE") String TYPE,
+                                                        @Field("URL") String URL);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_DETAIL)
+    Observable<BaseResult<TaxiuDetailBean>> taxiuDetail(@Field("USER_ID") String USER_ID,
+                                                        @Field("SHOW_ID") int SHOW_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_COMMENT)
+    Observable<CommentResult<List<TaxiuCommentBean>>> taxiuComment(@Field("USER_ID") String USER_ID,
+                                                                   @Field("COUNT") int COUNT,
+                                                                   @Field("PAGE") int PAGE,
+                                                                   @Field("TYPE") int TYPE,
+                                                                   @Field("SHOW_ID") int SHOW_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_TO_COMMENT)
+    Observable<CommentResult<TaxiuCommentBean>> taxiuToComment(@Field("USER_ID") String USER_ID,
+                                                               @Field("CONTENT") String CONTENT,
+                                                               @Field("PIC") String PIC,
+                                                               @Field("SHOW_ID") int SHOW_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_PRAISE)
+    Observable<BaseResult<TaxiuDetailBean>> taxiuPraise(@Field("USER_ID") String USER_ID,
+                                                        @Field("CATEGORY") String CATEGORY,
+                                                        @Field("MODULE_ID") int MODULE_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_COLLECT)
+    Observable<BaseResult<TaxiuDetailBean>> taxiuCollect(@Field("USER_ID") String USER_ID,
+                                                         @Field("CATEGORY") String CATEGORY,
+                                                         @Field("MODULE_ID") int MODULE_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_COMMENT_DETAIL)
+    Observable<BaseResult<CommentDetailBean>> taxiuCommentDetail(@Field("USER_ID") String USER_ID,
+                                                                 @Field("COMMENT_ID") int COMMENT_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_REPLY_LIST)
+    Observable<BaseResult<List<TopicCommentReplyBean>>> taxiuReplyList(@Field("USER_ID") String USER_ID,
+                                                                       @Field("COUNT") int COUNT,
+                                                                       @Field("PAGE") int PAGE,
+                                                                       @Field("COMMENT_ID") int COMMENT_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_REPLY_MORE)
+    Observable<BaseResult<MoreCommentReplyBean>> taxiuReplyMore(@Field("USER_ID") String USER_ID,
+                                                                @Field("REPLY_ID") int REPLY_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_FIRST_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> taxiuFirstReply(@Field("USER_ID") String USER_ID,
+                                                                 @Field("COMMENT_ID") int COMMENT_ID,
+                                                                 @Field("CONTENT") String CONTENT);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_SECOND_REPLY)
+    Observable<BaseResult<MoreCommentReplyBean>> taxiuSecondReply(@Field("USER_ID") String USER_ID,
+                                                                  @Field("REPLY_ID") int REPLY_ID,
+                                                                  @Field("TARGET_ID") int TARGET_ID,
+                                                                  @Field("CONTENT") String CONTENT);
 
     /**
      * address
@@ -212,8 +315,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.FRIEND_LIST)
     Observable<BaseResult<List<AttentionBean>>> getFriendList(@Field("COUNT") int COUNT,
-                                                         @Field("USER_ID") String USER_ID,
-                                                         @Field("PAGE") int PAGE);
+                                                              @Field("USER_ID") String USER_ID,
+                                                              @Field("PAGE") int PAGE);
 
     @FormUrlEncoded
     @POST(HttpUrl.ATTENTION)
@@ -236,6 +339,7 @@ public interface ApiService {
 
     /**
      * 积分账单列表
+     *
      * @param COUNT
      * @param USER_ID
      * @param PAGE
@@ -244,13 +348,19 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.SCORE_LIST)
     Observable<BaseResult<List<IntegralBean>>> scoreList(@Field("COUNT") int COUNT,
-                                                       @Field("USER_ID") String USER_ID,
-                                                       @Field("PAGE") int PAGE);
+                                                         @Field("USER_ID") String USER_ID,
+                                                         @Field("PAGE") int PAGE);
 
 
     @FormUrlEncoded
     @POST(HttpUrl.TEXT_INFO)
     Observable<BaseResult<TextBean>> getTextInfo(@Field("CATEGORY") int CATEGORY,
                                                  @Field("USER_ID") String USER_ID);
+
+
+    //tools
+    @Multipart
+    @POST(HttpUrl.UPLOAD_PIC)
+    Observable<UploadResultBean> uploadPicture(@PartMap Map<String, RequestBody> map);
 
 }

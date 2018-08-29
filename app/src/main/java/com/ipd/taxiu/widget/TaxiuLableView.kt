@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.TaxiuLableBean
 import kotlinx.android.synthetic.main.item_product_model_lable.view.*
 
 class TaxiuLableView : FlowLayout {
@@ -13,15 +14,14 @@ class TaxiuLableView : FlowLayout {
 
     private var mCurCheckedPos = -1
 
-
-    fun addView() {
+    fun addView(info: TaxiuLableBean) {
         val childView = LayoutInflater.from(context).inflate(R.layout.item_product_model_lable, this, false)
+        childView.cb_lable.text = info.TIP
         val childPos = childCount
         addView(childView)
         setChecked(childPos, childPos == mCurCheckedPos)
         childView.setOnClickListener {
             if (mCurCheckedPos == childPos) {
-                setChecked(mCurCheckedPos, false)
                 return@setOnClickListener
             }
             setChecked(mCurCheckedPos, false)
@@ -36,6 +36,8 @@ class TaxiuLableView : FlowLayout {
         val childView = getChildAt(childPos)
         childView.cb_lable.isSelected = isChecked
     }
+
+    fun getCheckedPos() = mCurCheckedPos
 
 
 }

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="@dimen/base_padding">
+    android:paddingBottom="@dimen/base_padding"
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding">
 
     <View
         android:id="@+id/view_line"
@@ -13,21 +15,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-        android:id="@+id/civ_publisher_avatar"
+        android:id="@+id/civ_sub_publisher_avatar"
         android:layout_width="@dimen/home_talk_avatar_size"
         android:layout_height="@dimen/home_talk_avatar_size"
         android:layout_marginTop="@dimen/small_padding"
-        android:src="@mipmap/talk_avatar1"
-        app:layout_constraintTop_toBottomOf="@id/view_line" />
+        app:layout_constraintTop_toBottomOf="@id/view_line"
+        tools:src="@mipmap/talk_avatar1" />
 
     <TextView
         android:id="@+id/tv_nickname"
         style="@style/SmallTextStyle"
         android:layout_marginLeft="@dimen/small_padding"
-        android:text="龟萌萌呆头鸡"
-        app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
-        app:layout_constraintLeft_toRightOf="@id/civ_publisher_avatar"
-        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
+        app:layout_constraintBottom_toBottomOf="@id/civ_sub_publisher_avatar"
+        app:layout_constraintLeft_toRightOf="@id/civ_sub_publisher_avatar"
+        app:layout_constraintTop_toTopOf="@id/civ_sub_publisher_avatar"
+        tools:text="龟萌萌呆头鸡" />
 
 
     <TextView
@@ -37,10 +39,10 @@
         android:layout_marginTop="@dimen/small_padding"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="毛孩子都天生自带萌属性，有些则有自己独特的撒娇卖萌方式:抱着人腿或手臂就不松手，是小妖精变得吧"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
+        app:layout_constraintTop_toBottomOf="@id/tv_nickname"
+        tools:text="毛孩子都天生自带萌属性，有些则有自己独特的撒娇卖萌方式:抱着人腿或手臂就不松手，是小妖精变得吧" />
 
     <LinearLayout
         android:id="@+id/ll_comment_operation"
@@ -50,11 +52,12 @@
         app:layout_constraintTop_toBottomOf="@id/tv_content">
 
         <TextView
+            android:id="@+id/tv_sub_comment_time"
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:text="05-23 14:20"
-            android:textColor="@color/LightGrey" />
+            android:textColor="@color/LightGrey"
+            tools:text="05-23 14:20" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -68,6 +71,7 @@
                 android:src="@mipmap/views_icon" />
 
             <TextView
+                android:id="@+id/tv_sub_comment_viewers_num"
                 style="@style/SmallTextStyle"
                 android:layout_marginLeft="2dp"
                 android:text="3243"
@@ -76,17 +80,20 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_sub_comment_zan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right|center_vertical">
 
             <ImageView
+                android:id="@+id/iv_sub_comment_zan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/zan_icon" />
+                android:src="@drawable/selector_comment_zan" />
 
             <TextView
+                android:id="@+id/tv_sub_comment_zan_num"
                 style="@style/SmallTextStyle"
                 android:layout_marginLeft="2dp"
                 android:text="3243"
@@ -98,12 +105,12 @@
     </LinearLayout>
 
     <com.ipd.taxiu.widget.CommentsView
-        android:padding="@dimen/small_padding"
         android:id="@+id/comments_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_padding"
         android:background="#F7F7F7"
+        android:padding="@dimen/small_padding"
         app:layout_constraintTop_toBottomOf="@id/ll_comment_operation" />
 
 </android.support.constraint.ConstraintLayout>

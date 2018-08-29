@@ -15,9 +15,11 @@ import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PictureBean;
+import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
 import com.ipd.taxiu.utils.BaseAdapter;
+import com.ipd.taxiu.utils.UploadUtils;
 import com.ipd.taxiu.widget.RoundImageView;
 
 import java.util.List;
@@ -64,31 +66,31 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
                     holder.progress_bar.setProgress(0);
                     holder.progress_bar.setVisibility(View.VISIBLE);
                     //上传图片
-//                    info.response = UploadUtils.uploadPicture(mContext, false, UploadUtils.CONSULT, info.path, false, new UploadUtils.UploadCallback() {
-//                        @Override
-//                        public void onProgress(int progress) {
-//                            holder.progress_bar.setProgress(progress);
-//                        }
-//
-//                        @Override
-//                        public void uploadSuccess(UploadResultBean resultBean) {
-//                            holder.progress_bar.setVisibility(View.GONE);
-//                            info.url = resultBean.data;
-//                            info.response = null;
-//                        }
-//
-//                        @Override
-//                        public void uploadFail(String errMsg) {
-//                            holder.progress_bar.setVisibility(View.GONE);
-//                            holder.tv_error.setVisibility(View.VISIBLE);
-//                            holder.tv_error.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    notifyItemChanged(position);
-//                                }
-//                            });
-//                        }
-//                    });
+                    info.response = UploadUtils.uploadPic(mContext, false, info.path, new UploadUtils.UploadCallback() {
+                        @Override
+                        public void onProgress(int progress) {
+                            holder.progress_bar.setProgress(progress);
+                        }
+
+                        @Override
+                        public void uploadSuccess(UploadResultBean resultBean) {
+                            holder.progress_bar.setVisibility(View.GONE);
+                            info.url = resultBean.data;
+                            info.response = null;
+                        }
+
+                        @Override
+                        public void uploadFail(String errMsg) {
+                            holder.progress_bar.setVisibility(View.GONE);
+                            holder.tv_error.setVisibility(View.VISIBLE);
+                            holder.tv_error.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    notifyItemChanged(position);
+                                }
+                            });
+                        }
+                    });
                 }
             }
 

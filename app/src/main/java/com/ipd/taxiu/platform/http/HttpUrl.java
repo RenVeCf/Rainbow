@@ -21,9 +21,25 @@ public interface HttpUrl {
     String PET_KIND_LIST = "app_pet/typeList.do";
     String PET_GET_LIST = "app_pet/getList.do";
     String PET_GET_INFO = "app_pet/getInfo.do";
-    String PET_UPDATE= "app_pet/update.do";
-    String PET_ADD= "app_pet/add.do";
-    String PET_DELETE= "app_pet/delete.do";
+    String PET_UPDATE = "app_pet/update.do";
+    String PET_ADD = "app_pet/add.do";
+    String PET_DELETE = "app_pet/delete.do";
+
+    //taxiu
+    String TAXIU_LABLE_LIST = "app_show/tipList.do";
+    String TAXIU_LIST = "app_show/getList.do";
+    String PUBLISH_TAXIU = "app_show/add.do";
+    String TAXIU_DETAIL = "app_show/getInfo.do";
+    String TAXIU_COMMENT = "app_show/commentList.do";
+    String TAXIU_TO_COMMENT = "app_show/toComment.do";
+    String TAXIU_PRAISE = "app_show/toPraise.do";
+    String TAXIU_COLLECT = "app_show/toCollect.do";
+    String TAXIU_COMMENT_DETAIL = "app_show/getComment.do";
+    String TAXIU_REPLY_LIST = "app_show/replyList.do";
+    String TAXIU_REPLY_MORE = "app_show/replyMore.do";
+    String TAXIU_FIRST_REPLY = "app_show/toReply.do";
+    String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
+
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
@@ -35,31 +51,31 @@ public interface HttpUrl {
     String UPLOAD_PIC = "app_pic/uploadPic.do";
 
     //city
-    String GET_LIST_ALL ="app_region/getListAll.do";
+    String GET_LIST_ALL = "app_region/getListAll.do";
 
     //address
-    String ADD_ADDRESS="app_address/add.do";
-    String GET_LIST_ADDRESS="app_address/getList.do";
-    String GET_ADDRESS_INFO="app_address/getInfo.do";
-    String ADDRESS_UPDATE="app_address/update.do";
-    String ADDRESS_DELETE="app_address/delete.do";
+    String ADD_ADDRESS = "app_address/add.do";
+    String GET_LIST_ADDRESS = "app_address/getList.do";
+    String GET_ADDRESS_INFO = "app_address/getInfo.do";
+    String ADDRESS_UPDATE = "app_address/update.do";
+    String ADDRESS_DELETE = "app_address/delete.do";
 
     //mine
-    String GET_USER_INFO="app_user/getInfo.do";
-    String UPDATE_PWD="app_user/updatePwd.do";
-    String USER_UPDATE="app_user/update.do";
-    String FRIEND_LIST="app_user/friendList.do";
-    String ATTENTION="app_user/attention.do";
-    String ATTENTION_LIST="app_user/attentionList.do";
+    String GET_USER_INFO = "app_user/getInfo.do";
+    String UPDATE_PWD = "app_user/updatePwd.do";
+    String USER_UPDATE = "app_user/update.do";
+    String FRIEND_LIST = "app_user/friendList.do";
+    String ATTENTION = "app_user/attention.do";
+    String ATTENTION_LIST = "app_user/attentionList.do";
 
     //常见问题
-    String QUESTION_LIST="app_text/questionList.do";
+    String QUESTION_LIST = "app_text/questionList.do";
 
     //积分列表
-    String SCORE_LIST="app_score/getList.do";
+    String SCORE_LIST = "app_score/getList.do";
 
     //text
-    String TEXT_INFO="app_text/getInfo.do";
+    String TEXT_INFO = "app_text/getInfo.do";
 
 
 }

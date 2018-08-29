@@ -21,8 +21,8 @@
         android:paddingBottom="6dp"
         android:paddingTop="6dp">
 
-        <EditText
-            android:id="@+id/et_reply"
+        <TextView
+            android:id="@+id/tv_reply"
             style="@style/BaseEditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

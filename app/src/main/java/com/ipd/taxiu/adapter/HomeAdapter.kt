@@ -167,7 +167,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 val boutiqueInfo = list!![position] as HomeBean.IndexBoutiqueBean
                 holder.itemView.boutique_view_pager.adapter = BoutiquePagerAdapter(context, boutiqueInfo.taxiuBoutiqueList, {
                     //它秀详情
-                    TaxiuDetailActivity.launch(context as Activity, it)
+                    TaxiuDetailActivity.launch(context as Activity)
                 })
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
                         .setIndicator(context, boutiqueInfo.taxiuBoutiqueList.size, holder.itemView.boutique_view_pager, holder.itemView.ll_indicator, object : IndicatorHelper.MyPagerChangeListener {
@@ -215,7 +215,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
 
                 holder.itemView.setOnClickListener {
                     //它秀详情
-                    TaxiuDetailActivity.launch(context as Activity, taxiuInfo)
+                    TaxiuDetailActivity.launch(context as Activity)
                 }
             }
         }

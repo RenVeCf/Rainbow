@@ -1,5 +1,7 @@
 package com.ipd.taxiu.utils
 
+import android.text.TextUtils
+
 object StringUtils {
     val ss = 1000
     val mi = ss * 60
@@ -18,6 +20,22 @@ object StringUtils {
 
     fun formatTimeStr(time: Int): String {
         return if (time < 10) "0$time" else time.toString()
+    }
+
+
+    fun splitImages(picStr: String): List<String> {
+        if (TextUtils.isEmpty(picStr)) {
+            return arrayListOf()
+        }
+        var fixPicStr = picStr
+        if (fixPicStr.last() == ';') {
+            fixPicStr = fixPicStr.substring(0, picStr.length - 1)
+        }
+
+        if (fixPicStr.contains(";")) {
+            return fixPicStr.split(";")
+        }
+        return arrayListOf(fixPicStr)
     }
 
 

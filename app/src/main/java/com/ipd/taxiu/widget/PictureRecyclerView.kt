@@ -42,6 +42,10 @@ class PictureRecyclerView : RecyclerView {
         }
     }
 
+    fun getPictureList(): ArrayList<PictureBean> {
+        return pictureList
+    }
+
     fun initTwo() {
         layoutManager = GridLayoutManager(context, MAX_IMAGE_FOUR)
         adapter = PictureEvaluateAdapter(context, pictureList, MAX_IMAGE_FOUR)

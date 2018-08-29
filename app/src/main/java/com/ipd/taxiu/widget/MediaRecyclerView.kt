@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
-import com.ipd.taxiu.R
 
 class MediaRecyclerView : RecyclerView {
     constructor(context: Context?) : super(context)
@@ -16,17 +15,12 @@ class MediaRecyclerView : RecyclerView {
     constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
 
 
-    val TYPE_IMAGE: Int = 0
-    val TYPE_VIDEO: Int = 1
-
-    var mType: Int = TYPE_IMAGE
-
     private val itemDecoration: ItemDecoration by lazy {
         object : ItemDecoration() {
             override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: State?) {
                 if (parent?.layoutManager is GridLayoutManager) {
                     val gridLayoutManager = parent?.layoutManager as GridLayoutManager
-                    val position = parent?.getChildAdapterPosition(view) ?: 0
+                    val position = parent?.getChildAdapterPosition(view)
                     outRect?.left = if (position % gridLayoutManager.spanCount == 0) 0 else DensityUtil.dip2px(context, 6f)
                     outRect?.top = 0
                     outRect?.right = if (position % gridLayoutManager.spanCount == gridLayoutManager.spanCount) 0 else DensityUtil.dip2px(context, 6f)
@@ -42,25 +36,17 @@ class MediaRecyclerView : RecyclerView {
     }
 
     override fun setAdapter(adapter: Adapter<*>?) {
-        if (mType == TYPE_IMAGE) {
-            layoutParams.height = resources.getDimension(R.dimen.topic_comment_img_height).toInt()
-
-            val itemCount = adapter?.itemCount
-            layoutManager = when (itemCount) {
-                1 -> {
-                    LinearLayoutManager(context)
-                }
-                2 -> {
-                    GridLayoutManager(context, 2)
-                }
-                else -> {
-                    GridLayoutManager(context, 3)
-                }
+        val itemCount = adapter?.itemCount
+        layoutManager = when (itemCount) {
+            1 -> {
+                LinearLayoutManager(context)
             }
-        } else {
-            layoutParams.height = resources.getDimension(R.dimen.taxiu_video_img_height).toInt()
-
-            layoutManager = LinearLayoutManager(context)
+            2 -> {
+                GridLayoutManager(context, 2)
+            }
+            else -> {
+                GridLayoutManager(context, 3)
+            }
         }
 
         val curItemDecoration = getItemDecorationAt(0)

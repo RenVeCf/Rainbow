@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp">
+
+    <EditText
+        android:id="@+id/et_reply"
+        style="@style/BaseEditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_weight="1"
+        android:background="@drawable/shape_comment_edit_bg"
+        android:hint="回复:宇宙第一大魔王"
+        android:maxHeight="80dp"
+        android:maxLength="100"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding" />
+
+    <TextView
+        android:id="@+id/tv_reply"
+        style="@style/BaseTextStyle"
+        android:enabled="false"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:text="发布"
+        android:textColor="@drawable/selector_reply_btn" />
+
+
+</LinearLayout>
+
+

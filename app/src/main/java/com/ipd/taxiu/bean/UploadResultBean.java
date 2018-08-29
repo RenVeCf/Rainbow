@@ -5,7 +5,5 @@ package com.ipd.taxiu.bean;
  */
 
 public class UploadResultBean extends BaseResult<String> {
-    public String dataSmalls;
     public String data2;
-    public String dataSmall;
 }
