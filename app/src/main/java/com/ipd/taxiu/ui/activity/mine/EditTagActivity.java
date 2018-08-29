@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
  * 个人资料
  */
 public class EditTagActivity extends BaseUIActivity {
+    private String tag;
     @BindView(R.id.et_signature)
     EditText editText;
 
@@ -43,11 +44,12 @@ public class EditTagActivity extends BaseUIActivity {
     protected void initView(@Nullable Bundle bundle) {
         ButterKnife.bind(this);
         initToolbar();
+        tag = getIntent().getStringExtra("Tag");
     }
 
     @Override
     protected void loadData() {
-
+        editText.setText(tag);
     }
 
     @Override

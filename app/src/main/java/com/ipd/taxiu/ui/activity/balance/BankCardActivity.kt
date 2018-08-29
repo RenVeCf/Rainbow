@@ -12,9 +12,9 @@ Created by Miss on 2018/8/10
 我的银行卡
  */
 class BankCardActivity : BaseUIActivity(){
-    private val bankType:String by lazy { intent.getStringExtra("bankType") }
+    private val bankType:Int by lazy { intent.getIntExtra("bankType",0) }
     companion object {
-        fun launch(activity:Activity,bankType:String){
+        fun launch(activity:Activity,bankType:Int){
             val intent = Intent(activity,BankCardActivity::class.java)
             intent.putExtra("bankType",bankType)
             activity.startActivity(intent)

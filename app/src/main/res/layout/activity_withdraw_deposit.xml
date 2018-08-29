@@ -108,6 +108,7 @@
                 android:background="@null"
                 android:layout_marginLeft="@dimen/base_padding"
                 android:textSize="@dimen/big_title_text_size"
+                android:maxLength="10"
                 android:text="0"
                 android:inputType="number"/>
             <TextView
