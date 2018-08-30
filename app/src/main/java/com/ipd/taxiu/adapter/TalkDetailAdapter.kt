@@ -105,8 +105,7 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                         holder.itemView.comments_view.visibility = View.GONE
                     } else {
                         holder.itemView.comments_view.visibility = View.VISIBLE
-//                        holder.itemView.comments_view.setHasMore(info.REPLY_DATA.SHOW_MORE == 1)
-                        holder.itemView.comments_view.setHasMore(false)
+                        holder.itemView.comments_view.setHasMore(info.REPLY_DATA.SHOW_MORE == 1)
                         holder.itemView.comments_view.setList(info.REPLY_DATA.REPLY_LIST)
                         holder.itemView.comments_view.notifyDataSetChanged()
                         holder.itemView.comments_view.setOnItemClickListener(object : CommentsView.onItemClickListener {

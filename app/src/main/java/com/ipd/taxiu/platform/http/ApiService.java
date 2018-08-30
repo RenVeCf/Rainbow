@@ -369,11 +369,18 @@ public interface ApiService {
                                                                 @Field("CONTENT") String CONTENT);
 
     @FormUrlEncoded
-    @POST(HttpUrl.TALK_SECOND_REPLY)
+    @POST(HttpUrl.TALK_FIRST_REPLY)
     Observable<BaseResult<MoreCommentReplyBean>> talkSecondReply(@Field("USER_ID") String USER_ID,
                                                                  @Field("ANSWER_ID") int ANSWER_ID,
                                                                  @Field("TARGET_ID") int TARGET_ID,
                                                                  @Field("CONTENT") String CONTENT);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_REPLY_MORE)
+    Observable<BaseResult<MoreCommentReplyBean>> talkReplyMore(@Field("USER_ID") String USER_ID,
+                                                               @Field("ANSWER_ID") int ANSWER_ID);
+
 
     /**
      * address

@@ -8,6 +8,9 @@ object CommentApiFactory {
             CommentType.TAXIU -> {
                 return TaxiuCommentApiImpl()
             }
+            CommentType.TALK -> {
+                return TalkCommentApiImpl()
+            }
             else -> {
                 return TopicCommentApiImpl()
             }

@@ -39,6 +39,7 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
     override fun onViewAttach() {
         super.onViewAttach()
         mPresenter = TalkPostDetailChildPresenter()
+        mPresenter?.setType(CommentType.TALK)
         mPresenter?.attachView(mActivity, this)
 
     }
@@ -88,11 +89,16 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                     }
                     R.id.comments_view -> {
                         //二级回复
-                        if (replyInfo == null) return@TalkDetailAdapter
-                        ReplyDialog("回复:${replyInfo?.userName}", {
-                            //二级回复
-                            mPresenter?.secondReply(replyInfo.PARENT, replyInfo.USER_ID, it)
-                        }).show(childFragmentManager, MoreCommentActivity::class.java.name)
+                        if (info == null) return@TalkDetailAdapter
+                        if (replyInfo == null){
+                            //更多回复
+                            MoreCommentActivity.launch(mActivity,CommentType.TALK,info.ANSWER_ID)
+                        }else{
+                            ReplyDialog("回复:${replyInfo?.userName}", {
+                                //二级回复
+                                mPresenter?.secondReply(info.ANSWER_ID, replyInfo.USER_ID, it)
+                            }).show(childFragmentManager, MoreCommentActivity::class.java.name)
+                        }
 
                     }
                     R.id.iv_zan -> {
@@ -111,8 +117,8 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                         //一级回复
                         if (info == null) return@TalkDetailAdapter
                         ReplyDialog("回复:${info.NICKNAME}", {
-                            //二级回复
-                            mPresenter?.firstReply(info.ANSWER_ID, it)
+                            //一级回复
+                            mPresenter?.secondReply(info.ANSWER_ID, info.USER_ID, it)
                         }).show(childFragmentManager, MoreCommentActivity::class.java.name)
 
                     }

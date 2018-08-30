@@ -59,6 +59,8 @@ public interface HttpUrl {
     String TALK_TO_COMMENT = "app_question/toComment.do";
     String TALK_FIRST_REPLY = "app_question/toReply.do";
     String TALK_SECOND_REPLY = "app_question/toReplyMore.do";
+    String TALK_REPLY_MORE = "app_question/replyMore.do";
+
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
