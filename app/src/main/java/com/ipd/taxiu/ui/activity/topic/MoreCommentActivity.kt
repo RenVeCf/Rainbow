@@ -88,7 +88,7 @@ class MoreCommentActivity : BaseUIActivity(), MoreCommentPresenter.IMoreCommentV
             comments_view.setOnItemClickListener(object : CommentsView.onItemClickListener {
                 override fun onItemClick(position: Int, bean: CommentReplyBean?) {
                     if (bean != null) {
-                        showReplyDialog(bean.PARENT, bean.USER_ID, bean.userName)
+                        showReplyDialog(replyId, bean.USER_ID, bean.userName)
                     }
                 }
 
@@ -100,7 +100,7 @@ class MoreCommentActivity : BaseUIActivity(), MoreCommentPresenter.IMoreCommentV
         }
 
         ll_sub_comment_zan.setOnClickListener {
-            mPresenter?.praise(info.REPLY_ID)
+            mPresenter?.praise(replyId)
         }
 
     }

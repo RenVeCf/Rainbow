@@ -9,7 +9,7 @@ import com.ipd.taxiu.utils.CommentType
 import rx.Observable
 
 class TalkCommentApiImpl : ICommentApi {
-    override fun getPraiseReplyCategory(): String = CommentType.TALK_PRAISE_REPLY
+    override fun getPraiseReplyCategory(): String = CommentType.TALK_PRAISE_COMMENT
     override fun getPraiseCommentCategory(): String = CommentType.TALK_PRAISE_COMMENT
 
     override fun commentDetail(userId: String, commentId: Int): Observable<BaseResult<CommentDetailBean>> {
@@ -21,7 +21,7 @@ class TalkCommentApiImpl : ICommentApi {
     }
 
     override fun replyMore(userId: String, replyId: Int): Observable<BaseResult<MoreCommentReplyBean>> {
-        return ApiManager.getService().taxiuReplyMore(userId, replyId)
+        return ApiManager.getService().talkReplyMore(userId, replyId)
     }
 
     override fun firstReply(userId: String, commentId: Int, content: String): Observable<BaseResult<MoreCommentReplyBean>> {
