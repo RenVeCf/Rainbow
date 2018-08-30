@@ -73,7 +73,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     EditText tv_nickname;
 
     @BindView(R.id.et_phone_number)
-    EditText et_phone_number;
+    TextView et_phone_number;
 
     @BindView(R.id.et_name)
     EditText et_name;

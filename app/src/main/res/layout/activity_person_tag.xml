@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingBottom="@dimen/big_padding">
+    android:paddingBottom="@dimen/big_padding"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <EditText
         android:id="@+id/et_signature"
         android:layout_width="match_parent"

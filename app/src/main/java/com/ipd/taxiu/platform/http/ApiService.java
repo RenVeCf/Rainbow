@@ -415,7 +415,7 @@ public interface ApiService {
                                                       @Field("PROV") String PROV,
                                                       @Field("RECIPIENT") String RECIPIENT,
                                                       @Field("STATUS") int STATUS,
-                                                      @Field("TEL") long TEL,
+                                                      @Field("TEL") String TEL,
                                                       @Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 

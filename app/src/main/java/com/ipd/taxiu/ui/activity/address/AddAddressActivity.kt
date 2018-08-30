@@ -147,8 +147,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
                 mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId)
             } else if (addressType == 2){
                 getStatus()
-                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel.toLong(),userId,addressId)
-                finish()
+                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel,userId,addressId)
             }
         }
 
@@ -206,6 +205,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
 
     override fun updateSuccess() {
         toastShow("修改成功")
+        finish()
     }
 
     override fun deleteFail(errMsg: String) {

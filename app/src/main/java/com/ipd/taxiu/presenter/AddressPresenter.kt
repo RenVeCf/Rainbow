@@ -97,15 +97,14 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     fun getAddressUpdate(address:String,city:String,dist:String,prov:String,
-                       recipient:String,status:Int,tel:Long,userId: String, addressId: String) {
+                       recipient:String,status:Int,tel:String,userId: String, addressId: String) {
         if (mView !is IAddressUpdateView) return
         val view = mView as IAddressUpdateView
-
         if (recipient == "") {
             view.updateFail("请输入收件人")
             return
         }
-        if (!CommonUtils.isMobileNO(tel.toString())) {
+        if (!CommonUtils.isMobileNO(tel)) {
             view.updateFail("请输入正确的手机号码")
             return
         }
