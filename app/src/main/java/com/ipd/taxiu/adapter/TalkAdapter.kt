@@ -35,7 +35,7 @@ class TalkAdapter(val context: Context, private val list: List<TalkBean>?, priva
         holder.itemView.tv_collect_num.text = info.COLLECT.toString()
         holder.itemView.ll_award.visibility = if (info.SCORE == 0) View.GONE else View.VISIBLE
 
-        if (info.ANSWER_DATA == null) {
+        if (info.ANSWER_DATA == null || info.ANSWER_DATA.USER_ID == 0) {
             holder.itemView.view_line.visibility = View.GONE
             holder.itemView.cl_answer.visibility = View.GONE
         } else {

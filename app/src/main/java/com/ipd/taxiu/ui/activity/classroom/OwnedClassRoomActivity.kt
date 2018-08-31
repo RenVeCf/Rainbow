@@ -43,7 +43,7 @@ class OwnedClassRoomActivity : BaseUIActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.classroom_detail) {
-            ClassRoomDetailActivity.launch(this)
+            ClassRoomDetailActivity.launch(this,-1)
             return true
         }
 

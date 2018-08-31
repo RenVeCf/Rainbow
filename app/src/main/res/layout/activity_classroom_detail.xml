@@ -28,10 +28,10 @@
                 android:layout_marginRight="@dimen/base_padding"
                 android:layout_marginTop="@dimen/small_padding"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/hot_classroom_image"
                 app:corner_radius="12dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:type="round" />
+                app:type="round"
+                tools:src="@mipmap/hot_classroom_image" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -47,9 +47,9 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="宠物健康及心理健康咨询课程"
                 app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
-                app:layout_constraintTop_toBottomOf="@id/iv_classroom_image" />
+                app:layout_constraintTop_toBottomOf="@id/iv_classroom_image"
+                tools:text="宠物健康及心理健康咨询课程" />
 
 
             <LinearLayout
@@ -73,9 +73,10 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_lenght"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
-                        android:text="120分钟" />
+                        tools:text="120分钟" />
 
                 </LinearLayout>
 
@@ -97,9 +98,10 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_time"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
-                        android:text="07.18 14:00" />
+                        tools:text="07.18 14:00" />
 
                 </LinearLayout>
 
@@ -121,9 +123,10 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_teacher"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
-                        android:text="王明义" />
+                        tools:text="王明义" />
 
                 </LinearLayout>
 
@@ -306,17 +309,18 @@
             android:layout_weight="3">
 
             <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_buy_bg"
                 android:paddingBottom="6dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="6dp"
-                android:background="@drawable/shape_buy_bg"
-                android:layout_centerInParent="true"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content">
+                android:paddingTop="6dp">
 
 
                 <TextView
+                    android:id="@+id/tv_classroom_price"
                     style="@style/BaseTextStyle"
                     android:layout_centerVertical="true"
                     android:text="￥1"
@@ -334,17 +338,18 @@
         </RelativeLayout>
 
         <FrameLayout
+            android:id="@+id/fl_collect"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_collect"
+                style="@style/BottomMenuStyle"
                 android:layout_gravity="center"
-                android:button="@drawable/selector_collect" />
-
+                android:src="@drawable/selector_collect" />
         </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="0dp"

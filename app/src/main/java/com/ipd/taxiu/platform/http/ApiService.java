@@ -4,6 +4,7 @@ package com.ipd.taxiu.platform.http;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.IntegralBean;
@@ -380,6 +381,22 @@ public interface ApiService {
     @POST(HttpUrl.TALK_REPLY_MORE)
     Observable<BaseResult<MoreCommentReplyBean>> talkReplyMore(@Field("USER_ID") String USER_ID,
                                                                @Field("ANSWER_ID") int ANSWER_ID);
+
+    /**
+     * 课堂
+     */
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_LIST)
+    Observable<BaseResult<List<ClassRoomBean>>> classroomList(@Field("USER_ID") String USER_ID,
+                                                              @Field("COUNT") int COUNT,
+                                                              @Field("PAGE") int PAGE,
+                                                              @Field("KEYWORDS") String KEYWORDS);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_DETAIL)
+    Observable<BaseResult<ClassRoomBean>> classroomDetail(@Field("USER_ID") String USER_ID,
+                                                          @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID);
 
 
     /**

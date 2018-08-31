@@ -61,6 +61,10 @@ public interface HttpUrl {
     String TALK_SECOND_REPLY = "app_question/toReplyMore.do";
     String TALK_REPLY_MORE = "app_question/replyMore.do";
 
+    //课堂
+    String CLASS_ROOM_LIST = "app_class_room/getList.do";
+    String CLASS_ROOM_DETAIL = "app_class_room/getInfo.do";
+
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
