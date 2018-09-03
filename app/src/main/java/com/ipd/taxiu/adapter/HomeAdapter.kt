@@ -201,7 +201,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
             ItemType.HOT_CLASSROOM -> {
                 holder.itemView.setOnClickListener {
                     //课堂详情
-                    ClassRoomDetailActivity.launch(context as Activity)
+                    ClassRoomDetailActivity.launch(context as Activity,-1)
                 }
 
             }

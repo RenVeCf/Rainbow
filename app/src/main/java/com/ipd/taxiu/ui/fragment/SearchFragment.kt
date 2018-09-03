@@ -8,10 +8,10 @@ import com.ipd.taxiu.adapter.ClassRoomAdapter
 import com.ipd.taxiu.adapter.TalkAdapter
 import com.ipd.taxiu.adapter.TaxiuAdapter
 import com.ipd.taxiu.adapter.TopicAdapter
-import com.ipd.taxiu.bean.ClassRoomBean
-import com.ipd.taxiu.bean.TalkBean
-import com.ipd.taxiu.bean.TaxiuBean
-import com.ipd.taxiu.bean.TopicBean
+import com.ipd.taxiu.bean.*
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.SearchActivity
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity
@@ -19,9 +19,9 @@ import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import rx.Observable
-import java.util.concurrent.TimeUnit
 
-class SearchFragment : ListFragment<List<Any>, Any>() {
+
+class SearchFragment : ListFragment<BaseResult<List<Any>>, Any>() {
     companion object {
         fun newInstance(searchType: SearchActivity.SearchType): SearchFragment {
             val topicListFragment = SearchFragment()
@@ -34,7 +34,7 @@ class SearchFragment : ListFragment<List<Any>, Any>() {
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
-        progress_layout.setEmptyViewRes(R.layout.layout_empty_topic)
+        progress_layout.setEmptyViewRes(R.layout.layout_empty_search)
     }
 
     private val mSearchType: SearchActivity.SearchType by lazy { arguments.getSerializable("searchType") as SearchActivity.SearchType }
@@ -42,40 +42,44 @@ class SearchFragment : ListFragment<List<Any>, Any>() {
     override fun loadDataWhenVisible() {
     }
 
-    override fun loadListData(): Observable<List<Any>> {
-        return Observable.create<List<Any>> { sub ->
-            Observable.timer(2000L, TimeUnit.MILLISECONDS).subscribe {
-                var list: ArrayList<Any> = arrayListOf()
-                when (mSearchType) {
-                    SearchActivity.SearchType.TOPIC -> {
-                        for (index: Int in 0 until 10) {
-                            list.add(TopicBean())
+    private var searchStr: String = ""
+
+    override fun loadListData(): Observable<BaseResult<List<Any>>> {
+        val observable: Observable<BaseResult<List<Any>>> = when (mSearchType) {
+            SearchActivity.SearchType.TAXIU -> {
+                ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, 0, searchStr)
+                        .map {
+                            it as BaseResult<List<Any>>
                         }
-                    }
-                    SearchActivity.SearchType.CLASSROOM -> {
-                        for (index: Int in 0 until 10) {
-                            list.add(ClassRoomBean())
+            }
+            SearchActivity.SearchType.TOPIC -> {
+                ApiManager.getService().topicList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, 0, searchStr)
+                        .map {
+                            it as BaseResult<List<Any>>
                         }
-                    }
-                    SearchActivity.SearchType.TAXIU -> {
-                        for (index: Int in 0 until 10) {
-                            list.add(TaxiuBean())
+            }
+            SearchActivity.SearchType.TALK -> {
+                ApiManager.getService().talkList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, 0, searchStr, "0")
+                        .map {
+                            it as BaseResult<List<Any>>
                         }
-                    }
-                    SearchActivity.SearchType.TALK -> {
-                        for (index: Int in 0 until 10) {
-                            list.add(TalkBean())
+            }
+            else -> {
+                ApiManager.getService().classroomList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, searchStr)
+                        .map {
+                            it as BaseResult<List<Any>>
                         }
-                    }
-                }
-                sub.onNext(list)
-                sub.onCompleted()
             }
         }
+        return observable
     }
 
-    override fun isNoMoreData(result: List<Any>): Int {
-        if (result == null || result.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<Any>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
@@ -85,25 +89,26 @@ class SearchFragment : ListFragment<List<Any>, Any>() {
             SearchActivity.SearchType.TALK -> {
                 TalkAdapter(mActivity, data as List<TalkBean>, {
                     //itemClick
-                    TalkDetailActivity.launch(mActivity)
+                    TalkDetailActivity.launch(mActivity, it.QUESTION_ID, it.User.NICKNAME, it.USER_ID.toString() == GlobalParam.getUserId())
                 })
             }
             SearchActivity.SearchType.CLASSROOM -> {
                 ClassRoomAdapter(mActivity, data as List<ClassRoomBean>, {
                     //itemClick
-                    ClassRoomDetailActivity.launch(mActivity)
+                    ClassRoomDetailActivity.launch(mActivity,it.CLASS_ROOM_ID)
                 })
             }
             SearchActivity.SearchType.TAXIU -> {
                 TaxiuAdapter(mActivity, data as List<TaxiuBean>, {
                     //itemClick
-                    TaxiuDetailActivity.launch(mActivity)
+                    TaxiuDetailActivity.launch(mActivity, it.SHOW_ID, GlobalParam.getUserId() == it.USER_ID.toString())
                 })
             }
             else -> {
                 TopicAdapter(mActivity, data as List<TopicBean>, {
                     //itemClick
-//                    TopicDetailActivity.launch(mActivity)
+                    TopicDetailActivity.launch(mActivity, it.TOPIC_ID)
+
                 })
             }
         }
@@ -119,11 +124,12 @@ class SearchFragment : ListFragment<List<Any>, Any>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<Any>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<Any>>) {
+        data?.addAll(result.data)
     }
 
     fun search(searchStr: String) {
+        this.searchStr = searchStr
         isCreate = true
         onRefresh()
     }

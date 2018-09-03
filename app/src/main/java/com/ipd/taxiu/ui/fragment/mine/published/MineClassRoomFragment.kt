@@ -27,7 +27,7 @@ class MineClassRoomFragment : ListFragment<List<ClassRoomBean>, ClassRoomBean>()
             val list: ArrayList<ClassRoomBean> = ArrayList()
             for (i: Int in 0 until 10) {
                 val info = ClassRoomBean()
-                info.isBuy = true
+//                info.isBuy = true
                 list.add(info)
             }
             it.onNext(list)

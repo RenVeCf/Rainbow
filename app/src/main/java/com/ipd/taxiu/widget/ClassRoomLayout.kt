@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
+import com.ipd.taxiu.imageload.ImageLoader
 import kotlinx.android.synthetic.main.item_classroom.view.*
 import java.util.*
 
@@ -32,13 +33,19 @@ class ClassRoomLayout : FrameLayout {
     }
 
     fun setData(info: ClassRoomBean) {
-        if (info.isBuy) {
+        if (false) {
             setBtnByStatus(getClassRoomStatus())
         } else {
             mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_buy_bg)
             mContentView.tv_classroom_buy.setTextColor(resources.getColor(R.color.white))
-            mContentView.tv_classroom_buy.text = "￥1.00  购买"
+            mContentView.tv_classroom_buy.text = "￥${info.PRICE}  购买"
         }
+
+        ImageLoader.loadAvatar(context, info.LOGO, mContentView.iv_classroom_image)
+        mContentView.tv_classroom_name.text = info.TITLE
+        mContentView.tv_classroom_desc.text = "开课时间：${info.BEGIN_TIME}"
+
+
     }
 
 

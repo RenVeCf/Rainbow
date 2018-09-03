@@ -42,7 +42,7 @@ class CollectClassRoomListFragment : ListFragment<List<ClassRoomBean>, ClassRoom
         if (mAdapter == null) {
             mAdapter = ClassRoomAdapter(mActivity, data, {
                 //itemClick
-                ClassRoomDetailActivity.launch(mActivity)
+                ClassRoomDetailActivity.launch(mActivity,-1)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
