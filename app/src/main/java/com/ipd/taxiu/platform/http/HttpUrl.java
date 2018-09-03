@@ -99,6 +99,11 @@ public interface HttpUrl {
 
     //积分列表
     String SCORE_LIST = "app_score/getList.do";
+    String SCORE_EXCHANGE_LIST = "app_score/exchangeList.do";
+    String SCORE_COUPON_INFO = "app_score/couponInfo.do";
+    String SCORE_TO_EXCHANGE = "app_score/toExchange.do";
+    String SCORE_EXCHANGE_HIS = "app_score/exchangeHis.do";
+    String SCORE_EXCHANGE_INFO = "app_score/exchangeInfo.do";
 
     //text
     String TEXT_INFO = "app_text/getInfo.do";

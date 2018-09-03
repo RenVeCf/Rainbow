@@ -5,24 +5,27 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.ExchangeRecordAdapter;
-import com.ipd.taxiu.bean.ExchangeRecordBean;
-import com.ipd.taxiu.bean.FriendBean;
-import com.ipd.taxiu.bean.FriendListBean;
+import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.ExchangeHisBean;
+import com.ipd.taxiu.platform.global.Constant;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.ui.ListFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Miss on 2018/8/6
  */
-public class ExchangeRecordFragment extends ListFragment<List<ExchangeRecordBean>,ExchangeRecordBean> {
+public class ExchangeRecordFragment extends ListFragment<List<ExchangeHisBean>,ExchangeHisBean> {
     private ExchangeRecordAdapter mAdapter = null;
 
     public static ExchangeRecordFragment newInstance() {
@@ -38,24 +41,28 @@ public class ExchangeRecordFragment extends ListFragment<List<ExchangeRecordBean
 
     @NotNull
     @Override
-    public Observable<List<ExchangeRecordBean>> loadListData() {
-        return Observable.create(new Observable.OnSubscribe<List<ExchangeRecordBean>>() {
-            @Override
-            public void call(Subscriber<? super List<ExchangeRecordBean>> subscriber) {
-                List<ExchangeRecordBean> bean = new ArrayList<>();
-                for (int i = 0; i < 5; i++) {
-                    bean.add(new ExchangeRecordBean());
-                }
-                subscriber.onNext(bean);
-                subscriber.onCompleted();
-            }
-        });
+    public Observable<List<ExchangeHisBean>> loadListData() {
+        return ApiManager.getService().exchangeHis(Constant.PAGE_SIZE, GlobalParam.getUserId(),getPage())
+                .map(new Func1<BaseResult<List<ExchangeHisBean>>, List<ExchangeHisBean>>() {
+                    @Override
+                    public List<ExchangeHisBean> call(BaseResult<List<ExchangeHisBean>> listBaseResult) {
+                       List<ExchangeHisBean> list = new ArrayList<>();
+                       if (listBaseResult.code == 0){
+                           list.addAll(listBaseResult.data);
+                       }
+                       return list;
+                    }
+                });
     }
 
     @Override
-    public int isNoMoreData(List<ExchangeRecordBean> result) {
+    public int isNoMoreData(List<ExchangeHisBean> result) {
         if (result == null || result.isEmpty()) {
-            return getEMPTY_DATA();
+            if (getPage() ==getINIT_PAGE()) {
+                return getEMPTY_DATA();
+            }else {
+                return getNO_MORE_DATA();
+            }
         } else {
             return getNORMAL();
         }
@@ -73,7 +80,7 @@ public class ExchangeRecordFragment extends ListFragment<List<ExchangeRecordBean
     }
 
     @Override
-    public void addData(boolean isRefresh, List<ExchangeRecordBean> result) {
+    public void addData(boolean isRefresh, List<ExchangeHisBean> result) {
         getData().addAll(result);
     }
 }

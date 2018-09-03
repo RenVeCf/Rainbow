@@ -12,8 +12,7 @@
     <ImageView
         android:id="@+id/iv_exchange_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/exchange_record" />
+        android:layout_height="50dp"/>
 
     <TextView
         android:id="@+id/tv_exchange_title"
@@ -21,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_toRightOf="@id/iv_exchange_header"
-        android:text="20元 全品类优惠券"
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size" />
 
@@ -32,7 +30,6 @@
         android:layout_below="@id/tv_exchange_title"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_toRightOf="@id/iv_exchange_header"
-        android:text="兑换时间: 2018.07.25 12:00"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/base_text_size"
         android:layout_marginTop="@dimen/small_padding"/>

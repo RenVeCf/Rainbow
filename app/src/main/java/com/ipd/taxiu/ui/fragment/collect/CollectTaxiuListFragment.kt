@@ -2,14 +2,19 @@ package com.ipd.taxiu.ui.fragment.collect
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TaxiuAdapter
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import rx.Observable
 
-class CollectTaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
+class CollectTaxiuListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() {
     companion object {
         fun newInstance(): CollectTaxiuListFragment {
             val fragment = CollectTaxiuListFragment()
@@ -22,19 +27,18 @@ class CollectTaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
         progress_layout.setEmptyViewRes(R.layout.layout_empty_taxiu)
     }
 
-    override fun loadListData(): Observable<List<TaxiuBean>> {
-        return Observable.create<List<TaxiuBean>> {
-            val list: ArrayList<TaxiuBean> = ArrayList()
-            for (i: Int in 0 until 10) {
-                list.add(TaxiuBean())
-            }
-            it.onNext(list)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<TaxiuBean>>> {
+        return  ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, 1, "")
     }
 
-    override fun isNoMoreData(result: List<TaxiuBean>): Int {
-        if (result == null || result.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<TaxiuBean>>): Int {
+        if (result == null || result.data.isEmpty()) {
+            return if (page == INIT_PAGE){
+                EMPTY_DATA
+            }else{
+                NO_MORE_DATA
+            }
+        }
         return NORMAL
     }
 
@@ -52,8 +56,8 @@ class CollectTaxiuListFragment : ListFragment<List<TaxiuBean>, TaxiuBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<TaxiuBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<TaxiuBean>>) {
+        data?.addAll(result.data)
     }
 
 }

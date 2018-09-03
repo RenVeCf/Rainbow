@@ -4,7 +4,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ipd.taxiu.adapter.BalanceBillAdapter;
 import com.ipd.taxiu.bean.BalanceBillBean;
-import com.ipd.taxiu.bean.ExchangeRecordBean;
 import com.ipd.taxiu.ui.ListFragment;
 
 import org.jetbrains.annotations.NotNull;

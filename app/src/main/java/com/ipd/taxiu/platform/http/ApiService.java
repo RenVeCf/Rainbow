@@ -7,6 +7,8 @@ import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
+import com.ipd.taxiu.bean.ExchangeBean;
+import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
@@ -514,6 +516,32 @@ public interface ApiService {
     Observable<BaseResult<List<IntegralBean>>> scoreList(@Field("COUNT") int COUNT,
                                                          @Field("USER_ID") String USER_ID,
                                                          @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_LIST)
+    Observable<BaseResult<List<ExchangeBean>>> scoreExchangeList(@Field("COUNT") int COUNT,
+                                                                 @Field("USER_ID") String USER_ID,
+                                                                 @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_COUPON_INFO)
+    Observable<BaseResult<ExchangeBean>> scoreCouponInfo(@Field("COUPON_ID") int COUPON_ID,
+                                                         @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_TO_EXCHANGE)
+    Observable<BaseResult<ExchangeBean>> toExchange(@Field("COUPON_ID") int COUPON_ID,
+                                                    @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_HIS)
+    Observable<BaseResult<List<ExchangeHisBean>>> exchangeHis(@Field("COUNT") int COUNT,
+                                                        @Field("USER_ID") String USER_ID,
+                                                        @Field("PAGE") int PAGE);
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_INFO)
+    Observable<BaseResult<ExchangeHisBean>> exchangeInfo(@Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                        @Field("USER_ID") String USER_ID);
 
 
     @FormUrlEncoded
