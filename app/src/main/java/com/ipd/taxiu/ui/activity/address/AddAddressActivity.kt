@@ -173,7 +173,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         builder.setCommit("确认删除") { builder ->
             mPresenterDelete?.deleteAddress(GlobalParam.getUserId(),addressId)
             builder.dialog.dismiss()
-            finish()
         }
         builder.setCancel("暂不删除") { builder -> builder.dialog.dismiss() }
         builder.dialog.show()
@@ -214,5 +213,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
 
     override fun deleteSuccess() {
         toastShow("删除成功")
+        finish()
     }
 }

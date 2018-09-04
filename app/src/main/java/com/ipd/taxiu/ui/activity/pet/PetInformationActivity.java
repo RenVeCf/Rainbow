@@ -135,7 +135,6 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
             public void onClick(MessageDialog.Builder builder) {
                 mPresenter.petDelete(petId);
                 builder.getDialog().dismiss();
-                finish();
             }
         });
         builder.setCancel("暂不删除", new MessageDialog.OnClickListener() {
@@ -188,6 +187,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     @Override
     public void deleteSuccess() {
         toastShow("删除成功");
+        finish();
     }
 
     @Override

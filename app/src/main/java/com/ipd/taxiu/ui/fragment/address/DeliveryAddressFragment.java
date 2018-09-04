@@ -52,6 +52,7 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
         view = progress_layout.getEmptyViewRes(R.layout.layout_empty_address);
     }
 
+
     @Override
     public int isNoMoreData(List<AddressBean> result) {
         if (result == null || result.isEmpty()){
@@ -79,7 +80,6 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     public void addData(boolean isRefresh, List<AddressBean> result) {
         getData().addAll(result);
     }
-
 
     @Override
     protected void initListener() {
