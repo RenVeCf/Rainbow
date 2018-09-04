@@ -141,7 +141,8 @@ public interface ApiService {
                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
                                               @Field("STATUS") int STATUS,
                                               @Field("PET_ID") int PET_ID,
-                                              @Field("USER_ID") String USER_ID);
+                                              @Field("USER_ID") String USER_ID,
+                                              @Field("CATEGORY") int CATEGORY);
 
     @FormUrlEncoded
     @POST(HttpUrl.PET_ADD)
@@ -536,12 +537,20 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.SCORE_EXCHANGE_HIS)
     Observable<BaseResult<List<ExchangeHisBean>>> exchangeHis(@Field("COUNT") int COUNT,
-                                                        @Field("USER_ID") String USER_ID,
-                                                        @Field("PAGE") int PAGE);
+                                                              @Field("USER_ID") String USER_ID,
+                                                              @Field("PAGE") int PAGE);
+
     @FormUrlEncoded
     @POST(HttpUrl.SCORE_EXCHANGE_INFO)
     Observable<BaseResult<ExchangeHisBean>> exchangeInfo(@Field("EXCHANGE_ID") int EXCHANGE_ID,
-                                                        @Field("USER_ID") String USER_ID);
+                                                         @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_COUPON_LIST)
+    Observable<BaseResult<List<ExchangeHisBean>>> couponList(@Field("COUNT") int COUNT,
+                                                             @Field("USER_ID") String USER_ID,
+                                                             @Field("PAGE") int PAGE,
+                                                             @Field("USE_STATUS") int USE_STATUS);
 
 
     @FormUrlEncoded

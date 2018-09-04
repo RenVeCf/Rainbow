@@ -96,13 +96,8 @@ class CouponDetailActivity : BaseUIActivity(), CouponPresenter.ICouponInfoView, 
         toastShow(errMsg)
     }
 
-    override fun toExchangeSuccess(msg: String) {
-       toastShow(msg)
+    override fun toExchangeMsg(msg: String) {
+        toastShow(msg)
     }
-
-    override fun toExchangeInfoFail(errMsg: String) {
-        toastShow(errMsg)
-    }
-
 
 }

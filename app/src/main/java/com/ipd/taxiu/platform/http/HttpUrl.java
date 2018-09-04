@@ -104,6 +104,7 @@ public interface HttpUrl {
     String SCORE_TO_EXCHANGE = "app_score/toExchange.do";
     String SCORE_EXCHANGE_HIS = "app_score/exchangeHis.do";
     String SCORE_EXCHANGE_INFO = "app_score/exchangeInfo.do";
+    String SCORE_COUPON_LIST = "app_score/couponList.do";
 
     //text
     String TEXT_INFO = "app_text/getInfo.do";

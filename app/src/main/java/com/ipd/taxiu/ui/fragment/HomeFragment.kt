@@ -64,5 +64,4 @@ class HomeFragment : ListFragment<HomeBean, Any>() {
         }
         data?.addAll(result.taxiuList)
     }
-
 }

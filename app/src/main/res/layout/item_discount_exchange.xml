@@ -25,23 +25,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="100"
             android:textColor="@color/red"
             android:layout_toRightOf="@id/symbol"
             android:textStyle="italic"
             android:layout_marginTop="@dimen/base_padding"/>
         <TextView
+            android:id="@+id/tv_price"
             style="@style/BaseTextStyle"
             android:textColor="@color/red"
             android:layout_below="@id/symbol"
-            android:text="满500可用"
             android:layout_marginTop="@dimen/small_padding"
             android:layout_marginLeft="@dimen/big_padding"/>
 
         <TextView
             android:id="@+id/tv_coupon_title"
             style="@style/BaseTextStyle"
-            android:text="单品优惠券"
             android:layout_alignParentRight="true"
             android:paddingRight="@dimen/base_padding"
             android:layout_marginTop="@dimen/small_padding"/>
@@ -49,7 +47,6 @@
             android:id="@+id/tv_coupon_validity"
             style="@style/SmallTextStyle"
             android:textColor="@color/text_gray"
-            android:text="有效期至 2018.10.10"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_coupon_title"
             android:paddingRight="@dimen/base_padding"/>

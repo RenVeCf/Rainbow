@@ -32,7 +32,7 @@ class ExchangeRecordAdapter(val context: Context, private val data: List<Exchang
         if (category == 2){
             holder?.itemView?.tv_exchange_title?.text = data[position].SATISFY_PRICE.toString()+"元 全品类优惠券"
         }
-        holder?.itemView?.tv_exchange_time?.text = data[position].CREATETIME
+        holder?.itemView?.tv_exchange_time?.text = "兑换时间："+data[position].CREATETIME
         holder?.itemView?.rl_exchange_record?.setOnClickListener { ExchangeRecordDetailActivity.launch(context as Activity,data[position].EXCHANGE_ID) }
     }
 

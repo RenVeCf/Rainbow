@@ -50,7 +50,7 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun petUpdate(birthday:String,gender:Int,logo:String,nickname:String,pet_type_id:Int,status:Int,petId: Int) {
+    fun petUpdate(birthday:String,gender:Int,logo:String,nickname:String,pet_type_id:Int,status:Int,petId: Int,category:Int) {
         if (mView !is IPetUpdateView) return
         var view = mView as IPetUpdateView
 
@@ -85,7 +85,7 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().petUpdate(birthday,gender,logo,nickname,
-                pet_type_id,status,petId,GlobalParam.getUserId()),
+                pet_type_id,status,petId,GlobalParam.getUserId(),category),
                 object : Response<BaseResult<PetBean>>(mContext,true){
                     override fun _onNext(result: BaseResult<PetBean>?) {
                         if (result?.code == 0) {

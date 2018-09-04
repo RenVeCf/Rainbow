@@ -105,12 +105,6 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        loadData();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.pet_edit) {

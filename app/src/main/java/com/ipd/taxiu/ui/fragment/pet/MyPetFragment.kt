@@ -46,6 +46,11 @@ class MyPetFragment : ListFragment<List<PetBean>, PetBean>() {
         view.findViewById<ImageView>(R.id.iv_back).setOnClickListener { mActivity.finish() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        onRefresh()
+    }
+
     override fun loadListData(): Observable<List<PetBean>> {
         return ApiManager.getService().petGetList(10, page, GlobalParam.getUserId())
                 .map {
