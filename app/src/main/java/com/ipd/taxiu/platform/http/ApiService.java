@@ -7,6 +7,8 @@ import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
+import com.ipd.taxiu.bean.ExchangeBean;
+import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
@@ -16,6 +18,7 @@ import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
+import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
@@ -139,7 +142,8 @@ public interface ApiService {
                                               @Field("PET_TYPE_ID") int PET_TYPE_ID,
                                               @Field("STATUS") int STATUS,
                                               @Field("PET_ID") int PET_ID,
-                                              @Field("USER_ID") String USER_ID);
+                                              @Field("USER_ID") String USER_ID,
+                                              @Field("CATEGORY") int CATEGORY);
 
     @FormUrlEncoded
     @POST(HttpUrl.PET_ADD)
@@ -253,6 +257,9 @@ public interface ApiService {
                                                                   @Field("REPLY_ID") int REPLY_ID,
                                                                   @Field("TARGET_ID") int TARGET_ID,
                                                                   @Field("CONTENT") String CONTENT);
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_GET_PET)
+    Observable<BaseResult<ShowPetBean>> taxiuShowPet(@Field("USER_ID") String USER_ID);
 
 
     /**
@@ -439,7 +446,7 @@ public interface ApiService {
                                                       @Field("PROV") String PROV,
                                                       @Field("RECIPIENT") String RECIPIENT,
                                                       @Field("STATUS") int STATUS,
-                                                      @Field("TEL") long TEL,
+                                                      @Field("TEL") String TEL,
                                                       @Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 
@@ -514,6 +521,40 @@ public interface ApiService {
     Observable<BaseResult<List<IntegralBean>>> scoreList(@Field("COUNT") int COUNT,
                                                          @Field("USER_ID") String USER_ID,
                                                          @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_LIST)
+    Observable<BaseResult<List<ExchangeBean>>> scoreExchangeList(@Field("COUNT") int COUNT,
+                                                                 @Field("USER_ID") String USER_ID,
+                                                                 @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_COUPON_INFO)
+    Observable<BaseResult<ExchangeBean>> scoreCouponInfo(@Field("COUPON_ID") int COUPON_ID,
+                                                         @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_TO_EXCHANGE)
+    Observable<BaseResult<ExchangeBean>> toExchange(@Field("COUPON_ID") int COUPON_ID,
+                                                    @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_HIS)
+    Observable<BaseResult<List<ExchangeHisBean>>> exchangeHis(@Field("COUNT") int COUNT,
+                                                              @Field("USER_ID") String USER_ID,
+                                                              @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_EXCHANGE_INFO)
+    Observable<BaseResult<ExchangeHisBean>> exchangeInfo(@Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                         @Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SCORE_COUPON_LIST)
+    Observable<BaseResult<List<ExchangeHisBean>>> couponList(@Field("COUNT") int COUNT,
+                                                             @Field("USER_ID") String USER_ID,
+                                                             @Field("PAGE") int PAGE,
+                                                             @Field("USE_STATUS") int USE_STATUS);
 
 
     @FormUrlEncoded

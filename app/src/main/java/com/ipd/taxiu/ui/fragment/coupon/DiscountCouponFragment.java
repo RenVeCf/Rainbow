@@ -5,7 +5,11 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DiscountExchangeAdapter;
-import com.ipd.taxiu.bean.CouponBean;
+import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.ExchangeHisBean;
+import com.ipd.taxiu.platform.global.Constant;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.ui.ListFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Miss on 2018/8/6
  */
-public class DiscountCouponFragment extends ListFragment<List<CouponBean>,CouponBean> {
+public class DiscountCouponFragment extends ListFragment<List<ExchangeHisBean>,ExchangeHisBean> {
     private DiscountExchangeAdapter mAdapter = null;
 
     public static DiscountCouponFragment newInstance() {
@@ -36,24 +40,28 @@ public class DiscountCouponFragment extends ListFragment<List<CouponBean>,Coupon
 
     @NotNull
     @Override
-    public Observable<List<CouponBean>> loadListData() {
-        return Observable.create(new Observable.OnSubscribe<List<CouponBean>>() {
-            @Override
-            public void call(Subscriber<? super List<CouponBean>> subscriber) {
-                List<CouponBean> bean = new ArrayList<>();
-                for (int i = 0; i < 5; i++) {
-                    bean.add(new CouponBean());
-                }
-                subscriber.onNext(bean);
-                subscriber.onCompleted();
-            }
-        });
+    public Observable<List<ExchangeHisBean>> loadListData() {
+        return ApiManager.getService().couponList(Constant.PAGE_SIZE, GlobalParam.getUserId(),getPage(),0)
+                .map(new Func1<BaseResult<List<ExchangeHisBean>>, List<ExchangeHisBean>>() {
+                    @Override
+                    public List<ExchangeHisBean> call(BaseResult<List<ExchangeHisBean>> listBaseResult) {
+                        List<ExchangeHisBean> list = new ArrayList<>();
+                        if (listBaseResult.code == 0){
+                            list.addAll(listBaseResult.data);
+                        }
+                        return list;
+                    }
+                });
     }
 
     @Override
-    public int isNoMoreData(List<CouponBean> result) {
+    public int isNoMoreData(List<ExchangeHisBean> result) {
         if (result == null || result.isEmpty()) {
-            return getEMPTY_DATA();
+            if (getPage() == getINIT_PAGE()) {
+                return getEMPTY_DATA();
+            }else {
+                return getNO_MORE_DATA();
+            }
         } else {
             return getNORMAL();
         }
@@ -71,7 +79,7 @@ public class DiscountCouponFragment extends ListFragment<List<CouponBean>,Coupon
     }
 
     @Override
-    public void addData(boolean isRefresh, List<CouponBean> result) {
+    public void addData(boolean isRefresh, List<ExchangeHisBean> result) {
         getData().addAll(result);
     }
 }

@@ -46,10 +46,15 @@
         android:layout_toRightOf="@id/civ_header"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginTop="@dimen/small_padding"
-        android:paddingLeft="@dimen/big_padding"
-        android:paddingRight="@dimen/big_padding"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:gravity="center"
+        android:maxEms="7"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
+        android:textSize="@dimen/small_text_size"
         android:layout_marginBottom="@dimen/base_padding"/>
 
     <TextView
@@ -62,10 +67,16 @@
         android:layout_toRightOf="@id/tv_pet_kind"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginTop="@dimen/small_padding"
-        android:paddingLeft="@dimen/big_padding"
-        android:paddingRight="@dimen/big_padding"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:textSize="@dimen/small_text_size"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
+        android:maxEms="8"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/base_padding"/>
 
     <ImageView

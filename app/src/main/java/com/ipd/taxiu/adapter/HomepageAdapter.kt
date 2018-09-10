@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -43,14 +44,12 @@ class HomepageAdapter(val context: Context, private val data: List<HomepageBean>
         if (position == ITEM_TYPE.ITEM1.ordinal) {
             if (holder?.itemView?.item1 == null) return
             holder?.itemView?.item1?.setOnClickListener {
-                val intent = Intent(context, TaxiuDetailActivity::class.java)
-                context.startActivity(intent)
+//               TaxiuDetailActivity.launch(context as Activity,1,false)
             }
         } else {
             if (holder?.itemView?.item2 == null) return
             holder?.itemView?.item2?.setOnClickListener {
-                val intent = Intent(context, TaxiuDetailActivity::class.java)
-                context.startActivity(intent)
+//                TaxiuDetailActivity.launch(context as Activity,1,false)
             }
         }
     }

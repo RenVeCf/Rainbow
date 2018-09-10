@@ -147,8 +147,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
                 mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId)
             } else if (addressType == 2){
                 getStatus()
-                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel.toLong(),userId,addressId)
-                finish()
+                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel,userId,addressId)
             }
         }
 
@@ -174,7 +173,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         builder.setCommit("确认删除") { builder ->
             mPresenterDelete?.deleteAddress(GlobalParam.getUserId(),addressId)
             builder.dialog.dismiss()
-            finish()
         }
         builder.setCancel("暂不删除") { builder -> builder.dialog.dismiss() }
         builder.dialog.show()
@@ -206,6 +204,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
 
     override fun updateSuccess() {
         toastShow("修改成功")
+        finish()
     }
 
     override fun deleteFail(errMsg: String) {
@@ -214,5 +213,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
 
     override fun deleteSuccess() {
         toastShow("删除成功")
+        finish()
     }
 }

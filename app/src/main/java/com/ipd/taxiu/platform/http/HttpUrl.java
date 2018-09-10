@@ -39,6 +39,7 @@ public interface HttpUrl {
     String TAXIU_REPLY_MORE = "app_show/replyMore.do";
     String TAXIU_FIRST_REPLY = "app_show/toReply.do";
     String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
+    String TAXIU_GET_PET = "app_show/getPet.do";
 
     //话题
     String TOPIC_LIST = "app_topic/getList.do";
@@ -100,6 +101,12 @@ public interface HttpUrl {
 
     //积分列表
     String SCORE_LIST = "app_score/getList.do";
+    String SCORE_EXCHANGE_LIST = "app_score/exchangeList.do";
+    String SCORE_COUPON_INFO = "app_score/couponInfo.do";
+    String SCORE_TO_EXCHANGE = "app_score/toExchange.do";
+    String SCORE_EXCHANGE_HIS = "app_score/exchangeHis.do";
+    String SCORE_EXCHANGE_INFO = "app_score/exchangeInfo.do";
+    String SCORE_COUPON_LIST = "app_score/couponList.do";
 
     //text
     String TEXT_INFO = "app_text/getInfo.do";

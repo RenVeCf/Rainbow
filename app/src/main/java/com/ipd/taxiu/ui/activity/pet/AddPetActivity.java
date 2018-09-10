@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -170,12 +171,18 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 status = 4;
             }
         }
+        int category;
+        if (cb_is_show.isChecked()){
+            category = 1;
+        }else {
+            category = 0;
+        }
         if (id == R.id.pet_save) {
             if (isChooseImg){
                 path = HttpUpload.getLogo();
             }
             if (petWay == 2) {
-                mPresenter.petUpdate(birthday,sex,path,nickname,petKindId,status,petId);
+                mPresenter.petUpdate(birthday,sex,path,nickname,petKindId,status,petId,category);
             } else {
                 mPresenter.petAdd(birthday,sex,path,nickname,petKindId,status);
             }
@@ -297,6 +304,16 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
         }
         if (data.CATEGORY == 1){
             cb_is_show.setChecked(true);
+            cb_is_show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                    } else {
+                        cb_is_show.setChecked(true);
+                        toastShow("不能取消默认");
+                    }
+                }
+            });
         }
     }
 

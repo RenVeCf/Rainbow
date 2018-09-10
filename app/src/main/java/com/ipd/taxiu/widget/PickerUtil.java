@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class PickerUtil {
      * 选择日期
      */
     public void initLunarPicker(final Context context, final TextView textView, final String title) {
+        hideSoftInput(context,textView);
         final Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
         startDate.set(1900, 1, 1);
@@ -65,8 +67,8 @@ public class PickerUtil {
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 String newStr = getTime(date).substring(0, getTime(date).indexOf(" "));
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                if (newStr.compareTo(df.format(new Date()))>0) {
-                    new ToastCommom().show(context,"时间不能大于当前日期");
+                if (newStr.compareTo(df.format(new Date())) > 0) {
+                    new ToastCommom().show(context, "时间不能大于当前日期");
                     return;
                 }
                 textView.setText(newStr);
@@ -122,6 +124,7 @@ public class PickerUtil {
      * 宠物状态选项卡
      */
     public void initCustomOptionPicker(final Context context, final List<String> list, final TextView textView) {//条件选择器初始化，自定义布局
+        hideSoftInput(context, textView);
         pvCustomOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
@@ -170,6 +173,7 @@ public class PickerUtil {
      * 选择银行卡
      */
     public void initBankCardOption(final Context context, final List<String> list, final TextView textView) {
+        hideSoftInput(context, textView);
         bankCardOption = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
@@ -223,6 +227,7 @@ public class PickerUtil {
      * @param textView
      */
     public void initRetrunMoneyOption(final Context context, final List<String> list, final TextView textView) {
+        hideSoftInput(context, textView);
         returnMoneyOption = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
@@ -272,6 +277,7 @@ public class PickerUtil {
      * 选择省市区
      */
     public void showPickerView(Context context, final TextView textView) {
+        hideSoftInput(context, textView);
         pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -418,5 +424,15 @@ public class PickerUtil {
         return stringBuilder.toString();
     }
 
+    /**
+     * 隐藏软键盘
+     *
+     * @param context
+     * @param view
+     */
+    private void hideSoftInput(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+    }
 
 }

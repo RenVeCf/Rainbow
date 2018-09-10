@@ -105,12 +105,6 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        loadData();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.pet_edit) {
@@ -141,7 +135,6 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
             public void onClick(MessageDialog.Builder builder) {
                 mPresenter.petDelete(petId);
                 builder.getDialog().dismiss();
-                finish();
             }
         });
         builder.setCancel("暂不删除", new MessageDialog.OnClickListener() {
@@ -192,8 +185,9 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
-    public void deleteSuccess() {
-        toastShow("删除成功");
+    public void deleteSuccess(String errMsg) {
+        toastShow(errMsg);
+        finish();
     }
 
     @Override

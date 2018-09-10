@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingBottom="@dimen/big_padding">
+    android:paddingBottom="@dimen/big_padding"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <EditText
         android:id="@+id/et_signature"
         android:layout_width="match_parent"
@@ -13,5 +15,6 @@
         android:textColor="@color/black"
         android:textSize="@dimen/base_text_size"
         android:hint="添加个人标签，10个字以内"
+        android:maxLines="1"
         android:maxLength="10"/>
 </android.support.constraint.ConstraintLayout>

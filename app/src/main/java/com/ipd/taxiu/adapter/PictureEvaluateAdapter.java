@@ -115,9 +115,10 @@ public class PictureEvaluateAdapter extends BaseAdapter<PictureEvaluateAdapter.V
                 if (position == list.size()) {
                     //添加图片
                    choosePicture();
-                } else {
-                    lookPicture();
                 }
+//                else {
+//                    lookPicture();
+//                }
             }
         });
 
