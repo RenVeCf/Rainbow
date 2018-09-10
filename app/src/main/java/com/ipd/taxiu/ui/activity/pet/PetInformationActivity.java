@@ -185,8 +185,8 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     }
 
     @Override
-    public void deleteSuccess() {
-        toastShow("删除成功");
+    public void deleteSuccess(String errMsg) {
+        toastShow(errMsg);
         finish();
     }
 

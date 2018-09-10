@@ -45,11 +45,11 @@ class TaxiuDetailPresenter : BasePresenter<TaxiuDetailPresenter.ITaxiuDetailView
                 })
     }
 
-
     interface ITaxiuDetailView {
         fun loadDetailSuccess(detail: TaxiuDetailBean)
         fun loadDetailFail(errMsg: String)
         fun collectSuccess()
         fun collectFail(errMsg: String)
     }
+
 }

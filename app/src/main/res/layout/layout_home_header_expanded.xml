@@ -30,6 +30,7 @@
             android:layout_toRightOf="@id/civ_avatar">
 
             <LinearLayout
+                android:id="@+id/ll_pet_show"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -39,7 +40,6 @@
                     android:id="@+id/tv_name"
                     style="@style/BaseTextStyle"
                     android:layout_toRightOf="@id/civ_avatar"
-                    android:text="二哈背着包去流浪"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
@@ -48,19 +48,28 @@
                     style="@style/SmallTextStyle"
                     android:layout_marginTop="4dp"
                     android:layout_toRightOf="@id/civ_avatar"
-                    android:text="我是男孩纸"
                     android:textColor="@color/white" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_pet_no"
+                style="@style/BaseTextStyle"
+                android:layout_centerVertical="true"
+                android:text="您还未添加宠物"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
 
             <LinearLayout
+                android:id="@+id/ll_pet_age"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <TextView
@@ -69,6 +78,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/tv_age"
                     style="@style/BaseTextStyle"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
@@ -80,6 +90,30 @@
                     style="@style/SmallTextStyle"
                     android:text="啦~"
                     android:textColor="@color/white" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_to_add_pet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:layout_centerVertical="true"
+                    android:text="去添加宠物"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:src="@mipmap/arrow_right_white" />
             </LinearLayout>
 
         </RelativeLayout>

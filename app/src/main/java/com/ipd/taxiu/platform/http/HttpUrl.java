@@ -39,6 +39,7 @@ public interface HttpUrl {
     String TAXIU_REPLY_MORE = "app_show/replyMore.do";
     String TAXIU_FIRST_REPLY = "app_show/toReply.do";
     String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
+    String TAXIU_GET_PET = "app_show/getPet.do";
 
     //话题
     String TOPIC_LIST = "app_topic/getList.do";

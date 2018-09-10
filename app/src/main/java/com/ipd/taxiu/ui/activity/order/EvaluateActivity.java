@@ -87,6 +87,8 @@ public class EvaluateActivity extends BaseUIActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mAdapter.setReset(requestCode, resultCode, data,mAdapter.getSelectPosition());
+        if (data != null) {
+            mAdapter.setReset(requestCode, resultCode, data, mAdapter.getSelectPosition());
+        }
     }
 }

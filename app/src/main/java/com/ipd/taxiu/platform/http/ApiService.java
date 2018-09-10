@@ -18,6 +18,7 @@ import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
+import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
@@ -256,6 +257,9 @@ public interface ApiService {
                                                                   @Field("REPLY_ID") int REPLY_ID,
                                                                   @Field("TARGET_ID") int TARGET_ID,
                                                                   @Field("CONTENT") String CONTENT);
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_GET_PET)
+    Observable<BaseResult<ShowPetBean>> taxiuShowPet(@Field("USER_ID") String USER_ID);
 
 
     /**
