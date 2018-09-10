@@ -1,18 +1,19 @@
 package com.ipd.jumpbox.jumpboxlibrary.widget.cropimageview;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.ipd.jumpbox.jumpboxlibrary.R;
 
 /**
  * Created by jumpbox on 2016/11/3.
  */
 
-public class FloatDrawableView extends View {
+public class FloatDrawableView extends FrameLayout {
 
 
     public FloatDrawableView(Context context) {
@@ -30,50 +31,36 @@ public class FloatDrawableView extends View {
         init();
     }
 
-    private void init() {
 
+    private void init() {
+        View cropAreaView = LayoutInflater.from(getContext()).inflate(R.layout.layout_crop_area, this, false);
+        addView(cropAreaView);
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         ViewGroup parentView = (ViewGroup) getParent();
-//        int size = parentView.getWidth() / 4 * 2;
-        if (mFloatDrawableSize <= 0) {
-            mFloatDrawableSize = parentView.getWidth();
+        if (mCropAreaWidth <= 0) {
+            mCropAreaWidth = parentView.getMeasuredWidth();
+            mCropAreaHeight = mCropAreaWidth;
         }
-        int height = MeasureSpec.makeMeasureSpec(mFloatDrawableSize, MeasureSpec.EXACTLY);
-        int width = MeasureSpec.makeMeasureSpec(mFloatDrawableSize, MeasureSpec.EXACTLY);
+
+        int width = MeasureSpec.makeMeasureSpec(mCropAreaWidth, MeasureSpec.EXACTLY);
+        int height = MeasureSpec.makeMeasureSpec(mCropAreaHeight, MeasureSpec.EXACTLY);
         super.onMeasure(width, height);
     }
 
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        setBackgroundDrawable(createBgShape());
-    }
-
-    private GradientDrawable createBgShape() {
-        int strokeWidth = 2;
-        int strokeColor = Color.parseColor("#ffffff");
-        int fillColor = Color.parseColor("#00000000");
-
-        GradientDrawable gd = new GradientDrawable();
-        gd.setColor(fillColor);
-        gd.setStroke(strokeWidth, strokeColor);
-
-        return gd;
-    }
-
-    private int mFloatDrawableSize = 0;
+    private int mCropAreaWidth = 0;
+    private int mCropAreaHeight = 0;
 
     /**
      * 设置裁剪框大小
-     *
-     * @param size
      */
-    public void setFloatDrawableSize(int size) {
-        mFloatDrawableSize = size;
+    public void setCropAreaSize(int width, int height) {
+        mCropAreaWidth = width;
+        mCropAreaHeight = height;
+        requestLayout();
     }
-
 }

@@ -2,67 +2,69 @@ package com.ipd.taxiu.utils;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.Nullable;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okio.Buffer;
 import okio.BufferedSink;
+import okio.ForwardingSink;
+import okio.Okio;
 
-/**
- * Created by jumpbox on 2017/8/15.
- */
 public class ProgressRequestBody extends RequestBody {
-    private File mFile;
-    private String mPath;
+    private RequestBody mOriginalBody;
+    private long mTotalLength = -1;
+    private long mCurrentLength = -1;
     private UploadCallbacks mListener;
 
-    private static final int DEFAULT_BUFFER_SIZE = 2048;
 
     public interface UploadCallbacks {
         void onProgressUpdate(int percentage);
-        void onError();
-        void onFinish();
     }
 
-    public ProgressRequestBody(final File file, final  UploadCallbacks listener) {
-        mFile = file;
+    public ProgressRequestBody(RequestBody requestBody, UploadCallbacks listener) {
+        mOriginalBody = requestBody;
         mListener = listener;
     }
 
+
+    @Nullable
     @Override
     public MediaType contentType() {
-        // i want to upload only images
-        return MediaType.parse("image/*");
+        return mOriginalBody.contentType();
+    }
+
+    @Override
+    public long contentLength() throws IOException {
+        return mOriginalBody.contentLength();
     }
 
     @Override
     public void writeTo(BufferedSink sink) throws IOException {
-        long fileLength = mFile.length();
-        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-        FileInputStream in = new FileInputStream(mFile);
-        long uploaded = 0;
+        final Handler handler = new Handler(Looper.getMainLooper());
+        // 获取总的长度
+        mTotalLength = contentLength();
 
-        try {
-            int read;
-            Handler handler = new Handler(Looper.getMainLooper());
-            while ((read = in.read(buffer)) != -1) {
-
-                uploaded += read;
-                sink.write(buffer, 0, read);
-                // update progress on UI thread
-                handler.post(new ProgressUpdater(uploaded, fileLength));
+        ForwardingSink forwardingSink = new ForwardingSink(sink) {
+            @Override
+            public void write(Buffer source, long byteCount) throws IOException {
+                super.write(source, byteCount);
+                mCurrentLength += byteCount;
+                handler.post(new ProgressUpdater(mCurrentLength, mTotalLength));
             }
-        } finally {
-            in.close();
-        }
+        };
+        sink = Okio.buffer(forwardingSink);
+        mOriginalBody.writeTo(sink);
+        sink.flush();
     }
+
 
     private class ProgressUpdater implements Runnable {
         private long mUploaded;
         private long mTotal;
+
         public ProgressUpdater(long uploaded, long total) {
             mUploaded = uploaded;
             mTotal = total;
@@ -70,7 +72,7 @@ public class ProgressRequestBody extends RequestBody {
 
         @Override
         public void run() {
-            mListener.onProgressUpdate((int)(100 * mUploaded / mTotal));
+            mListener.onProgressUpdate((int) (100 * mUploaded / mTotal));
         }
     }
 }

@@ -28,7 +28,7 @@ public class RequestInterceptor implements Interceptor {
         Request request = chain.request();
 
         String requestUrl = request.url().toString();
-        if (requestUrl.contains(HttpUrl.UPLOAD_PIC)) {
+        if (requestUrl.contains(HttpUrl.UPLOAD_PIC) || requestUrl.contains(HttpUrl.UPLOAD_VIDEO)) {
             return chain.proceed(request);
         }
 

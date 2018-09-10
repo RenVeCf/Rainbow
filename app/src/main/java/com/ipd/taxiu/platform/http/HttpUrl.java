@@ -74,6 +74,7 @@ public interface HttpUrl {
 
     //tools
     String UPLOAD_PIC = "app_pic/uploadPic.do";
+    String UPLOAD_VIDEO = "app_video/uploadVideo.do";
 
     //city
     String GET_LIST_ALL = "app_region/getListAll.do";

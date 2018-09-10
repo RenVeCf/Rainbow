@@ -6,6 +6,7 @@
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.cropimageview.CropImageView
         android:id="@+id/crop_image_view"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

@@ -17,7 +17,9 @@ public class CropImageView extends FrameLayout {
     private static final String TAG = "CropImageView";
     private ZoomImageView mPhotoView;
     private FloatDrawableView mFloatDrawableView;
-    private int mFloatDrawableSize = 0;//裁剪框大小,默认为控件宽度
+    private int mCropAreaWidth = 0;//裁剪框宽度
+    private int mCropAreaHeight = 0;//裁剪框高度
+    private FloatBackgroundView mFloatBackgroundView;
 
     public CropImageView(Context context) {
         super(context);
@@ -43,24 +45,26 @@ public class CropImageView extends FrameLayout {
             if (childView instanceof FloatDrawableView) {
                 childView.measure(0, 0);
                 int childWidth = childView.getMeasuredWidth();
+                int childHeight = childView.getMeasuredHeight();
                 int myHeight = getMeasuredHeight();
                 int myWidth = getMeasuredWidth();
                 float l = (myWidth - childWidth) / 2f;
-                float t = (myHeight - childWidth) / 2f;
-                childView.layout((int) l, (int) t, (int) l + childWidth, (int) t + childWidth);//将裁剪框放置控件中间
+                float t = (myHeight - childHeight) / 2f;
+                childView.layout((int) l, (int) t, (int) l + childWidth, (int) t + childHeight);//将裁剪框放置控件中间
             }
         }
 
 
     }
 
-
     private void init() {
         addView(buildPhotoView());
-        addView(buildImageFloat());
-        addView(buildFloatView());
+        addView(buildBackgroupView());
+        addView(buildCropAreaView());
+        rebuildContent();
+    }
 
-
+    private void rebuildContent() {
         mFloatDrawableView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -68,10 +72,9 @@ public class CropImageView extends FrameLayout {
                 RectF floatDrawableRectF = new RectF(mFloatDrawableView.getLeft(), mFloatDrawableView.getTop(),
                         mFloatDrawableView.getRight(), mFloatDrawableView.getBottom());
                 mPhotoView.setFloatDrawableRect(floatDrawableRectF);
+
             }
         });
-
-
     }
 
     private ZoomImageView buildPhotoView() {
@@ -84,23 +87,24 @@ public class CropImageView extends FrameLayout {
 
     /**
      * 蒙层
+     *
      * @return
      */
-    private View buildImageFloat() {
-        FloatBackgroundView view = new FloatBackgroundView(getContext());
-        view.setFloatDrawableSize(mFloatDrawableSize);//设置裁剪框大小
+    private View buildBackgroupView() {
+        mFloatBackgroundView = new FloatBackgroundView(getContext());
+        mFloatBackgroundView.setCropAreaSize(mCropAreaWidth, mCropAreaHeight);//设置裁剪框大小
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        view.setLayoutParams(params);
-        return view;
+        mFloatBackgroundView.setLayoutParams(params);
+        return mFloatBackgroundView;
     }
 
     /**
      * 裁剪框
+     *
      * @return
      */
-    private FloatDrawableView buildFloatView() {
+    private FloatDrawableView buildCropAreaView() {
         mFloatDrawableView = new FloatDrawableView(getContext());
-        mFloatDrawableView.setFloatDrawableSize(mFloatDrawableSize);//设置裁剪框大小
         return mFloatDrawableView;
     }
 
@@ -109,6 +113,16 @@ public class CropImageView extends FrameLayout {
             throw new RuntimeException("photoView is Empty");
         }
         return mPhotoView;
+    }
+
+    public void setCropAreaSize(int width, int height) {
+        mCropAreaWidth = width;
+        mCropAreaHeight = height;
+
+        mFloatBackgroundView.setCropAreaSize(mCropAreaWidth, mCropAreaHeight);
+        mFloatDrawableView.setCropAreaSize(mCropAreaWidth, mCropAreaHeight);
+        rebuildContent();
+
     }
 
 
@@ -125,7 +139,7 @@ public class CropImageView extends FrameLayout {
 
 
                 Bitmap bitmap = Bitmap.createBitmap(tmpBitmap, (int) (mFloatDrawableView.getX()),
-                        (int) (mFloatDrawableView.getY()) , mFloatDrawableView.getWidth(), mFloatDrawableView.getHeight(),
+                        (int) (mFloatDrawableView.getY()), mFloatDrawableView.getWidth(), mFloatDrawableView.getHeight(),
                         null, false);
                 return bitmap;
 

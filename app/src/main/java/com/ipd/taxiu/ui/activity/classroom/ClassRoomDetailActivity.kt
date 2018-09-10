@@ -54,7 +54,7 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     }
 
     override fun initListener() {
-        rl_buy.setOnClickListener { OwnedClassRoomActivity.launch(mActivity) }
+        rl_buy.setOnClickListener { OwnedClassRoomActivity.launch(mActivity,-1) }
     }
 
     override fun loadDetailSuccess(detail: ClassRoomBean) {

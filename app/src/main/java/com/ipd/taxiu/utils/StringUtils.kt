@@ -38,5 +38,4 @@ object StringUtils {
         return arrayListOf(fixPicStr)
     }
 
-
 }

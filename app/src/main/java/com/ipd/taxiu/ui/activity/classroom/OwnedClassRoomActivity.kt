@@ -14,8 +14,9 @@ import kotlinx.android.synthetic.main.activity_classroom_detail.*
 class OwnedClassRoomActivity : BaseUIActivity() {
 
     companion object {
-        fun launch(activity: Activity) {
+        fun launch(activity: Activity,classroomId:Int) {
             val intent = Intent(activity, OwnedClassRoomActivity::class.java)
+            intent.putExtra("classroomId",classroomId)
             activity.startActivity(intent)
         }
     }

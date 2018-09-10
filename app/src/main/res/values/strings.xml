@@ -43,6 +43,9 @@
     <string name="loading_error">加载失败...</string>
 
 
+    <string name="video_shoot_tip">拖动选择你要发表的%d秒以内片段！</string>
+    <string name="shoot_video">拍摄视频</string>
+    <string name="video_from_local">上传相册视频</string>
     <string name="camera">从相册选择</string>
     <string name="photo">拍照</string>
     <string name="save">保存</string>

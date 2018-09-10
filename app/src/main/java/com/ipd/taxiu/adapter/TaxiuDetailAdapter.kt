@@ -3,6 +3,7 @@ package com.ipd.taxiu.adapter
 import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,10 +64,15 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.tv_nickname.text = detailData.User.NICKNAME
                 holder.itemView.tv_user_desc.text = detailData.User.TAG
 
-                val pics = StringUtils.splitImages(detailData.PIC)
-                holder.itemView.media_recycler_view.adapter = MediaPictureAdapter(context, pics, { list, pos ->
-                    PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
-                })
+
+                if (TextUtils.isEmpty(detailData.URL)) {
+                    val pics = StringUtils.splitImages(detailData.PIC)
+                    holder.itemView.media_recycler_view.adapter = MediaPictureAdapter(context, pics, { list, pos ->
+                        PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
+                    })
+                } else {
+                    holder.itemView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(detailData.LOGO), null)
+                }
 
                 holder.itemView.tv_taxiu_desc.text = detailData.CONTENT
                 holder.itemView.tv_taxiu_lable.text = detailData.TIP
@@ -98,7 +104,6 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.tv_comment_reply_num.text = info.REPLY.toString()
                 holder.itemView.tv_comment_zan_num.text = info.PRAISE.toString()
                 holder.itemView.iv_comment_zan.isSelected = info.IS_PRAISE == 1
-
 
                 val pics = StringUtils.splitImages(info.PIC)
                 if (pics.isNotEmpty()) {

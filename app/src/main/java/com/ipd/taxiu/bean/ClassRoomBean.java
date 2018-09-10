@@ -36,5 +36,6 @@ public class ClassRoomBean {
     public int CLASS_STATE;
     public int IS_COLLECT;
     public int IS_TOP;
+    public int IS_BUY;
 
 }

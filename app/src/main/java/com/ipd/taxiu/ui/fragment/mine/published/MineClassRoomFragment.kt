@@ -45,7 +45,7 @@ class MineClassRoomFragment : ListFragment<List<ClassRoomBean>, ClassRoomBean>()
         if (mAdapter == null) {
             mAdapter = ClassRoomAdapter(mActivity, data, {
                 //itemClick
-                OwnedClassRoomActivity.launch(mActivity)
+                OwnedClassRoomActivity.launch(mActivity,-1)
 
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)

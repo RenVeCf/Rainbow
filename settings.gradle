@@ -1,1 +1,1 @@
-include ':app',':jumpboxlibrary',':indexlib',':wheelview',':pickerview','countdown'
+include ':app',':jumpboxlibrary',':indexlib',':wheelview',':pickerview','countdown','ffmpeg'

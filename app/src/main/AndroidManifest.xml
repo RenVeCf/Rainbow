@@ -64,7 +64,9 @@
 
         <!-- taxiu-->
         <activity android:name=".ui.activity.taxiu.TaxiuDetailActivity" />
-        <activity android:name=".ui.activity.taxiu.PublishTaxiuActivity" />
+        <activity
+            android:name=".ui.activity.taxiu.PublishTaxiuActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.taxiu.PublishTaxiuCommentActivity" />
 
 
@@ -92,6 +94,12 @@
         <activity
             android:name=".ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
+
+        <activity android:name=".ui.activity.VideoSelectActivity" />
+        <activity android:name=".ui.activity.VideoTrimmerActivity" />
+        <activity android:name=".ui.activity.VideoCoverActivity" />
+        <activity android:name=".ui.activity.VideoCoverCropActivity" />
+
 
         <!-- 订单 -->
         <activity android:name=".ui.activity.order.MyOrderActivity" />
@@ -150,6 +158,7 @@
 
         <activity android:name=".ui.activity.message.MessageDetailActivity" />
         <activity android:name=".ui.activity.pet.ChoosePetActivity" />
+
     </application>
 
 </manifest>

@@ -527,4 +527,8 @@ public interface ApiService {
     @POST(HttpUrl.UPLOAD_PIC)
     Observable<UploadResultBean> uploadPicture(@PartMap Map<String, RequestBody> map);
 
+    @Multipart
+    @POST(HttpUrl.UPLOAD_VIDEO)
+    Observable<UploadResultBean> uploadVideo(@PartMap Map<String, RequestBody> map);
+
 }

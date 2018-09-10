@@ -7,11 +7,19 @@ import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.ipd.jumpbox.jumpboxlibrary.utils.MySelfSheetDialog
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuLableBean
+import com.ipd.taxiu.bean.UploadResultBean
+import com.ipd.taxiu.event.VideoResultEvent
+import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.PublishTaxiuPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.VideoSelectActivity
+import com.ipd.taxiu.utils.UploadUtils
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTaxiuView {
 
@@ -35,12 +43,14 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
     private var mPresenter: PublishTaxiuPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
+        EventBus.getDefault().register(this)
         mPresenter = PublishTaxiuPresenter()
         mPresenter?.attachView(this, this)
     }
 
     override fun onViewDetach() {
         super.onViewDetach()
+        EventBus.getDefault().unregister(this)
         mPresenter?.detachView()
         mPresenter = null
     }
@@ -66,6 +76,14 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
     }
 
     override fun initListener() {
+        ll_video.setOnClickListener {
+            MySelfSheetDialog(mActivity).builder().addSheetItem(resources.getString(R.string.shoot_video),
+                    MySelfSheetDialog.SheetItemColor.colorPrimaryDark) {
+
+            }.addSheetItem(resources.getString(R.string.video_from_local), MySelfSheetDialog.SheetItemColor.colorPrimaryDark) {
+                VideoSelectActivity.launch(mActivity)
+            }.show()
+        }
     }
 
     private var lables: List<TaxiuLableBean>? = null
@@ -141,6 +159,25 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                 mPresenter?.publishTaxiuImage(content, picStr, lableInfo.SHOW_TIP_ID)
             } else {
                 //视频
+                if (videoEvent == null) {
+                    toastShow("请先选择视频")
+                    return false
+                }
+                UploadUtils.uploadVideo(mActivity, true, videoEvent?.videoPath, object : UploadUtils.UploadCallback {
+                    override fun onProgress(progress: Int) {
+
+                    }
+
+                    override fun uploadSuccess(resultBean: UploadResultBean) {
+                        mPresenter?.publishTaxiuVideo(content, videoEvent!!.videoCover, resultBean.data, lableInfo.SHOW_TIP_ID)
+                    }
+
+                    override fun uploadFail(errMsg: String) {
+                        toastShow(errMsg)
+                    }
+
+                })
+
 
             }
 
@@ -153,6 +190,16 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         picture_recycler_view.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private var videoEvent: VideoResultEvent? = null
+    @Subscribe
+    fun onMainEvent(event: VideoResultEvent) {
+        videoEvent = event
+        ll_video_normal.visibility = View.GONE
+        ll_video_finish.visibility = View.VISIBLE
+        ImageLoader.loadNoPlaceHolderImg(mActivity, event.videoCover, iv_video_img)
+
     }
 
 }

@@ -48,7 +48,7 @@
     <color name="partTranslucent">#00000000</color>
     <color name="curious_blue">#1998DE</color>
     <color name="white_smoke">#F2F2F2</color>
-
+    <color name="shadow_color">#88FFFFFF</color>
 
 
     <integer-array name="gplus_colors">

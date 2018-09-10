@@ -11,6 +11,7 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity
+import com.ipd.taxiu.ui.activity.classroom.OwnedClassRoomActivity
 import rx.Observable
 
 class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, ClassRoomBean>() {
@@ -43,7 +44,12 @@ class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, Clas
         if (mAdapter == null) {
             mAdapter = ClassRoomAdapter(mActivity, data, {
                 //itemClick
-                ClassRoomDetailActivity.launch(mActivity,it.CLASS_ROOM_ID)
+                if (it.IS_BUY == 1) {
+                    //已购买
+                    OwnedClassRoomActivity.launch(mActivity, it.CLASS_ROOM_ID)
+                } else {
+                    ClassRoomDetailActivity.launch(mActivity, it.CLASS_ROOM_ID)
+                }
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

@@ -40,6 +40,7 @@ class SplashActivity : BaseActivity() {
                         } else {
                             LoginActivity.launch(mActivity)
                         }
+                        finish()
                     }
 
                 })

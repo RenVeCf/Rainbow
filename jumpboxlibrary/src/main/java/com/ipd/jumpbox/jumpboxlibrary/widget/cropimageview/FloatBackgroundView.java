@@ -47,42 +47,45 @@ public class FloatBackgroundView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         ViewGroup parentView = (ViewGroup) getParent();
-        if (mFloatDrawableSize <= 0) {
-            mFloatDrawableSize = parentView.getMeasuredWidth();
+        if (mCropAreaWidth <= 0) {
+            mCropAreaWidth = parentView.getMeasuredWidth();
+            mCropAreaHeight = mCropAreaWidth;
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Rect rect = new Rect(0, 0, getMeasuredWidth(), (getMeasuredHeight() - mFloatDrawableSize) / 2);
+        //顶部
+        Rect rect = new Rect(0, 0, getMeasuredWidth(), (getMeasuredHeight() - mCropAreaHeight) / 2);
         canvas.drawRect(rect, mPaint);
 
-        rect = new Rect(0, getMeasuredHeight() - (getMeasuredHeight() - mFloatDrawableSize) / 2, getMeasuredWidth(), getMeasuredHeight());
+        //底部
+        rect = new Rect(0, getMeasuredHeight() - (getMeasuredHeight() - mCropAreaHeight) / 2, getMeasuredWidth(), getMeasuredHeight());
         canvas.drawRect(rect, mPaint);
 
-        int centerTop = (getMeasuredHeight() - mFloatDrawableSize) / 2;
-        int centerBottom = getMeasuredHeight() - (getMeasuredHeight() - mFloatDrawableSize) / 2;
-
-        int centerRight = (getMeasuredWidth() - mFloatDrawableSize) / 2;
+        int centerTop = (getMeasuredHeight() - mCropAreaHeight) / 2;
+        int centerBottom = getMeasuredHeight() - (getMeasuredHeight() - mCropAreaHeight) / 2;
+        int centerRight = (getMeasuredWidth() - mCropAreaWidth) / 2;
         rect = new Rect(0, centerTop, centerRight, centerBottom);
         canvas.drawRect(rect, mPaint);
 
-        rect = new Rect(centerRight + mFloatDrawableSize, centerTop, getMeasuredWidth(), centerBottom);
+        rect = new Rect(centerRight + mCropAreaWidth, centerTop, getMeasuredWidth(), centerBottom);
         canvas.drawRect(rect, mPaint);
 
 
     }
 
 
-    private int mFloatDrawableSize = 0;
+    private int mCropAreaWidth = 0;
+    private int mCropAreaHeight = 0;
 
     /**
      * 设置裁剪框大小
-     *
-     * @param size
      */
-    public void setFloatDrawableSize(int size) {
-        mFloatDrawableSize = size;
+    public void setCropAreaSize(int width, int height) {
+        mCropAreaWidth = width;
+        mCropAreaHeight = height;
+        invalidate();
     }
 }

@@ -47,6 +47,19 @@ class PublishTaxiuPresenter : BasePresenter<PublishTaxiuPresenter.IPublishTaxiuV
                 })
     }
 
+    fun publishTaxiuVideo(content: String, coverUrl: String, videoUrl: String, tipId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().publishTaxiu(GlobalParam.getUserIdOrJump(), content, coverUrl, "", tipId.toString(), "1", videoUrl),
+                object : Response<BaseResult<TaxiuLableBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<TaxiuLableBean>) {
+                        if (result.code == 0) {
+                            mView?.publishTaxiuSuccess()
+                        } else {
+                            mView?.publishTaxiuFail(result.msg)
+                        }
+                    }
+                })
+    }
+
 
     interface IPublishTaxiuView {
         fun loadTaxiuLableSuccess(lables: List<TaxiuLableBean>)
