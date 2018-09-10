@@ -6,7 +6,6 @@ import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
-
 /**
 Created by Miss on 2018/9/7
  */
@@ -35,4 +34,5 @@ class ShowPetPresenter<V> : BasePresenter<V,BasicModel>() {
         fun getSuccess(data:ShowPetBean)
         fun getFail(errMsg:String)
     }
+
 }

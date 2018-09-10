@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.HomeAdapter
+import com.ipd.taxiu.bean.DayBean
 import com.ipd.taxiu.bean.HomeBean
 import com.ipd.taxiu.bean.ShowPetBean
 import com.ipd.taxiu.imageload.ImageLoader

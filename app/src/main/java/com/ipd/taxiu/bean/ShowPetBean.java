@@ -44,23 +44,4 @@ public class ShowPetBean {
     public String CURREN_TTIME;
     public List<DayBean> DAY_LIST;
     public String SYSTEM_TTIME;
-
-    /**
-     * Created by Miss on 2018/9/7
-     * * "DAY_DATA": {
-     * "DAY_ID": 3,
-     * "CONTENT": "第二十个月2天",
-     * "MONTH_NUM": 20,
-     * "DAY_NUM": 2,
-     * "CREATETIME": "2018-09-03 11:48:16",
-     * },
-     */
-    public static class DayBean {
-        public int DAY_ID;
-        public String CONTENT;
-        public int MONTH_NUM;
-        public int DAY_NUM;
-        public String CURREN_TTIME;
-    }
-
 }
