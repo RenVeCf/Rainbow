@@ -15,6 +15,7 @@ import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PetKindListBean;
+import com.ipd.taxiu.bean.ProductBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
@@ -22,6 +23,7 @@ import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.StoreIndexResultBean;
 import com.ipd.taxiu.bean.TalkBean;
 import com.ipd.taxiu.bean.TalkCommentBean;
 import com.ipd.taxiu.bean.TalkDetailBean;
@@ -257,6 +259,7 @@ public interface ApiService {
                                                                   @Field("REPLY_ID") int REPLY_ID,
                                                                   @Field("TARGET_ID") int TARGET_ID,
                                                                   @Field("CONTENT") String CONTENT);
+
     @FormUrlEncoded
     @POST(HttpUrl.TAXIU_GET_PET)
     Observable<BaseResult<ShowPetBean>> taxiuShowPet(@Field("USER_ID") String USER_ID);
@@ -405,6 +408,22 @@ public interface ApiService {
     Observable<BaseResult<ClassRoomBean>> classroomDetail(@Field("USER_ID") String USER_ID,
                                                           @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID);
 
+    /**
+     * store
+     */
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_INDEX)
+    Observable<BaseResult<StoreIndexResultBean>> storeIndex(@Field("USER_ID") String USER_ID,
+                                                            @Field("CATEGORY") int CATEGORY);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_GUESS_LIST)
+    Observable<BaseResult<List<ProductBean>>> storeGuessLike(@Field("CATEGORY") int CATEGORY,
+                                                             @Field("COUNT") int count,
+                                                             @Field("USER_ID") String user_id,
+                                                             @Field("PAGE") int page);
 
     /**
      * address

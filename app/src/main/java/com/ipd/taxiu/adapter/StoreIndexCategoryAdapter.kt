@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.bean.StoreIndexCategoryBean
-import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_store_menu_category.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -25,6 +25,8 @@ class StoreIndexCategoryAdapter(val context: Context, private val list: List<Sto
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
+        holder.itemView.tv_category_name.text = info.TYPE_NAME
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

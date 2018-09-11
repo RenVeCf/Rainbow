@@ -16,6 +16,10 @@ public class FFmpegApi {
     private static OnExecListener listener;
 
 
+    /**
+     * 执行完记得removeListener,否则会导致内存泄漏
+     * @param ret
+     */
     public static void onExecuted(int ret) {
         if (listener != null) {
             listener.onExecuted(ret);

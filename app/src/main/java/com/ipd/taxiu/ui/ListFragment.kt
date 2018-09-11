@@ -85,7 +85,7 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
 
      * @param isRefresh
      */
-    private fun getListData(isRefresh: Boolean) {
+    open fun getListData(isRefresh: Boolean) {
         mPresenter?.loadListData(loadListData(), isRefresh, isCreate)
     }
 

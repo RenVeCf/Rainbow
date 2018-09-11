@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import kotlinx.android.synthetic.main.item_video.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class MediaVideoAdapter(val context: Context, private val list: List<String>?, val itemClick: ((list: List<String>, pos: Int) -> Unit)?) : RecyclerView.Adapter<MediaVideoAdapter.ViewHolder>() {
+class MediaVideoAdapter(val context: Context, private val list: List<VideoShowBean>?, val itemClick: ((info:VideoShowBean, pos: Int) -> Unit)?) : RecyclerView.Adapter<MediaVideoAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -25,10 +26,10 @@ class MediaVideoAdapter(val context: Context, private val list: List<String>?, v
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadNoPlaceHolderImg(context, info, holder.itemView.iv_image)
+        ImageLoader.loadNoPlaceHolderImg(context, info.videoCover, holder.itemView.iv_image)
         if (itemClick != null) {
             holder.itemView.setOnClickListener {
-                itemClick.invoke(list, position)
+                itemClick.invoke(info, position)
             }
         }
     }

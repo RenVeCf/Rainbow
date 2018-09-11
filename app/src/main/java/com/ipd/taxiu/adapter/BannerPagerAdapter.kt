@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BannerBean
+import com.ipd.taxiu.imageload.ImageLoader
 import kotlinx.android.synthetic.main.layout_banner.view.*
 
 class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?) : PagerAdapter() {
@@ -24,6 +25,7 @@ class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?) : Pa
         val info = list!![position]
         val mContentView = mInflater.inflate(R.layout.layout_banner, container, false)
         mContentView.iv_image.setImageResource(info.res)
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_image)
         container.addView(mContentView)
         return mContentView
     }

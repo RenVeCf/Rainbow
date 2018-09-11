@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.*
+import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.store.*
 import com.ipd.taxiu.ui.activity.store.flashsale.FlashSaleActivity
 import com.ipd.taxiu.ui.activity.store.grouppurchase.GroupPurchaseActivity
@@ -16,7 +17,9 @@ import com.ipd.taxiu.ui.activity.store.video.StoreVideoIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StorePetSpecialType
 import kotlinx.android.synthetic.main.item_lable.view.*
+import kotlinx.android.synthetic.main.item_product_grid.view.*
 import kotlinx.android.synthetic.main.item_store_index_special.view.*
+import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_cat_header.view.*
 import kotlinx.android.synthetic.main.layout_store_dog_header.view.*
@@ -171,13 +174,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
             }
             ItemType.SPECIAL -> {
                 val specialInfo = list!![position] as StoreIndexSpecialBean
-                holder.itemView.tv_special_name.text = specialInfo.specialName
-                holder.itemView.iv_special_icon.setImageResource(specialInfo.specialRes)
+                holder.itemView.tv_special_name.text = specialInfo.TYPE_NAME
+                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.ICON, holder.itemView.iv_special_icon)
+                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
 
                 holder.itemView.lable_flow_layout.removeAllViews()
-                specialInfo.lableList.forEach {
+                specialInfo.BRAND_LIST.forEach {
                     val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.lable_flow_layout, false)
-                    lableView.tv_lable_name.text = it
+                    lableView.tv_lable_name.text = it.BRAND_NAME
                     lableView.setOnClickListener {
                         //商品列表
                         ProductListActivity.launch(context as Activity)
@@ -185,18 +189,31 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     holder.itemView.lable_flow_layout.addView(lableView)
                 }
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.productList, {
+                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST, {
                     //商品详情
                     ProductDetailActivity.launch(context as Activity)
                 })
             }
             ItemType.RECOMMEND_VIDEO -> {
+                val recommendInfo = list!![position] as StoreIndexVideoBean
+                holder.itemView.recommend_video_recycler_view.adapter = StoreIndexRecommendVideoAdapter(context, recommendInfo.videoList, {
+                    //视频详情
+
+                })
 
             }
             ItemType.RECOMMEND_PRODUCT_HEADER -> {
 
             }
             else -> {
+                val productInfo = list!![position] as ProductBean
+                ImageLoader.loadNoPlaceHolderImg(context, productInfo.LOGO, holder.itemView.iv_product_img)
+                holder.itemView.tv_product_name.text = productInfo.PROCUCT_NAME
+                holder.itemView.tv_product_price.text = "￥${productInfo.PRICE}"
+                holder.itemView.tv_product_evalute.text = "评价 ${productInfo.REPLY}"
+                holder.itemView.tv_product_sales.text = "销量 ${productInfo.FORM_BUYNUM}"
+
+
                 holder.itemView.setOnClickListener {
                     //商品详情
                     ProductDetailActivity.launch(context as Activity)

@@ -54,7 +54,7 @@ class StoreSecondIndexFragment : ListFragment<StoreSecondIndexBean, Any>() {
         return Observable.create<StoreSecondIndexBean> {
             val storeInfo = StoreSecondIndexBean()
             storeInfo.headerInfo = StoreSecondIndexHeaderBean()
-            storeInfo.recommendVideo = StoreIndexVideoBean()
+//            storeInfo.recommendVideo = StoreIndexVideoBean()
             storeInfo.buildSpecialList()
             storeInfo.buildProductList()
             it.onNext(storeInfo)

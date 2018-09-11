@@ -36,6 +36,11 @@
         <activity android:name=".ui.activity.SignInActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
 
+        <!-- video -->
+        <activity
+            android:name=".ui.activity.VideoActivity"
+            android:launchMode="singleTask" />
+
         <!-- account-->
         <activity android:name=".ui.activity.account.LoginActivity" />
         <activity android:name=".ui.activity.account.PhoneLoginActivity" />

@@ -10,6 +10,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.MediaPictureAdapter
 import com.ipd.taxiu.adapter.MediaVideoAdapter
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.item_taxiu.view.*
@@ -51,7 +52,7 @@ class TaxiuLayout : FrameLayout {
         } else {
             //video
             mContentView.media_recycler_view.visibility = View.VISIBLE
-            mContentView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(info.LOGO), null)
+            mContentView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(VideoShowBean(info.LOGO, info.URL)), null)
         }
 
 

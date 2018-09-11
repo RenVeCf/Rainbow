@@ -69,7 +69,7 @@ class StoreSpecialFragment : ListFragment<StoreSpecialBean, Any>() {
         return Observable.create<StoreSpecialBean> {
             val storeInfo = StoreSpecialBean()
             storeInfo.headerInfo = StoreSpecialHeaderBean()
-            storeInfo.recommendVideo = StoreIndexVideoBean()
+//            storeInfo.recommendVideo = StoreIndexVideoBean()
             storeInfo.buildProductList()
             it.onNext(storeInfo)
             it.onCompleted()

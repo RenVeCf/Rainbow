@@ -11,8 +11,10 @@ import android.widget.TextView
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuCommentBean
 import com.ipd.taxiu.bean.TaxiuDetailBean
+import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
+import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
@@ -71,7 +73,9 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                         PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
                     })
                 } else {
-                    holder.itemView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(detailData.LOGO), null)
+                    holder.itemView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(VideoShowBean(detailData.LOGO, detailData.URL)), { info, pos ->
+                        VideoActivity.launch(context as Activity, info.videoUrl)
+                    })
                 }
 
                 holder.itemView.tv_taxiu_desc.text = detailData.CONTENT

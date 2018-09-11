@@ -6,6 +6,7 @@ package com.ipd.taxiu.platform.http;
 public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:9386/TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
+    String VIDEO_URL = "http://video.csjc19.com/";
 
     //account
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
@@ -24,6 +25,11 @@ public interface HttpUrl {
     String PET_UPDATE = "app_pet/update.do";
     String PET_ADD = "app_pet/add.do";
     String PET_DELETE = "app_pet/delete.do";
+
+
+    //store
+    String STORE_INDEX = "app_shop/home.do";
+    String STORE_GUESS_LIST = "app_shop/likeList.do";
 
     //taxiu
     String TAXIU_LABLE_LIST = "app_show/tipList.do";

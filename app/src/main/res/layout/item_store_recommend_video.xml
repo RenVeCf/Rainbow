@@ -35,14 +35,14 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_recommend_video_icon" />
 
-            <FrameLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recommend_video_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/iv_recommend_video_icon">
-
-                <include layout="@layout/item_recommend_video" />
-
-            </FrameLayout>
+                android:layout_marginTop="@dimen/small_padding"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/iv_recommend_video_icon"
+                app:spanCount="2" />
 
 
         </android.support.constraint.ConstraintLayout>

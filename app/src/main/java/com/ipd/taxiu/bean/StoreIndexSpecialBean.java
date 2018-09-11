@@ -1,28 +1,25 @@
 package com.ipd.taxiu.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StoreIndexSpecialBean {
 
-    public int specialRes;
-    public String specialName;
-    public List<String> lableList;
-    public List<ProductBean> productList;
 
-    public StoreIndexSpecialBean() {
-    }
+    public int TYPE_ID;
+    public String TYPE_NAME;
+    public int CATEGORY;
+    public String ICON;
+    public String LOGO;
+    public String PIC;
+    public int KIND;
+    public String BRAND_IDS;
+    public String CONTENT;
+    public String URL;
+    public int PRODUCT_ID;
+    public int SORT;
+    public String CREATETIME;
+    public int STATUS;
+    public List<StoreIndexBrandBean> BRAND_LIST;
+    public List<ProductBean> PRODUCT_LIST;
 
-    public StoreIndexSpecialBean(int specialRes, String specialName) {
-        this.specialRes = specialRes;
-        this.specialName = specialName;
-        this.lableList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lableList.add("品牌" + i);
-        }
-        this.productList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            productList.add(new ProductBean());
-        }
-    }
 }
