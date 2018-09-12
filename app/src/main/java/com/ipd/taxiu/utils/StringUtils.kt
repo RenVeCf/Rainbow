@@ -14,6 +14,12 @@ object StringUtils {
         callback.invoke(formatTimeStr(hour), formatTimeStr(minutes), formatTimeStr(second))
     }
 
+    fun formatRecordTime(ms: Long, callback: (second: Long, millisecond: Long) -> Unit) {
+        val second = ms % hh % mi / ss
+        val millisecond = (ms % hh % mi % ss) / 100
+        callback.invoke(second, millisecond)
+    }
+
     fun formatTimeStr(time: Long): String {
         return if (time < 10) "0$time" else time.toString()
     }

@@ -8,6 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import cn.jzvd.JZMediaManager
+import cn.jzvd.Jzvd
+import cn.jzvd.JzvdMgr
+import cn.jzvd.JzvdStd
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuCommentBean
 import com.ipd.taxiu.bean.TaxiuDetailBean
@@ -19,6 +24,7 @@ import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
+
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -37,6 +43,25 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
             0 -> ItemType.HEADER
             else -> ItemType.COMMENT
         }
+    }
+
+    private val mListener =object : RecyclerView.OnChildAttachStateChangeListener {
+        override fun onChildViewDetachedFromWindow(view: View?) {
+            LogUtils.e("tag","onChildViewDetachedFromWindow")
+
+        }
+
+        override fun onChildViewAttachedToWindow(view: View?) {
+            LogUtils.e("tag","onChildViewAttachedToWindow")
+            val jzvd: JzvdStd? = view?.findViewById(R.id.video_player)
+            if (jzvd != null && jzvd!!.jzDataSource.containsTheUrl(JZMediaManager.getCurrentUrl())) {
+                val currentJzvd = JzvdMgr.getCurrentJzvd()
+                if (currentJzvd != null && currentJzvd.currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
+                    Jzvd.releaseAllVideos()
+                }
+            }
+        }
+
     }
 
 
@@ -73,9 +98,11 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                         PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
                     })
                 } else {
-                    holder.itemView.media_recycler_view.adapter = MediaVideoAdapter(context, arrayListOf(VideoShowBean(detailData.LOGO, detailData.URL)), { info, pos ->
+                    holder.itemView.media_recycler_view.adapter = MediaVideoPlayAdapter(context, arrayListOf(VideoShowBean(detailData.LOGO, detailData.URL)), { info, pos ->
                         VideoActivity.launch(context as Activity, info.videoUrl)
                     })
+                    holder.itemView.media_recycler_view.removeOnChildAttachStateChangeListener(mListener)
+                    holder.itemView.media_recycler_view.addOnChildAttachStateChangeListener(mListener)
                 }
 
                 holder.itemView.tv_taxiu_desc.text = detailData.CONTENT

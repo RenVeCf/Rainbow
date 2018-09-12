@@ -16,6 +16,10 @@ import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.ProductBean;
+import com.ipd.taxiu.bean.ProductBrandBean;
+import com.ipd.taxiu.bean.ProductCategoryChildBean;
+import com.ipd.taxiu.bean.ProductCategoryParentBean;
+import com.ipd.taxiu.bean.ProductDetailBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
@@ -24,6 +28,7 @@ import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
 import com.ipd.taxiu.bean.StoreIndexResultBean;
+import com.ipd.taxiu.bean.StoreVideoDetailBean;
 import com.ipd.taxiu.bean.TalkBean;
 import com.ipd.taxiu.bean.TalkCommentBean;
 import com.ipd.taxiu.bean.TalkDetailBean;
@@ -424,6 +429,37 @@ public interface ApiService {
                                                              @Field("COUNT") int count,
                                                              @Field("USER_ID") String user_id,
                                                              @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PARENT_SHOP_TYPE)
+    Observable<BaseResult<List<ProductCategoryParentBean>>> storeParentShopType(@Field("USER_ID") String USER_ID,
+                                                                                @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_CHILD_SHOP_TYPE)
+    Observable<BaseResult<ProductCategoryChildBean>> storeChildShopType(@Field("USER_ID") String USER_ID,
+                                                                        @Field("TYPE_ID") String TYPE_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_BRAND_LIST)
+    Observable<BaseResult<List<ProductBrandBean>>> storeBrandList(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_VIDEO_DETAIL)
+    Observable<BaseResult<StoreVideoDetailBean>> storeVideoDetail(@Field("VIDEO_ID") String VIDEO_ID,
+                                                                  @Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_DETAIL)
+    Observable<BaseResult<ProductDetailBean>> storeProductDetail(@Field("USER_ID") String user_id,
+                                                                 @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                 @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_PARAM)
+    Observable<BaseResult<ProductDetailBean>> storeProductParam(@Field("USER_ID") String user_id,
+                                                                @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                @Field("FORM_ID") int FORM_ID);
 
     /**
      * address

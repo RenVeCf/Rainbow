@@ -4,13 +4,20 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <VideoView
-        android:id="@+id/video_view"
+    <!--<VideoView-->
+    <!--android:id="@+id/video_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+
+    <!--<com.ipd.taxiu.widget.MediaController-->
+    <!--android:id="@+id/media_controller"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+
+
+    <cn.jzvd.JzvdStd
+        android:id="@+id/videoplayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.ipd.taxiu.widget.MediaController
-        android:id="@+id/media_controller"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

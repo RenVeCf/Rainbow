@@ -15,6 +15,7 @@ import com.ipd.taxiu.event.VideoResultEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.PublishTaxiuPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.ShootVideoActivity
 import com.ipd.taxiu.ui.activity.VideoSelectActivity
 import com.ipd.taxiu.utils.UploadUtils
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
@@ -79,7 +80,7 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
         ll_video.setOnClickListener {
             MySelfSheetDialog(mActivity).builder().addSheetItem(resources.getString(R.string.shoot_video),
                     MySelfSheetDialog.SheetItemColor.colorPrimaryDark) {
-
+                ShootVideoActivity.launch(mActivity)
             }.addSheetItem(resources.getString(R.string.video_from_local), MySelfSheetDialog.SheetItemColor.colorPrimaryDark) {
                 VideoSelectActivity.launch(mActivity)
             }.show()

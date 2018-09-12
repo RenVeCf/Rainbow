@@ -7,35 +7,90 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductAdapter
-import com.ipd.taxiu.bean.ProductBean
+import com.ipd.taxiu.adapter.StoreIndexRecommendVideoAdapter
+import com.ipd.taxiu.bean.StoreVideoDetailBean
+import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.presenter.store.StoreVideoDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.VideoActivity
+import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import kotlinx.android.synthetic.main.activity_store_video_detail.*
+import kotlinx.android.synthetic.main.item_store_video.*
 
-class StoreVideoDetailActivity : BaseUIActivity() {
+class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.IStoreVideoDetailView {
+
+
     companion object {
         fun launch(activity: Activity) {
             val intent = Intent(activity, StoreVideoDetailActivity::class.java)
             activity.startActivity(intent)
         }
+
+        fun launch(activity: Activity, videoId: String) {
+            val intent = Intent(activity, StoreVideoDetailActivity::class.java)
+            intent.putExtra("videoId", videoId)
+            activity.startActivity(intent)
+        }
     }
+
+    private val mVideoId: String by lazy { intent.getStringExtra("videoId") }
 
     override fun getToolbarTitle(): String = "视频详情"
 
     override fun getContentLayout(): Int = R.layout.activity_store_video_detail
+
+    private var mPresenter: StoreVideoDetailPresenter? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = StoreVideoDetailPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
-        product_recycler_view.adapter = ProductAdapter(mActivity, arrayListOf(ProductBean(), ProductBean()), {
-
-        })
+        showProgress()
+        mPresenter?.loadVideoDetail(mVideoId)
     }
 
     override fun initListener() {
+
     }
 
+    override fun loadVideoDetailSuccess(info: StoreVideoDetailBean) {
+        showContent()
+        ImageLoader.loadNoPlaceHolderImg(mActivity, info.LOGO, iv_taxiu_image)
+        tv_taxiu_name.text = info.TITLE
+        tv_video_viewers.text = info.BROWSE.toString()
+        tv_video_time.text = info.TIME_LENGTH
+
+
+        product_recycler_view.adapter = ProductAdapter(mActivity, info.PRODUCT_LIST, {
+            ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
+        })
+
+
+        recommend_video_recycler_view.adapter = StoreIndexRecommendVideoAdapter(mActivity, info.VIDEO_LIST, {
+            //视频详情
+            launch(mActivity, it.VIDEO_ID.toString())
+        })
+
+        iv_taxiu_image.setOnClickListener {
+            VideoActivity.launch(mActivity, info.URL)
+        }
+    }
+
+    override fun loadVideoDetailFail(errMsg: String) {
+        showError(errMsg)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_share, menu)

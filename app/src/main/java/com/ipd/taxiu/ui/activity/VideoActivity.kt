@@ -2,9 +2,8 @@ package com.ipd.taxiu.ui.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
+import cn.jzvd.Jzvd
 import com.ipd.taxiu.R
 import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.ui.BaseActivity
@@ -20,57 +19,34 @@ class VideoActivity : BaseActivity() {
     }
 
     private var mVideoUrl = ""
-    private var mPlayingPos = 0
     override fun getBaseLayout(): Int = R.layout.activity_video_watch
 
     override fun initView(bundle: Bundle?) {
         mVideoUrl = intent.getStringExtra("videoUrl")
-        media_controller.setVideoView(video_view)
+
+        videoplayer.setUp(mVideoUrl,
+                "",
+                Jzvd.SCREEN_WINDOW_FULLSCREEN)
+
     }
 
     override fun loadData() {
-        initVideoByURI()
 
     }
 
     override fun initListener() {
-        video_view.setOnPreparedListener({ mp -> videoPrepared(mp) })
-        video_view.setOnCompletionListener({ videoCompleted() })
     }
 
-
-    fun initVideoByURI() {
-        video_view.setVideoURI(Uri.parse(mVideoUrl))
-        video_view.requestFocus()
-    }
-
-    private fun seekTo(duration: Int) {
-        video_view.seekTo(duration)
-    }
-
-    private fun videoPrepared(mp: MediaPlayer) {
-        mp.start()
-        media_controller.onStart()
-    }
-
-    private fun videoCompleted() {
-        seekTo(0)
-        video_view.start()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mPlayingPos > 0) {
-            video_view.seekTo(mPlayingPos)
-            mPlayingPos = 0
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (Jzvd.backPress()) {
+            return
         }
-        media_controller.onResume()
     }
+
 
     override fun onPause() {
         super.onPause()
-        mPlayingPos = video_view.currentPosition
-        video_view.stopPlayback()
-        media_controller.onPause()
+        Jzvd.releaseAllVideos()
     }
 }

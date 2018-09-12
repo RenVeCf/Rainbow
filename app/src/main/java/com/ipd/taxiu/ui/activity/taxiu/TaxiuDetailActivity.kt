@@ -15,6 +15,9 @@ import com.ipd.taxiu.ui.fragment.taxiu.TaxiuDetailFragment
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_taxiu_detail.*
 import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
+import cn.jzvd.Jzvd
+
+
 
 class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailView {
 
@@ -137,4 +140,17 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
 
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onBackPressed() {
+        if (Jzvd.backPress()) {
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos()
+    }
+
 }

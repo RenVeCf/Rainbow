@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductBrandAdapter
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ProductBrandBean
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
-import com.mcxtzhang.indexlib.suspension.SuspensionDecoration
 import kotlinx.android.synthetic.main.fragment_product_brand_list.view.*
 import rx.Observable
 
 
-class ProductBrandFragment : ListFragment<List<ProductBrandBean>, ProductBrandBean>() {
+class ProductBrandFragment : ListFragment<BaseResult<List<ProductBrandBean>>, ProductBrandBean>() {
 
     companion object {
         fun newInstance(): ProductBrandFragment {
@@ -21,39 +23,23 @@ class ProductBrandFragment : ListFragment<List<ProductBrandBean>, ProductBrandBe
     }
 
     override fun getContentLayout(): Int = R.layout.fragment_product_brand_list
+
     override fun initView(bundle: Bundle?) {
-        super.initView(bundle)
+        swipe_load_layout = mRootView?.findViewById(R.id.swipe_load_layout)!!
+        swipe_load_layout.isRefreshEnabled = false
         setLoadMoreEnable(false)
-        mContentView.index_bar.setNeedRealIndex(true)
+        mContentView.swipe_target.setOverlayStyle_Center()
     }
 
-    override fun loadListData(): Observable<List<ProductBrandBean>> {
-        return Observable.create<List<ProductBrandBean>> {
-            val list: ArrayList<ProductBrandBean> = arrayListOf(
-                    ProductBrandBean("阿拉斯加雪橇犬"),
-                    ProductBrandBean("爱尔兰犬"),
-                    ProductBrandBean("澳大利亚牧羊犬"),
-                    ProductBrandBean("阿哥廷杜高犬"),
-                    ProductBrandBean("比熊犬"),
-                    ProductBrandBean("泰迪犬"),
-                    ProductBrandBean("自主权"),
-                    ProductBrandBean("阿拉斯加雪橇犬"),
-                    ProductBrandBean("爱尔兰犬"),
-                    ProductBrandBean("澳大利亚牧羊犬"),
-                    ProductBrandBean("阿哥廷杜高犬"),
-                    ProductBrandBean("比熊犬"),
-                    ProductBrandBean("泰迪犬"),
-                    ProductBrandBean("自主权"),
-                    ProductBrandBean("牧羊犬")
-            )
-            it.onNext(list)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<ProductBrandBean>>> {
+        return ApiManager.getService().storeBrandList(GlobalParam.getUserId())
     }
 
-    override fun isNoMoreData(result: List<ProductBrandBean>): Int {
-        if (result == null || result.isEmpty()) {
+    override fun isNoMoreData(result: BaseResult<List<ProductBrandBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
             return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
         }
         return NORMAL
     }
@@ -61,30 +47,21 @@ class ProductBrandFragment : ListFragment<List<ProductBrandBean>, ProductBrandBe
     private var mAdapter: ProductBrandAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ProductBrandAdapter(mActivity, data, {
+            mAdapter = ProductBrandAdapter(mActivity, {
                 ProductListActivity.launch(mActivity)
             })
 
-            recycler_view.addItemDecoration(SuspensionDecoration(mActivity, data)
-                    .setColorTitleBg(resources.getColor(R.color.aqua_haze)))
-
             val layoutManager = LinearLayoutManager(mActivity)
-            recycler_view.layoutManager = layoutManager
-            mContentView.index_bar.setmLayoutManager(layoutManager)
-            recycler_view.adapter = mAdapter
-
-
+            mContentView.swipe_target.setLayoutManager(layoutManager)
+            mContentView.swipe_target.setAdapter(mAdapter)
+            mAdapter?.setDatas(data)
         } else {
             mAdapter?.notifyDataSetChanged()
         }
-
-        mContentView.index_bar.dataHelper.sortSourceDatas(data)
-        mContentView.index_bar.setmSourceDatas(data)//设置数据
-                .invalidate()
     }
 
-    override fun addData(isRefersh: Boolean, result: List<ProductBrandBean>) {
-        data?.addAll(result)
+    override fun addData(isRefersh: Boolean, result: BaseResult<List<ProductBrandBean>>) {
+        data?.addAll(result.data)
     }
 
 

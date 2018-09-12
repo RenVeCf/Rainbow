@@ -9,9 +9,11 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.BannerPagerAdapter
 import com.ipd.taxiu.adapter.PackageProductAdapter
 import com.ipd.taxiu.bean.BannerBean
+import com.ipd.taxiu.bean.ProductDetailBean
 import com.ipd.taxiu.bean.TalkBean
 import com.ipd.taxiu.ui.BaseUIFragment
 import com.ipd.taxiu.utils.IndicatorHelper
+import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
 import kotlinx.android.synthetic.main.layout_option_package.view.*
@@ -21,6 +23,11 @@ class ProductDetailTopFragment : BaseUIFragment() {
     override fun getTitleLayout(): Int = -1
 
     override fun getContentLayout(): Int = R.layout.fragment_product_detail_top
+
+    private lateinit var mProductInfo: ProductDetailBean
+    fun setDetailData(info: ProductDetailBean) {
+        mProductInfo = info
+    }
 
     override fun initView(bundle: Bundle?) {
         mContentView.tv_old_price.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
@@ -36,7 +43,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
     }
 
     override fun loadData() {
-        val bannerList: List<BannerBean> = arrayListOf(BannerBean(R.mipmap.product_img), BannerBean(R.mipmap.product_img), BannerBean(R.mipmap.product_img))
+        val bannerList = StringUtils.splitImages(mProductInfo.PIC).map { BannerBean(it) }
         mContentView.store_banner.adapter = BannerPagerAdapter(context, bannerList)
         IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
                 .setIndicator(context, bannerList.size, mContentView.store_banner, mContentView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
@@ -53,8 +60,23 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.store_banner.startAutoScroll()
 
 
+        mContentView.tv_product_name.text = mProductInfo.PROCUCT_NAME
+        mContentView.tv_price.text = mProductInfo.PRICE
+        mContentView.tv_old_price.text = "￥${mProductInfo.REFER_PRICE}"
+
+        if (mProductInfo.POST_FEE == 0){
+            mContentView.tv_express_fee.text = "快递：免运费"
+        }else{
+            mContentView.tv_express_fee.text = "快递：￥${mProductInfo.POST_FEE}"
+        }
+        mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
+        mContentView.tv_ship_address.text = mProductInfo.SEND_CITY
+
+
+
+
         mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
-        mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, listOf(TalkBean(), TalkBean(), TalkBean(),TalkBean()), {
+        mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, listOf(TalkBean(), TalkBean(), TalkBean(), TalkBean()), {
 
         })
     }

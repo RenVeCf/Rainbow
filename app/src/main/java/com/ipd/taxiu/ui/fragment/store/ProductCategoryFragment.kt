@@ -10,7 +10,6 @@ import com.ipd.taxiu.bean.ProductCategoryParentBean
 import com.ipd.taxiu.bean.ProductCategoryTitleBean
 import com.ipd.taxiu.presenter.store.ProductCategoryPresenter
 import com.ipd.taxiu.ui.BaseFragment
-import com.ipd.taxiu.ui.activity.store.ProductListActivity
 import kotlinx.android.synthetic.main.fragment_product_category.view.*
 
 class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProductCategoryView {
@@ -48,7 +47,7 @@ class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProduc
     }
 
     override fun loadData() {
-        mPresenter?.loadParentCategory(mType.toString())
+        mPresenter?.loadParentCategory(mType + 1)
     }
 
     override fun initListener() {
@@ -63,13 +62,14 @@ class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProduc
         mParentCategoryAdapter?.setItemCheckedListener { position ->
             mRootView!!.parent_category_view.scrollCenterByPosition(position)
             mPresenter?.loadChildCategory(mParentCategoryAdapter?.curCheckedCategoryId
-                    ?: "0", mType.toString())
+                    ?: "0")
         }
         mPresenter?.loadChildCategory(mParentCategoryAdapter?.curCheckedCategoryId
-                ?: "0", mType.toString())
+                ?: "0")
     }
 
     override fun onLoadParentCategoryFail(errMsg: String) {
+
     }
 
     override fun onChildShowProgress() {
@@ -85,9 +85,7 @@ class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProduc
             }
 
         }
-        mRootView!!.child_category_view.adapter = ProductCategoryAdapter(mActivity, list, {
-            ProductListActivity.launch(mActivity)
-        })
+        mRootView!!.child_category_view.adapter = ProductCategoryAdapter(mActivity, list)
 
 
     }
@@ -95,7 +93,7 @@ class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProduc
     override fun onLoadChildCategoryFail(errMsg: String) {
         mRootView!!.child_progress_layout.showError(errMsg, {
             mPresenter?.loadChildCategory(mParentCategoryAdapter?.curCheckedCategoryId
-                    ?: "0", mType.toString())
+                    ?: "0")
         })
     }
 

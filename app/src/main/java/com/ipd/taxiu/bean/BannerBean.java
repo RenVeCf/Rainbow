@@ -30,4 +30,8 @@ public class BannerBean {
 
     public BannerBean() {
     }
+
+    public BannerBean(String LOGO) {
+        this.LOGO = LOGO;
+    }
 }

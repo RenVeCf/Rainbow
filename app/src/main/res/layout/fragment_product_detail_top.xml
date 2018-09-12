@@ -44,6 +44,7 @@
                 android:textColor="@color/red" />
 
             <TextView
+                android:id="@+id/tv_price"
                 style="@style/TitleTextStyle"
                 android:text="63"
                 android:textColor="@color/red"
@@ -69,17 +70,20 @@
             app:layout_constraintTop_toBottomOf="@id/ll_price">
 
             <TextView
+                android:id="@+id/tv_express_fee"
                 style="@style/SmallTextStyle"
                 android:text="快递：免运费"
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_sales"
                 style="@style/SmallTextStyle"
                 android:layout_centerHorizontal="true"
                 android:text="月销528件"
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_ship_address"
                 style="@style/SmallTextStyle"
                 android:layout_alignParentRight="true"
                 android:text="浙江杭州"

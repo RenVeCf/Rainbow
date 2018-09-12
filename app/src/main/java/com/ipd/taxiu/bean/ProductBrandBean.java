@@ -1,16 +1,29 @@
 package com.ipd.taxiu.bean;
 
-import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
+import me.yokeyword.indexablerv.IndexableEntity;
 
-public class ProductBrandBean extends BaseIndexPinyinBean {
-    public String name;
+public class ProductBrandBean implements IndexableEntity {
 
-    public ProductBrandBean(String name) {
-        this.name = name;
+    public int BRAND_ID;
+    public String BRAND_NAME;
+    public String LOGO;
+    public int IS_RECOMMEND;
+    public int SORT;
+    public String CREATETIME;
+    public int STATUS;
+
+    @Override
+    public String getFieldIndexBy() {
+        return BRAND_NAME;
     }
 
     @Override
-    public String getTarget() {
-        return name;
+    public void setFieldIndexBy(String indexField) {
+        this.BRAND_NAME = indexField;
+
+    }
+
+    @Override
+    public void setFieldPinyinIndexBy(String pinyin) {
     }
 }

@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.ProductCategoryBean
+import com.ipd.taxiu.bean.ProductCategoryChildBean
 import com.ipd.taxiu.bean.ProductCategoryTitleBean
+import com.ipd.taxiu.bean.StoreIndexBrandBean
+import com.ipd.taxiu.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_product_category.view.*
 import kotlinx.android.synthetic.main.item_product_category_title.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ProductCategoryAdapter(val context: Context, private val list: List<Any>?, val itemClick: (info: ProductCategoryBean) -> Unit) : RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
+class ProductCategoryAdapter(val context: Context, private val list: List<Any>?) : RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -46,9 +49,14 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
 
             }
             ItemType.CONTENT -> {
-                val info = list!![position] as ProductCategoryBean
-                holder.itemView.setOnClickListener { itemClick.invoke(info) }
-
+                val info = list!![position]
+                if (info is ProductCategoryChildBean.TIPBean) {
+                    ImageLoader.loadNoPlaceHolderImg(context, info.ICON, holder.itemView.iv_category_img)
+                    holder.itemView.tv_category_name.text = info.TIP_NAME
+                } else if (info is StoreIndexBrandBean) {
+                    ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
+                    holder.itemView.tv_category_name.text = info.BRAND_NAME
+                }
             }
         }
 

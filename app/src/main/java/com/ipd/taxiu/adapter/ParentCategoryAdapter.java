@@ -39,7 +39,7 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<ParentCategoryAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         setCheckedPosition(position == mCurCheckedPosition, holder);
-        holder.tv_parent_category.setText(list.get(position).name);
+        holder.tv_parent_category.setText(list.get(position).TYPE_NAME);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,7 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<ParentCategoryAd
     }
 
     public String getCurCheckedCategoryId() {
-        return list.get(mCurCheckedPosition).id + "";
+        return list.get(mCurCheckedPosition).TYPE_ID + "";
     }
 
     @Override

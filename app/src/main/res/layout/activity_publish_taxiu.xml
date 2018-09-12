@@ -144,6 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_copyright_cb"
+                android:checked="true"
                 android:paddingRight="@dimen/small_padding" />
 
             <TextView

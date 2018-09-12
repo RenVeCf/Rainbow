@@ -33,6 +33,8 @@ class PetKindListFragment : ListFragment<List<PetInfoBean>, PetInfoBean>() {
         swipe_load_layout = mRootView?.findViewById(R.id.swipe_load_layout)!!
         swipe_load_layout.isRefreshEnabled = false
         setLoadMoreEnable(false)
+        mContentView.swipe_target.setOverlayStyle_Center()
+
     }
 
     private val mType: Int by lazy { arguments.getInt("type", PetKindListActivity.DOG) }

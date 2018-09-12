@@ -59,10 +59,10 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation project(':jumpboxlibrary')
-    implementation project(':indexlib')
     implementation project(':wheelview')
     implementation project(':pickerview')
     implementation project(':countdown')
     implementation 'q.rorbin:badgeview:1.1.2'
     implementation project(':ffmpeg')
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 }

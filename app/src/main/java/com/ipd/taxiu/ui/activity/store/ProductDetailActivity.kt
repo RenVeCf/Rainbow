@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
@@ -21,7 +20,17 @@ class ProductDetailActivity : BaseUIActivity() {
             val intent = Intent(activity, ProductDetailActivity::class.java)
             activity.startActivity(intent)
         }
+
+        fun launch(activity: Activity, productId: Int, fromId: Int) {
+            val intent = Intent(activity, ProductDetailActivity::class.java)
+            intent.putExtra("productId", productId)
+            intent.putExtra("fromId", fromId)
+            activity.startActivity(intent)
+        }
     }
+
+    private val mProductId by lazy { intent.getIntExtra("productId", -1) }
+    private val mFromId by lazy { intent.getIntExtra("fromId", -1) }
 
     override fun getToolbarLayout(): Int = R.layout.product_detail_toolbar
 
@@ -30,7 +39,7 @@ class ProductDetailActivity : BaseUIActivity() {
     override fun initView(bundle: Bundle?) {
     }
 
-    private val detailFragment: ProductDetailFragment by lazy { ProductDetailFragment() }
+    private val detailFragment: ProductDetailFragment by lazy { ProductDetailFragment.newInstance(mProductId, mFromId) }
     private val evaluateFragment: ProductEvaluateFragment by lazy { ProductEvaluateFragment() }
     override fun loadData() {
         switchTab(0)

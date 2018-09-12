@@ -13,6 +13,7 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.store.*
 import com.ipd.taxiu.ui.activity.store.flashsale.FlashSaleActivity
 import com.ipd.taxiu.ui.activity.store.grouppurchase.GroupPurchaseActivity
+import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StorePetSpecialType
@@ -191,14 +192,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST, {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity)
+                    ProductDetailActivity.launch(context as Activity,it.PRODUCT_ID,it.FORM_ID)
                 })
             }
             ItemType.RECOMMEND_VIDEO -> {
                 val recommendInfo = list!![position] as StoreIndexVideoBean
                 holder.itemView.recommend_video_recycler_view.adapter = StoreIndexRecommendVideoAdapter(context, recommendInfo.videoList, {
                     //视频详情
-
+                    StoreVideoDetailActivity.launch(context as Activity, it.VIDEO_ID.toString())
                 })
 
             }
@@ -216,7 +217,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 holder.itemView.setOnClickListener {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity)
+                    ProductDetailActivity.launch(context as Activity,productInfo.PRODUCT_ID,productInfo.FORM_ID)
                 }
 
             }

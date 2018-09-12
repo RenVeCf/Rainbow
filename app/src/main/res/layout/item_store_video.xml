@@ -57,6 +57,7 @@
                 android:src="@mipmap/views_icon" />
 
             <TextView
+                android:id="@+id/tv_video_viewers"
                 style="@style/SmallTextStyle"
                 android:layout_marginLeft="5dp"
                 android:text="3243"
@@ -77,6 +78,7 @@
                 android:src="@mipmap/duration_icon" />
 
             <TextView
+                android:id="@+id/tv_video_time"
                 style="@style/SmallTextStyle"
                 android:layout_marginLeft="5dp"
                 android:text="00:18"
