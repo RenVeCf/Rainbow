@@ -1,10 +1,5 @@
 package com.ipd.taxiu.bean;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.ArrayList;
-
 import me.yokeyword.indexablerv.IndexableEntity;
 
 public class PetInfoBean implements IndexableEntity {

@@ -9,6 +9,7 @@ import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
+import com.ipd.taxiu.bean.HomeResultBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
@@ -114,6 +115,14 @@ public interface ApiService {
     @POST(HttpUrl.PET_STAGE)
     Observable<BaseResult<LoginBean>> petStage(@Field("USER_ID") String USER_ID,
                                                @Field("STEP") String STEP);
+
+
+    /**
+     * home
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.HOME)
+    Observable<BaseResult<HomeResultBean>> home(@Field("USER_ID") String USER_ID);
 
     /**
      * pet

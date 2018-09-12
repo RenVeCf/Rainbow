@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:clipChildren="false"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -35,6 +36,7 @@
                 android:layout_height="100dp"
                 android:layout_marginBottom="@dimen/base_padding"
                 android:layout_marginLeft="@dimen/base_padding"
+                android:clipChildren="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_content">
@@ -66,7 +68,9 @@
                     android:id="@+id/ll_video_finish"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clipChildren="false"
                     android:visibility="gone">
+
 
                     <com.ipd.taxiu.widget.RoundImageView
                         android:id="@+id/iv_video_img"
@@ -80,6 +84,16 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:src="@mipmap/play_small" />
+
+                    <ImageView
+                        android:id="@+id/iv_delete_video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="-15dp"
+                        android:layout_marginTop="-15dp"
+                        android:padding="10dp"
+                        android:src="@mipmap/delete" />
                 </RelativeLayout>
 
 

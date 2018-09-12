@@ -22,6 +22,7 @@ import com.ipd.taxiu.ChoosePetKindEvent;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PictureBean;
+import com.ipd.taxiu.event.UpdateHomeEvent;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.platform.http.HttpUpload;
@@ -325,6 +326,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     public void updateSuccess() {
+        EventBus.getDefault().post(new UpdateHomeEvent());
         toastShow("修改成功");
         finish();
     }
@@ -336,6 +338,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     public void addSuccess() {
+        EventBus.getDefault().post(new UpdateHomeEvent());
         toastShow("添加成功");
         finish();
     }

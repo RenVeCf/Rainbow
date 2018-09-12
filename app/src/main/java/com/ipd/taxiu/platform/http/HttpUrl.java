@@ -16,6 +16,8 @@ public interface HttpUrl {
     String PHONE_LOGIN_SMS_CODE = "app_user/sendCode2.do";
     String FORGET_PASSWORD = "app_user/forgetPwd.do";
 
+    //home
+    String HOME = "app_show/home.do";
 
     //pet
     String PET_STAGE = "app_user/updateStep.do";

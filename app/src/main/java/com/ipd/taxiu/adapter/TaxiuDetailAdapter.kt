@@ -99,7 +99,6 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                     })
                 } else {
                     holder.itemView.media_recycler_view.adapter = MediaVideoPlayAdapter(context, arrayListOf(VideoShowBean(detailData.LOGO, detailData.URL)), { info, pos ->
-                        VideoActivity.launch(context as Activity, info.videoUrl)
                     })
                     holder.itemView.media_recycler_view.removeOnChildAttachStateChangeListener(mListener)
                     holder.itemView.media_recycler_view.addOnChildAttachStateChangeListener(mListener)

@@ -35,6 +35,8 @@ public class TalkBean implements Serializable{
     public int PRAISE;
     public int SORT;
     public String CREATETIME;
+    public String LOGO;
+    public String NICKNAME;
     public int STATUS;
     public int IS_SURE;
     public UserBean User;

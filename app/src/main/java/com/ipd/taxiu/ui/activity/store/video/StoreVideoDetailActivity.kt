@@ -5,14 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import cn.jzvd.Jzvd
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductAdapter
 import com.ipd.taxiu.adapter.StoreIndexRecommendVideoAdapter
 import com.ipd.taxiu.bean.StoreVideoDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.StoreVideoDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import kotlinx.android.synthetic.main.activity_store_video_detail.*
 import kotlinx.android.synthetic.main.item_store_video.*
@@ -67,7 +68,9 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
 
     override fun loadVideoDetailSuccess(info: StoreVideoDetailBean) {
         showContent()
-        ImageLoader.loadNoPlaceHolderImg(mActivity, info.LOGO, iv_taxiu_image)
+        video_player.setUp(HttpUrl.VIDEO_URL + info.URL, "", Jzvd.SCREEN_WINDOW_NORMAL)
+        ImageLoader.loadNoPlaceHolderImg(mActivity, info.LOGO, video_player.thumbImageView)
+
         tv_taxiu_name.text = info.TITLE
         tv_video_viewers.text = info.BROWSE.toString()
         tv_video_time.text = info.TIME_LENGTH
@@ -83,9 +86,6 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
             launch(mActivity, it.VIDEO_ID.toString())
         })
 
-        iv_taxiu_image.setOnClickListener {
-            VideoActivity.launch(mActivity, info.URL)
-        }
     }
 
     override fun loadVideoDetailFail(errMsg: String) {
@@ -106,6 +106,18 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (Jzvd.backPress()) {
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos()
     }
 
 

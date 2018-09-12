@@ -6,23 +6,24 @@ import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
+
 /**
 Created by Miss on 2018/9/7
  */
-class ShowPetPresenter<V> : BasePresenter<V,BasicModel>() {
+class ShowPetPresenter<V> : BasePresenter<V, BasicModel>() {
     override fun initModel() {
         mModel = BasicModel()
     }
 
-    fun showPet(){
+    fun showPet() {
         if (mView !is IShowPetView) return
         var view = mView as IShowPetView
         mModel?.getNormalRequestData(ApiManager.getService().taxiuShowPet(GlobalParam.getUserIdOrJump()),
-                object : Response<BaseResult<ShowPetBean>>(mContext,true){
+                object : Response<BaseResult<ShowPetBean>>() {
                     override fun _onNext(result: BaseResult<ShowPetBean>?) {
-                        if (result?.code == 0){
+                        if (result?.code == 0) {
                             view.getSuccess(result.data)
-                        }else{
+                        } else {
                             view.getFail(result!!.msg)
                         }
                     }
@@ -30,9 +31,9 @@ class ShowPetPresenter<V> : BasePresenter<V,BasicModel>() {
                 })
     }
 
-    interface IShowPetView{
-        fun getSuccess(data:ShowPetBean)
-        fun getFail(errMsg:String)
+    interface IShowPetView {
+        fun getSuccess(data: ShowPetBean)
+        fun getFail(errMsg: String)
     }
 
 }

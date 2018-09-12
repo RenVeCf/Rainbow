@@ -13,7 +13,7 @@ class VideoActivity : BaseActivity() {
     companion object {
         fun launch(activity: Activity, videoUrl: String) {
             val intent = Intent(activity, VideoActivity::class.java)
-            intent.putExtra("videoUrl", HttpUrl.VIDEO_URL + videoUrl)
+            intent.putExtra("videoUrl", videoUrl)
             activity.startActivity(intent)
         }
     }

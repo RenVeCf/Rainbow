@@ -17,8 +17,8 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
-import com.ipd.taxiu.bean.LifeLineBean
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomIndexActivity
 import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
@@ -29,9 +29,13 @@ import com.ipd.taxiu.ui.activity.topic.TopicIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.widget.PetLifeLineView
 import kotlinx.android.synthetic.main.item_header.view.*
+import kotlinx.android.synthetic.main.item_hot_classroom.view.*
 import kotlinx.android.synthetic.main.item_hot_talk.view.*
+import kotlinx.android.synthetic.main.item_hot_topic.view.*
 import kotlinx.android.synthetic.main.item_index_taxiu.view.*
+import kotlinx.android.synthetic.main.item_taxiu.view.*
 import kotlinx.android.synthetic.main.item_taxiu_boutique.view.*
+import kotlinx.android.synthetic.main.layout_store_banner.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -56,7 +60,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
     override fun getItemViewType(position: Int): Int {
         val info = list!![position]
         when (info) {
-            is HomeBean.IndexBannerBean -> {//头部
+            is HomeBean.IndexHeaderbean -> {//头部
                 return ItemType.HEADER
             }
             is HomeBean.IndexBoutiqueBean -> {//它秀精选
@@ -103,39 +107,42 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
 
     }
 
-    private val petLifeLineList: List<LifeLineBean> = listOf(
-            LifeLineBean("9个月11天", "2018-05-25"),
-            LifeLineBean("9个月12天", "2018-05-26"),
-            LifeLineBean("9个月13天", "2018-05-27"),
-            LifeLineBean("9个月14天", "2018-05-28"),
-            LifeLineBean("9个月15天", "2018-05-29"),
-            LifeLineBean("9个月16天", "2018-05-30"),
-            LifeLineBean("9个月17天", "2018-05-31"),
-            LifeLineBean("9个月18天", "2018-06-01"),
-            LifeLineBean("9个月19天", "2018-06-02"),
-            LifeLineBean("9个月20天", "2018-06-03"),
-            LifeLineBean("9个月21天", "2018-06-04"),
-            LifeLineBean("9个月22天", "2018-06-05")
-    )
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
-                holder.itemView.pet_life_line_view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        holder.itemView.pet_life_line_view.viewTreeObserver.removeGlobalOnLayoutListener(this)
-                        holder.itemView.pet_life_line_view.setLifeLineData(petLifeLineList)
-                    }
-                })
+                val headerInfo = list!![position] as HomeBean.IndexHeaderbean
 
+                holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.banners)
+                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
+                        .setIndicator(context, headerInfo.banners.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, null)
+                if (!holder.itemView.store_banner.isAutoScroll) {
+                    holder.itemView.store_banner.startAutoScroll()
+                }
 
-                holder.itemView.pet_life_line_view.setPositionChangeListener(object : PetLifeLineView.OnPositionChangeListener {
-                    override fun onChange(pos: Int) {
-                        val lifeLineInfo = petLifeLineList[pos]
-                        holder.itemView.tv_life_line_title.text = lifeLineInfo.lifeStr
-                        holder.itemView.tv_cur_date.text = lifeLineInfo.date
-                    }
-                })
+                //宠物生命线
+                if (headerInfo.petInfo == null) {
+                    holder.itemView.cl_user_extend.visibility = View.GONE
+                } else {
+                    holder.itemView.cl_user_extend.visibility = View.VISIBLE
+                    var petLifeLineList = headerInfo.petInfo.DAY_LIST ?: arrayListOf()
+
+                    holder.itemView.pet_life_line_view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                        override fun onGlobalLayout() {
+                            holder.itemView.pet_life_line_view.viewTreeObserver.removeGlobalOnLayoutListener(this)
+                            holder.itemView.pet_life_line_view.setLifeLineData(petLifeLineList)
+                        }
+                    })
+
+                    holder.itemView.pet_life_line_view.setPositionChangeListener(object : PetLifeLineView.OnPositionChangeListener {
+                        override fun onChange(pos: Int) {
+                            val lifeLineInfo = petLifeLineList[pos]
+                            holder.itemView.tv_life_line_title.text = "${lifeLineInfo.MONTH_NUM}个月${lifeLineInfo.DAY_NUM}天"
+                            holder.itemView.tv_cur_date.text = lifeLineInfo.date
+                        }
+                    })
+
+                }
+
 
                 holder.itemView.ll_topic.setOnClickListener {
                     TopicIndexActivity.launch(context as Activity)
@@ -167,7 +174,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 val boutiqueInfo = list!![position] as HomeBean.IndexBoutiqueBean
                 holder.itemView.boutique_view_pager.adapter = BoutiquePagerAdapter(context, boutiqueInfo.taxiuBoutiqueList, {
                     //它秀详情
-                    TaxiuDetailActivity.launch(context as Activity)
+                    TaxiuDetailActivity.launch(context as Activity, it.SHOW_ID, GlobalParam.getUserId() == it.USER_ID.toString())
                 })
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
                         .setIndicator(context, boutiqueInfo.taxiuBoutiqueList.size, holder.itemView.boutique_view_pager, holder.itemView.ll_indicator, object : IndicatorHelper.MyPagerChangeListener {
@@ -183,25 +190,43 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                         })
             }
             ItemType.HOT_TOPIC -> {
+                val topicInfo = list!![position] as HomeBean.IndexTopicBean
+                holder.itemView.topic_layout.setData(topicInfo.topic)
+                holder.itemView.cl_topic_title.setOnClickListener {
+                    //更多热门
+                    TopicIndexActivity.launch(context as Activity)
+                }
                 holder.itemView.setOnClickListener {
                     //话题详情
-//                    TopicDetailActivity.launch(context as Activity)
+                    TopicDetailActivity.launch(context as Activity, topicInfo.topic.TOPIC_ID)
                 }
 
             }
             ItemType.HOT_TALK -> {
                 val talkInfo = list!![position] as HomeBean.IndexTalkBean
+                holder.itemView.cl_talk_title.setOnClickListener {
+                    //更多热门
+                    TalkIndexActivity.launch(context as Activity)
+                }
+
                 holder.itemView.talk_view_pager.pageMargin = DensityUtil.dip2px(context, 12f)
                 holder.itemView.talk_view_pager.adapter = HotTalkPagerAdapter(context, talkInfo.talkList, {
                     //问答详情
-//                    TalkDetailActivity.launch(context as Activity, it)
+                    TalkDetailActivity.launch(context as Activity, it.QUESTION_ID, it.NICKNAME, GlobalParam.getUserId() == it.USER_ID.toString())
                 })
 
             }
             ItemType.HOT_CLASSROOM -> {
+                val classroomInfo = list!![position] as HomeBean.IndexClassRoomBean
+                holder.itemView.classroom_layout.setData(classroomInfo.classRoom)
+
+                holder.itemView.cl_classroom_title.setOnClickListener {
+                    //更多课堂
+                    ClassRoomIndexActivity.launch(context as Activity)
+                }
                 holder.itemView.setOnClickListener {
                     //课堂详情
-                    ClassRoomDetailActivity.launch(context as Activity,-1)
+                    ClassRoomDetailActivity.launch(context as Activity, classroomInfo.classRoom.CLASS_ROOM_ID)
                 }
 
             }
@@ -212,10 +237,15 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 } else {
                     holder.itemView.cl_taxiu_hint.visibility = View.VISIBLE
                 }
+                holder.itemView.taxiu_layout.setData(taxiuInfo)
+
+                holder.itemView.taxiu_layout.media_recycler_view.setOnTouchListener { v, event ->
+                    holder.itemView.onTouchEvent(event)
+                }
 
                 holder.itemView.setOnClickListener {
                     //它秀详情
-                    TaxiuDetailActivity.launch(context as Activity)
+                    TaxiuDetailActivity.launch(context as Activity, taxiuInfo.SHOW_ID, GlobalParam.getUserId() == taxiuInfo.USER_ID.toString())
                 }
             }
         }

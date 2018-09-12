@@ -1,59 +1,31 @@
 package com.ipd.taxiu.bean;
 
-import com.ipd.taxiu.R;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeBean {
 
-    public List<Object> list;
-
-    public IndexBannerBean banner;
+    public IndexHeaderbean headerInfo;
     public IndexBoutiqueBean boutique;
     public IndexTopicBean topic;
     public IndexTalkBean talk;
     public IndexClassRoomBean classRoom;
-    public List<TaxiuBean> taxiuList;
 
 
-    public void buildInfo() {
-        banner = new IndexBannerBean();
-        banner.build();
-        boutique = new IndexBoutiqueBean();
-        boutique.build();
-        topic = new IndexTopicBean();
-        topic.build();
-        talk = new IndexTalkBean();
-        talk.build();
-        classRoom = new IndexClassRoomBean();
-        classRoom.build();
-
-        taxiuList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            taxiuList.add(new TaxiuBean());
-        }
-    }
-
-    public static class IndexBannerBean {
+    public static class IndexHeaderbean {
         public List<BannerBean> banners;
+        public HomeResultBean.PETBean petInfo;
 
-        public void build() {
-            banners = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                banners.add(new BannerBean(R.mipmap.banner_default));
-            }
+        public IndexHeaderbean(List<BannerBean> banners, HomeResultBean.PETBean petInfo) {
+            this.banners = banners;
+            this.petInfo = petInfo;
         }
     }
 
     public static class IndexBoutiqueBean {
         public List<TaxiuBean> taxiuBoutiqueList;
 
-        public void build() {
-            taxiuBoutiqueList = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                taxiuBoutiqueList.add(new TaxiuBean());
-            }
+        public IndexBoutiqueBean(List<TaxiuBean> taxiuBoutiqueList) {
+            this.taxiuBoutiqueList = taxiuBoutiqueList;
         }
     }
 
@@ -62,8 +34,8 @@ public class HomeBean {
         public TopicBean topic;
 
 
-        public void build() {
-            topic = new TopicBean();
+        public IndexTopicBean(TopicBean topic) {
+            this.topic = topic;
         }
     }
 
@@ -71,11 +43,8 @@ public class HomeBean {
         public List<TalkBean> talkList;
 
 
-        public void build() {
-            talkList = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                talkList.add(new TalkBean());
-            }
+        public IndexTalkBean(List<TalkBean> talkList) {
+            this.talkList = talkList;
         }
     }
 
@@ -83,8 +52,8 @@ public class HomeBean {
         public ClassRoomBean classRoom;
 
 
-        public void build() {
-            classRoom = new ClassRoomBean();
+        public IndexClassRoomBean(ClassRoomBean classRoom) {
+            this.classRoom = classRoom;
         }
     }
 

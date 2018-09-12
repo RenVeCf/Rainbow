@@ -11,12 +11,14 @@ import android.widget.TextView;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PetBean;
+import com.ipd.taxiu.event.UpdateHomeEvent;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.widget.MessageDialog;
 
+import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -186,6 +188,7 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @Override
     public void deleteSuccess(String errMsg) {
+        EventBus.getDefault().post(new UpdateHomeEvent());
         toastShow(errMsg);
         finish();
     }

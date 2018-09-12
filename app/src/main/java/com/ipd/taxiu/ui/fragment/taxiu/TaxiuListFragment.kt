@@ -31,16 +31,6 @@ class TaxiuListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>()
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
     override fun loadListData(): Observable<BaseResult<List<TaxiuBean>>> {
-//        return Observable.create<List<TaxiuBean>> {
-//            val list: ArrayList<TaxiuBean> = ArrayList()
-//            if (categoryId != 2) {
-//                for (i: Int in 0 until 10) {
-//                    list.add(TaxiuBean())
-//                }
-//            }
-//            it.onNext(list)
-//            it.onCompleted()
-//        }
         return ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "")
     }
 

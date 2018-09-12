@@ -41,7 +41,7 @@ class ClassRoomLayout : FrameLayout {
             mContentView.tv_classroom_buy.text = "￥${info.PRICE}  购买"
         }
 
-        ImageLoader.loadAvatar(context, info.LOGO, mContentView.iv_classroom_image)
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_classroom_image)
         mContentView.tv_classroom_name.text = info.TITLE
         mContentView.tv_classroom_desc.text = "开课时间：${info.BEGIN_TIME}"
 

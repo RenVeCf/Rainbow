@@ -9,41 +9,48 @@
         android:padding="@dimen/base_padding">
 
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/hot_topic_icon"
-            app:layout_constraintBottom_toBottomOf="@id/tv_hint"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_hint" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_topic_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_right"
-            app:layout_constraintBottom_toBottomOf="@id/tv_hint"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_hint" />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hot_topic_icon"
+                app:layout_constraintBottom_toBottomOf="@id/tv_hint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_hint" />
 
-        <TextView
-            android:id="@+id/tv_hint"
-            style="@style/TitleTextStyle"
-            android:layout_marginLeft="4dp"
-            android:text="热门话题"
-            android:layout_width="0dp"
-            android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@id/tv_hint"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_hint" />
+
+            <TextView
+                android:id="@+id/tv_hint"
+                style="@style/TitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginLeft="4dp"
+                android:text="热门话题"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/icon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
         <com.ipd.taxiu.widget.TopicLayout
+            android:id="@+id/topic_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding"
-            app:layout_constraintTop_toBottomOf="@id/tv_hint" />
+            app:layout_constraintTop_toBottomOf="@id/cl_topic_title" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -16,8 +16,10 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.PublishTaxiuPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.ShootVideoActivity
+import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.ui.activity.VideoSelectActivity
 import com.ipd.taxiu.utils.UploadUtils
+import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -84,6 +86,26 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
             }.addSheetItem(resources.getString(R.string.video_from_local), MySelfSheetDialog.SheetItemColor.colorPrimaryDark) {
                 VideoSelectActivity.launch(mActivity)
             }.show()
+        }
+
+        ll_video_finish.setOnClickListener {
+            if (videoEvent == null || TextUtils.isEmpty(videoEvent!!.videoPath)) return@setOnClickListener
+            VideoActivity.launch(mActivity, videoEvent?.videoPath ?: "")
+        }
+
+        iv_delete_video.setOnClickListener {
+            val builder = MessageDialog.Builder(mActivity)
+            builder.setTitle("提示")
+                    .setMessage("您确定要移除视频?")
+                    .setCommit("确定", { builder ->
+                        builder.dismiss()
+                        videoEvent = null
+                        ll_video_normal.visibility = View.VISIBLE
+                        ll_video_finish.visibility = View.GONE
+                    })
+                    .setCancel("取消", { builder ->
+                        builder.dismiss()
+                    }).show()
         }
     }
 

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuBean
+import kotlinx.android.synthetic.main.item_home_taxiu.view.*
+import kotlinx.android.synthetic.main.item_taxiu.view.*
 
 class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?, val itemClick: (info: TaxiuBean) -> Unit) : PagerAdapter() {
 
@@ -21,7 +23,12 @@ class BoutiquePagerAdapter(val context: Context, val list: List<TaxiuBean>?, val
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
-        val mContentView = mInflater.inflate(R.layout.item_taxiu, container, false)
+        val mContentView = mInflater.inflate(R.layout.item_home_taxiu, container, false)
+        mContentView.taxiu_layout.setData(info)
+
+        mContentView.taxiu_layout.media_recycler_view.setOnTouchListener { v, event ->
+            mContentView.onTouchEvent(event)
+        }
         mContentView.setOnClickListener { itemClick.invoke(info) }
         container.addView(mContentView)
         return mContentView
