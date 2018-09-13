@@ -180,19 +180,19 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
 
                 holder.itemView.lable_flow_layout.removeAllViews()
-                specialInfo.BRAND_LIST.forEach {
+                specialInfo.BRAND_LIST.forEach { info ->
                     val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.lable_flow_layout, false)
-                    lableView.tv_lable_name.text = it.BRAND_NAME
+                    lableView.tv_lable_name.text = info.BRAND_NAME
                     lableView.setOnClickListener {
                         //商品列表
-                        ProductListActivity.launch(context as Activity)
+                        ProductListActivity.launch(context as Activity, searchKey = info.BRAND_NAME)
                     }
                     holder.itemView.lable_flow_layout.addView(lableView)
                 }
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST, {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity,it.PRODUCT_ID,it.FORM_ID)
+                    ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 })
             }
             ItemType.RECOMMEND_VIDEO -> {
@@ -217,7 +217,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 holder.itemView.setOnClickListener {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity,productInfo.PRODUCT_ID,productInfo.FORM_ID)
+                    ProductDetailActivity.launch(context as Activity, productInfo.PRODUCT_ID, productInfo.FORM_ID)
                 }
 
             }

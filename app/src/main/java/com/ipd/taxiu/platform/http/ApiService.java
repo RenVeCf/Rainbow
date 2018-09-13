@@ -29,6 +29,8 @@ import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
 import com.ipd.taxiu.bean.StoreIndexResultBean;
+import com.ipd.taxiu.bean.StoreSearchHistroyBean;
+import com.ipd.taxiu.bean.StoreSecondIndexResultBean;
 import com.ipd.taxiu.bean.StoreVideoDetailBean;
 import com.ipd.taxiu.bean.TalkBean;
 import com.ipd.taxiu.bean.TalkCommentBean;
@@ -431,10 +433,17 @@ public interface ApiService {
     Observable<BaseResult<StoreIndexResultBean>> storeIndex(@Field("USER_ID") String USER_ID,
                                                             @Field("CATEGORY") int CATEGORY);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SECOND_INDEX)
+    Observable<BaseResult<StoreSecondIndexResultBean>> storeSecondIndex(@Field("USER_ID") String USER_ID,
+                                                                        @Field("CATEGORY") int CATEGORY,
+                                                                        @Field("AREA_ID") int AREA_ID);
+
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_GUESS_LIST)
     Observable<BaseResult<List<ProductBean>>> storeGuessLike(@Field("CATEGORY") int CATEGORY,
+                                                             @Field("AREA_ID") int AREA_ID,
                                                              @Field("COUNT") int count,
                                                              @Field("USER_ID") String user_id,
                                                              @Field("PAGE") int page);
@@ -469,6 +478,27 @@ public interface ApiService {
     Observable<BaseResult<ProductDetailBean>> storeProductParam(@Field("USER_ID") String user_id,
                                                                 @Field("PRODUCT_ID") int PRODUCT_ID,
                                                                 @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SEARCH_HISTORY)
+    Observable<StoreSearchHistroyBean> storeSearchHistory(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_CLEAR_SEARCH_HISTORY)
+    Observable<BaseResult<ProductDetailBean>> storeClearSearchHistory(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_LIST)
+    Observable<BaseResult<List<ProductBean>>> storeProductList(@Field("USER_ID") String user_id,
+                                                               @Field("COUNT") int COUNT,
+                                                               @Field("PAGE") int PAGE,
+                                                               @Field("BRAND") String BRAND,
+                                                               @Field("COMPOSITE") int COMPOSITE,
+                                                               @Field("KEYWORDS") String KEYWORDS,
+                                                               @Field("MAX_PRICE") int MAX_PRICE,
+                                                               @Field("MIN_PRICE") int MIN_PRICE,
+                                                               @Field("PRICE_SORT") int PRICE_SORT,
+                                                               @Field("SALES") int SALES);
 
     /**
      * address

@@ -22,11 +22,13 @@ class SynthesizeScreenView(val activity: Activity, val sortType: ScreenLayout.Sc
         setSelected(if (sortType == ScreenLayout.ScreenType.NORMAL_SORT) 0 else if (sortType == ScreenLayout.ScreenType.COMMENT_SORT) 1 else 2, true)
 
         contentView.ll_normal_sort.setOnClickListener {
+            popup?.dismiss()
             val isSelected = !contentView.ll_normal_sort.isSelected
             setSelected(0, isSelected)
             onSortChange.invoke(0, isSelected)
         }
         contentView.ll_comment_sort.setOnClickListener {
+            popup?.dismiss()
             val isSelected = !contentView.ll_comment_sort.isSelected
             setSelected(1, isSelected)
             onSortChange.invoke(1, isSelected)

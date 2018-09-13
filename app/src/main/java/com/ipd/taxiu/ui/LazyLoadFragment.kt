@@ -15,11 +15,10 @@ abstract class LazyLoadFragment : BaseUIFragment() {
     private var userVisiable = false
     private var isViewCreated = false
 
-    /**
-     * 在ViewPager中使用懒加载必须设置为true，否则在onCreate和setUserVisibleHint中都会调用加载数据方法
-     * @param needLazyLoad
-     */
-    var needLazyLoad = false
+
+    open fun needLazyLoad(): Boolean {
+        return false
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         isViewCreated = true
@@ -37,7 +36,7 @@ abstract class LazyLoadFragment : BaseUIFragment() {
 
 
     override fun loadData() {
-        if (needLazyLoad) {
+        if (needLazyLoad()) {
             if (userVisiable && firstLoad) {
                 prepareLoadData()
             }

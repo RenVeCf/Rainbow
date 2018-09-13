@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingTop="@dimen/small_padding"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/small_padding"
-    android:orientation="vertical">
+    android:paddingTop="@dimen/small_padding">
 
-    <ImageView
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
         android:id="@+id/iv_category_img"
         android:layout_width="@dimen/store_menu_category_img_size"
         android:layout_height="@dimen/store_menu_category_img_size"
@@ -15,8 +15,8 @@
 
     <TextView
         android:id="@+id/tv_category_name"
-        android:layout_marginTop="3dp"
         style="@style/SmallTextStyle"
+        android:layout_marginTop="3dp"
         android:text="服饰" />
 
 

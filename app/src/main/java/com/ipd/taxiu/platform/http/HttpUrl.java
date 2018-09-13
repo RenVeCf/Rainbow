@@ -31,6 +31,7 @@ public interface HttpUrl {
 
     //store
     String STORE_INDEX = "app_shop/home.do";
+    String STORE_SECOND_INDEX = "app_shop/typeArea.do";
     String STORE_GUESS_LIST = "app_shop/likeList.do";
     String STORE_PARENT_SHOP_TYPE = "app_shop_type/getList.do";
     String STORE_CHILD_SHOP_TYPE = "app_shop/shopType2.do";
@@ -38,6 +39,9 @@ public interface HttpUrl {
     String STORE_VIDEO_DETAIL = "app_tide_video/getInfo.do";
     String STORE_PRODUCT_DETAIL = "app_product/getInfo.do";
     String STORE_PRODUCT_PARAM = "app_product/proParam.do";
+    String STORE_SEARCH_HISTORY = "app_product/searchHis.do";
+    String STORE_CLEAR_SEARCH_HISTORY = "app_product/clearHis.do";
+    String STORE_PRODUCT_LIST = "app_shop/productAll.do";
 
     //taxiu
     String TAXIU_LABLE_LIST = "app_show/tipList.do";

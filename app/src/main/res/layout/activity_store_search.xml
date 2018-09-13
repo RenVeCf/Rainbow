@@ -45,6 +45,7 @@
 
 
         <TextView
+            android:id="@+id/tv_clear_history"
             style="@style/BaseTextStyle"
             android:drawableLeft="@mipmap/clear_history_icon"
             android:drawablePadding="5dp"

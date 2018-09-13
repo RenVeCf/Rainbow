@@ -14,6 +14,7 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductCategoryActivity
 import com.ipd.taxiu.ui.activity.store.StoreSearchActivity
+import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import kotlinx.android.synthetic.main.store_toolbar.view.*
 import rx.Observable
@@ -93,7 +94,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
 
     private var mType = StoreIndexBean.DOG
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().storeGuessLike(mType, Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
+        return ApiManager.getService().storeGuessLike(mType, StoreType.GUESS_LIKE_INDEX, Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -124,7 +125,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
             data?.add(mStoreIndexInfo.recommendVideo)
             data?.add(StoreRecommendProductHeaderBean())
         }
-        data?.addAll(result?.data?: arrayListOf())
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
 

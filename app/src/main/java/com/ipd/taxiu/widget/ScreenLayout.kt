@@ -6,11 +6,12 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 import com.ipd.taxiu.R
 import kotlinx.android.synthetic.main.layout_product_screen.view.*
 
 class ScreenLayout : ConstraintLayout {
-    private var mSortType: ScreenType = ScreenType.NORMAL_SORT
+    private var mSortType: ScreenType = ScreenType.NONE
 
     fun getSortType(): ScreenType = mSortType
 
@@ -88,16 +89,52 @@ class ScreenLayout : ConstraintLayout {
     private fun switchSortType(sortType: ScreenType) {
         mSortType = sortType
         initWidgetByType()
+        mOnSortTypeChangeListener?.onChange(mSortType)
     }
 
 
     private fun initWidgetByType() {
         ll_normal.getChildAt(0).isSelected = mSortType == ScreenType.NORMAL_SORT || mSortType == ScreenType.COMMENT_SORT
+        (ll_normal.getChildAt(0) as TextView).text = if (mSortType == ScreenType.NORMAL_SORT) "综合" else "评论"
         ll_normal.getChildAt(1).isSelected = mSortType == ScreenType.NORMAL_SORT || mSortType == ScreenType.COMMENT_SORT
         ll_sales.getChildAt(0).isSelected = mSortType == ScreenType.SALE_SORT
         ll_price.getChildAt(0).isSelected = mSortType == ScreenType.PRICE_TOP_SORT || mSortType == ScreenType.PRICE_BOTTOM_SORT
         iv_price_top.setImageResource(if (mSortType == ScreenType.PRICE_TOP_SORT) R.mipmap.arrow_top_primary_dark else R.mipmap.arrow_top_black)
         iv_price_bottom.setImageResource(if (mSortType == ScreenType.PRICE_BOTTOM_SORT) R.mipmap.arrow_bottom_primary_dark else R.mipmap.arrow_bottom_black)
+    }
+
+
+    fun getCompositeValue(): Int {
+        return when (mSortType) {
+            ScreenType.NORMAL_SORT -> 1
+            ScreenType.COMMENT_SORT -> 2
+            else -> 0
+        }
+    }
+
+    fun getSaleValue(): Int {
+        return when (mSortType) {
+            ScreenType.SALE_SORT -> 1
+            else -> 0
+        }
+    }
+
+    fun getPriceValue(): Int {
+        return when (mSortType) {
+            ScreenType.PRICE_TOP_SORT -> 2
+            ScreenType.PRICE_BOTTOM_SORT -> 1
+            else -> 0
+        }
+    }
+
+    private var mOnSortTypeChangeListener: OnSortTypeChangeListener? = null
+    fun setSortTypeChangeListener(listener: OnSortTypeChangeListener) {
+        mOnSortTypeChangeListener = listener
+    }
+
+
+    interface OnSortTypeChangeListener {
+        fun onChange(sortType: ScreenType)
     }
 
 

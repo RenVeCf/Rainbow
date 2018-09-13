@@ -1,7 +1,5 @@
 package com.ipd.taxiu.bean;
 
-import com.ipd.taxiu.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

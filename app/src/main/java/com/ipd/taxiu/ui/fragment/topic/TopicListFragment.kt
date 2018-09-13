@@ -28,6 +28,8 @@ class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>()
         }
     }
 
+    override fun needLazyLoad(): Boolean = true
+
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         progress_layout.setEmptyViewRes(R.layout.layout_empty_taxiu)
@@ -52,7 +54,7 @@ class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>()
         if (mAdapter == null) {
             mAdapter = TopicAdapter(mActivity, data, {
                 //itemClick
-                TopicDetailActivity.launch(mActivity,it.TOPIC_ID)
+                TopicDetailActivity.launch(mActivity, it.TOPIC_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

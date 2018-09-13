@@ -24,6 +24,8 @@ class TaxiuListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>()
         }
     }
 
+    override fun needLazyLoad(): Boolean = true
+
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         progress_layout.setEmptyViewRes(R.layout.layout_empty_taxiu)

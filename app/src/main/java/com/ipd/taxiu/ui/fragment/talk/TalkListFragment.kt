@@ -40,6 +40,7 @@ class TalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
         EventBus.getDefault().unregister(this)
     }
 
+    override fun needLazyLoad(): Boolean = true
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)

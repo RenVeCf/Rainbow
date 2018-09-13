@@ -3,14 +3,19 @@ package com.ipd.taxiu.ui.activity.store
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.StoreSearchHistroyBean
+import com.ipd.taxiu.presenter.store.StoreSearchPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_store_search.*
 import kotlinx.android.synthetic.main.search_store_toolbar.*
 
-class StoreSearchActivity : BaseUIActivity() {
+class StoreSearchActivity : BaseUIActivity(), StoreSearchPresenter.IStoreSearchView {
 
     companion object {
         fun launch(activity: Activity) {
@@ -24,18 +29,57 @@ class StoreSearchActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_store_search
 
+
+    private var mPresenter: StoreSearchPresenter? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = StoreSearchPresenter()
+        mPresenter?.attachView(mActivity, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
     override fun initView(bundle: Bundle?) {
 
     }
 
     override fun loadData() {
-        for (index: Int in 0 until 10) {
-            val lableView = LayoutInflater.from(mActivity).inflate(R.layout.item_lable, hot_search_layout, false)
-            hot_search_layout.addView(lableView)
-            val lableView2 = LayoutInflater.from(mActivity).inflate(R.layout.item_lable, history_search_layout, false)
-            history_search_layout.addView(lableView2)
-        }
+        mPresenter?.loadSearchHistory()
+    }
 
+    override fun loadSearchHistorySuccess(info: StoreSearchHistroyBean) {
+        info.data?.forEach { info ->
+            val lableView = LayoutInflater.from(mActivity).inflate(R.layout.item_lable, hot_search_layout, false) as TextView
+            lableView.text = info.NAME
+            lableView.setOnClickListener {
+                searchProduct(info.NAME)
+            }
+            hot_search_layout.addView(lableView)
+        }
+        info.historyList?.forEach { info ->
+            val lableView = LayoutInflater.from(mActivity).inflate(R.layout.item_lable, hot_search_layout, false) as TextView
+            lableView.text = info.NAME
+            lableView.setOnClickListener {
+                searchProduct(info.NAME)
+            }
+            history_search_layout.addView(lableView)
+        }
+    }
+
+    override fun loadSearchHistoryFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun clearSearchHisSuccess() {
+        history_search_layout.removeAllViews()
+    }
+
+    override fun clearSearchHisFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun initListener() {
@@ -45,11 +89,33 @@ class StoreSearchActivity : BaseUIActivity() {
         et_search.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 //搜索
-                ProductListActivity.launch(mActivity)
+                val searchKey = et_search.text.toString().trim()
+//                if (TextUtils.isEmpty(searchKey)) {
+//                    toastShow("请输入搜索关键字")
+//                    return@setOnEditorActionListener false
+//                }
+                searchProduct(searchKey)
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
+
+        tv_clear_history.setOnClickListener {
+            val builder = MessageDialog.Builder(mActivity)
+            builder.setTitle("提示")
+                    .setMessage("确定清空历史搜索记录?")
+                    .setCommit("确定", {
+                        it.dismiss()
+                        mPresenter?.clearSearchHistory()
+                    })
+                    .setCancel("取消", {
+                        it.dismiss()
+                    }).show()
+        }
+    }
+
+    private fun searchProduct(key: String) {
+        ProductListActivity.launch(mActivity, searchKey = key)
     }
 
 }

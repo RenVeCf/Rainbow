@@ -33,7 +33,7 @@ class StoreSecondIndexActivity : BaseUIActivity() {
     override fun loadData() {
         view_pager.adapter = object : CurFragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return StoreSecondIndexFragment.newInstance(mType)
+                return StoreSecondIndexFragment.newInstance(StorePetSpecialType.DOG_TABS[position])
             }
 
             override fun getCount(): Int {
@@ -53,6 +53,7 @@ class StoreSecondIndexActivity : BaseUIActivity() {
             }
 
         }
+        view_pager.currentItem = StorePetSpecialType.getPositionByType(mType)
         tab_layout.setupWithViewPager(view_pager)
     }
 
