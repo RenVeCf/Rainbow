@@ -28,27 +28,43 @@ class ScreenLableView : ScreenFlowLayout {
         }
         val childPos = childCount
         addView(childView)
-        setChecked(childPos, childPos == mCurCheckedPos)
+        setCheckedLable(childPos, childPos == mCurCheckedPos)
         childView.setOnClickListener {
-            if (mCurCheckedPos == childPos) {
-                setChecked(mCurCheckedPos, false)
+            if (mCurCheckedPos == childPos) {//取消选中
+                setCheckedLable(mCurCheckedPos, false)
                 mCurCheckedPos = -1
+                onChange?.invoke(null)
                 return@setOnClickListener
             }
-            setChecked(mCurCheckedPos, false)
+            //切换选中
+            setCheckedLable(mCurCheckedPos, false)
             mCurCheckedPos = childPos
-            setChecked(mCurCheckedPos, true)
+            setCheckedLable(mCurCheckedPos, true)
+
+            onChange?.invoke(info)
         }
 
     }
 
-    private fun setChecked(childPos: Int, isChecked: Boolean) {
+    private fun setCheckedLable(childPos: Int, isChecked: Boolean) {
         if (childPos == -1 || childPos >= childCount) return
         val childView = getChildAt(childPos)
         childView.cb_lable.isSelected = isChecked
     }
 
+    fun clearCheck() {//清除选中
+        if (mCurCheckedPos == -1) return
+        setCheckedLable(mCurCheckedPos, false)
+        mCurCheckedPos = -1
+        onChange?.invoke(null)
+    }
+
     fun getCheckedPos() = mCurCheckedPos
 
+
+    private var onChange: ((ProductExpertScreenBean.ScreenInfo?) -> Unit)? = null
+    fun setCheckedChangeListener(onChange: (ProductExpertScreenBean.ScreenInfo?) -> Unit) {
+        this.onChange = onChange
+    }
 
 }

@@ -99,6 +99,12 @@ class ScreenLayout : ConstraintLayout {
         mOnSortTypeChangeListener?.onChange(mSortType)
     }
 
+    fun onCancelExpertSort() {
+        mExpertSortType = ScreenType.NONE
+        initWidgetByType()
+        mOnSortTypeChangeListener?.onChange(mSortType)
+    }
+
     private fun switchSortType(sortType: ScreenType) {
         mSortType = sortType
         initWidgetByType()

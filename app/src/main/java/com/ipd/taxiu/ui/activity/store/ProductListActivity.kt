@@ -52,24 +52,32 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
     //保存已勾选的筛选条件
     private val mScreenMap: HashMap<String, ProductExpertScreenBean.ScreenInfo> = hashMapOf()
 
+    /**
+     * 重置筛选条件
+     */
     private fun onReset() {
         et_search.text = mSearchKey
         mScreenResult = null
+        price_flow_layout.clearCheck()
+        price_flow_layout.removeAllViews()
+        et_min_price.setText("")
+        et_max_price.setText("")
+
         mMinPrice = 0f
         mMaxPrice = 0f
         mScreenMap.clear()
         if (cl_screen.childCount > 1) {
             cl_screen.removeViews(1, cl_screen.childCount - 1)
         }
+
         drawer_layout.closeDrawer(Gravity.END)
         mFragment?.setSearchKey(mSearchKey)
-        mFragment?.refreshWithProgress()
+        screenLayout?.onCancelExpertSort()
     }
 
     override fun initView(bundle: Bundle?) {
         mSearchKey = intent.getStringExtra("searchKey")
         et_search.text = mSearchKey
-
 
         screenLayout = findViewById(R.id.screen_layout_container)
         screenLayout?.setBackgroupView(fl_container)
@@ -122,6 +130,16 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                 if (result.code == 0) {
                                     mScreenResult = result
                                     //price
+                                    price_flow_layout.setCheckedChangeListener {
+                                        if (it == null) {
+                                            et_min_price.setText("")
+                                            et_max_price.setText("")
+                                        } else {
+                                            et_min_price.setText(it.MIN_PRICE)
+                                            et_max_price.setText(it.MAX_PRICE)
+                                        }
+                                    }
+
                                     if (result.data.PRICE_DATA != null) {
                                         result.data.PRICE_DATA.LIST.forEach {
                                             price_flow_layout.addView(it, true)
@@ -142,12 +160,12 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                         var minPrice = et_min_price.text.toString().trim()
                                         var maxPrice = et_max_price.text.toString().trim()
 
-                                        val pos = price_flow_layout.getCheckedPos()
-                                        if (pos != -1) {
-                                            val screenInfo = result.data.PRICE_DATA.LIST[pos]
-                                            minPrice = screenInfo.MIN_PRICE
-                                            maxPrice = screenInfo.MAX_PRICE
-                                        }
+//                                        val pos = price_flow_layout.getCheckedPos()
+//                                        if (pos != -1) {
+//                                            val screenInfo = result.data.PRICE_DATA.LIST[pos]
+//                                            minPrice = screenInfo.MIN_PRICE
+//                                            maxPrice = screenInfo.MAX_PRICE
+//                                        }
 
                                         mMinPrice = if (!TextUtils.isEmpty(minPrice)) minPrice.toFloat() else 0f
                                         mMaxPrice = if (!TextUtils.isEmpty(maxPrice)) maxPrice.toFloat() else 0f

@@ -20,6 +20,7 @@
     <dimen name="product_category_img_size">85dp</dimen>
 
 
+    <dimen name="product_screen_width">300dp</dimen>
     <dimen name="cart_product_img_width">60dp</dimen>
     <dimen name="cart_product_img_height">80dp</dimen>
     <dimen name="grid_product_img_height">140dp</dimen>

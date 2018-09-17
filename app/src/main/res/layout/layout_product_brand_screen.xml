@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8f000000">
+
+
+    <LinearLayout
+        android:layout_width="@dimen/product_screen_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_pop_sign_in_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:text="每日签到赚积分"
+                android:textSize="19sp" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginTop="5dp"
+                android:text="欢迎回来"
+                android:textColor="@color/LightGrey" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/pop_sign_in" />
+
+
+            <TextView
+                android:id="@+id/tv_sign_in"
+                style="@style/TitleTextStyle"
+                android:layout_marginTop="@dimen/base_padding"
+                android:background="@drawable/shape_buy_bg"
+                android:paddingBottom="4dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="4dp"
+                android:text="去签到"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding"
+            android:src="@mipmap/pop_close" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

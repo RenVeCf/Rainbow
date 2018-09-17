@@ -21,10 +21,9 @@ class ProductExpertScreenLayout : ConstraintLayout {
         super.onFinishInflate()
         setShowMoreImgRes()
         ll_more.setOnClickListener {
-            if (isBrandScreen()){
-
-
-            }else{
+            if (isBrandScreen()) {
+                ProductBrandScreenPopup(context).showPopupWindow()
+            } else {
                 isShowMore = !isShowMore
                 setContentUI()
             }
