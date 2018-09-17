@@ -53,12 +53,13 @@
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
-                style="@style/SmallTextStyle"
+                style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
                 android:layout_marginRight="@dimen/small_padding"
                 android:layout_marginTop="@dimen/small_padding"
                 android:text="幼猫专区"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <FrameLayout
@@ -80,25 +81,38 @@
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
-                style="@style/SmallTextStyle"
+                style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
                 android:layout_marginRight="@dimen/small_padding"
                 android:layout_marginTop="@dimen/small_padding"
                 android:text="成猫专区"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </FrameLayout>
 
 
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_special"
-        style="@style/StoreCardStyle"
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:id="@+id/cv_special"-->
+    <!--style="@style/StoreCardStyle"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/cl_dog_pent">-->
+
+    <!--<include layout="@layout/layout_store_home_function" />-->
+
+    <!--</android.support.v7.widget.CardView>-->
+
+
+    <FrameLayout
+        android:id="@+id/fl_special"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/cl_dog_pent">
 
         <include layout="@layout/layout_store_home_function" />
 
-    </android.support.v7.widget.CardView>
+
+    </FrameLayout>
 
 
     <android.support.constraint.ConstraintLayout
@@ -106,7 +120,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_special">
+        app:layout_constraintTop_toBottomOf="@id/fl_special">
 
         <include layout="@layout/layout_store_small_banner" />
 

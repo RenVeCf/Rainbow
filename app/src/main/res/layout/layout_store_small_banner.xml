@@ -7,7 +7,8 @@
     <com.ipd.taxiu.widget.AutoScrollerViewPager
         android:id="@+id/store_banner_small"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/store_banner_height_small"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:0.37"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginRight="@dimen/base_padding"
         android:layout_marginTop="@dimen/base_padding"

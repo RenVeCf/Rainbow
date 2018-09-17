@@ -3,14 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/base_padding">
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding"
+    android:paddingTop="@dimen/base_padding">
 
 
     <ImageView
         android:id="@+id/iv_store_spell"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         android:src="@mipmap/store_spell"
+        app:layout_constraintHorizontal_weight="0.57"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,8 +23,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_padding"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/store_purchase"
+        app:layout_constraintHorizontal_weight="0.43"
         app:layout_constraintLeft_toRightOf="@id/iv_store_spell"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_store_spell" />
@@ -29,26 +34,34 @@
         android:id="@+id/iv_store_clear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:scaleType="fitXY"
         android:src="@mipmap/store_clear_icon"
-        app:layout_constraintBottom_toBottomOf="@id/iv_store_spell"
-        app:layout_constraintLeft_toLeftOf="@id/iv_store_purchase" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_store_new"
+        app:layout_constraintTop_toBottomOf="@id/iv_store_spell" />
 
     <ImageView
         android:id="@+id/iv_store_new"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:scaleType="fitXY"
         android:src="@mipmap/store_new_icon"
         app:layout_constraintBottom_toBottomOf="@id/iv_store_clear"
-        app:layout_constraintLeft_toLeftOf="@id/iv_store_purchase"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintLeft_toRightOf="@id/iv_store_clear"
+        app:layout_constraintRight_toLeftOf="@id/iv_store_video" />
 
     <ImageView
         android:id="@+id/iv_store_video"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:scaleType="fitXY"
         android:src="@mipmap/store_video_icon"
         app:layout_constraintBottom_toBottomOf="@id/iv_store_clear"
-        app:layout_constraintRight_toRightOf="@id/iv_store_purchase" />
+        app:layout_constraintLeft_toRightOf="@id/iv_store_new"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

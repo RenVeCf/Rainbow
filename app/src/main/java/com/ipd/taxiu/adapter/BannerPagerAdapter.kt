@@ -24,7 +24,6 @@ class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?) : Pa
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val info = list!![position]
         val mContentView = mInflater.inflate(R.layout.layout_banner, container, false)
-        mContentView.iv_image.setImageResource(info.res)
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_image)
         container.addView(mContentView)
         return mContentView

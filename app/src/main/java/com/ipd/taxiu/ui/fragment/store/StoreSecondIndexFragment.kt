@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.StoreAdapter
 import com.ipd.taxiu.bean.*
@@ -38,6 +39,7 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
+        mContentView.iv_store_index.visibility = View.VISIBLE
         mContentView.iv_scroll_top.visibility = View.GONE
     }
 
@@ -104,6 +106,9 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
 
         mContentView.iv_scroll_top.setOnClickListener {
             recycler_view.smoothScrollToPosition(0)
+        }
+        mContentView.iv_store_index.setOnClickListener {
+            MainActivity.launch(mActivity)
         }
     }
 

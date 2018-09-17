@@ -41,12 +41,24 @@
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp">
 
+
         <ImageView
             android:id="@+id/iv_scroll_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/scroll_top"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_store_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_padding"
+            android:src="@mipmap/store_index_icon"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/iv_scroll_top"
+            app:layout_goneMarginBottom="0dp" />
+
 
     </android.support.constraint.ConstraintLayout>
 
