@@ -15,6 +15,8 @@ import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductCategoryActivity
 import com.ipd.taxiu.ui.activity.store.StoreSearchActivity
 import com.ipd.taxiu.utils.StoreType
+import com.ipd.taxiu.widget.StoreGiftGetSuccessPopup
+import com.ipd.taxiu.widget.StoreGiftPopup
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import kotlinx.android.synthetic.main.store_toolbar.view.*
 import rx.Observable
@@ -25,6 +27,39 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     override fun getContentLayout(): Int = R.layout.fragment_store
 
     private lateinit var mStoreIndexInfo: StoreIndexBean
+
+
+    override fun loadDataWhenVisible() {
+        super.loadDataWhenVisible()
+        //商城礼包
+        ApiManager.getService().storeGift(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
+                    override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
+                        if (result.code == 0) {
+                            StoreGiftPopup(mActivity, {
+                                //领取礼包
+                                takeItGift(it)
+                            }).showPopupWindow()
+                        }
+                    }
+                })
+    }
+
+    private fun takeItGift(popup: StoreGiftPopup) {
+        ApiManager.getService().storeGiftTakeIt(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<List<ExchangeHisBean>>>(mActivity, true) {
+                    override fun _onNext(result: BaseResult<List<ExchangeHisBean>>) {
+                        if (result.code == 0) {
+                            popup.dismiss()
+                            StoreGiftGetSuccessPopup(mActivity, result.data).showPopupWindow()
+                        } else {
+                            toastShow(result.msg)
+                        }
+                    }
+                })
+    }
 
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {

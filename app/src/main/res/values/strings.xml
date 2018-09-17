@@ -52,6 +52,8 @@
     <string name="new_project">发布</string>
     <string name="commit">提交</string>
 
+    <string name="store_gift_coupon_num">恭喜你领取了%d张优惠券</string>
+    <string name="store_gift_coupon_date">有效期至：%s</string>
     <!-- 个人 -->
     <string name="sign_in">签到</string>
     <string name="collect">收藏</string>

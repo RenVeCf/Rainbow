@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@mipmap/store_gift_coupon_bg"
+        android:paddingBottom="@dimen/base_padding"
+        android:paddingTop="@dimen/base_padding">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_left"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="4.4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/cl_right">
+
+            <TextView
+                android:id="@+id/symbol"
+                style="@style/BaseTextStyle"
+                android:text="￥"
+                android:textColor="@color/red"
+                app:layout_constraintBottom_toBottomOf="@id/tv_coupon_money"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_coupon_money" />
+
+            <TextView
+                android:id="@+id/tv_coupon_money"
+                style="@style/BaseTextStyle"
+                android:textColor="@color/red"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/symbol"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="50" />
+
+            <TextView
+                android:id="@+id/tv_coupon_rule"
+                style="@style/SmallTextStyle"
+                android:layout_toRightOf="@id/symbol"
+                android:textColor="@color/LightGrey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_coupon_money"
+                tools:text="满500可用" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="6"
+            app:layout_constraintLeft_toRightOf="@id/cl_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_coupon_kind"
+                style="@style/BaseTextStyle"
+                android:textColor="@color/red"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:text="单品优惠券" />
+
+            <TextView
+                android:id="@+id/tv_coupon_date"
+                style="@style/SmallTextStyle"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/LightGrey"
+                app:layout_constraintLeft_toLeftOf="@id/tv_coupon_kind"
+                app:layout_constraintTop_toBottomOf="@id/tv_coupon_kind"
+                tools:text="有效期至：2018.07.19" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

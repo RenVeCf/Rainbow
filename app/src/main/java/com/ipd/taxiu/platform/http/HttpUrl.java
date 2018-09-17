@@ -30,6 +30,8 @@ public interface HttpUrl {
 
 
     //store
+    String STORE_GIFT = "app_shop/getGift.do";
+    String STORE_GIFT_TAKE_IT = "app_shop/toGift.do";
     String STORE_INDEX = "app_shop/home.do";
     String STORE_SECOND_INDEX = "app_shop/typeArea.do";
     String STORE_GUESS_LIST = "app_shop/likeList.do";

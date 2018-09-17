@@ -65,4 +65,5 @@ dependencies {
     implementation 'q.rorbin:badgeview:1.1.2'
     implementation project(':ffmpeg')
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
+    implementation 'com.github.razerdp:BasePopup:1.9.4'
 }

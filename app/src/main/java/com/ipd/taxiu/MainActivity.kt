@@ -6,20 +6,15 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
-import com.ipd.jumpbox.jumpboxlibrary.utils.PopupUtils
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseActivity
-import com.ipd.taxiu.ui.activity.SignInActivity
 import com.ipd.taxiu.ui.fragment.*
 import com.ipd.taxiu.widget.PublishTaxiuDialog
+import com.ipd.taxiu.widget.SignInPopup
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_sign_in.view.*
 import rx.Observable
 import java.util.concurrent.TimeUnit
 
@@ -48,18 +43,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showSignInView() {
-        val contentView = LayoutInflater.from(mActivity).inflate(R.layout.layout_sign_in, null)
-        val popupWindow = PopupUtils.getPopup(mActivity, contentView, window)
-        contentView.iv_close.setOnClickListener { popupWindow.dismiss() }
-        contentView.tv_sign_in.setOnClickListener {
-            popupWindow.dismiss()
-            SignInActivity.launch(mActivity)
-        }
-        popupWindow.isFocusable = false
-        popupWindow.isOutsideTouchable = false
-        popupWindow.width = (window.decorView.measuredWidth / 10f * 6f).toInt()
-        popupWindow.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        PopupUtils.showViewAtCenter(popupWindow, window, window.decorView, null)
+        SignInPopup(mActivity).showPopupWindow()
     }
 
     override fun initListener() {

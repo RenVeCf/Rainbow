@@ -23,24 +23,24 @@
 
             <TextView
                 style="@style/TitleTextStyle"
-                android:text="每日签到赚积分"
+                android:text="送你一份大礼包"
                 android:textSize="19sp" />
 
             <TextView
                 style="@style/BaseTextStyle"
                 android:layout_marginTop="5dp"
-                android:text="欢迎回来"
+                android:text="赶紧领取吧~"
                 android:textColor="@color/LightGrey" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:src="@mipmap/pop_sign_in" />
+                android:layout_marginTop="@dimen/small_padding"
+                android:src="@mipmap/store_gift" />
 
 
             <TextView
-                android:id="@+id/tv_sign_in"
+                android:id="@+id/tv_take_it"
                 style="@style/TitleTextStyle"
                 android:layout_marginTop="@dimen/base_padding"
                 android:background="@drawable/shape_buy_bg"
@@ -48,7 +48,7 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="4dp"
-                android:text="去签到"
+                android:text="立即领取"
                 android:textColor="@color/white" />
         </LinearLayout>
 

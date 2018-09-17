@@ -433,6 +433,14 @@ public interface ApiService {
      */
 
     @FormUrlEncoded
+    @POST(HttpUrl.STORE_GIFT)
+    Observable<BaseResult<StoreIndexResultBean>> storeGift(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_GIFT_TAKE_IT)
+    Observable<BaseResult<List<ExchangeHisBean>>> storeGiftTakeIt(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
     @POST(HttpUrl.STORE_INDEX)
     Observable<BaseResult<StoreIndexResultBean>> storeIndex(@Field("USER_ID") String USER_ID,
                                                             @Field("CATEGORY") int CATEGORY);
