@@ -12,6 +12,7 @@ import android.view.WindowManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.ProductParamAdapter;
+import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.TalkBean;
 
 import java.util.ArrayList;
@@ -40,18 +41,18 @@ public class ProductParamDialog extends BottomSheetDialog {
         init(context);
     }
 
+    private ProductParamAdapter mAdapter;
+    private List<ProductParamBean> mParamList;
+
     private void init(Context context) {
         mContentView = LayoutInflater.from(context).inflate(R.layout.layout_product_param, null);
         setContentView(mContentView);
 
+        mParamList = new ArrayList();
         RecyclerView param_recycler_view = mContentView.findViewById(R.id.param_recycler_view);
-        List<TalkBean> list = new ArrayList<>();
-        for (int i = 0 ; i < 30 ; i ++){
-            list.add(new TalkBean());
-        }
-        param_recycler_view.setAdapter(new ProductParamAdapter(context, list, new Function1<TalkBean, Unit>() {
+        param_recycler_view.setAdapter(mAdapter = new ProductParamAdapter(context, mParamList, new Function1<ProductParamBean, Unit>() {
             @Override
-            public Unit invoke(TalkBean talkBean) {
+            public Unit invoke(ProductParamBean info) {
 
                 return null;
             }
@@ -69,7 +70,11 @@ public class ProductParamDialog extends BottomSheetDialog {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getWindow().setAttributes(params);
+    }
 
+    public void setData(List<ProductParamBean> paramList) {
+        mParamList.addAll(paramList);
+        mAdapter.notifyDataSetChanged();
     }
 
 

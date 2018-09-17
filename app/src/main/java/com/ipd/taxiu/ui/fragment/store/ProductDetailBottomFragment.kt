@@ -9,8 +9,13 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ProductDetailBean
+import com.ipd.taxiu.bean.ProductParamBean
+import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseFragment
 import com.ipd.taxiu.widget.ProductParamDialog
 import kotlinx.android.synthetic.main.layout_product_detail_bottom.view.*
@@ -66,7 +71,21 @@ class ProductDetailBottomFragment : BaseFragment() {
     }
 
     private fun loadProductParam() {
-//        ProductParamDialog(mActivity).show()
+        ApiManager.getService().storeProductParam(GlobalParam.getUserIdOrJump(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<List<ProductParamBean>>>(mActivity, true) {
+                    override fun _onNext(result: BaseResult<List<ProductParamBean>>) {
+                        if (result.code == 0) {
+                            val paramDialog = ProductParamDialog(mActivity)
+                            paramDialog.setData(result.data)
+                            paramDialog.show()
+                        } else {
+                            toastShow(result.msg)
+                        }
+                    }
+                })
+
+
     }
 
     override fun onDestroy() {

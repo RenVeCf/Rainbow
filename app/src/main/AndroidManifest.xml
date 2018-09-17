@@ -91,7 +91,9 @@
         <activity android:name=".ui.activity.store.StoreSecondIndexActivity" />
         <activity android:name=".ui.activity.store.StoreSpecialActivity" />
         <activity android:name=".ui.activity.store.StoreSearchActivity" />
-        <activity android:name=".ui.activity.store.ProductListActivity" />
+        <activity
+            android:name=".ui.activity.store.ProductListActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.store.ProductDetailActivity" />
         <activity android:name=".ui.activity.store.flashsale.FlashSaleActivity" />
         <activity android:name=".ui.activity.store.grouppurchase.GroupPurchaseActivity" />

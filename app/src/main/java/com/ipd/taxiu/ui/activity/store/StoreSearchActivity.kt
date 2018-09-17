@@ -90,10 +90,10 @@ class StoreSearchActivity : BaseUIActivity(), StoreSearchPresenter.IStoreSearchV
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 //搜索
                 val searchKey = et_search.text.toString().trim()
-//                if (TextUtils.isEmpty(searchKey)) {
-//                    toastShow("请输入搜索关键字")
-//                    return@setOnEditorActionListener false
-//                }
+                if (TextUtils.isEmpty(searchKey)) {
+                    toastShow("请输入搜索关键字")
+                    return@setOnEditorActionListener false
+                }
                 searchProduct(searchKey)
                 return@setOnEditorActionListener true
             }
@@ -116,6 +116,7 @@ class StoreSearchActivity : BaseUIActivity(), StoreSearchPresenter.IStoreSearchV
 
     private fun searchProduct(key: String) {
         ProductListActivity.launch(mActivity, searchKey = key)
+        finish()
     }
 
 }

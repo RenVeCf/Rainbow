@@ -18,4 +18,5 @@ object StoreType {
             else -> GUESS_LIKE_INDEX
         }
     }
+
 }

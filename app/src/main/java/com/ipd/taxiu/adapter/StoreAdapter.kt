@@ -266,7 +266,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         }
         holder.itemView.iv_store_video.setOnClickListener {
             //视频
-            StoreVideoIndexActivity.launch(context as Activity)
+            StoreVideoIndexActivity.launch(context as Activity,headerInfo.type)
         }
     }
 

@@ -7,22 +7,28 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.StoreVideoAdapter
-import com.ipd.taxiu.bean.TopicBean
-import com.ipd.taxiu.bean.TopicListBean
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.StoreVideoBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import rx.Observable
 
-class StoreVideoListFragment : ListFragment<TopicListBean, TopicBean>() {
+class StoreVideoListFragment : ListFragment<BaseResult<List<StoreVideoBean>>, StoreVideoBean>() {
     companion object {
-        fun newInstance(categoryId: Int): StoreVideoListFragment {
+        fun newInstance(type: Int, showTypeId: Int): StoreVideoListFragment {
             val fragment = StoreVideoListFragment()
             val bundle = Bundle()
-            bundle.putInt("categoryId", categoryId)
+            bundle.putInt("type", type)
+            bundle.putInt("showTypeId", showTypeId)
             fragment.arguments = bundle
             return fragment
         }
     }
+
+    override fun needLazyLoad(): Boolean = true
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
@@ -30,23 +36,18 @@ class StoreVideoListFragment : ListFragment<TopicListBean, TopicBean>() {
         swipe_load_layout.isRefreshEnabled = false
     }
 
-    private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
-    override fun loadListData(): Observable<TopicListBean> {
-        return Observable.create<TopicListBean> {
-            val topicListBean = TopicListBean()
-            topicListBean.list = ArrayList()
-            if (categoryId != 2) {
-                for (i: Int in 0 until 10) {
-                    topicListBean.list.add(TopicBean())
-                }
-            }
-            it.onNext(topicListBean)
-            it.onCompleted()
-        }
+    private val type: Int by lazy { arguments.getInt("type", 0) }
+    private val showTypeId: Int by lazy { arguments.getInt("showTypeId", 0) }
+    override fun loadListData(): Observable<BaseResult<List<StoreVideoBean>>> {
+        return ApiManager.getService().storeVideoList(GlobalParam.getUserIdOrJump(), type, Constant.PAGE_SIZE, page, showTypeId)
     }
 
-    override fun isNoMoreData(result: TopicListBean): Int {
-        if (result.list == null || result.list.isEmpty()) return EMPTY_DATA
+    override fun isNoMoreData(result: BaseResult<List<StoreVideoBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
@@ -55,10 +56,10 @@ class StoreVideoListFragment : ListFragment<TopicListBean, TopicBean>() {
         if (mAdapter == null) {
             mAdapter = StoreVideoAdapter(mActivity, data, {
                 //itemClick
-                StoreVideoDetailActivity.launch(mActivity)
+                StoreVideoDetailActivity.launch(mActivity,it.VIDEO_ID.toString())
 
             })
-            recycler_view.addItemDecoration(object :RecyclerView.ItemDecoration(){
+            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
                     outRect?.bottom = 2
                 }
@@ -70,8 +71,8 @@ class StoreVideoListFragment : ListFragment<TopicListBean, TopicBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: TopicListBean) {
-        data?.addAll(result.list)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<StoreVideoBean>>) {
+        data?.addAll(result.data)
     }
 
 }

@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.layout_product_screen.view.*
 
 class ScreenLayout : ConstraintLayout {
     private var mSortType: ScreenType = ScreenType.NONE
+    private var mExpertSortType: ScreenType = ScreenType.NONE
 
     fun getSortType(): ScreenType = mSortType
 
@@ -21,6 +22,7 @@ class ScreenLayout : ConstraintLayout {
         SALE_SORT(2),
         PRICE_TOP_SORT(3),
         PRICE_BOTTOM_SORT(4),
+        EXPERT_SORT(6),
         NONE(5)
     }
 
@@ -82,8 +84,19 @@ class ScreenLayout : ConstraintLayout {
             }
         }
         ll_screen.setOnClickListener {
-
+            mExpertScreenOnClick?.invoke(it)
         }
+    }
+
+    private var mExpertScreenOnClick: ((view: View) -> Unit)? = null
+    fun setExpertScreenClickListener(onClick: (view: View) -> Unit) {
+        mExpertScreenOnClick = onClick
+    }
+
+    fun onExpertSort() {
+        mExpertSortType = ScreenType.EXPERT_SORT
+        initWidgetByType()
+        mOnSortTypeChangeListener?.onChange(mSortType)
     }
 
     private fun switchSortType(sortType: ScreenType) {
@@ -95,12 +108,14 @@ class ScreenLayout : ConstraintLayout {
 
     private fun initWidgetByType() {
         ll_normal.getChildAt(0).isSelected = mSortType == ScreenType.NORMAL_SORT || mSortType == ScreenType.COMMENT_SORT
-        (ll_normal.getChildAt(0) as TextView).text = if (mSortType == ScreenType.NORMAL_SORT) "综合" else "评论"
+        (ll_normal.getChildAt(0) as TextView).text = if (mSortType == ScreenType.COMMENT_SORT) "评论" else "综合"
         ll_normal.getChildAt(1).isSelected = mSortType == ScreenType.NORMAL_SORT || mSortType == ScreenType.COMMENT_SORT
         ll_sales.getChildAt(0).isSelected = mSortType == ScreenType.SALE_SORT
         ll_price.getChildAt(0).isSelected = mSortType == ScreenType.PRICE_TOP_SORT || mSortType == ScreenType.PRICE_BOTTOM_SORT
         iv_price_top.setImageResource(if (mSortType == ScreenType.PRICE_TOP_SORT) R.mipmap.arrow_top_primary_dark else R.mipmap.arrow_top_black)
         iv_price_bottom.setImageResource(if (mSortType == ScreenType.PRICE_BOTTOM_SORT) R.mipmap.arrow_bottom_primary_dark else R.mipmap.arrow_bottom_black)
+        ll_screen.getChildAt(0).isSelected = mExpertSortType == ScreenType.EXPERT_SORT
+        ll_screen.getChildAt(1).isSelected = mExpertSortType == ScreenType.EXPERT_SORT
     }
 
 

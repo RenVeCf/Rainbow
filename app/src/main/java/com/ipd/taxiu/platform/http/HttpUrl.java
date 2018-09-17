@@ -42,6 +42,12 @@ public interface HttpUrl {
     String STORE_SEARCH_HISTORY = "app_product/searchHis.do";
     String STORE_CLEAR_SEARCH_HISTORY = "app_product/clearHis.do";
     String STORE_PRODUCT_LIST = "app_shop/productAll.do";
+    String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
+
+    //store video
+    String STORE_TODAY_RECOMMEND_VIDEO = "app_tide_video/todayRecom.do";
+    String STORE_VIDEO_TABS = "app_tide_video/videoGroup.do";
+    String STORE_VIDEO_LIST = "app_tide_video/getList.do";
 
     //taxiu
     String TAXIU_LABLE_LIST = "app_show/tipList.do";

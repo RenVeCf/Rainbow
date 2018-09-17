@@ -21,9 +21,11 @@ import com.ipd.taxiu.bean.ProductBrandBean;
 import com.ipd.taxiu.bean.ProductCategoryChildBean;
 import com.ipd.taxiu.bean.ProductCategoryParentBean;
 import com.ipd.taxiu.bean.ProductDetailBean;
+import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
+import com.ipd.taxiu.bean.ScreenResult;
 import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
@@ -31,7 +33,9 @@ import com.ipd.taxiu.bean.SignInResuleBean;
 import com.ipd.taxiu.bean.StoreIndexResultBean;
 import com.ipd.taxiu.bean.StoreSearchHistroyBean;
 import com.ipd.taxiu.bean.StoreSecondIndexResultBean;
+import com.ipd.taxiu.bean.StoreVideoBean;
 import com.ipd.taxiu.bean.StoreVideoDetailBean;
+import com.ipd.taxiu.bean.StoreVideoTabBean;
 import com.ipd.taxiu.bean.TalkBean;
 import com.ipd.taxiu.bean.TalkCommentBean;
 import com.ipd.taxiu.bean.TalkDetailBean;
@@ -475,9 +479,9 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_PARAM)
-    Observable<BaseResult<ProductDetailBean>> storeProductParam(@Field("USER_ID") String user_id,
-                                                                @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                                @Field("FORM_ID") int FORM_ID);
+    Observable<BaseResult<List<ProductParamBean>>> storeProductParam(@Field("USER_ID") String user_id,
+                                                                     @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                     @Field("FORM_ID") int FORM_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_SEARCH_HISTORY)
@@ -495,10 +499,44 @@ public interface ApiService {
                                                                @Field("BRAND") String BRAND,
                                                                @Field("COMPOSITE") int COMPOSITE,
                                                                @Field("KEYWORDS") String KEYWORDS,
-                                                               @Field("MAX_PRICE") int MAX_PRICE,
-                                                               @Field("MIN_PRICE") int MIN_PRICE,
+                                                               @Field("MAX_PRICE") float MAX_PRICE,
+                                                               @Field("MIN_PRICE") float MIN_PRICE,
                                                                @Field("PRICE_SORT") int PRICE_SORT,
-                                                               @Field("SALES") int SALES);
+                                                               @Field("SALES") int SALES,
+                                                               @Field("APPLY") String APPLY,
+                                                               @Field("SIZE") String SIZE,
+                                                               @Field("PET_TYPE") String PET_TYPE,
+                                                               @Field("NET_CONTENT") String NET_CONTENT,
+                                                               @Field("TASTE") String TASTE,
+                                                               @Field("COUNTRY") String COUNTRY,
+                                                               @Field("THING_TYPE") String THING_TYPE,
+                                                               @Field("TIP") String TIP);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
+    Observable<ScreenResult> storeProductExpertScreen(@Field("USER_ID") String user_id,
+                                                      @Field("KEYWORDS") String KEYWORDS);
+
+    /**
+     * store video
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_TODAY_RECOMMEND_VIDEO)
+    Observable<BaseResult<StoreVideoBean>> storeTodayRecommendVideo(@Field("USER_ID") String user_id,
+                                                                    @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_VIDEO_TABS)
+    Observable<BaseResult<List<StoreVideoTabBean>>> storeVideoTabs(@Field("USER_ID") String user_id,
+                                                                   @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_VIDEO_LIST)
+    Observable<BaseResult<List<StoreVideoBean>>> storeVideoList(@Field("USER_ID") String user_id,
+                                                                @Field("CATEGORY") int CATEGORY,
+                                                                @Field("COUNT") int COUNT,
+                                                                @Field("PAGE") int PAGE,
+                                                                @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
 
     /**
      * address

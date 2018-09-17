@@ -21,7 +21,7 @@
             android:drawableLeft="@mipmap/recommend_store_video_icon"
             android:text="今日推荐视频" />
 
-        <include layout="@layout/item_store_video" />
+        <include layout="@layout/item_list_store_video" />
 
     </LinearLayout>
 

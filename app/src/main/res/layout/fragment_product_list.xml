@@ -7,10 +7,6 @@
     android:background="@color/window_bg_color"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/screen_layout_container"
-        layout="@layout/layout_product_screen" />
-
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipe_load_layout"

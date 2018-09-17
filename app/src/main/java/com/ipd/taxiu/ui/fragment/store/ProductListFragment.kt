@@ -15,9 +15,8 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
-import com.ipd.taxiu.widget.ScreenLayout
+import com.ipd.taxiu.utils.ProductScreenView
 import kotlinx.android.synthetic.main.fragment_product_list.view.*
-import kotlinx.android.synthetic.main.layout_product_screen.view.*
 import rx.Observable
 
 class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>() {
@@ -33,16 +32,15 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
     }
 
     private var mSearchKey: String = ""
-    private var screenLayout: ScreenLayout? = null
+    fun setSearchKey(searchKey: String) {
+        mSearchKey = searchKey
+    }
 
     override fun getContentLayout(): Int = R.layout.fragment_product_list
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         mSearchKey = arguments.getString("searchKey", "")
-
-        screenLayout = mRootView?.findViewById(R.id.screen_layout_container)
-        screenLayout?.setBackgroupView(recycler_view)
     }
 
     override fun initListener() {
@@ -62,20 +60,33 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         mContentView.iv_store_home.setOnClickListener {
             MainActivity.launch(mActivity)
         }
-
-        screenLayout?.setSortTypeChangeListener(object : ScreenLayout.OnSortTypeChangeListener {
-            override fun onChange(sortType: ScreenLayout.ScreenType) {
-                refreshWithProgress()
-            }
-        })
     }
 
-    override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        val compositeValue = screenLayout?.getCompositeValue() ?: 0
-        val saleValue = screenLayout?.getSaleValue() ?: 0
-        val priceValue = screenLayout?.getPriceValue() ?: 0
+    private var mScreenView: ProductScreenView? = null
+    fun setProductScreenView(screenView: ProductScreenView) {
+        mScreenView = screenView
+    }
 
-        return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, "", compositeValue, mSearchKey, 0, 0, priceValue, saleValue)
+    /**
+     * 注释请看{@link com.ipd.taxiu.utils.ProductScreenView}
+     */
+    override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
+        val compositeValue = mScreenView?.getCompositeValue() ?: 0
+        val saleValue = mScreenView?.getSaleValue() ?: 0
+        val priceValue = mScreenView?.getPriceValue() ?: 0
+        val maxPrice = mScreenView?.getMaxPrice() ?: 0f
+        val minPrice = mScreenView?.getMinPrice() ?: 0f
+        val applyValue = mScreenView?.getApplyValue() ?: ""
+        val sizeValue = mScreenView?.getSizeValue() ?: ""
+        val petTypeValue = mScreenView?.getPetTypeValue() ?: ""
+        val netContentValue = mScreenView?.getNetContentValue() ?: ""
+        val tasteValue = mScreenView?.getTasteValue() ?: ""
+        val countryValue = mScreenView?.getCountryValue() ?: ""
+        val thingTypeValue = mScreenView?.getThingTypeValue() ?: ""
+
+        return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, "",
+                compositeValue, mSearchKey, maxPrice, minPrice, priceValue, saleValue,
+                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "")
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -121,7 +132,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         refreshWithProgress()
     }
 
-    private fun refreshWithProgress() {
+    fun refreshWithProgress() {
         isCreate = true
         onRefresh()
     }

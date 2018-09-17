@@ -22,10 +22,6 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
 
 
     companion object {
-        fun launch(activity: Activity) {
-            val intent = Intent(activity, StoreVideoDetailActivity::class.java)
-            activity.startActivity(intent)
-        }
 
         fun launch(activity: Activity, videoId: String) {
             val intent = Intent(activity, StoreVideoDetailActivity::class.java)
