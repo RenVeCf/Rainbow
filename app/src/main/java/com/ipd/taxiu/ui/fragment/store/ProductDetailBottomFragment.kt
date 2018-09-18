@@ -90,7 +90,8 @@ class ProductDetailBottomFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mRootView?.web_view?.webChromeClient = null
+        mRootView?.web_view?.removeAllViews()
+        mRootView?.web_view?.destroy()
     }
 
 }
