@@ -21,13 +21,13 @@ class SignInView : ConstraintLayout {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 
-    fun setDate(time: Long, signInDayList: List<SignInDayBean>) {
+    fun setDate(time: Long, signInDayList: List<SignInDayBean>?) {
         tv_date.text = "${DateUtils.getYear(time)}年${DateUtils.getMonth(time)}月"
         sign_in_recycler_view.adapter = SigninAdapter(time, signInDayList)
     }
 
 
-    inner class SigninAdapter(val time: Long, private val signInDayList: List<SignInDayBean>) : RecyclerView.Adapter<SigninAdapter.ViewHolder>() {
+    inner class SigninAdapter(val time: Long, private val signInDayList: List<SignInDayBean>?) : RecyclerView.Adapter<SigninAdapter.ViewHolder>() {
         private var emptyCount = 0
 
         private val mCalendar by lazy { Calendar.getInstance() }
@@ -61,7 +61,7 @@ class SignInView : ConstraintLayout {
             val day = realPosition + 1
             val dateStr = "${mCalendar.get(Calendar.YEAR)}-${StringUtils.formatTimeStr(mCalendar.get(Calendar.MONTH) + 1)}-${StringUtils.formatTimeStr(day)}"
 
-            val signInDay = signInDayList.find { it.CREATETIME == dateStr }
+            val signInDay = signInDayList?.find { it.CREATETIME == dateStr }
             if (signInDay != null) {
                 holder.itemView.tv_day.setBackgroundResource(R.mipmap.sign_in_already_bg)
                 holder.itemView.tv_score.visibility = View.VISIBLE

@@ -12,5 +12,14 @@ public class LifeLineBean {
     public int MONTH_NUM;
     public int DAY_NUM;
 
-
+    @Override
+    public String toString() {
+        return "LifeLineBean{" +
+                "date='" + date + '\'' +
+                ", DAY_ID=" + DAY_ID +
+                ", CONTENT='" + CONTENT + '\'' +
+                ", MONTH_NUM=" + MONTH_NUM +
+                ", DAY_NUM=" + DAY_NUM +
+                '}';
+    }
 }

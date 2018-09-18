@@ -50,7 +50,8 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
                         override fun _onNext(result: BaseResult<HomeResultBean>) {
                             if (result.code == 0) {
                                 val homeResult = result.data
-                                if (homeResult.PET == null) {
+                                //目前没有宠物，也返回了宠物对象，只能判断宠物ID是否为0
+                                if (homeResult.PET == null || homeResult.PET.PET_ID == 0) {
                                     onWithoutPet()
                                 } else {
                                     onHasPet(homeResult.PET)

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.LinearLayout
 import android.widget.Scroller
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.LifeLineBean
 import kotlinx.android.synthetic.main.item_pet_life_line.view.*
@@ -41,8 +42,12 @@ class PetLifeLineView : LinearLayout {
 
     fun setLifeLineData(lifeLineList: List<LifeLineBean>) {
         if (lifeLineList.isEmpty()) return
+        if (lifeLineList == this.lifeLineList) {
+            val postionByScrollX = getPostionByScrollX(scrollX)
+            mOnPositionChangeListener?.onChange(postionByScrollX)
+            return
+        }
         this.lifeLineList = lifeLineList
-
         removeAllViews()
         lifeLineList.forEachIndexed { index, info ->
             val lifeLineView = mInflater.inflate(R.layout.item_pet_life_line, this, false)
@@ -57,7 +62,10 @@ class PetLifeLineView : LinearLayout {
             scrollTo(-getItemWidth(), 0)
             mOnPositionChangeListener?.onChange(0)
         } else {
-            mOnPositionChangeListener?.onChange(1)
+            val lastScrollX = lifeLineList.size * getItemWidth() - (getItemWidth() * 2)
+            scrollTo(lastScrollX, 0)
+            mOnPositionChangeListener?.onChange(getPostionByScrollX(lastScrollX))
+//            mOnPositionChangeListener?.onChange(1)
         }
 
     }

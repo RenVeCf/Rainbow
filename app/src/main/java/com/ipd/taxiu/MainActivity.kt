@@ -9,14 +9,17 @@ import android.support.v4.app.FragmentTransaction
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.SignInInfoBean
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.fragment.*
 import com.ipd.taxiu.widget.PublishTaxiuDialog
 import com.ipd.taxiu.widget.SignInPopup
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.Observable
-import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity() {
     companion object {
@@ -35,11 +38,22 @@ class MainActivity : BaseActivity() {
     }
 
     override fun loadData() {
-        Observable.timer(2000L, TimeUnit.MILLISECONDS)
+        checkIsSignIn()
+    }
+
+    /**
+     * 是否签到
+     */
+    private fun checkIsSignIn() {
+        ApiManager.getService().signInInfo(GlobalParam.getUserIdOrJump())
                 .compose(RxScheduler.applyScheduler())
-                .subscribe {
-                    showSignInView()
-                }
+                .subscribe(object : Response<BaseResult<SignInInfoBean>>() {
+                    override fun _onNext(result: BaseResult<SignInInfoBean>) {
+                        if (result.code == 0 && result.data.STATUS == 0) {
+                            showSignInView()
+                        }
+                    }
+                })
     }
 
     private fun showSignInView() {

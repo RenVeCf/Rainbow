@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean
@@ -120,7 +121,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 }
 
                 //宠物生命线
-                if (headerInfo.petInfo == null) {
+                if (headerInfo.petInfo == null || headerInfo.petInfo.PET_ID == 0) {
                     holder.itemView.cl_user_extend.visibility = View.GONE
                 } else {
                     holder.itemView.cl_user_extend.visibility = View.VISIBLE
