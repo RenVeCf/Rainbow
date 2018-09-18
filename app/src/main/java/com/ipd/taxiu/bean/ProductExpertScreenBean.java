@@ -17,6 +17,24 @@ public class ProductExpertScreenBean {
         public String NAME;
         public String MIN_PRICE;
         public String MAX_PRICE;
+
+        public ScreenInfo(int MODULE_ID, String NAME) {
+            this.MODULE_ID = MODULE_ID;
+            this.NAME = NAME;
+        }
+
+        public ScreenInfo() {
+        }
+
+        @Override
+        public String toString() {
+            return "ScreenInfo{" +
+                    "MODULE_ID=" + MODULE_ID +
+                    ", NAME='" + NAME + '\'' +
+                    ", MIN_PRICE='" + MIN_PRICE + '\'' +
+                    ", MAX_PRICE='" + MAX_PRICE + '\'' +
+                    '}';
+        }
     }
 
 }

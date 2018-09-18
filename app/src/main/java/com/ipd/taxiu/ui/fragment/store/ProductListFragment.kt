@@ -76,6 +76,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         val priceValue = mScreenView?.getPriceValue() ?: 0
         val maxPrice = mScreenView?.getMaxPrice() ?: 0f
         val minPrice = mScreenView?.getMinPrice() ?: 0f
+        val brandValue = mScreenView?.getBrandValue() ?: ""
         val applyValue = mScreenView?.getApplyValue() ?: ""
         val sizeValue = mScreenView?.getSizeValue() ?: ""
         val petTypeValue = mScreenView?.getPetTypeValue() ?: ""
@@ -84,7 +85,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         val countryValue = mScreenView?.getCountryValue() ?: ""
         val thingTypeValue = mScreenView?.getThingTypeValue() ?: ""
 
-        return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, "",
+        return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
                 compositeValue, mSearchKey, maxPrice, minPrice, priceValue, saleValue,
                 applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "")
     }

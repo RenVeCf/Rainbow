@@ -16,13 +16,20 @@ class ProductExpertScreenLayout : ConstraintLayout {
     private var MAX_SHOW = 3
     private var mScreenInfo: ProductExpertScreenBean? = null
     private var isShowMore = false
+    private var mMoreInfo: ProductExpertScreenBean.ScreenInfo? = null
 
     override fun onFinishInflate() {
         super.onFinishInflate()
         setShowMoreImgRes()
         ll_more.setOnClickListener {
             if (isBrandScreen()) {
-                ProductBrandScreenPopup(context).showPopupWindow()
+                ProductBrandScreenPopup(context).setOnConfirmCallback {
+                    mMoreInfo = it
+                    tv_text.isSelected = it != null
+                    tv_text.text = it?.NAME ?: "全部"
+                    flow_layout.clearCheck()
+
+                }.showPopupWindow()
             } else {
                 isShowMore = !isShowMore
                 setContentUI()
@@ -59,8 +66,14 @@ class ProductExpertScreenLayout : ConstraintLayout {
         setShowMoreImgRes()
     }
 
-    fun getCheckedPos(): Int {
-        return flow_layout.getCheckedPos()
+    /**
+     * 获取选中的筛选条件
+     */
+    fun getCheckedScreenInfo(): ProductExpertScreenBean.ScreenInfo? {
+        if (mMoreInfo != null) return mMoreInfo
+        val checkedPos = flow_layout.getCheckedPos()
+        if (checkedPos < 0) return null
+        return mScreenInfo?.LIST?.get(flow_layout.getCheckedPos())
     }
 
     private fun setShowMoreImgRes() {

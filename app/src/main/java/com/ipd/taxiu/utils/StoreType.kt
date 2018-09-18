@@ -8,6 +8,13 @@ object StoreType {
     const val GUESS_LIKE_YOUNG_CAT = 4
     const val GUESS_LIKE_ADULT_CAT = 5
 
+
+
+    const val PRODUCT_BRAND_ALL = 0
+    const val PRODUCT_BRAND_RECOMMEND = 0
+
+
+
     fun getGuessLikeTypeBySpecial(specialType: Int): Int {
         return when (specialType) {
             StorePetSpecialType.SMALL_DOG -> GUESS_LIKE_SMALL_DOG

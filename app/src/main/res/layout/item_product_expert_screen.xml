@@ -27,9 +27,10 @@
         app:layout_constraintTop_toTopOf="@id/tv_screen_name">
 
         <TextView
+            android:id="@+id/tv_text"
             style="@style/BaseTextStyle"
             android:text="全部"
-            android:textColor="@color/LightGrey" />
+            android:textColor="@drawable/selector_screen_text_color" />
 
         <ImageView
             android:id="@+id/iv_show_more"

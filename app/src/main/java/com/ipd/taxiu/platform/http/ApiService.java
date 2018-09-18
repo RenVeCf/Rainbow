@@ -472,7 +472,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_BRAND_LIST)
-    Observable<BaseResult<List<ProductBrandBean>>> storeBrandList(@Field("USER_ID") String user_id);
+    Observable<BaseResult<List<ProductBrandBean>>> storeBrandList(@Field("USER_ID") String user_id,
+                                                                  @Field("TYPE") int TYPE);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_VIDEO_DETAIL)

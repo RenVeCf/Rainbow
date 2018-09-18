@@ -2,65 +2,153 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#8f000000">
+    android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintRight_toLeftOf="@id/cl_content" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_content"
         android:layout_width="@dimen/product_screen_width"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
         android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical"
         app:layout_constraintRight_toRightOf="parent">
 
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_pop_sign_in_bg"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp">
+            app:layout_constraintTop_toTopOf="parent">
 
-
-            <TextView
-                style="@style/TitleTextStyle"
-                android:text="每日签到赚积分"
-                android:textSize="19sp" />
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/base_padding"
+                android:src="@mipmap/back" />
 
             <TextView
                 style="@style/BaseTextStyle"
-                android:layout_marginTop="5dp"
-                android:text="欢迎回来"
-                android:textColor="@color/LightGrey" />
+                android:layout_centerInParent="true"
+                android:text="品牌" />
 
-            <ImageView
-                android:layout_width="wrap_content"
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/title_view_line"
+            style="@style/ViewLine"
+            app:layout_constraintTop_toBottomOf="@id/rl_title" />
+
+        <LinearLayout
+            android:id="@+id/ll_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/title_view_line">
+
+            <LinearLayout
+                android:id="@+id/ll_recommend"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:src="@mipmap/pop_sign_in" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginBottom="@dimen/small_padding"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="推荐品牌"
+                    android:textColor="@drawable/selector_tab_text_color" />
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_sort"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginBottom="@dimen/small_padding"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="字母排序"
+                    android:textColor="@drawable/selector_tab_text_color" />
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line"
+            style="@style/ViewLine"
+            app:layout_constraintTop_toBottomOf="@id/ll_tab" />
+
+        <com.ipd.taxiu.widget.NoScrollViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_bottom_menu"
+            app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+        <View
+            android:id="@+id/view_line2"
+            style="@style/ViewLine"
+            app:layout_constraintTop_toBottomOf="@id/view_pager" />
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_line2">
 
 
             <TextView
-                android:id="@+id/tv_sign_in"
-                style="@style/TitleTextStyle"
-                android:layout_marginTop="@dimen/base_padding"
+                android:id="@+id/tv_brand_reset"
+                style="@style/BaseTextStyle"
+                android:layout_marginRight="@dimen/base_padding"
+                android:background="@drawable/shape_reset_bg"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="@dimen/small_padding"
+                android:text="重置" />
+
+            <TextView
+                android:id="@+id/tv_brand_confirm"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
                 android:background="@drawable/shape_buy_bg"
-                android:paddingBottom="4dp"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:paddingTop="4dp"
-                android:text="去签到"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="@dimen/small_padding"
+                android:text="确定"
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/base_padding"
-            android:src="@mipmap/pop_close" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

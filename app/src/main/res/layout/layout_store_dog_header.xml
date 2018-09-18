@@ -44,7 +44,7 @@
             app:layout_constraintRight_toLeftOf="@id/fl_big_dog">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/small_dog" />
 
@@ -72,7 +72,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/big_dog" />
 
@@ -101,7 +101,7 @@
             app:layout_constraintTop_toBottomOf="@id/fl_small_dog">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/young_dog" />
 

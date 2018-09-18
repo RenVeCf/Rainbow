@@ -43,7 +43,7 @@
             app:layout_constraintRight_toLeftOf="@id/fl_adult_cat">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/young_cat" />
 
@@ -71,7 +71,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/adult_cat" />
 

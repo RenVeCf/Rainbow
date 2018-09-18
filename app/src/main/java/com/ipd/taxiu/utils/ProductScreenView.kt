@@ -6,6 +6,7 @@ interface ProductScreenView {
     fun getPriceValue(): Int//价格排序
     fun getMinPrice(): Float//最小价格
     fun getMaxPrice(): Float//最大价格
+    fun getBrandValue(): String//品牌
     fun getApplyValue(): String//适用阶段
     fun getSizeValue(): String//宠物体型
     fun getPetTypeValue(): String//宠物品种

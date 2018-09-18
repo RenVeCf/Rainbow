@@ -3,6 +3,7 @@ package com.ipd.taxiu.ui.activity.store
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.DrawerLayout
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -78,6 +79,8 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
     override fun initView(bundle: Bundle?) {
         mSearchKey = intent.getStringExtra("searchKey")
         et_search.text = mSearchKey
+
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         screenLayout = findViewById(R.id.screen_layout_container)
         screenLayout?.setBackgroupView(fl_container)
@@ -160,7 +163,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                         var minPrice = et_min_price.text.toString().trim()
                                         var maxPrice = et_max_price.text.toString().trim()
 
-//                                        val pos = price_flow_layout.getCheckedPos()
+//                                        val pos = price_flow_layout.getCheckedScreenInfo()
 //                                        if (pos != -1) {
 //                                            val screenInfo = result.data.PRICE_DATA.LIST[pos]
 //                                            minPrice = screenInfo.MIN_PRICE
@@ -176,17 +179,15 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                                 continue
                                             }
                                             val productExpertScreenLayout = cl_screen.getChildAt(index) as ProductExpertScreenLayout
-                                            val checkedPos = productExpertScreenLayout.getCheckedPos()
-                                            if (checkedPos != -1) {
-                                                //集合中没有price，所以索引-1
-                                                val screenInfo = storeScreenProductList[index - 1].LIST[checkedPos]
-                                                //保存到map中
+                                            val screenInfo = productExpertScreenLayout.getCheckedScreenInfo()
+                                            if (screenInfo != null) {
+                                                //保存到map中(key:筛选分类名称,value:选中的子分类信息)
                                                 mScreenMap[productExpertScreenLayout.tag.toString()] = screenInfo
                                             } else {
                                                 mScreenMap.remove(productExpertScreenLayout.tag.toString())
                                             }
                                         }
-                                        LogUtils.e("tag", "mScreenMap:${mScreenMap.toString()}")
+                                        LogUtils.e("tag", "mScreenMap:$mScreenMap")
 
                                         //切换图标及刷新页面
                                         screenLayout?.onExpertSort()
@@ -235,6 +236,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
     override fun getPriceValue(): Int = screenLayout?.getPriceValue() ?: 0
     override fun getMinPrice(): Float = mMinPrice
     override fun getMaxPrice(): Float = mMaxPrice
+    override fun getBrandValue(): String = (mScreenMap["品牌"]?.MODULE_ID ?: "").toString()
     override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.MODULE_ID ?: "").toString()
     override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.MODULE_ID ?: "").toString()
     override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.MODULE_ID ?: "").toString()
