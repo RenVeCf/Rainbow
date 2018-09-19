@@ -9,18 +9,18 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.imageload.ImageLoader
-import kotlinx.android.synthetic.main.item_clearance_product.view.*
+import kotlinx.android.synthetic.main.item_product_new.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ClearanceProductAdapter(val context: Context, private val mType: Int, private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit) : RecyclerView.Adapter<ClearanceProductAdapter.ViewHolder>() {
+class NewProductAdapter(val context: Context,  private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit) : RecyclerView.Adapter<NewProductAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_clearance_product, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_new, parent, false))
 
     }
 
@@ -30,10 +30,10 @@ class ClearanceProductAdapter(val context: Context, private val mType: Int, priv
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
         holder.itemView.tv_product_name.text = info.PROCUCT_NAME
-        holder.itemView.tv_price.text = info.CURRENT_PRICE
+        holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
         holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
-        //临期清仓显示有效期
-        holder.itemView.tv_product_sales.text = if (mType == 2) "有效期至 ${info.END_TIME}" else "库存 ${info.STOCK}"
+        holder.itemView.tv_product_sales.text = "已售 ${info.BUYNUM}"
+
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -1,13 +1,17 @@
 package com.ipd.taxiu.ui.fragment.store
 
 import android.support.v7.widget.LinearLayoutManager
-import com.ipd.taxiu.adapter.ProductAdapter
+import com.ipd.taxiu.adapter.NewProductAdapter
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ProductBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import rx.Observable
 
-class NewProductListFragment : ListFragment<List<ProductBean>, ProductBean>() {
+class NewProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>() {
 
     companion object {
         fun newInstance(): NewProductListFragment {
@@ -17,29 +21,25 @@ class NewProductListFragment : ListFragment<List<ProductBean>, ProductBean>() {
     }
 
 
-    override fun loadListData(): Observable<List<ProductBean>> {
-        return Observable.create<List<ProductBean>> {
-            val productList = ArrayList<ProductBean>()
-            for (index: Int in 0 until 10) {
-                val productBean = ProductBean()
-                productBean.isNew = true
-                productList.add(productBean)
-            }
-            it.onNext(productList)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
+        return ApiManager.getService().storeProductNew(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page)
     }
 
-    override fun isNoMoreData(result: List<ProductBean>): Int {
+    override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
-    private var mAdapter: ProductAdapter? = null
+    private var mAdapter: NewProductAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ProductAdapter(mActivity, data, {
+            mAdapter = NewProductAdapter(mActivity, data, {
                 //商品详情
-                ProductDetailActivity.launch(mActivity)
+                ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -48,8 +48,8 @@ class NewProductListFragment : ListFragment<List<ProductBean>, ProductBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<ProductBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<ProductBean>>) {
+        data?.addAll(result?.data)
     }
 
 

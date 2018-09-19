@@ -548,6 +548,18 @@ public interface ApiService {
                                                                              @Field("PRODUCT_ID") int PRODUCT_ID,
                                                                              @Field("FORM_ID") int FORM_ID);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_CLEARANCE_PRODUCT)
+    Observable<BaseResult<List<ProductBean>>> storeProductClearance(@Field("USER_ID") String user_id,
+                                                                    @Field("COUNT") int COUNT,
+                                                                    @Field("PAGE") int PAGE,
+                                                                    @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_NEW_PRODUCT)
+    Observable<BaseResult<List<ProductBean>>> storeProductNew(@Field("USER_ID") String user_id,
+                                                              @Field("COUNT") int COUNT,
+                                                              @Field("PAGE") int PAGE);
 
     /**
      * store video

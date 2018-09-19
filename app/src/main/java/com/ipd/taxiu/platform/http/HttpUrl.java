@@ -50,6 +50,8 @@ public interface HttpUrl {
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";
     String STORE_PRODUCT_FLASH_SALE = "app_activity/getList.do";
     String STORE_PRODUCT_FLASH_SALE_REMIND = "app_activity/toRemind.do";
+    String STORE_CLEARANCE_PRODUCT = "app_activity/pullList.do";
+    String STORE_NEW_PRODUCT = "app_activity/newList.do";
 
     //store video
     String STORE_TODAY_RECOMMEND_VIDEO = "app_tide_video/todayRecom.do";

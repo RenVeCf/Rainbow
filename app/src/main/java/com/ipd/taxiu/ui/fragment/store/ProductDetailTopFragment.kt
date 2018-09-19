@@ -61,7 +61,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
 
         mContentView.tv_product_name.text = mProductInfo.PROCUCT_NAME
-        mContentView.tv_price.text = mProductInfo.PRICE
+        mContentView.tv_price.text = mProductInfo.CURRENT_PRICE
         mContentView.tv_old_price.text = "￥${mProductInfo.REFER_PRICE}"
 
         if (mProductInfo.POST_FEE == 0){

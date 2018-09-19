@@ -28,7 +28,7 @@ class SpecialProductAdapter(val context: Context, private val list: List<Product
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
         holder.itemView.tv_product_name.text = info.PROCUCT_NAME
-        holder.itemView.tv_product_price.text = "￥${info.PRICE}"
+        holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
 
 
         holder.itemView.setOnClickListener {

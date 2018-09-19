@@ -44,6 +44,7 @@ public class ProductDetailBean {
     public int FORM_ID;
     public String NET_CONTENT;
     public String TASTE;
+    public String CURRENT_PRICE;
     public String PRICE;
     public String REFER_PRICE;
     public String DEAL_PRICE;

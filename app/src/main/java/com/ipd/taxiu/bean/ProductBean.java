@@ -9,10 +9,17 @@ public class ProductBean {
     public String LOGO;
     public int FORM_ID;
     public int REPLY;
-    public int FORM_BUYNUM;
     public float NET_CONTENT;
-    public float PRICE;
-    public float REFER_PRICE;
-    public float DEAL_PRICE;
-    public float FORM_GROUP_PRICE;
+    public String CURRENT_PRICE;
+    public String PRICE;
+    public String REFER_PRICE;
+    public String DEAL_PRICE;
+    public String FORM_GROUP_PRICE;
+    public String STOCK;
+    public String START_TIME;
+    public String END_TIME;
+    public String BUYNUM;
+    public String FORM_BUYNUM;
+    public int KIND;
+
 }
