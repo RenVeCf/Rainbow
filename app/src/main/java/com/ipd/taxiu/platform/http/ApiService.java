@@ -9,6 +9,7 @@ import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
+import com.ipd.taxiu.bean.FlashSaleProductBean;
 import com.ipd.taxiu.bean.HomeResultBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
@@ -525,6 +526,28 @@ public interface ApiService {
     @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
     Observable<ScreenResult> storeProductExpertScreen(@Field("USER_ID") String user_id,
                                                       @Field("KEYWORDS") String KEYWORDS);
+
+
+    /**
+     * 商品活动
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_TODAY_PRODUCT_FLASH_SALE)
+    Observable<BaseResult<FlashSaleProductBean>> storeTodayProductFlashSale(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE)
+    Observable<BaseResult<List<FlashSaleProductBean>>> storeProductFlashSale(@Field("USER_ID") String user_id,
+                                                                             @Field("COUNT") int COUNT,
+                                                                             @Field("PAGE") int PAGE,
+                                                                             @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE_REMIND)
+    Observable<BaseResult<FlashSaleProductBean>> storeProductFlashSaleRemind(@Field("USER_ID") String user_id,
+                                                                             @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                             @Field("FORM_ID") int FORM_ID);
+
 
     /**
      * store video

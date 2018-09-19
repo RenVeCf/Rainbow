@@ -15,6 +15,11 @@ object StoreType {
 
 
 
+    const val FLASH_SALE_TODAY = 1
+    const val FLASH_SALE_TOMORROW = 2
+
+
+
     fun getGuessLikeTypeBySpecial(specialType: Int): Int {
         return when (specialType) {
             StorePetSpecialType.SMALL_DOG -> GUESS_LIKE_SMALL_DOG

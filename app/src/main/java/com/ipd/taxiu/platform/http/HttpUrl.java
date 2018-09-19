@@ -46,6 +46,11 @@ public interface HttpUrl {
     String STORE_PRODUCT_LIST = "app_shop/productAll.do";
     String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
 
+    //store activity
+    String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";
+    String STORE_PRODUCT_FLASH_SALE = "app_activity/getList.do";
+    String STORE_PRODUCT_FLASH_SALE_REMIND = "app_activity/toRemind.do";
+
     //store video
     String STORE_TODAY_RECOMMEND_VIDEO = "app_tide_video/todayRecom.do";
     String STORE_VIDEO_TABS = "app_tide_video/videoGroup.do";
