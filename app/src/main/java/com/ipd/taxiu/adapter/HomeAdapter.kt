@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextUtils
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
@@ -139,6 +140,22 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                             val lifeLineInfo = petLifeLineList[pos]
                             holder.itemView.tv_life_line_title.text = "${lifeLineInfo.MONTH_NUM}个月${lifeLineInfo.DAY_NUM}天"
                             holder.itemView.tv_cur_date.text = lifeLineInfo.date
+
+//                            val text = "“${context.getString(R.string.home_pet_talk)}”"
+                            if (TextUtils.isEmpty(lifeLineInfo.CONTENT)) {
+                                holder.itemView.tv_pet_talk.visibility = View.GONE
+                            } else {
+                                holder.itemView.tv_pet_talk.visibility = View.VISIBLE
+                                val text = "“${lifeLineInfo.CONTENT}”"
+                                val spannedString = SpannableString(text)
+                                spannedString.setSpan(StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                spannedString.setSpan(AbsoluteSizeSpan(22, true), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                spannedString.setSpan(StyleSpan(Typeface.BOLD), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                spannedString.setSpan(AbsoluteSizeSpan(22, true), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                holder.itemView.tv_pet_talk.text = spannedString
+                            }
                         }
                     })
 
@@ -159,16 +176,6 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 holder.itemView.ll_classroom.setOnClickListener {
                     ClassRoomIndexActivity.launch(context as Activity)
                 }//课堂
-
-                val text = "“${context.getString(R.string.home_pet_talk)}”"
-                val spannedString = SpannableString(text)
-                spannedString.setSpan(StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannedString.setSpan(AbsoluteSizeSpan(22, true), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannedString.setSpan(StyleSpan(Typeface.BOLD), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannedString.setSpan(AbsoluteSizeSpan(22, true), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannedString.setSpan(ForegroundColorSpan(context.resources.getColor(R.color.concrete)), text.length - 1, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                holder.itemView.tv_pet_talk.text = spannedString
 
             }
             ItemType.TAXIU_BOUTIQUE -> {
