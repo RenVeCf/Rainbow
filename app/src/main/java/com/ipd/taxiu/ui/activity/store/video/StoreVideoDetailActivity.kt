@@ -7,8 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import cn.jzvd.Jzvd
 import com.ipd.taxiu.R
-import com.ipd.taxiu.adapter.ProductAdapter
 import com.ipd.taxiu.adapter.StoreIndexRecommendVideoAdapter
+import com.ipd.taxiu.adapter.VideoProductAdapter
 import com.ipd.taxiu.bean.StoreVideoDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.http.HttpUrl
@@ -72,7 +72,7 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
         tv_video_time.text = info.TIME_LENGTH
 
 
-        product_recycler_view.adapter = ProductAdapter(mActivity, info.PRODUCT_LIST, {
+        product_recycler_view.adapter = VideoProductAdapter(mActivity, info.PRODUCT_LIST, {
             ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
         })
 

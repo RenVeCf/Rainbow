@@ -78,6 +78,15 @@ class ProductDetailActivity : BaseUIActivity() {
             //立即购买
 
         }
+
+        ll_kefu.setOnClickListener {
+            //客服
+
+        }
+        ll_collect.setOnClickListener {
+            //收藏
+
+        }
     }
 
     fun switchTab(pos: Int) {
