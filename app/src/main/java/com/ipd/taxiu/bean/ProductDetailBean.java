@@ -51,7 +51,13 @@ public class ProductDetailBean {
     public String FORM_GROUP_PRICE;
     public int STOCK;
     public List<COUPONLISTBean> COUPON_LIST;
-    public List<GROUPLISTBean> GROUP_LIST;
+    public List<ProductBean> GROUP_LIST;
+    public int RUSH_STATE;
+    public String SYS_TIME;
+    public String SYS_TIME_STAMP;
+    public String START_TIME_STAMP;
+    public String END_TIME_STAMP;
+    public int IS_COLLECT;
 
 
     public static class COUPONLISTBean {
@@ -73,20 +79,5 @@ public class ProductDetailBean {
         public String CREATETIME;
         public int STATUS;
 
-    }
-
-    public static class GROUPLISTBean {
-
-
-        public int PRODUCT_ID;
-        public String PROCUCT_NAME;
-        public String PRODUCT_NUMBER;
-        public String BRAND;
-        public String LOGO;
-        public int FORM_ID;
-        public String PRICE;
-        public String REFER_PRICE;
-        public String DEAL_PRICE;
-        public String FORM_GROUP_PRICE;
     }
 }

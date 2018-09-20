@@ -4,15 +4,17 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewTreeObserver
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.BannerPagerAdapter
 import com.ipd.taxiu.adapter.PackageProductAdapter
 import com.ipd.taxiu.bean.BannerBean
 import com.ipd.taxiu.bean.ProductDetailBean
-import com.ipd.taxiu.bean.TalkBean
 import com.ipd.taxiu.ui.BaseUIFragment
+import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import com.ipd.taxiu.utils.StoreType
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
@@ -59,26 +61,42 @@ class ProductDetailTopFragment : BaseUIFragment() {
                 })
         mContentView.store_banner.startAutoScroll()
 
+        when (mProductInfo.KIND) {
+            StoreType.PRODUCT_NORMAL -> {
+                mContentView.ll_price.visibility = View.VISIBLE
+                mContentView.layout_option_package.visibility = View.GONE
 
+            }
+            StoreType.PRODUCT_GROUP_PRODUCT -> {
+                mContentView.ll_price.visibility = View.VISIBLE
+
+                //可选套餐
+                mContentView.layout_option_package.visibility = View.VISIBLE
+                mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+                mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, mProductInfo.GROUP_LIST, {
+                    ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
+                })
+            }
+            else -> {
+                mContentView.ll_price.visibility = View.GONE
+                mContentView.layout_option_package.visibility = View.GONE
+
+            }
+        }
+
+
+        mContentView.rl_product_extra.setProductInfo(mProductInfo)
         mContentView.tv_product_name.text = mProductInfo.PROCUCT_NAME
         mContentView.tv_price.text = mProductInfo.CURRENT_PRICE
         mContentView.tv_old_price.text = "￥${mProductInfo.REFER_PRICE}"
 
-        if (mProductInfo.POST_FEE == 0){
+        if (mProductInfo.POST_FEE == 0) {
             mContentView.tv_express_fee.text = "快递：免运费"
-        }else{
+        } else {
             mContentView.tv_express_fee.text = "快递：￥${mProductInfo.POST_FEE}"
         }
         mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
         mContentView.tv_ship_address.text = mProductInfo.SEND_CITY
-
-
-
-
-        mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
-        mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, listOf(TalkBean(), TalkBean(), TalkBean(), TalkBean()), {
-
-        })
     }
 
     override fun initListener() {

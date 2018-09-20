@@ -15,6 +15,13 @@
             layout="@layout/layout_store_banner"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.ipd.taxiu.widget.ProductExtraLayout
+            android:id="@+id/rl_product_extra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_banner" />
+
         <TextView
             android:id="@+id/tv_product_name"
             style="@style/TitleTextStyle"
@@ -22,17 +29,19 @@
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginRight="@dimen/base_padding"
             android:ellipsize="end"
+            android:layout_marginTop="@dimen/small_padding"
             android:maxLines="2"
             android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期母犬及幼犬适用 3kg"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_banner" />
+            app:layout_constraintTop_toBottomOf="@id/rl_product_extra" />
 
         <LinearLayout
             android:id="@+id/ll_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding"
+            app:layout_goneMarginTop="0dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="@id/tv_product_name"
             app:layout_constraintRight_toRightOf="@id/tv_product_name"
@@ -141,9 +150,9 @@
 
             <TextView
                 style="@style/SmallTextStyle"
-                android:text="领券"
-                android:drawableRight="@mipmap/arrow_right"
                 android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/arrow_right"
+                android:text="领券"
                 android:textColor="@color/LightGrey" />
 
 

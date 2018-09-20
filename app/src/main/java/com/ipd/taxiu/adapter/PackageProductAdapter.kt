@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.TalkBean
+import com.ipd.taxiu.bean.ProductBean
+import com.ipd.taxiu.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_package_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class PackageProductAdapter(val context: Context, private val list: List<TalkBean>?, private val itemClick: (info: TalkBean) -> Unit) : RecyclerView.Adapter<PackageProductAdapter.ViewHolder>() {
+class PackageProductAdapter(val context: Context, private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit) : RecyclerView.Adapter<PackageProductAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -23,6 +25,10 @@ class PackageProductAdapter(val context: Context, private val list: List<TalkBea
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
+        holder.itemView.tv_product_name.text = info.PROCUCT_NAME
+        holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

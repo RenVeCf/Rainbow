@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:padding="@dimen/base_padding">
+
+
+    <TextView
+        android:id="@+id/tv_price_unit"
+        style="@style/SmallTextStyle"
+        android:layout_marginBottom="4dp"
+        android:text="￥"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/tv_clearance_price" />
+
+    <TextView
+        android:id="@+id/tv_clearance_price"
+        style="@style/SmallTextStyle"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tv_price_unit"
+        tools:text="61.00" />
+
+    <TextView
+        android:id="@+id/tv_clearance_price_old"
+        style="@style/SmallTextStyle"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/tv_clearance_price"
+        tools:text="￥61.00" />
+
+    <TextView
+        android:id="@+id/tv_clearance_buy_num"
+        style="@style/SmallTextStyle"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@id/tv_clearance_price_old"
+        app:layout_constraintTop_toBottomOf="@id/tv_clearance_price_old"
+        tools:text="已有5483人抢购" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -55,7 +55,6 @@ public class AutoScrollerViewPager extends ViewPager {
 //        handler.removeMessages(SCROLL_WHAT);
     }
 
-
     private void sendScrollMessage(long delayTimeInMills) {
         /** remove messages before, keeps one message is running at most **/
         handler.removeMessages(SCROLL_WHAT);
