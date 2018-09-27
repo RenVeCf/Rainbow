@@ -48,13 +48,22 @@
     </android.support.constraint.ConstraintLayout>
 
 
+    <TextView
+        android:id="@+id/tv_voice_code"
+        style="@style/BaseTextStyle"
+        android:text="语音验证码"
+        android:textColor="@color/voice_code_text_color"
+        app:layout_constraintRight_toRightOf="@id/et_phone"
+        app:layout_constraintTop_toBottomOf="@id/cl_sms" />
+
+
     <Button
         android:id="@+id/btn_login"
         style="@style/AccountBtnStyle"
         android:layout_marginTop="40dp"
         android:enabled="false"
         android:text="登录"
-        app:layout_constraintTop_toBottomOf="@id/cl_sms" />
+        app:layout_constraintTop_toBottomOf="@id/tv_voice_code" />
 
 
 </android.support.constraint.ConstraintLayout>

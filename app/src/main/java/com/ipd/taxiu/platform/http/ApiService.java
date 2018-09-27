@@ -88,7 +88,8 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST(HttpUrl.REGISTER_SMS_CODE)
-    Observable<BaseResult<String>> registerSmsCode(@Field("PHONE") String PHONE);
+    Observable<BaseResult<String>> registerSmsCode(@Field("PHONE") String PHONE,
+                                                   @Field("TYPE") String TYPE);
 
     @FormUrlEncoded
     @POST(HttpUrl.REGISTER)
@@ -105,7 +106,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.PHONE_LOGIN_SMS_CODE)
-    Observable<BaseResult<String>> phoneLoginSmsCode(@Field("PHONE") String PHONE);
+    Observable<BaseResult<String>> phoneLoginSmsCode(@Field("PHONE") String PHONE,
+                                                     @Field("TYPE") String TYPE);
 
     @FormUrlEncoded
     @POST(HttpUrl.PHONE_LOGIN)

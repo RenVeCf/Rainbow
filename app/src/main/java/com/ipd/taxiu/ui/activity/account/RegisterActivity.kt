@@ -11,7 +11,6 @@ import com.ipd.taxiu.bean.RegisterBean
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.TimeCountHelper
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -70,7 +69,12 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
 
         tv_get_sms.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone)
+            mPresenter?.getSmsCode(phone, "1")
+        }
+        tv_voice_code.setOnClickListener {
+            //语音验证码
+            val phone = et_phone.text.toString().trim()
+            mPresenter?.getSmsCode(phone, "2")
         }
 
 
@@ -92,18 +96,22 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
     private fun initCodeBtn() {
         tv_get_sms.isEnabled = true
         tv_get_sms.text = "获取验证码"
+        tv_voice_code.isEnabled = true
+        tv_voice_code.text = "语音验证码"
     }
 
     private var mTimeCountHelper: TimeCountHelper? = null
     override fun getSmsCodeSuccess() {
         toastShow(true, "已发送验证码到您的手机")
         tv_get_sms.isEnabled = false
+        tv_voice_code.isEnabled = false
 
         if (mTimeCountHelper == null) {
             mTimeCountHelper = TimeCountHelper.newInstance().setTimeCountListener(
                     object : TimeCountHelper.TimeCountListener {
                         override fun onChange(aLong: Long) {
                             tv_get_sms.text = "${aLong}秒"
+                            tv_voice_code.text = "${aLong}秒"
                         }
 
                         override fun onFinish() {
@@ -123,7 +131,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
 
     override fun registerSuccess(registerInfo: RegisterBean) {
         toastShow(true, "注册成功")
-        PetStageActivity.launch(mActivity,registerInfo.USER_ID.toString())
+        PetStageActivity.launch(mActivity, registerInfo.USER_ID.toString())
         finish()
     }
 

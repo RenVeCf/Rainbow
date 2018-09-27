@@ -41,6 +41,7 @@
     <color name="concrete">#D0D0D0</color>
     <color name="medium_sea_green">#3BBD60</color>
     <color name="c_999999">#999999</color>
+    <color name="voice_code_text_color">#3792FB</color>
 
     <color name="full_screen_overlay">#55525455</color>
 

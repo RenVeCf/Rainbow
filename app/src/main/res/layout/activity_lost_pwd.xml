@@ -59,13 +59,23 @@
         app:layout_constraintTop_toBottomOf="@id/cl_sms" />
 
 
+    <TextView
+        android:id="@+id/tv_voice_code"
+        style="@style/BaseTextStyle"
+        android:text="语音验证码"
+        android:textColor="@color/voice_code_text_color"
+        app:layout_constraintRight_toRightOf="@id/et_password"
+        app:layout_constraintTop_toBottomOf="@id/et_password" />
+
+
+
     <Button
         android:id="@+id/btn_find"
         style="@style/AccountBtnStyle"
         android:layout_marginTop="40dp"
         android:enabled="false"
         android:text="确定"
-        app:layout_constraintTop_toBottomOf="@id/et_password" />
+        app:layout_constraintTop_toBottomOf="@id/tv_voice_code" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -26,18 +26,18 @@
             android:id="@+id/et_sms"
             style="@style/AccountEditTextStyle"
             android:drawableLeft="@mipmap/icon_sms"
-            android:maxLength="6"
             android:hint="请输入短信验证码"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="6" />
 
         <TextView
             android:id="@+id/tv_get_sms"
             style="@style/SmallTextStyle"
-            android:background="@drawable/selector_sms_btn"
-            android:paddingBottom="6dp"
             android:layout_width="80dp"
-            android:paddingTop="6dp"
+            android:background="@drawable/selector_sms_btn"
             android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
             android:text="获取验证码"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +53,8 @@
         android:layout_marginTop="@dimen/base_padding"
         android:drawableLeft="@mipmap/icon_password"
         android:hint="请输入新登录密码(数字+字母组合)"
-        android:maxLength="16"
         android:inputType="textPassword"
+        android:maxLength="16"
         app:layout_constraintTop_toBottomOf="@id/cl_sms" />
 
 
@@ -69,9 +69,9 @@
             android:id="@+id/et_invite_code"
             style="@style/AccountEditTextStyle"
             android:drawableLeft="@mipmap/invite_code"
-            android:maxLength="15"
             android:hint="介绍码"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="15" />
 
 
         <TextView
@@ -85,6 +85,14 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/tv_voice_code"
+        style="@style/BaseTextStyle"
+        android:text="语音验证码"
+        android:textColor="@color/voice_code_text_color"
+        app:layout_constraintRight_toRightOf="@id/et_password"
+        app:layout_constraintTop_toBottomOf="@id/cl_invite_code" />
+
     <LinearLayout
         android:id="@+id/ll_user_agent"
         android:layout_width="0dp"
@@ -92,13 +100,13 @@
         android:layout_marginTop="@dimen/small_padding"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="@id/et_password"
-        app:layout_constraintTop_toBottomOf="@id/cl_invite_code">
+        app:layout_constraintTop_toBottomOf="@id/tv_voice_code">
 
         <android.support.v7.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:checked="true"
             android:id="@+id/cb_user_agent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
 
         <TextView
             style="@style/SmallTextStyle"
@@ -112,10 +120,10 @@
 
 
     <Button
-        android:enabled="false"
         android:id="@+id/btn_register"
         style="@style/AccountBtnStyle"
         android:layout_marginTop="20dp"
+        android:enabled="false"
         android:text="立即注册"
         app:layout_constraintTop_toBottomOf="@id/ll_user_agent" />
 

@@ -69,7 +69,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
 
-    fun getSmsCode(phone: String) {
+    fun getSmsCode(phone: String,type:String) {
         if (mView !is BaseSmsCodeView) return
         val view = mView as BaseSmsCodeView
 
@@ -80,9 +80,9 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
 
         mModel?.getNormalRequestData(
                 when (mView) {
-                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone)
-                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone)
-                    else -> ApiManager.getService().registerSmsCode(phone)
+                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone,type)
+                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone,type)
+                    else -> ApiManager.getService().registerSmsCode(phone,type)
                 },
                 object : Response<BaseResult<String>>(mContext, true) {
                     override fun _onNext(result: BaseResult<String>) {

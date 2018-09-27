@@ -136,7 +136,7 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
             data?.add(mHomeInfo.talk)
             data?.add(mHomeInfo.classRoom)
         }
-        data?.addAll(result?.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
     private fun onHasPet(data: HomeResultBean.PETBean) {
