@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import com.ipd.taxiu.ChoosePetKindEvent
 import com.ipd.taxiu.R
+import com.ipd.taxiu.event.UpdateHomeEvent
+import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.pet.AddPetActivity
 import kotlinx.android.synthetic.main.activity_pet_kind.*
@@ -17,12 +19,14 @@ import org.greenrobot.eventbus.Subscribe
 class PetKindActivity : BaseUIActivity() {
 
     companion object {
-        fun launch(activity: Activity) {
+        fun launch(activity: Activity, userId: String) {
             val intent = Intent(activity, PetKindActivity::class.java)
+            intent.putExtra("userId", userId)
             activity.startActivity(intent)
         }
     }
 
+    private val mUserId: String by lazy { intent.getStringExtra("userId") }
     override fun getToolbarTitle(): String = "选择宠物种类"
     override fun getContentLayout(): Int = R.layout.activity_pet_kind
 
@@ -44,10 +48,12 @@ class PetKindActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
-        rl_dog.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.DOG) }
-        rl_cat.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.CAT) }
+        rl_dog.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.DOG, mUserId) }
+        rl_cat.setOnClickListener { PetKindListActivity.launch(mActivity, PetKindListActivity.CAT, mUserId) }
         btn_next.setOnClickListener {
             val intent = Intent(mActivity, AddPetActivity::class.java)
+            intent.putExtra("petWay", 1)
+            intent.putExtra("userId", mUserId)
             startActivity(intent)
         }
     }
@@ -68,6 +74,11 @@ class PetKindActivity : BaseUIActivity() {
             }
         }
         btn_next.isEnabled = true
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateHomeEvent) {
+        GlobalParam.isLoginOrJump()
     }
 
 

@@ -6,7 +6,6 @@ import com.ipd.taxiu.ChoosePetKindEvent
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.PetKindAdapter
 import com.ipd.taxiu.bean.PetInfoBean
-import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.account.PetKindListActivity
@@ -18,10 +17,11 @@ import rx.Observable
 class PetKindListFragment : ListFragment<List<PetInfoBean>, PetInfoBean>() {
 
     companion object {
-        fun newInstance(type: Int): PetKindListFragment {
+        fun newInstance(type: Int, userId: String): PetKindListFragment {
             val fragment = PetKindListFragment()
             val bundle = Bundle()
             bundle.putInt("type", type)
+            bundle.putString("userId", userId)
             fragment.arguments = bundle
             return fragment
         }
@@ -38,6 +38,7 @@ class PetKindListFragment : ListFragment<List<PetInfoBean>, PetInfoBean>() {
     }
 
     private val mType: Int by lazy { arguments.getInt("type", PetKindListActivity.DOG) }
+    private val mUserId: String by lazy { arguments.getString("userId", "") }
     override fun loadListData(): Observable<List<PetInfoBean>> {
 //        return Observable.create<List<PetInfoBean>> {
 //            val list: ArrayList<PetInfoBean> = arrayListOf(
@@ -64,7 +65,7 @@ class PetKindListFragment : ListFragment<List<PetInfoBean>, PetInfoBean>() {
 //            it.onNext(list)
 //            it.onCompleted()
 //        }
-        return ApiManager.getService().petKindList(GlobalParam.getUserIdOrJump(),
+        return ApiManager.getService().petKindList(mUserId,
                 mType.toString()).map {
             val list = ArrayList<PetInfoBean>()
             if (it.code == 0) {

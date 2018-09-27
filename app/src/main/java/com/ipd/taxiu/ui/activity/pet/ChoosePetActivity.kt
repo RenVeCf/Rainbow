@@ -9,6 +9,7 @@ import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil
 import com.ipd.taxiu.ChoosePetKindEvent
 import com.ipd.taxiu.R
+import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.account.PetKindListActivity
 import kotlinx.android.synthetic.main.activity_pet_kind.*
@@ -37,11 +38,11 @@ class ChoosePetActivity : BaseUIActivity() {
 
     override fun initListener() {
         rl_dog.setOnClickListener {
-            PetKindListActivity.launch(mActivity, PetKindListActivity.DOG)
+            PetKindListActivity.launch(mActivity, PetKindListActivity.DOG,GlobalParam.getUserIdOrJump())
             finish()
         }
         rl_cat.setOnClickListener {
-            PetKindListActivity.launch(mActivity, PetKindListActivity.CAT)
+            PetKindListActivity.launch(mActivity, PetKindListActivity.CAT,GlobalParam.getUserIdOrJump())
             finish()
         }
     }

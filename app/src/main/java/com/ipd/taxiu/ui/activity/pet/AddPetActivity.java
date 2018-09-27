@@ -15,30 +15,23 @@ import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
-import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.ChoosePetKindEvent;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PetBean;
-import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.event.UpdateHomeEvent;
 import com.ipd.taxiu.imageload.ImageLoader;
-import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.platform.http.HttpUpload;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.PetPresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
-import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
 import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
 import com.ipd.taxiu.widget.PickerUtil;
-import com.ipd.taxiu.widget.SettingHeaderDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,14 +39,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * Created by Miss on 2018/7/27
  * 添加宠物
  */
 public class AddPetActivity extends BaseUIActivity implements View.OnClickListener, PetPresenter.IPetInfoView,
-        PetPresenter.IPetUpdateView,PetPresenter.IPetAddView {
+        PetPresenter.IPetUpdateView, PetPresenter.IPetAddView {
     private CircleImageView civ_header;
     private TextView tv_pet_kind, tv_birthday, tv_sex, tv_status;
     private EditText tv_nickname;
@@ -63,6 +54,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     private List<String> data;
     //petWay 1.添加宠物 2.编辑宠物
     private int petWay;
+    private String userId;
     private String path = "";
     private boolean isChooseImg = false;
 
@@ -72,9 +64,10 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     protected int getContentLayout() {
+        userId = getIntent().getStringExtra("userId");
         petWay = getIntent().getIntExtra("petWay", 0);
-        petId = getIntent().getIntExtra("PET_ID",0);
-        petKindId = getIntent().getIntExtra("PET_TYPE_ID",0);
+        petId = getIntent().getIntExtra("PET_ID", 0);
+        petKindId = getIntent().getIntExtra("PET_TYPE_ID", 0);
         return R.layout.activity_add_pet;
     }
 
@@ -92,7 +85,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
-        if (petWay == 1){
+        if (petWay == 1) {
             civ_header.setImageResource(R.mipmap.mine_default_header);
         }
     }
@@ -144,48 +137,48 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         String birthday = tv_birthday.getText().toString();
-        birthday = birthday.replace("-",".");
+        birthday = birthday.replace("-", ".");
         String gender = tv_sex.getText().toString();
         int sex = 0;
-        if (gender != ""){
-            if (gender.equals("GG")){
+        if (gender != "") {
+            if (gender.equals("GG")) {
                 sex = 1;
             }
-            if (gender.equals("MM")){
+            if (gender.equals("MM")) {
                 sex = 2;
             }
         }
         String nickname = tv_nickname.getText().toString();
         String statusStr = tv_status.getText().toString();
         int status = 0;
-        if (statusStr != ""){
-            if (statusStr.equals("正常")){
+        if (statusStr != "") {
+            if (statusStr.equals("正常")) {
                 status = 1;
             }
-            if (statusStr.equals("寻求好心人领养")){
+            if (statusStr.equals("寻求好心人领养")) {
                 status = 2;
             }
-            if (statusStr.equals("寻求配偶")){
+            if (statusStr.equals("寻求配偶")) {
                 status = 3;
             }
-            if (statusStr.equals("走失了")){
+            if (statusStr.equals("走失了")) {
                 status = 4;
             }
         }
         int category;
-        if (cb_is_show.isChecked()){
+        if (cb_is_show.isChecked()) {
             category = 1;
-        }else {
+        } else {
             category = 0;
         }
         if (id == R.id.pet_save) {
-            if (isChooseImg){
+            if (isChooseImg) {
                 path = HttpUpload.getLogo();
             }
             if (petWay == 2) {
-                mPresenter.petUpdate(birthday,sex,path,nickname,petKindId,status,petId,category);
+                mPresenter.petUpdate(birthday, sex, path, nickname, petKindId, status, petId, category);
             } else {
-                mPresenter.petAdd(birthday,sex,path,nickname,petKindId,status);
+                mPresenter.petAdd(userId, birthday, sex, path, nickname, petKindId, status);
             }
         }
         return super.onOptionsItemSelected(item);
@@ -274,19 +267,19 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     @Override
     public void getInfoSuccess(@NotNull PetBean data) {
         path = data.LOGO;
-        ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL+data.LOGO,civ_header);
+        ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL + data.LOGO, civ_header);
         tv_nickname.setText(data.NICKNAME);
         tv_pet_kind.setText(data.PET_TYPE_NAME);
         tv_birthday.setText(data.BIRTHDAY);
         int sex = data.GENDER;
-        if (sex == 1){
+        if (sex == 1) {
             tv_sex.setText("GG");
         }
-        if (sex == 2){
+        if (sex == 2) {
             tv_sex.setText("MM");
         }
         int status = data.STATUS;
-        switch (status){
+        switch (status) {
             case 1:
                 tv_status.setText("正常");
                 break;
@@ -300,10 +293,10 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 tv_status.setText("走失了");
                 break;
         }
-        if (data.CATEGORY == 0){
+        if (data.CATEGORY == 0) {
             cb_is_show.setChecked(false);
         }
-        if (data.CATEGORY == 1){
+        if (data.CATEGORY == 1) {
             cb_is_show.setChecked(true);
             cb_is_show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -333,7 +326,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
 
     @Override
     public void updateFail(@NotNull String errMsg) {
-            toastShow(errMsg);
+        toastShow(errMsg);
     }
 
     @Override

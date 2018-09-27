@@ -1,5 +1,6 @@
 package com.ipd.taxiu.presenter
 
+import android.text.TextUtils
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.PetBean
 import com.ipd.taxiu.model.BasicModel
@@ -20,8 +21,8 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
         if (mView !is IPetInfoView) return
         var view = mView as IPetInfoView
 
-        mModel?.getNormalRequestData(ApiManager.getService().petGetInfo(petId,GlobalParam.getUserId()),
-                object : Response<BaseResult<PetBean>>(mContext,true){
+        mModel?.getNormalRequestData(ApiManager.getService().petGetInfo(petId, GlobalParam.getUserId()),
+                object : Response<BaseResult<PetBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<PetBean>?) {
                         if (result?.code == 0) {
                             view.getInfoSuccess(result.data)
@@ -37,8 +38,8 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
         if (mView !is IPetDeleteView) return
         var view = mView as IPetDeleteView
 
-        mModel?.getNormalRequestData(ApiManager.getService().petDelete(petId,GlobalParam.getUserId()),
-                object : Response<BaseResult<PetBean>>(mContext,false){
+        mModel?.getNormalRequestData(ApiManager.getService().petDelete(petId, GlobalParam.getUserId()),
+                object : Response<BaseResult<PetBean>>(mContext, false) {
                     override fun _onNext(result: BaseResult<PetBean>?) {
                         if (result?.code == 0) {
                             view.deleteSuccess(result!!.msg)
@@ -50,43 +51,43 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun petUpdate(birthday:String,gender:Int,logo:String,nickname:String,pet_type_id:Int,status:Int,petId: Int,category:Int) {
+    fun petUpdate(birthday: String, gender: Int, logo: String, nickname: String, pet_type_id: Int, status: Int, petId: Int, category: Int) {
         if (mView !is IPetUpdateView) return
         var view = mView as IPetUpdateView
 
-        if (logo == ""){
+        if (logo == "") {
             view.updateFail("头像不能为空！")
             return
         }
-        if (nickname == ""){
+        if (nickname == "") {
             view.updateFail("昵称不能为空！")
             return
         }
-        if (birthday == ""){
+        if (birthday == "") {
             view.updateFail("生日不能为空！")
             return
         }
-        if (gender == 0){
+        if (gender == 0) {
             view.updateFail("性别不能为空！")
             return
         }
 
-        if (pet_type_id == 0){
+        if (pet_type_id == 0) {
             view.updateFail("宠物种类ID不能为空！")
             return
         }
-        if (status == 0){
+        if (status == 0) {
             view.updateFail("状态不能为空！")
             return
         }
-        if (petId == 0){
+        if (petId == 0) {
             view.updateFail("宠物ID不能为空！")
             return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().petUpdate(birthday,gender,logo,nickname,
-                pet_type_id,status,petId,GlobalParam.getUserId(),category),
-                object : Response<BaseResult<PetBean>>(mContext,true){
+        mModel?.getNormalRequestData(ApiManager.getService().petUpdate(birthday, gender, logo, nickname,
+                pet_type_id, status, petId, GlobalParam.getUserId(), category),
+                object : Response<BaseResult<PetBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<PetBean>?) {
                         if (result?.code == 0) {
                             view.updateSuccess()
@@ -98,39 +99,39 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun petAdd(birthday:String,gender:Int,logo:String,nickname:String,pet_type_id:Int,status:Int) {
+    fun petAdd(userId: String, birthday: String, gender: Int, logo: String, nickname: String, pet_type_id: Int, status: Int) {
         if (mView !is IPetAddView) return
         var view = mView as IPetAddView
 
-        if (logo == ""){
+        if (logo == "") {
             view.addFail("头像不能为空！")
             return
         }
-        if (nickname == ""){
+        if (nickname == "") {
             view.addFail("昵称不能为空！")
             return
         }
-        if (birthday == ""){
+        if (birthday == "") {
             view.addFail("生日不能为空！")
             return
         }
-        if (gender == 0){
+        if (gender == 0) {
             view.addFail("性别不能为空！")
             return
         }
 
-        if (pet_type_id == 0){
+        if (pet_type_id == 0) {
             view.addFail("宠物种类ID不能为空！")
             return
         }
-        if (status == 0){
+        if (status == 0) {
             view.addFail("状态不能为空！")
             return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().petAdd(birthday,gender,logo,nickname,
-                pet_type_id,status,GlobalParam.getUserId()),
-                object : Response<BaseResult<PetBean>>(mContext,true){
+        mModel?.getNormalRequestData(ApiManager.getService().petAdd(birthday, gender, logo, nickname,
+                pet_type_id, status, if (TextUtils.isEmpty(userId)) GlobalParam.getUserId() else userId),
+                object : Response<BaseResult<PetBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<PetBean>?) {
                         if (result?.code == 0) {
                             view.addSuccess()
@@ -142,20 +143,23 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    interface IPetInfoView{
-        fun getInfoSuccess(data : PetBean)
-        fun getInfoFail(errMsg : String)
+    interface IPetInfoView {
+        fun getInfoSuccess(data: PetBean)
+        fun getInfoFail(errMsg: String)
     }
-    interface IPetUpdateView{
+
+    interface IPetUpdateView {
         fun updateSuccess()
-        fun updateFail(errMsg : String)
+        fun updateFail(errMsg: String)
     }
-    interface IPetAddView{
+
+    interface IPetAddView {
         fun addSuccess()
-        fun addFail(errMsg : String)
+        fun addFail(errMsg: String)
     }
-    interface IPetDeleteView{
-        fun deleteSuccess(errMsg : String)
-        fun deleteFail(errMsg : String)
+
+    interface IPetDeleteView {
+        fun deleteSuccess(errMsg: String)
+        fun deleteFail(errMsg: String)
     }
 }

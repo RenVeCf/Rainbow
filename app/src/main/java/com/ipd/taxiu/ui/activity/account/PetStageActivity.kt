@@ -56,7 +56,7 @@ class PetStageActivity : BaseUIActivity() {
                     .subscribe(object : Response<BaseResult<LoginBean>>(mActivity, true) {
                         override fun _onNext(result: BaseResult<LoginBean>) {
                             if (result.code == 0) {
-                                PetKindActivity.launch(mActivity)
+                                PetKindActivity.launch(mActivity,userId)
                                 finish()
                             } else {
                                 toastShow(result.msg)
