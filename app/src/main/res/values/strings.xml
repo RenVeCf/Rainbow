@@ -59,6 +59,7 @@
     <string name="store_gift_coupon_date">有效期至:%s</string>
     <string name="product_stock">库存 %d</string>
     <string name="product_sales">已售 %d</string>
+    <string name="withdraw_hint">提示：您本月还可提现%d次，每次最多提现1000元；</string>
     <!-- 个人 -->
     <string name="sign_in">签到</string>
     <string name="collect">收藏</string>

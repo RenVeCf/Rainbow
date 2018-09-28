@@ -148,6 +148,8 @@ public interface HttpUrl {
     //余额
     String BALANCE_INFO = "app_balance/balanceInfo.do";
     String BALANCE_BILL = "app_balance/getList.do";
+    String BALANCE_WITHDRAW_HINT = "app_balance/balanceTip.do";
+    String BALANCE_WITHDRAW = "app_balance/toCash.do";
     String BANK_TYPE_LIST = "app_bank_type/getList.do";
     String ADD_BANK_CARD = "app_bank_card/add.do";
     String CHANGE_BANK_CARD = "app_bank_card/update.do";

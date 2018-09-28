@@ -1,20 +1,19 @@
 package com.ipd.taxiu.adapter
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BankCardBean
+import com.ipd.taxiu.event.ChooseBankCardEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.balance.AddBankCardActivity
-import com.ipd.taxiu.ui.activity.balance.BankCardActivity
 import com.ipd.taxiu.ui.activity.balance.MyBalanceActivity
 import kotlinx.android.synthetic.main.item_bank_card.view.*
+import org.greenrobot.eventbus.EventBus
 
 /**
 Created by Miss on 2018/8/13
@@ -34,12 +33,10 @@ class BankCardAdapter(val context: Context, private val data: List<BankCardBean>
 
         holder?.itemView?.setOnClickListener {
             if (bankType == MyBalanceActivity.ADD_BANK_CARD) {
-                AddBankCardActivity.launch(context as Activity, MyBalanceActivity.UPDATE_BANK_CARD,info.BANK_CARD_ID.toString())
+                AddBankCardActivity.launch(context as Activity, MyBalanceActivity.UPDATE_BANK_CARD, info.BANK_CARD_ID.toString())
             } else if (bankType == MyBalanceActivity.CHOSSE_BANK_CARD) {
-                val activity = context as BankCardActivity
-                val intent = Intent()
-                intent.putExtra("bankCard", info.BANK_NAME)
-                activity.setResult(RESULT_OK, intent)
+                EventBus.getDefault().post(ChooseBankCardEvent(info))
+                val activity = context as Activity
                 activity.finish()
             }
         }

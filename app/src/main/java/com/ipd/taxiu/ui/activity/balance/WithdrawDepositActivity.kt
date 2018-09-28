@@ -4,11 +4,21 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BankCardBean
+import com.ipd.taxiu.bean.WithdrawHintBean
+import com.ipd.taxiu.event.ChooseBankCardEvent
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.widget.ApplyForDialog
 import kotlinx.android.synthetic.main.activity_withdraw_deposit.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
 Created by Miss on 2018/8/10
@@ -26,23 +36,68 @@ class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
     override fun getContentLayout(): Int = R.layout.activity_withdraw_deposit
     override fun getToolbarTitle(): String = "余额提现"
 
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
+        ApiManager.getService().balanceWithdrawHint(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<WithdrawHintBean>() {
+                    override fun _onNext(result: WithdrawHintBean) {
+                        if (result.code == 0) {
+                            tv_withdraw_hint.text = String.format(resources.getString(R.string.withdraw_hint), result.count)
+                            tv_account_balance.text = result.data
+                        } else {
+                            toastShow(result.msg)
+                        }
+                    }
+                })
 
     }
 
     override fun initListener() {
         et_money.addTextChangedListener(this)
         rl_choose_bank.setOnClickListener {
-            val intent = Intent(this, BankCardActivity::class.java)
-            intent.putExtra("bankType", MyBalanceActivity.CHOSSE_BANK_CARD)
-            startActivityForResult(intent, REQUEST_CODE)
+            BankCardActivity.launch(mActivity, MyBalanceActivity.CHOSSE_BANK_CARD)
         }
-        btn_confirm.setOnClickListener { initDialog() }
         btn_confirm.isClickable = false
+        btn_confirm.setOnClickListener {
+            if (bankInfo == null) {
+                toastShow("请选择提现银行")
+                return@setOnClickListener
+            }
+
+            val money = et_money.text.toString().trim()
+            if (TextUtils.isEmpty(money)) {
+                toastShow("请输入提现金额")
+                return@setOnClickListener
+            }
+
+            ApiManager.getService().balanceWithdraw(GlobalParam.getUserIdOrJump(), bankInfo?.BANK_CARD_ID.toString(), money)
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<WithdrawHintBean>() {
+                        override fun _onNext(result: WithdrawHintBean) {
+                            if (result.code == 0) {
+                                initDialog()
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
+
+
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {
@@ -74,11 +129,13 @@ class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
         builder.dialog.show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            var bankCard: String = data!!.getStringExtra("bankCard")
-            tv_choose_bank.text = bankCard
-        }
+
+    private var bankInfo: BankCardBean? = null
+    @Subscribe
+    fun onMainEvent(event: ChooseBankCardEvent) {
+        bankInfo = event.bankInfo
+        tv_choose_bank.text = event.bankInfo.BANK_NAME
     }
+
+
 }

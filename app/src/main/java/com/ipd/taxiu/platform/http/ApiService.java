@@ -56,6 +56,7 @@ import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.WithdrawHintBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -789,6 +790,17 @@ public interface ApiService {
                                                                   @Field("BANK_DEPOSIT") String BANK_DEPOSIT,
                                                                   @Field("BANK_TYPE_ID") String BANK_TYPE_ID,
                                                                   @Field("CARD_NUM") String CARD_NUM);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BALANCE_WITHDRAW_HINT)
+    Observable<WithdrawHintBean> balanceWithdrawHint(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BALANCE_WITHDRAW)
+    Observable<WithdrawHintBean> balanceWithdraw(@Field("USER_ID") String USER_ID,
+                                                 @Field("BANK_CARD_ID") String BANK_CARD_ID,
+                                                 @Field("MONEY") String MONEY);
 
 
     //tools
