@@ -3,69 +3,151 @@ package com.ipd.taxiu.ui.activity.balance
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BankCardBean
+import com.ipd.taxiu.bean.BankTypeListBean
+import com.ipd.taxiu.event.UpdateBankCardEvent
+import com.ipd.taxiu.presenter.store.BankPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.BankCardUtils
 import com.ipd.taxiu.widget.BankCardTextWatcher
 import com.ipd.taxiu.widget.PickerUtil
 import kotlinx.android.synthetic.main.activity_add_bank_card.*
+import org.greenrobot.eventbus.EventBus
 
 /**
 Created by Miss on 2018/8/10
 添加银行卡
  */
-class AddBankCardActivity : BaseUIActivity() {
+class AddBankCardActivity : BaseUIActivity(), BankPresenter.IBankView {
     private var bankType: Int = 0
-    private val list = arrayListOf<String>("中国银行",
-            "中国建设银行",
-            "中国农业银行",
-            "中国工商银行",
-            "中国交通银行")
     private val pickerUtil = PickerUtil()
 
     companion object {
-        fun launch(activity: Activity, bankType: Int) {
+        fun launch(activity: Activity, bankType: Int, bankCardId: String? = null) {
             val intent = Intent(activity, AddBankCardActivity::class.java)
             intent.putExtra("bankType", bankType)
+            if (bankType == MyBalanceActivity.UPDATE_BANK_CARD) {
+                if (TextUtils.isEmpty(bankCardId)) throw IllegalArgumentException("bankCardId should not null")
+                intent.putExtra("bankCardId", bankCardId)
+            }
             activity.startActivity(intent)
         }
     }
 
+    private var mPresenter: BankPresenter? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = BankPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
     override fun getContentLayout(): Int = R.layout.activity_add_bank_card
-    override fun getToolbarTitle(): String{
+    override fun getToolbarTitle(): String {
         bankType = intent.getIntExtra("bankType", 0)
         if (bankType == MyBalanceActivity.ADD_BANK_CARD) {
             return "添加银行卡"
         }
-        return  "修改银行卡"
+        return "修改银行卡"
     }
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
+    private var bankCardId: String = ""
     override fun loadData() {
         BankCardTextWatcher.bind(et_bank_card_code)
+        if (bankType == MyBalanceActivity.UPDATE_BANK_CARD) {
+            bankCardId = intent.getStringExtra("bankCardId")
+            mPresenter?.getBankCardInfo(bankCardId)
+        }
+
     }
 
     override fun initListener() {
-        tv_choose_bank_type.setOnClickListener { pickerUtil.initBankCardOption(this, list, tv_choose_bank_type) }
+        ll_card_type.setOnClickListener { mPresenter?.loadBankTypeList() }
         btn_save.setOnClickListener {
-            var bankCard:String = et_bank_card_code.text.toString().trim()
+            if (bankTypeInfo == null) {
+                toastShow("请选择银行")
+                return@setOnClickListener
+            }
+            var bankCard: String = et_bank_card_code.text.toString().trim()
+            var accountName: String = et_account_name.text.toString().trim()
+            var bankDeposit: String = tv_bank_deposit.text.toString().trim()
             if (!bankCard.isEmpty()) {
                 bankCard = bankCard.replace(" ", "")
             }
-            if (!BankCardUtils.checkBankCard(bankCard)){
+            if (!BankCardUtils.checkBankCard(bankCard)) {
                 toastShow("请填写正确的银行卡号")
                 return@setOnClickListener
             }
+            if (TextUtils.isEmpty(accountName)) {
+                toastShow("请输入银行卡对应的真实姓名")
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(bankDeposit)) {
+                toastShow("请输入银行卡对应开户行")
+                return@setOnClickListener
+            }
+
             if (bankType == MyBalanceActivity.ADD_BANK_CARD) {
-                toastShow("添加成功")
+                mPresenter?.addBankCard(accountName, bankDeposit, bankTypeInfo?.BANK_TYPE_ID.toString(), bankCard)
             }
-            if (bankType == MyBalanceActivity.UPDATE_BANK_CARD){
-                toastShow("修改成功")
+            if (bankType == MyBalanceActivity.UPDATE_BANK_CARD) {
+                mPresenter?.changeBankCard(bankCardId, accountName, bankDeposit, bankTypeInfo?.BANK_TYPE_ID.toString(), bankCard)
             }
-            finish()
         }
+    }
+
+    private var bankTypeInfo: BankTypeListBean? = null
+    override fun loadBankTypeSuccess(bankList: List<BankTypeListBean>) {
+        pickerUtil.initBankCardOption(this, bankList, tv_choose_bank_type, { options1, options2, options3, v ->
+            bankTypeInfo = bankList[options1]
+            tv_choose_bank_type.text = bankTypeInfo?.BANK_NAME
+        })
+    }
+
+    override fun loadBankCardInfoSuccess(bankInfo: BankCardBean) {
+        tv_choose_bank_type.text = bankInfo.BANK_NAME
+        et_bank_card_code.setText(bankInfo.CARD_NUM)
+        et_account_name.setText(bankInfo.ACCOUNT_NAME)
+        tv_bank_deposit.setText(bankInfo.BANK_DEPOSIT)
+        bankTypeInfo = BankTypeListBean(bankInfo.BANK_TYPE_ID, bankInfo.BANK_NAME)
+    }
+
+    override fun loadBankCardInfoFail(errMsg: String) {
+        showError(errMsg)
+    }
+
+    override fun loadBankTypeFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun addBankSuccess() {
+        EventBus.getDefault().post(UpdateBankCardEvent())
+        toastShow("添加成功")
+        finish()
+    }
+
+    override fun addBankFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun changeBankSuccess() {
+        EventBus.getDefault().post(UpdateBankCardEvent())
+        toastShow("修改成功")
+        finish()
+    }
+
+    override fun changeBankFail(errMsg: String) {
+        toastShow(errMsg)
     }
 }

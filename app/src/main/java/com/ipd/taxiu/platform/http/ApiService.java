@@ -3,6 +3,10 @@ package com.ipd.taxiu.platform.http;
 
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
+import com.ipd.taxiu.bean.BalanceBillBean;
+import com.ipd.taxiu.bean.BalanceResult;
+import com.ipd.taxiu.bean.BankCardBean;
+import com.ipd.taxiu.bean.BankTypeListBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
@@ -739,6 +743,52 @@ public interface ApiService {
     @POST(HttpUrl.TEXT_INFO)
     Observable<BaseResult<TextBean>> getTextInfo(@Field("CATEGORY") int CATEGORY,
                                                  @Field("USER_ID") String USER_ID);
+
+    /**
+     * 余额
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.BALANCE_INFO)
+    Observable<BalanceResult> getBalanceInfo(@Field("USER_ID") String USER_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BALANCE_BILL)
+    Observable<BaseResult<List<BalanceBillBean>>> balanceBill(@Field("USER_ID") String USER_ID,
+                                                              @Field("COUNT") int COUNT,
+                                                              @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BANK_TYPE_LIST)
+    Observable<BaseResult<List<BankTypeListBean>>> bankTypeList(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BANK_CARD_LIST)
+    Observable<BaseResult<List<BankCardBean>>> bankCardList(@Field("USER_ID") String USER_ID,
+                                                            @Field("COUNT") int COUNT,
+                                                            @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BANK_CARD_INFO)
+    Observable<BaseResult<BankCardBean>> bankCardInfo(@Field("USER_ID") String USER_ID,
+                                                      @Field("BANK_CARD_ID") String BANK_CARD_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ADD_BANK_CARD)
+    Observable<BaseResult<List<BankTypeListBean>>> addBankCard(@Field("USER_ID") String USER_ID,
+                                                               @Field("ACCOUNT_NAME") String ACCOUNT_NAME,
+                                                               @Field("BANK_DEPOSIT") String BANK_DEPOSIT,
+                                                               @Field("BANK_TYPE_ID") String BANK_TYPE_ID,
+                                                               @Field("CARD_NUM") String CARD_NUM);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CHANGE_BANK_CARD)
+    Observable<BaseResult<List<BankTypeListBean>>> changeBankCard(@Field("USER_ID") String USER_ID,
+                                                                  @Field("BANK_CARD_ID") String BANK_CARD_ID,
+                                                                  @Field("ACCOUNT_NAME") String ACCOUNT_NAME,
+                                                                  @Field("BANK_DEPOSIT") String BANK_DEPOSIT,
+                                                                  @Field("BANK_TYPE_ID") String BANK_TYPE_ID,
+                                                                  @Field("CARD_NUM") String CARD_NUM);
 
 
     //tools

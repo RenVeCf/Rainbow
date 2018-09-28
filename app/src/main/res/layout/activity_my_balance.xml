@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
@@ -30,7 +31,7 @@
                 android:layout_below="@id/account_balance"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/big_padding"
-                android:text="￥2547.00"
+                android:text="￥0.00"
                 android:textStyle="bold"
                 android:textColor="#573B0C"
                 android:padding="@dimen/base_padding"
@@ -102,25 +103,9 @@
         <TextView
             android:id="@+id/tv_source"
            style="@style/SmallTextStyle"
-            android:text="1.来源：来之于订单的退款"
+            tools:text="1.来源：来之于订单的退款"
             android:layout_below="@id/iv_balance_explain"
             android:layout_marginTop="@dimen/base_padding"/>
-        <TextView
-            android:id="@+id/tv_use"
-           style="@style/SmallTextStyle"
-            android:text="2.使用：可用提现到银行卡、永远订单支付"
-            android:layout_below="@id/tv_source"
-            android:layout_marginTop="@dimen/small_padding"/>
-        <TextView
-            android:id="@+id/tv_rule"
-           style="@style/SmallTextStyle"
-            android:text="3.规则：每个用户可提现3次，每次最多提现1000元"
-            android:layout_below="@id/tv_use"
-            android:layout_marginTop="@dimen/small_padding"/>
-        <TextView
-           style="@style/SmallTextStyle"
-            android:text="注：提现申请提交后，需后台审核，审核通过后，会在3~5个工作日到账"
-            android:layout_below="@id/tv_rule"
-            android:layout_marginTop="@dimen/base_padding"/>
+
     </RelativeLayout>
 </RelativeLayout>

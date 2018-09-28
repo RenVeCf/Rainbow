@@ -145,4 +145,14 @@ public interface HttpUrl {
     String TEXT_INFO = "app_text/getInfo.do";
 
 
+    //余额
+    String BALANCE_INFO = "app_balance/balanceInfo.do";
+    String BALANCE_BILL = "app_balance/getList.do";
+    String BANK_TYPE_LIST = "app_bank_type/getList.do";
+    String ADD_BANK_CARD = "app_bank_card/add.do";
+    String CHANGE_BANK_CARD = "app_bank_card/update.do";
+    String BANK_CARD_LIST = "app_bank_card/getList.do";
+    String BANK_CARD_INFO = "app_bank_card/getInfo.do";
+
+
 }

@@ -3,8 +3,15 @@ package com.ipd.taxiu.ui.activity.balance
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BalanceResult
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.HtmlImageGetter
 import kotlinx.android.synthetic.main.activity_my_balance.*
 
 /**
@@ -32,6 +39,19 @@ class MyBalanceActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
+        ApiManager.getService().getBalanceInfo(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BalanceResult>() {
+                    override fun _onNext(result: BalanceResult) {
+                        if (result.code == 0) {
+                            tv_account_balance.text = "￥${result.data}"
+                            tv_source.text = Html.fromHtml(result.info, HtmlImageGetter(mActivity, tv_source), null)
+
+                        } else {
+                            toastShow(result.msg)
+                        }
+                    }
+                })
     }
 
     override fun initListener() {

@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_bank_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:paddingLeft="@dimen/base_padding"
     android:paddingRight="@dimen/base_padding"
-    android:paddingTop="@dimen/base_padding"
-    android:id="@+id/rl_bank_card">
+    android:paddingTop="@dimen/base_padding">
 
 
     <ImageView
         android:id="@+id/iv_bank_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/bank_of_china" />
+        android:layout_width="@dimen/bank_logo_size"
+        android:layout_height="@dimen/bank_logo_size"
+        tools:src="@mipmap/bank_of_china" />
 
-    <TextView
-        android:id="@+id/tv_bank_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bank_logo_size"
         android:layout_marginLeft="@dimen/base_padding"
-        android:layout_toRightOf="@id/iv_bank_icon"
-        android:text="中国银行"
-        android:textColor="@color/black"
-        android:textSize="@dimen/base_text_size" />
+        android:layout_toRightOf="@id/iv_bank_icon">
 
-    <TextView
-       style="@style/SmallTextStyle"
-        android:layout_below="@id/tv_bank_title"
-        android:layout_marginLeft="@dimen/base_padding"
-        android:layout_toRightOf="@id/iv_bank_icon"
-        android:text="尾号（0023）"
-        android:layout_marginTop="@dimen/small_padding"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/arrow_right"
-        android:layout_centerVertical="true"/>
+        <TextView
+            style="@style/BaseTextStyle"
+            android:id="@+id/tv_bank_title"
+            tools:text="中国银行" />
+
+        <TextView
+            android:id="@+id/tv_bank_no"
+            style="@style/SmallTextStyle"
+            android:layout_alignParentBottom="true"
+            tools:text="尾号（0023）" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_right" />
+
+    </RelativeLayout>
+
     <View
+        style="@style/ViewLine"
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="@color/full_screen_overlay"
         android:layout_below="@id/iv_bank_icon"
-        android:layout_marginTop="@dimen/base_padding"/>
+        android:layout_marginTop="@dimen/base_padding" />
 </RelativeLayout>

@@ -19,9 +19,8 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BankTypeListBean;
 import com.ipd.taxiu.bean.JsonBean;
-import com.ipd.taxiu.bean.ProvinceBean;
-
 
 import org.json.JSONArray;
 
@@ -55,7 +54,7 @@ public class PickerUtil {
      * 选择日期
      */
     public void initLunarPicker(final Context context, final TextView textView, final String title) {
-        hideSoftInput(context,textView);
+        hideSoftInput(context, textView);
         final Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
         startDate.set(1900, 1, 1);
@@ -172,17 +171,9 @@ public class PickerUtil {
     /**
      * 选择银行卡
      */
-    public void initBankCardOption(final Context context, final List<String> list, final TextView textView) {
+    public void initBankCardOption(final Context context, final List<BankTypeListBean> list, final TextView textView, OnOptionsSelectListener listener) {
         hideSoftInput(context, textView);
-        bankCardOption = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                //返回的分别是三个级别的选中位置
-
-                String tx = list.get(options1);
-                textView.setText(tx);
-            }
-        })
+        bankCardOption = new OptionsPickerBuilder(context, listener)
                 .setLayoutRes(R.layout.dialog_choice_bank_card, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
@@ -192,6 +183,7 @@ public class PickerUtil {
                         rl_item.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
 
                             }
                         });

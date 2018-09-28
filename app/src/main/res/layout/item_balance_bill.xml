@@ -10,19 +10,21 @@
 
     <TextView
         android:id="@+id/integral_title"
-        style="@style/BaseTextStyle"
+        style="@style/TitleTextStyle"
         android:text="购买课堂" />
 
     <TextView
         android:id="@+id/integral_explain"
-        style="@style/SmallTextStyle"
+        style="@style/BaseTextStyle"
         android:layout_below="@id/integral_title"
+        android:layout_marginTop="3dp"
         android:text="课堂名称：叫你如何与刚领回的宠物相处" />
 
     <TextView
         android:id="@+id/integral_time"
         style="@style/SmallTextStyle"
         android:layout_below="@id/integral_explain"
+        android:layout_marginTop="3dp"
         android:text="2018.9.10 24:00"
         android:textColor="@color/text_gray" />
 
@@ -32,14 +34,15 @@
         android:layout_alignParentRight="true"
         android:text="已完成"
         android:textColor="@color/colorPrimaryDark" />
+
     <TextView
         android:id="@+id/integral_money"
-        style="@style/BaseTextStyle"
+        style="@style/TitleTextStyle"
         android:layout_alignParentRight="true"
-        android:text="+1200"
         android:layout_below="@id/trading_status"
-        android:textColor="@color/earning_text"
-        android:layout_marginTop="@dimen/small_padding"/>
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="+1200"
+        android:textColor="@color/black" />
 
     <View
         style="@style/ViewLine"
