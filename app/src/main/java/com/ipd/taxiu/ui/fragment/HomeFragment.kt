@@ -60,13 +60,21 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
                                 //轮播图
                                 mHomeInfo.headerInfo = HomeBean.IndexHeaderbean(homeResult.BANNER_LIST, homeResult.PET)
                                 //它秀精选
-                                mHomeInfo.boutique = HomeBean.IndexBoutiqueBean(homeResult.SHOW_LIST)
+                                if (homeResult.SHOW_LIST != null && homeResult.SHOW_LIST.isNotEmpty()) {
+                                    mHomeInfo.boutique = HomeBean.IndexBoutiqueBean(homeResult.SHOW_LIST)
+                                }
                                 //热门话题
-                                mHomeInfo.topic = HomeBean.IndexTopicBean(homeResult.TOPIC_DATA)
+                                if (homeResult.TOPIC_DATA != null) {
+                                    mHomeInfo.topic = HomeBean.IndexTopicBean(homeResult.TOPIC_DATA)
+                                }
                                 //热门问答
-                                mHomeInfo.talk = HomeBean.IndexTalkBean(homeResult.QUESTION_LIST)
+                                if (homeResult.QUESTION_LIST != null && homeResult.QUESTION_LIST.isNotEmpty()) {
+                                    mHomeInfo.talk = HomeBean.IndexTalkBean(homeResult.QUESTION_LIST)
+                                }
                                 //热门课堂
-                                mHomeInfo.classRoom = HomeBean.IndexClassRoomBean(homeResult.CLASS_DATA)
+                                if (homeResult.CLASS_DATA != null) {
+                                    mHomeInfo.classRoom = HomeBean.IndexClassRoomBean(homeResult.CLASS_DATA)
+                                }
 
                                 getParentListData(isRefresh)
                             } else {
@@ -131,12 +139,12 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
     override fun addData(isRefresh: Boolean, result: BaseResult<List<TaxiuBean>>) {
         if (isRefresh) {
             data?.add(mHomeInfo.headerInfo)
-            data?.add(mHomeInfo.boutique)
-            data?.add(mHomeInfo.topic)
-            data?.add(mHomeInfo.talk)
-            data?.add(mHomeInfo.classRoom)
+            if (mHomeInfo.boutique != null) data?.add(mHomeInfo.boutique)
+            if (mHomeInfo.topic != null) data?.add(mHomeInfo.topic)
+            if (mHomeInfo.talk != null) data?.add(mHomeInfo.talk)
+            if (mHomeInfo.classRoom != null) data?.add(mHomeInfo.classRoom)
         }
-        data?.addAll(result?.data?: arrayListOf())
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
     private fun onHasPet(data: HomeResultBean.PETBean) {

@@ -32,6 +32,7 @@ class CartOperationView : FrameLayout {
             } else {
                 num -= 1
             }
+            mOnCartNumChangeListener?.onNumChange(mContentView.tv_num.text.toString().toInt(), num)
             mContentView.tv_num.text = num.toString()
             checkOperationStatus()
         }
@@ -39,6 +40,7 @@ class CartOperationView : FrameLayout {
         mContentView.rl_add.setOnClickListener {
             var num = getNum()
             num += 1
+            mOnCartNumChangeListener?.onNumChange(mContentView.tv_num.text.toString().toInt(), num)
             mContentView.tv_num.text = num.toString()
             checkOperationStatus()
         }
@@ -50,9 +52,28 @@ class CartOperationView : FrameLayout {
         return numStr.toInt()
     }
 
+    fun setNum(num: Int) {
+        mContentView.tv_num.text = num.toString()
+        checkOperationStatus()
+    }
+
     private fun checkOperationStatus() {
         mContentView.iv_sub.isEnabled = getNum() > 1
     }
 
+
+    private var mOnCartNumChangeListener: OnCartNumChangeListener? = null
+    fun setOnCartNumChangeListener(listener: OnCartNumChangeListener) {
+        mOnCartNumChangeListener = listener
+    }
+
+    fun setEnable(enable: Boolean) {
+        mContentView.rl_sub.isEnabled = enable
+        mContentView.rl_add.isEnabled = enable
+    }
+
+    interface OnCartNumChangeListener {
+        fun onNumChange(lastNum: Int, num: Int)
+    }
 
 }

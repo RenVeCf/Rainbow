@@ -6,6 +6,7 @@
     android:padding="@dimen/base_padding">
 
     <TextView
+        android:id="@+id/tv_model_name"
         style="@style/SmallTextStyle"
         android:text="口味" />
 

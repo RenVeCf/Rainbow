@@ -2,24 +2,33 @@ package com.ipd.taxiu.ui.fragment.store
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.TextView
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.BannerPagerAdapter
+import com.ipd.taxiu.adapter.MediaPictureAdapter
 import com.ipd.taxiu.adapter.PackageProductAdapter
 import com.ipd.taxiu.bean.BannerBean
 import com.ipd.taxiu.bean.ProductDetailBean
+import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.BaseUIFragment
+import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StoreType
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
+import kotlinx.android.synthetic.main.item_product_evaluate.view.*
 import kotlinx.android.synthetic.main.layout_option_package.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
+import java.util.*
 
 class ProductDetailTopFragment : BaseUIFragment() {
     override fun getTitleLayout(): Int = -1
@@ -86,7 +95,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
 
         mContentView.rl_product_extra.setProductInfo(mProductInfo)
-        mContentView.tv_product_name.text = mProductInfo.PROCUCT_NAME
+        mContentView.tv_cart_product_name.text = mProductInfo.PROCUCT_NAME
         mContentView.tv_price.text = mProductInfo.CURRENT_PRICE
         mContentView.tv_old_price.text = "￥${mProductInfo.REFER_PRICE}"
 
@@ -97,6 +106,57 @@ class ProductDetailTopFragment : BaseUIFragment() {
         }
         mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
         mContentView.tv_ship_address.text = mProductInfo.SEND_CITY
+
+
+        //优惠券
+        val layoutInflater = LayoutInflater.from(mActivity)
+        if (mProductInfo.COUPON_LIST == null || mProductInfo.COUPON_LIST.isEmpty()) {
+            mContentView.ll_coupon.visibility = View.GONE
+        } else {
+            mContentView.ll_coupon.visibility = View.VISIBLE
+            mProductInfo.COUPON_LIST.forEachIndexed { index, info ->
+                if (index >= 3) return@forEachIndexed
+                val couponLableView = layoutInflater.inflate(R.layout.item_product_coupon_lable, mContentView.ll_coupon_lable, false) as TextView
+                couponLableView.text = "满${info.SATISFY_PRICE}减${info.PRICE}"
+                mContentView.ll_coupon_lable.addView(couponLableView)
+            }
+        }
+
+
+        //评价
+        mContentView.tv_evaluate_num.text = "商品评价（${mProductInfo.REPLY}）"
+        mContentView.tv_evaluate_percent.text = "${(mProductInfo.GOOD_PERCENT * 100).toInt()}%"
+        if (mProductInfo.ASSESS_DATA == null) {
+            mContentView.fl_evaluate.visibility = View.GONE
+        } else {
+            mContentView.fl_evaluate.visibility = View.VISIBLE
+            val evaluateInfo = mProductInfo.ASSESS_DATA
+            ImageLoader.loadAvatar(mActivity, evaluateInfo.USER_LOGO, mContentView.civ_avatar)
+            mContentView.tv_username.text = evaluateInfo.USER_NICKNAME
+            mContentView.tv_evaluate_time.text = evaluateInfo.CREATETIME
+            mContentView.tv_answer_content.text = evaluateInfo.CONTENT
+            mContentView.rating_star.setStar(evaluateInfo.TOTAL_SCORE.toFloat())
+
+            if (TextUtils.isEmpty(evaluateInfo.PIC)) {
+                mContentView.image_recycler_view.visibility = View.GONE
+            } else {
+                mContentView.image_recycler_view.visibility = View.VISIBLE
+                mContentView.image_recycler_view.layoutManager = GridLayoutManager(mActivity, 4)
+                mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC), { list, pos ->
+                    PictureLookActivity.launch(mActivity, ArrayList(list))
+                })
+            }
+
+            mContentView.rl_all_evaluate.setOnClickListener {
+                //全部评价
+                if (mActivity is ProductDetailActivity) {
+                    (mActivity as ProductDetailActivity).switchToEvaluate()
+                }
+            }
+
+        }
+
+
     }
 
     override fun initListener() {

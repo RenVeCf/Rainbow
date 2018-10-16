@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="4dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="1px">
 
@@ -38,7 +40,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                android:id="@+id/tv_product_name"
+                android:id="@+id/tv_cart_product_name"
                 style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:ellipsize="end"
@@ -57,10 +59,10 @@
                 android:paddingTop="4dp"
                 android:src="@mipmap/cart_delete"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_product_name" />
+                app:layout_constraintTop_toTopOf="@id/tv_cart_product_name" />
 
             <TextView
-                android:id="@+id/tv_product_spec"
+                android:id="@+id/tv_cart_product_spec"
                 style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:ellipsize="end"
@@ -69,7 +71,7 @@
                 android:textColor="@color/LightGrey"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_cart_product_name" />
 
             <TextView
                 android:id="@+id/tv_cart_product_lable"
@@ -81,11 +83,11 @@
                 android:text="上新"
                 android:textColor="@color/white"
                 android:textSize="9sp"
-                app:layout_constraintBottom_toTopOf="@id/tv_product_price"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_spec" />
+                app:layout_constraintBottom_toTopOf="@id/tv_cart_product_price"
+                app:layout_constraintTop_toBottomOf="@id/tv_cart_product_spec" />
 
             <TextView
-                android:id="@+id/tv_product_price"
+                android:id="@+id/tv_cart_product_price"
                 style="@style/SmallTextStyle"
                 android:layout_width="wrap_content"
                 android:text="￥588"
@@ -94,6 +96,7 @@
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <com.ipd.taxiu.widget.CartOperationView
+                android:id="@+id/cart_operation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

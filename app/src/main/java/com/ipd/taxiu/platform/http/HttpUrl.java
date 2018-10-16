@@ -45,6 +45,14 @@ public interface HttpUrl {
     String STORE_CLEAR_SEARCH_HISTORY = "app_product/clearHis.do";
     String STORE_PRODUCT_LIST = "app_shop/productAll.do";
     String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
+    String STORE_PRODUCT_MODEL = "app_product/formList.do";
+
+
+    //cart
+    String CART_ADD = "app_cart/add.do";
+    String CART_LIST = "app_cart/getList.do";
+    String CART_CHANGE = "app_cart/update.do";
+    String CART_DELETE = "app_cart/delete.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

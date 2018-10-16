@@ -3,7 +3,9 @@ package com.ipd.taxiu.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.TextView
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.ProductModelResult
 import kotlinx.android.synthetic.main.item_product_model_lable.view.*
 
 class ProductModelView : FlowLayout {
@@ -14,8 +16,9 @@ class ProductModelView : FlowLayout {
     private var mCurCheckedPos = 0
 
 
-    fun addView() {
-        val childView = LayoutInflater.from(context).inflate(R.layout.item_product_model_lable, this, false)
+    fun addView(modelInfo: ProductModelResult.ProductModelBean) {
+        val childView = LayoutInflater.from(context).inflate(R.layout.item_product_model_lable, this, false) as TextView
+        childView.text = modelInfo.TASTE
         val childPos = childCount
         addView(childView)
         setChecked(childPos, childPos == mCurCheckedPos)
@@ -24,6 +27,8 @@ class ProductModelView : FlowLayout {
             setChecked(mCurCheckedPos, false)
             mCurCheckedPos = childPos
             setChecked(mCurCheckedPos, true)
+
+            mOnCheckedChangeListener?.onChange(modelInfo)
         }
 
     }
@@ -34,5 +39,15 @@ class ProductModelView : FlowLayout {
         childView.cb_lable.isSelected = isChecked
     }
 
+    fun getCheckedPos(): Int = mCurCheckedPos
+
+    private var mOnCheckedChangeListener: OnCheckedChangeListener? = null
+    fun setOnCheckedChangeListener(listener: OnCheckedChangeListener) {
+        mOnCheckedChangeListener = listener
+    }
+
+    interface OnCheckedChangeListener {
+        fun onChange(modelInfo: ProductModelResult.ProductModelBean)
+    }
 
 }

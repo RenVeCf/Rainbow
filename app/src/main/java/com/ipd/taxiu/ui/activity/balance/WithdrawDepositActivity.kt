@@ -26,7 +26,6 @@ Created by Miss on 2018/8/10
  */
 class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
     companion object {
-        val REQUEST_CODE = 10000 * 1
         fun launch(activity: Activity) {
             val intent = Intent(activity, WithdrawDepositActivity::class.java)
             activity.startActivity(intent)

@@ -8,6 +8,7 @@ import com.ipd.taxiu.bean.BalanceResult;
 import com.ipd.taxiu.bean.BankCardBean;
 import com.ipd.taxiu.bean.BankTypeListBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.CartProductBean;
 import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
@@ -26,6 +27,7 @@ import com.ipd.taxiu.bean.ProductBrandBean;
 import com.ipd.taxiu.bean.ProductCategoryChildBean;
 import com.ipd.taxiu.bean.ProductCategoryParentBean;
 import com.ipd.taxiu.bean.ProductDetailBean;
+import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
@@ -533,6 +535,37 @@ public interface ApiService {
     @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
     Observable<ScreenResult> storeProductExpertScreen(@Field("USER_ID") String user_id,
                                                       @Field("KEYWORDS") String KEYWORDS);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_MODEL)
+    Observable<ProductModelResult> storeProductModel(@Field("USER_ID") String user_id,
+                                                     @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                     @Field("FORM_ID") int FORM_ID);
+
+    /**
+     * cart
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_ADD)
+    Observable<BaseResult<Integer>> cartAdd(@Field("USER_ID") String user_id,
+                                            @Field("PRODUCT_ID") int PRODUCT_ID,
+                                            @Field("FORM_ID") int FORM_ID,
+                                            @Field("NUM") int NUM);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_LIST)
+    Observable<BaseResult<List<CartProductBean>>> cartList(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_CHANGE)
+    Observable<BaseResult<String>> cartChange(@Field("USER_ID") String user_id,
+                                              @Field("NUM") int NUM,
+                                              @Field("CART_ID") int CART_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_DELETE)
+    Observable<BaseResult<String>> cartDelete(@Field("USER_ID") String user_id,
+                                              @Field("CART_ID") int CART_ID);
 
 
     /**

@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.ProductModelResult
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.store.ProductDetailFragment
 import com.ipd.taxiu.ui.fragment.store.ProductEvaluateFragment
@@ -53,6 +58,7 @@ class ProductDetailActivity : BaseUIActivity() {
 
     }
 
+    private var mProductModelResult: ProductModelResult? = null
     override fun initListener() {
         iv_back.setOnClickListener { finish() }
         rl_product.setOnClickListener {
@@ -66,13 +72,27 @@ class ProductDetailActivity : BaseUIActivity() {
             switchTab(1)
         }
         rl_evaluate.setOnClickListener {
-            view_pager.setCurrentItem(1, false)
-            switchTab(2)
+            switchToEvaluate()
         }
 
         tv_add_cart.setOnClickListener {
             //加入购物车
-            ProductModelDialog(mActivity).show()
+            if (mProductModelResult == null) {
+                ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
+                        .compose(RxScheduler.applyScheduler())
+                        .subscribe(object : Response<ProductModelResult>(mActivity, true) {
+                            override fun _onNext(result: ProductModelResult) {
+                                if (result.code == 0) {
+                                    mProductModelResult = result
+                                    showProductModelDialog()
+                                } else {
+                                    toastShow(result.msg)
+                                }
+                            }
+                        })
+            } else {
+                showProductModelDialog()
+            }
         }
         tv_buy.setOnClickListener {
             //立即购买
@@ -87,6 +107,18 @@ class ProductDetailActivity : BaseUIActivity() {
             //收藏
 
         }
+    }
+
+    private fun showProductModelDialog() {
+        val dialog = ProductModelDialog(mActivity)
+        dialog.setData(mProductModelResult)
+        dialog.show()
+
+    }
+
+    fun switchToEvaluate() {
+        view_pager.setCurrentItem(1, false)
+        switchTab(2)
     }
 
     fun switchTab(pos: Int) {

@@ -20,6 +20,7 @@ public class ProductBean {
     public String END_TIME;
     public String BUYNUM;
     public String FORM_BUYNUM;
+    public String TASTE;
     public int KIND;
 
 }
