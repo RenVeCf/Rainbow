@@ -34,7 +34,7 @@ public class ToastCommom {
     public void show(Context context, boolean success, String tvString) {
         View layout = LayoutInflater.from(context).inflate(R.layout.toast_dialog2, null);
         ImageView status = layout.findViewById(R.id.iv_status);
-        status.setImageResource(success ? R.mipmap.toast_success : R.mipmap.toast_success);
+        status.setImageResource(success ? R.mipmap.toast_success : R.mipmap.toast_fail);
         TextView text = layout.findViewById(R.id.toast_des);
         text.setText(tvString);
         if (toast == null) {

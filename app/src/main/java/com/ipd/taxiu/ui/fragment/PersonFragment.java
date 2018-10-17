@@ -168,7 +168,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.rl_delivery_address:
-                DeliveryAddressActivity.Companion.launch(getMActivity());
+                DeliveryAddressActivity.Companion.launch(getMActivity(),DeliveryAddressActivity.Companion.getNORMAL());
                 break;
             case R.id.rl_header:
                 intent1 = new Intent(getActivity(), PersonInformationActivity.class);

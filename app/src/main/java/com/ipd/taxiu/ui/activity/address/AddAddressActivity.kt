@@ -1,34 +1,35 @@
 package com.ipd.taxiu.ui.activity.address
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AddressBean
-import com.ipd.taxiu.bean.ProvinceBean
+import com.ipd.taxiu.event.UpdateAddressEvent
 import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.presenter.AddressPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.PickerUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
+import org.greenrobot.eventbus.EventBus
+import rx.Observable
+import rx.Subscriber
 
 /**
 Created by Miss on 2018/8/10
  *添加收货地址
  */
-class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, AddressPresenter.ICityView,
-        AddressPresenter.IAddressInfoView ,AddressPresenter.IAddressUpdateView,AddressPresenter.IAddressDeleteView{
-    private val pickerUtil = PickerUtil()
+class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
+        AddressPresenter.IAddressInfoView, AddressPresenter.IAddressUpdateView, AddressPresenter.IAddressDeleteView {
+    private val pickerUtil by lazy { PickerUtil() }
     private var status: Int = 2
     private val addressType by lazy { intent.getIntExtra("addressType", 0) }
-    private val addressId by lazy { intent.getStringExtra("addressId")}
+    private val addressId by lazy { intent.getStringExtra("addressId") }
     private var mPresenter: AddressPresenter<AddressPresenter.IAddAddressView>? = null
-    private var mPresenterCity: AddressPresenter<AddressPresenter.ICityView>? = null
     private var mPresenterInfo: AddressPresenter<AddressPresenter.IAddressInfoView>? = null
     private var mPresenterUpdate: AddressPresenter<AddressPresenter.IAddressUpdateView>? = null
     private var mPresenterDelete: AddressPresenter<AddressPresenter.IAddressDeleteView>? = null
@@ -52,9 +53,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         mPresenter = AddressPresenter()
         mPresenter?.attachView(this, this)
 
-        mPresenterCity = AddressPresenter()
-        mPresenterCity?.attachView(this, this)
-
         mPresenterInfo = AddressPresenter()
         mPresenterInfo?.attachView(this, this)
 
@@ -69,9 +67,6 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         super.onViewDetach()
         mPresenter?.detachView()
         mPresenter = null
-
-        mPresenterCity?.detachView()
-        mPresenterCity = null
 
         mPresenterInfo?.detachView()
 
@@ -113,14 +108,34 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     }
 
     override fun loadData() {
-        mPresenterCity?.getCityList("0", GlobalParam.getUserId())
-        getStatus()
-        if (addressType == 2){
-            mPresenterInfo?.getAddressInfo(GlobalParam.getUserId(), addressId)
-        }
+        showProgress()
+        Observable.create<Long> {
+            try {
+                pickerUtil.initJsonData(mActivity)
+                it.onNext(0)
+            } catch (e: Exception) {
+                it.onError(e)
+            }
+        }.compose(RxScheduler.applyScheduler())
+                .subscribe(object : Subscriber<Long>() {
+                    override fun onNext(t: Long?) {
+                        showContent()
+                        if (addressType == 2) {
+                            mPresenterInfo?.getAddressInfo(GlobalParam.getUserId(), addressId)
+                        }
+                    }
+
+                    override fun onCompleted() {
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        showError()
+                    }
+
+                })
     }
 
-    fun getStatus(){
+    fun getStatus() {
         status = if (cb_default.isChecked) {
             2
         } else {
@@ -145,9 +160,9 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
             if (addressType == 1) {
                 getStatus()
                 mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId)
-            } else if (addressType == 2){
+            } else if (addressType == 2) {
                 getStatus()
-                mPresenterUpdate?.getAddressUpdate(address,city,dist,prov,recipient,status,tel,userId,addressId)
+                mPresenterUpdate?.getAddressUpdate(address, city, dist, prov, recipient, status, tel, userId, addressId)
             }
         }
 
@@ -156,40 +171,22 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         }
     }
 
-    override fun onAddSuccess() {
-        toastShow("添加成功")
-        finish()
-    }
-
-    override fun onAddFail(errMsg: String) {
-        toastShow(errMsg)
-    }
-
-
     private fun initMessageDialog() {
         val builder = MessageDialog.Builder(this)
         builder.setTitle("确认要删除该收货地址吗？")
         builder.setMessage("删除后不可恢复，请谨慎操作")
         builder.setCommit("确认删除") { builder ->
-            mPresenterDelete?.deleteAddress(GlobalParam.getUserId(),addressId)
+            mPresenterDelete?.deleteAddress(GlobalParam.getUserId(), addressId)
             builder.dialog.dismiss()
         }
         builder.setCancel("暂不删除") { builder -> builder.dialog.dismiss() }
         builder.dialog.show()
     }
 
-    override fun getListFail(errMsg: String) {
-        toastShow(errMsg)
-    }
-
-    override fun getListSuccess(data: ArrayList<ProvinceBean>) {
-        pickerUtil.initJsonData(this)
-    }
-
     override fun getAddressInfoSuccess(data: AddressBean) {
         et_recipients.setText(data.RECIPIENT)
         et_phone_number.setText(data.TEL.toString())
-        tv_choose_city.text = data.PROV+" "+data.CITY+" "+data.DIST
+        tv_choose_city.text = data.PROV + " " + data.CITY + " " + data.DIST
         et_detailed_address.setText(data.ADDRESS)
         cb_default.isChecked = data.STATUS != 1
     }
@@ -198,11 +195,24 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
         toastShow(errMsg)
     }
 
+
+    override fun onAddSuccess() {
+        EventBus.getDefault().post(UpdateAddressEvent())
+        toastShow(true, "添加成功")
+        finish()
+    }
+
+    override fun onAddFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+
     override fun updateFail(errMsg: String) {
         toastShow(errMsg)
     }
 
     override fun updateSuccess() {
+        EventBus.getDefault().post(UpdateAddressEvent())
         toastShow("修改成功")
         finish()
     }
@@ -212,6 +222,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView, A
     }
 
     override fun deleteSuccess() {
+        EventBus.getDefault().post(UpdateAddressEvent())
         toastShow("删除成功")
         finish()
     }

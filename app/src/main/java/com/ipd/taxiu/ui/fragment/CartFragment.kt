@@ -66,8 +66,7 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
             }
             cartIds = cartIds.substring(0, cartIds.length - 1)
 
-
-            ConfirmOrderActivity.launch(mActivity)
+            ConfirmOrderActivity.launch(mActivity, cartIds)
         }
     }
 

@@ -76,6 +76,7 @@
 
 
         <TextView
+            android:id="@+id/tv_take_it"
             style="@style/BaseTextStyle"
             android:layout_alignParentRight="true"
             android:background="@drawable/shape_buy_bg"

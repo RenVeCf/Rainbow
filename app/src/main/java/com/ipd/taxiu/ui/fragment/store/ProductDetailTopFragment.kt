@@ -15,8 +15,14 @@ import com.ipd.taxiu.adapter.BannerPagerAdapter
 import com.ipd.taxiu.adapter.MediaPictureAdapter
 import com.ipd.taxiu.adapter.PackageProductAdapter
 import com.ipd.taxiu.bean.BannerBean
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.ExchangeBean
 import com.ipd.taxiu.bean.ProductDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIFragment
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
@@ -162,7 +168,19 @@ class ProductDetailTopFragment : BaseUIFragment() {
     override fun initListener() {
         mContentView.ll_coupon.setOnClickListener {
             //领券
-            ProductCouponDialog(mActivity).show()
+            ApiManager.getService().storeProductCoupon(GlobalParam.getUserIdOrJump(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<List<ExchangeBean>>>(mActivity, true) {
+                        override fun _onNext(result: BaseResult<List<ExchangeBean>>) {
+                            if (result.code == 0) {
+                                val couponDialog = ProductCouponDialog(mActivity)
+                                couponDialog.setData(result.data)
+                                couponDialog.show()
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
         }
 
     }

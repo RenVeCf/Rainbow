@@ -73,6 +73,7 @@ public class ProductParamDialog extends BottomSheetDialog {
     }
 
     public void setData(List<ProductParamBean> paramList) {
+        mParamList.clear();
         mParamList.addAll(paramList);
         mAdapter.notifyDataSetChanged();
     }

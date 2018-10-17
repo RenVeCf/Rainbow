@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.layout_pay_type.view.*
 class ChoosePayTypeLayout : ConstraintLayout {
 
     object PayType {
-        const val ALIPAY = 0
-        const val WECHAT = 1
-        const val BALANCE = 2
+        const val ALIPAY = 1
+        const val WECHAT = 2
+        const val BALANCE = 3
     }
 
     constructor(context: Context?) : super(context)

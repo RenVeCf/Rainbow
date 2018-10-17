@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_has_not_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -42,6 +43,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
+        android:id="@+id/cl_has_address"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"

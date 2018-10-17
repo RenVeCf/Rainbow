@@ -8,6 +8,7 @@ import com.ipd.taxiu.bean.BalanceResult;
 import com.ipd.taxiu.bean.BankCardBean;
 import com.ipd.taxiu.bean.BankTypeListBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.CartCashBean;
 import com.ipd.taxiu.bean.CartProductBean;
 import com.ipd.taxiu.bean.ClassRoomBean;
 import com.ipd.taxiu.bean.CommentDetailBean;
@@ -542,6 +543,17 @@ public interface ApiService {
                                                      @Field("PRODUCT_ID") int PRODUCT_ID,
                                                      @Field("FORM_ID") int FORM_ID);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_COUPON)
+    Observable<BaseResult<List<ExchangeBean>>> storeProductCoupon(@Field("USER_ID") String user_id,
+                                                                  @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                  @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_TAKE_IT_COUPON)
+    Observable<BaseResult<ExchangeBean>> takeItCoupon(@Field("USER_ID") String user_id,
+                                                      @Field("COUPON_ID") int COUPON_ID);
+
     /**
      * cart
      */
@@ -566,6 +578,44 @@ public interface ApiService {
     @POST(HttpUrl.CART_DELETE)
     Observable<BaseResult<String>> cartDelete(@Field("USER_ID") String user_id,
                                               @Field("CART_ID") int CART_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_CASH)
+    Observable<BaseResult<CartCashBean>> cartCash(@Field("USER_ID") String user_id,
+                                                  @Field("CART_IDS") String CART_IDS,
+                                                  @Field("ADDRESS_ID") int ADDRESS_ID,
+                                                  @Field("USE_COUPON") int USE_COUPON,
+                                                  @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                  @Field("IS_CART") int IS_CART,
+                                                  @Field("NUM") int NUM,
+                                                  @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                  @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_COUPON)
+    Observable<BaseResult<List<ExchangeBean>>> cartCoupon(@Field("USER_ID") String user_id,
+                                                          @Field("CART_IDS") String CART_IDS,
+                                                          @Field("IS_CART") int IS_CART,
+                                                          @Field("NUM") int NUM,
+                                                          @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                          @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_CONFIRM_ORDER)
+    Observable<BaseResult<Integer>> cartConfirm(@Field("USER_ID") String user_id,
+                                                @Field("CART_IDS") String CART_IDS,
+                                                @Field("ADDRESS_ID") String ADDRESS_ID,
+                                                @Field("INVOICE_HEAD") String INVOICE_HEAD,
+                                                @Field("INVOICE_NUM") String INVOICE_NUM,
+                                                @Field("INVOICE_TYPE") int INVOICE_TYPE,
+                                                @Field("PAYWAY") int PAYWAY,
+                                                @Field("USE_COUPON") int USE_COUPON,
+                                                @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                @Field("IS_CART") int IS_CART,
+                                                @Field("NUM") int NUM,
+                                                @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                @Field("FORM_ID") int FORM_ID);
 
 
     /**

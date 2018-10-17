@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.CartProductBean
+import com.ipd.taxiu.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_confirm_order_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -23,6 +25,12 @@ class ConfirmOrderProductAdapter(val context: Context, private val list: List<Ca
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+
+        ImageLoader.loadNoPlaceHolderImg(context, info.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
+        holder.itemView.tv_cart_product_name.text = info.PRODUCT.PROCUCT_NAME
+        holder.itemView.tv_cart_product_spec.text = info.PRODUCT.TASTE
+        holder.itemView.tv_cart_product_price.text = "￥" + info.PRODUCT.CURRENT_PRICE
+        holder.itemView.tv_product_num.text = "数量：x" + info.NUM
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

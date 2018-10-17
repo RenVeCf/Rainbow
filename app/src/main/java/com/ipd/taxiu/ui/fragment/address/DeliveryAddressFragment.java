@@ -1,28 +1,31 @@
 package com.ipd.taxiu.ui.fragment.address;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.DeliveryAddressAdapter;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.event.ChooseAddressEvent;
+import com.ipd.taxiu.event.UpdateAddressEvent;
 import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.ui.ListFragment;
 import com.ipd.taxiu.ui.activity.address.AddAddressActivity;
-import com.ipd.taxiu.widget.MessageDialog;
+import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -35,8 +38,11 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     private List<AddressBean> bean;
 
 
-    public static DeliveryAddressFragment newInstance() {
+    public static DeliveryAddressFragment newInstance(int type) {
         DeliveryAddressFragment fragment = new DeliveryAddressFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -46,8 +52,23 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     }
 
     @Override
+    protected void onViewAttach() {
+        super.onViewAttach();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onViewDetach() {
+        super.onViewDetach();
+        EventBus.getDefault().unregister(this);
+    }
+
+    private int mType;
+
+    @Override
     protected void initView(@Nullable Bundle bundle) {
         super.initView(bundle);
+        mType = getArguments().getInt("type", DeliveryAddressActivity.Companion.getNORMAL());
         progress_layout.setEmptyViewRes(R.layout.layout_empty_address);
         view = progress_layout.getEmptyViewRes(R.layout.layout_empty_address);
     }
@@ -55,10 +76,10 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
 
     @Override
     public int isNoMoreData(List<AddressBean> result) {
-        if (result == null || result.isEmpty()){
-            if (getPage() == getINIT_PAGE()){
+        if (result == null || result.isEmpty()) {
+            if (getPage() == getINIT_PAGE()) {
                 return getEMPTY_DATA();
-            }else {
+            } else {
                 return getNO_MORE_DATA();
             }
         }
@@ -68,7 +89,19 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new DeliveryAddressAdapter(getContext(), getData());
+            mAdapter = new DeliveryAddressAdapter(getContext(), getData(), new Function1<AddressBean, Unit>() {
+                @Override
+                public Unit invoke(AddressBean addressBean) {
+                    if (mType == DeliveryAddressActivity.Companion.getNORMAL()) {
+                        AddAddressActivity.Companion.launch(getMActivity(), 2, addressBean.ADDRESS_ID);
+                    } else if (mType == DeliveryAddressActivity.Companion.getCHOOSE()) {
+                        //选择地址
+                        EventBus.getDefault().post(new ChooseAddressEvent(addressBean));
+                        getMActivity().finish();
+                    }
+                    return null;
+                }
+            });
             recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             recycler_view.setAdapter(mAdapter);
         } else {
@@ -115,5 +148,11 @@ public class DeliveryAddressFragment extends ListFragment<List<AddressBean>, Add
                         return bean;
                     }
                 });
+    }
+
+    @Subscribe
+    public void onMainEvent(UpdateAddressEvent event) {
+        setCreate(true);
+        onRefresh();
     }
 }

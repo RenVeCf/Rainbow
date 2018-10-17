@@ -36,6 +36,7 @@
     <dimen name="classroom_code_image_size">150dp</dimen>
     <dimen name="mine_avatar_img_size">68dp</dimen>
     <dimen name="bank_logo_size">45dp</dimen>
+    <dimen name="add_address_hint_width">80dp</dimen>
 
 
     <dimen name="small_padding">8dp</dimen>

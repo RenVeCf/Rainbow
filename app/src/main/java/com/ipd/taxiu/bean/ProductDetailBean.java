@@ -50,7 +50,7 @@ public class ProductDetailBean {
     public String DEAL_PRICE;
     public String FORM_GROUP_PRICE;
     public int STOCK;
-    public List<COUPONLISTBean> COUPON_LIST;
+    public List<ExchangeBean> COUPON_LIST;
     public List<ProductBean> GROUP_LIST;
     public int RUSH_STATE;
     public String SYS_TIME;
@@ -60,28 +60,6 @@ public class ProductDetailBean {
     public int IS_COLLECT;
     public double GOOD_PERCENT;
     public ASSESSDATABean ASSESS_DATA;
-
-
-    public static class COUPONLISTBean {
-
-
-        public int COUPON_ID;
-        public int KIND;
-        public int CATEGORY;
-        public String LOGO;
-        public String PRICE;
-        public String SATISFY_PRICE;
-        public int SCORE;
-        public int PRODUCT_ID;
-        public String CONTENT;
-        public int TYPE;
-        public String START_TIME;
-        public String END_TIME;
-        public int SORT;
-        public String CREATETIME;
-        public int STATUS;
-
-    }
 
 
     public static class ASSESSDATABean {

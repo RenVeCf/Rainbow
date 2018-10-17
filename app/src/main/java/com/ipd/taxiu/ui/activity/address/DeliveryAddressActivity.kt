@@ -11,10 +11,13 @@ import com.ipd.taxiu.ui.fragment.address.DeliveryAddressFragment
 Created by Miss on 2018/8/10
 收货地址
  */
-class DeliveryAddressActivity : BaseUIActivity(){
+class DeliveryAddressActivity : BaseUIActivity() {
     companion object {
-        fun launch(activity: Activity) {
+        val CHOOSE = 0
+        val NORMAL = 1
+        fun launch(activity: Activity, type: Int = NORMAL) {
             val intent = Intent(activity, DeliveryAddressActivity::class.java)
+            intent.putExtra("type",type)
             activity.startActivity(intent)
         }
     }
@@ -25,16 +28,12 @@ class DeliveryAddressActivity : BaseUIActivity(){
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
+
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, DeliveryAddressFragment.newInstance()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, DeliveryAddressFragment.newInstance(intent.getIntExtra("type", NORMAL))).commit()
     }
 
     override fun initListener() {
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadData()
     }
 
 }

@@ -5,35 +5,41 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/base_padding">
 
-    <TextView
-        android:id="@+id/tv_conpon_title"
-        style="@style/BaseTextStyle"
-        android:text="优惠券"
-        app:layout_constraintBottom_toBottomOf="@id/iv_arrow"
-        app:layout_constraintTop_toTopOf="@id/iv_arrow" />
-
-    <TextView
-        style="@style/BaseTextStyle"
-        android:layout_marginRight="@dimen/small_padding"
-        android:text="无优惠券可用"
-        android:textColor="@color/LightGrey"
-        app:layout_constraintBottom_toBottomOf="@id/iv_arrow"
-        app:layout_constraintRight_toLeftOf="@id/iv_arrow"
-        app:layout_constraintTop_toTopOf="@id/iv_arrow" />
-
-    <ImageView
-        android:id="@+id/iv_arrow"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_coupon"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/arrow_right"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_conpon_title"
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="优惠券" />
+
+        <TextView
+            android:id="@+id/tv_coupon_use"
+            style="@style/BaseTextStyle"
+            android:layout_marginRight="@dimen/small_padding"
+            android:text="无优惠券可用"
+            android:textColor="@color/LightGrey" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/view_line"
         style="@style/ViewLine"
         android:layout_marginTop="@dimen/small_padding"
-        app:layout_constraintTop_toBottomOf="@id/tv_conpon_title" />
+        app:layout_constraintTop_toBottomOf="@id/ll_coupon" />
 
 
     <TextView
@@ -86,6 +92,7 @@
     </RadioGroup>
 
     <EditText
+        android:id="@+id/et_company_header"
         style="@style/BaseEditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -98,9 +105,30 @@
         android:paddingRight="@dimen/base_padding"
         android:paddingTop="5dp"
         android:singleLine="true"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rg_invoice" />
+
+    <EditText
+        android:id="@+id/et_company_tax_no"
+        style="@style/BaseEditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@drawable/shape_comment_edit_bg"
+        android:hint="请输入单位税号"
+        android:inputType="number"
+        android:maxLength="20"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingTop="5dp"
+        android:singleLine="true"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_company_header" />
 
 
 </android.support.constraint.ConstraintLayout>

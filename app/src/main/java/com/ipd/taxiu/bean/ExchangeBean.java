@@ -23,9 +23,9 @@ public class ExchangeBean {
     public int KIND;
     public int CATEGORY;
     public String LOGO;
-    public int PRICE;
-    public int SATISFY_PRICE;
-    public int SCORE;
+    public String PRICE;
+    public String SATISFY_PRICE;
+    public String SCORE;
     public int PRODUCT_ID;
     public String CONTENT;
     public int TYPE;
@@ -34,4 +34,5 @@ public class ExchangeBean {
     public int SORT;
     public String CREATETIME;
     public int STATUS;
+    public int IS_RECEIVE = 1;
 }

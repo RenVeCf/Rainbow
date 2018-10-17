@@ -46,6 +46,8 @@ public interface HttpUrl {
     String STORE_PRODUCT_LIST = "app_shop/productAll.do";
     String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
     String STORE_PRODUCT_MODEL = "app_product/formList.do";
+    String STORE_PRODUCT_COUPON = "app_product/couponList.do";
+    String STORE_TAKE_IT_COUPON = "app_product/toExchange.do";
 
 
     //cart
@@ -53,6 +55,9 @@ public interface HttpUrl {
     String CART_LIST = "app_cart/getList.do";
     String CART_CHANGE = "app_cart/update.do";
     String CART_DELETE = "app_cart/delete.do";
+    String CART_CASH = "app_cart/toCash.do";
+    String CART_COUPON = "app_cart/couponList.do";
+    String CART_CONFIRM_ORDER = "app_cart/submit.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_recipients"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/add_address_hint_width"
             android:layout_height="wrap_content"
             android:text="收件人："
             android:textColor="@color/text_gray"
@@ -24,7 +24,6 @@
             android:id="@+id/et_recipients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_padding"
             android:layout_toRightOf="@id/tv_recipients"
             android:background="@null"
             android:hint="请输入真实姓名"
@@ -43,7 +42,7 @@
 
         <TextView
             android:id="@+id/tv_phone_number"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/add_address_hint_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/line1"
             android:layout_marginTop="@dimen/base_padding"
@@ -56,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/line1"
-            android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginTop="@dimen/base_padding"
             android:layout_toRightOf="@id/tv_phone_number"
             android:background="@null"
@@ -84,7 +82,7 @@
 
             <TextView
                 android:id="@+id/tv_the_city"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/add_address_hint_width"
                 android:layout_height="wrap_content"
                 android:text="所在城市："
                 android:textColor="@color/text_gray"
@@ -95,7 +93,6 @@
                 android:layout_width="match_parent"
                 android:layout_toRightOf="@id/tv_the_city"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_padding"
                 android:layout_toLeftOf="@id/iv_choose_city"
                 android:hint="请选择"
                 android:textColor="@color/black"
@@ -121,7 +118,7 @@
 
         <TextView
             android:id="@+id/tv_detailed_address"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/add_address_hint_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/line3"
             android:text="详细地址："
@@ -135,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv_detailed_address"
             android:layout_below="@id/line3"
-            android:layout_margin="@dimen/base_padding"
+            android:layout_marginTop="@dimen/base_padding"
             android:background="@null"
             android:hint="请输入如：街道、门牌号等"
             android:maxLines="2"

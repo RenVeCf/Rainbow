@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.adapter.ProductCouponAdapter;
-import com.ipd.taxiu.bean.TalkBean;
+import com.ipd.taxiu.bean.ExchangeBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +50,11 @@ public class ProductCouponDialog extends Dialog {
                 dismiss();
             }
         });
-        RecyclerView coupon_recycler_view = mContentView.findViewById(R.id.coupon_recycler_view);
-        List<TalkBean> list = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            list.add(new TalkBean());
-        }
-        coupon_recycler_view.setAdapter(new ProductCouponAdapter(context, list, new Function1<TalkBean, Unit>() {
+        mCouponList = new ArrayList();
+        RecyclerView param_recycler_view = mContentView.findViewById(R.id.coupon_recycler_view);
+        param_recycler_view.setAdapter(mAdapter = new ProductCouponAdapter(context, mCouponList, new Function1<ExchangeBean, Unit>() {
             @Override
-            public Unit invoke(TalkBean talkBean) {
+            public Unit invoke(ExchangeBean info) {
 
                 return null;
             }
@@ -70,6 +67,16 @@ public class ProductCouponDialog extends Dialog {
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getWindow().setAttributes(params);
 
+    }
+
+
+    private ProductCouponAdapter mAdapter;
+    private List<ExchangeBean> mCouponList;
+
+    public void setData(List<ExchangeBean> paramList) {
+        mCouponList.clear();
+        mCouponList.addAll(paramList);
+        mAdapter.notifyDataSetChanged();
     }
 
 
