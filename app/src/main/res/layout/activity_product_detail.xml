@@ -56,9 +56,10 @@
             android:paddingRight="24dp">
 
             <ImageView
+                android:id="@+id/iv_collect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/product_collect_normal" />
+                android:src="@drawable/selector_collect" />
 
             <TextView
                 style="@style/SmallTextStyle"

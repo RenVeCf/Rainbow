@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.ExchangeBean
 import com.ipd.taxiu.bean.ProductModelResult
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -42,6 +44,7 @@ class ProductDetailActivity : BaseUIActivity() {
     override fun getContentLayout(): Int = R.layout.activity_product_detail
 
     override fun initView(bundle: Bundle?) {
+        ll_collect.isEnabled = false
     }
 
     private val detailFragment: ProductDetailFragment by lazy { ProductDetailFragment.newInstance(mProductId, mFromId) }
@@ -77,26 +80,11 @@ class ProductDetailActivity : BaseUIActivity() {
 
         tv_add_cart.setOnClickListener {
             //加入购物车
-            if (mProductModelResult == null) {
-                ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
-                        .compose(RxScheduler.applyScheduler())
-                        .subscribe(object : Response<ProductModelResult>(mActivity, true) {
-                            override fun _onNext(result: ProductModelResult) {
-                                if (result.code == 0) {
-                                    mProductModelResult = result
-                                    showProductModelDialog()
-                                } else {
-                                    toastShow(result.msg)
-                                }
-                            }
-                        })
-            } else {
-                showProductModelDialog()
-            }
+            getProductModelInfo(ProductModelDialog.CART)
         }
         tv_buy.setOnClickListener {
             //立即购买
-
+            getProductModelInfo(ProductModelDialog.BUY)
         }
 
         ll_kefu.setOnClickListener {
@@ -105,14 +93,45 @@ class ProductDetailActivity : BaseUIActivity() {
         }
         ll_collect.setOnClickListener {
             //收藏
+            ApiManager.getService().storeProductCollect(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<ExchangeBean>>(mActivity, true) {
+                        override fun _onNext(result: BaseResult<ExchangeBean>) {
+                            if (result.code == 0) {
+                                iv_collect.isSelected = !iv_collect.isSelected
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
 
         }
     }
 
-    private fun showProductModelDialog() {
+    private fun showProductModelDialog(type: Int) {
         val dialog = ProductModelDialog(mActivity)
-        dialog.setData(mProductModelResult)
+        dialog.setData(type, mProductModelResult)
         dialog.show()
+
+    }
+
+    private fun getProductModelInfo(type: Int) {
+        if (mProductModelResult == null) {
+            ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<ProductModelResult>(mActivity, true) {
+                        override fun _onNext(result: ProductModelResult) {
+                            if (result.code == 0) {
+                                mProductModelResult = result
+                                showProductModelDialog(type)
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
+        } else {
+            showProductModelDialog(type)
+        }
 
     }
 
@@ -127,6 +146,11 @@ class ProductDetailActivity : BaseUIActivity() {
             tabView.getChildAt(0).isSelected = index == pos
             tabView.getChildAt(1).setBackgroundColor(resources.getColor(if (index == pos) R.color.colorPrimaryDark else R.color.transparent))
         }
+    }
+
+    fun setCollect(isCollect: Boolean) {
+        ll_collect.isEnabled = true
+        iv_collect.isSelected = isCollect
     }
 
 }

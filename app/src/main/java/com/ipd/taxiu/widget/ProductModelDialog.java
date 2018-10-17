@@ -23,6 +23,7 @@ import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.platform.http.Response;
 import com.ipd.taxiu.platform.http.RxScheduler;
+import com.ipd.taxiu.ui.activity.trade.ConfirmOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
@@ -60,7 +61,9 @@ public class ProductModelDialog extends Dialog {
 
     }
 
-    public void setData(final ProductModelResult modelResult) {
+    public static final int CART = 0, BUY = 1;
+
+    public void setData(final int type, final ProductModelResult modelResult) {
         LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
         ViewGroup productLayout = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.item_product_model, null);
         TextView modelView = productLayout.findViewById(R.id.tv_model_name);
@@ -95,21 +98,26 @@ public class ProductModelDialog extends Dialog {
                             return;
                         }
                         ProductModelResult.ProductModelBean modelInfo = modelResult.data.get(checkedPos);
-                        ApiManager.getService().cartAdd(GlobalParam.getUserIdOrJump(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum())
-                                .compose(RxScheduler.Companion.<BaseResult<Integer>>applyScheduler())
-                                .subscribe(new Response<BaseResult<Integer>>(getContext(), true) {
-                                    @Override
-                                    protected void _onNext(BaseResult<Integer> result) {
-                                        if (result.code == 0) {
-                                            EventBus.getDefault().post(new UpdateCartEvent());
-                                            ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(),true, "已加入购物车");
-                                            dismiss();
-                                        } else {
-                                            ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), result.msg);
-                                        }
+                        if (type == CART) {
+                            ApiManager.getService().cartAdd(GlobalParam.getUserIdOrJump(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum())
+                                    .compose(RxScheduler.Companion.<BaseResult<Integer>>applyScheduler())
+                                    .subscribe(new Response<BaseResult<Integer>>(getContext(), true) {
+                                        @Override
+                                        protected void _onNext(BaseResult<Integer> result) {
+                                            if (result.code == 0) {
+                                                EventBus.getDefault().post(new UpdateCartEvent());
+                                                ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), true, "已加入购物车");
+                                                dismiss();
+                                            } else {
+                                                ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), result.msg);
+                                            }
 
-                                    }
-                                });
+                                        }
+                                    });
+                        } else {
+                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum());
+                            dismiss();
+                        }
 
                     }
                 });

@@ -77,6 +77,10 @@ class ProductDetailFragment : BaseUIFragment(), StoreProductDetailPresenter.ISto
 
     override fun loadProductDetailSuccess(info: ProductDetailBean) {
         showContent()
+        if (activity is ProductDetailActivity) {
+            (activity as ProductDetailActivity).setCollect(info.IS_COLLECT == 1)
+        }
+
         mContentView.view_pager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
             override fun getItem(position: Int): Fragment {
                 if (mTopFragment == null) {

@@ -554,6 +554,12 @@ public interface ApiService {
     Observable<BaseResult<ExchangeBean>> takeItCoupon(@Field("USER_ID") String user_id,
                                                       @Field("COUPON_ID") int COUPON_ID);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_COLLECT)
+    Observable<BaseResult<ExchangeBean>> storeProductCollect(@Field("USER_ID") String user_id,
+                                                             @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                             @Field("FORM_ID") int FORM_ID);
+
     /**
      * cart
      */

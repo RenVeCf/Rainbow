@@ -1,6 +1,7 @@
 package com.ipd.taxiu.ui.activity.trade
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -38,13 +39,13 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             activity.startActivity(intent)
         }
 
-        fun launch(activity: Activity, productId: Int, formId: Int, num: Int) {
-            val intent = Intent(activity, ConfirmOrderActivity::class.java)
+        fun launch(context: Context, productId: Int, formId: Int, num: Int) {
+            val intent = Intent(context, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 0)
             intent.putExtra("productId", productId)
             intent.putExtra("formId", formId)
             intent.putExtra("num", num)
-            activity.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 
@@ -72,7 +73,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     private val mProductId: Int by lazy { intent.getIntExtra("productId", 0) }
     private val mFormId: Int by lazy { intent.getIntExtra("formId", 0) }
     private val mNum: Int by lazy { intent.getIntExtra("num", 0) }
-    private val mCartIds: String by lazy { intent.getStringExtra("cartIds") }
+    private val mCartIds: String by lazy { intent.getStringExtra("cartIds")?:"" }
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
