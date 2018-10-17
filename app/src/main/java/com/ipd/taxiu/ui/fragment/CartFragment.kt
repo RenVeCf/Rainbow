@@ -68,6 +68,21 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
 
             ConfirmOrderActivity.launch(mActivity, cartIds)
         }
+
+        mContentView.ll_all_check.setOnClickListener {
+            //全选、反选
+            if (mCartList == null || mCartList!!.isEmpty()) {
+                toastShow("购物车空空如也~~")
+                return@setOnClickListener
+            }
+            val check = !mContentView.cb_all_check.isChecked
+            mContentView.cb_all_check.isChecked = check
+            mCartList?.forEach {
+                it.isChecked = check
+            }
+            mAdapter?.notifyDataSetChanged()
+            onCartProductCheckChange()
+        }
     }
 
     private var mCartList: ArrayList<CartProductBean>? = null
@@ -165,14 +180,18 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
         }
         var checkedNum = 0
         var totalPrice = 0.0
-        mCartList!!.forEach {
+        var isAllChecked = true
+        mCartList?.forEach {
             if (it.isChecked) {
                 checkedNum += it.NUM
                 totalPrice += it.SUB_TOTAL.toDouble()
+            } else {
+                isAllChecked = false
             }
         }
         mContentView.tv_cart_total_price.text = totalPrice.toString()
         mContentView.tv_confirm.text = "结算($checkedNum)"
+        mContentView.cb_all_check.isChecked = isAllChecked
     }
 
     override fun cartDeleteSuccess(pos: Int, cartProductBean: CartProductBean) {

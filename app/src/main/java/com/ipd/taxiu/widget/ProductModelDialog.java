@@ -102,7 +102,7 @@ public class ProductModelDialog extends Dialog {
                                     protected void _onNext(BaseResult<Integer> result) {
                                         if (result.code == 0) {
                                             EventBus.getDefault().post(new UpdateCartEvent());
-                                            ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), "已加入购物车");
+                                            ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(),true, "已加入购物车");
                                             dismiss();
                                         } else {
                                             ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), result.msg);

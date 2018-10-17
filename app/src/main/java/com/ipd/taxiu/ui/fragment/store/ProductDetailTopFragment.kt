@@ -132,7 +132,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
         //评价
         mContentView.tv_evaluate_num.text = "商品评价（${mProductInfo.REPLY}）"
         mContentView.tv_evaluate_percent.text = "${(mProductInfo.GOOD_PERCENT * 100).toInt()}%"
-        if (mProductInfo.ASSESS_DATA == null) {
+        if (mProductInfo.ASSESS_DATA == null || mProductInfo.ASSESS_DATA!!.ASSESS_ID == 0) {
             mContentView.fl_evaluate.visibility = View.GONE
         } else {
             mContentView.fl_evaluate.visibility = View.VISIBLE
