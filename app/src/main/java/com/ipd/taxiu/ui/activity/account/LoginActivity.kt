@@ -61,7 +61,7 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
     }
 
     override fun loginSuccess() {
-        toastShow("登录成功")
+        toastShow(true,"登录成功")
         MainActivity.launch(mActivity)
         finish()
     }

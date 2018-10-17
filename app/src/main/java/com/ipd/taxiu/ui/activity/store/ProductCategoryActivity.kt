@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.view.inputmethod.EditorInfo
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.store.ProductCategoryFragment
@@ -47,14 +46,15 @@ class ProductCategoryActivity : BaseUIActivity() {
 
     override fun initListener() {
         iv_back.setOnClickListener { finish() }
-        et_search.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                //搜索
-                ProductListActivity.launch(mActivity)
-                return@setOnEditorActionListener true
-            }
-            return@setOnEditorActionListener false
-        }
+//        et_search.setOnEditorActionListener { v, actionId, event ->
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                //搜索
+//                ProductListActivity.launch(mActivity)
+//                return@setOnEditorActionListener true
+//            }
+//            return@setOnEditorActionListener false
+//        }
+        tv_search.setOnClickListener { StoreSearchActivity.launch(mActivity) }
 
     }
 

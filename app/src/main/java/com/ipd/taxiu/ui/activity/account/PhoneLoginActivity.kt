@@ -116,7 +116,7 @@ class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, T
     }
 
     override fun loginSuccess() {
-        toastShow("登录成功")
+        toastShow(true,"登录成功")
         val intent = Intent(mActivity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
