@@ -20,6 +20,8 @@ import com.ipd.taxiu.bean.HomeResultBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
+import com.ipd.taxiu.bean.OrderBean;
+import com.ipd.taxiu.bean.OrderDetailBean;
 import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PetKindListBean;
@@ -622,6 +624,22 @@ public interface ApiService {
                                                 @Field("NUM") int NUM,
                                                 @Field("PRODUCT_ID") int PRODUCT_ID,
                                                 @Field("FORM_ID") int FORM_ID);
+
+
+    /**
+     * order
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_LIST)
+    Observable<BaseResult<List<OrderBean>>> orderList(@Field("USER_ID") String user_id,
+                                                      @Field("COUNT") int COUNT,
+                                                      @Field("PAGE") int PAGE,
+                                                      @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_DETAIL)
+    Observable<BaseResult<OrderDetailBean>> orderDetail(@Field("USER_ID") String user_id,
+                                                        @Field("ORDER_ID") int ORDER_ID);
 
 
     /**

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingRight="@dimen/base_padding"
-    android:paddingLeft="@dimen/base_padding">
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding">
 
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
         android:layout_below="@id/commodity_number"
-        android:background="@color/province_line_border"/>
+        android:background="@color/province_line_border" />
 
     <RelativeLayout
         android:id="@+id/rl_commodity_msg"
@@ -22,55 +23,46 @@
 
         <ImageView
             android:id="@+id/iv_commodity_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/list_product_img_width"
+            android:layout_height="@dimen/list_product_img_height"
+            android:scaleType="centerCrop"
             android:src="@mipmap/iv_commodity_head" />
 
         <TextView
             android:id="@+id/tv_commodity_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/small_padding"
             android:layout_toRightOf="@id/iv_commodity_head"
-            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            android:ellipsize="end"
+            android:lines="2"
+            tools:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用母犬及幼犬试用母犬及幼犬试用 8KG" />
 
         <TextView
             android:id="@+id/tv_commodity_explain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/SmallTextStyle"
             android:layout_below="@id/tv_commodity_name"
             android:layout_marginLeft="@dimen/small_padding"
             android:layout_marginTop="@dimen/small_padding"
             android:layout_toRightOf="@id/iv_commodity_head"
             android:text="口味：鸡肉味"
-            android:textSize="@dimen/small_text_size" />
+            android:textColor="@color/LightGrey" />
 
         <TextView
             android:id="@+id/tv_commodity_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_commodity_explain"
+            style="@style/BaseTextStyle"
+            android:layout_alignBottom="@id/iv_commodity_head"
             android:layout_marginLeft="@dimen/small_padding"
-            android:layout_marginTop="@dimen/small_padding"
             android:layout_toRightOf="@id/iv_commodity_head"
-            android:text="￥208.00"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            android:text="￥208.00" />
 
         <TextView
             android:id="@+id/tv_commodity_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextStyle"
+            android:layout_alignBottom="@id/iv_commodity_head"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_commodity_explain"
             android:layout_marginLeft="@dimen/small_padding"
-            android:layout_marginTop="@dimen/small_padding"
-            android:text="数量：X1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            android:text="数量：x1" />
     </RelativeLayout>
 
     <View

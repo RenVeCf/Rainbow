@@ -60,6 +60,11 @@ public interface HttpUrl {
     String CART_COUPON = "app_cart/couponList.do";
     String CART_CONFIRM_ORDER = "app_cart/submit.do";
 
+
+    //order
+    String ORDER_LIST = "app_order/getList.do";
+    String ORDER_DETAIL = "app_order/getInfo.do";
+
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";
     String STORE_PRODUCT_FLASH_SALE = "app_activity/getList.do";

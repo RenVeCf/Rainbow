@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import cn.jpush.android.api.JPushInterface
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
+import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.utils.StringUtils
@@ -40,7 +42,7 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
 
 
     override fun initView(bundle: Bundle?) {
-
+        JPushInterface.deleteAlias(GlobalApplication.mContext, 0)
     }
 
     override fun loadData() {
@@ -61,7 +63,7 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
     }
 
     override fun loginSuccess() {
-        toastShow(true,"登录成功")
+        toastShow(true, "登录成功")
         MainActivity.launch(mActivity)
         finish()
     }

@@ -13,5 +13,9 @@ object Constant {
 
     const val PAGE_SIZE = 10
 
+    const val XIAONENG_ID = "kf_10359"
+    const val XIAONENG_SDK_KEY = "c335230c-0b3e-45aa-801e-52c100b8780b"
+    const val XIAONENG_KEFU_ID = "kf_10359_1538121831270"
+
 
 }

@@ -19,7 +19,6 @@ import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
-import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
@@ -45,14 +44,14 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
         }
     }
 
-    private val mListener =object : RecyclerView.OnChildAttachStateChangeListener {
+    private val mListener = object : RecyclerView.OnChildAttachStateChangeListener {
         override fun onChildViewDetachedFromWindow(view: View?) {
-            LogUtils.e("tag","onChildViewDetachedFromWindow")
+            LogUtils.e("tag", "onChildViewDetachedFromWindow")
 
         }
 
         override fun onChildViewAttachedToWindow(view: View?) {
-            LogUtils.e("tag","onChildViewAttachedToWindow")
+            LogUtils.e("tag", "onChildViewAttachedToWindow")
             val jzvd: JzvdStd? = view?.findViewById(R.id.video_player)
             if (jzvd != null && jzvd!!.jzDataSource.containsTheUrl(JZMediaManager.getCurrentUrl())) {
                 val currentJzvd = JzvdMgr.getCurrentJzvd()
@@ -90,6 +89,10 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 ImageLoader.loadAvatar(context, detailData.User.LOGO, holder.itemView.civ_publisher_avatar)
                 holder.itemView.tv_nickname.text = detailData.User.NICKNAME
                 holder.itemView.tv_user_desc.text = detailData.User.TAG
+
+                holder.itemView.ll_attention.setOnClickListener {
+                    itemClick.invoke(position, it.id, null)
+                }
 
 
                 if (TextUtils.isEmpty(detailData.URL)) {

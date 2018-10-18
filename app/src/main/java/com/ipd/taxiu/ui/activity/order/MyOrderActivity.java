@@ -84,7 +84,7 @@ public class MyOrderActivity extends BaseUIActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return OrderListFragment.newInstance(position);
+            return OrderListFragment.Companion.newInstance(position);
         }
 
         @Override

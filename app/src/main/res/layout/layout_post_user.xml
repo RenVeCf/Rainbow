@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
         android:id="@+id/civ_publisher_avatar"
@@ -11,19 +11,19 @@
         android:layout_height="@dimen/topic_people_comment_avatar_size"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginTop="@dimen/small_padding"
-        tools:src="@mipmap/talk_avatar1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/talk_avatar1" />
 
     <TextView
         android:id="@+id/tv_nickname"
         style="@style/BaseTextStyle"
         android:layout_marginLeft="@dimen/small_padding"
-        tools:text="龟萌萌呆头鸡"
         app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
         app:layout_constraintBottom_toTopOf="@id/tv_user_desc"
         app:layout_constraintLeft_toRightOf="@id/civ_publisher_avatar"
-        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar" />
+        app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar"
+        tools:text="龟萌萌呆头鸡" />
 
 
     <TextView
@@ -31,17 +31,18 @@
         style="@style/SmallTextStyle"
         android:ellipsize="end"
         android:maxLength="20"
-        tools:text="我是一只胖娃娃"
         android:textColor="@color/LightGrey"
         app:layout_constraintBottom_toBottomOf="@id/civ_publisher_avatar"
         app:layout_constraintLeft_toLeftOf="@id/tv_nickname"
-        app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
+        app:layout_constraintTop_toBottomOf="@id/tv_nickname"
+        tools:text="我是一只胖娃娃" />
 
     <LinearLayout
+        android:id="@+id/ll_attention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/base_padding"
-        android:background="@drawable/shape_buy_bg"
+        android:background="@drawable/selector_attention_bg"
         android:gravity="center"
         android:paddingBottom="6dp"
         android:paddingLeft="20dp"
@@ -54,13 +55,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/attention" />
+            android:src="@drawable/selector_attention_image" />
 
         <TextView
-            style="@style/SmallTextStyle"
+            style="@style/BaseTextStyle"
             android:layout_marginLeft="4dp"
             android:text="关注"
-            android:textColor="@color/white" />
+            android:textColor="@drawable/selector_attention_text_color" />
 
     </LinearLayout>
 

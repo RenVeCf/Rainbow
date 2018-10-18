@@ -1,6 +1,7 @@
 package com.ipd.taxiu.utils
 
 import android.text.TextUtils
+import com.ipd.taxiu.widget.ChoosePayTypeLayout
 
 object StringUtils {
     val ss = 1000
@@ -42,6 +43,15 @@ object StringUtils {
             return fixPicStr.split(";")
         }
         return arrayListOf(fixPicStr)
+    }
+
+    fun getPayStrByPayType(payType: Int): String {
+        return when (payType) {
+            ChoosePayTypeLayout.PayType.ALIPAY -> "支付宝"
+            ChoosePayTypeLayout.PayType.WECHAT -> "微信"
+            ChoosePayTypeLayout.PayType.BALANCE -> "余额"
+            else -> ""
+        }
     }
 
 }

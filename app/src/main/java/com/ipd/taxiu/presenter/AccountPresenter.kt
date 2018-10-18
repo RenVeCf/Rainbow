@@ -1,15 +1,16 @@
 package com.ipd.taxiu.presenter
 
+import cn.jpush.android.api.JPushInterface
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.LoginBean
 import com.ipd.taxiu.bean.RegisterBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
-import com.ipd.taxiu.utils.StringUtils
 
 class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     override fun initModel() {
@@ -69,7 +70,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
 
-    fun getSmsCode(phone: String,type:String) {
+    fun getSmsCode(phone: String, type: String) {
         if (mView !is BaseSmsCodeView) return
         val view = mView as BaseSmsCodeView
 
@@ -80,9 +81,9 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
 
         mModel?.getNormalRequestData(
                 when (mView) {
-                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone,type)
-                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone,type)
-                    else -> ApiManager.getService().registerSmsCode(phone,type)
+                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone, type)
+                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone, type)
+                    else -> ApiManager.getService().registerSmsCode(phone, type)
                 },
                 object : Response<BaseResult<String>>(mContext, true) {
                     override fun _onNext(result: BaseResult<String>) {
@@ -151,6 +152,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
 
 
     private fun loginSuccess(loginResult: LoginBean) {
+        JPushInterface.setAlias(GlobalApplication.mContext, loginResult.USER_ID, "TX_${loginResult.USER_ID}")
         GlobalParam.saveUserId(loginResult.USER_ID.toString())
     }
 

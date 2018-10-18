@@ -1,1 +1,2 @@
 include ':app',':jumpboxlibrary',':wheelview',':pickerview','countdown','ffmpeg'
+include ':xiaonengChatUI'

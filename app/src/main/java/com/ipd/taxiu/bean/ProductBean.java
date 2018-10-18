@@ -19,6 +19,7 @@ public class ProductBean {
     public String START_TIME;
     public String END_TIME;
     public String BUYNUM;
+    public String BUY_NUM;
     public String FORM_BUYNUM;
     public String TASTE;
     public int KIND;
