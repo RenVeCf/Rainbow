@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,11 +18,14 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
+import com.ipd.taxiu.ui.activity.PictureLookActivity;
 import com.ipd.taxiu.utils.BaseAdapter;
 import com.ipd.taxiu.utils.UploadUtils;
 import com.ipd.taxiu.widget.RoundImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -54,9 +58,12 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
         Log.e("tag", "onBindViewHolder:" + position);
 
         holder.tv_error.setVisibility(View.GONE);
+        holder.iv_delete.setVisibility(View.GONE);
+
         if (list.size() < maxImageCount && position == list.size()) {
             holder.iv_image.setImageResource(R.mipmap.add_picture);
         } else {
+            holder.iv_delete.setVisibility(View.VISIBLE);
             ImageLoader.loadImgFromLocal(mContext, list.get(position).path, holder.iv_image);
 
             final PictureBean info = list.get(position);
@@ -93,8 +100,16 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
                     });
                 }
             }
-
         }
+
+        holder.iv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //删除
+                if (mOnItemClickListener != null) mOnItemClickListener.showDeleteDialog(position);
+                else showDeleteDialog(position);
+            }
+        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +118,17 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
                 Log.e("tag", "onClick:" + position);
                 if (position == list.size()) {
                     //添加图片
-                    if (mOnItemClickListener != null) mOnItemClickListener.choosePicture();
+                    if (mOnItemClickListener != null) mOnItemClickListener.choosePicture(position);
                     else choosePicture();
                 } else {
-                    //删除
-                    if (mOnItemClickListener != null) mOnItemClickListener.showDeleteDialog();
-                    else showDeleteDialog(position);
+                    PictureBean info = list.get(position);
+                    ArrayList<String> picList = new ArrayList<>();
+                    if (!TextUtils.isEmpty(info.url)) {
+                        picList.add(HttpUrl.IMAGE_URL + info.url);
+                    } else {
+                        picList.add(info.path);
+                    }
+                    PictureLookActivity.launch((Activity) mContext, picList);
                 }
             }
         });
@@ -130,6 +150,8 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
         ProgressBar progress_bar;
         @BindView(R.id.tv_error)
         TextView tv_error;
+        @BindView(R.id.iv_delete)
+        ImageView iv_delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -138,11 +160,11 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
     }
 
     // 头像
-    private void choosePicture() {
+    public void choosePicture() {
         PhotoSelectActivity.launch((Activity) mContext, maxImageCount - list.size());
     }
 
-    private void showDeleteDialog(final int pos) {
+    public void showDeleteDialog(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage("确定要移除该图？");
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -173,8 +195,8 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
 
 
     public interface OnItemClickListener {
-        void choosePicture();
+        void choosePicture(int position);
 
-        void showDeleteDialog();
+        void showDeleteDialog(int position);
     }
 }

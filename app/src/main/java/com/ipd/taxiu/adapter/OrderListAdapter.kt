@@ -85,11 +85,26 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                     itemClickListener.onExpress(info)
                 }
             }
-            Order.FINFISH -> {
-                holder.itemView.order_status.text = "已完成"
+            Order.EVALUATE -> {
+                holder.itemView.order_status.text = "待评价"
                 holder.itemView.tv_confirm.text = "评价"
                 holder.itemView.tv_cancel.text = "再次购买"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
+                holder.itemView.tv_cancel.visibility = View.VISIBLE
+
+                holder.itemView.tv_confirm.setOnClickListener {
+                    //评价
+                    itemClickListener.onEvaluate(info)
+                }
+                holder.itemView.tv_cancel.setOnClickListener {
+                    //再次购买
+                    itemClickListener.onBuyAgain(info)
+                }
+            }
+            Order.FINFISH -> {
+                holder.itemView.order_status.text = "已完成"
+                holder.itemView.tv_cancel.text = "再次购买"
+                holder.itemView.tv_confirm.visibility = View.GONE
                 holder.itemView.tv_cancel.visibility = View.VISIBLE
 
                 holder.itemView.tv_confirm.setOnClickListener {

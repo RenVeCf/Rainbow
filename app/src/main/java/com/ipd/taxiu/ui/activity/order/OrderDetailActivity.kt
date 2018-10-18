@@ -13,6 +13,8 @@ import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.OrderDetailAdapter
 import com.ipd.taxiu.bean.OrderDetailBean
+import com.ipd.taxiu.event.UpdateOrderDetailEvent
+import com.ipd.taxiu.event.UpdateOrderEvent
 import com.ipd.taxiu.presenter.order.OrderDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.Order
@@ -23,6 +25,8 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.footer_order_button.*
 import kotlinx.android.synthetic.main.item_order_detail_footer.view.*
 import kotlinx.android.synthetic.main.item_order_detail_header.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 
 /**
@@ -52,12 +56,14 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
     private var mPresenter: OrderDetailPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
+        EventBus.getDefault().register(this)
         mPresenter = OrderDetailPresenter()
         mPresenter?.attachView(this, this)
     }
 
     override fun onViewDetach() {
         super.onViewDetach()
+        EventBus.getDefault().unregister(this)
         mPresenter?.detachView()
         mPresenter = null
     }
@@ -145,6 +151,8 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
     private fun setButtonStatus() {
         when (mOrderStatus) {
             Order.PAYMENT -> {
+                layout_order_operation.visibility = View.VISIBLE
+
                 tv_order_button1.text = "取消订单"
                 tv_order_button4.text = "立即付款"
 
@@ -154,14 +162,16 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                 ll_order_button3.visibility = View.GONE
             }
             Order.WAIT_SEND -> {
-                tv_order_button2.text = "申请退款"
+                layout_order_operation.visibility = View.GONE
 
                 ll_order_button4.visibility = View.GONE
                 ll_order_button1.visibility = View.GONE
                 ll_order_button3.visibility = View.GONE
-                ll_order_button2.visibility = View.VISIBLE
+                ll_order_button2.visibility = View.GONE
             }
             Order.WAIT_RECEIVE -> {
+                layout_order_operation.visibility = View.VISIBLE
+
                 tv_order_button1.text = "申请退款"
                 tv_order_button4.text = "确认收货"
                 tv_order_button2.text = "查看物流"
@@ -172,6 +182,8 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                 ll_order_button3.visibility = View.GONE
             }
             Order.EVALUATE -> {
+                layout_order_operation.visibility = View.VISIBLE
+
                 tv_order_button1.text = "删除订单"
                 tv_order_button2.text = "查看物流"
                 tv_order_button3.text = "再次购买"
@@ -181,6 +193,18 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                 ll_order_button1.visibility = View.VISIBLE
                 ll_order_button2.visibility = View.VISIBLE
                 ll_order_button3.visibility = View.VISIBLE
+            }
+            Order.FINFISH -> {
+                layout_order_operation.visibility = View.VISIBLE
+
+                tv_order_button1.text = "删除订单"
+                tv_order_button2.text = "查看物流"
+                tv_order_button3.text = "再次购买"
+
+                ll_order_button1.visibility = View.VISIBLE
+                ll_order_button2.visibility = View.VISIBLE
+                ll_order_button3.visibility = View.VISIBLE
+                ll_order_button4.visibility = View.GONE
             }
         }
     }
@@ -194,36 +218,34 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         payWayDialog?.show()
     }
 
-    /**
-     * 取消订单提示框
-     */
-    private fun initMessageDialog(title: String, message: String, commitStr: String, cancelStr: String, toastMsg: String) {
-        val builder = MessageDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCommit(commitStr) { builder ->
-            toastShow(toastMsg)
-            builder.dialog.dismiss()
-            finish()
-        }
-        builder.setCancel(cancelStr) { builder -> builder.dialog.dismiss() }
-        builder.dialog.show()
-    }
-
     override fun onClick(v: View) {
         when (v.id) {
             R.id.tv_order_button1 -> when (mOrderStatus) {
-                Order.PAYMENT -> initMessageDialog("确认要取消该订单吗？",
-                        "订单取消后不可恢复，需重新购买，请谨慎操作。",
-                        "确认取消",
-                        "暂不取消",
-                        "取消成功")
+                Order.PAYMENT -> {
+                    val builder = MessageDialog.Builder(mActivity)
+                    builder.setTitle("确认要取消该订单吗？")
+                            .setMessage("订单取消后不可恢复，需重新购买，请谨慎操作。")
+                            .setCommit("确认取消", {
+                                it.dismiss()
+                                mPresenter?.cancelOrder(mOrderId)
+                            })
+                            .setCancel("暂不取消", {
+                                it.dismiss()
+                            }).show()
+                }
                 Order.WAIT_RECEIVE -> startReturnActivity()
-                Order.EVALUATE -> initMessageDialog("确认要删除该订单吗？",
-                        "订单删除后不可撤销，请谨慎操作。",
-                        "确认删除",
-                        "暂不删除",
-                        "删除成功")
+                Order.EVALUATE -> {
+                    val builder = MessageDialog.Builder(mActivity)
+                    builder.setTitle("确认要删除该订单吗？")
+                            .setMessage("订单删除后不可撤销，请谨慎操作。")
+                            .setCommit("确认删除", {
+                                it.dismiss()
+                                mPresenter?.deleteOrder(mOrderId)
+                            })
+                            .setCancel("暂不删除", {
+                                it.dismiss()
+                            }).show()
+                }
             }
             R.id.tv_order_button2 -> when (mOrderStatus) {
                 Order.WAIT_SEND -> startReturnActivity()
@@ -234,14 +256,20 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
             }
             R.id.tv_order_button4 -> when (mOrderStatus) {
                 Order.PAYMENT -> initpayWayDialog()
-                Order.WAIT_RECEIVE -> initMessageDialog("确认要确认收货吗？",
-                        "请确保您已收到商品，确认收货后，不可撤销，请谨慎操作。",
-                        "确认收货",
-                        "暂不收货",
-                        "收货成功")
+                Order.WAIT_RECEIVE -> {
+                    val builder = MessageDialog.Builder(mActivity)
+                    builder.setTitle("确认要确认收货吗？")
+                            .setMessage("请确保您已收到商品，确认收货后，不可撤销，请谨慎操作。")
+                            .setCommit("确认收货", {
+                                it.dismiss()
+                                mPresenter?.receivedOrder(mOrderId)
+                            })
+                            .setCancel("暂不收货", {
+                                it.dismiss()
+                            }).show()
+                }
                 Order.EVALUATE -> {
-                    val intent = Intent(this, EvaluateActivity::class.java)
-                    startActivity(intent)
+                    EvaluateActivity.launch(mActivity, mOrderId)
                 }
             }
         }
@@ -278,5 +306,39 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun cancelOrderSuccess() {
+        EventBus.getDefault().post(UpdateOrderEvent(intArrayOf(1)))
+        toastShow(true, "取消成功")
+        finish()
+    }
+
+    override fun cancelOrderFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun receivedOrderSuccess() {
+        EventBus.getDefault().post(UpdateOrderEvent(intArrayOf(3, 4)))
+        loadData()
+    }
+
+    override fun receivedOrderFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun deleteOrderSuccess() {
+        EventBus.getDefault().post(UpdateOrderEvent(intArrayOf(4)))
+        toastShow(true, "删除订单成功")
+        finish()
+    }
+
+    override fun deleteOrderFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateOrderDetailEvent) {
+        loadData()
     }
 }

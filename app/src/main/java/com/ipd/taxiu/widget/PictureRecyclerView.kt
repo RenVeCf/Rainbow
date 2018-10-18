@@ -7,13 +7,11 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import com.ipd.taxiu.adapter.PictureAdapter
-import com.ipd.taxiu.adapter.PictureEvaluateAdapter
 import com.ipd.taxiu.bean.PictureBean
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity
 
 class PictureRecyclerView : RecyclerView {
-    val MAX_IMAGE_COUNT = 3
-    val MAX_IMAGE_FOUR = 4
+    var MAX_IMAGE_COUNT = 3
     private var pictureList: ArrayList<PictureBean> = arrayListOf()
 
     constructor(context: Context?) : super(context)
@@ -22,13 +20,18 @@ class PictureRecyclerView : RecyclerView {
 
 
     fun init() {
+        init(MAX_IMAGE_COUNT)
+    }
+
+    fun init(maxImage: Int) {
+        MAX_IMAGE_COUNT = maxImage
         layoutManager = GridLayoutManager(context, MAX_IMAGE_COUNT)
         adapter = PictureAdapter(context, pictureList, MAX_IMAGE_COUNT)
     }
 
-//    override fun getAdapter(): PictureAdapter {
-//        return super.getAdapter() as PictureAdapter
-//    }
+    override fun getAdapter(): PictureAdapter {
+        return super.getAdapter() as PictureAdapter
+    }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
@@ -44,14 +47,5 @@ class PictureRecyclerView : RecyclerView {
 
     fun getPictureList(): ArrayList<PictureBean> {
         return pictureList
-    }
-
-    fun initTwo() {
-        layoutManager = GridLayoutManager(context, MAX_IMAGE_FOUR)
-        adapter = PictureEvaluateAdapter(context, pictureList, MAX_IMAGE_FOUR)
-    }
-
-    fun getEvaluateAdapter(): PictureEvaluateAdapter {
-        return super.getAdapter() as PictureEvaluateAdapter
     }
 }

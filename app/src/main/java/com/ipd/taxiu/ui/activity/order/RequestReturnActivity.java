@@ -37,7 +37,7 @@ public class RequestReturnActivity extends BaseUIActivity {
 
     @Override
     protected void loadData() {
-        pictureRecyclerView.initTwo();
+        pictureRecyclerView.init(4);
     }
 
     @Override

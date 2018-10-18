@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_marginTop="@dimen/base_padding"
     android:background="@color/white"
-    android:padding="@dimen/base_padding"
-    android:id="@+id/item">
+    android:orientation="vertical"
+    android:padding="@dimen/base_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,19 +15,18 @@
 
         <ImageView
             android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/evaluate_img" />
 
         <TextView
             android:id="@+id/tv_commodity_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/small_padding"
-            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG" />
     </LinearLayout>
 
     <View
@@ -36,21 +34,21 @@
         android:layout_height="0.3dp"
         android:layout_marginLeft="@dimen/base_padding"
         android:layout_marginRight="@dimen/base_padding"
-        android:background="@color/full_screen_overlay"
-        android:layout_marginTop="@dimen/base_padding"/>
+        android:layout_marginTop="@dimen/base_padding"
+        android:background="@color/full_screen_overlay" />
 
     <EditText
         android:id="@+id/et_comment_content"
+        style="@style/BaseEditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="top"
+        android:gravity="top|left"
         android:hint="您对该商品还满意吗？留下你的感受吧~（500字内）"
         android:lineSpacingExtra="3dp"
         android:maxLength="500"
         android:minHeight="@dimen/cart_product_img_height"
         android:padding="@dimen/base_padding"
-        android:textColor="@color/black"
         android:textSize="@dimen/small_text_size" />
 
 
@@ -59,11 +57,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/base_padding">
+        android:orientation="horizontal">
+
         <com.ipd.taxiu.widget.PictureRecyclerView
             android:id="@+id/picture_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

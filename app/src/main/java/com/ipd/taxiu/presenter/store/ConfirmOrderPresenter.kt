@@ -39,7 +39,7 @@ class ConfirmOrderPresenter : BasePresenter<ConfirmOrderPresenter.IConfirmOrderV
 
     fun confirmOrder(cartIds: String, isCart: Int, num: Int, productId: Int, formId: Int, addressId: String, invoiceHead: String, invoiceNo: String, invoiceType: Int, payWay: Int, useCoupon: Int, couponId: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().cartConfirm(GlobalParam.getUserIdOrJump(), cartIds, addressId, invoiceHead, invoiceNo, invoiceType, payWay, useCoupon, couponId, isCart, num, productId, formId),
-                object : Response<BaseResult<Int>>() {
+                object : Response<BaseResult<Int>>(mContext,true) {
                     override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
                             EventBus.getDefault().post(UpdateCartEvent())

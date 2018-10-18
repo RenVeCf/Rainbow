@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.presenter.ListPresenter
 import com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.OnLoadMoreListener
 import com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.OnRefreshListener
 import com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.presenter.ListPresenter
 import rx.Observable
 import java.util.*
 
@@ -124,6 +124,11 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
     override fun onRefresh() {
         page = INIT_PAGE
         getListData(true)
+    }
+
+    fun onRefresh(isCreate: Boolean) {
+        this.isCreate = isCreate
+        onRefresh()
     }
 
     /**

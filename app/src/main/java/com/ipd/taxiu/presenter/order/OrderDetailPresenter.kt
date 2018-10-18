@@ -6,9 +6,8 @@ import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
-import com.ipd.taxiu.presenter.BasePresenter
 
-class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView, BasicModel>() {
+class OrderDetailPresenter : OrderPresenter<OrderDetailPresenter.IOrderDetailView>() {
     override fun initModel() {
         mModel = BasicModel()
     }
@@ -33,7 +32,7 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
 
     }
 
-    interface IOrderDetailView {
+    interface IOrderDetailView : OrderPresenter.IOrderOperationView {
         fun loadOrderDetailSuccess(info: OrderDetailBean)
         fun loadOrderDetailFail(errMsg: String)
     }

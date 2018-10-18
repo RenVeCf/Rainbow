@@ -2,6 +2,7 @@ package com.ipd.taxiu.bean;
 
 public class ProductBean {
     public boolean isNew = false;
+    public int ORDER_DETAIL_ID;
     public int PRODUCT_ID;
     public String PROCUCT_NAME;
     public String PRODUCT_NUMBER;

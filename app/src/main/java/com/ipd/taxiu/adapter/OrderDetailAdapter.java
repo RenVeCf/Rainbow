@@ -128,6 +128,9 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
                 tv_order_status.setText("待收货");
                 iv_order_status.setImageResource(R.mipmap.detail_wait_delivery);
             } else if (orderStatus == Order.EVALUATE) {
+                tv_order_status.setText("待评价");
+                iv_order_status.setImageResource(R.mipmap.detail_wait_evaluate);
+            } else if (orderStatus == Order.FINFISH) {
                 tv_order_status.setText("已完成");
                 iv_order_status.setImageResource(R.mipmap.detail_off_the_stocks);
             }

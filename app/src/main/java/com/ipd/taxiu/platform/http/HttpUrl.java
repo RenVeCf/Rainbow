@@ -64,6 +64,11 @@ public interface HttpUrl {
     //order
     String ORDER_LIST = "app_order/getList.do";
     String ORDER_DETAIL = "app_order/getInfo.do";
+    String ORDER_CANCEL = "app_order/cancle.do";
+    String ORDER_RECEIVED = "app_order/receive.do";
+    String ORDER_DELETE = "app_order/delete.do";
+    String ORDER_EVALUATE_PRODUCT_LIST = "app_order/assessPro.do";
+    String ORDER_PUBLISH_EVALUATE = "app_assess/add.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

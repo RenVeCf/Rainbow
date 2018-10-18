@@ -213,6 +213,10 @@ public class RatingBar extends LinearLayout {
 
     }
 
+    public float getStar(){
+        return starStep;
+    }
+
     /**
      * 星星每次增加的方式整星还是半星，枚举类型
      * 类似于View.GONE

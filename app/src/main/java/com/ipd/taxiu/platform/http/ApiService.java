@@ -562,6 +562,61 @@ public interface ApiService {
                                                              @Field("PRODUCT_ID") int PRODUCT_ID,
                                                              @Field("FORM_ID") int FORM_ID);
 
+
+    /**
+     * 商品活动
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_TODAY_PRODUCT_FLASH_SALE)
+    Observable<BaseResult<FlashSaleProductBean>> storeTodayProductFlashSale(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE)
+    Observable<BaseResult<List<FlashSaleProductBean>>> storeProductFlashSale(@Field("USER_ID") String user_id,
+                                                                             @Field("COUNT") int COUNT,
+                                                                             @Field("PAGE") int PAGE,
+                                                                             @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE_REMIND)
+    Observable<BaseResult<FlashSaleProductBean>> storeProductFlashSaleRemind(@Field("USER_ID") String user_id,
+                                                                             @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                             @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_CLEARANCE_PRODUCT)
+    Observable<BaseResult<List<ProductBean>>> storeProductClearance(@Field("USER_ID") String user_id,
+                                                                    @Field("COUNT") int COUNT,
+                                                                    @Field("PAGE") int PAGE,
+                                                                    @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_NEW_PRODUCT)
+    Observable<BaseResult<List<ProductBean>>> storeProductNew(@Field("USER_ID") String user_id,
+                                                              @Field("COUNT") int COUNT,
+                                                              @Field("PAGE") int PAGE);
+
+    /**
+     * store video
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_TODAY_RECOMMEND_VIDEO)
+    Observable<BaseResult<StoreVideoBean>> storeTodayRecommendVideo(@Field("USER_ID") String user_id,
+                                                                    @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_VIDEO_TABS)
+    Observable<BaseResult<List<StoreVideoTabBean>>> storeVideoTabs(@Field("USER_ID") String user_id,
+                                                                   @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_VIDEO_LIST)
+    Observable<BaseResult<List<StoreVideoBean>>> storeVideoList(@Field("USER_ID") String user_id,
+                                                                @Field("CATEGORY") int CATEGORY,
+                                                                @Field("COUNT") int COUNT,
+                                                                @Field("PAGE") int PAGE,
+                                                                @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
+
     /**
      * cart
      */
@@ -641,60 +696,35 @@ public interface ApiService {
     Observable<BaseResult<OrderDetailBean>> orderDetail(@Field("USER_ID") String user_id,
                                                         @Field("ORDER_ID") int ORDER_ID);
 
-
-    /**
-     * 商品活动
-     */
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_TODAY_PRODUCT_FLASH_SALE)
-    Observable<BaseResult<FlashSaleProductBean>> storeTodayProductFlashSale(@Field("USER_ID") String user_id);
+    @POST(HttpUrl.ORDER_CANCEL)
+    Observable<BaseResult<OrderDetailBean>> orderCancel(@Field("USER_ID") String user_id,
+                                                        @Field("ORDER_ID") int ORDER_ID);
 
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE)
-    Observable<BaseResult<List<FlashSaleProductBean>>> storeProductFlashSale(@Field("USER_ID") String user_id,
-                                                                             @Field("COUNT") int COUNT,
-                                                                             @Field("PAGE") int PAGE,
-                                                                             @Field("TYPE") int TYPE);
+    @POST(HttpUrl.ORDER_RECEIVED)
+    Observable<BaseResult<OrderDetailBean>> orderReceived(@Field("USER_ID") String user_id,
+                                                          @Field("ORDER_ID") int ORDER_ID);
 
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_PRODUCT_FLASH_SALE_REMIND)
-    Observable<BaseResult<FlashSaleProductBean>> storeProductFlashSaleRemind(@Field("USER_ID") String user_id,
-                                                                             @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                                             @Field("FORM_ID") int FORM_ID);
+    @POST(HttpUrl.ORDER_DELETE)
+    Observable<BaseResult<OrderDetailBean>> orderDelete(@Field("USER_ID") String user_id,
+                                                        @Field("ORDER_ID") int ORDER_ID);
 
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_CLEARANCE_PRODUCT)
-    Observable<BaseResult<List<ProductBean>>> storeProductClearance(@Field("USER_ID") String user_id,
-                                                                    @Field("COUNT") int COUNT,
-                                                                    @Field("PAGE") int PAGE,
-                                                                    @Field("CATEGORY") int CATEGORY);
+    @POST(HttpUrl.ORDER_EVALUATE_PRODUCT_LIST)
+    Observable<BaseResult<List<ProductBean>>> orderEvaluateProductList(@Field("USER_ID") String user_id,
+                                                                       @Field("ORDER_ID") int ORDER_ID);
 
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_NEW_PRODUCT)
-    Observable<BaseResult<List<ProductBean>>> storeProductNew(@Field("USER_ID") String user_id,
-                                                              @Field("COUNT") int COUNT,
-                                                              @Field("PAGE") int PAGE);
+    @POST(HttpUrl.ORDER_PUBLISH_EVALUATE)
+    Observable<BaseResult<ProductBean>> orderPublishEvaluate(@Field("USER_ID") String user_id,
+                                                             @Field("ORDER_ID") int ORDER_ID,
+                                                             @Field("ASSESS_JSON") String ASSESS_JSON,
+                                                             @Field("DESC_SCORE") int DESC_SCORE,
+                                                             @Field("SERVICE_SCORE") int SERVICE_SCORE,
+                                                             @Field("WL_SCORE") int WL_SCORE);
 
-    /**
-     * store video
-     */
-    @FormUrlEncoded
-    @POST(HttpUrl.STORE_TODAY_RECOMMEND_VIDEO)
-    Observable<BaseResult<StoreVideoBean>> storeTodayRecommendVideo(@Field("USER_ID") String user_id,
-                                                                    @Field("CATEGORY") int CATEGORY);
-
-    @FormUrlEncoded
-    @POST(HttpUrl.STORE_VIDEO_TABS)
-    Observable<BaseResult<List<StoreVideoTabBean>>> storeVideoTabs(@Field("USER_ID") String user_id,
-                                                                   @Field("CATEGORY") int CATEGORY);
-
-    @FormUrlEncoded
-    @POST(HttpUrl.STORE_VIDEO_LIST)
-    Observable<BaseResult<List<StoreVideoBean>>> storeVideoList(@Field("USER_ID") String user_id,
-                                                                @Field("CATEGORY") int CATEGORY,
-                                                                @Field("COUNT") int COUNT,
-                                                                @Field("PAGE") int PAGE,
-                                                                @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
 
     /**
      * address

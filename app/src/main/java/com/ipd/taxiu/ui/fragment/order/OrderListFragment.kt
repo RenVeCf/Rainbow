@@ -7,18 +7,24 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.OrderListAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.OrderBean
+import com.ipd.taxiu.event.UpdateOrderEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.presenter.order.OrderPresenter
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.order.EvaluateActivity
 import com.ipd.taxiu.ui.activity.order.OrderDetailActivity
 import com.ipd.taxiu.utils.Order
+import com.ipd.taxiu.widget.MessageDialog
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
 /**
  * Created by Miss on 2018/7/19
  */
-class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>(), Order.OrderItemClickListener {
+class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>(), Order.OrderItemClickListener, OrderPresenter.IOrderOperationView {
 
     companion object {
         fun newInstance(categoryId: Int): OrderListFragment {
@@ -31,7 +37,23 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
     }
 
     override fun needLazyLoad() = true
-    private var mAdapter: OrderListAdapter? = null
+
+
+    private var mPresenter: OrderPresenter<OrderPresenter.IOrderOperationView>? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+        mPresenter = OrderPresenter()
+        mPresenter?.attachView(mActivity, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
@@ -52,6 +74,7 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
         return NORMAL
     }
 
+    private var mAdapter: OrderListAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
             mAdapter = OrderListAdapter(context, data, this)
@@ -71,20 +94,74 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
     }
 
     override fun onCancelOrder(info: OrderBean) {
+        val builder = MessageDialog.Builder(mActivity)
+        builder.setTitle("确认要取消该订单吗？")
+                .setMessage("订单取消后不可恢复，需重新购买，请谨慎操作。")
+                .setCommit("确认取消", {
+                    it.dismiss()
+                    mPresenter?.cancelOrder(info.ORDER_ID)
+                })
+                .setCancel("暂不取消", {
+                    it.dismiss()
+                }).show()
     }
 
     override fun onPayment(info: OrderBean) {
+        onItemClick(info)
     }
 
     override fun onExpress(info: OrderBean) {
     }
 
     override fun onReceived(info: OrderBean) {
+        val builder = MessageDialog.Builder(mActivity)
+        builder.setTitle("确认要确认收货吗？")
+                .setMessage("请确保您已收到商品，确认收货后，不可撤销，请谨慎操作。")
+                .setCommit("确认收货", {
+                    it.dismiss()
+                    mPresenter?.receivedOrder(info.ORDER_ID)
+                })
+                .setCancel("暂不收货", {
+                    it.dismiss()
+                }).show()
     }
 
     override fun onBuyAgain(info: OrderBean) {
+
     }
 
     override fun onEvaluate(info: OrderBean) {
+        EvaluateActivity.launch(mActivity, info.ORDER_ID)
+    }
+
+    override fun cancelOrderSuccess() {
+        onRefresh(true)
+    }
+
+    override fun cancelOrderFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun receivedOrderSuccess() {
+        onRefresh(true)
+    }
+
+    override fun receivedOrderFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun deleteOrderSuccess() {
+    }
+
+    override fun deleteOrderFail(errMsg: String) {
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateOrderEvent) {
+        if (mCategoryId == 0) {
+            onRefresh(true)
+        } else if (event.refreshPos.contains(mCategoryId)) {
+            onRefresh(true)
+        }
     }
 }
