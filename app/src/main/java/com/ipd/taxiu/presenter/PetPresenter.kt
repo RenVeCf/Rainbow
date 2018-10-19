@@ -99,7 +99,7 @@ class PetPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun petAdd(userId: String, birthday: String, gender: Int, logo: String, nickname: String, pet_type_id: Int, status: Int) {
+    fun petAdd(userId: String?, birthday: String, gender: Int, logo: String, nickname: String, pet_type_id: Int, status: Int) {
         if (mView !is IPetAddView) return
         var view = mView as IPetAddView
 

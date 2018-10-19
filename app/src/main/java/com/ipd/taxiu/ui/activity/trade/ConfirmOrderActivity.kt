@@ -8,11 +8,9 @@ import android.text.TextUtils
 import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ConfirmOrderProductAdapter
-import com.ipd.taxiu.bean.AddressBean
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.CartCashBean
-import com.ipd.taxiu.bean.ExchangeBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.event.ChooseAddressEvent
+import com.ipd.taxiu.event.UpdateCartEvent
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
@@ -20,6 +18,9 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.presenter.store.ConfirmOrderPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity
+import com.ipd.taxiu.utils.AlipayUtils
+import com.ipd.taxiu.utils.WeChatUtils
+import com.ipd.taxiu.widget.ChoosePayTypeLayout
 import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.layout_choose_address.*
@@ -206,7 +207,36 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         showError(errMsg)
     }
 
-    override fun confirmOrderSuccess() {
+    override fun confirmOrderSuccess(payType: Int, payResult: PayResult<String>?, wechatPayResult: PayResult<WechatBean>?) {
+        when(payType){
+            ChoosePayTypeLayout.PayType.ALIPAY->{
+                AlipayUtils.getInstance().alipayByData(mActivity,payResult?.info,object :AlipayUtils.OnPayListener{
+                    override fun onPaySuccess() {
+                        onPaySuccess()
+                    }
+
+                    override fun onPayWait() {
+                    }
+
+                    override fun onPayFail() {
+                        toastShow("支付失败")
+                    }
+
+                })
+
+            }
+            ChoosePayTypeLayout.PayType.WECHAT->{
+                WeChatUtils.getInstance(mActivity).startPay(wechatPayResult?.info)
+            }
+            ChoosePayTypeLayout.PayType.BALANCE->{
+                onPaySuccess()
+            }
+        }
+
+    }
+
+    private fun onPaySuccess(){
+        EventBus.getDefault().post(UpdateCartEvent())
         toastShow(true, "支付成功")
         finish()
     }
@@ -219,6 +249,12 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     @Subscribe
     fun onMainEvent(event: ChooseAddressEvent) {
         setAddressInfo(event.addressInfo)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
+        WeChatUtils.getInstance(mActivity).release()
     }
 
 }

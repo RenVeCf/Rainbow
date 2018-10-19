@@ -1,8 +1,6 @@
 package com.ipd.taxiu.platform.http;
 
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BalanceBillBean;
@@ -25,6 +23,7 @@ import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.bean.OrderDetailBean;
 import com.ipd.taxiu.bean.OtherBean;
+import com.ipd.taxiu.bean.PayResult;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.ProductBean;
@@ -61,9 +60,9 @@ import com.ipd.taxiu.bean.TopicCommentBean;
 import com.ipd.taxiu.bean.TopicCommentReplyBean;
 import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
-import com.ipd.taxiu.bean.UploadProductEvaluateBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.WechatBean;
 import com.ipd.taxiu.bean.WithdrawHintBean;
 
 import java.util.ArrayList;
@@ -669,20 +668,35 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.CART_CONFIRM_ORDER)
-    Observable<BaseResult<Integer>> cartConfirm(@Field("USER_ID") String user_id,
-                                                @Field("CART_IDS") String CART_IDS,
-                                                @Field("ADDRESS_ID") String ADDRESS_ID,
-                                                @Field("INVOICE_HEAD") String INVOICE_HEAD,
-                                                @Field("INVOICE_NUM") String INVOICE_NUM,
-                                                @Field("INVOICE_TYPE") int INVOICE_TYPE,
-                                                @Field("PAYWAY") int PAYWAY,
-                                                @Field("USE_COUPON") int USE_COUPON,
-                                                @Field("EXCHANGE_ID") int EXCHANGE_ID,
-                                                @Field("IS_CART") int IS_CART,
-                                                @Field("NUM") int NUM,
-                                                @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                @Field("FORM_ID") int FORM_ID);
+    Observable<PayResult<String>> cartConfirm(@Field("USER_ID") String user_id,
+                                              @Field("CART_IDS") String CART_IDS,
+                                              @Field("ADDRESS_ID") String ADDRESS_ID,
+                                              @Field("INVOICE_HEAD") String INVOICE_HEAD,
+                                              @Field("INVOICE_NUM") String INVOICE_NUM,
+                                              @Field("INVOICE_TYPE") int INVOICE_TYPE,
+                                              @Field("PAYWAY") int PAYWAY,
+                                              @Field("USE_COUPON") int USE_COUPON,
+                                              @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                              @Field("IS_CART") int IS_CART,
+                                              @Field("NUM") int NUM,
+                                              @Field("PRODUCT_ID") int PRODUCT_ID,
+                                              @Field("FORM_ID") int FORM_ID);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_CONFIRM_ORDER)
+    Observable<PayResult<WechatBean>> cartConfirmWechat(@Field("USER_ID") String user_id,
+                                                        @Field("CART_IDS") String CART_IDS,
+                                                        @Field("ADDRESS_ID") String ADDRESS_ID,
+                                                        @Field("INVOICE_HEAD") String INVOICE_HEAD,
+                                                        @Field("INVOICE_NUM") String INVOICE_NUM,
+                                                        @Field("INVOICE_TYPE") int INVOICE_TYPE,
+                                                        @Field("PAYWAY") int PAYWAY,
+                                                        @Field("USE_COUPON") int USE_COUPON,
+                                                        @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                        @Field("IS_CART") int IS_CART,
+                                                        @Field("NUM") int NUM,
+                                                        @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                        @Field("FORM_ID") int FORM_ID);
 
     /**
      * order
@@ -727,6 +741,22 @@ public interface ApiService {
                                                              @Field("DESC_SCORE") int DESC_SCORE,
                                                              @Field("SERVICE_SCORE") int SERVICE_SCORE,
                                                              @Field("WL_SCORE") int WL_SCORE);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_BALANCE)
+    Observable<BaseResult<Integer>> orderBalance(@Field("USER_ID") String user_id,
+                                                @Field("ORDER_ID") int ORDER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_ALIPAY)
+    Observable<BaseResult<String>> orderAlipay(@Field("USER_ID") String user_id,
+                                               @Field("ORDER_ID") int ORDER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_WECHAT)
+    Observable<BaseResult<WechatBean>> orderWechat(@Field("USER_ID") String user_id,
+                                                   @Field("ORDER_ID") int ORDER_ID);
 
 
     /**

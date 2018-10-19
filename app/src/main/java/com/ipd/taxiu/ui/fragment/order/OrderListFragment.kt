@@ -158,6 +158,7 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
 
     @Subscribe
     fun onMainEvent(event: UpdateOrderEvent) {
+        if (isFirstLoad()) return
         if (mCategoryId == 0) {
             onRefresh(true)
         } else if (event.refreshPos.contains(mCategoryId)) {

@@ -18,4 +18,7 @@ object Constant {
     const val XIAONENG_KEFU_ID = "kf_10359_1538121831270"
 
 
+    const val WECHAT_ID = "wxf3e7b0b936de45a3"
+
+
 }

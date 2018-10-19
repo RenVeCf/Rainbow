@@ -2,6 +2,7 @@ package com.ipd.taxiu.presenter.order
 
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.OrderDetailBean
+import com.ipd.taxiu.bean.WechatBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -32,8 +33,51 @@ class OrderDetailPresenter : OrderPresenter<OrderDetailPresenter.IOrderDetailVie
 
     }
 
+    fun wechat(orderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().orderWechat(GlobalParam.getUserIdOrJump(), orderId),
+                object : Response<BaseResult<WechatBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<WechatBean>) {
+                        if (result.code == 0) {
+                            mView?.orderWechatSuccess(result.data)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun alipay(orderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().orderAlipay(GlobalParam.getUserIdOrJump(), orderId),
+                object : Response<BaseResult<String>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<String>) {
+                        if (result.code == 0) {
+                            mView?.orderAlipaySuccess(result.data)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun balance(orderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().orderBalance(GlobalParam.getUserIdOrJump(), orderId),
+                object : Response<BaseResult<Int>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<Int>) {
+                        if (result.code == 0) {
+                            mView?.orderBalanceSuccess()
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
     interface IOrderDetailView : OrderPresenter.IOrderOperationView {
         fun loadOrderDetailSuccess(info: OrderDetailBean)
         fun loadOrderDetailFail(errMsg: String)
+        fun orderWechatSuccess(wechatInfo: WechatBean)
+        fun orderAlipaySuccess(info: String)
+        fun orderBalanceSuccess()
+        fun payFail(errMsg: String)
     }
 }

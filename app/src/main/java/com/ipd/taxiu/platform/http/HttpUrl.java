@@ -69,6 +69,9 @@ public interface HttpUrl {
     String ORDER_DELETE = "app_order/delete.do";
     String ORDER_EVALUATE_PRODUCT_LIST = "app_order/assessPro.do";
     String ORDER_PUBLISH_EVALUATE = "app_assess/add.do";
+    String ORDER_BALANCE = "app_pay/balance.do";
+    String ORDER_ALIPAY = "app_pay/alipay.do";
+    String ORDER_WECHAT = "app_pay/wechat.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

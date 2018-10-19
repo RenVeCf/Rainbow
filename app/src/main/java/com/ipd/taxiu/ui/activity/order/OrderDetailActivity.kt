@@ -13,12 +13,18 @@ import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.OrderDetailAdapter
 import com.ipd.taxiu.bean.OrderDetailBean
+import com.ipd.taxiu.bean.WechatBean
+import com.ipd.taxiu.event.PayRequestEvent
+import com.ipd.taxiu.event.PayResultEvent
 import com.ipd.taxiu.event.UpdateOrderDetailEvent
 import com.ipd.taxiu.event.UpdateOrderEvent
 import com.ipd.taxiu.presenter.order.OrderDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.AlipayUtils
 import com.ipd.taxiu.utils.Order
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.WeChatUtils
+import com.ipd.taxiu.widget.ChoosePayTypeLayout
 import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.PayWayDialog
 import kotlinx.android.synthetic.main.activity_order_detail.*
@@ -33,7 +39,7 @@ import org.greenrobot.eventbus.Subscribe
  * Created by Miss on 2018/7/20
  * 订单详情
  */
-class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailPresenter.IOrderDetailView {
+class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailPresenter.IOrderDetailView, AlipayUtils.OnPayListener {
 
     companion object {
         fun launch(activity: Activity, orderId: Int) {
@@ -46,7 +52,6 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
 
     private val mOrderId by lazy { intent.getIntExtra("orderId", -1) }
     private var mAdapter: OrderDetailAdapter? = null
-    private var payWayDialog: PayWayDialog? = null
     private var mOrderStatus: Int? = null
 
     override fun getToolbarTitle() = "订单详情"
@@ -214,8 +219,8 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
      * 支付框
      */
     private fun initpayWayDialog() {
-        payWayDialog = PayWayDialog(this, R.style.recharge_pay_dialog)
-        payWayDialog?.show()
+        val payWayDialog = PayWayDialog(this, R.style.recharge_pay_dialog)
+        payWayDialog.show()
     }
 
     override fun onClick(v: View) {
@@ -337,8 +342,69 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         toastShow(errMsg)
     }
 
+    override fun orderWechatSuccess(wechatInfo: WechatBean) {
+        WeChatUtils.getInstance(mActivity).startPay(wechatInfo)
+    }
+
+    override fun orderAlipaySuccess(info: String) {
+        AlipayUtils.getInstance().alipayByData(mActivity, info, this)
+    }
+
+
+    override fun orderBalanceSuccess() {
+        onPaySuccess()
+    }
+
+    override fun onPaySuccess() {
+        EventBus.getDefault().post(UpdateOrderEvent(intArrayOf(0, 1, 2)))
+        toastShow(true, "支付成功")
+        loadData()
+    }
+
+    override fun payFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun onPayWait() {
+    }
+
+    override fun onPayFail() {
+        toastShow("支付失败")
+    }
+
+
     @Subscribe
     fun onMainEvent(event: UpdateOrderDetailEvent) {
         loadData()
+    }
+
+    @Subscribe
+    fun onMainEvent(event: PayResultEvent) {
+        when {
+            event.status == 0 -> onPaySuccess()
+            event.status == -2 -> toastShow("已取消支付")
+            else -> toastShow("支付失败")
+        }
+    }
+
+    @Subscribe
+    fun onMainEvent(event: PayRequestEvent) {
+        when (event.payType) {
+            ChoosePayTypeLayout.PayType.WECHAT -> {
+                mPresenter?.wechat(mOrderId)
+            }
+            ChoosePayTypeLayout.PayType.ALIPAY -> {
+                mPresenter?.alipay(mOrderId)
+            }
+            ChoosePayTypeLayout.PayType.BALANCE -> {
+                mPresenter?.balance(mOrderId)
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
+        WeChatUtils.getInstance(mActivity).release()
     }
 }

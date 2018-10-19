@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ipd.taxiu.ui.BaseUIFragment
 
 /**
  * Created by jumpbox on 2017/5/24.
@@ -63,5 +62,7 @@ abstract class LazyLoadFragment : BaseUIFragment() {
         super.onDestroyView()
 //        mRootView = null//如果需要缓存每个fragment注释该行
     }
+
+    fun isFirstLoad() = firstLoad
 
 }

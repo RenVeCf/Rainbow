@@ -108,12 +108,10 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 holder.itemView.tv_cancel.visibility = View.GONE
 
                 holder.itemView.tv_confirm.setOnClickListener {
-                    //评价
-                    itemClickListener.onEvaluate(info)
-                }
-                holder.itemView.tv_cancel.setOnClickListener {
                     //再次购买
                     itemClickListener.onBuyAgain(info)
+                }
+                holder.itemView.tv_cancel.setOnClickListener {
                 }
             }
             else -> {
