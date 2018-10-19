@@ -40,14 +40,14 @@ public class RequestInterceptor implements Interceptor {
 
         //获取data数据
         JsonObject dataJsonObj = getDataJsonObject(request.body());
-        String dataString = dataJsonObj.toString().replaceAll("\\\\", "");
+        String dataString = dataJsonObj.toString();
         requestJsonObj.add("data", dataJsonObj);
 
         //签名=MD5(time + data)
         requestJsonObj.addProperty("sign", MD5.getMessageDigest((timeStr + dataString).getBytes()));
 
 
-        RequestBody newRequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestJsonObj.toString().replaceAll("\\\\", ""));
+        RequestBody newRequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestJsonObj.toString());
         Request.Builder builder = request.newBuilder();
         builder.post(newRequestBody);
         return chain.proceed(builder.build());

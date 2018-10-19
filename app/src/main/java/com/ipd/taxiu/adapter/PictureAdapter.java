@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.bean.UploadResultBean;
@@ -70,6 +71,7 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
             if (TextUtils.isEmpty(info.url)) {
                 if (info.response == null) {
                     //图片还没有上传
+                    LogUtils.e("tag", "图片还没有上传...");
                     holder.progress_bar.setProgress(0);
                     holder.progress_bar.setVisibility(View.VISIBLE);
                     //上传图片
@@ -88,6 +90,7 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
 
                         @Override
                         public void uploadFail(String errMsg) {
+                            info.response = null;
                             holder.progress_bar.setVisibility(View.GONE);
                             holder.tv_error.setVisibility(View.VISIBLE);
                             holder.tv_error.setOnClickListener(new View.OnClickListener() {

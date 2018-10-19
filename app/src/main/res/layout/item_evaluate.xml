@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,18 +16,49 @@
 
         <ImageView
             android:id="@+id/image_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/evaluate_img" />
 
-        <TextView
-            android:id="@+id/tv_commodity_name"
-            style="@style/BaseTextStyle"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center_vertical"
+            android:layout_height="80dp"
             android:layout_marginLeft="@dimen/small_padding"
-            android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_commodity_name"
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG" />
+
+            <com.ipd.taxiu.widget.RatingBar
+                android:id="@+id/product_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:starCount="5"
+                app:starEmpty="@mipmap/rating_default"
+                app:starFill="@mipmap/rating_select"
+                app:starImagePadding="@dimen/small_padding"
+                app:starImageSize="20dp"
+                app:starStep="0"
+                app:stepSize="Full" />
+
+
+            <TextView
+                android:id="@+id/tv_product_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:layout_toRightOf="@id/product_star"
+                android:text=""
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/small_text_size" />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <View

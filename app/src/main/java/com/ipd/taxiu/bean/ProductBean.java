@@ -24,5 +24,6 @@ public class ProductBean {
     public String FORM_BUYNUM;
     public String TASTE;
     public int KIND;
+    public float star;
 
 }

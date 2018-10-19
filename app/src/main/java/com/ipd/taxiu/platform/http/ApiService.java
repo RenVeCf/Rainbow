@@ -1,6 +1,8 @@
 package com.ipd.taxiu.platform.http;
 
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.ipd.taxiu.bean.AddressBean;
 import com.ipd.taxiu.bean.AttentionBean;
 import com.ipd.taxiu.bean.BalanceBillBean;
@@ -59,6 +61,7 @@ import com.ipd.taxiu.bean.TopicCommentBean;
 import com.ipd.taxiu.bean.TopicCommentReplyBean;
 import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
+import com.ipd.taxiu.bean.UploadProductEvaluateBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.bean.WithdrawHintBean;

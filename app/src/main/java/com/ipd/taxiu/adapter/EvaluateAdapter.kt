@@ -60,6 +60,12 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
             })
             ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.image_view)
             holder.itemView.tv_commodity_name.text = info.PROCUCT_NAME
+
+            holder.itemView.product_star.star = info.star
+            holder.itemView.product_star.setOnRatingChangeListener {
+                info.star = it
+                setStar(holder.itemView.product_star, holder.itemView.tv_product_star)
+            }
         }
     }
 
@@ -137,6 +143,12 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
             val itemView = mRecyclerView!!.layoutManager!!.findViewByPosition(index)
             val content = itemView.et_comment_content.text.toString().trim()
             val pictureList = itemView.picture_recycler_view.getPictureList()
+            val star = itemView.product_star.star
+            if (star == 0f) {
+                callback.invoke("请对商品打分", null)
+                return
+            }
+
             var picStr = ""
 
             pictureList.forEach {
@@ -153,6 +165,7 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
             }
             list.add(UploadProductEvaluateBean(info.ORDER_DETAIL_ID, content, picStr, 0))
         }
+        callback.invoke("", list)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
