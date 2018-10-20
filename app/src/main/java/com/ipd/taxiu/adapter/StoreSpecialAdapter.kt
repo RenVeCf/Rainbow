@@ -11,7 +11,9 @@ import com.ipd.taxiu.bean.StoreIndexVideoBean
 import com.ipd.taxiu.bean.StoreProductScreenBean
 import com.ipd.taxiu.bean.StoreSpecialHeaderBean
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
+import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 import kotlinx.android.synthetic.main.layout_product_screen.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
@@ -80,42 +82,30 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
                 val headerInfo = list!![position] as StoreSpecialHeaderBean
                 holder.itemView.menu_layout.setMenu(headerInfo.menuList)
 
+                //顶部大banner
                 holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
+                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, null)
                 if (!holder.itemView.store_banner.isAutoScroll) {
                     holder.itemView.store_banner.startAutoScroll()
                 }
 
-                holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.bannerList)
+
+                //下方小banner
+                holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.smallBannerList)
                 IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
-                            override fun onPageSelected(pos: Int) {
-                            }
-
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                            }
-
-                            override fun onPageScrollStateChanged(state: Int) {
-                            }
-
-                        })
+                        .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, null)
                 if (!holder.itemView.store_banner_small.isAutoScroll) {
                     holder.itemView.store_banner_small.startAutoScroll()
                 }
 
             }
             ItemType.RECOMMEND_VIDEO -> {
+                val recommendInfo = list!![position] as StoreIndexVideoBean
+                holder.itemView.recommend_video_recycler_view.adapter = StoreIndexRecommendVideoAdapter(context, recommendInfo.videoList, {
+                    //视频详情
+                    StoreVideoDetailActivity.launch(context as Activity, it.VIDEO_ID.toString())
+                })
 
             }
             ItemType.PRODUCT_SCREEN -> {

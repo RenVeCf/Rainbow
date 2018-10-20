@@ -41,6 +41,7 @@ import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
 import com.ipd.taxiu.bean.SignInInfoBean;
 import com.ipd.taxiu.bean.SignInResuleBean;
+import com.ipd.taxiu.bean.StoreAreaIndexResultBean;
 import com.ipd.taxiu.bean.StoreIndexResultBean;
 import com.ipd.taxiu.bean.StoreSearchHistroyBean;
 import com.ipd.taxiu.bean.StoreSecondIndexResultBean;
@@ -534,7 +535,8 @@ public interface ApiService {
                                                                @Field("TASTE") String TASTE,
                                                                @Field("COUNTRY") String COUNTRY,
                                                                @Field("THING_TYPE") String THING_TYPE,
-                                                               @Field("TIP") String TIP);
+                                                               @Field("AREA_TYPE_ID") String AREA_TYPE_ID,
+                                                               @Field("SHOP_TYPE_ID") String SHOP_TYPE_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
@@ -563,6 +565,11 @@ public interface ApiService {
     Observable<BaseResult<ExchangeBean>> storeProductCollect(@Field("USER_ID") String user_id,
                                                              @Field("PRODUCT_ID") int PRODUCT_ID,
                                                              @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_AREA_INDEX)
+    Observable<BaseResult<StoreAreaIndexResultBean>> storeAreaIndex(@Field("USER_ID") String user_id,
+                                                                    @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
 
 
     /**
@@ -746,7 +753,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.ORDER_BALANCE)
     Observable<BaseResult<Integer>> orderBalance(@Field("USER_ID") String user_id,
-                                                @Field("ORDER_ID") int ORDER_ID);
+                                                 @Field("ORDER_ID") int ORDER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.ORDER_ALIPAY)

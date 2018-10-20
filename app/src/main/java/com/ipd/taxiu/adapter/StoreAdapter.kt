@@ -168,7 +168,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 holder.itemView.second_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
                     //专区
-                    StoreSpecialActivity.launch(context as Activity)
+                    StoreSpecialActivity.launch(context as Activity, it.TYPE_ID)
                 })
 
 
@@ -245,7 +245,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         //专区分类
         holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
             //专区
-            StoreSpecialActivity.launch(context as Activity)
+            StoreSpecialActivity.launch(context as Activity, it.TYPE_ID)
         })
 
         holder.itemView.iv_store_purchase.setOnClickListener {
@@ -266,7 +266,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         }
         holder.itemView.iv_store_video.setOnClickListener {
             //视频
-            StoreVideoIndexActivity.launch(context as Activity,headerInfo.type)
+            StoreVideoIndexActivity.launch(context as Activity, headerInfo.type)
         }
     }
 

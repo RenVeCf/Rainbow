@@ -8,6 +8,8 @@ import com.ipd.taxiu.R
 import kotlinx.android.synthetic.main.layout_cart_operation.view.*
 
 class CartOperationView : FrameLayout {
+    private var maxNum = 999
+
     constructor(context: Context?) : super(context) {
         init()
     }
@@ -57,8 +59,14 @@ class CartOperationView : FrameLayout {
         checkOperationStatus()
     }
 
+    fun setMaxNum(maxNum: Int) {
+        this.maxNum = maxNum
+        checkOperationStatus()
+    }
+
     private fun checkOperationStatus() {
         mContentView.iv_sub.isEnabled = getNum() > 1
+        mContentView.iv_add.isEnabled = getNum() >= maxNum
     }
 
 

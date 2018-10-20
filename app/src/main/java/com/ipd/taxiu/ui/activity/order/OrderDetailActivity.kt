@@ -238,8 +238,9 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                                 it.dismiss()
                             }).show()
                 }
-                Order.WAIT_RECEIVE -> startReturnActivity()
-                Order.EVALUATE -> {
+//                Order.WAIT_RECEIVE -> startReturnActivity()
+                Order.EVALUATE,
+                Order.FINFISH -> {
                     val builder = MessageDialog.Builder(mActivity)
                     builder.setTitle("确认要删除该订单吗？")
                             .setMessage("订单删除后不可撤销，请谨慎操作。")
@@ -253,7 +254,7 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                 }
             }
             R.id.tv_order_button2 -> when (mOrderStatus) {
-                Order.WAIT_SEND -> startReturnActivity()
+//                Order.WAIT_SEND -> startReturnActivity()
                 Order.EVALUATE -> startLogisticsActivity()
                 Order.WAIT_RECEIVE -> startLogisticsActivity()
             }
@@ -278,11 +279,6 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
                 }
             }
         }
-    }
-
-    private fun startReturnActivity() {
-        val intent = Intent(this, RequestReturnMoneyActivity::class.java)
-        startActivity(intent)
     }
 
     private fun startLogisticsActivity() {

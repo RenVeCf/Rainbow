@@ -87,7 +87,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
 
         return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
                 compositeValue, mSearchKey, maxPrice, minPrice, priceValue, saleValue,
-                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "")
+                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "0","0")
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {

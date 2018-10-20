@@ -49,6 +49,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_COUPON = "app_product/couponList.do";
     String STORE_TAKE_IT_COUPON = "app_product/toExchange.do";
     String STORE_PRODUCT_COLLECT = "app_product/toCollect.do";
+    String STORE_AREA_INDEX = "app_shop/area.do";
 
 
     //cart

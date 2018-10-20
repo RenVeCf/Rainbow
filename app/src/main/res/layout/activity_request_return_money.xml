@@ -1,148 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:id="@+id/rl_return_reason"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/return_reason"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_product"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="请选择退款原因"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
-        <ImageView
-            android:id="@+id/iv_return_reason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_right"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-        <TextView
-            android:id="@+id/tv_return_reason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="请选择"
-            android:textColor="@color/black"
-            android:minWidth="100dp"
-            android:gravity="center|right"
-            android:layout_toLeftOf="@id/iv_return_reason"
-            android:textSize="@dimen/base_text_size"
-            android:layout_marginRight="@dimen/base_padding"/>
-    </RelativeLayout>
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
 
-    <RelativeLayout
-        android:id="@+id/rl_return_explain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rl_return_reason"
-        android:layout_marginTop="@dimen/small_padding"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
+            <ImageView
+                android:id="@+id/iv_product_img"
+                android:layout_width="@dimen/list_product_img_width"
+                android:layout_height="@dimen/list_product_img_height"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/iv_commodity_head" />
 
-        <TextView
-            android:id="@+id/return_explanation"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_product_name"
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_toRightOf="@id/iv_product_img"
+                android:ellipsize="end"
+                android:lines="2"
+                tools:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用母犬及幼犬试用母犬及幼犬试用 8KG" />
+
+            <TextView
+                android:id="@+id/tv_product_explane"
+                style="@style/SmallTextStyle"
+                android:layout_below="@id/tv_product_name"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/iv_product_img"
+                android:text="口味：鸡肉味"
+                android:textColor="@color/LightGrey" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                style="@style/BaseTextStyle"
+                android:layout_alignBottom="@id/iv_product_img"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:layout_toRightOf="@id/iv_product_img"
+                android:text="￥208.00" />
+
+            <TextView
+                android:id="@+id/tv_buyed_num"
+                style="@style/BaseTextStyle"
+                android:layout_alignBottom="@id/iv_product_img"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:text="数量：x1" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_return_num"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="申请退货说明"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_return_explanation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/return_explanation"
-            android:layout_marginTop="@dimen/base_padding"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/base_text_size" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rl_return_explain"
-        android:layout_marginTop="@dimen/small_padding"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
-
-        <TextView
-            android:id="@+id/contact_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="联系客服"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/contact_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/contact_service"
             android:layout_marginTop="@dimen/small_padding"
-            android:text="联系电话："
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
 
-        <TextView
-            android:id="@+id/tv_contact_phone"
-            android:layout_width="wrap_content"
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_centerVertical="true"
+                android:text="申请数量" />
+
+            <com.ipd.taxiu.widget.CartOperationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_accepted_product"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/contact_service"
+            android:layout_below="@id/rl_return_num"
             android:layout_marginTop="@dimen/small_padding"
-            android:layout_toRightOf="@id/contact_phone"
-            android:text="400 000 0000"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/base_text_size" />
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/base_padding">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/contact_phone"
-            android:text="上午9：00~下午18:00"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
 
-        <TextView
-            android:id="@+id/tv_call_phone"
-            android:layout_width="wrap_content"
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="是否收到商品" />
+
+
+            <TextView
+                android:id="@+id/tv_accepted_product"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginRight="@dimen/base_padding"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:hint="请选择" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_return_reason"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/contact_service"
-            android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/small_padding"
-            android:background="@drawable/shape_call_phone"
-            android:paddingBottom="3dp"
-            android:paddingLeft="@dimen/big_padding"
-            android:paddingRight="@dimen/big_padding"
-            android:paddingTop="3dp"
-            android:text="拨打"
-            android:textColor="@color/white"
-            android:textSize="@dimen/base_text_size" />
-    </RelativeLayout>
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/base_padding">
 
 
-    <TextView
-        android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/base_padding"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_buy_bg"
-        android:gravity="center"
-        android:paddingBottom="@dimen/small_padding"
-        android:paddingTop="@dimen/small_padding"
-        android:text="提交"
-        android:textColor="@color/white"
-        android:textSize="@dimen/base_text_size" />
-</RelativeLayout>
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="退款原因" />
+
+            <TextView
+                android:id="@+id/tv_return_reason"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginRight="@dimen/base_padding"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:hint="请选择" />
+
+            <ImageView
+                android:id="@+id/iv_return_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_return_explain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                android:id="@+id/return_explanation"
+                style="@style/TitleTextStyle"
+                android:text="申请退款说明" />
+
+            <TextView
+                android:id="@+id/tv_return_explanation"
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:layout_below="@id/return_explanation"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="您的退款申请提交后，后台会进行审核，审核通过后，系统会在1~2个工作日内将订单实付金额退还到您的余额。"
+                android:textColor="@color/text_gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                android:id="@+id/contact_service"
+                style="@style/TitleTextStyle"
+                android:text="联系客服" />
+
+            <TextView
+                android:id="@+id/contact_phone"
+                style="@style/BaseTextStyle"
+                android:layout_below="@id/contact_service"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="联系电话：" />
+
+            <TextView
+                android:id="@+id/tv_contact_phone"
+                style="@style/BaseTextStyle"
+                android:layout_below="@id/contact_service"
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_toRightOf="@id/contact_phone"
+                android:text="400 000 0000"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_below="@id/contact_phone"
+                android:text="上午9：00~下午18:00" />
+
+            <TextView
+                android:id="@+id/tv_call_phone"
+                style="@style/BaseTextStyle"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/contact_service"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/small_padding"
+                android:background="@drawable/shape_call_phone"
+                android:paddingBottom="4dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="4dp"
+                android:text="拨打"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_marginBottom="50dp"
+            android:id="@+id/btn_submit"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_buy_bg"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="提交"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>
+

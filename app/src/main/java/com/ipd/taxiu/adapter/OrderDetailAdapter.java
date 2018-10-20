@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.ProductBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.ui.activity.order.RequestReturnMoneyActivity;
 import com.ipd.taxiu.utils.Order;
 
 import java.util.List;
@@ -56,12 +58,25 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         if (!isHeaderView(position) && !isFooterView(position)) {
             if (haveHeaderView()) position--;
             //商品信息
-            ProductBean info = data.get(position);
+            final ProductBean info = data.get(position);
             ImageLoader.loadNoPlaceHolderImg(mContext, info.LOGO, holder.iv_commodity_head);
             holder.tv_commodity_name.setText(info.PROCUCT_NAME);
             holder.tv_commodity_explain.setText(info.TASTE);
             holder.tv_commodity_price.setText("￥" + info.CURRENT_PRICE);
             holder.tv_commodity_num.setText("数量：x" + info.BUY_NUM);
+
+            if (orderStatus == Order.PAYMENT) {
+                holder.tv_apply_return.setVisibility(View.GONE);
+            } else {
+                holder.tv_apply_return.setVisibility(View.VISIBLE);
+            }
+
+            holder.tv_apply_return.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RequestReturnMoneyActivity.Companion.launch((Activity) mContext, info.ORDER_ID, info.ORDER_DETAIL_ID);
+                }
+            });
         }
     }
 
@@ -183,6 +198,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         TextView tv_commodity_explain;
         TextView tv_commodity_price;
         TextView tv_commodity_num;
+        TextView tv_apply_return;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -191,6 +207,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             tv_commodity_explain = itemView.findViewById(R.id.tv_commodity_explain);
             tv_commodity_price = itemView.findViewById(R.id.tv_commodity_price);
             tv_commodity_num = itemView.findViewById(R.id.tv_commodity_num);
+            tv_apply_return = itemView.findViewById(R.id.tv_apply_return);
         }
     }
 }

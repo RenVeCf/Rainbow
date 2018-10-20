@@ -1,13 +1,13 @@
 package com.ipd.taxiu.bean;
 
-public class MenuCategoryBean {
-    public int id;
-    public int res;
-    public String title;
+import com.google.gson.annotations.SerializedName;
 
-    public MenuCategoryBean(int id, int res, String title) {
-        this.id = id;
-        this.res = res;
-        this.title = title;
-    }
+public class MenuCategoryBean {
+    @SerializedName("NAME")
+    public String title;
+    public int AREA_TYPE_ID;
+    public int SHOP_TYPE_ID;
+    public int PARENT;
+    public String LOGO;
+
 }

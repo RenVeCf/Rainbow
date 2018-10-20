@@ -45,12 +45,6 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
 
 
     private lateinit var mStoreIndexInfo: StoreSecondIndexBean
-
-    override fun loadDataWhenVisible() {
-        LogUtils.e("TAG", "loadDataWhenVisible:$mType")
-        super.loadDataWhenVisible()
-    }
-
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()

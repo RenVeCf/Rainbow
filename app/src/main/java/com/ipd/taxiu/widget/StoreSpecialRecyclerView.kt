@@ -38,10 +38,9 @@ class StoreSpecialRecyclerView : RecyclerView {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val suspensionView = layoutManager.findViewByPosition(2)
-
-                if (suspensionView?.top ?: 0 > 0){
+                if (suspensionView?.top ?: 0 >= 0) {
                     mSuspensionListener?.onChange(false)
-                }else{
+                } else {
                     mSuspensionListener?.onChange(true)
                 }
             }

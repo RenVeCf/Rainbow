@@ -58,8 +58,8 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 holder.itemView.tv_cancel.visibility = View.GONE
                 holder.itemView.tv_confirm.text = "详情"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
-                holder.itemView.tv_confirm.setBackgroundResource(R.drawable.shape_order_btn_cancel)
-                holder.itemView.tv_confirm.setTextColor(context.resources.getColor(R.color.black))
+//                holder.itemView.tv_confirm.setBackgroundResource(R.drawable.shape_order_btn_cancel)
+//                holder.itemView.tv_confirm.setTextColor(context.resources.getColor(R.color.black))
 
                 holder.itemView.tv_confirm.setOnClickListener {
                     //详情
@@ -160,19 +160,6 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
     }
 
     override fun getItemCount() = list?.size ?: 0
-
-    private fun initMessageDialog(activity: Activity) {
-        val builder = MessageDialog.Builder(context)
-        builder.setTitle("确认要取消该订单吗？")
-        builder.setMessage("订单取消后不可恢复，需重新购买，请谨慎操作。")
-        builder.setCommit("确认取消") { builder ->
-            ToastCommom().show(context, "取消成功")
-            builder.dialog.dismiss()
-            activity.finish()
-        }
-        builder.setCancel("暂不取消") { builder -> builder.dialog.dismiss() }
-        builder.dialog.show()
-    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
