@@ -77,6 +77,9 @@ public interface HttpUrl {
     String ORDER_RETURN_REASON = "app_refund/typeList2.do";
     String ORDER_REQUEST_RETURN = "app_refund/add.do";
 
+    //return
+    String RETURN_LIST = "app_refund/getList.do";
+
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";
     String STORE_PRODUCT_FLASH_SALE = "app_activity/getList.do";

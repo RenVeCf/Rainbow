@@ -65,7 +65,7 @@ public class ReturnMoneyCommodityActivity extends BaseUIActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return ReturnInfoFragment.newInstance(position);
+            return ReturnInfoFragment.Companion.newInstance(position);
         }
 
         @Override

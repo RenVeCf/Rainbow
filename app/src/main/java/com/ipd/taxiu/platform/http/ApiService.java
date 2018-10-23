@@ -36,6 +36,7 @@ import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
+import com.ipd.taxiu.bean.ReturnBean;
 import com.ipd.taxiu.bean.ReturnOrderInfoBean;
 import com.ipd.taxiu.bean.ReturnReasonBean;
 import com.ipd.taxiu.bean.ScreenResult;
@@ -789,6 +790,16 @@ public interface ApiService {
                                                       @Field("REASON") String REASON,
                                                       @Field("CONTENT") String CONTENT,
                                                       @Field("PIC") String PIC);
+
+    /**
+     * return
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.RETURN_LIST)
+    Observable<BaseResult<List<ReturnBean>>> returnList(@Field("USER_ID") String user_id,
+                                                        @Field("COUNT") int COUNT,
+                                                        @Field("PAGE") int PAGE,
+                                                        @Field("TYPE") int TYPE);
 
     /**
      * address
