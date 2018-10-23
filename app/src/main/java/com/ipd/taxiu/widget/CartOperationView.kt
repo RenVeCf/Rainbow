@@ -65,8 +65,10 @@ class CartOperationView : FrameLayout {
     }
 
     private fun checkOperationStatus() {
+        mContentView.rl_sub.isEnabled = getNum() > 1
         mContentView.iv_sub.isEnabled = getNum() > 1
-        mContentView.iv_add.isEnabled = getNum() >= maxNum
+        mContentView.rl_add.isEnabled = getNum() < maxNum
+        mContentView.iv_add.isEnabled = getNum() < maxNum
     }
 
 

@@ -73,6 +73,9 @@ public interface HttpUrl {
     String ORDER_BALANCE = "app_pay/balance.do";
     String ORDER_ALIPAY = "app_pay/alipay.do";
     String ORDER_WECHAT = "app_pay/wechat.do";
+    String ORDER_RETURN_INFO = "app_refund/detail.do";
+    String ORDER_RETURN_REASON = "app_refund/typeList2.do";
+    String ORDER_REQUEST_RETURN = "app_refund/add.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

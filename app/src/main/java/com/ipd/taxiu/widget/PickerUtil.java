@@ -21,6 +21,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.BankTypeListBean;
 import com.ipd.taxiu.bean.ProvinceBean;
+import com.ipd.taxiu.bean.ReturnReasonBean;
 
 import org.json.JSONArray;
 
@@ -40,7 +41,7 @@ import java.util.List;
 public class PickerUtil {
 
     private TimePickerView pvCustomLunar;
-    private OptionsPickerView pvCustomOptions, bankCardOption, returnMoneyOption, pvOptions;
+    private OptionsPickerView pvCustomOptions, bankCardOption, returnMoneyOption, returnMoneyAccept, pvOptions;
 
     //    private ArrayList<ProvinceBean> options1Items = new ArrayList<>();//省
     private List<ProvinceBean> options1Items = new ArrayList<>();
@@ -218,14 +219,13 @@ public class PickerUtil {
      * @param list
      * @param textView
      */
-    public void initRetrunMoneyOption(final Context context, final List<String> list, final TextView textView) {
+    public void initRetrunMoneyOption(final Context context, final List<ReturnReasonBean> list, final TextView textView) {
         hideSoftInput(context, textView);
         returnMoneyOption = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-
-                String tx = list.get(options1);
+                String tx = list.get(options1).NAME;
                 textView.setText(tx);
             }
         })
@@ -263,6 +263,60 @@ public class PickerUtil {
 
         returnMoneyOption.setPicker(list);//添加数据
         returnMoneyOption.show();
+    }
+
+    /**
+     * 选择是否收到商品
+     *
+     * @param context
+     * @param list
+     * @param textView
+     */
+    public void initRetrunMoneyAccept(final Context context, final List<String> list, final TextView textView) {
+        hideSoftInput(context, textView);
+        returnMoneyAccept = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+
+                String tx = list.get(options1);
+                textView.setText(tx);
+            }
+        })
+                .setLayoutRes(R.layout.dialog_return_accept, new CustomListener() {
+                    @Override
+                    public void customLayout(View v) {
+                        TextView tvSubmit = v.findViewById(R.id.btn_submit);
+                        ImageView tvClose = v.findViewById(R.id.iv_close);
+                        RelativeLayout rl_item = v.findViewById(R.id.rl_item);
+                        rl_item.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                        tvSubmit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                returnMoneyAccept.returnData();
+                                returnMoneyAccept.dismiss();
+                            }
+                        });
+
+                        tvClose.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                returnMoneyAccept.dismiss();
+                            }
+                        });
+
+                    }
+                })
+                .isDialog(false)
+                .build();
+
+        returnMoneyAccept.setPicker(list);//添加数据
+        returnMoneyAccept.show();
     }
 
     /**

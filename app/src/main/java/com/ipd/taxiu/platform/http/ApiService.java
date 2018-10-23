@@ -36,6 +36,8 @@ import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
+import com.ipd.taxiu.bean.ReturnOrderInfoBean;
+import com.ipd.taxiu.bean.ReturnReasonBean;
 import com.ipd.taxiu.bean.ScreenResult;
 import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
@@ -765,6 +767,28 @@ public interface ApiService {
     Observable<BaseResult<WechatBean>> orderWechat(@Field("USER_ID") String user_id,
                                                    @Field("ORDER_ID") int ORDER_ID);
 
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_RETURN_INFO)
+    Observable<BaseResult<ReturnOrderInfoBean>> orderReturnInfo(@Field("USER_ID") String user_id,
+                                                                @Field("ORDER_ID") int ORDER_ID,
+                                                                @Field("ORDER_DETAIL_ID") int ORDER_DETAIL_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_RETURN_REASON)
+    Observable<BaseResult<List<ReturnReasonBean>>> orderReturnReason(@Field("USER_ID") String user_id,
+                                                                     @Field("CATEGORY") int CATEGORY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_REQUEST_RETURN)
+    Observable<BaseResult<String>> orderRequestReturn(@Field("USER_ID") String user_id,
+                                                      @Field("ORDER_ID") int ORDER_ID,
+                                                      @Field("ORDER_DETAIL_ID") int ORDER_DETAIL_ID,
+                                                      @Field("APPLY_NUM") int APPLY_NUM,
+                                                      @Field("CATEGORY") String CATEGORY,
+                                                      @Field("REASON") String REASON,
+                                                      @Field("CONTENT") String CONTENT,
+                                                      @Field("PIC") String PIC);
 
     /**
      * address

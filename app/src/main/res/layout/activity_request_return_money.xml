@@ -43,21 +43,40 @@
                 android:text="口味：鸡肉味"
                 android:textColor="@color/LightGrey" />
 
-            <TextView
-                android:id="@+id/tv_product_price"
-                style="@style/BaseTextStyle"
-                android:layout_alignBottom="@id/iv_product_img"
-                android:layout_marginLeft="@dimen/small_padding"
-                android:layout_toRightOf="@id/iv_product_img"
-                android:text="￥208.00" />
 
-            <TextView
-                android:id="@+id/tv_buyed_num"
-                style="@style/BaseTextStyle"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/iv_product_img"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/small_padding"
-                android:text="数量：x1" />
+                android:layout_toRightOf="@id/iv_product_img"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="@dimen/small_padding"
+                    android:text="单价:"
+                    android:textColor="@color/LightGrey" />
+
+                <TextView
+                    android:id="@+id/tv_product_price"
+                    style="@style/BaseTextStyle"
+                    android:text="￥208.00" />
+
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:text="购买数量:"
+                    android:textColor="@color/LightGrey" />
+
+
+                <TextView
+                    android:id="@+id/tv_buyed_num"
+                    style="@style/BaseTextStyle"
+                    android:text="x1" />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -75,6 +94,7 @@
                 android:text="申请数量" />
 
             <com.ipd.taxiu.widget.CartOperationView
+                android:id="@+id/cart_operation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true" />
@@ -146,6 +166,46 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/base_padding"
+            android:paddingTop="@dimen/base_padding"
+            android:visibility="gone">
+
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:paddingLeft="@dimen/base_padding"
+                android:paddingRight="@dimen/base_padding"
+                android:text="问题描述" />
+
+            <EditText
+                android:id="@+id/et_question"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:gravity="left|top"
+                android:hint="请描述您的退款原因，以便我们更好的核实~(500字以内，最多4张图片哦~)"
+                android:maxLength="500"
+                android:minHeight="100dp"
+                android:paddingLeft="@dimen/base_padding"
+                android:paddingRight="@dimen/base_padding"
+                android:textSize="@dimen/small_text_size" />
+
+
+            <com.ipd.taxiu.widget.PictureRecyclerView
+                android:id="@+id/picture_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/rl_return_explain"
             android:layout_width="match_parent"
@@ -198,6 +258,7 @@
                 android:textColor="@color/colorPrimaryDark" />
 
             <TextView
+                android:id="@+id/tv_work_time"
                 style="@style/BaseTextStyle"
                 android:layout_below="@id/contact_phone"
                 android:text="上午9：00~下午18:00" />
@@ -220,10 +281,10 @@
 
 
         <TextView
-            android:layout_marginBottom="50dp"
             android:id="@+id/btn_submit"
             style="@style/BaseTextStyle"
             android:layout_width="match_parent"
+            android:layout_marginBottom="50dp"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginRight="@dimen/base_padding"
             android:layout_marginTop="20dp"

@@ -65,7 +65,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             holder.tv_commodity_price.setText("￥" + info.CURRENT_PRICE);
             holder.tv_commodity_num.setText("数量：x" + info.BUY_NUM);
 
-            if (orderStatus == Order.PAYMENT) {
+            if (info.STATUS == Order.PAYMENT) {
                 holder.tv_apply_return.setVisibility(View.GONE);
             } else {
                 holder.tv_apply_return.setVisibility(View.VISIBLE);
