@@ -79,6 +79,9 @@ public interface HttpUrl {
 
     //return
     String RETURN_LIST = "app_refund/getList.do";
+    String RETURN_DETAIL = "app_refund/refundDetail.do";
+    String RETURN_EXPRESS_INFO = "app_refund/info.do";
+    String RETURN_COMMIT_EXPRESS = "app_refund/toPost.do";
 
     //store activity
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";

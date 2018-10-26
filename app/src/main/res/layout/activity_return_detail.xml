@@ -6,14 +6,4 @@
     <include
         android:id="@+id/layout_return"
         layout="@layout/return_detail_info" />
-    <TextView
-        android:id="@+id/tv_submit_time"
-        android:layout_below="@id/layout_return"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/base_padding"
-        android:paddingBottom="@dimen/base_padding"
-        android:background="@color/white"
-        android:text="提交时间： 2018.07.23 14:00"/>
-
 </RelativeLayout>

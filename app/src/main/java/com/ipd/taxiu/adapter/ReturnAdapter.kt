@@ -1,6 +1,5 @@
 package com.ipd.taxiu.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
@@ -12,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ReturnBean
-import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.item_return_list.view.*
 
@@ -44,15 +42,18 @@ class ReturnAdapter(private val context: Context, private val list: ArrayList<Re
         if (pics.isNotEmpty()) {
             holder.itemView.picture_recycler_view.visibility = View.VISIBLE
             holder.itemView.picture_recycler_view.adapter = ReturnPictureAdapter(context, pics, { list, pos ->
-                PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
+                //                PictureLookActivity.launch(context as Activity?, ArrayList(list), pos, PictureLookActivity.URL)
             })
+            holder.itemView.picture_recycler_view.setOnTouchListener { v, event ->
+                holder.itemView.onTouchEvent(event)
+            }
         } else {
             holder.itemView.picture_recycler_view.visibility = View.GONE
         }
 
         holder.itemView.tv_order_number.text = info.ORDER_NO
         holder.itemView.tv_submit_time.text = "提交时间： ${info.CREATETIME}"
-//        holder.itemView.tv_return_type.text = ##TODO 暂无订单类型字段
+        holder.itemView.tv_return_type.text = if (info.CATEGORY == 1) "仅退款" else "退款退货"
 
         holder.itemView.setOnClickListener {
             itemClick?.invoke(info)

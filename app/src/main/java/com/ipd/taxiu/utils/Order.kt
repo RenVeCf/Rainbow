@@ -26,4 +26,21 @@ object Order {
         fun onEvaluate(info: OrderBean)
     }
 
+
+    fun getOrderStrByStatus(status: Int): String {
+        return when (status) {
+            0 -> "已删除"
+            2 -> "待付款"
+            3 -> "待发货"
+            4 -> "待收货"
+            5 -> "待评价"
+            6 -> "已完成"
+            7 -> "退款中"
+            8 -> "退款关闭"
+            9 -> "退款成功"
+            10 -> "发货中"
+            else -> "未知"
+        }
+    }
+
 }

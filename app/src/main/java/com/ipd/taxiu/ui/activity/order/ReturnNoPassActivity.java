@@ -33,7 +33,7 @@ public class ReturnNoPassActivity extends BaseUIActivity implements View.OnClick
     @Override
     protected void initView(@Nullable Bundle bundle) {
         initToolbar();
-        goods_pic = findViewById(R.id.return_img);
+//        goods_pic = findViewById(R.id.return_img);
         delivery_time = findViewById(R.id.delivery_time);
         tv_delivery_time = findViewById(R.id.tv_delivery_time);
         tv_order_status = findViewById(R.id.tv_order_status);

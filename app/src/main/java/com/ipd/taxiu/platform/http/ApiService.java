@@ -37,8 +37,10 @@ import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.ReturnBean;
+import com.ipd.taxiu.bean.ReturnDetailBean;
 import com.ipd.taxiu.bean.ReturnOrderInfoBean;
 import com.ipd.taxiu.bean.ReturnReasonBean;
+import com.ipd.taxiu.bean.ReturnResult;
 import com.ipd.taxiu.bean.ScreenResult;
 import com.ipd.taxiu.bean.ShowPetBean;
 import com.ipd.taxiu.bean.SignInDayBean;
@@ -76,6 +78,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -800,6 +803,22 @@ public interface ApiService {
                                                         @Field("COUNT") int COUNT,
                                                         @Field("PAGE") int PAGE,
                                                         @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RETURN_DETAIL)
+    Observable<BaseResult<ReturnDetailBean>> returnDetail(@Field("USER_ID") String user_id,
+                                                          @Field("REFUND_ID") int REFUND_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RETURN_EXPRESS_INFO)
+    Observable<ReturnResult> returnExpressInfo(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RETURN_COMMIT_EXPRESS)
+    Observable<ReturnResult> returnCommitExpress(@Field("USER_ID") String user_id,
+                                                 @Field("REFUND_ID") int REFUND_ID,
+                                                 @Field("POST_NUM") String POST_NUM,
+                                                 @Field("POST_COMPANY") String POST_COMPANY);
 
     /**
      * address

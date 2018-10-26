@@ -23,6 +23,7 @@ public class ReturnBean {
      */
 
     public int REFUND_ID;
+    public int REFUND_DETAIL_ID;
     public int ORDER_ID;
     public int ORDER_DETAIL_ID;
     public int USER_ID;
@@ -36,5 +37,18 @@ public class ReturnBean {
     public String CHECKTIME;
     public int STATUS;
     public String ORDER_NO;
+    public String POST_NUM;
+    public String POST_COMPANY;
+    public String RECEIVE_NAME;
+    public String RECEIVE_PHONE;
+    public String PROV;
+    public String CITY;
+    public String DIST;
+    public String ADDRESS;
+    public int POSTWAY;
+    public int POST_FEE;
+
+
+
 
 }

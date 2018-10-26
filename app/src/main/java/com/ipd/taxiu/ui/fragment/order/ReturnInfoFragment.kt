@@ -10,6 +10,7 @@ import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.order.ReturnDetailActivity
 import rx.Observable
 
 /**
@@ -53,7 +54,7 @@ class ReturnInfoFragment : ListFragment<BaseResult<List<ReturnBean>>, ReturnBean
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
             mAdapter = ReturnAdapter(context, data, {
-
+                ReturnDetailActivity.launch(mActivity, it.REFUND_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(context)
             recycler_view.adapter = mAdapter
