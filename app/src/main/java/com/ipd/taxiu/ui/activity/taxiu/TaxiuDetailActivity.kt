@@ -6,18 +6,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import cn.jzvd.Jzvd
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuDetailBean
+import com.ipd.taxiu.event.UpdateMineTaxiuEvent
 import com.ipd.taxiu.presenter.store.TaxiuDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.taxiu.TaxiuDetailFragment
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_taxiu_detail.*
 import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
-import cn.jzvd.Jzvd
-
-
+import org.greenrobot.eventbus.EventBus
 
 class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailView {
 
@@ -83,6 +83,7 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
                         .setMessage("删除后不可恢复，请谨慎操作。")
                         .setCommit("确认删除", { builder ->
                             builder.dismiss()
+                            mPresenter?.delete(taxiuId)
                         })
                         .setCancel("暂不删除", { builder ->
                             builder.dismiss()
@@ -119,6 +120,15 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
     }
 
     override fun collectFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun deleteSuccess() {
+        EventBus.getDefault().post(UpdateMineTaxiuEvent())
+        finish()
+    }
+
+    override fun deleteFail(errMsg: String) {
         toastShow(errMsg)
     }
 

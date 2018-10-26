@@ -77,11 +77,14 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                 //itemClick
                 when (res) {
                     R.id.tv_choose_best_answer -> {
+                        if (info == null) return@TalkDetailAdapter
                         MessageDialog.Builder(context)
                                 .setTitle("确认选择该答案为最佳答案吗？")
                                 .setMessage("选择后不可撤销，请谨慎操作。")
                                 .setCommit("确认选择", {
                                     it.dismiss()
+                                    mPresenter?.bestAnswer(info.QUESTION_ID, info.ANSWER_ID)
+
                                 })
                                 .setCancel("暂不选择", {
                                     it.dismiss()
@@ -90,10 +93,10 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                     R.id.comments_view -> {
                         //二级回复
                         if (info == null) return@TalkDetailAdapter
-                        if (replyInfo == null){
+                        if (replyInfo == null) {
                             //更多回复
-                            MoreCommentActivity.launch(mActivity,CommentType.TALK,info.ANSWER_ID)
-                        }else{
+                            MoreCommentActivity.launch(mActivity, CommentType.TALK, info.ANSWER_ID)
+                        } else {
                             ReplyDialog("回复:${replyInfo?.userName}", {
                                 //二级回复
                                 mPresenter?.secondReply(info.ANSWER_ID, replyInfo.USER_ID, it)
@@ -144,8 +147,7 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
     }
 
     override fun replySuccess() {
-        isCreate = true
-        onRefresh()
+        onRefresh(true)
     }
 
     override fun replyFail(errMsg: String) {
@@ -179,6 +181,15 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
     }
 
     override fun praiseFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun bestAnswerSuccess() {
+        detailData.IS_SURE = 1
+        onRefresh(true)
+    }
+
+    override fun bestAnswerFail(errMsg: String) {
         toastShow(errMsg)
     }
 

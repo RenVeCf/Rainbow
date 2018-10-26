@@ -32,9 +32,9 @@ class ClassRoomLayout : FrameLayout {
         addView(mContentView)
     }
 
-    fun setData(info: ClassRoomBean) {
-        if (false) {
-            setBtnByStatus(getClassRoomStatus())
+    fun setData(isBuyed: Boolean, info: ClassRoomBean) {
+        if (isBuyed) {
+            setBtnByStatus(info.CLASS_STATE)
         } else {
             mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_buy_bg)
             mContentView.tv_classroom_buy.setTextColor(resources.getColor(R.color.white))
@@ -48,24 +48,19 @@ class ClassRoomLayout : FrameLayout {
 
     }
 
-
-    private fun getClassRoomStatus(): Int {
-        return Random().nextInt(3)
-    }
-
     private fun setBtnByStatus(status: Int) {
         when (status) {
-            0 -> {
+            1 -> {
                 mContentView.tv_classroom_buy.text = "未开始"
                 mContentView.tv_classroom_buy.setTextColor(Color.parseColor("#51A151"))
                 mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_classroom_wait_start)
             }
-            1 -> {
+            2 -> {
                 mContentView.tv_classroom_buy.text = "进行中"
                 mContentView.tv_classroom_buy.setTextColor(Color.parseColor("#EB6717"))
                 mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_classroom_underway)
             }
-            2 -> {
+            3 -> {
                 mContentView.tv_classroom_buy.text = "已结束"
                 mContentView.tv_classroom_buy.setTextColor(Color.parseColor("#B8B8B8"))
                 mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_classroom_end)

@@ -1,6 +1,7 @@
 package com.ipd.taxiu.presenter.store
 
 import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.TaxiuBean
 import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
@@ -45,11 +46,26 @@ class TaxiuDetailPresenter : BasePresenter<TaxiuDetailPresenter.ITaxiuDetailView
                 })
     }
 
+    fun delete(taxiuId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().taxiuDelete(GlobalParam.getUserIdOrJump(), taxiuId),
+                object : Response<BaseResult<TaxiuBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<TaxiuBean>) {
+                        if (result.code == 0) {
+                            mView?.deleteSuccess()
+                        } else {
+                            mView?.deleteFail(result.msg)
+                        }
+                    }
+                })
+    }
+
     interface ITaxiuDetailView {
         fun loadDetailSuccess(detail: TaxiuDetailBean)
         fun loadDetailFail(errMsg: String)
         fun collectSuccess()
         fun collectFail(errMsg: String)
+        fun deleteSuccess()
+        fun deleteFail(errMsg: String)
     }
 
 }

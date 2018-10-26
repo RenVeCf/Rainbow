@@ -12,23 +12,20 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
-import kotlinx.android.synthetic.main.fragment_talk_list.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
-class TalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
+class MineTalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
     companion object {
-        fun newInstance(categoryId: Int): TalkListFragment {
-            val topicListFragment = TalkListFragment()
+        fun newInstance(categoryId: Int): MineTalkListFragment {
+            val topicListFragment = MineTalkListFragment()
             val bundle = Bundle()
             bundle.putInt("categoryId", categoryId)
             topicListFragment.arguments = bundle
             return topicListFragment
         }
     }
-
-    override fun getContentLayout(): Int = R.layout.fragment_talk_list
 
     override fun onViewAttach() {
         super.onViewAttach()
@@ -47,17 +44,9 @@ class TalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
         progress_layout.setEmptyViewRes(R.layout.layout_empty_talk)
     }
 
-    override fun initListener() {
-        super.initListener()
-        mContentView.fb_talk_award.setShowTypeChange { showType ->
-            isCreate = true
-            onRefresh()
-        }
-    }
-
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
     override fun loadListData(): Observable<BaseResult<List<TalkBean>>> {
-        return ApiManager.getService().talkList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "", mContentView.fb_talk_award.getShowType().toString())
+        return ApiManager.getService().mineTalkList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId)
     }
 
     override fun isNoMoreData(result: BaseResult<List<TalkBean>>): Int {
@@ -89,7 +78,6 @@ class TalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>() {
 
     @Subscribe
     fun onMainEvent(event: UpdateTalkListEvent) {
-        if (isFirstLoad()) return
         onRefresh()
     }
 

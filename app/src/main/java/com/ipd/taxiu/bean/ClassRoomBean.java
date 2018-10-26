@@ -21,6 +21,7 @@ public class ClassRoomBean {
      */
 
     public int CLASS_ROOM_ID;
+    public String ORDER_NO;
     public String TITLE;
     public String LOGO;
     public String TEACHER;

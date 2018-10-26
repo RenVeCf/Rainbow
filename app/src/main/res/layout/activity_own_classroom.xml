@@ -148,6 +148,7 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_lenght"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
                         android:text="120分钟" />
@@ -172,6 +173,7 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_time"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
                         android:text="07.18 14:00" />
@@ -196,6 +198,7 @@
                         android:textColor="@color/LightGrey" />
 
                     <TextView
+                        android:id="@+id/tv_classroom_teacher"
                         style="@style/SmallTextStyle"
                         android:layout_marginTop="4dp"
                         android:text="王明义" />
@@ -227,10 +230,11 @@
                 android:layout_width="@dimen/classroom_code_image_size"
                 android:layout_height="@dimen/classroom_code_image_size"
                 android:layout_marginTop="@dimen/small_padding"
-                android:src="@mipmap/classroom_code"
+                android:scaleType="fitXY"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_classroom_code" />
+                app:layout_constraintTop_toBottomOf="@id/tv_classroom_code"
+                tools:src="@mipmap/classroom_code" />
 
 
             <TextView

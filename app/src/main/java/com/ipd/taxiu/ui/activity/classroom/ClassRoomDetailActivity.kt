@@ -4,15 +4,24 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
+import com.ipd.taxiu.bean.WechatBean
+import com.ipd.taxiu.event.PayRequestEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.ClassroomDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.AlipayUtils
 import com.ipd.taxiu.utils.HtmlImageGetter
+import com.ipd.taxiu.utils.WeChatUtils
+import com.ipd.taxiu.widget.ChoosePayTypeLayout
+import com.ipd.taxiu.widget.PayWayDialog
 import kotlinx.android.synthetic.main.activity_classroom_detail.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
-class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClassroomDetailView {
+class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClassroomDetailView, AlipayUtils.OnPayListener {
 
     companion object {
         fun launch(activity: Activity, classroomId: Int) {
@@ -30,12 +39,14 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     var mPresenter: ClassroomDetailPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
+        EventBus.getDefault().register(this)
         mPresenter = ClassroomDetailPresenter()
         mPresenter?.attachView(this, this)
     }
 
     override fun onViewDetach() {
         super.onViewDetach()
+        EventBus.getDefault().unregister(this)
         mPresenter?.detachView()
         mPresenter = null
     }
@@ -54,7 +65,10 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     }
 
     override fun initListener() {
-        rl_buy.setOnClickListener { OwnedClassRoomActivity.launch(mActivity,-1) }
+        rl_buy.setOnClickListener {
+            PayWayDialog(this, R.style.recharge_pay_dialog)
+                    .show()
+        }
     }
 
     override fun loadDetailSuccess(detail: ClassRoomBean) {
@@ -87,4 +101,58 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
         toastShow(errMsg)
     }
 
+
+    @Subscribe
+    fun onMainEvent(event: PayRequestEvent) {
+        when (event.payType) {
+            ChoosePayTypeLayout.PayType.WECHAT -> {
+                mPresenter?.wechat(classroomId)
+            }
+            ChoosePayTypeLayout.PayType.ALIPAY -> {
+                mPresenter?.alipay(classroomId)
+            }
+            ChoosePayTypeLayout.PayType.BALANCE -> {
+                mPresenter?.balance(classroomId)
+            }
+        }
+    }
+
+    private var mOrderNo: String = ""
+    override fun classroomWechatSuccess(orderNo: String, wechatInfo: WechatBean) {
+        mOrderNo = orderNo
+        WeChatUtils.getInstance(mActivity).startPay(wechatInfo)
+    }
+
+    override fun classroomAlipaySuccess(orderNo: String, info: String) {
+        mOrderNo = orderNo
+        AlipayUtils.getInstance().alipayByData(mActivity, info, this)
+    }
+
+    override fun classroomBalanceSuccess(orderNo: String) {
+        mOrderNo = orderNo
+        onPaySuccess()
+    }
+
+    override fun onPaySuccess() {
+        toastShow(true, "购买成功")
+        if (TextUtils.isEmpty(mOrderNo)) return
+        OwnedClassRoomActivity.launch(mActivity, mOrderNo)
+    }
+
+    override fun payFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun onPayWait() {
+    }
+
+    override fun onPayFail() {
+        toastShow("支付失败")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
+        WeChatUtils.getInstance(mActivity).release()
+    }
 }

@@ -1,6 +1,7 @@
 package com.ipd.taxiu.presenter.store
 
 import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.TalkBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.model.BasicModel
@@ -46,11 +47,26 @@ class TalkDetailPresenter : BasePresenter<TalkDetailPresenter.ITalkDetailView, B
                 })
     }
 
+    fun delete(talkId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().talkDelete(GlobalParam.getUserIdOrJump(), talkId),
+                object : Response<BaseResult<TalkBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<TalkBean>) {
+                        if (result.code == 0) {
+                            mView?.deleteSuccess()
+                        } else {
+                            mView?.deleteFail(result.msg)
+                        }
+                    }
+                })
+    }
+
 
     interface ITalkDetailView {
         fun loadDetailSuccess(detail: TalkDetailBean)
         fun loadDetailFail(errMsg: String)
         fun collectSuccess()
         fun collectFail(errMsg: String)
+        fun deleteSuccess()
+        fun deleteFail(errMsg: String)
     }
 }

@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
+import com.ipd.taxiu.event.UpdateTalkListEvent
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
@@ -17,8 +19,11 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.presenter.store.TalkDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.talk.TalkDetailFragment
+import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.activity_talk_detail.*
+import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
+import org.greenrobot.eventbus.EventBus
 
 class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView {
 
@@ -50,6 +55,14 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
     private val isAdmin: Boolean by lazy { intent.getBooleanExtra("isAdmin", false) }
     private val talkId: Int by lazy { intent.getIntExtra("talkId", -1) }
 
+    override fun getToolbarLayout(): Int {
+        return if (isAdmin) {
+            R.layout.admin_taxiu_toolbar
+        } else {
+            super.getToolbarLayout()
+        }
+    }
+
     override fun getToolbarTitle(): String = if (isAdmin) "我的提问" else "${intent.getStringExtra("nickname")}的提问"
 
     override fun getContentLayout(): Int = R.layout.activity_talk_detail
@@ -64,13 +77,31 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
     }
 
     override fun initListener() {
+        if (isAdmin) {
+            fl_delete.setOnClickListener {
+                MessageDialog.Builder(mActivity)
+                        .setTitle("确认要删除问答内容吗?")
+                        .setMessage("删除后不可恢复，请谨慎操作。")
+                        .setCommit("确认删除", { builder ->
+                            builder.dismiss()
+                            mPresenter?.delete(talkId)
+                        })
+                        .setCancel("暂不删除", { builder ->
+                            builder.dismiss()
+                        }).show()
+            }
+        }
 
     }
 
     private var detailInfo: TalkDetailBean? = null
     override fun loadDetailSuccess(detail: TalkDetailBean) {
-        showContent()
         detailInfo = detail
+
+        if (isAdmin) {
+            ll_bottom_menu.visibility = View.GONE
+        }
+
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
         iv_collect.setOnClickListener {
             mPresenter?.toCollect(talkId)
@@ -98,6 +129,8 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
 
             }).show(supportFragmentManager, TalkDetailActivity::class.java.name)
         }
+
+        showContent()
     }
 
     override fun loadDetailFail(errMsg: String) {
@@ -110,6 +143,15 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
     }
 
     override fun collectFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun deleteSuccess() {
+        EventBus.getDefault().post(UpdateTalkListEvent())
+        finish()
+    }
+
+    override fun deleteFail(errMsg: String) {
         toastShow(errMsg)
     }
 

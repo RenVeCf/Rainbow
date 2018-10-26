@@ -11,6 +11,8 @@ import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.CartCashBean;
 import com.ipd.taxiu.bean.CartProductBean;
 import com.ipd.taxiu.bean.ClassRoomBean;
+import com.ipd.taxiu.bean.ClassRoomOrderDetailBean;
+import com.ipd.taxiu.bean.ClassRoomResult;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.ExchangeBean;
@@ -78,7 +80,6 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -225,6 +226,18 @@ public interface ApiService {
                                                       @Field("PAGE") int PAGE,
                                                       @Field("TYPE") int TYPE,
                                                       @Field("KEYWORDS") String KEYWORDS);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_MINE_LIST)
+    Observable<BaseResult<List<TaxiuBean>>> mineTaxiuList(@Field("USER_ID") String USER_ID,
+                                                          @Field("COUNT") int COUNT,
+                                                          @Field("PAGE") int PAGE,
+                                                          @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TAXIU_DELETE)
+    Observable<BaseResult<TaxiuBean>> taxiuDelete(@Field("USER_ID") String USER_ID,
+                                                  @Field("SHOW_ID") int SHOW_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.TAXIU_LABLE_LIST)
@@ -386,12 +399,25 @@ public interface ApiService {
                                                     @Field("KEYWORDS") String KEYWORDS,
                                                     @Field("CATEGORY") String CATEGORY);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_MINE_LIST)
+    Observable<BaseResult<List<TalkBean>>> mineTalkList(@Field("USER_ID") String USER_ID,
+                                                        @Field("COUNT") int COUNT,
+                                                        @Field("PAGE") int PAGE,
+                                                        @Field("TYPE") int TYPE);
+
 
     @FormUrlEncoded
     @POST(HttpUrl.PUBLISH_TALK)
     Observable<BaseResult<TalkBean>> publishTalk(@Field("USER_ID") String USER_ID,
                                                  @Field("CONTENT") String CONTENT,
                                                  @Field("SCORE") String SCORE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_BEST_ANSWER)
+    Observable<BaseResult<TalkBean>> bestAnswer(@Field("USER_ID") String USER_ID,
+                                                @Field("QUESTION_ID") int QUESTION_ID,
+                                                @Field("ANSWER_ID") int ANSWER_ID);
 
 
     @FormUrlEncoded
@@ -434,6 +460,12 @@ public interface ApiService {
     Observable<BaseResult<MoreCommentReplyBean>> talkReplyMore(@Field("USER_ID") String USER_ID,
                                                                @Field("ANSWER_ID") int ANSWER_ID);
 
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TALK_DELETE)
+    Observable<BaseResult<TalkBean>> talkDelete(@Field("USER_ID") String USER_ID,
+                                                @Field("QUESTION_ID") int QUESTION_ID);
+
     /**
      * 课堂
      */
@@ -446,9 +478,39 @@ public interface ApiService {
                                                               @Field("KEYWORDS") String KEYWORDS);
 
     @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_BUYED_LIST)
+    Observable<BaseResult<List<ClassRoomBean>>> classroomBuyedList(@Field("USER_ID") String USER_ID,
+                                                                   @Field("COUNT") int COUNT,
+                                                                   @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
     @POST(HttpUrl.CLASS_ROOM_DETAIL)
     Observable<BaseResult<ClassRoomBean>> classroomDetail(@Field("USER_ID") String USER_ID,
                                                           @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_PAY)
+    Observable<ClassRoomResult<String>> classroomBalance(@Field("USER_ID") String user_id,
+                                                         @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID,
+                                                         @Field("PAYWAY") int PAYWAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_PAY)
+    Observable<ClassRoomResult<String>> classroomAlipay(@Field("USER_ID") String user_id,
+                                                        @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID,
+                                                        @Field("PAYWAY") int PAYWAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_PAY)
+    Observable<ClassRoomResult<WechatBean>> classroomWechat(@Field("USER_ID") String user_id,
+                                                            @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID,
+                                                            @Field("PAYWAY") int PAYWAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLASS_ROOM_ORDER_DETAIL)
+    Observable<BaseResult<ClassRoomOrderDetailBean>> classroomOrderDetail(@Field("USER_ID") String user_id,
+                                                                          @Field("ORDER_NO") String ORDER_NO);
 
     /**
      * store

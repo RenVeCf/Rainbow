@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.ui.fragment.talk.TalkListFragment
+import com.ipd.taxiu.ui.fragment.talk.MineTalkListFragment
 import kotlinx.android.synthetic.main.activity_published_taxiu.*
 
 class PublishedTalkActivity : BaseUIActivity() {
@@ -31,7 +31,7 @@ class PublishedTalkActivity : BaseUIActivity() {
     override fun loadData() {
         view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return TalkListFragment.newInstance(if (position == 0) -1 else -2)
+                return MineTalkListFragment.newInstance(if (position == 0) 1 else 2)
             }
 
             override fun getCount(): Int = titles.size

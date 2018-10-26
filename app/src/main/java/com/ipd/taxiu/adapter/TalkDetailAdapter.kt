@@ -87,8 +87,9 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                 holder.itemView.iv_answer_zan.isSelected = info.IS_PRAISE == 1
 
 
-                if (isMine) {
-                    holder.itemView.iv_best_answer.visibility = View.VISIBLE
+                //最佳答案
+                if (isMine && detailData.IS_SURE == 0) {
+                    holder.itemView.iv_best_answer.visibility = View.GONE
                     holder.itemView.tv_choose_best_answer.visibility = View.VISIBLE
                 } else {
                     holder.itemView.iv_best_answer.visibility = if (info.STATUS == 2)  /*最佳答案*/ View.VISIBLE else View.GONE

@@ -2,6 +2,7 @@ package com.ipd.taxiu.presenter
 
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.MoreCommentReplyBean
+import com.ipd.taxiu.bean.TalkBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -54,12 +55,27 @@ class TalkPostDetailChildPresenter : PostOperationPresenter<TalkPostDetailChildP
                 })
     }
 
+    fun bestAnswer(questionId: Int, answerId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().bestAnswer(GlobalParam.getUserIdOrJump(), questionId, answerId),
+                object : Response<BaseResult<TalkBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<TalkBean>) {
+                        if (result.code == 0) {
+                            mView?.bestAnswerSuccess()
+                        } else {
+                            mView?.bestAnswerFail(result.msg)
+                        }
+                    }
+                })
+    }
+
 
     interface ITalkPostDetailChildView : PostOperationPresenter.IPostOperationView {
         fun attentionSuccess(detail: MoreCommentReplyBean)
         fun attentionFail(errMsg: String)
         fun replySuccess()
         fun replyFail(errMsg: String)
+        fun bestAnswerSuccess()
+        fun bestAnswerFail(errMsg: String)
     }
 
 }

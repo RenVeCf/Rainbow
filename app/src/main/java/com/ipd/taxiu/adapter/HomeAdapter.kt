@@ -226,7 +226,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
             }
             ItemType.HOT_CLASSROOM -> {
                 val classroomInfo = list!![position] as HomeBean.IndexClassRoomBean
-                holder.itemView.classroom_layout.setData(classroomInfo.classRoom)
+                holder.itemView.classroom_layout.setData(false,classroomInfo.classRoom)
 
                 holder.itemView.cl_classroom_title.setOnClickListener {
                     //更多课堂

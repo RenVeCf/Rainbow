@@ -40,9 +40,9 @@ class CollectClassRoomListFragment : ListFragment<List<ClassRoomBean>, ClassRoom
     private var mAdapter: ClassRoomAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ClassRoomAdapter(mActivity, data, {
+            mAdapter = ClassRoomAdapter(mActivity, data, false, {
                 //itemClick
-                ClassRoomDetailActivity.launch(mActivity,-1)
+                ClassRoomDetailActivity.launch(mActivity, it.CLASS_ROOM_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

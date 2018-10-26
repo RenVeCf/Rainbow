@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_list_classroom.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ClassRoomAdapter(val context: Context, private val list: List<ClassRoomBean>?, private val itemClick: (info: ClassRoomBean) -> Unit) : RecyclerView.Adapter<ClassRoomAdapter.ViewHolder>() {
+class ClassRoomAdapter(val context: Context, private val list: List<ClassRoomBean>?, val isBuyed: Boolean, private val itemClick: (info: ClassRoomBean) -> Unit) : RecyclerView.Adapter<ClassRoomAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -24,7 +24,7 @@ class ClassRoomAdapter(val context: Context, private val list: List<ClassRoomBea
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-        holder.itemView.classroom_layout.setData(info)
+        holder.itemView.classroom_layout.setData(isBuyed,info)
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)
         }

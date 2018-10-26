@@ -110,6 +110,8 @@ public interface HttpUrl {
     String TAXIU_FIRST_REPLY = "app_show/toReply.do";
     String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
     String TAXIU_GET_PET = "app_show/getPet.do";
+    String TAXIU_MINE_LIST = "app_show/selfList.do";
+    String TAXIU_DELETE = "app_show/delete.do";
 
     //话题
     String TOPIC_LIST = "app_topic/getList.do";
@@ -125,16 +127,22 @@ public interface HttpUrl {
     //问答
     String PUBLISH_TALK = "app_question/add.do";
     String TALK_LIST = "app_question/getList.do";
+    String TALK_MINE_LIST = "app_question/selfList.do";
     String TALK_DETAIL = "app_question/getInfo.do";
     String TALK_COMMENT = "app_question/commentList.do";
     String TALK_TO_COMMENT = "app_question/toComment.do";
     String TALK_FIRST_REPLY = "app_question/toReply.do";
     String TALK_SECOND_REPLY = "app_question/toReplyMore.do";
     String TALK_REPLY_MORE = "app_question/replyMore.do";
+    String TALK_BEST_ANSWER = "app_question/setBest.do";
+    String TALK_DELETE = "app_question/delete.do";
 
     //课堂
     String CLASS_ROOM_LIST = "app_class_room/getList.do";
     String CLASS_ROOM_DETAIL = "app_class_room/getInfo.do";
+    String CLASS_ROOM_BUYED_LIST = "app_class_room/orderList.do";
+    String CLASS_ROOM_PAY = "app_class_room/buy.do";
+    String CLASS_ROOM_ORDER_DETAIL = "app_class_room/orderInfo.do";
 
 
     //signin

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.fragment.topic.MineTopicListFragment
 import com.ipd.taxiu.ui.fragment.topic.TopicListFragment
 
 class MineJoinTopicActivity : BaseUIActivity() {
@@ -25,7 +26,7 @@ class MineJoinTopicActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, TopicListFragment.newInstance(-1)).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MineTopicListFragment.newInstance()).commit()
 
     }
 

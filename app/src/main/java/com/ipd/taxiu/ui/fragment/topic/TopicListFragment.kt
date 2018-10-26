@@ -17,7 +17,7 @@ import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import rx.Observable
 
-class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>() {
+open class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>() {
     companion object {
         fun newInstance(categoryId: Int): TopicListFragment {
             val topicListFragment = TopicListFragment()
@@ -32,7 +32,7 @@ class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBean>()
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
-        progress_layout.setEmptyViewRes(R.layout.layout_empty_taxiu)
+        progress_layout.setEmptyViewRes(R.layout.layout_empty_topic)
     }
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }

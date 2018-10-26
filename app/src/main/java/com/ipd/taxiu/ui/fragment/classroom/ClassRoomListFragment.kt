@@ -6,12 +6,14 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ClassRoomAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ClassRoomBean
+import com.ipd.taxiu.event.UpdateClassroomEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.classroom.ClassRoomDetailActivity
-import com.ipd.taxiu.ui.activity.classroom.OwnedClassRoomActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
 class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, ClassRoomBean>() {
@@ -19,6 +21,16 @@ class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, Clas
         fun newInstance(): ClassRoomListFragment {
             return ClassRoomListFragment()
         }
+    }
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun initView(bundle: Bundle?) {
@@ -42,14 +54,9 @@ class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, Clas
     private var mAdapter: ClassRoomAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ClassRoomAdapter(mActivity, data, {
+            mAdapter = ClassRoomAdapter(mActivity, data, false, {
                 //itemClick
-                if (it.IS_BUY == 1) {
-                    //已购买
-                    OwnedClassRoomActivity.launch(mActivity, it.CLASS_ROOM_ID)
-                } else {
-                    ClassRoomDetailActivity.launch(mActivity, it.CLASS_ROOM_ID)
-                }
+                ClassRoomDetailActivity.launch(mActivity, it.CLASS_ROOM_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -60,6 +67,11 @@ class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, Clas
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<ClassRoomBean>>) {
         data?.addAll(result?.data)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateClassroomEvent) {
+        onRefresh(true)
     }
 
 }

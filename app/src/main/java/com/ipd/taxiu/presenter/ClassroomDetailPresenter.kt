@@ -1,8 +1,6 @@
 package com.ipd.taxiu.presenter.store
 
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.ClassRoomBean
-import com.ipd.taxiu.bean.TaxiuDetailBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -47,10 +45,54 @@ class ClassroomDetailPresenter : BasePresenter<ClassroomDetailPresenter.IClassro
     }
 
 
+    fun wechat(classroomId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().classroomWechat(GlobalParam.getUserIdOrJump(), classroomId, 2),
+                object : Response<ClassRoomResult<WechatBean>>(mContext, true) {
+                    override fun _onNext(result: ClassRoomResult<WechatBean>) {
+                        if (result.code == 0) {
+                            mView?.classroomWechatSuccess(result.data, result.data2)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun alipay(classroomId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().classroomAlipay(GlobalParam.getUserIdOrJump(), classroomId, 1),
+                object : Response<ClassRoomResult<String>>(mContext, true) {
+                    override fun _onNext(result: ClassRoomResult<String>) {
+                        if (result.code == 0) {
+                            mView?.classroomAlipaySuccess(result.data, result.data2)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun balance(classroomId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().classroomBalance(GlobalParam.getUserIdOrJump(), classroomId, 3),
+                object : Response<ClassRoomResult<String>>(mContext, true) {
+                    override fun _onNext(result: ClassRoomResult<String>) {
+                        if (result.code == 0) {
+                            mView?.classroomBalanceSuccess(result.data)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+
     interface IClassroomDetailView {
         fun loadDetailSuccess(detail: ClassRoomBean)
         fun loadDetailFail(errMsg: String)
         fun collectSuccess()
         fun collectFail(errMsg: String)
+        fun classroomWechatSuccess(orderNo: String, wechatInfo: WechatBean)
+        fun classroomAlipaySuccess(orderNo: String, info: String)
+        fun classroomBalanceSuccess(orderNo: String)
+        fun payFail(errMsg: String)
     }
 }

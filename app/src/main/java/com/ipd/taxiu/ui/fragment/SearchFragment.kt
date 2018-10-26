@@ -93,9 +93,9 @@ class SearchFragment : ListFragment<BaseResult<List<Any>>, Any>() {
                 })
             }
             SearchActivity.SearchType.CLASSROOM -> {
-                ClassRoomAdapter(mActivity, data as List<ClassRoomBean>, {
+                ClassRoomAdapter(mActivity, data as List<ClassRoomBean>, false,{
                     //itemClick
-                    ClassRoomDetailActivity.launch(mActivity,it.CLASS_ROOM_ID)
+                    ClassRoomDetailActivity.launch(mActivity, it.CLASS_ROOM_ID)
                 })
             }
             SearchActivity.SearchType.TAXIU -> {
@@ -108,7 +108,6 @@ class SearchFragment : ListFragment<BaseResult<List<Any>>, Any>() {
                 TopicAdapter(mActivity, data as List<TopicBean>, {
                     //itemClick
                     TopicDetailActivity.launch(mActivity, it.TOPIC_ID)
-
                 })
             }
         }

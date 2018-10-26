@@ -14,6 +14,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -40,6 +41,7 @@
 
 
         <ImageView
+            android:id="@+id/iv_comment"
             style="@style/BottomMenuStyle"
             android:src="@mipmap/bottom_menu_comment" />
 
@@ -49,6 +51,7 @@
             android:src="@drawable/selector_collect" />
 
         <ImageView
+            android:id="@+id/iv_share"
             style="@style/BottomMenuStyle"
             android:src="@mipmap/menu_share_icon" />
 

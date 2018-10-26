@@ -14,7 +14,7 @@ class TalkAwardFloatButton : ImageView {
     private var showTypeChange: ((showType: Int) -> Unit)? = null
 
     object ShowType {
-        const val HAS_NOT_AWARD = 1
+        const val HAS_NOT_AWARD = 0
         const val HAS_AWARD = 2
     }
 
