@@ -1,6 +1,5 @@
 package com.ipd.taxiu.ui.activity.setting;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,14 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.bean.AttentionBean;
-import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
-import com.ipd.taxiu.ui.fragment.collect.CollectClassRoomListFragment;
-import com.ipd.taxiu.ui.fragment.collect.CollectStoreFragment;
-import com.ipd.taxiu.ui.fragment.collect.CollectTalkListFragment;
-import com.ipd.taxiu.ui.fragment.collect.CollectTaxiuListFragment;
-import com.ipd.taxiu.ui.fragment.collect.CollectTopicListFragment;
 import com.ipd.taxiu.ui.fragment.collect.SocicalContactFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,10 +42,10 @@ public class SocialContactActivity extends BaseUIActivity {
         adapter = new MyCollectAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tab_layout.setViewPager(viewPager, titles);
-        int contact = getIntent().getIntExtra("TYPE",0);
+        int contact = getIntent().getIntExtra("TYPE", 0);
         if (contact == 2) {
             tab_layout.setCurrentTab(1);
-        }else {
+        } else {
             tab_layout.setCurrentTab(0);
         }
     }

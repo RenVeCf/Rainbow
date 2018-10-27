@@ -39,8 +39,8 @@ class CouponPresenter<V> : BasePresenter<V, BasicModel>() {
 
         mModel?.getNormalRequestData(ApiManager.getService().toExchange(couponId, GlobalParam.getUserId()),
                 object : Response<BaseResult<ExchangeBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<ExchangeBean>?) {
-                        view.toExchangeMsg(result!!.msg)
+                    override fun _onNext(result: BaseResult<ExchangeBean>) {
+                        view.toExchangeMsg(result.code == 0, result.msg)
                     }
 
                 })
@@ -69,7 +69,7 @@ class CouponPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IToExchangeView {
-        fun toExchangeMsg(msg: String)
+        fun toExchangeMsg(success: Boolean, msg: String)
     }
 
     interface IExchangeInfoView {

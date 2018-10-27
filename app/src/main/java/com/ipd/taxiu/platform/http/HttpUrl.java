@@ -201,5 +201,12 @@ public interface HttpUrl {
     String BANK_CARD_LIST = "app_bank_card/getList.do";
     String BANK_CARD_INFO = "app_bank_card/getInfo.do";
 
+    //收藏
+    String COLLECT_PRODUCT = "app_collect/proList.do";
+    String COLLECT_TAXIU = "app_collect/showList.do";
+    String COLLECT_CLASSROOM = "app_collect/classList.do";
+    String COLLECT_TOPIC = "app_collect/topicList.do";
+    String COLLECT_TALK = "app_collect/questionList.do";
+
 
 }

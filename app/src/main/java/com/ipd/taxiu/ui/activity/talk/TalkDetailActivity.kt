@@ -11,6 +11,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
+import com.ipd.taxiu.event.UpdateCollectTalkEvent
 import com.ipd.taxiu.event.UpdateTalkListEvent
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -138,6 +139,7 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
     }
 
     override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateCollectTalkEvent())
         detailInfo?.IS_COLLECT = if (detailInfo?.IS_COLLECT == 0) 1 else 0
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
     }

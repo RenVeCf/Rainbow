@@ -28,4 +28,26 @@ public class ProductBean {
     public int STATUS;
     public float star;
 
+    public String getKindStr() {
+        String str = "";
+        switch (KIND) {
+            case 1:
+                str = "普通";
+                break;
+            case 2:
+                str = "抢购";
+                break;
+            case 3:
+                str = "清仓";
+                break;
+            case 4:
+                str = "上新";
+                break;
+            case 5:
+                str = "组合";
+                break;
+        }
+        return str;
+    }
+
 }

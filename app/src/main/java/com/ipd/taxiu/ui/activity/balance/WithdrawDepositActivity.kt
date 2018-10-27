@@ -85,7 +85,7 @@ class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
 
             ApiManager.getService().balanceWithdraw(GlobalParam.getUserIdOrJump(), bankInfo?.BANK_CARD_ID.toString(), money)
                     .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<WithdrawHintBean>() {
+                    .subscribe(object : Response<WithdrawHintBean>(mActivity, true) {
                         override fun _onNext(result: WithdrawHintBean) {
                             if (result.code == 0) {
                                 initDialog()
@@ -124,7 +124,10 @@ class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
         val builder = ApplyForDialog.Builder(this)
         builder.setTitle("提现申请已提交")
         builder.setMessage("审核通过后，3-5个工作日到账")
-        builder.setCommit("我知道了") { builder -> builder.dialog.dismiss() }
+        builder.setCommit("我知道了") { builder ->
+            builder.dialog.dismiss()
+            finish()
+        }
         builder.dialog.show()
     }
 

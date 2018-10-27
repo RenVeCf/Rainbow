@@ -57,6 +57,10 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
                 holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
                 holder.itemView.tv_product_evalute.text = "评价 ${info.REPLY}"
                 holder.itemView.tv_product_sales.text = "销量 ${info.BUYNUM}"
+
+                holder.itemView.tv_product_lable.visibility = if (info.KIND == 1) View.GONE else View.VISIBLE
+                holder.itemView.tv_product_lable.text = info.kindStr
+
             }
             ItemType.GRID -> {
                 ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)

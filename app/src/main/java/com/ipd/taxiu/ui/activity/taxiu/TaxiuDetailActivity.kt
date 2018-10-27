@@ -10,6 +10,7 @@ import cn.jzvd.Jzvd
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuDetailBean
+import com.ipd.taxiu.event.UpdateCollectTaxiuEvent
 import com.ipd.taxiu.event.UpdateMineTaxiuEvent
 import com.ipd.taxiu.presenter.store.TaxiuDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
@@ -115,6 +116,7 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
     }
 
     override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateCollectTaxiuEvent())
         detailInfo?.IS_COLLECT = if (detailInfo?.IS_COLLECT == 0) 1 else 0
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
     }

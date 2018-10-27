@@ -78,6 +78,9 @@ class CartAdapter(val context: Context, private val list: List<Any>?, val cartCa
                     }
                 })
 
+                holder.itemView.tv_cart_product_lable.visibility = if (cartProductInfo.PRODUCT.KIND == 1) View.GONE else View.VISIBLE
+                holder.itemView.tv_cart_product_lable.text = cartProductInfo.PRODUCT.kindStr
+
                 holder.itemView.cb_product.isChecked = cartProductInfo.isChecked
                 holder.itemView.setOnClickListener {
                     //选中、取消选中

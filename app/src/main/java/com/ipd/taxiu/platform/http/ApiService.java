@@ -1095,6 +1095,38 @@ public interface ApiService {
                                                  @Field("BANK_CARD_ID") String BANK_CARD_ID,
                                                  @Field("MONEY") String MONEY);
 
+    /**
+     * 收藏
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.COLLECT_PRODUCT)
+    Observable<BaseResult<List<ProductBean>>> productCollect(@Field("USER_ID") String user_id,
+                                                             @Field("COUNT") int count,
+                                                             @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.COLLECT_TAXIU)
+    Observable<BaseResult<List<TaxiuBean>>> taxiuCollect(@Field("USER_ID") String user_id,
+                                                         @Field("COUNT") int count,
+                                                         @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.COLLECT_CLASSROOM)
+    Observable<BaseResult<List<ClassRoomBean>>> classroomCollect(@Field("USER_ID") String user_id,
+                                                                 @Field("COUNT") int count,
+                                                                 @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.COLLECT_TOPIC)
+    Observable<BaseResult<List<TopicBean>>> topicCollect(@Field("USER_ID") String user_id,
+                                                         @Field("COUNT") int count,
+                                                         @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.COLLECT_TALK)
+    Observable<BaseResult<List<TalkBean>>> talkCollect(@Field("USER_ID") String user_id,
+                                                       @Field("COUNT") int count,
+                                                       @Field("PAGE") int page);
 
     //tools
     @Multipart

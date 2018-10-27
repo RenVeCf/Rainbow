@@ -8,10 +8,12 @@ import android.view.MenuItem
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TopicDetailBean
+import com.ipd.taxiu.event.UpdateCollectTopicEvent
 import com.ipd.taxiu.presenter.store.TopicDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.topic.TopicDetailFragment
 import kotlinx.android.synthetic.main.activity_topic_detail.*
+import org.greenrobot.eventbus.EventBus
 
 class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailView {
 
@@ -80,6 +82,7 @@ class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailV
     }
 
     override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateCollectTopicEvent())
         detailInfo?.IS_COLLECT = if (detailInfo?.IS_COLLECT == 0) 1 else 0
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
     }

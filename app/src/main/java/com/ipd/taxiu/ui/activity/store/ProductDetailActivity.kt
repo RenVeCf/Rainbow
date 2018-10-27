@@ -11,6 +11,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ExchangeBean
 import com.ipd.taxiu.bean.ProductModelResult
+import com.ipd.taxiu.event.UpdateCollectProductEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -22,6 +23,7 @@ import com.ipd.taxiu.ui.fragment.store.ProductEvaluateFragment
 import com.ipd.taxiu.widget.ProductModelDialog
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.product_detail_toolbar.*
+import org.greenrobot.eventbus.EventBus
 
 class ProductDetailActivity : BaseUIActivity() {
     companion object {
@@ -100,6 +102,7 @@ class ProductDetailActivity : BaseUIActivity() {
                     .subscribe(object : Response<BaseResult<ExchangeBean>>(mActivity, true) {
                         override fun _onNext(result: BaseResult<ExchangeBean>) {
                             if (result.code == 0) {
+                                EventBus.getDefault().post(UpdateCollectProductEvent())
                                 iv_collect.isSelected = !iv_collect.isSelected
                             } else {
                                 toastShow(result.msg)

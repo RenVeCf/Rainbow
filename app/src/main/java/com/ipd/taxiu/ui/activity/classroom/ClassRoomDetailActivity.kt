@@ -9,6 +9,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
 import com.ipd.taxiu.bean.WechatBean
 import com.ipd.taxiu.event.PayRequestEvent
+import com.ipd.taxiu.event.UpdateCollectClassroomEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.ClassroomDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
@@ -94,6 +95,7 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     }
 
     override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateCollectClassroomEvent())
         iv_collect.isSelected = !iv_collect.isSelected
     }
 

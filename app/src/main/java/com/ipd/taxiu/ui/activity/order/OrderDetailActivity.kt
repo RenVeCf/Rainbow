@@ -103,7 +103,7 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         headerView.tv_delivery_name.text = info.RECEIVE_NAME
         headerView.tv_delivery_phone.text = info.RECEIVE_PHONE
         headerView.tv_address.text = "${info.PROV} ${info.CITY} ${info.DIST} ${info.ADDRESS}"
-        headerView.commodity_number.text = "共${info.PRODUCT_NUM}件商品"
+        headerView.commodity_number.text = "共${info.PRODUCT_LIST.size}件商品"
         mAdapter?.addHeaderView(headerView)
 
 

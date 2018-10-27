@@ -14,13 +14,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/empty_search" />
+            android:src="@mipmap/empty_topic" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:textSize="@dimen/title_text_size"
             android:layout_marginTop="@dimen/base_padding"
-            android:textColor="#CCC"
+            android:textColor="@color/LightGrey"
             android:text="未找到任何数据" />
 
 
