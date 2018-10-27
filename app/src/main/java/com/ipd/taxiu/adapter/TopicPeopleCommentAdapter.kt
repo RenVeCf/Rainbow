@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.CommentDetailBean
 import com.ipd.taxiu.bean.CommentReplyBean
@@ -14,6 +15,7 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.utils.ReplyType
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.CommentsView
 import kotlinx.android.synthetic.main.item_topic_people_comment_reply.view.*
 import kotlinx.android.synthetic.main.layout_topic_people_comment_header.view.*
@@ -83,6 +85,10 @@ class TopicPeopleCommentAdapter(val context: Context, val detailData: CommentDet
                 holder.itemView.ll_comment_zan.setOnClickListener {
                     itemClick.invoke(position, ReplyType.PRAISE_COMMENT, detailData.COMMENT_ID, null, null)
                 }
+
+                //关注
+                setAttent(position, holder.itemView.ll_attent)
+
             }
             ItemType.COMMENT -> {
                 val info = list!![position - 1]
@@ -128,6 +134,14 @@ class TopicPeopleCommentAdapter(val context: Context, val detailData: CommentDet
                     itemClick.invoke(position, ReplyType.PRAISE_REPLY, info.REPLY_ID, info, null)
                 }
             }
+        }
+    }
+
+    fun setAttent(position: Int, ll_attent: LinearLayout) {
+        User.setAttentBtnStyle(context, detailData.User.IS_ATTEN, ll_attent)
+
+        ll_attent.setOnClickListener {
+            itemClick.invoke(position, ReplyType.ATTENTION, detailData.User.USER_ID, null, null)
         }
     }
 

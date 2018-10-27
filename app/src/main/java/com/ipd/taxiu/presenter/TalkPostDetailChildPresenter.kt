@@ -70,7 +70,7 @@ class TalkPostDetailChildPresenter : PostOperationPresenter<TalkPostDetailChildP
 
 
     interface ITalkPostDetailChildView : PostOperationPresenter.IPostOperationView {
-        fun attentionSuccess(detail: MoreCommentReplyBean)
+        fun attentionSuccess(isAttent: Int)
         fun attentionFail(errMsg: String)
         fun replySuccess()
         fun replyFail(errMsg: String)

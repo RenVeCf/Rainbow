@@ -111,6 +111,10 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                         //对回复点赞
                         mPresenter?.praise(pos, commentApi.getPraiseReplyCategory(), replyId)
                     }
+                    ReplyType.ATTENTION -> {
+                        //关注
+                        mPresenter?.attention(replyId)
+                    }
                 }
 
 
@@ -135,11 +139,14 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
         refreshUI()
     }
 
-    override fun attentionSuccess(detail: MoreCommentReplyBean) {
+    override fun attentionSuccess(isAttent: Int) {
+        mDetailData.User.IS_ATTEN = isAttent
+        mAdapter?.setAttent(0, recycler_view.layoutManager.findViewByPosition(0).ll_attent)
 
     }
 
     override fun attentionFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun praiseSuccess(pos: Int, category: String) {

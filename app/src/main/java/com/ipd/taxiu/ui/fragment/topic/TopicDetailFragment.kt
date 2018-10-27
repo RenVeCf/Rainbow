@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TopicDetailAdapter
 import com.ipd.taxiu.bean.CommentResult
-import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.bean.TopicCommentBean
 import com.ipd.taxiu.bean.TopicDetailBean
 import com.ipd.taxiu.event.UpdateTopicCommentEvent
@@ -105,11 +104,11 @@ class TopicDetailFragment : ListFragment<CommentResult<List<TopicCommentBean>>, 
     }
 
 
-    override fun attentionSuccess(detail: MoreCommentReplyBean) {
-
+    override fun attentionSuccess(isAttent: Int) {
     }
 
     override fun attentionFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun praiseSuccess(pos: Int, category: String) {

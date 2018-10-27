@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TaxiuDetailAdapter
 import com.ipd.taxiu.bean.CommentResult
-import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.bean.TaxiuCommentBean
 import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.event.UpdateTaxiuCommentEvent
@@ -17,6 +16,7 @@ import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.topic.TopicPeopleCommentActivity
 import com.ipd.taxiu.utils.CommentType
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
+import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_topic_header.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -79,6 +79,9 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
                     R.id.ll_comment_zan -> {
                         mPresenter?.praise(pos, CommentType.TAXIU_PRAISE_COMMENT, info!!.COMMENT_ID)
                     }
+                    R.id.ll_attention -> {
+                        mPresenter?.attention(detailData.User.USER_ID)
+                    }
                     else -> {
                         if (info != null)
                             TopicPeopleCommentActivity.launch(mActivity, info.NICKNAME, CommentType.TAXIU, info.COMMENT_ID)
@@ -104,11 +107,13 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
     }
 
 
-    override fun attentionSuccess(detail: MoreCommentReplyBean) {
-
+    override fun attentionSuccess(isAttent: Int) {
+        detailData.User.IS_ATTEN = isAttent
+        mAdapter?.setAttent(0, recycler_view.layoutManager.findViewByPosition(0).ll_attention)
     }
 
     override fun attentionFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun praiseSuccess(pos: Int, category: String) {

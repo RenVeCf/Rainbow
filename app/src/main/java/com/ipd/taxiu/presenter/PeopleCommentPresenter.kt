@@ -1,7 +1,6 @@
 package com.ipd.taxiu.presenter.store
 
 import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -19,7 +18,10 @@ class PeopleCommentPresenter : PostOperationPresenter<PeopleCommentPresenter.IPe
                 object : Response<BaseResult<Int>>(mContext, true) {
                     override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
+                            mView?.attentionSuccess(result.data)
                         } else {
+                            mView?.attentionFail(result.msg)
+
                         }
                     }
 
@@ -28,7 +30,7 @@ class PeopleCommentPresenter : PostOperationPresenter<PeopleCommentPresenter.IPe
 
 
     interface IPeopleCommentView : PostOperationPresenter.IPostOperationView {
-        fun attentionSuccess(detail: MoreCommentReplyBean)
+        fun attentionSuccess(isAttent: Int)
         fun attentionFail(errMsg: String)
     }
 }

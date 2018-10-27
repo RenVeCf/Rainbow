@@ -46,7 +46,8 @@
                 style="@style/TitleTextStyle"
                 android:layout_marginTop="@dimen/small_padding"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="@id/iv_classroom_image"
                 app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
                 app:layout_constraintTop_toBottomOf="@id/iv_classroom_image"
                 tools:text="宠物健康及心理健康咨询课程" />

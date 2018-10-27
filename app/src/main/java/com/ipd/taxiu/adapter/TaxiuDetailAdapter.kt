@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import cn.jzvd.JZMediaManager
 import cn.jzvd.Jzvd
@@ -20,6 +21,7 @@ import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.User
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
@@ -126,6 +128,8 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.tv_zan.visibility = if (detailData.User.IS_SELF == 1) View.GONE else View.VISIBLE
                 holder.itemView.rl_share.visibility = if (detailData.User.IS_SELF == 1) View.GONE else View.VISIBLE
 
+                setAttent(position, holder.itemView.ll_attention)
+
             }
             ItemType.COMMENT -> {
                 val info = list!![position - 1]
@@ -158,6 +162,15 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 }
 
             }
+        }
+    }
+
+
+    fun setAttent(position: Int, ll_attent: LinearLayout) {
+        User.setAttentBtnStyle(context, detailData.User.IS_ATTEN, ll_attent)
+
+        ll_attent.setOnClickListener {
+            itemClick.invoke(position, ll_attent.id, null)
         }
     }
 

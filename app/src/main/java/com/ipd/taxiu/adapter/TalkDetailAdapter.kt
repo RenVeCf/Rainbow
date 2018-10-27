@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.CommentReplyBean
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.CommentsView
 import kotlinx.android.synthetic.main.item_talk_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
@@ -74,6 +76,8 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
 
                 holder.itemView.tv_comment_join_num.text = "${detailData.COMMENT_NUM} 人给出了答案"
 
+                setAttent(position,holder.itemView.ll_attention)
+
 
             }
             ItemType.COMMENT -> {
@@ -130,6 +134,14 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                 }
 
             }
+        }
+    }
+
+    fun setAttent(position: Int, ll_attent: LinearLayout) {
+        User.setAttentBtnStyle(context, detailData.User.IS_ATTEN, ll_attent)
+
+        ll_attent.setOnClickListener {
+            itemClick.invoke(position, ll_attent.id, null, null)
         }
     }
 

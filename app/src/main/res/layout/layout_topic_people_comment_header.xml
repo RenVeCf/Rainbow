@@ -44,6 +44,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_attent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_buy_bg"
@@ -57,13 +58,15 @@
             app:layout_constraintTop_toTopOf="@id/civ_publisher_avatar">
 
             <ImageView
+                android:layout_marginRight="4dp"
+                android:id="@+id/iv_attent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/attention" />
 
             <TextView
+                android:id="@+id/tv_attent"
                 style="@style/SmallTextStyle"
-                android:layout_marginLeft="4dp"
                 android:text="关注"
                 android:textColor="@color/white" />
 

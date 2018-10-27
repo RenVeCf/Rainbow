@@ -18,6 +18,7 @@ import com.ipd.taxiu.utils.CommentType
 import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.item_talk_comment.view.*
+import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_talk_header.view.*
 import rx.Observable
 
@@ -116,6 +117,10 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                         mPresenter?.praise(pos, CommentType.TALK_PRAISE_COMMENT, info.ANSWER_ID)
 
                     }
+                    R.id.ll_attention -> {
+                        //答案点赞
+                        mPresenter?.attention(detailData.User.USER_ID)
+                    }
                     -1 -> {
                         //一级回复
                         if (info == null) return@TalkDetailAdapter
@@ -140,10 +145,13 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
         data?.addAll(result.data ?: arrayListOf())
     }
 
-    override fun attentionSuccess(detail: MoreCommentReplyBean) {
+    override fun attentionSuccess(isAttent: Int) {
+        detailData.User.IS_ATTEN = isAttent
+        mAdapter?.setAttent(0, recycler_view.layoutManager.findViewByPosition(0).ll_attention)
     }
 
     override fun attentionFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun replySuccess() {
