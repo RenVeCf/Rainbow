@@ -20,7 +20,9 @@ class TalkPostDetailChildPresenter : PostOperationPresenter<TalkPostDetailChildP
                 object : Response<BaseResult<Int>>(mContext, true) {
                     override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
+                            mView?.attentionSuccess(result.data)
                         } else {
+                            mView?.attentionFail(result.msg)
                         }
                     }
 
