@@ -1,9 +1,9 @@
 package com.ipd.taxiu.presenter
 
-import android.util.Log
-import android.view.View
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
-import com.ipd.taxiu.bean.*
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.OtherBean
+import com.ipd.taxiu.bean.UpdatePwdBean
+import com.ipd.taxiu.bean.UserBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -50,7 +50,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     fun updateUser(birthday: String, gender: Int, logo: String, nickname: String, pet_time: String,
-                  tag: String, username: String) {
+                   tag: String, username: String) {
         if (mView !is IUpdateUserView) return
         val view = mView as IUpdateUserView
 
@@ -68,19 +68,19 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     //关注或取消关注
-    fun attention(attenId:Int) {
+    fun attention(attenId: Int) {
         if (mView !is IAttentionView) return
         val view = mView as IAttentionView
 
-        if (attenId == 0){
+        if (attenId == 0) {
             view.onFail("关注（取消关注）用户ID不能为空!")
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId,GlobalParam.getUserId()),
+        mModel?.getNormalRequestData(ApiManager.getService().attention(attenId, GlobalParam.getUserId()),
                 object : Response<BaseResult<Int>>(mContext, true) {
                     override fun _onNext(result: BaseResult<Int>) {
                         if (result.code == 0) {
-                            view.onSuccess(result.msg,result.data)
+                            view.onSuccess(result.msg, result.data)
                         } else {
                             view.onFail(result.msg)
                         }
@@ -88,15 +88,15 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun other(otherUserId:String) {
+    fun other(otherUserId: String) {
         if (mView !is IOtherView) return
         val view = mView as IOtherView
 
-        if (otherUserId == ""){
+        if (otherUserId == "") {
             view.onGetOtherFail("ID不能为空!")
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().other(GlobalParam.getUserId(),otherUserId),
+        mModel?.getNormalRequestData(ApiManager.getService().other(GlobalParam.getUserId(), otherUserId),
                 object : Response<BaseResult<OtherBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<OtherBean>) {
                         if (result.code == 0) {
@@ -124,12 +124,12 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IAttentionView {
-        fun onSuccess(msg : String,data:Int)
+        fun onSuccess(msg: String, data: Int)
         fun onFail(errMsg: String)
     }
 
     interface IOtherView {
-        fun onGetOtherSuccess(data:OtherBean)
+        fun onGetOtherSuccess(data: OtherBean)
         fun onGetOtherFail(errMsg: String)
     }
 }

@@ -69,7 +69,7 @@ public class SocialContactActivity extends BaseUIActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return SocicalContactFragment.newInstance(position);
+            return SocicalContactFragment.Companion.newInstance(position);
         }
 
         @Override

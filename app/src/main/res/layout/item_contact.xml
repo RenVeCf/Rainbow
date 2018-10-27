@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="@dimen/base_padding">
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding"
+    android:paddingTop="@dimen/base_padding">
 
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
@@ -32,99 +34,40 @@
         android:textColor="@color/text_gray"
         android:textSize="@dimen/base_text_size" />
 
+
     <LinearLayout
-        android:id="@+id/add_attention"
+        android:id="@+id/ll_attention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_individual_resume"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/base_padding"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_buy_bg"
+        android:background="@drawable/selector_attention_bg"
         android:gravity="center"
         android:paddingBottom="6dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="6dp"
-        android:visibility="visible">
+        android:paddingTop="6dp">
 
         <ImageView
+            android:id="@+id/iv_attent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/attention" />
+            android:layout_marginRight="4dp"
+            android:src="@drawable/selector_attention_image" />
 
         <TextView
-            style="@style/SmallTextStyle"
-            android:layout_marginLeft="4dp"
+            android:id="@+id/tv_attent"
+            style="@style/BaseTextStyle"
             android:text="关注"
-            android:textColor="@color/white" />
+            android:textColor="@drawable/selector_attention_text_color" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/done_attention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_individual_resume"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="@dimen/base_padding"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_order_btn_cancel"
-        android:gravity="center"
-        android:paddingBottom="6dp"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:paddingTop="6dp"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/done_attention" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/small_text_size"
-            android:layout_marginLeft="4dp"
-            android:text="已关注"
-            android:textColor="@color/text_gray" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/attention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_individual_resume"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="@dimen/base_padding"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@drawable/shape_order_btn_cancel"
-        android:gravity="center"
-        android:paddingBottom="6dp"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:paddingTop="6dp"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/small_text_size"
-            android:layout_marginLeft="4dp"
-            android:text="相互关注"
-            android:textColor="@color/text_gray" />
-
-    </LinearLayout>
 
     <View
+        style="@style/ViewLine"
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
         android:layout_below="@id/civ_friend_header"
-        android:layout_marginTop="@dimen/base_padding"
-        android:background="@color/full_screen_overlay" />
+        android:layout_marginTop="@dimen/base_padding" />
 </RelativeLayout>
