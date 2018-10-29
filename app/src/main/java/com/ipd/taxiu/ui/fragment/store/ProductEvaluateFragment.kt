@@ -14,6 +14,8 @@ import com.ipd.taxiu.bean.ProductEvaluateLableBean
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.widget.ProductEvaluateView
 import com.ipd.taxiu.widget.ProgressLayout
@@ -38,14 +40,6 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
     private val mFormId by lazy { arguments.getInt("formId") }
 
 
-    private val mScreenList = listOf(
-            ProductEvaluateLableBean(0, "全部", ""),
-            ProductEvaluateLableBean(1, "有图", ""),
-            ProductEvaluateLableBean(2, "好评", ""),
-            ProductEvaluateLableBean(3, "中评", ""),
-            ProductEvaluateLableBean(4, "差评", "")
-    )
-
     override fun getProgressLayout(): ProgressLayout {
         return mContentView.evaluate_progress_layout
     }
@@ -53,10 +47,6 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         getProgressLayout().setEmptyViewRes(R.layout.layout_empty_evaluate)
-
-        mScreenList.forEach {
-            mContentView.product_evaluate_view.addView(it)
-        }
     }
 
     override fun initListener() {
@@ -69,8 +59,47 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
         })
     }
 
+
+    private var mScreenList: List<ProductEvaluateLableBean>? = null
+    override fun getListData(isRefresh: Boolean) {
+        if (mScreenList == null) {
+            checkNeedShowProgress()
+            ApiManager.getService().storeProductEvaluateLable(GlobalParam.getUserIdOrJump(), mProductId, mFormId)
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<List<ProductEvaluateLableBean>>>() {
+                        override fun _onNext(result: BaseResult<List<ProductEvaluateLableBean>>) {
+                            if (result.code == 0) {
+                                mScreenList = result?.data ?: arrayListOf()
+
+                                mScreenList?.forEach {
+                                    mContentView.product_evaluate_view.addView(it)
+                                }
+
+                                getParentListData(isRefresh)
+                            } else {
+                                showError(result.msg)
+                            }
+
+                        }
+
+                        override fun onError(e: Throwable?) {
+                            showError("连接服务器失败")
+                        }
+
+                    })
+        } else {
+            super.getListData(isRefresh)
+        }
+    }
+
+    private fun getParentListData(isRefresh: Boolean) {
+        super.getListData(isRefresh)
+    }
+
+
     override fun loadListData(): Observable<BaseResult<List<ProductEvaluateBean>>> {
-        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, mScreenList[mContentView.product_evaluate_view.getCheckedPos()].type, page, Constant.PAGE_SIZE)
+        val type = mScreenList?.get(mContentView.product_evaluate_view.getCheckedPos())?.TYPE ?: 0
+        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, type, page, Constant.PAGE_SIZE)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductEvaluateBean>>): Int {

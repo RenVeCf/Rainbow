@@ -1,13 +1,15 @@
 package com.ipd.taxiu.bean;
 
 public class ProductEvaluateLableBean {
-    public ProductEvaluateLableBean(int type, String name, String num) {
-        this.type = type;
-        this.name = name;
-        this.num = num;
-    }
 
-    public int type;
-    public String name;
-    public String num;
+    /**
+     * TYPE : 0
+     * NAME : 全部
+     * TOTAL : 0
+     */
+
+    public int TYPE;
+    public String NAME;
+    public int TOTAL;
+
 }

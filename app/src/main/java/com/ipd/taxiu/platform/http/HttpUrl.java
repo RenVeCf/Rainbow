@@ -51,6 +51,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_COLLECT = "app_product/toCollect.do";
     String STORE_AREA_INDEX = "app_shop/area.do";
     String STORE_PRODUCT_EVALUATE_LIST = "app_assess/getList.do";
+    String STORE_PRODUCT_EVALUATE_LABLE_LIST = "app_assess/assessFilter.do";
 
 
     //cart

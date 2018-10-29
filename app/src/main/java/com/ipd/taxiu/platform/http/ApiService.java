@@ -35,6 +35,7 @@ import com.ipd.taxiu.bean.ProductCategoryChildBean;
 import com.ipd.taxiu.bean.ProductCategoryParentBean;
 import com.ipd.taxiu.bean.ProductDetailBean;
 import com.ipd.taxiu.bean.ProductEvaluateBean;
+import com.ipd.taxiu.bean.ProductEvaluateLableBean;
 import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
@@ -653,6 +654,12 @@ public interface ApiService {
                                                                                @Field("TYPE") int TYPE,
                                                                                @Field("PAGE") int PAGE,
                                                                                @Field("COUNT") int COUNT);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_EVALUATE_LABLE_LIST)
+    Observable<BaseResult<List<ProductEvaluateLableBean>>> storeProductEvaluateLable(@Field("USER_ID") String user_id,
+                                                                                     @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                                     @Field("FORM_ID") int FORM_ID);
 
 
     /**

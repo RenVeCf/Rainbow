@@ -18,7 +18,7 @@ class ProductEvaluateView : FlowLayout {
 
     fun addView(modelInfo: ProductEvaluateLableBean) {
         val childView = LayoutInflater.from(context).inflate(R.layout.item_product_evaluate_lable, this, false) as TextView
-        childView.text = modelInfo.name + modelInfo.num
+        childView.text = if (modelInfo.NAME == "全部") modelInfo.NAME else modelInfo.NAME + " " + modelInfo.TOTAL
         val childPos = childCount
         addView(childView)
         setChecked(childPos, childPos == mCurCheckedPos)
