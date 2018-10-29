@@ -29,9 +29,11 @@ import kotlinx.android.synthetic.main.product_list_toolbar.*
 class ProductListActivity : BaseActivity(), ProductScreenView {
 
     companion object {
-        fun launch(activity: Activity, searchKey: String = "") {
+        fun launch(activity: Activity, searchKey: String = "", areaTypeId: Int = 0, shopTypeId: Int = 0) {
             val intent = Intent(activity, ProductListActivity::class.java)
             intent.putExtra("searchKey", searchKey)
+            intent.putExtra("areaTypeId", areaTypeId)
+            intent.putExtra("shopTypeId", shopTypeId)
             activity.startActivity(intent)
         }
     }
@@ -40,12 +42,16 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
         super.onNewIntent(intent)
         LogUtils.e("tag", intent.toString())
         mSearchKey = intent?.getStringExtra("searchKey") ?: ""
+        mAreaTypeId = intent?.getIntExtra("areaTypeId", 0) ?: 0
+        mShopTypeId = intent?.getIntExtra("shopTypeId", 0) ?: 0
         onReset()
     }
 
     override fun getBaseLayout(): Int = R.layout.activity_product_list
 
-    private var mSearchKey: String = ""
+    var mSearchKey: String = ""
+    var mAreaTypeId: Int = 0
+    var mShopTypeId: Int = 0
     var screenLayout: ScreenLayout? = null
     private var mScreenResult: ScreenResult? = null
     private var mMinPrice = 0f
@@ -72,12 +78,13 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
         }
 
         drawer_layout.closeDrawer(Gravity.END)
-        mFragment?.setSearchKey(mSearchKey)
         screenLayout?.onCancelExpertSort()
     }
 
     override fun initView(bundle: Bundle?) {
         mSearchKey = intent.getStringExtra("searchKey")
+        mAreaTypeId = intent.getIntExtra("areaTypeId", 0)
+        mShopTypeId = intent.getIntExtra("shopTypeId", 0)
         et_search.text = mSearchKey
 
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -89,7 +96,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 
     private lateinit var mFragment: ProductListFragment
     override fun loadData() {
-        mFragment = ProductListFragment.newInstance(mSearchKey)
+        mFragment = ProductListFragment.newInstance()
         mFragment.setProductScreenView(this)
         supportFragmentManager.beginTransaction().replace(R.id.fl_container, mFragment).commit()
     }
@@ -126,7 +133,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 //                    }
 
             if (mScreenResult == null) {
-                ApiManager.getService().storeProductExpertScreen(GlobalParam.getUserIdOrJump(), mSearchKey)
+                ApiManager.getService().storeProductExpertScreen(GlobalParam.getUserIdOrJump(), mSearchKey, mAreaTypeId, mShopTypeId)
                         .compose(RxScheduler.applyScheduler())
                         .subscribe(object : Response<ScreenResult>(mActivity, true) {
                             override fun _onNext(result: ScreenResult) {

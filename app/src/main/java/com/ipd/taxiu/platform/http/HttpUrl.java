@@ -50,6 +50,7 @@ public interface HttpUrl {
     String STORE_TAKE_IT_COUPON = "app_product/toExchange.do";
     String STORE_PRODUCT_COLLECT = "app_product/toCollect.do";
     String STORE_AREA_INDEX = "app_shop/area.do";
+    String STORE_PRODUCT_EVALUATE_LIST = "app_assess/getList.do";
 
 
     //cart
@@ -207,6 +208,10 @@ public interface HttpUrl {
     String COLLECT_CLASSROOM = "app_collect/classList.do";
     String COLLECT_TOPIC = "app_collect/topicList.do";
     String COLLECT_TALK = "app_collect/questionList.do";
+
+    //推荐
+    String RECOMMEND_INFO = "app_user/recomInfo.do";
+    String RECOMMEND_EARNINGS = "app_commend_income/getList.do";
 
 
 }

@@ -28,6 +28,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_recommend_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/header_name"
@@ -40,6 +41,7 @@
 
     <ImageView
         android:id="@+id/iv_qr_code"
+        android:scaleType="fitXY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/qr_code"

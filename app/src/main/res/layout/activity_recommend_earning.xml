@@ -11,80 +11,79 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/friend_earnings_bg">
 
-        <TextView
-            android:id="@+id/share_earning"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="分享总收益（积分）"
-            android:textColor="@color/white"
-            android:textSize="@dimen/base_text_size"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/cart_product_img_width"/>
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_earning_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/share_earning"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="@dimen/big_title_text_size"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/big_padding"/>
+
+            <TextView
+                android:id="@+id/share_earning"
+                style="@style/TitleTextStyle"
+                android:text="分享总收益（积分）"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_earning_number"
+                style="@style/BaseTextStyle"
+                android:layout_marginTop="@dimen/base_padding"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/iv_recommend_earning_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/recommend_earning_detail"
-        android:layout_below="@id/rl_share_earning"
-        android:padding="@dimen/base_padding"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="推荐收益明细（积分）"
         android:layout_below="@id/rl_share_earning"
         android:padding="@dimen/base_padding"
-        android:textColor="@color/black"
-        android:textSize="@dimen/base_text_size"
-        android:layout_toRightOf="@id/iv_recommend_earning_detail"/>
+        android:src="@mipmap/recommend_earning_detail" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_below="@id/rl_share_earning"
+        android:layout_toRightOf="@id/iv_recommend_earning_detail"
+        android:padding="@dimen/base_padding"
+        android:text="推荐收益明细（积分）" />
 
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="@color/full_screen_overlay"
         android:layout_below="@id/iv_recommend_earning_detail"
         android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding"/>
+        android:layout_marginRight="@dimen/base_padding"
+        android:background="@color/full_screen_overlay" />
 
-        <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
-            android:id="@+id/swipe_load_layout"
+    <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipe_load_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line">
+
+        <include
+            android:id="@+id/swipe_refresh_header"
+            layout="@layout/layout_refresh_header"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/line">
-
-            <include
-                android:id="@+id/swipe_refresh_header"
-                layout="@layout/layout_refresh_header"></include>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/swipe_target"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingTop="@dimen/small_padding"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-            <include
-                android:id="@+id/swipe_load_more_footer"
-                layout="@layout/layout_load_footer"></include>
+        <include
+            android:id="@+id/swipe_load_more_footer"
+            layout="@layout/layout_load_footer"></include>
 
-        </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+    </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
 
 </RelativeLayout>

@@ -7,29 +7,41 @@
     android:background="@color/window_bg_color"
     android:orientation="vertical">
 
+    <com.ipd.taxiu.widget.ProductEvaluateView
+        android:id="@+id/product_evaluate_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding" />
 
-    <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
-        android:id="@+id/swipe_load_layout"
+    <com.ipd.taxiu.widget.ProgressLayout
+        android:id="@+id/evaluate_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/swipe_refresh_header"
-            layout="@layout/layout_refresh_header"></include>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/swipe_target"
+        <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@+id/swipe_load_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/small_padding"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/swipe_refresh_header"
+                layout="@layout/layout_refresh_header"></include>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/swipe_target"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/small_padding"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-        <include
-            android:id="@+id/swipe_load_more_footer"
-            layout="@layout/layout_load_footer"></include>
+            <include
+                android:id="@+id/swipe_load_more_footer"
+                layout="@layout/layout_load_footer"></include>
 
-    </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+        </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+    </com.ipd.taxiu.widget.ProgressLayout>
 
 </LinearLayout>

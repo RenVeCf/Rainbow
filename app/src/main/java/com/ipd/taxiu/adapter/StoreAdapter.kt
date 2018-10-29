@@ -194,6 +194,11 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     //商品详情
                     ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 })
+                holder.itemView.ll_special_more.setOnClickListener {
+                    //查看更多
+                    StoreSpecialActivity.launch(context as Activity,specialInfo.TYPE_ID)
+                }
+
             }
             ItemType.RECOMMEND_VIDEO -> {
                 val recommendInfo = list!![position] as StoreIndexVideoBean

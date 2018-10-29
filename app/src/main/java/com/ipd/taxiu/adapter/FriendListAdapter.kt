@@ -1,17 +1,13 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AttentionBean
-import com.ipd.taxiu.bean.FriendBean
-import com.ipd.taxiu.bean.UserBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.http.HttpUrl.IMAGE_URL
 import com.ipd.taxiu.ui.activity.referral.HomepageActivity
@@ -27,15 +23,11 @@ class FriendListAdapter(val context: Context, private val data: List<AttentionBe
 
     override fun getItemCount(): Int = data?.size ?: 0
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        ImageLoader.loadAvatar(context, IMAGE_URL+data[position].LOGO, holder?.itemView?.civ_friend_header)
+        ImageLoader.loadAvatar(context, IMAGE_URL + data[position].LOGO, holder?.itemView?.civ_friend_header)
         holder?.itemView?.tv_friend_nickname?.text = data[position].NICKNAME
         holder?.itemView?.tv_create_time?.text = "注册日期：" + data[position].CREATETIME
         holder?.itemView?.setOnClickListener {
-            val intent = Intent(context, HomepageActivity::class.java)
-            val bundle= Bundle()
-            bundle.putSerializable("AttentionBean",data[position])
-            intent.putExtras(bundle)
-            context.startActivity(intent)
+            HomepageActivity.launch(context as Activity, data[position].USER_ID)
         }
     }
 

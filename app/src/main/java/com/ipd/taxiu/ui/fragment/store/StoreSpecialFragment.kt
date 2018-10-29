@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
-import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.StoreSpecialAdapter
@@ -17,7 +16,6 @@ import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.utils.ProductScreenView
-import com.ipd.taxiu.widget.ScreenLayout
 import com.ipd.taxiu.widget.StoreSpecialRecyclerView
 import kotlinx.android.synthetic.main.fragment_store_special.view.*
 import rx.Observable
@@ -37,13 +35,7 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
     override fun getContentLayout(): Int = R.layout.fragment_store_special
 
 
-    private lateinit var mScreenLayout: ScreenLayout
     private val mAreaId: Int by lazy { arguments.getInt("areaId", 0) }
-    override fun initView(bundle: Bundle?) {
-        super.initView(bundle)
-        mScreenLayout = mRootView?.findViewById(R.id.screen_layout_container)!!
-        mScreenLayout.setBackgroupView(recycler_view)
-    }
 
     override fun initListener() {
         super.initListener()
@@ -64,12 +56,7 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
 
         mContentView.swipe_target.setSuspensionListener(object : StoreSpecialRecyclerView.SuspensionListener {
             override fun onChange(isShow: Boolean) {
-                LogUtils.e("tag", isShow.toString())
-                val visibility = if (isShow) View.VISIBLE else View.GONE
-                if (mContentView.screen_layout_container.visibility == visibility) return
-                mContentView.screen_layout_container.visibility = visibility
             }
-
         })
     }
 
@@ -134,7 +121,7 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
 
         return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
                 compositeValue, "", maxPrice, minPrice, priceValue, saleValue,
-                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "0", mAreaId.toString())
+                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, 0, mAreaId)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -173,18 +160,18 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
     //保存已勾选的筛选条件
     private val mScreenMap: HashMap<String, ProductExpertScreenBean.ScreenInfo> = hashMapOf()
 
-    override fun getCompositeValue(): Int = mScreenLayout?.getCompositeValue()
-    override fun getSaleValue(): Int = mScreenLayout?.getSaleValue()
-    override fun getPriceValue(): Int = mScreenLayout?.getPriceValue()
+    override fun getCompositeValue(): Int = 0
+    override fun getSaleValue(): Int = 0
+    override fun getPriceValue(): Int = 0
     override fun getMinPrice(): Float = mMinPrice
     override fun getMaxPrice(): Float = mMaxPrice
-    override fun getBrandValue(): String = (mScreenMap["品牌"]?.MODULE_ID?:"").toString()
-    override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.MODULE_ID?:"").toString()
-    override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.MODULE_ID?:"").toString()
-    override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.MODULE_ID?:"").toString()
-    override fun getNetContentValue(): String = (mScreenMap["净含量"]?.MODULE_ID?:"").toString()
-    override fun getTasteValue(): String = (mScreenMap["口味"]?.MODULE_ID?:"").toString()
-    override fun getCountryValue(): String = (mScreenMap["国家"]?.MODULE_ID?:"").toString()
+    override fun getBrandValue(): String = (mScreenMap["品牌"]?.MODULE_ID ?: "").toString()
+    override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.MODULE_ID ?: "").toString()
+    override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.MODULE_ID ?: "").toString()
+    override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.MODULE_ID ?: "").toString()
+    override fun getNetContentValue(): String = (mScreenMap["净含量"]?.MODULE_ID ?: "").toString()
+    override fun getTasteValue(): String = (mScreenMap["口味"]?.MODULE_ID ?: "").toString()
+    override fun getCountryValue(): String = (mScreenMap["国家"]?.MODULE_ID ?: "").toString()
     //    override fun getThingTypeValue(): String = mScreenResult?.type 
     override fun getThingTypeValue(): String = ""
 

@@ -15,6 +15,7 @@ import com.ipd.taxiu.bean.ClassRoomOrderDetailBean;
 import com.ipd.taxiu.bean.ClassRoomResult;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
+import com.ipd.taxiu.bean.EarningsResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.FlashSaleProductBean;
@@ -33,10 +34,13 @@ import com.ipd.taxiu.bean.ProductBrandBean;
 import com.ipd.taxiu.bean.ProductCategoryChildBean;
 import com.ipd.taxiu.bean.ProductCategoryParentBean;
 import com.ipd.taxiu.bean.ProductDetailBean;
+import com.ipd.taxiu.bean.ProductEvaluateBean;
 import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
 import com.ipd.taxiu.bean.QuestionBean;
+import com.ipd.taxiu.bean.RecommendEarningsBean;
+import com.ipd.taxiu.bean.RecommendInfoBean;
 import com.ipd.taxiu.bean.RegisterBean;
 import com.ipd.taxiu.bean.ReturnBean;
 import com.ipd.taxiu.bean.ReturnDetailBean;
@@ -603,13 +607,15 @@ public interface ApiService {
                                                                @Field("TASTE") String TASTE,
                                                                @Field("COUNTRY") String COUNTRY,
                                                                @Field("THING_TYPE") String THING_TYPE,
-                                                               @Field("AREA_TYPE_ID") String AREA_TYPE_ID,
-                                                               @Field("SHOP_TYPE_ID") String SHOP_TYPE_ID);
+                                                               @Field("AREA_TYPE_ID") int AREA_TYPE_ID,
+                                                               @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
     Observable<ScreenResult> storeProductExpertScreen(@Field("USER_ID") String user_id,
-                                                      @Field("KEYWORDS") String KEYWORDS);
+                                                      @Field("KEYWORDS") String KEYWORDS,
+                                                      @Field("AREA_ID") int AREA_ID,
+                                                      @Field("TYPE_ID") int TYPE_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_MODEL)
@@ -638,6 +644,15 @@ public interface ApiService {
     @POST(HttpUrl.STORE_AREA_INDEX)
     Observable<BaseResult<StoreAreaIndexResultBean>> storeAreaIndex(@Field("USER_ID") String user_id,
                                                                     @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_EVALUATE_LIST)
+    Observable<BaseResult<List<ProductEvaluateBean>>> storeProductEvaluateList(@Field("USER_ID") String user_id,
+                                                                               @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                               @Field("FORM_ID") int FORM_ID,
+                                                                               @Field("TYPE") int TYPE,
+                                                                               @Field("PAGE") int PAGE,
+                                                                               @Field("COUNT") int COUNT);
 
 
     /**
@@ -1127,6 +1142,22 @@ public interface ApiService {
     Observable<BaseResult<List<TalkBean>>> talkCollect(@Field("USER_ID") String user_id,
                                                        @Field("COUNT") int count,
                                                        @Field("PAGE") int page);
+
+
+    /**
+     * 推荐
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.RECOMMEND_INFO)
+    Observable<BaseResult<RecommendInfoBean>> recommendInfo(@Field("USER_ID") String user_id);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RECOMMEND_EARNINGS)
+    Observable<EarningsResult<List<RecommendEarningsBean>>> recommendEarnings(@Field("USER_ID") String user_id,
+                                                                              @Field("COUNT") int count,
+                                                                              @Field("PAGE") int page);
+
 
     //tools
     @Multipart

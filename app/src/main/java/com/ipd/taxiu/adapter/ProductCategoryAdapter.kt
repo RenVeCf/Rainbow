@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.ipd.taxiu.bean.ProductCategoryChildBean
 import com.ipd.taxiu.bean.ProductCategoryTitleBean
 import com.ipd.taxiu.bean.StoreIndexBrandBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.ui.activity.store.ProductListActivity
 import kotlinx.android.synthetic.main.item_product_category.view.*
 import kotlinx.android.synthetic.main.item_product_category_title.view.*
 
@@ -53,10 +55,18 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?)
                 if (info is ProductCategoryChildBean.TIPBean) {
                     ImageLoader.loadNoPlaceHolderImg(context, info.ICON, holder.itemView.iv_category_img)
                     holder.itemView.tv_category_name.text = info.TIP_NAME
+                    holder.itemView.setOnClickListener {
+                        ProductListActivity.launch(context as Activity, info.TIP_NAME)
+                    }
                 } else if (info is StoreIndexBrandBean) {
                     ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
                     holder.itemView.tv_category_name.text = info.BRAND_NAME
+                    holder.itemView.setOnClickListener {
+                        ProductListActivity.launch(context as Activity, info.BRAND_NAME)
+                    }
                 }
+
+
             }
         }
 

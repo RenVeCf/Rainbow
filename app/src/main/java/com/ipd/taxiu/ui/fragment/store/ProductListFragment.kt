@@ -1,6 +1,5 @@
 package com.ipd.taxiu.ui.fragment.store
 
-import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +14,7 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
+import com.ipd.taxiu.ui.activity.store.ProductListActivity
 import com.ipd.taxiu.utils.ProductScreenView
 import kotlinx.android.synthetic.main.fragment_product_list.view.*
 import rx.Observable
@@ -22,26 +22,14 @@ import rx.Observable
 class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>() {
 
     companion object {
-        fun newInstance(searchKey: String): ProductListFragment {
+        fun newInstance(): ProductListFragment {
             val fragment = ProductListFragment()
-            val bundle = Bundle()
-            bundle.putString("searchKey", searchKey)
-            fragment.arguments = bundle
             return fragment
         }
     }
 
-    private var mSearchKey: String = ""
-    fun setSearchKey(searchKey: String) {
-        mSearchKey = searchKey
-    }
 
     override fun getContentLayout(): Int = R.layout.fragment_product_list
-
-    override fun initView(bundle: Bundle?) {
-        super.initView(bundle)
-        mSearchKey = arguments.getString("searchKey", "")
-    }
 
     override fun initListener() {
         super.initListener()
@@ -67,6 +55,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         mScreenView = screenView
     }
 
+    private val mParent by lazy { mActivity as ProductListActivity }
     /**
      * 注释请看{@link com.ipd.taxiu.utils.ProductScreenView}
      */
@@ -86,8 +75,8 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         val thingTypeValue = mScreenView?.getThingTypeValue() ?: ""
 
         return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
-                compositeValue, mSearchKey, maxPrice, minPrice, priceValue, saleValue,
-                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, "0","0")
+                compositeValue, mParent.mSearchKey, maxPrice, minPrice, priceValue, saleValue,
+                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, mParent.mAreaTypeId, mParent.mShopTypeId)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -129,13 +118,12 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
     }
 
     fun onSearch(searchKey: String) {
-        mSearchKey = searchKey
+        mParent.mSearchKey = searchKey
         refreshWithProgress()
     }
 
     fun refreshWithProgress() {
-        isCreate = true
-        onRefresh()
+        onRefresh(true)
     }
 
 

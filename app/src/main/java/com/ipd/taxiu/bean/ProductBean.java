@@ -11,7 +11,7 @@ public class ProductBean {
     public String LOGO;
     public int FORM_ID;
     public int REPLY;
-    public float NET_CONTENT;
+    public String NET_CONTENT;
     public String CURRENT_PRICE;
     public String PRICE;
     public String REFER_PRICE;

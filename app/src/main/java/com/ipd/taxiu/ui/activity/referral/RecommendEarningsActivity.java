@@ -34,7 +34,7 @@ public class RecommendEarningsActivity extends BaseUIActivity{
 
     @Override
     protected void loadData() {
-       getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, RecommendEarningsFragment.newInstance()).commit();
+       getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, RecommendEarningsFragment.Companion.newInstance()).commit();
     }
 
     @Override

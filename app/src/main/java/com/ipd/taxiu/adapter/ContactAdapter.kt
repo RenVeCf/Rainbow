@@ -1,8 +1,7 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -33,24 +32,19 @@ class ContactAdapter(val context: Context, private val list: List<AttentionBean>
         holder.itemView.tv_friend_nickname.text = info.NICKNAME
         holder.itemView.tv_create_time.text = "注册日期：" + CommonUtils.textCut(info.CREATETIME, " ")
 
-        setAttent(position, info.IS_ATTEN, holder.itemView.ll_attention)
+        setAttent(info.IS_ATTEN, holder.itemView.ll_attention)
 
         holder.itemView.ll_attention.setOnClickListener {
             itemClick.invoke(position, info)
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, HomepageActivity::class.java)
-            val bundle = Bundle()
-            bundle.putSerializable("AttentionBean", info)
-            intent.putExtras(bundle)
-            context.startActivity(intent)
+            HomepageActivity.launch(context as Activity, info.USER_ID)
         }
-
     }
 
 
-    fun setAttent(position: Int, isAttent: Int, ll_attent: LinearLayout) {
+    fun setAttent(isAttent: Int, ll_attent: LinearLayout) {
         User.setAttentBtnStyle(context, isAttent, ll_attent)
     }
 

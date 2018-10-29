@@ -52,7 +52,7 @@ class ProductDetailActivity : BaseUIActivity() {
     }
 
     private val detailFragment: ProductDetailFragment by lazy { ProductDetailFragment.newInstance(mProductId, mFromId) }
-    private val evaluateFragment: ProductEvaluateFragment by lazy { ProductEvaluateFragment() }
+    private val evaluateFragment: ProductEvaluateFragment by lazy { ProductEvaluateFragment.newInstance(mProductId,mFromId) }
     override fun loadData() {
         switchTab(0)
         view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {

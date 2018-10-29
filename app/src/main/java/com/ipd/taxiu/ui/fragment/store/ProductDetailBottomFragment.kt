@@ -4,10 +4,7 @@ import android.net.http.SslError
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.webkit.SslErrorHandler
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ProductDetailBean
@@ -33,6 +30,8 @@ class ProductDetailBottomFragment : BaseFragment() {
 
     override fun loadData() {
         mRootView?.web_view?.settings?.javaScriptEnabled = true
+        mRootView?.web_view?.settings?.useWideViewPort = true
+        mRootView?.web_view?.settings?.loadWithOverviewMode = true
 
         mRootView?.web_view?.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {

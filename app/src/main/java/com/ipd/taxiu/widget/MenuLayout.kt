@@ -1,5 +1,6 @@
 package com.ipd.taxiu.widget
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.widget.LinearLayout
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.MenuCategoryAdapter
 import com.ipd.taxiu.bean.MenuBean
+import com.ipd.taxiu.ui.activity.store.ProductListActivity
 import kotlinx.android.synthetic.main.item_menu.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 
@@ -50,7 +52,7 @@ class MenuLayout : LinearLayout {
     private fun setData() {
         if (menuList == null || menuList!!.isEmpty() || menuList!!.size <= mCurPosition) return
         category_recycler_view.adapter = MenuCategoryAdapter(context, menuList!![mCurPosition].list, {
-
+            ProductListActivity.launch(context as Activity, "", it.AREA_TYPE_ID,it.SHOP_TYPE_ID)
         })
 
     }

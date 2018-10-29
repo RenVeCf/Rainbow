@@ -49,7 +49,7 @@ class ProductBrandFragment : ListFragment<BaseResult<List<ProductBrandBean>>, Pr
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
             mAdapter = ProductBrandAdapter(mActivity, {
-                ProductListActivity.launch(mActivity)
+                ProductListActivity.launch(mActivity,it.BRAND_NAME)
             })
 
             val layoutManager = LinearLayoutManager(mActivity)

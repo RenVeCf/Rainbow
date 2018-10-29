@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.bean.StoreIndexVideoBean
 import com.ipd.taxiu.bean.StoreProductScreenBean
 import com.ipd.taxiu.bean.StoreSpecialHeaderBean
+import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 import kotlinx.android.synthetic.main.layout_product_screen.view.*
@@ -65,7 +68,7 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_recommend_video, parent, false))
             }
             ItemType.PRODUCT_SCREEN -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_product_screen, parent, false))
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cart_recommend_header, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -109,18 +112,32 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
 
             }
             ItemType.PRODUCT_SCREEN -> {
-                holder.itemView.screen_layout.disallowClickable()
-                holder.itemView.setOnClickListener {
-                    onScreenItemClick.invoke(position)
-                    return@setOnClickListener
-                }
+//                holder.itemView.screen_layout.disallowClickable()
+//                holder.itemView.setOnClickListener {
+//                    onScreenItemClick.invoke(position)
+//                    return@setOnClickListener
+//                }
+
 
 
             }
             else -> {
+                val productInfo = list!![position] as ProductBean
+                holder.itemView.iv_new_product.visibility = if (productInfo.isNew) View.VISIBLE else View.GONE
+
+                ImageLoader.loadNoPlaceHolderImg(context, productInfo.LOGO, holder.itemView.iv_product_img)
+                holder.itemView.tv_product_name.text = productInfo.PROCUCT_NAME
+                holder.itemView.tv_product_price.text = "￥${productInfo.CURRENT_PRICE}"
+                holder.itemView.tv_product_price_old.text = "￥${productInfo.REFER_PRICE}"
+                holder.itemView.tv_product_evalute.text = "评价 ${productInfo.REPLY}"
+                holder.itemView.tv_product_sales.text = "销量 ${productInfo.BUYNUM}"
+
+                holder.itemView.tv_product_lable.visibility = if (productInfo.KIND == 1) View.GONE else View.VISIBLE
+                holder.itemView.tv_product_lable.text = productInfo.kindStr
+
                 holder.itemView.setOnClickListener {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity)
+                    ProductDetailActivity.launch(context as Activity,productInfo.PRODUCT_ID,productInfo.FORM_ID)
                 }
 
             }
