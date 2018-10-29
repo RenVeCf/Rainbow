@@ -151,7 +151,7 @@ public class AlipayUtils {
                     String resultStatus = authResult.getResultStatus();
                     if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
                         if (onAuthListener != null) {
-                            onAuthListener.onAuthSuccess(authResult.getAuthCode());
+                            onAuthListener.onAuthSuccess(authResult.getAlipayOpenId());
                         }
 
                     } else {

@@ -146,7 +146,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.BINDING_PHONE_SMS_CODE)
     Observable<BaseResult<String>> bindingPhoneSmsCode(@Field("PHONE") String PHONE,
-                                                          @Field("TYPE") String TYPE);
+                                                       @Field("TYPE") String TYPE);
 
     @FormUrlEncoded
     @POST(HttpUrl.PHONE_LOGIN)
@@ -1183,6 +1183,14 @@ public interface ApiService {
     Observable<EarningsResult<List<RecommendEarningsBean>>> recommendEarnings(@Field("USER_ID") String user_id,
                                                                               @Field("COUNT") int count,
                                                                               @Field("PAGE") int page);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.AVAILABLE_BALANCE)
+    Observable<EarningsResult<String>> availableBalance(@Field("USER_ID") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.AVAILABLE_INTEGRAL)
+    Observable<EarningsResult<String>> availableIntegral(@Field("USER_ID") String user_id);
 
 
     //tools

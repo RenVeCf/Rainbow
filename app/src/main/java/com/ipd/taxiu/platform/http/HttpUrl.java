@@ -205,6 +205,8 @@ public interface HttpUrl {
     String CHANGE_BANK_CARD = "app_bank_card/update.do";
     String BANK_CARD_LIST = "app_bank_card/getList.do";
     String BANK_CARD_INFO = "app_bank_card/getInfo.do";
+    String AVAILABLE_BALANCE = "app_user/validBalance.do";
+    String AVAILABLE_INTEGRAL = "app_user/validScore.do";
 
     //收藏
     String COLLECT_PRODUCT = "app_collect/proList.do";

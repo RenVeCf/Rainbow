@@ -45,7 +45,7 @@
         <TextView
             android:id="@+id/tv_available_integral"
             style="@style/SmallTextStyle"
-            android:text="4594"
+            android:text="0"
             app:layout_constraintRight_toRightOf="parent" />
 
         <EditText

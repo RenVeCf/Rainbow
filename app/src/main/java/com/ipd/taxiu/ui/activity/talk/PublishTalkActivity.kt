@@ -36,6 +36,15 @@ class PublishTalkActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
+        ApiManager.getService().availableIntegral(GlobalParam.getUserId())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<String>>() {
+                    override fun _onNext(result: BaseResult<String>) {
+                        if (result.code == 0) {
+                            tv_available_integral.text = result.data.toString()
+                        }
+                    }
+                })
 
     }
 

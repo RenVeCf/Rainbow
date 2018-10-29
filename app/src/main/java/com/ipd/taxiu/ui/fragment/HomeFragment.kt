@@ -6,10 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.HomeAdapter
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.HomeBean
-import com.ipd.taxiu.bean.HomeResultBean
-import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.event.UpdateHomeEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.global.Constant
@@ -19,6 +16,7 @@ import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.account.PetStageActivity
 import com.ipd.taxiu.ui.activity.pet.AddPetActivity
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.layout_home_header_expanded.*
@@ -169,11 +167,26 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
         ll_pet_age.visibility = View.GONE
         tv_pet_no.visibility = View.VISIBLE
         ll_to_add_pet.visibility = View.VISIBLE
+        civ_avatar.setImageResource(R.mipmap.avatar_default)
 
         ll_to_add_pet.setOnClickListener {
-            val intent = Intent(mActivity, AddPetActivity::class.java)
-            intent.putExtra("petWay", 1)
-            startActivity(intent)
+            ApiManager.getService().getUserInfo(GlobalParam.getUserIdOrJump())
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<UserBean>>(mActivity, true) {
+                        override fun _onNext(result: BaseResult<UserBean>) {
+                            if (result.code == 0) {
+                                if (result.data.STEP == 0) {
+                                    PetStageActivity.launch(mActivity, GlobalParam.getUserId())
+                                } else {
+                                    val intent = Intent(mActivity, AddPetActivity::class.java)
+                                    intent.putExtra("petWay", 1)
+                                    startActivity(intent)
+                                }
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
         }
     }
 

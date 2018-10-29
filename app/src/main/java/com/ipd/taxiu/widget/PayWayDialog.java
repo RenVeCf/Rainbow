@@ -13,7 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BaseResult;
+import com.ipd.taxiu.bean.EarningsResult;
 import com.ipd.taxiu.event.PayRequestEvent;
+import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.ApiManager;
+import com.ipd.taxiu.platform.http.Response;
+import com.ipd.taxiu.platform.http.RxScheduler;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -44,6 +50,21 @@ public class PayWayDialog extends Dialog implements View.OnClickListener {
         lp.width = AbsListView.LayoutParams.MATCH_PARENT;
         lp.y = 0;//设置Dialog距离底部的距离
         dialogWindow.setAttributes(lp);
+
+
+        final TextView walletBalance = findViewById(R.id.tv_wallet_balance);
+
+        ApiManager.getService().availableBalance(GlobalParam.getUserId())
+                .compose(RxScheduler.Companion.<EarningsResult<String>>applyScheduler())
+                .subscribe(new Response<BaseResult<String>>() {
+                    @Override
+                    protected void _onNext(BaseResult<String> result) {
+                        if (result.code == 0) {
+                            walletBalance.setText("余额：￥" + result.data);
+                        }
+                    }
+                });
+
 
     }
 
