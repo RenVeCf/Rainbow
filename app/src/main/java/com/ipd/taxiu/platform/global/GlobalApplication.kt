@@ -7,6 +7,7 @@ import android.os.Process
 import android.support.multidex.MultiDexApplication
 import cn.jpush.android.api.JPushInterface
 import cn.xiaoneng.uiapi.Ntalker
+import com.mob.MobSDK
 import com.squareup.leakcanary.LeakCanary
 import kotlin.properties.Delegates
 
@@ -50,7 +51,7 @@ class GlobalApplication : MultiDexApplication() {
         Ntalker.getBaseInstance().initSDK(mContext, Constant.XIAONENG_ID, Constant.XIAONENG_SDK_KEY)
         JPushInterface.init(this)
 
-
+        MobSDK.init(this)
     }
 
 

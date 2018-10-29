@@ -111,7 +111,14 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         footerView.tv_commodity_price.text = "￥${info.TOTAL}"
         footerView.tv_commodity_freight.text = "+￥${info.POST_FEE}"
         footerView.tv_discount_coupon.text = "-￥${info.PREFER_FEE}"
-        footerView.tv_actual_price.text = "￥${info.PAY_FEE}"
+        if (info.STATUS == Order.PAYMENT) {
+            footerView.actual_price.text = "订单应付金额："
+            footerView.tv_actual_price.text = "￥${info.PAYABLE_FEE}"
+        } else {
+            footerView.actual_price.text = "订单实付金额："
+            footerView.tv_actual_price.text = "￥${info.PAY_FEE}"
+        }
+
         footerView.tv_invoice_information.text = when (info.INVOICE_TYPE) {
             1 -> "个人"
             2 -> "单位"

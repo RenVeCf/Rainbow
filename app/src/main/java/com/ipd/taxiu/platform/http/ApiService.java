@@ -135,6 +135,20 @@ public interface ApiService {
                                                      @Field("TYPE") String TYPE);
 
     @FormUrlEncoded
+    @POST(HttpUrl.BINDING_PHONE)
+    Observable<BaseResult<LoginBean>> bindingPhone(@Field("PHONE") String PHONE,
+                                                   @Field("CODE") String CODE,
+                                                   @Field("TYPE") int TYPE,
+                                                   @Field("OPENID") String OPENID,
+                                                   @Field("LOGO") String LOGO,
+                                                   @Field("NICKNAME") String NICKNAME);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BINDING_PHONE_SMS_CODE)
+    Observable<BaseResult<String>> bindingPhoneSmsCode(@Field("PHONE") String PHONE,
+                                                          @Field("TYPE") String TYPE);
+
+    @FormUrlEncoded
     @POST(HttpUrl.PHONE_LOGIN)
     Observable<BaseResult<LoginBean>> phoneLogin(@Field("CODE") String code,
                                                  @Field("PHONE") String PHONE);
@@ -149,6 +163,11 @@ public interface ApiService {
     @POST(HttpUrl.PET_STAGE)
     Observable<BaseResult<LoginBean>> petStage(@Field("USER_ID") String USER_ID,
                                                @Field("STEP") String STEP);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.THIRD_LOGIN)
+    Observable<BaseResult<LoginBean>> thirdLogin(@Field("OPENID") String OPENID,
+                                                 @Field("TYPE") String TYPE);
 
 
     /**

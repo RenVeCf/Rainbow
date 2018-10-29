@@ -49,5 +49,6 @@ public class UserBean {
     public String ALIPAY;
     public int STATUS;
     public int SORT;
+    public int COLLECT_NUM;
     public String CREATETIME;
 }

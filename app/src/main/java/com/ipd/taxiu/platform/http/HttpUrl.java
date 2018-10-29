@@ -14,7 +14,10 @@ public interface HttpUrl {
     String LOGIN = "app_user/login.do";
     String PHONE_LOGIN = "app_user/verifyCode.do";
     String PHONE_LOGIN_SMS_CODE = "app_user/sendCode2.do";
+    String BINDING_PHONE_SMS_CODE = "app_user/bindCode.do";
+    String BINDING_PHONE = "app_user/bind.do";
     String FORGET_PASSWORD = "app_user/forgetPwd.do";
+    String THIRD_LOGIN = "app_user/open.do";
 
     //home
     String HOME = "app_show/home.do";

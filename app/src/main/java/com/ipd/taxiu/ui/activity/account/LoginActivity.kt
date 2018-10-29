@@ -7,13 +7,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import cn.jpush.android.api.JPushInterface
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseActivity
-import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.AlipayUtils
 import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
 
@@ -60,6 +62,33 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
             val password = et_password.text.toString().trim()
             mPresenter?.login(phone, password)
         }
+
+        iv_qq.setOnClickListener {
+            mPresenter?.qqLogin()
+        }
+        iv_wechat.setOnClickListener {
+            mPresenter?.wechatLogin()
+        }
+        iv_alipay.setOnClickListener {
+            mPresenter?.alipayLogin(mActivity)
+        }
+    }
+
+    override fun thirdAuthSuccess(type: Int, token: String, userLogo: String, username: String) {
+        LogUtils.e("tag", "$token-$userLogo-$username")
+        mPresenter?.thirdLogin(type, token, userLogo, username)
+    }
+
+    override fun thirdNeedBinding(type: Int, openId: String, logo: String, nickname: String) {
+        BindingPhoneActivity.launch(mActivity, type, openId, logo, nickname)
+    }
+
+    override fun thirdAuthCancel() {
+        toastShow("取消授权")
+    }
+
+    override fun thirdAuthError(errMsg: String) {
+        toastShow(errMsg)
     }
 
     override fun loginSuccess() {
@@ -85,6 +114,11 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
         val password = et_password.text.toString().trim()
         btn_login.isEnabled = CommonUtils.isMobileNO(phone) &&
                 CommonUtils.passwordIsLegal(password)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
     }
 
 }

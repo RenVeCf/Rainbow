@@ -3,7 +3,7 @@ package com.ipd.taxiu.ui.fragment.classroom
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.ipd.taxiu.R
-import com.ipd.taxiu.adapter.ProductAdapter
+import com.ipd.taxiu.adapter.CollectProductAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.event.UpdateCollectProductEvent
@@ -54,10 +54,10 @@ class CollectStoreFragment : ListFragment<BaseResult<List<ProductBean>>, Product
         return NORMAL
     }
 
-    private var mAdapter: ProductAdapter? = null
+    private var mAdapter: CollectProductAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ProductAdapter(mActivity, data, {
+            mAdapter = CollectProductAdapter(mActivity, data, {
                 //itemClick
                 ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
             })

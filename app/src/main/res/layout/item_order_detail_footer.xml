@@ -55,6 +55,7 @@
             android:layout_marginTop="@dimen/base_padding" />
 
         <TextView
+            android:id="@+id/actual_price"
             style="@style/BaseTextStyle"
             android:layout_below="@id/line"
             android:layout_centerVertical="true"

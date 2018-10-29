@@ -50,10 +50,11 @@ public class OrderDetailBean {
     public int INVOICE_TYPE;
     public String INVOICE_HEAD;
     public String INVOICE_NUM;
-    public int TOTAL;
-    public int PREFER_FEE;
-    public int POST_FEE;
-    public int PAY_FEE;
+    public String TOTAL;
+    public String PREFER_FEE;
+    public String POST_FEE;
+    public String PAY_FEE;
+    public String PAYABLE_FEE;
     public String POST_NUM;
     public String POST_COMPANY;
     public String CREATETIME;

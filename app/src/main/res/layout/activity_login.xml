@@ -103,18 +103,21 @@
 
 
             <ImageView
+                android:id="@+id/iv_wechat"
                 android:layout_marginRight="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/wechat" />
 
             <ImageView
+                android:id="@+id/iv_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/qq" />
 
             <ImageView
+                android:id="@+id/iv_alipay"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="40dp"
                 android:layout_width="wrap_content"

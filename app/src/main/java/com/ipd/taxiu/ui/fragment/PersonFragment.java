@@ -46,7 +46,7 @@ import static com.ipd.taxiu.platform.http.HttpUrl.IMAGE_URL;
 /**
  * Created by Miss on 2018/7/19
  */
-public class PersonFragment extends BaseFragment implements View.OnClickListener,MinePresenter.IUserInfoView {
+public class PersonFragment extends BaseFragment implements View.OnClickListener, MinePresenter.IUserInfoView {
     private RelativeLayout rl_all_order, rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_off_the_stocks;
     private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
             rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
@@ -168,7 +168,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent1);
                 break;
             case R.id.rl_delivery_address:
-                DeliveryAddressActivity.Companion.launch(getMActivity(),DeliveryAddressActivity.Companion.getNORMAL());
+                DeliveryAddressActivity.Companion.launch(getMActivity(), DeliveryAddressActivity.Companion.getNORMAL());
                 break;
             case R.id.rl_header:
                 intent1 = new Intent(getActivity(), PersonInformationActivity.class);
@@ -272,15 +272,13 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
-            ImageLoader.loadImgFromLocal(getContext(), HttpUrl.IMAGE_URL+data.LOGO, civ_header);
+            ImageLoader.loadImgFromLocal(getContext(), HttpUrl.IMAGE_URL + data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
             if (data.TAG != "") {
                 tv_signature.setText(data.TAG);
             }
             tv_attention_num.setText(data.ATTENTION_NUM + "");
-            if (data.WECHAT != "") {
-                tv_collect_num.setText(data.WECHAT);
-            }
+            tv_collect_num.setText(data.COLLECT_NUM + "");
             tv_fans_num.setText(data.FANS_NUM + "");
         }
     }

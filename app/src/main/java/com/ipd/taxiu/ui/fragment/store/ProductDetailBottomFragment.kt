@@ -31,7 +31,7 @@ class ProductDetailBottomFragment : BaseFragment() {
     override fun loadData() {
         mRootView?.web_view?.settings?.javaScriptEnabled = true
         mRootView?.web_view?.settings?.useWideViewPort = true
-        mRootView?.web_view?.settings?.loadWithOverviewMode = true
+//        mRootView?.web_view?.settings?.loadWithOverviewMode = true
 
         mRootView?.web_view?.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {

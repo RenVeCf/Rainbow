@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.mob.sdk'
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -18,9 +20,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "6ce85447717c6958acee590c", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
 
@@ -48,6 +50,33 @@ android {
     sourceSets.main {
         jniLibs.srcDirs = ['libs']  // <-- Set your folder here!
     }
+}
+
+
+MobSDK {
+    appKey "27622bf7042c2"
+    appSecret "6688a2040a9b68942b175e9fab0a0d37"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "568898243"
+                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            Wechat {
+                appId "wxf3e7b0b936de45a3"
+                appSecret "7b414e6140b2585c98a116aa2efccfbd"
+            }
+            QQ {
+                appId "1107764724"
+                appKey "yosLM6bXiQcTfe5r"
+            }
+        }
+    }
+
 }
 
 dependencies {
