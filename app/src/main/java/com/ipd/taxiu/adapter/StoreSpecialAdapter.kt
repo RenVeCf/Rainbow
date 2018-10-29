@@ -18,7 +18,6 @@ import com.ipd.taxiu.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
-import kotlinx.android.synthetic.main.layout_product_screen.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
 

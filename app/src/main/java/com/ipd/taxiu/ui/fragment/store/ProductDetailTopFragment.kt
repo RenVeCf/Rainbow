@@ -24,6 +24,7 @@ import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIFragment
+import com.ipd.taxiu.ui.activity.PictureAndVideoPreviewActivity
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
@@ -34,7 +35,6 @@ import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
 import kotlinx.android.synthetic.main.item_product_evaluate.view.*
 import kotlinx.android.synthetic.main.layout_option_package.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
-import java.util.*
 
 class ProductDetailTopFragment : BaseUIFragment() {
     override fun getTitleLayout(): Int = -1
@@ -60,8 +60,14 @@ class ProductDetailTopFragment : BaseUIFragment() {
     }
 
     override fun loadData() {
-        val bannerList = StringUtils.splitImages(mProductInfo.PIC).map { BannerBean(it) }
-        mContentView.store_banner.adapter = BannerPagerAdapter(context, bannerList)
+        val bannerList = ArrayList(StringUtils.splitImages(mProductInfo.PIC).map { BannerBean(it) })
+        if (!TextUtils.isEmpty(mProductInfo.VIDEO)) {
+            bannerList.add(0, BannerBean(mProductInfo.VIDEO, true, mProductInfo.VIDEO_URL))
+        }
+
+        mContentView.store_banner.adapter = BannerPagerAdapter(context, bannerList, { pos, info ->
+            PictureAndVideoPreviewActivity.launch(mActivity, bannerList, pos)
+        })
         IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
                 .setIndicator(context, bannerList.size, mContentView.store_banner, mContentView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
                     override fun onPageSelected(pos: Int) {

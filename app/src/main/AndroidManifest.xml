@@ -118,6 +118,9 @@
         <activity
             android:name=".ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
+        <activity
+            android:name=".ui.activity.PictureAndVideoPreviewActivity"
+            android:theme="@style/FullScreenStyle" />
 
         <activity android:name=".ui.activity.VideoSelectActivity" />
         <activity android:name=".ui.activity.VideoTrimmerActivity" />

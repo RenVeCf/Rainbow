@@ -22,6 +22,8 @@ public class ProductDetailBean {
     public String PET_TYPE;
     public String CONTENT;
     public String PIC;
+    public String VIDEO;
+    public String VIDEO_URL;
     public String COUNTRY;
     public String SEND_PROV;
     public String SEND_CITY;

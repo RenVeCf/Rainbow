@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
-import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.HomeBean

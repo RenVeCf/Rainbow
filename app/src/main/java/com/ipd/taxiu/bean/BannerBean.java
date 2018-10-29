@@ -1,7 +1,11 @@
 package com.ipd.taxiu.bean;
 
-public class BannerBean {
-    public int res;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class BannerBean implements Parcelable {
     /**
      * BANNER_ID : 1
      * TYPE : 2
@@ -23,15 +27,65 @@ public class BannerBean {
     public int SORT;
     public String CREATETIME;
     public int STATUS;
-
-    public BannerBean(int res) {
-        this.res = res;
-    }
+    public boolean isVideo = false;
+    public String videoUrl;
 
     public BannerBean() {
+    }
+
+    public BannerBean(String LOGO, boolean isVideo, String videoUrl) {
+        this.LOGO = LOGO;
+        this.isVideo = isVideo;
+        this.videoUrl = videoUrl;
     }
 
     public BannerBean(String LOGO) {
         this.LOGO = LOGO;
     }
+
+    protected BannerBean(Parcel in) {
+        BANNER_ID = in.readInt();
+        TYPE = in.readInt();
+        LOGO = in.readString();
+        CATEGORY = in.readInt();
+        URL = in.readString();
+        CONTENT = in.readString();
+        SORT = in.readInt();
+        CREATETIME = in.readString();
+        STATUS = in.readInt();
+        isVideo = in.readByte() != 0;
+        videoUrl = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(BANNER_ID);
+        dest.writeInt(TYPE);
+        dest.writeString(LOGO);
+        dest.writeInt(CATEGORY);
+        dest.writeString(URL);
+        dest.writeString(CONTENT);
+        dest.writeInt(SORT);
+        dest.writeString(CREATETIME);
+        dest.writeInt(STATUS);
+        dest.writeByte((byte) (isVideo ? 1 : 0));
+        dest.writeString(videoUrl);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<BannerBean> CREATOR = new Creator<BannerBean>() {
+        @Override
+        public BannerBean createFromParcel(Parcel in) {
+            return new BannerBean(in);
+        }
+
+        @Override
+        public BannerBean[] newArray(int size) {
+            return new BannerBean[size];
+        }
+    };
 }
