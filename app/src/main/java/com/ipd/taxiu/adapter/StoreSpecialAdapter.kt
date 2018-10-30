@@ -15,16 +15,18 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import kotlinx.android.synthetic.main.item_cart_recommend_header.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
+import kotlinx.android.synthetic.main.layout_store_special_header.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, val onScreenItemClick: (pos: Int) -> Unit) : RecyclerView.Adapter<StoreSpecialAdapter.ViewHolder>() {
+class StoreSpecialAdapter(val context: Context, val areaTitle: String, private val list: List<Any>?, val onScreenItemClick: (pos: Int) -> Unit) : RecyclerView.Adapter<StoreSpecialAdapter.ViewHolder>() {
 
     object ItemType {
         const val HEADER: Int = 0
@@ -82,6 +84,9 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
                 val headerInfo = list!![position] as StoreSpecialHeaderBean
+
+                holder.itemView.tv_special_title.text = "${areaTitle}专区"
+
                 holder.itemView.menu_layout.setMenu(headerInfo.menuList)
 
                 //顶部大banner
@@ -116,9 +121,7 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
 //                    onScreenItemClick.invoke(position)
 //                    return@setOnClickListener
 //                }
-
-
-
+                holder.itemView.tv_recommend_title.text = areaTitle
             }
             else -> {
                 val productInfo = list!![position] as ProductBean
@@ -136,7 +139,7 @@ class StoreSpecialAdapter(val context: Context, private val list: List<Any>?, va
 
                 holder.itemView.setOnClickListener {
                     //商品详情
-                    ProductDetailActivity.launch(context as Activity,productInfo.PRODUCT_ID,productInfo.FORM_ID)
+                    ProductDetailActivity.launch(context as Activity, productInfo.PRODUCT_ID, productInfo.FORM_ID)
                 }
 
             }

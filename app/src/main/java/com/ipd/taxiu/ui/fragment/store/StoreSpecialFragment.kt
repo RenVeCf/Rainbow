@@ -23,10 +23,11 @@ import rx.Observable
 class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), ProductScreenView {
 
     companion object {
-        fun newInstance(areaId: Int): StoreSpecialFragment {
+        fun newInstance(areaId: Int, areaTitle: String): StoreSpecialFragment {
             val fragment = StoreSpecialFragment()
             val bundle = Bundle()
             bundle.putInt("areaId", areaId)
+            bundle.putString("areaTitle", areaTitle)
             fragment.arguments = bundle
             return fragment
         }
@@ -36,6 +37,7 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
 
 
     private val mAreaId: Int by lazy { arguments.getInt("areaId", 0) }
+    private val mAreaTitle: String by lazy { arguments.getString("areaTitle", "") }
 
     override fun initListener() {
         super.initListener()
@@ -134,7 +136,7 @@ class StoreSpecialFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(),
     private var mAdapter: StoreSpecialAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = StoreSpecialAdapter(mActivity, data, {
+            mAdapter = StoreSpecialAdapter(mActivity, mAreaTitle, data, {
                 if (recycler_view.layoutManager is LinearLayoutManager) {
                     (recycler_view.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(it, -DensityUtil.dip2px(mActivity, 12f))
                 }

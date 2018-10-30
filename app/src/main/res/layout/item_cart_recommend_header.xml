@@ -11,6 +11,7 @@
         android:background="@mipmap/cart_recommend_title">
 
         <TextView
+            android:id="@+id/tv_recommend_title"
             style="@style/BaseTextStyle"
             android:layout_centerHorizontal="true"
             android:text="为您推荐"

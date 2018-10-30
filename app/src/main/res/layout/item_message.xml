@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/HomeCardStyle"
+    android:layout_marginBottom="@dimen/base_padding">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_padding">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_message_title"
+                style="@style/BaseTextStyle"
+                android:text="待付款提醒" />
+
+
+            <TextView
+                android:id="@+id/tv_message"
+                style="@style/BaseTextStyle"
+                android:layout_below="@id/tv_message_title"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="内容..."
+                android:textColor="@color/LightGrey" />
+
+            <TextView
+                android:id="@+id/tv_message_time"
+                style="@style/SmallTextStyle"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_message"
+                android:text="2018.07.24 15:01"
+                android:textColor="@color/LightGrey" />
+
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

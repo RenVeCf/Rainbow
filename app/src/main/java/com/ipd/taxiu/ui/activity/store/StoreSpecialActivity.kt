@@ -11,9 +11,10 @@ import kotlinx.android.synthetic.main.second_store_toolbar.*
 class StoreSpecialActivity : BaseUIActivity() {
 
     companion object {
-        fun launch(activity: Activity, areaId: Int) {
+        fun launch(activity: Activity, areaId: Int,areaTitle:String) {
             val intent = Intent(activity, StoreSpecialActivity::class.java)
             intent.putExtra("areaId", areaId)
+            intent.putExtra("areaTitle", areaTitle)
             activity.startActivity(intent)
         }
     }
@@ -26,8 +27,9 @@ class StoreSpecialActivity : BaseUIActivity() {
     }
 
     private val mAreaId: Int by lazy { intent.getIntExtra("areaId", 0) }
+    private val mAreaTitle: String by lazy { intent.getStringExtra("areaTitle") }
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, StoreSpecialFragment.newInstance(mAreaId)).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, StoreSpecialFragment.newInstance(mAreaId,mAreaTitle)).commit()
     }
 
     override fun initListener() {
