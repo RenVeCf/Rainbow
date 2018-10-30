@@ -15,6 +15,7 @@ import com.ipd.taxiu.presenter.store.PostDetailChildPresenter
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.topic.TopicPeopleCommentActivity
 import com.ipd.taxiu.utils.CommentType
+import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_topic_header.view.*
@@ -56,8 +57,9 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
         detailData = data
     }
 
+    private var mSortType = CommentSortLayout.TIME
     override fun loadListData(): Observable<CommentResult<List<TaxiuCommentBean>>> {
-        return ApiManager.getService().taxiuComment(GlobalParam.getUserId(), Constant.PAGE_SIZE, page, 1, taxiuId)
+        return ApiManager.getService().taxiuComment(GlobalParam.getUserId(), Constant.PAGE_SIZE, page, mSortType, taxiuId)
     }
 
     override fun isNoMoreData(result: CommentResult<List<TaxiuCommentBean>>): Int {
@@ -70,7 +72,10 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
     private var mAdapter: TaxiuDetailAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = TaxiuDetailAdapter(mActivity, detailData, data, { pos, res, info ->
+            mAdapter = TaxiuDetailAdapter(mActivity, detailData, {
+                mSortType = it
+                onRefresh(true)
+            }, data, { pos, res, info ->
                 //itemClick
                 when (res) {
                     R.id.iv_zan -> {

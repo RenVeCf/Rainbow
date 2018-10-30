@@ -235,6 +235,24 @@
     </style>
 
 
+    <style name="MineMenuTopStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+    <style name="MineMenuBottomStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+
     <style name="dialog" parent="dialogWithoutAnim">
         <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
     </style>

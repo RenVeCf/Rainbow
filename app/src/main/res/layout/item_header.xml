@@ -93,7 +93,7 @@
             android:lineSpacingExtra="0dp"
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
-            android:text="@string/home_pet_talk"
+            tools:text="@string/home_pet_talk"
             app:layout_constraintTop_toBottomOf="@id/cl_time_layout" />
 
     </android.support.constraint.ConstraintLayout>

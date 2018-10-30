@@ -15,6 +15,7 @@ import com.ipd.taxiu.presenter.TalkPostDetailChildPresenter
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.topic.MoreCommentActivity
 import com.ipd.taxiu.utils.CommentType
+import com.ipd.taxiu.widget.CommentSortLayout
 import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.item_talk_comment.view.*
@@ -60,8 +61,9 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
         detailData = data
     }
 
+    private var mSortType = CommentSortLayout.TIME
     override fun loadListData(): Observable<CommentResult<List<TalkCommentBean>>> {
-        return ApiManager.getService().talkComment(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, 1, talkId)
+        return ApiManager.getService().talkComment(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, mSortType, talkId)
     }
 
     override fun isNoMoreData(result: CommentResult<List<TalkCommentBean>>): Int {
@@ -74,7 +76,9 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
     private var mAdapter: TalkDetailAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = TalkDetailAdapter(mActivity, isMine, detailData, data, { pos, res, info, replyInfo ->
+            mAdapter = TalkDetailAdapter(mActivity, isMine, detailData, {
+                mSortType = it
+            }, data, { pos, res, info, replyInfo ->
                 //itemClick
                 when (res) {
                     R.id.tv_choose_best_answer -> {

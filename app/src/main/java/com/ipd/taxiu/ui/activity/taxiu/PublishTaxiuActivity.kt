@@ -21,6 +21,7 @@ import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.ui.activity.VideoSelectActivity
 import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.utils.UploadUtils
+import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
 import org.greenrobot.eventbus.EventBus
@@ -111,7 +112,7 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
         }
 
         tv_version_info.setOnClickListener {
-            WebActivity.launch(mActivity, WebActivity.URL, HttpUrl.WEB_URL+ HttpUrl.VERSION_INFO,"版权说明")
+            WebActivity.launch(mActivity, WebActivity.URL, HttpUrl.WEB_URL + HttpUrl.VERSION_INFO, "版权说明")
         }
     }
 
@@ -129,7 +130,7 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
     }
 
     override fun publishTaxiuSuccess() {
-        toastShow("发布成功")
+        toastShow(true, "发布成功")
         finish()
     }
 
@@ -192,22 +193,27 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                     toastShow("请先选择视频")
                     return false
                 }
-                UploadUtils.uploadVideo(mActivity, true, videoEvent?.videoPath, object : UploadUtils.UploadCallback {
-                    override fun onProgress(progress: Int) {
 
+                TrimVideoUtil.getVideoWidthHeight(videoEvent!!.videoPath, { errorCode, width, height ->
+                    if (errorCode == 0) {
+                        UploadUtils.uploadVideo(mActivity, true, videoEvent?.videoPath, object : UploadUtils.UploadCallback {
+                            override fun onProgress(progress: Int) {
+
+                            }
+
+                            override fun uploadSuccess(resultBean: UploadResultBean) {
+                                mPresenter?.publishTaxiuVideo(content, videoEvent!!.videoCover, resultBean.data, lableInfo.SHOW_TIP_ID, width, height)
+                            }
+
+                            override fun uploadFail(errMsg: String) {
+                                toastShow(errMsg)
+                            }
+
+                        })
+                    } else {
+                        toastShow("未找到视频文件")
                     }
-
-                    override fun uploadSuccess(resultBean: UploadResultBean) {
-                        mPresenter?.publishTaxiuVideo(content, videoEvent!!.videoCover, resultBean.data, lableInfo.SHOW_TIP_ID)
-                    }
-
-                    override fun uploadFail(errMsg: String) {
-                        toastShow(errMsg)
-                    }
-
                 })
-
-
             }
 
             return true

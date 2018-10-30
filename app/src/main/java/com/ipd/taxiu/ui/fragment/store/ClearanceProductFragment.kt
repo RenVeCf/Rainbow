@@ -53,7 +53,7 @@ class ClearanceProductFragment : ListFragment<BaseResult<List<ProductBean>>, Pro
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<ProductBean>>) {
-        data?.addAll(result?.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
 

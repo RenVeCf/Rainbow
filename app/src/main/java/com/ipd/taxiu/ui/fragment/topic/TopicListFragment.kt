@@ -64,7 +64,7 @@ open class TopicListFragment : ListFragment<BaseResult<List<TopicBean>>, TopicBe
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<TopicBean>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
 }

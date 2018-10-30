@@ -72,7 +72,7 @@ class StoreVideoListFragment : ListFragment<BaseResult<List<StoreVideoBean>>, St
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<StoreVideoBean>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
 }

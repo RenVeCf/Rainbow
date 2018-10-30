@@ -224,7 +224,11 @@ public interface HttpUrl {
 
     String WEB_INFO = "app_text/getInfo.do";
 
+    //消息
+    String NEWS = "app_news/getList.do";
 
+
+    //html5
     String USER_AGENT = "upload/text/1.html";
     String ABOUT_US = "upload/text/2.html";
     String INTEGRAL_RULE = "upload/text/3.html";

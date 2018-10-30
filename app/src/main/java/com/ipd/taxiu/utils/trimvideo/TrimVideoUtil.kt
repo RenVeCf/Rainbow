@@ -21,6 +21,7 @@ import rx.schedulers.Schedulers
 import java.io.File
 import java.util.*
 
+
 object TrimVideoUtil {
 
     val MIN_SHOOT_DURATION = 3000L// 最小剪辑时间3s
@@ -161,6 +162,26 @@ object TrimVideoUtil {
                         callback?.invoke(1, null)
                     }
                 })
+    }
+
+    fun getVideoWidthHeight(videoPath: String, callback: (errorCode: Int, width: String, height: String) -> Unit) {
+        val mmr = MediaMetadataRetriever()
+        try {
+            if (!TextUtils.isEmpty(videoPath)) {
+                mmr.setDataSource(videoPath)
+            } else {
+                throw NullPointerException("videoPath is null")
+            }
+
+            val width = mmr.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)//宽
+            val height = mmr.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)//高
+            callback.invoke(0, width, height)
+        } catch (ex: Exception) {
+            callback.invoke(1, "0", "0")
+        } finally {
+            mmr.release()
+        }
+
     }
 
     fun getVideoFilePath(url: String): String {

@@ -73,7 +73,7 @@ class MineTalkListFragment : ListFragment<BaseResult<List<TalkBean>>, TalkBean>(
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<TalkBean>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
     @Subscribe

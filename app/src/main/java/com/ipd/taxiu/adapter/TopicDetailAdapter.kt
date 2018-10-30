@@ -13,13 +13,14 @@ import com.ipd.taxiu.bean.TopicDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_topic_header.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class TopicDetailAdapter(val context: Context, private val detailData: TopicDetailBean, private val list: List<TopicCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TopicCommentBean?) -> Unit) : RecyclerView.Adapter<TopicDetailAdapter.ViewHolder>() {
+class TopicDetailAdapter(val context: Context, private val detailData: TopicDetailBean,private val sortChange: (sortType: Int) -> Unit, private val list: List<TopicCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TopicCommentBean?) -> Unit) : RecyclerView.Adapter<TopicDetailAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size?.plus(1) ?: 1
 
@@ -69,6 +70,14 @@ class TopicDetailAdapter(val context: Context, private val detailData: TopicDeta
                 holder.itemView.iv_zan.setOnClickListener {
                     itemClick.invoke(position, holder.itemView.iv_zan.id, null)
                 }
+
+
+                holder.itemView.ll_comment_sort.setSortChange(object : CommentSortLayout.SortChangeListener {
+                    override fun onChange(sortType: Int) {
+                        sortChange.invoke(sortType)
+                    }
+                })
+
             }
             ItemType.COMMENT -> {
                 val info = list!![position - 1]

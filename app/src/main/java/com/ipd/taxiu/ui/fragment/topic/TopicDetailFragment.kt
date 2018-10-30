@@ -15,6 +15,7 @@ import com.ipd.taxiu.presenter.store.PostDetailChildPresenter
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.topic.TopicPeopleCommentActivity
 import com.ipd.taxiu.utils.CommentType
+import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_topic_header.view.*
 import org.greenrobot.eventbus.EventBus
@@ -57,8 +58,9 @@ class TopicDetailFragment : ListFragment<CommentResult<List<TopicCommentBean>>, 
         detailData = data
     }
 
+    private var mSortType = CommentSortLayout.TIME
     override fun loadListData(): Observable<CommentResult<List<TopicCommentBean>>> {
-        return ApiManager.getService().topicComment(GlobalParam.getUserId(), Constant.PAGE_SIZE, page, 1, topicId)
+        return ApiManager.getService().topicComment(GlobalParam.getUserId(), Constant.PAGE_SIZE, page, mSortType, topicId)
     }
 
     override fun isNoMoreData(result: CommentResult<List<TopicCommentBean>>): Int {
@@ -71,7 +73,9 @@ class TopicDetailFragment : ListFragment<CommentResult<List<TopicCommentBean>>, 
     private var mAdapter: TopicDetailAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = TopicDetailAdapter(mActivity, detailData, data, { pos, res, info ->
+            mAdapter = TopicDetailAdapter(mActivity, detailData, {
+                mSortType = it
+            }, data, { pos, res, info ->
                 //itemClick
                 when (res) {
                     R.id.iv_zan -> {

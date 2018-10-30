@@ -111,13 +111,35 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <View
-        android:id="@+id/view_line"
-        style="@style/ViewLine"
-        android:layout_height="@dimen/small_padding"
-        android:layout_marginTop="@dimen/base_padding"
+    <com.ipd.taxiu.widget.CommentSortLayout
+        android:id="@+id/ll_comment_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/window_bg_color"
-        app:layout_constraintTop_toBottomOf="@id/cl_top" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/cl_top">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/comment_sort" />
+
+        <TextView
+            android:id="@+id/tv_sort"
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="按时间排序"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+    </com.ipd.taxiu.widget.CommentSortLayout>
+
 
     <RelativeLayout
         android:id="@+id/rl_user_comment_title"
@@ -126,7 +148,7 @@
         android:padding="@dimen/base_padding"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_line">
+        app:layout_constraintTop_toBottomOf="@id/ll_comment_sort">
 
         <ImageView
             android:id="@+id/iv_discuss_icon"

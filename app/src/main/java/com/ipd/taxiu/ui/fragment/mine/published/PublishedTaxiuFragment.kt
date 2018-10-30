@@ -73,7 +73,7 @@ class PublishedTaxiuFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBe
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<TaxiuBean>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
     @Subscribe

@@ -66,7 +66,7 @@ class ClassRoomListFragment : ListFragment<BaseResult<List<ClassRoomBean>>, Clas
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<ClassRoomBean>>) {
-        data?.addAll(result?.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
     @Subscribe

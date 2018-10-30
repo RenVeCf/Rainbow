@@ -23,6 +23,7 @@ import com.ipd.taxiu.bean.HomeResultBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
+import com.ipd.taxiu.bean.MessageBean;
 import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.bean.OrderDetailBean;
 import com.ipd.taxiu.bean.OtherBean;
@@ -86,7 +87,6 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -277,7 +277,9 @@ public interface ApiService {
                                                         @Field("PIC") String PIC,
                                                         @Field("SHOW_TIP_ID") String SHOW_TIP_ID,
                                                         @Field("TYPE") String TYPE,
-                                                        @Field("URL") String URL);
+                                                        @Field("URL") String URL,
+                                                        @Field("WIDTH") String WIDTH,
+                                                        @Field("HEIGHT") String HEIGHT);
 
     @FormUrlEncoded
     @POST(HttpUrl.TAXIU_DETAIL)
@@ -1205,6 +1207,16 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.WEB_INFO)
     Observable<BaseResult<WebBean>> webInfo(@Field("CATEGORY") String CATEGORY);
+
+    /**
+     * 消息
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.NEWS)
+    Observable<BaseResult<List<MessageBean>>> newsList(@Field("USER_ID") String USER_ID,
+                                                       @Field("COUNT") int COUNT,
+                                                       @Field("PAGE") int PAGE,
+                                                       @Field("CATEGORY") int CATEGORY);
 
 
     //tools

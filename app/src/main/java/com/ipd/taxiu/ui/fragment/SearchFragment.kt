@@ -124,7 +124,7 @@ class SearchFragment : ListFragment<BaseResult<List<Any>>, Any>() {
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<Any>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
     fun search(searchStr: String) {

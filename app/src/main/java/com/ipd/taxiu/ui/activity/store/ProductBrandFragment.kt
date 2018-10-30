@@ -62,7 +62,7 @@ class ProductBrandFragment : ListFragment<BaseResult<List<ProductBrandBean>>, Pr
     }
 
     override fun addData(isRefersh: Boolean, result: BaseResult<List<ProductBrandBean>>) {
-        data?.addAll(result.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
 

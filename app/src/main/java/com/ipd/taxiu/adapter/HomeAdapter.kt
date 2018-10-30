@@ -121,7 +121,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
                 }
 
                 //宠物生命线
-                if (headerInfo.petInfo == null || headerInfo.petInfo.PET_ID == 0) {
+                if (headerInfo.petInfo == null || headerInfo.petInfo.PET_ID == 0 || headerInfo.petInfo.DAY_LIST == null || headerInfo.petInfo.DAY_LIST.isEmpty()) {
                     holder.itemView.cl_user_extend.visibility = View.GONE
                 } else {
                     holder.itemView.cl_user_extend.visibility = View.VISIBLE
@@ -225,7 +225,7 @@ class HomeAdapter(val context: Context, private val list: List<Any>?) : Recycler
             }
             ItemType.HOT_CLASSROOM -> {
                 val classroomInfo = list!![position] as HomeBean.IndexClassRoomBean
-                holder.itemView.classroom_layout.setData(false,classroomInfo.classRoom)
+                holder.itemView.classroom_layout.setData(false, classroomInfo.classRoom)
 
                 holder.itemView.cl_classroom_title.setOnClickListener {
                     //更多课堂

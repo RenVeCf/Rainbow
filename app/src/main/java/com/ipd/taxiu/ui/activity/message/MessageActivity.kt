@@ -15,11 +15,11 @@ Created by Miss on 2018/8/13
 消息
  */
 class MessageActivity : BaseUIActivity() {
-    val titles = arrayOf("订单消息","系统消息","其他消息")
+    val titles = arrayOf("订单消息", "系统消息", "其他消息")
 
     companion object {
-        fun launch(activity:Activity){
-            val  intent = Intent(activity,MessageActivity::class.java)
+        fun launch(activity: Activity) {
+            val intent = Intent(activity, MessageActivity::class.java)
             activity.startActivity(intent)
         }
     }
@@ -32,13 +32,13 @@ class MessageActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-         view_pager.adapter = object:FragmentPagerAdapter(supportFragmentManager){
-             override fun getItem(position: Int): Fragment = MessageFragment.newInstance(position)
+        view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): Fragment = MessageFragment.newInstance(position + 1)
 
-             override fun getCount(): Int = titles.size
+            override fun getCount(): Int = titles.size
 
-         }
-        tab_layout.setViewPager(view_pager,titles)
+        }
+        tab_layout.setViewPager(view_pager, titles)
     }
 
     override fun initListener() {

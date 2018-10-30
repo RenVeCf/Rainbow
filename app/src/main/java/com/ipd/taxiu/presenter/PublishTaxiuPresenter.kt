@@ -35,7 +35,7 @@ class PublishTaxiuPresenter : BasePresenter<PublishTaxiuPresenter.IPublishTaxiuV
 
     fun publishTaxiuImage(content: String, picStr: String, tipId: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().publishTaxiu(GlobalParam.getUserIdOrJump(), content,
-                "", picStr, tipId.toString(), "2", ""),
+                "", picStr, tipId.toString(), "2", "","0","0"),
                 object : Response<BaseResult<TaxiuLableBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<TaxiuLableBean>) {
                         if (result.code == 0) {
@@ -47,8 +47,8 @@ class PublishTaxiuPresenter : BasePresenter<PublishTaxiuPresenter.IPublishTaxiuV
                 })
     }
 
-    fun publishTaxiuVideo(content: String, coverUrl: String, videoUrl: String, tipId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().publishTaxiu(GlobalParam.getUserIdOrJump(), content, coverUrl, "", tipId.toString(), "1", videoUrl),
+    fun publishTaxiuVideo(content: String, coverUrl: String, videoUrl: String, tipId: Int, width: String, height: String) {
+        mModel?.getNormalRequestData(ApiManager.getService().publishTaxiu(GlobalParam.getUserIdOrJump(), content, coverUrl, "", tipId.toString(), "1", videoUrl, width, height),
                 object : Response<BaseResult<TaxiuLableBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<TaxiuLableBean>) {
                         if (result.code == 0) {

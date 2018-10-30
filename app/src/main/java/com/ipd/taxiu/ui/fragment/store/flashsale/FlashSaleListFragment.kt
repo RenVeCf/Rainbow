@@ -109,7 +109,7 @@ class FlashSaleListFragment : ListFragment<BaseResult<List<FlashSaleProductBean>
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<FlashSaleProductBean>>) {
-        data?.addAll(result?.data)
+        data?.addAll(result?.data?: arrayListOf())
     }
 
 

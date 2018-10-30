@@ -22,6 +22,7 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.User
+import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
 import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
@@ -30,7 +31,7 @@ import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDetailBean, private val list: List<TaxiuCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TaxiuCommentBean?) -> Unit) : RecyclerView.Adapter<TaxiuDetailAdapter.ViewHolder>() {
+class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDetailBean, private val sortChange: (sortType: Int) -> Unit, private val list: List<TaxiuCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TaxiuCommentBean?) -> Unit) : RecyclerView.Adapter<TaxiuDetailAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size?.plus(1) ?: 1
 
@@ -129,6 +130,13 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.rl_share.visibility = if (detailData.User.IS_SELF == 1) View.GONE else View.VISIBLE
 
                 setAttent(position, holder.itemView.ll_attention)
+
+
+                holder.itemView.ll_comment_sort.setSortChange(object : CommentSortLayout.SortChangeListener {
+                    override fun onChange(sortType: Int) {
+                        sortChange.invoke(sortType)
+                    }
+                })
 
             }
             ItemType.COMMENT -> {
