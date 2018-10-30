@@ -9,8 +9,10 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.RegisterBean
 import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.utils.TimeCountHelper
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -87,6 +89,10 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
             val password = et_password.text.toString().trim()
             val inviteCode = et_invite_code.text.toString().trim()
             mPresenter?.register(phone, password, code, inviteCode)
+        }
+
+        tv_user_agent.setOnClickListener {
+            WebActivity.launch(mActivity, WebActivity.URL, HttpUrl.WEB_URL + HttpUrl.USER_AGENT, "用户注册协议")
         }
 
 

@@ -49,6 +49,7 @@
 
         <activity android:name=".ui.activity.SignInActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.web.WebActivity" />
 
         <!-- video -->
         <activity

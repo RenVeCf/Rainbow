@@ -13,11 +13,13 @@ import com.ipd.taxiu.bean.TaxiuLableBean
 import com.ipd.taxiu.bean.UploadResultBean
 import com.ipd.taxiu.event.VideoResultEvent
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.PublishTaxiuPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.ShootVideoActivity
 import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.ui.activity.VideoSelectActivity
+import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.utils.UploadUtils
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
@@ -106,6 +108,10 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                     .setCancel("取消", { builder ->
                         builder.dismiss()
                     }).show()
+        }
+
+        tv_version_info.setOnClickListener {
+            WebActivity.launch(mActivity, WebActivity.URL, HttpUrl.WEB_URL+ HttpUrl.VERSION_INFO,"版权说明")
         }
     }
 

@@ -4,6 +4,7 @@ package com.ipd.taxiu.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
+    String WEB_URL = "http://121.199.8.244:9386/";
     String SERVER_URL = "http://121.199.8.244:9386/TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
     String VIDEO_URL = "http://video.csjc19.com/";
@@ -219,6 +220,15 @@ public interface HttpUrl {
     //推荐
     String RECOMMEND_INFO = "app_user/recomInfo.do";
     String RECOMMEND_EARNINGS = "app_commend_income/getList.do";
+
+
+    String WEB_INFO = "app_text/getInfo.do";
+
+
+    String USER_AGENT = "upload/text/1.html";
+    String ABOUT_US = "upload/text/2.html";
+    String INTEGRAL_RULE = "upload/text/3.html";
+    String VERSION_INFO = "upload/text/4.html";
 
 
 }

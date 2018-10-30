@@ -22,7 +22,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         val view = mView as IUserInfoView
 
         mModel?.getNormalRequestData(ApiManager.getService().getUserInfo(GlobalParam.getUserId()),
-                object : Response<BaseResult<UserBean>>(mContext, true) {
+                object : Response<BaseResult<UserBean>>() {
                     override fun _onNext(result: BaseResult<UserBean>) {
                         if (result.code == 0) {
                             view.getInfoSuccess(result.data)

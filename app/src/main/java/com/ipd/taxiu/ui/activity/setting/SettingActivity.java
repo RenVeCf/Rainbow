@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.platform.global.GlobalParam;
+import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.ui.BaseUIActivity;
+import com.ipd.taxiu.ui.activity.web.WebActivity;
 import com.ipd.taxiu.utils.CleanMessageUtil;
 import com.ipd.taxiu.widget.MessageDialog;
 
@@ -81,8 +83,9 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.rl_about_us:
-                intent = new Intent(this,AboutUsActivity.class);
-                startActivity(intent);
+                WebActivity.launch(getMActivity(), WebActivity.URL, HttpUrl.WEB_URL + HttpUrl.ABOUT_US, "关于我们");
+//                intent = new Intent(this,AboutUsActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.tv_service_phone:
                 initDialog("确认要拨打客服电话吗？","他嗅宠物官方客服电话： "+phoneNum,"确认拨打","暂不拨打");

@@ -75,6 +75,7 @@ import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.WebBean;
 import com.ipd.taxiu.bean.WechatBean;
 import com.ipd.taxiu.bean.WithdrawHintBean;
 
@@ -85,6 +86,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -1198,6 +1200,11 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.AVAILABLE_INTEGRAL)
     Observable<EarningsResult<String>> availableIntegral(@Field("USER_ID") String user_id);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.WEB_INFO)
+    Observable<BaseResult<WebBean>> webInfo(@Field("CATEGORY") String CATEGORY);
 
 
     //tools

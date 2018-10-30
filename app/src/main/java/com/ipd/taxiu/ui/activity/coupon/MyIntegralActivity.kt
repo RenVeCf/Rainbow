@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taxiu.R
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.ui.fragment.coupon.MyIntegralFragment
 
 /**
@@ -20,20 +22,23 @@ class MyIntegralActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container,MyIntegralFragment.newInstance()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MyIntegralFragment.newInstance()).commit()
     }
 
     override fun initListener() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_integral_rule,menu)
+        menuInflater.inflate(R.menu.menu_integral_rule, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id:Int = item!!.itemId
-        if (id == R.id.integral_rule) IntegralRuleActivity.launch(this)
+        val id: Int = item!!.itemId
+        if (id == R.id.integral_rule) {
+//            IntegralRuleActivity.launch(this)
+            WebActivity.launch(mActivity,WebActivity.URL,HttpUrl.WEB_URL+HttpUrl.INTEGRAL_RULE,"积分规则")
+        }
         return super.onOptionsItemSelected(item)
     }
 }
