@@ -2,11 +2,12 @@ package com.ipd.taxiu.ui.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.view.ViewTreeObserver
-import com.ipd.jumpbox.jumpboxlibrary.bitmap.BitmapUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
-import com.ipd.jumpbox.jumpboxlibrary.utils.LoadingUtils
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.UploadResultBean
 import com.ipd.taxiu.event.VideoResultEvent
@@ -14,9 +15,12 @@ import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.taxiu.PublishTaxiuActivity
 import com.ipd.taxiu.utils.UploadUtils
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
+import com.steelkiwi.cropiwa.AspectRatio
+import com.steelkiwi.cropiwa.config.CropIwaSaveConfig
 import kotlinx.android.synthetic.main.activity_video_cover_crop.*
 import org.greenrobot.eventbus.EventBus
 import java.io.File
+
 
 class VideoCoverCropActivity : BaseUIActivity() {
 
@@ -37,8 +41,10 @@ class VideoCoverCropActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_video_cover_crop
 
+    lateinit var savePath: String
     override fun initView(bundle: Bundle?) {
         initToolbar()
+        savePath = "${TrimVideoUtil.getTrimmedVideoPath(mActivity)}/taXiu_cover2.png"
 
         crop_image_view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -50,11 +56,13 @@ class VideoCoverCropActivity : BaseUIActivity() {
 
                 val width = params.width - DensityUtil.dip2px(mActivity, 30f)
                 val height = width.toFloat() * 0.56f
-                crop_image_view.setCropAreaSize(width, height.toInt())
-                crop_image_view.photoView.setImageBitmap(BitmapUtils.getInstance().reSizeBitmap(mActivity, File(coverPath)))
 
+                crop_image_view.configureOverlay()
+                        .setDynamicCrop(false)
+                        .setAspectRatio(AspectRatio(DensityUtil.px2dip(mActivity, width.toFloat()), DensityUtil.px2dip(mActivity, height)))
+                        .apply()
+                crop_image_view.setImageUri(Uri.fromFile(File(coverPath)))
             }
-
         })
 
     }
@@ -64,20 +72,29 @@ class VideoCoverCropActivity : BaseUIActivity() {
 
     override fun initListener() {
         tv_confirm.setOnClickListener {
-            val bitmap = crop_image_view.cropImage()
-            LoadingUtils.show(this)
-            //裁剪后的图片要保存的路径
-            val coverPath = "${TrimVideoUtil.getTrimmedVideoPath(mActivity)}/taXiu_cover.png"
-            val coverFile = File(coverPath)
-            //删除已经存在的图片
-            if (coverFile.exists()) {
-                coverFile.delete()
-            }
-            com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils.savePhotoToSDCard(bitmap, coverPath)
+            tv_confirm.isEnabled = false
 
-            if (coverFile.exists()) {
+            val saveFile = File(savePath)
+            //删除已经存在的图片
+            if (saveFile.exists()) {
+                saveFile.delete()
+            }
+
+            crop_image_view.crop(CropIwaSaveConfig.Builder(Uri.fromFile(saveFile))
+                    .setCompressFormat(Bitmap.CompressFormat.PNG)
+                    .setQuality(100)
+                    .build())
+        }
+
+
+        crop_image_view.setCropSaveCompleteListener {
+            LogUtils.e("tag", it.toString())
+            tv_confirm.isEnabled = true
+
+            val saveFile = File(savePath)
+            if (saveFile.exists()) {
                 //上传图片
-                UploadUtils.uploadPic(mActivity, true, coverPath, object : UploadUtils.UploadCallback {
+                UploadUtils.uploadPic(mActivity, true, savePath, object : UploadUtils.UploadCallback {
                     override fun onProgress(progress: Int) {
 
                     }
@@ -98,7 +115,12 @@ class VideoCoverCropActivity : BaseUIActivity() {
             } else {
                 toastShow("裁剪失败...")
             }
+        }
 
+        crop_image_view.setErrorListener {
+            tv_confirm.isEnabled = true
+
+            toastShow("裁剪失败")
         }
     }
 

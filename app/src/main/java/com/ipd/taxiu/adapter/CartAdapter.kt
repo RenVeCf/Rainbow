@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.CartProductBean
 import com.ipd.taxiu.bean.EmptyCartProductBean
@@ -16,6 +17,7 @@ import com.ipd.taxiu.widget.CartOperationView
 import com.ipd.taxiu.widget.CartRecyclerView
 import kotlinx.android.synthetic.main.item_cart.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.layout_empty_cart.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -47,7 +49,10 @@ class CartAdapter(val context: Context, private val list: List<Any>?, val cartCa
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             CartRecyclerView.CartType.EMPTY_CART -> {
-                holder.itemView.setOnClickListener {
+                holder.itemView.tv_go_shopping.setOnClickListener {
+                    if (context is MainActivity) {
+                        context.switchToStore()
+                    }
                 }
             }
             CartRecyclerView.CartType.CART_PRODUCT -> {

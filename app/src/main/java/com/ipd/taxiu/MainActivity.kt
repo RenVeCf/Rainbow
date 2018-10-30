@@ -188,5 +188,9 @@ class MainActivity : BaseActivity() {
         changePage(2)
     }
 
+    fun switchToStore() {
+        changePage(1)
+    }
+
 
 }
