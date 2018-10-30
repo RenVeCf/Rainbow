@@ -88,13 +88,9 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun other(otherUserId: String) {
+    fun other(otherUserId: Int) {
         if (mView !is IOtherView) return
         val view = mView as IOtherView
-
-        if (otherUserId == "") {
-            view.onGetOtherFail("ID不能为空!")
-        }
 
         mModel?.getNormalRequestData(ApiManager.getService().other(GlobalParam.getUserId(), otherUserId),
                 object : Response<BaseResult<OtherBean>>(mContext, true) {
@@ -107,6 +103,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                     }
                 })
     }
+
 
     interface IUserInfoView {
         fun getInfoSuccess(data: UserBean)

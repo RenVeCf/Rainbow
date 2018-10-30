@@ -35,14 +35,37 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22.5dp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/swipe_target"
+
+    <com.ipd.taxiu.widget.ProgressLayout
+        android:id="@+id/taxiu_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_layout_header"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/small_padding"
-        android:paddingTop="@dimen/small_padding"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_below="@id/rl_layout_header">
 
+        <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@+id/swipe_load_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/swipe_refresh_header"
+                layout="@layout/layout_refresh_header" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/swipe_target"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/small_padding"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+            <include
+                android:id="@+id/swipe_load_more_footer"
+                layout="@layout/layout_load_footer" />
+
+        </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+
+
+    </com.ipd.taxiu.widget.ProgressLayout>
 </RelativeLayout>

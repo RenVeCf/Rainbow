@@ -1023,7 +1023,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.OTHER)
     Observable<BaseResult<OtherBean>> other(@Field("USER_ID") String USER_ID,
-                                            @Field("OTHER_USER_ID") String OTHER_USER_ID);
+                                            @Field("OTHER_USER_ID") int OTHER_USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.OTHER_TAXIU)
+    Observable<BaseResult<List<TaxiuBean>>> otherTaxiu(@Field("USER_ID") String USER_ID,
+                                                       @Field("COUNT") int COUNT,
+                                                       @Field("PAGE") int PAGE,
+                                                       @Field("OTHER_USER_ID") int OTHER_USER_ID);
 
     /**
      * 积分账单列表

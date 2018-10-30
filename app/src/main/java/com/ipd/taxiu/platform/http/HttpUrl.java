@@ -178,6 +178,7 @@ public interface HttpUrl {
     String ATTENTION = "app_user/attention.do";
     String ATTENTION_LIST = "app_user/attentionList.do";
     String OTHER = "app_user/other.do";
+    String OTHER_TAXIU = "app_show/other.do";
 
     //常见问题
     String QUESTION_LIST = "app_text/questionList.do";
