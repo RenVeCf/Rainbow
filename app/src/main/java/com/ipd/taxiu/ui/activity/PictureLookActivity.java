@@ -129,7 +129,7 @@ public class PictureLookActivity extends BaseActivity {
                                     @Override
                                     public Unit invoke(Integer integer) {
                                         tv_save.setEnabled(true);
-                                        toastShow(true, "保存成功");
+                                        toastShow(integer == 0, integer == 0 ? "保存成功" : "保存失败");
                                         return null;
                                     }
                                 });

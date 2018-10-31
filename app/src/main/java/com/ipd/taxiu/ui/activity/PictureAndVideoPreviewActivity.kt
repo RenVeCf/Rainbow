@@ -90,7 +90,7 @@ class PictureAndVideoPreviewActivity : BaseActivity() {
                         saveView.isEnabled = false
                         PictureUtils.savePhotoAndRefreshGallery(mActivity, imagePath, {
                             saveView.isEnabled = true
-                            toastShow(true, "保存成功")
+                            toastShow(it == 0, if (it == 0) "保存成功" else "保存失败")
                         })
                     }
 
