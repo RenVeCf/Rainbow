@@ -55,7 +55,10 @@ class ProductCategoryActivity : BaseUIActivity() {
 //            return@setOnEditorActionListener false
 //        }
         tv_search.setOnClickListener { StoreSearchActivity.launch(mActivity) }
+    }
 
+    fun switchToBrand(){
+        view_pager.currentItem = 2
     }
 
 }

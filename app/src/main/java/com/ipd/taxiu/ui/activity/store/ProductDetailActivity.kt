@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import cn.xiaoneng.uiapi.Ntalker
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ExchangeBean
@@ -125,6 +126,9 @@ class ProductDetailActivity : BaseUIActivity() {
                         }
                     })
 
+        }
+        iv_cart.setOnClickListener {
+            MainActivity.launch(mActivity, "cart")
         }
     }
 

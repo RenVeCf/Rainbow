@@ -10,6 +10,7 @@ import com.ipd.taxiu.bean.ProductCategoryParentBean
 import com.ipd.taxiu.bean.ProductCategoryTitleBean
 import com.ipd.taxiu.presenter.store.ProductCategoryPresenter
 import com.ipd.taxiu.ui.BaseFragment
+import com.ipd.taxiu.ui.activity.store.ProductCategoryActivity
 import kotlinx.android.synthetic.main.fragment_product_category.view.*
 
 class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProductCategoryView {
@@ -85,7 +86,11 @@ class ProductCategoryFragment : BaseFragment(), ProductCategoryPresenter.IProduc
             }
 
         }
-        mRootView!!.child_category_view.adapter = ProductCategoryAdapter(mActivity, list)
+        mRootView!!.child_category_view.adapter = ProductCategoryAdapter(mActivity, list,{
+            if (mActivity is ProductCategoryActivity){
+                (mActivity as ProductCategoryActivity).switchToBrand()
+            }
+        })
 
 
     }

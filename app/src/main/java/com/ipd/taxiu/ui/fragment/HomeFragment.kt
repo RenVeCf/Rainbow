@@ -138,9 +138,9 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
         if (isRefresh) {
             data?.add(mHomeInfo.headerInfo)
             if (mHomeInfo.boutique != null) data?.add(mHomeInfo.boutique)
-            if (mHomeInfo.topic != null) data?.add(mHomeInfo.topic)
+            if (mHomeInfo.topic != null && mHomeInfo.topic.topic.TOPIC_ID != 0) data?.add(mHomeInfo.topic)
             if (mHomeInfo.talk != null) data?.add(mHomeInfo.talk)
-            if (mHomeInfo.classRoom != null) data?.add(mHomeInfo.classRoom)
+            if (mHomeInfo.classRoom != null && mHomeInfo.classRoom.classRoom.CLASS_ROOM_ID != 0) data?.add(mHomeInfo.classRoom)
         }
         data?.addAll(result?.data ?: arrayListOf())
     }

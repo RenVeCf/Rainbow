@@ -27,6 +27,23 @@ class MainActivity : BaseActivity() {
             val intent = Intent(activity, MainActivity::class.java)
             activity.startActivity(intent)
         }
+
+        fun launch(activity: Activity, action: String) {
+            val intent = Intent(activity, MainActivity::class.java)
+            intent.putExtra("action", action)
+            activity.startActivity(intent)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val action = intent?.getStringExtra("action")
+        when (action) {
+            "cart" -> {
+                changePage(3)
+            }
+        }
+
     }
 
     private val fragmentManager: FragmentManager by lazy { supportFragmentManager }

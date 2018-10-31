@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.ProductCategoryAllBean
 import com.ipd.taxiu.bean.ProductCategoryChildBean
 import com.ipd.taxiu.bean.ProductCategoryTitleBean
 import com.ipd.taxiu.bean.StoreIndexBrandBean
@@ -18,23 +19,37 @@ import kotlinx.android.synthetic.main.item_product_category_title.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ProductCategoryAdapter(val context: Context, private val list: List<Any>?) : RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
+class ProductCategoryAdapter(val context: Context, private val list: List<Any>?, val itemClick: () -> Unit) : RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
     object ItemType {
         const val TITLE = 0
         const val CONTENT = 1
+        const val ALL = 2
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list!![position] is ProductCategoryTitleBean) ItemType.TITLE else ItemType.CONTENT
+        return when (list!![position]) {
+            is ProductCategoryTitleBean -> {
+                ItemType.TITLE
+            }
+            is ProductCategoryAllBean -> {
+                ItemType.ALL
+            }
+            else -> {
+                ItemType.CONTENT
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return when (viewType) {
             ItemType.TITLE -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category_title, parent, false))
+            }
+            ItemType.ALL -> {
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category_all, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category, parent, false))
@@ -49,6 +64,17 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?)
                 val info = list!![position] as ProductCategoryTitleBean
                 holder.itemView.tv_category_title.text = info.titleName
 
+            }
+            ItemType.ALL -> {
+                val info = list!![position] as ProductCategoryAllBean
+                holder.itemView.setOnClickListener {
+                    if (info.type == 0) {
+                        ProductListActivity.launch(context as Activity, info.name)
+                    } else {
+                        //全部品牌
+                        itemClick.invoke()
+                    }
+                }
             }
             ItemType.CONTENT -> {
                 val info = list!![position]
@@ -65,8 +91,6 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?)
                         ProductListActivity.launch(context as Activity, info.BRAND_NAME)
                     }
                 }
-
-
             }
         }
 
