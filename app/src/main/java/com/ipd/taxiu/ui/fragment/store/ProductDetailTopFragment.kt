@@ -155,7 +155,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
                 mContentView.image_recycler_view.visibility = View.VISIBLE
                 mContentView.image_recycler_view.layoutManager = GridLayoutManager(mActivity, 4)
                 mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC), { list, pos ->
-                    PictureLookActivity.launch(mActivity, ArrayList(list))
+                    PictureLookActivity.launch(mActivity, ArrayList(list), pos, PictureLookActivity.URL)
                 })
             }
 
