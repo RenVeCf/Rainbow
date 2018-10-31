@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
@@ -13,18 +14,24 @@ import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.event.UpdateCollectTalkEvent
 import com.ipd.taxiu.event.UpdateTalkListEvent
+import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.presenter.store.TalkDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.talk.TalkDetailFragment
+import com.ipd.taxiu.utils.ShareCallback
 import com.ipd.taxiu.widget.MessageDialog
 import com.ipd.taxiu.widget.ReplyDialog
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_talk_detail.*
 import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
 import org.greenrobot.eventbus.EventBus
+import java.util.*
 
 class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView {
 
@@ -131,7 +138,43 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
             }).show(supportFragmentManager, TalkDetailActivity::class.java.name)
         }
 
+        if (isAdmin) {
+            iv_share.setOnClickListener {
+                val dialog = ShareDialog(mActivity)
+                dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
+                dialog.show()
+            }
+        } else {
+            iv_bottom_share.setOnClickListener {
+                val dialog = ShareDialog(mActivity)
+                dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
+                dialog.show()
+            }
+        }
         showContent()
+    }
+
+    fun getShareDialogClick(detail: TalkDetailBean): ShareDialog.ShareDialogOnclickListener {
+        return ShareDialogClick()
+                .setShareTitle(Constant.SHARE_TALK_CONTENT)
+                .setShareContent(detail.CONTENT)
+                .setShareLogoUrl("")
+                .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                        toastShow(true, "分享成功")
+                        ShareCallback.shareTalk(detail.QUESTION_ID)
+                    }
+
+                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                        toastShow("分享失败")
+                    }
+
+                    override fun onCancel(platform: Platform?, i: Int) {
+                        toastShow("取消分享")
+                    }
+
+                })
     }
 
     override fun loadDetailFail(errMsg: String) {
@@ -160,7 +203,6 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (isAdmin) {
-            menuInflater.inflate(R.menu.menu_share, menu)
         } else {
             menuInflater.inflate(R.menu.topic_detail_menu, menu)
         }
@@ -172,10 +214,6 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
         if (id == R.id.action_index) {
             //首页
             MainActivity.launch(mActivity)
-            return true
-        } else if (id == R.id.action_share) {
-            //分享
-
             return true
         }
 

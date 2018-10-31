@@ -3,20 +3,27 @@ package com.ipd.taxiu.ui.activity.store.video
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import cn.jzvd.Jzvd
+import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.StoreIndexRecommendVideoAdapter
 import com.ipd.taxiu.adapter.VideoProductAdapter
 import com.ipd.taxiu.bean.StoreVideoDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.StoreVideoDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
+import com.ipd.taxiu.utils.ShareCallback
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_store_video_detail.*
 import kotlinx.android.synthetic.main.item_store_video.*
+import java.util.*
 
 class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.IStoreVideoDetailView {
 
@@ -62,7 +69,9 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
 
     }
 
+    private var mDetailInfo: StoreVideoDetailBean? = null
     override fun loadVideoDetailSuccess(info: StoreVideoDetailBean) {
+        mDetailInfo = info
         showContent()
         video_player.setUp(HttpUrl.VIDEO_URL + info.URL, "", Jzvd.SCREEN_WINDOW_NORMAL)
         ImageLoader.loadNoPlaceHolderImg(mActivity, info.LOGO, video_player.thumbImageView)
@@ -97,6 +106,30 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
         val id = item.itemId
         if (id == R.id.action_share) {
             //分享
+            if (mDetailInfo == null) return true
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(ShareDialogClick()
+                    .setShareTitle(mDetailInfo?.TITLE ?: "潮品视频")
+                    .setShareContent(Constant.SHARE_VIDEO_CONTENT)
+                    .setShareLogoUrl(if (TextUtils.isEmpty(mDetailInfo?.LOGO)) "" else HttpUrl.IMAGE_URL + mDetailInfo?.LOGO)
+                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                            toastShow(true, "分享成功")
+                            ShareCallback.shareVideo(mDetailInfo!!.VIDEO_ID)
+                        }
+
+                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                            toastShow("分享失败")
+                        }
+
+                        override fun onCancel(platform: Platform?, i: Int) {
+                            toastShow("取消分享")
+                        }
+
+                    }))
+            dialog.show()
+
 
             return true
         }

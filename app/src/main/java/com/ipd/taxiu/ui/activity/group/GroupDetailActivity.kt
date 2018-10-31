@@ -8,13 +8,19 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
+import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.GroupDetailAdapter
 import com.ipd.taxiu.adapter.GroupMemberAdapter
 import com.ipd.taxiu.bean.GroupOrderDetailBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.order.GroupOrderDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.ShareCallback
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_group_detail.*
 import kotlinx.android.synthetic.main.item_group_detail_header.view.*
 import kotlinx.android.synthetic.main.item_order_detail_footer.view.*
@@ -108,8 +114,33 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
         //拼团成员
         headerView.member_recycler_view.adapter = GroupMemberAdapter(mActivity, info.TEAM_NUM, info.USER_LIST, {
 
-
         })
+
+        headerView.btn_invite_friends.setOnClickListener {
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(ShareDialogClick()
+                    .setShareTitle(info.PRODUCT_LIST[0].PROCUCT_NAME)
+                    .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
+                    .setShareLogoUrl(HttpUrl.IMAGE_URL + info.PRODUCT_LIST[0].LOGO)
+                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                            toastShow(true, "分享成功")
+                            ShareCallback.shareProduct(info.PRODUCT_LIST[0].PRODUCT_ID, info.PRODUCT_LIST[0].FORM_ID)
+                        }
+
+                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                            toastShow("分享失败")
+                        }
+
+                        override fun onCancel(platform: Platform?, i: Int) {
+                            toastShow("取消分享")
+                        }
+
+                    }))
+            dialog.show()
+        }
+
         adapter.addHeaderView(headerView)
 
 

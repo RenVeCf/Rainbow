@@ -12,15 +12,17 @@ import com.ipd.taxiu.bean.TopicCommentBean
 import com.ipd.taxiu.bean.TopicDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
+import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
+import kotlinx.android.synthetic.main.layout_share_menu.view.*
 import kotlinx.android.synthetic.main.layout_topic_header.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class TopicDetailAdapter(val context: Context, private val detailData: TopicDetailBean,private val sortChange: (sortType: Int) -> Unit, private val list: List<TopicCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TopicCommentBean?) -> Unit) : RecyclerView.Adapter<TopicDetailAdapter.ViewHolder>() {
+class TopicDetailAdapter(val context: Context, private val detailData: TopicDetailBean, private val sortChange: (sortType: Int) -> Unit, private val list: List<TopicCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TopicCommentBean?) -> Unit) : RecyclerView.Adapter<TopicDetailAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size?.plus(1) ?: 1
 
@@ -77,6 +79,37 @@ class TopicDetailAdapter(val context: Context, private val detailData: TopicDeta
                         sortChange.invoke(sortType)
                     }
                 })
+
+                holder.itemView.ll_wechat.setOnClickListener {
+                    if (context is TopicDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .WechatOnclick()
+                    }
+                }
+                holder.itemView.ll_moment.setOnClickListener {
+                    if (context is TopicDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .momentsOnclick()
+                    }
+                }
+                holder.itemView.ll_qq.setOnClickListener {
+                    if (context is TopicDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .QQOnclick()
+                    }
+                }
+                holder.itemView.ll_qzone.setOnClickListener {
+                    if (context is TopicDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .QQZoneOnclick()
+                    }
+                }
+                holder.itemView.ll_sina.setOnClickListener {
+                    if (context is TopicDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .SinaOnclick()
+                    }
+                }
 
             }
             ItemType.COMMENT -> {

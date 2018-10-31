@@ -61,6 +61,7 @@ public class OrderDetailBean {
     public String PAYTIME;
     public String SEND_TIME;
     public String RECEIPT_TIME;
+    public String POST_INFO;
     public int STATUS;
     public List<ProductBean> PRODUCT_LIST;
 

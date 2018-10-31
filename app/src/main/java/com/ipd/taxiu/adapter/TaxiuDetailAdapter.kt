@@ -20,11 +20,13 @@ import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
+import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
+import kotlinx.android.synthetic.main.layout_share_menu.view.*
 import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
 
 
@@ -137,6 +139,37 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                         sortChange.invoke(sortType)
                     }
                 })
+
+                holder.itemView.ll_wechat.setOnClickListener {
+                    if (context is TaxiuDetailActivity){
+                        context.getShareDialogClick(detailData)
+                                .WechatOnclick()
+                    }
+                }
+                holder.itemView.ll_moment.setOnClickListener {
+                    if (context is TaxiuDetailActivity){
+                        context.getShareDialogClick(detailData)
+                                .momentsOnclick()
+                    }
+                }
+                holder.itemView.ll_qq.setOnClickListener {
+                    if (context is TaxiuDetailActivity){
+                        context.getShareDialogClick(detailData)
+                                .QQOnclick()
+                    }
+                }
+                holder.itemView.ll_qzone.setOnClickListener {
+                    if (context is TaxiuDetailActivity){
+                        context.getShareDialogClick(detailData)
+                                .QQZoneOnclick()
+                    }
+                }
+                holder.itemView.ll_sina.setOnClickListener {
+                    if (context is TaxiuDetailActivity){
+                        context.getShareDialogClick(detailData)
+                                .SinaOnclick()
+                    }
+                }
 
             }
             ItemType.COMMENT -> {

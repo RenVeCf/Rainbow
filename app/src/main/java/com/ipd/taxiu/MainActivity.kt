@@ -17,6 +17,7 @@ import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.fragment.*
+import com.ipd.taxiu.utils.VersionUtils
 import com.ipd.taxiu.widget.PublishTaxiuDialog
 import com.ipd.taxiu.widget.SignInPopup
 import kotlinx.android.synthetic.main.activity_main.*
@@ -56,6 +57,8 @@ class MainActivity : BaseActivity() {
 
     override fun loadData() {
         checkIsSignIn()
+        //版本检测
+        VersionUtils.check(mActivity)
     }
 
     /**

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import com.ipd.taxiu.event.UpdateOrderDetailEvent
 import com.ipd.taxiu.event.UpdateOrderEvent
 import com.ipd.taxiu.presenter.order.OrderDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.utils.AlipayUtils
 import com.ipd.taxiu.utils.Order
 import com.ipd.taxiu.utils.StringUtils
@@ -89,8 +91,10 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         tv_order_button4.setOnClickListener(this)
     }
 
+    private var mOrderDetailInfo: OrderDetailBean? = null
     override fun loadOrderDetailSuccess(info: OrderDetailBean) {
         showContent()
+        mOrderDetailInfo = info
         mOrderStatus = info.STATUS
         invalidateOptionsMenu()
         setButtonStatus()
@@ -262,8 +266,8 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
             }
             R.id.tv_order_button2 -> when (mOrderStatus) {
 //                Order.WAIT_SEND -> startReturnActivity()
-                Order.EVALUATE -> startLogisticsActivity()
-                Order.WAIT_RECEIVE -> startLogisticsActivity()
+                Order.EVALUATE -> startLogisticsActivity(mOrderDetailInfo?.POST_INFO ?: "")
+                Order.WAIT_RECEIVE -> startLogisticsActivity(mOrderDetailInfo?.POST_INFO ?: "")
             }
             R.id.tv_order_button3 -> {
             }
@@ -288,9 +292,9 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         }
     }
 
-    private fun startLogisticsActivity() {
-        val intent = Intent(this, LogisticsDetailActivity::class.java)
-        startActivity(intent)
+    private fun startLogisticsActivity(expressUrl: String) {
+        if (TextUtils.isEmpty(expressUrl)) return
+        WebActivity.launch(mActivity, WebActivity.URL, expressUrl, "物流动态")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

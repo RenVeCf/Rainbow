@@ -11,17 +11,19 @@ import com.ipd.taxiu.bean.CommentReplyBean
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
 import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.CommentSortLayout
 import com.ipd.taxiu.widget.CommentsView
 import kotlinx.android.synthetic.main.item_talk_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
+import kotlinx.android.synthetic.main.layout_share_menu.view.*
 import kotlinx.android.synthetic.main.layout_talk_header.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class TalkDetailAdapter(val context: Context, private val isMine: Boolean, private val detailData: TalkDetailBean,private val sortChange: (sortType: Int) -> Unit, private val list: List<TalkCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TalkCommentBean?, replyInfo: CommentReplyBean?) -> Unit) : RecyclerView.Adapter<TalkDetailAdapter.ViewHolder>() {
+class TalkDetailAdapter(val context: Context, private val isMine: Boolean, private val detailData: TalkDetailBean, private val sortChange: (sortType: Int) -> Unit, private val list: List<TalkCommentBean>?, private val itemClick: (pos: Int, resId: Int, info: TalkCommentBean?, replyInfo: CommentReplyBean?) -> Unit) : RecyclerView.Adapter<TalkDetailAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size?.plus(1) ?: 1
 
@@ -77,13 +79,44 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
 
                 holder.itemView.tv_comment_join_num.text = "${detailData.COMMENT_NUM} 人给出了答案"
 
-                setAttent(position,holder.itemView.ll_attention)
+                setAttent(position, holder.itemView.ll_attention)
 
                 holder.itemView.ll_comment_sort.setSortChange(object : CommentSortLayout.SortChangeListener {
                     override fun onChange(sortType: Int) {
                         sortChange.invoke(sortType)
                     }
                 })
+
+                holder.itemView.ll_wechat.setOnClickListener {
+                    if (context is TalkDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .WechatOnclick()
+                    }
+                }
+                holder.itemView.ll_moment.setOnClickListener {
+                    if (context is TalkDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .momentsOnclick()
+                    }
+                }
+                holder.itemView.ll_qq.setOnClickListener {
+                    if (context is TalkDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .QQOnclick()
+                    }
+                }
+                holder.itemView.ll_qzone.setOnClickListener {
+                    if (context is TalkDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .QQZoneOnclick()
+                    }
+                }
+                holder.itemView.ll_sina.setOnClickListener {
+                    if (context is TalkDetailActivity) {
+                        context.getShareDialogClick(detailData)
+                                .SinaOnclick()
+                    }
+                }
 
 
             }

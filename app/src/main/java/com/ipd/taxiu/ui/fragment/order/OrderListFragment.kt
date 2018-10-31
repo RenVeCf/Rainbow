@@ -15,6 +15,7 @@ import com.ipd.taxiu.presenter.order.OrderPresenter
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.order.EvaluateActivity
 import com.ipd.taxiu.ui.activity.order.OrderDetailActivity
+import com.ipd.taxiu.ui.activity.web.WebActivity
 import com.ipd.taxiu.utils.Order
 import com.ipd.taxiu.widget.MessageDialog
 import org.greenrobot.eventbus.EventBus
@@ -111,6 +112,7 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
     }
 
     override fun onExpress(info: OrderBean) {
+        WebActivity.launch(mActivity, WebActivity.URL, info.POST_INFO, "物流动态")
     }
 
     override fun onReceived(info: OrderBean) {

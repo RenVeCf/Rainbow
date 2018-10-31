@@ -79,6 +79,7 @@ import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.VersionBean;
 import com.ipd.taxiu.bean.WebBean;
 import com.ipd.taxiu.bean.WechatBean;
 import com.ipd.taxiu.bean.WithdrawHintBean;
@@ -1285,6 +1286,51 @@ public interface ApiService {
                                                        @Field("COUNT") int COUNT,
                                                        @Field("PAGE") int PAGE,
                                                        @Field("CATEGORY") int CATEGORY);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.VERSION_CHECK)
+    Observable<BaseResult<VersionBean>> versionCheck(@Field("PLATFORM") int PLATFORM,
+                                                     @Field("VERSION_NO") String VERSION_NO);
+
+
+    /**
+     * 分享
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_TAXIU)
+    Observable<BaseResult<String>> shareTaxiu(@Field("USER_ID") String USER_ID,
+                                              @Field("SHOW_ID") int SHOW_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_TOPIC)
+    Observable<BaseResult<String>> shareTopic(@Field("USER_ID") String USER_ID,
+                                              @Field("TOPIC_ID") int TOPIC_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_TALK)
+    Observable<BaseResult<String>> shareTalk(@Field("USER_ID") String USER_ID,
+                                             @Field("QUESTION_ID") int QUESTION_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_CLASSROOM)
+    Observable<BaseResult<String>> shareClassroom(@Field("USER_ID") String USER_ID,
+                                                  @Field("CLASS_ROOM_ID") int CLASS_ROOM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_PRODUCT)
+    Observable<BaseResult<String>> shareProduct(@Field("USER_ID") String USER_ID,
+                                                @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_VIDEO)
+    Observable<BaseResult<String>> shareVideo(@Field("USER_ID") String USER_ID,
+                                              @Field("VIDEO_ID") int VIDEO_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SHARE_USER)
+    Observable<BaseResult<String>> shareUser(@Field("USER_ID") String USER_ID);
 
 
     //tools

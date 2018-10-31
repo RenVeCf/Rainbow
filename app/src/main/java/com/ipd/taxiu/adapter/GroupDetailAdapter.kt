@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.imageload.ImageLoader
-import com.ipd.taxiu.widget.ChooseFriendDialog
+import com.ipd.taxiu.widget.ShareDialog
 import kotlinx.android.synthetic.main.item_group_detail_header.view.*
 import kotlinx.android.synthetic.main.item_order_detail.view.*
 
@@ -104,10 +104,6 @@ class GroupDetailAdapter(val context: Context, private val data: List<ProductBea
                 }
             }
 
-            headerView.btn_invite_friends.setOnClickListener {
-                val dialog = ChooseFriendDialog(context, R.style.recharge_pay_dialog, 2)
-                dialog.show()
-            }
         }
 
     }

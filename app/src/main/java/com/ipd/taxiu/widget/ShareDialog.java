@@ -9,37 +9,35 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Created by Miss on 2018/7/20
  * 选择邀请的好友
  */
-public class ChooseFriendDialog extends Dialog implements View.OnClickListener{
-    private Context context;
-    private LinearLayout share_wechat,share_friend,share_qq,share_qzone,ll_close;
+public class ShareDialog extends Dialog implements View.OnClickListener {
+    private LinearLayout share_wechat, share_friend, share_qq, share_qzone, share_weibo, ll_close;
     private TextView icon_title;
-    //邀请类型 1.推荐码邀请  2邀请拼团
-    private int inviteType;
+    private String mIconTitle = "将内容分享至";
 
 
-    public ChooseFriendDialog(@NonNull Context context, int themeResId ,int inviteType) {
-        super(context, themeResId);
-        this.context = context;
-        this.inviteType = inviteType;
+    public ShareDialog(@NonNull Context context) {
+        super(context, R.style.recharge_pay_dialog);
     }
 
+    private ShareDialogOnclickListener mListener = new ShareDialogClick();
+
+    public void setShareDialogOnClickListener(ShareDialogOnclickListener listener) {
+        mListener = listener;
+    }
+
+    public void setIconTitle(String title) {
+        mIconTitle = title;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +54,19 @@ public class ChooseFriendDialog extends Dialog implements View.OnClickListener{
 
     }
 
-    private void initWidget(){
+    private void initWidget() {
         share_wechat = findViewById(R.id.share_wechat);
         share_friend = findViewById(R.id.share_friend);
+        share_weibo = findViewById(R.id.share_weibo);
         share_qq = findViewById(R.id.share_qq);
         share_qzone = findViewById(R.id.share_qzone);
         ll_close = findViewById(R.id.ll_close);
         icon_title = findViewById(R.id.icon_title);
+
+        icon_title.setText(mIconTitle);
     }
 
-    private void setOnClickListener(){
+    private void setOnClickListener() {
         share_wechat.setOnClickListener(this);
         share_friend.setOnClickListener(this);
         share_qq.setOnClickListener(this);
@@ -73,39 +74,52 @@ public class ChooseFriendDialog extends Dialog implements View.OnClickListener{
         ll_close.setOnClickListener(this);
     }
 
-
-    private void inviteShow(){
-        ToastCommom toastCommom = new ToastCommom();
-        if (inviteType == 1) {
-            icon_title.setText("选择的邀请好友");
-            toastCommom.show(context, "分享成功");
-            dismiss();
-        }else if (inviteType == 2){
-            icon_title.setText("邀请好友参团");
-            toastCommom.show(context, "邀请成功");
-            dismiss();
-        }
-    }
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.share_wechat:
-                inviteShow();
+                mListener.WechatOnclick();
+                dismiss();
                 break;
             case R.id.share_friend:
-                inviteShow();
+                mListener.momentsOnclick();
+                dismiss();
                 break;
             case R.id.share_qq:
-                inviteShow();
+                mListener.QQOnclick();
+                dismiss();
                 break;
             case R.id.share_qzone:
-                inviteShow();
+                mListener.QQZoneOnclick();
+                dismiss();
+                break;
+            case R.id.share_weibo:
+                mListener.SinaOnclick();
+                dismiss();
                 break;
             case R.id.ll_close:
                 dismiss();
                 break;
         }
+    }
+
+
+    public interface ShareDialogOnclickListener {
+        // 点击微信
+        void WechatOnclick();
+
+        // 点击朋友圈
+        void momentsOnclick();
+
+        // 点击QQ
+        void QQOnclick();
+
+        // 点击QQ空间
+        void QQZoneOnclick();
+
+        // 点击新浪微博
+        void SinaOnclick();
+
     }
 
 

@@ -7,11 +7,19 @@
         android:id="@+id/recycler_view_order_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/layout_order_operation"
-        android:layout_marginBottom="@dimen/small_padding" />
+        android:layout_above="@id/layout_order_operation" />
 
-    <include
+    <LinearLayout
+        android:layout_alignParentBottom="true"
         android:id="@+id/layout_order_operation"
-        layout="@layout/footer_order_button" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/ViewLine" />
+
+        <include layout="@layout/footer_order_button" />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
+import cn.sharesdk.framework.Platform
 import cn.xiaoneng.uiapi.Ntalker
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
@@ -17,17 +18,22 @@ import com.ipd.taxiu.event.UpdateCollectProductEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.store.ProductDetailFragment
 import com.ipd.taxiu.ui.fragment.store.ProductEvaluateFragment
+import com.ipd.taxiu.utils.ShareCallback
 import com.ipd.taxiu.utils.StoreType
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.ProductModelDialog
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.product_detail_toolbar.*
 import org.greenrobot.eventbus.EventBus
+import java.util.*
 
 class ProductDetailActivity : BaseUIActivity() {
     companion object {
@@ -188,6 +194,31 @@ class ProductDetailActivity : BaseUIActivity() {
             tv_buy.textSize = 12f
             tv_add_cart.text = "￥${mProductInfo?.PRICE}\n单独购买"
             tv_buy.text = "￥${mProductInfo?.CURRENT_PRICE}\n参团购买"
+        }
+
+        iv_share.setOnClickListener {
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(ShareDialogClick()
+                    .setShareTitle(info.PROCUCT_NAME)
+                    .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
+                    .setShareLogoUrl(HttpUrl.IMAGE_URL + info.LOGO)
+                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                            toastShow(true, "分享成功")
+                            ShareCallback.shareProduct(info.PRODUCT_ID, info.FORM_ID)
+                        }
+
+                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                            toastShow("分享失败")
+                        }
+
+                        override fun onCancel(platform: Platform?, i: Int) {
+                            toastShow("取消分享")
+                        }
+
+                    }))
+            dialog.show()
         }
 
     }

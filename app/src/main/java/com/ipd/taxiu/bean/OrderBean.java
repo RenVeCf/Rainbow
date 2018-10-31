@@ -11,6 +11,7 @@ public class OrderBean {
     public int ORDER_ID;
     public int USER_ID;
     public String ORDER_NO;
+    public String POST_INFO;
     public int PAYWAY;
     public String PAY_FEE;
     @SerializedName("STATUS")

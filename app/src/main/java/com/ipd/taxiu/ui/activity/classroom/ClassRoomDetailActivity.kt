@@ -5,22 +5,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
 import com.ipd.taxiu.bean.WechatBean
 import com.ipd.taxiu.event.PayRequestEvent
 import com.ipd.taxiu.event.UpdateCollectClassroomEvent
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.ClassroomDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.AlipayUtils
 import com.ipd.taxiu.utils.HtmlImageGetter
+import com.ipd.taxiu.utils.ShareCallback
 import com.ipd.taxiu.utils.WeChatUtils
 import com.ipd.taxiu.widget.ChoosePayTypeLayout
 import com.ipd.taxiu.widget.PayWayDialog
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_classroom_detail.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.util.HashMap
 
 class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClassroomDetailView, AlipayUtils.OnPayListener {
 
@@ -87,6 +94,31 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
         }
 
         tv_answer_content.text = Html.fromHtml(detail.CONTENT, HtmlImageGetter(mActivity, tv_answer_content), null)
+
+        fl_share.setOnClickListener {
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(ShareDialogClick()
+                    .setShareTitle(detail.TITLE)
+                    .setShareContent(Constant.SHARE_CLASSROOM_CONTENT)
+                    .setShareLogoUrl(HttpUrl.IMAGE_URL + detail.LOGO)
+                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                            toastShow(true, "分享成功")
+                            ShareCallback.shareClassroom(detail.CLASS_ROOM_ID)
+                        }
+
+                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                            toastShow("分享失败")
+                        }
+
+                        override fun onCancel(platform: Platform?, i: Int) {
+                            toastShow("取消分享")
+                        }
+
+                    }))
+            dialog.show()
+        }
 
     }
 

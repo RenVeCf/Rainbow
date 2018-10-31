@@ -5,9 +5,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.sharesdk.framework.Platform
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.GroupBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalApplication
+import com.ipd.taxiu.platform.http.HttpUrl
+import com.ipd.taxiu.utils.ShareCallback
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.item_group_list.view.*
+import java.util.*
 
 /**
 Created by Miss on 2018/8/13
@@ -33,6 +42,31 @@ class GroupListAdapter(val context: Context, private val data: List<GroupBean>?,
         holder.itemView.tv_commodity_pay.text = "￥${info.PAY_FEE}"
 
         holder.itemView.tv_confirm.visibility = if (info.TEAM_STATUS == 1) View.VISIBLE else View.GONE
+
+        holder.itemView.tv_confirm.setOnClickListener {
+            val dialog = ShareDialog(context)
+            dialog.setShareDialogOnClickListener(ShareDialogClick()
+                    .setShareTitle(info.PRODUCT_LIST[0].PROCUCT_NAME)
+                    .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
+                    .setShareLogoUrl(HttpUrl.IMAGE_URL + info.PRODUCT_LIST[0].LOGO)
+                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                            ToastCommom.getInstance().show(GlobalApplication.mContext, true, "分享成功")
+                            ShareCallback.shareProduct(info.PRODUCT_LIST[0].PRODUCT_ID, info.PRODUCT_LIST[0].FORM_ID)
+                        }
+
+                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                            ToastCommom.getInstance().show(GlobalApplication.mContext, true, "分享失败")
+                        }
+
+                        override fun onCancel(platform: Platform?, i: Int) {
+                            ToastCommom.getInstance().show(GlobalApplication.mContext, true, "取消分享")
+                        }
+
+                    }))
+            dialog.show()
+        }
 
         holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.PRODUCT_LIST, {
             itemClick?.invoke(info)

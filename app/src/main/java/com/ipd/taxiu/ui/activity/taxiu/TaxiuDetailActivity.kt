@@ -7,18 +7,26 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import cn.jzvd.Jzvd
+import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.event.UpdateCollectTaxiuEvent
 import com.ipd.taxiu.event.UpdateMineTaxiuEvent
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.TaxiuDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.fragment.taxiu.TaxiuDetailFragment
+import com.ipd.taxiu.utils.ShareCallback
+import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.MessageDialog
+import com.ipd.taxiu.widget.ShareDialog
+import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_taxiu_detail.*
 import kotlinx.android.synthetic.main.admin_taxiu_toolbar.*
 import org.greenrobot.eventbus.EventBus
+import java.util.*
 
 class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailView {
 
@@ -97,6 +105,7 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
             mPresenter?.toCollect(taxiuId)
 
         }
+
     }
 
 
@@ -109,6 +118,48 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
         val fragment = TaxiuDetailFragment.newInstance(taxiuId)
         fragment.setDetailData(detail)
         supportFragmentManager.beginTransaction().replace(R.id.fl_container, fragment).commit()
+
+        if (isAdmin) {
+            iv_share.setOnClickListener {
+                val dialog = ShareDialog(mActivity)
+                dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
+                dialog.show()
+            }
+        } else {
+            iv_bottom_share.setOnClickListener {
+                val dialog = ShareDialog(mActivity)
+                dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
+                dialog.show()
+            }
+        }
+    }
+
+    fun getShareDialogClick(detail: TaxiuDetailBean): ShareDialog.ShareDialogOnclickListener {
+        var pic = HttpUrl.IMAGE_URL + detail.LOGO
+        if (detail.TYPE == 2) {
+            val pics = StringUtils.splitImages(detail.PIC)
+            pic = if (pics == null || pics.isEmpty()) "" else HttpUrl.IMAGE_URL + pics[0]
+        }
+        return ShareDialogClick()
+                .setShareTitle(Constant.SHARE_TAXIU_CONTENT)
+                .setShareContent(detail.CONTENT)
+                .setShareLogoUrl(pic)
+                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                        toastShow(true, "分享成功")
+                        ShareCallback.shareTaxiu(detail.SHOW_ID)
+                    }
+
+                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                        toastShow("分享失败")
+                    }
+
+                    override fun onCancel(platform: Platform?, i: Int) {
+                        toastShow("取消分享")
+                    }
+
+                })
+                .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
     }
 
     override fun loadDetailFail(errMsg: String) {

@@ -8,6 +8,7 @@ public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:9386/TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
     String VIDEO_URL = "http://video.csjc19.com/";
+    String APK_DOWNLOAD_URL = "http://121.199.8.244:9386/taxiu/download.html";
 
     //account
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
@@ -167,6 +168,7 @@ public interface HttpUrl {
     //tools
     String UPLOAD_PIC = "app_pic/uploadPic.do";
     String UPLOAD_VIDEO = "app_video/uploadVideo.do";
+    String VERSION_CHECK = "app_version/getInfo.do";
 
     //city
     String GET_LIST_ALL = "app_region/getListAll.do";
@@ -233,6 +235,16 @@ public interface HttpUrl {
 
     //消息
     String NEWS = "app_news/getList.do";
+
+
+    //分享
+    String SHARE_TAXIU = "app_show/share.do";
+    String SHARE_TOPIC = "app_topic/share.do";
+    String SHARE_TALK = "app_question/share.do";
+    String SHARE_CLASSROOM = "app_class_room/share.do";
+    String SHARE_PRODUCT = "app_product/share.do";
+    String SHARE_USER = "app_user/share.do";
+    String SHARE_VIDEO = "app_tide_video/share.do";
 
 
     //html5

@@ -55,7 +55,7 @@
         android:drawableLeft="@mipmap/icon_password"
         android:hint="请输入新登录密码(数字+字母组合)"
         android:inputType="textPassword"
-        android:maxLength="16"
+        android:maxLength="20"
         app:layout_constraintTop_toBottomOf="@id/cl_sms" />
 
 
