@@ -39,6 +39,7 @@ class ProductExtraLayout : FrameLayout {
                 visibility = View.GONE
             }
             StoreType.PRODUCT_FLASH_SALE -> {
+                visibility = View.VISIBLE
                 onProductFlashSale()
             }
             StoreType.PRODUCT_CLEARANCE -> {
@@ -48,13 +49,29 @@ class ProductExtraLayout : FrameLayout {
             StoreType.PRODUCT_NEW -> {
                 visibility = View.VISIBLE
                 onProductNew()
-
             }
             StoreType.PRODUCT_GROUP_PURCHASE -> {
                 visibility = View.VISIBLE
-
+                onProductGroupPurchase()
             }
         }
+    }
+
+    private fun onProductGroupPurchase() {
+        val purchaseView = mInflater.inflate(R.layout.layout_product_extra_flash_sale, this, false)
+        purchaseView.tv_flash_sale_price.text = mProductInfo?.CURRENT_PRICE
+        purchaseView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+        purchaseView.tv_flash_sale_price_old.text = "￥${mProductInfo?.REFER_PRICE ?: ""}"
+        purchaseView.tv_flash_sale_price_buy_num.text = "${mProductInfo?.TEAM_NUM}人团，${mProductInfo?.JOIN_NUM}人已参团"
+
+        purchaseView.setBackgroundResource(R.color.colorPrimaryDark)
+        purchaseView.tv_flash_sale_price_time.text = "距结束还剩"
+        mSystemTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
+        mTimer = Timer()
+        mFlashSaleTimerTask = FlashSaleTimerTask(purchaseView)
+        mTimer?.schedule(mFlashSaleTimerTask, 0 - mSystemTime % 1000, 1000L)
+
+        addView(purchaseView)
     }
 
     private fun onProductNew() {

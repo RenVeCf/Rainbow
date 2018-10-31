@@ -95,7 +95,7 @@ class SocicalContactFragment : ListFragment<List<AttentionBean>, AttentionBean>(
     }
 
     override fun onSuccess(msg: String, isAttent: Int) {
-        toastShow(msg)
+        toastShow(true,msg)
         if (clickItemPos == -1) return
         if (mType == 0){
             data?.removeAt(clickItemPos)

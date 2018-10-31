@@ -6,6 +6,7 @@ public class ProductDetailBean {
 
 
     public int PRODUCT_ID;
+    public int ACTIVITY_ID;
     public String PROCUCT_NAME;
     public String PRODUCT_NUMBER;
     public int KIND;
@@ -59,6 +60,9 @@ public class ProductDetailBean {
     public String SYS_TIME_STAMP;
     public String START_TIME_STAMP;
     public String END_TIME_STAMP;
+    public String TEAM_NUM;
+    public String JOIN_NUM;
+    public String JOIN_STATUS;
     public int IS_COLLECT;
     public double GOOD_PERCENT;
     public ASSESSDATABean ASSESS_DATA;

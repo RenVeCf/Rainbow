@@ -33,6 +33,8 @@ import org.greenrobot.eventbus.Subscribe
 class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrderView {
 
     companion object {
+        val NORMAL = 1
+        val SPELL = 2
         fun launch(activity: Activity, cartIds: String) {
             val intent = Intent(activity, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 1)
@@ -40,12 +42,24 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             activity.startActivity(intent)
         }
 
-        fun launch(context: Context, productId: Int, formId: Int, num: Int) {
+        fun launch(context: Context, productId: Int, formId: Int, num: Int, type: Int = NORMAL) {
             val intent = Intent(context, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 0)
             intent.putExtra("productId", productId)
             intent.putExtra("formId", formId)
             intent.putExtra("num", num)
+            intent.putExtra("type", type)
+            context.startActivity(intent)
+        }
+
+        fun launch(context: Context, activityId: Int, productId: Int, formId: Int, num: Int, type: Int = SPELL) {
+            val intent = Intent(context, ConfirmOrderActivity::class.java)
+            intent.putExtra("isCart", 0)
+            intent.putExtra("activityId", activityId)
+            intent.putExtra("productId", productId)
+            intent.putExtra("formId", formId)
+            intent.putExtra("num", num)
+            intent.putExtra("type", type)
             context.startActivity(intent)
         }
     }
@@ -70,18 +84,24 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     }
 
 
+    private val mType: Int by lazy { intent.getIntExtra("type", NORMAL) }
     private val mIsCart: Int by lazy { intent.getIntExtra("isCart", 0) }
     private val mProductId: Int by lazy { intent.getIntExtra("productId", 0) }
+    private val mActivityId: Int by lazy { intent.getIntExtra("activityId", 0) }
     private val mFormId: Int by lazy { intent.getIntExtra("formId", 0) }
     private val mNum: Int by lazy { intent.getIntExtra("num", 0) }
-    private val mCartIds: String by lazy { intent.getStringExtra("cartIds")?:"" }
+    private val mCartIds: String by lazy { intent.getStringExtra("cartIds") ?: "" }
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
         showProgress()
-        mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId)
+        if (mType == NORMAL) {
+            mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId)
+        } else {
+            mPresenter?.spellCash(mActivityId, mNum, mProductId, mFormId)
+        }
     }
 
     override fun initListener() {
@@ -115,7 +135,11 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             //支付方式
             val payType = choose_pay_type_layout.getPayType()
 
-            mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, 0, 0)
+            if (mType == NORMAL) {
+                mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, 0, 0)
+            } else if (mType == SPELL) {
+                mPresenter?.spellConfirmOrder(mActivityId, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, 0, 0)
+            }
         }
         cv_address.setOnClickListener {
             DeliveryAddressActivity.launch(this, DeliveryAddressActivity.CHOOSE)
@@ -208,9 +232,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     }
 
     override fun confirmOrderSuccess(payType: Int, payResult: PayResult<String>?, wechatPayResult: PayResult<WechatBean>?) {
-        when(payType){
-            ChoosePayTypeLayout.PayType.ALIPAY->{
-                AlipayUtils.getInstance().alipayByData(mActivity,payResult?.info,object :AlipayUtils.OnPayListener{
+        when (payType) {
+            ChoosePayTypeLayout.PayType.ALIPAY -> {
+                AlipayUtils.getInstance().alipayByData(mActivity, payResult?.info, object : AlipayUtils.OnPayListener {
                     override fun onPaySuccess() {
                         onPaySuccess()
                     }
@@ -225,17 +249,17 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
                 })
 
             }
-            ChoosePayTypeLayout.PayType.WECHAT->{
+            ChoosePayTypeLayout.PayType.WECHAT -> {
                 WeChatUtils.getInstance(mActivity).startPay(wechatPayResult?.info)
             }
-            ChoosePayTypeLayout.PayType.BALANCE->{
+            ChoosePayTypeLayout.PayType.BALANCE -> {
                 onPaySuccess()
             }
         }
 
     }
 
-    private fun onPaySuccess(){
+    private fun onPaySuccess() {
         EventBus.getDefault().post(UpdateCartEvent())
         toastShow(true, "支付成功")
         finish()

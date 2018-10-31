@@ -28,7 +28,7 @@ object User {
                 ll_attent.setBackgroundResource(R.drawable.shape_order_btn_cancel)
                 iv_attent.visibility = View.GONE
                 tv_attent.text = "互相关注"
-                tv_attent.setTextColor(context.resources.getColor(R.color.white))
+                tv_attent.setTextColor(context.resources.getColor(R.color.LightGrey))
             }
         }
     }

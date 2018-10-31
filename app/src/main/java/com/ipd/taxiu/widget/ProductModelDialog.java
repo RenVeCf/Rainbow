@@ -18,6 +18,7 @@ import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.event.UpdateCartEvent;
+import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.ApiManager;
@@ -61,9 +62,9 @@ public class ProductModelDialog extends Dialog {
 
     }
 
-    public static final int CART = 0, BUY = 1;
+    public static final int CART = 0, BUY = 1, SPELL = 2;
 
-    public void setData(final int type, final ProductModelResult modelResult) {
+    public void setData(final int type, String logo, final ProductModelResult modelResult, final int activityId) {
         LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
         ViewGroup productLayout = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.item_product_model, null);
         TextView modelView = productLayout.findViewById(R.id.tv_model_name);
@@ -77,14 +78,26 @@ public class ProductModelDialog extends Dialog {
 
 
         final ImageView productImageView = mContentView.findViewById(R.id.iv_product_img);
+        ImageLoader.loadNoPlaceHolderImg(getContext(), logo, productImageView);
+
         final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
         final CartOperationView operationView = mContentView.findViewById(R.id.operation_view);
-        if (modelResult.data != null && !modelResult.data.isEmpty())
-            productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
+        if (modelResult.data != null && !modelResult.data.isEmpty()) {
+            if (type == SPELL) {
+                productPriceView.setText("￥" + modelResult.data.get(0).PRICE);
+            } else {
+                productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
+            }
+
+        }
         productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
             @Override
             public void onChange(@NotNull ProductModelResult.ProductModelBean modelInfo) {
-                productPriceView.setText("￥" + modelInfo.CURRENT_PRICE);
+                if (type == SPELL) {
+                    productPriceView.setText("￥" + modelResult.data.get(0).PRICE);
+                } else {
+                    productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
+                }
             }
         });
 
@@ -114,8 +127,11 @@ public class ProductModelDialog extends Dialog {
 
                                         }
                                     });
+                        } else if (type == BUY) {
+                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getNORMAL());
+                            dismiss();
                         } else {
-                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum());
+                            ConfirmOrderActivity.Companion.launch(getContext(), activityId, modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getSPELL());
                             dismiss();
                         }
 

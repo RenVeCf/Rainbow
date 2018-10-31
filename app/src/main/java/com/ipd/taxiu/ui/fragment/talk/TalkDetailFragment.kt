@@ -78,6 +78,7 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
         if (mAdapter == null) {
             mAdapter = TalkDetailAdapter(mActivity, isMine, detailData, {
                 mSortType = it
+                onRefresh(true)
             }, data, { pos, res, info, replyInfo ->
                 //itemClick
                 when (res) {

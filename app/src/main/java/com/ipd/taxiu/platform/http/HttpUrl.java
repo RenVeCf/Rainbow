@@ -96,6 +96,13 @@ public interface HttpUrl {
     String STORE_CLEARANCE_PRODUCT = "app_activity/pullList.do";
     String STORE_NEW_PRODUCT = "app_activity/newList.do";
 
+    //拼团
+    String STORE_SPELL = "app_team/getList.do";
+    String STORE_SPELL_CASH = "app_cart/toTeamCash.do";
+    String STORE_SPELL_CONFIRM_ORDER = "app_cart/submitTeam.do";
+    String SPELL_MINE_LIST = "app_team/selfList.do";
+    String SPELL_ORDER_DETAIL = "app_team/getInfo.do";
+
     //store video
     String STORE_TODAY_RECOMMEND_VIDEO = "app_tide_video/todayRecom.do";
     String STORE_VIDEO_TABS = "app_tide_video/videoGroup.do";

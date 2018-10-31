@@ -75,6 +75,7 @@ class TopicDetailFragment : ListFragment<CommentResult<List<TopicCommentBean>>, 
         if (mAdapter == null) {
             mAdapter = TopicDetailAdapter(mActivity, detailData, {
                 mSortType = it
+                onRefresh(true)
             }, data, { pos, res, info ->
                 //itemClick
                 when (res) {

@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.adapter.PurchaseProductAdapter
-import com.ipd.taxiu.bean.ProductBean
+import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.PurchaseProductBean
+import com.ipd.taxiu.platform.global.Constant
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.utils.StringUtils
@@ -16,7 +19,7 @@ import rx.Observable
 import java.util.*
 
 
-class GroupPurchaseFragment : ListFragment<List<PurchaseProductBean>, PurchaseProductBean>() {
+class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>, PurchaseProductBean>() {
 
     companion object {
         fun newInstance(): GroupPurchaseFragment {
@@ -41,36 +44,30 @@ class GroupPurchaseFragment : ListFragment<List<PurchaseProductBean>, PurchasePr
         mTimer?.cancel()
     }
 
-    override fun loadListData(): Observable<List<PurchaseProductBean>> {
-        return Observable.create<List<PurchaseProductBean>> {
-            val purchaseProductList = ArrayList<PurchaseProductBean>()
-            for (index: Int in 0 until 10) {
-                val info = PurchaseProductBean()
-                info.startTime = System.currentTimeMillis()
-                info.endTime = System.currentTimeMillis() + 1000 * 60 * 60
-                info.productInfo = ProductBean()
-                purchaseProductList.add(info)
-            }
-            it.onNext(purchaseProductList)
-            it.onCompleted()
-        }
+    override fun loadListData(): Observable<BaseResult<List<PurchaseProductBean>>> {
+        return ApiManager.getService().storeSpell(GlobalParam.getUserId(), Constant.PAGE_SIZE, page)
     }
 
-    override fun isNoMoreData(result: List<PurchaseProductBean>): Int {
+    override fun isNoMoreData(result: BaseResult<List<PurchaseProductBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
+            return NO_MORE_DATA
+        }
         return NORMAL
     }
 
     private var mAdapter: PurchaseProductAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            recycler_view.addItemDecoration(object :RecyclerView.ItemDecoration(){
+            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-                    outRect?.bottom = DensityUtil.dip2px(mActivity,8f)
+                    outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
                 }
             })
             mAdapter = PurchaseProductAdapter(mActivity, data, {
                 //商品详情
-                ProductDetailActivity.launch(mActivity)
+                ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -79,8 +76,8 @@ class GroupPurchaseFragment : ListFragment<List<PurchaseProductBean>, PurchasePr
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<PurchaseProductBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<PurchaseProductBean>>) {
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
 
@@ -95,7 +92,7 @@ class GroupPurchaseFragment : ListFragment<List<PurchaseProductBean>, PurchasePr
                     val childView = layoutManager.findViewByPosition(i)
                     if (childView != null) {
                         val surplusTime = data!![i].endTime - System.currentTimeMillis()
-                        StringUtils.getCountDownByTime(surplusTime,{hours, minutes, second ->
+                        StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
                             childView.tv_group_purchase_hours.text = hours
                             childView.tv_group_purchase_minute.text = minutes
                             childView.tv_group_purchase_second.text = second

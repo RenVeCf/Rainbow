@@ -19,11 +19,13 @@ import com.ipd.taxiu.bean.EarningsResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.FlashSaleProductBean;
+import com.ipd.taxiu.bean.GroupBean;
+import com.ipd.taxiu.bean.GroupOrderDetailBean;
 import com.ipd.taxiu.bean.HomeResultBean;
 import com.ipd.taxiu.bean.IntegralBean;
 import com.ipd.taxiu.bean.LoginBean;
-import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.MessageBean;
+import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.bean.OrderDetailBean;
 import com.ipd.taxiu.bean.OtherBean;
@@ -40,6 +42,7 @@ import com.ipd.taxiu.bean.ProductEvaluateLableBean;
 import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.bean.ProductParamBean;
 import com.ipd.taxiu.bean.ProvinceBean;
+import com.ipd.taxiu.bean.PurchaseProductBean;
 import com.ipd.taxiu.bean.QuestionBean;
 import com.ipd.taxiu.bean.RecommendEarningsBean;
 import com.ipd.taxiu.bean.RecommendInfoBean;
@@ -645,7 +648,8 @@ public interface ApiService {
     @POST(HttpUrl.STORE_PRODUCT_MODEL)
     Observable<ProductModelResult> storeProductModel(@Field("USER_ID") String user_id,
                                                      @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                     @Field("FORM_ID") int FORM_ID);
+                                                     @Field("FORM_ID") int FORM_ID,
+                                                     @Field("ACTIVITY_ID") int ACTIVITY_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_COUPON)
@@ -738,6 +742,70 @@ public interface ApiService {
                                                                 @Field("COUNT") int COUNT,
                                                                 @Field("PAGE") int PAGE,
                                                                 @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
+
+    /**
+     * 拼团
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SPELL)
+    Observable<BaseResult<List<PurchaseProductBean>>> storeSpell(@Field("USER_ID") String user_id,
+                                                                 @Field("COUNT") int COUNT,
+                                                                 @Field("PAGE") int PAGE);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SPELL_CASH)
+    Observable<BaseResult<CartCashBean>> spellCash(@Field("USER_ID") String user_id,
+                                                   @Field("ADDRESS_ID") int ADDRESS_ID,
+                                                   @Field("USE_COUPON") int USE_COUPON,
+                                                   @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                   @Field("NUM") int NUM,
+                                                   @Field("ACTIVITY_ID") int ACTIVITY_ID,
+                                                   @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                   @Field("FORM_ID") int FORM_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SPELL_CONFIRM_ORDER)
+    Observable<PayResult<WechatBean>> spellConfirmWechat(@Field("USER_ID") String user_id,
+                                                         @Field("ACTIVITY_ID") int ACTIVITY_ID,
+                                                         @Field("ADDRESS_ID") String ADDRESS_ID,
+                                                         @Field("INVOICE_HEAD") String INVOICE_HEAD,
+                                                         @Field("INVOICE_NUM") String INVOICE_NUM,
+                                                         @Field("INVOICE_TYPE") int INVOICE_TYPE,
+                                                         @Field("PAYWAY") int PAYWAY,
+                                                         @Field("USE_COUPON") int USE_COUPON,
+                                                         @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                                         @Field("NUM") int NUM,
+                                                         @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                         @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_SPELL_CONFIRM_ORDER)
+    Observable<PayResult<String>> spellConfirm(@Field("USER_ID") String user_id,
+                                               @Field("ACTIVITY_ID") int ACTIVITY_ID,
+                                               @Field("ADDRESS_ID") String ADDRESS_ID,
+                                               @Field("INVOICE_HEAD") String INVOICE_HEAD,
+                                               @Field("INVOICE_NUM") String INVOICE_NUM,
+                                               @Field("INVOICE_TYPE") int INVOICE_TYPE,
+                                               @Field("PAYWAY") int PAYWAY,
+                                               @Field("USE_COUPON") int USE_COUPON,
+                                               @Field("EXCHANGE_ID") int EXCHANGE_ID,
+                                               @Field("NUM") int NUM,
+                                               @Field("PRODUCT_ID") int PRODUCT_ID,
+                                               @Field("FORM_ID") int FORM_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SPELL_MINE_LIST)
+    Observable<BaseResult<List<GroupBean>>> mineSpellList(@Field("USER_ID") String user_id,
+                                                          @Field("PAGE") int PAGE,
+                                                          @Field("COUNT") int COUNT,
+                                                          @Field("TYPE") int TYPE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SPELL_ORDER_DETAIL)
+    Observable<BaseResult<GroupOrderDetailBean>> spellOrderDetail(@Field("USER_ID") String user_id,
+                                                                  @Field("ORDER_ID") int ORDER_ID);
 
     /**
      * cart

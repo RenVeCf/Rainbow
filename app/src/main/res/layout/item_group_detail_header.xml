@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:countdown="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,7 +14,7 @@
         android:padding="@dimen/base_padding">
 
         <ImageView
-            android:id="@+id/iv_order_status"
+            android:id="@+id/iv_group_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -45,50 +47,39 @@
 
         <TextView
             android:id="@+id/tv_delivery_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_toRightOf="@id/iv_delivery_address"
-            android:text="@string/delivery_address"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"
-            android:textStyle="bold" />
+            android:text="@string/delivery_address" />
 
         <TextView
             android:id="@+id/tv_delivery_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextStyle"
             android:layout_below="@id/tv_delivery_address"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginTop="@dimen/small_padding"
             android:layout_toRightOf="@id/iv_delivery_address"
-            android:text="黄埔正雄"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            tools:text="黄埔正雄" />
 
         <TextView
             android:id="@+id/tv_delivery_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextStyle"
             android:layout_below="@id/tv_delivery_address"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginTop="@dimen/small_padding"
             android:layout_toRightOf="@id/tv_delivery_name"
-            android:text="176****5640"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            tools:text="176****5640" />
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
+            style="@style/BaseTextStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_delivery_phone"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/iv_delivery_address"
-            android:text="上海 上海市 青浦区 华徐公路888号1号楼2楼"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
+            tools:text="上海 上海市 青浦区 华徐公路888号1号楼2楼" />
     </RelativeLayout>
 
     <ImageView
@@ -104,120 +95,164 @@
         android:padding="@dimen/base_padding">
 
         <ImageView
-            android:id="@+id/iv_group_status"
+            android:id="@+id/iv_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/group_status" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_group"
+            style="@style/SmallTextStyle"
             android:layout_marginLeft="@dimen/base_padding"
-            android:layout_toRightOf="@id/iv_group_status"
-            android:text="5人团，3人已参团"
-            android:textSize="@dimen/small_text_size"
-            android:textStyle="bold" />
+            android:layout_toRightOf="@id/iv_group"
+            android:text="5人团，3人已参团" />
 
-        <com.zy.lib.countdown.CountDownView
-            android:id="@+id/tv_hour"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            countdown:setDrawable_sub="@drawable/shape_time_bg"
-            countdown:color_text="@color/colorPrimaryDark"
-            countdown:text_size="14"/>
-
-        <LinearLayout
-            android:id="@+id/ll_group_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_hour"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginLeft="6dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+            <TextView
+                android:id="@+id/tv_group_purchase_hours"
+                style="@style/SmallTextStyle"
+                android:background="@drawable/shape_time_bg"
+                android:text="15"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
-                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@mipmap/my_pet_header" />
-            </LinearLayout>
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:text=":"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+            <TextView
+                android:id="@+id/tv_group_purchase_minute"
+                style="@style/SmallTextStyle"
+                android:background="@drawable/shape_time_bg"
+                android:text="15"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
-                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@mipmap/my_pet_header" />
-            </LinearLayout>
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:text=":"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+            <TextView
+                android:id="@+id/tv_group_purchase_second"
+                style="@style/SmallTextStyle"
+                android:background="@drawable/shape_time_bg"
+                android:text="15"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
-                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@mipmap/my_pet_header" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@mipmap/add_image_group" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@mipmap/add_image_group" />
-            </LinearLayout>
         </LinearLayout>
+
+        <com.ipd.taxiu.widget.NotVerticalScrollRecyclerView
+            android:id="@+id/member_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_group"
+            android:layout_marginTop="@dimen/small_padding"
+            countdown:layoutManager="android.support.v7.widget.GridLayoutManager"
+            countdown:spanCount="5" />
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/ll_group_info"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/iv_group"-->
+        <!--android:layout_marginTop="@dimen/small_padding"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:src="@mipmap/my_pet_header" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:src="@mipmap/my_pet_header" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:src="@mipmap/my_pet_header" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:src="@mipmap/add_image_group" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:src="@mipmap/add_image_group" />-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
         <TextView
             android:id="@+id/btn_invite_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_text_size"
-            android:textColor="@color/white"
-            android:text="邀请好友来参团"
-            android:layout_below="@id/ll_group_info"
-            android:layout_marginTop="@dimen/base_padding"
+            android:layout_below="@id/member_recycler_view"
+            android:layout_marginTop="@dimen/small_padding"
             android:background="@drawable/shape_buy_bg"
             android:gravity="center"
+            android:paddingBottom="@dimen/small_padding"
             android:paddingTop="@dimen/small_padding"
-            android:paddingBottom="@dimen/small_padding"/>
+            android:text="邀请好友来参团"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/commodity_number"
+        style="@style/BaseTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/base_text_size"
         android:background="@color/white"
         android:padding="@dimen/small_padding"
-        android:text="共1件商品"
-        android:textSize="@dimen/base_text_size"
-        android:textStyle="bold" />
+        android:text="共1件商品" />
 </LinearLayout>

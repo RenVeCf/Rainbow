@@ -33,7 +33,7 @@ class GroupBookingActivity : BaseUIActivity() {
 
     override fun loadData() {
         view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment = GroupFragment.newInstance(position)
+            override fun getItem(position: Int): Fragment = GroupFragment.newInstance(position + 1)
             override fun getCount(): Int = titles.size
         }
         tab_layout.setViewPager(view_pager, titles)

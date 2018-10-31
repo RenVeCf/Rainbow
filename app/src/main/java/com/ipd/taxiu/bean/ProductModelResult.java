@@ -29,9 +29,9 @@ public class ProductModelResult extends BaseResult<List<ProductModelResult.Produ
         public int KIND;
         public String NET_CONTENT;
         public String TASTE;
-        public int CURRENT_PRICE;
-        public int PRICE;
-        public int REFER_PRICE;
+        public String CURRENT_PRICE;
+        public String PRICE;
+        public String REFER_PRICE;
         public int STOCK;
         public int IS_CHOSEN;
 
