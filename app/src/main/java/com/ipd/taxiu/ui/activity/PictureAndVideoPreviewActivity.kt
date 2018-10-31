@@ -15,6 +15,7 @@ import com.ipd.taxiu.bean.BannerBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.ui.BaseActivity
+import com.ipd.taxiu.utils.PictureUtils
 import kotlinx.android.synthetic.main.activity_picture_look.*
 import kotlinx.android.synthetic.main.layout_video_preview.view.*
 
@@ -79,11 +80,20 @@ class PictureAndVideoPreviewActivity : BaseActivity() {
                 } else {
                     contentView = LayoutInflater.from(mActivity).inflate(R.layout.layout_preview, container, false)
                     val photoView = contentView.findViewById<View>(R.id.photo_view) as PhotoView
+                    val saveView = contentView.findViewById<View>(R.id.tv_save)
                     val imagePath = bannerInfo.LOGO
                     ImageLoader.loadImgWithPlaceHolder(mActivity, imagePath, R.mipmap.banner_default, photoView)
                     photoView.setOnClickListener {
                         finish()
                     }
+                    saveView.setOnClickListener {
+                        saveView.isEnabled = false
+                        PictureUtils.savePhotoAndRefreshGallery(mActivity, imagePath, {
+                            saveView.isEnabled = true
+                            toastShow(true, "保存成功")
+                        })
+                    }
+
                 }
 
                 container.addView(contentView)

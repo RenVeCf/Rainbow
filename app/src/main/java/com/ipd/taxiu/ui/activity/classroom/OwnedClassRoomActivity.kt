@@ -76,7 +76,7 @@ class OwnedClassRoomActivity : BaseUIActivity() {
 
         tv_save_code.setOnClickListener {
             tv_save_code.isEnabled = false
-            BitmapUtils.getInstance().saveBitmap(iv_classroom_code, CommonUtils.getPhotoSavePath(mActivity) + "/" + System.currentTimeMillis() + ".png")
+            BitmapUtils.getInstance().savePhotoAndRefreshGallery(mActivity,iv_classroom_code, CommonUtils.getPhotoSavePath(mActivity) + "/" + System.currentTimeMillis() + ".png")
             toastShow(true,"保存成功")
             tv_save_code.isEnabled = true
         }

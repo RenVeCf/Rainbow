@@ -14,14 +14,16 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.ui.BaseActivity;
+import com.ipd.taxiu.utils.PictureUtils;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 
 /**
@@ -108,13 +110,31 @@ public class PictureLookActivity extends BaseActivity {
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
                 View contentView = LayoutInflater.from(getMActivity()).inflate(R.layout.layout_preview, container, false);
-                PhotoView photoView = (PhotoView) contentView.findViewById(R.id.photo_view);
+                final PhotoView photoView = contentView.findViewById(R.id.photo_view);
+                final TextView tv_save = contentView.findViewById(R.id.tv_save);
                 if (mPictureList.size() > position) {
-                    String imagePath = mPictureList.get(position);
+                    final String imagePath = mPictureList.get(position);
                     if (mType == LOCAL) {
+                        tv_save.setVisibility(View.GONE);
                         ImageLoader.loadImgFromLocal(getMActivity(), imagePath, photoView);
                     } else {
+                        tv_save.setVisibility(View.VISIBLE);
                         ImageLoader.loadImgWithPlaceHolder(getMActivity(), imagePath, R.mipmap.banner_default, photoView);
+
+                        tv_save.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                tv_save.setEnabled(false);
+                                PictureUtils.INSTANCE.savePhotoAndRefreshGallery(getMActivity(), imagePath, new Function1<Integer, Unit>() {
+                                    @Override
+                                    public Unit invoke(Integer integer) {
+                                        tv_save.setEnabled(true);
+                                        toastShow(true, "保存成功");
+                                        return null;
+                                    }
+                                });
+                            }
+                        });
                     }
                 }
 
