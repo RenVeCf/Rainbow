@@ -11,6 +11,15 @@ import com.ipd.taxiu.ui.activity.account.LoginActivity;
  */
 public class GlobalParam {
 
+
+    public static boolean getFirstEnter() {
+        return SharedPreferencesUtil.getBooleanData(GlobalApplication.Companion.getMContext(), "firstEnter", true);
+    }
+
+    public static void setFirstEnter(boolean isfirst) {
+        SharedPreferencesUtil.saveBooleanData(GlobalApplication.Companion.getMContext(), "firstEnter", isfirst);
+    }
+
     public static void saveUserToken(String userToken) {
         SharedPreferencesUtil.saveStringData(GlobalApplication.Companion.getMContext(), "userToken", userToken);
     }

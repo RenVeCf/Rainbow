@@ -42,7 +42,12 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".SplashActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/FullScreenStyle" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/FullScreenStyle" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask" />
@@ -240,7 +245,7 @@
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.ipd.taxiu.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
@@ -294,8 +299,6 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="behind" />
-
-
 
 
     </application>

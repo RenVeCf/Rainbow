@@ -213,4 +213,18 @@ class MainActivity : BaseActivity() {
     }
 
 
+    private val WAITTIME: Long = 2000
+    private var touchTime: Long = 0
+
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - touchTime >= WAITTIME) {
+            toastShow(true, "再按一次退出")
+            touchTime = currentTime
+        } else {
+            finish()
+        }
+    }
+
+
 }

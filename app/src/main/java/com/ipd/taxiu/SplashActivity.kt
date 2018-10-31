@@ -35,10 +35,14 @@ class SplashActivity : BaseActivity() {
                     }
 
                     override fun onCompleted() {
-                        if (GlobalParam.isLogin()) {
-                            MainActivity.launch(mActivity)
+                        if (GlobalParam.getFirstEnter()) {
+                            WelcomeActivity.launch(mActivity)
                         } else {
-                            LoginActivity.launch(mActivity)
+                            if (GlobalParam.isLogin()) {
+                                MainActivity.launch(mActivity)
+                            } else {
+                                LoginActivity.launch(mActivity)
+                            }
                         }
                         finish()
                     }
