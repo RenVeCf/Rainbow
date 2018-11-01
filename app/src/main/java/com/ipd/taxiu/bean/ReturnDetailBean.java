@@ -43,7 +43,7 @@ public class ReturnDetailBean {
     public ProductBean ORDER_DETAIL;
     public ReturnBean REFUND_DETAIL;
     public String ORDER_NO;
-    public int ORDER_PAY_FEE;
+    public String ORDER_PAY_FEE;
     public String ORDER_CREATETIME;
     public String ORDER_PAYTIME;
     public String ORDER_SEND_TIME;

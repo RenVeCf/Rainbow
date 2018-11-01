@@ -46,7 +46,7 @@ public class ReturnBean {
     public String DIST;
     public String ADDRESS;
     public int POSTWAY;
-    public int POST_FEE;
+    public String POST_FEE;
 
 
 

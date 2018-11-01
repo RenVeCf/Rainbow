@@ -9,6 +9,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ReturnPictureAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.ReturnDetailBean
+import com.ipd.taxiu.event.UpdateReturnDetailEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -20,6 +21,8 @@ import com.ipd.taxiu.utils.Order
 import com.ipd.taxiu.utils.Return
 import com.ipd.taxiu.utils.StringUtils
 import kotlinx.android.synthetic.main.return_detail_info.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by Miss on 2018/7/23
@@ -40,6 +43,16 @@ class ReturnDetailActivity : BaseUIActivity() {
 
 
     override fun getContentLayout(): Int = R.layout.activity_return_detail
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
@@ -86,6 +99,7 @@ class ReturnDetailActivity : BaseUIActivity() {
         tv_reason_update_time.text = "提交时间：${info.CREATETIME}"
 
         //问题描述
+        rl_question.visibility = if (TextUtils.isEmpty(info.CONTENT)) View.GONE else View.VISIBLE
         tv_question_info.text = info.CONTENT
         val pics = StringUtils.splitImages(info.PIC)
         if (pics.isNotEmpty()) {
@@ -128,6 +142,11 @@ class ReturnDetailActivity : BaseUIActivity() {
 
     override fun initListener() {
 
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateReturnDetailEvent) {
+        loadData()
     }
 
 }

@@ -21,8 +21,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:maxLength="20"
             android:gravity="right"
-            android:hint="请输入回寄快递单号" />
+            android:hint="请输入回寄快递单号"
+            android:singleLine="true" />
 
 
     </LinearLayout>
@@ -48,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:hint="请输入快递公司名称" />
+            android:hint="请输入快递公司名称"
+            android:singleLine="true" />
 
 
     </LinearLayout>

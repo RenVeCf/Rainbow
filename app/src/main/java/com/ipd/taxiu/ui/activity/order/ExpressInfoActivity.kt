@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ReturnResult
+import com.ipd.taxiu.event.UpdateReturnDetailEvent
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
@@ -13,6 +14,7 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.widget.AuditSuccessDialog
 import kotlinx.android.synthetic.main.activity_express_info.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by Miss on 2018/7/23
@@ -90,6 +92,7 @@ class ExpressInfoActivity : BaseUIActivity() {
                     .subscribe(object : Response<ReturnResult>(mActivity, true) {
                         override fun _onNext(result: ReturnResult) {
                             if (result.code == 0) {
+                                EventBus.getDefault().post(UpdateReturnDetailEvent())
                                 initDialog()
                             } else {
                                 toastShow(result.msg)
