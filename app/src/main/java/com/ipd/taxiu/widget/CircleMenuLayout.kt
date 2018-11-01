@@ -20,12 +20,13 @@ class CircleMenuLayout : RelativeLayout {
         val params = RelativeLayout.LayoutParams(DensityUtil.dip2px(context, 15f), DensityUtil.dip2px(context, 15f))
         params.addRule(ALIGN_PARENT_RIGHT)
         params.addRule(ALIGN_PARENT_TOP)
-        params.rightMargin = DensityUtil.dip2px(context, 5f)
+        params.rightMargin = DensityUtil.dip2px(context, 8f)
         textView.layoutParams = params
         textView.setBackgroundResource(R.drawable.shape_message_bg)
         textView.setTextColor(resources.getColor(R.color.white))
         textView.textSize = 8f
         textView.gravity = Gravity.CENTER
+        textView.visibility = View.GONE
         textView.text = "1"
         textView
     }
