@@ -21,8 +21,10 @@ class SignInView : ConstraintLayout {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 
+    private var mCurData: String = ""
     fun setDate(time: Long, signInDayList: List<SignInDayBean>?) {
         tv_date.text = "${DateUtils.getYear(time)}年${DateUtils.getMonth(time)}月"
+        mCurData = "${DateUtils.getYear(time)}-${DateUtils.getMonth(time)}-${DateUtils.getDay(time)}"
         sign_in_recycler_view.adapter = SigninAdapter(time, signInDayList)
     }
 
@@ -33,14 +35,14 @@ class SignInView : ConstraintLayout {
         private val mCalendar by lazy { Calendar.getInstance() }
 
         init {
-            mCalendar.set(Calendar.YEAR, DateUtils.getYear(time))
-            mCalendar.set(Calendar.MONTH, DateUtils.getMonth(time) - 1)
+            mCalendar.set(Calendar.YEAR, DateUtils.getYear(time).toInt())
+            mCalendar.set(Calendar.MONTH, DateUtils.getMonth(time).toInt() - 1)
             mCalendar.set(Calendar.DAY_OF_MONTH, 1)
             emptyCount = mCalendar.get(Calendar.DAY_OF_WEEK) - 1
         }
 
         override fun getItemCount(): Int {
-            val days = DateUtils.getDays(DateUtils.getYear(time), DateUtils.getMonth(time))
+            val days = DateUtils.getDays(DateUtils.getYear(time).toInt(), DateUtils.getMonth(time).toInt())
             return days + emptyCount
         }
 
@@ -63,9 +65,17 @@ class SignInView : ConstraintLayout {
 
             val signInDay = signInDayList?.find { it.CREATETIME == dateStr }
             if (signInDay != null) {
-                holder.itemView.tv_day.setBackgroundResource(R.mipmap.sign_in_already_bg)
                 holder.itemView.tv_score.visibility = View.VISIBLE
                 holder.itemView.tv_score.text = "${signInDay.SCORE}积分"
+
+                if (signInDay.CREATETIME == mCurData) {
+                    holder.itemView.tv_day.setBackgroundResource(R.drawable.shape_sign_today_bg)
+                    holder.itemView.tv_day.setTextColor(resources.getColor(R.color.white))
+                } else {
+                    holder.itemView.tv_day.setBackgroundResource(R.mipmap.sign_in_already_bg)
+                    holder.itemView.tv_day.setTextColor(resources.getColor(R.color.black))
+                }
+
             } else {
                 holder.itemView.tv_day.setBackgroundDrawable(null)
                 holder.itemView.tv_score.visibility = View.INVISIBLE

@@ -25,16 +25,22 @@ public class DateUtils {
         return Integer.parseInt(month);
     }
 
-    public static int getYear(long time) {
+    public static String getYear(long time) {
         Date date = new Date(time);
         String year = new SimpleDateFormat("yyyy").format(date);
-        return Integer.parseInt(year);
+        return year;
     }
 
-    public static int getMonth(long time) {
+    public static String getMonth(long time) {
         Date date = new Date(time);
         String month = new SimpleDateFormat("MM").format(date);
-        return Integer.parseInt(month);
+        return month;
+    }
+
+    public static String getDay(long time) {
+        Date date = new Date(time);
+        String day = new SimpleDateFormat("dd").format(date);
+        return day;
     }
 
     //判断闰年

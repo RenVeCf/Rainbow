@@ -21,26 +21,26 @@ class SignInPresenter : BasePresenter<SignInPresenter.ISignInView, BasicModel>()
         val signInList = ApiManager.getService().signInList(GlobalParam.getUserId())
 
         val zip = Observable.zip(signInInfo,
-                signInList,
-                { t1, t2 ->
-                    val baseResult = BaseResult<SignInBean>()
-                    baseResult.data = SignInBean()
-                    if (t1.code != 0) {
-                        baseResult.code = t1.code
-                        baseResult.msg = t1.msg
-                        baseResult
-                    } else {
-                        if (t2.code == 0 || t2.code == 10000) {
-                            baseResult.code = 0
-                            if (t1.data != null) baseResult.data.signInfo = t1.data
-                            if (t2.data != null) baseResult.data.signInDayList = t2.data
-                        } else {
-                            baseResult.code = t2.code
-                            baseResult.msg = t2.msg
-                        }
-                        baseResult
-                    }
-                })
+                signInList
+        ) { t1, t2 ->
+            val baseResult = BaseResult<SignInBean>()
+            baseResult.data = SignInBean()
+            if (t1.code != 0) {
+                baseResult.code = t1.code
+                baseResult.msg = t1.msg
+                baseResult
+            } else {
+                if (t2.code == 0 || t2.code == 10000) {
+                    baseResult.code = 0
+                    if (t1.data != null) baseResult.data.signInfo = t1.data
+                    if (t2.data != null) baseResult.data.signInDayList = t2.data
+                } else {
+                    baseResult.code = t2.code
+                    baseResult.msg = t2.msg
+                }
+                baseResult
+            }
+        }
 
         mModel?.getNormalRequestData(zip,
                 object : Response<BaseResult<SignInBean>>() {
