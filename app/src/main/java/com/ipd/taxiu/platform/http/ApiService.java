@@ -31,6 +31,7 @@ import com.ipd.taxiu.bean.OrderDetailBean;
 import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PayResult;
 import com.ipd.taxiu.bean.PetBean;
+import com.ipd.taxiu.bean.PetBibleBean;
 import com.ipd.taxiu.bean.PetKindListBean;
 import com.ipd.taxiu.bean.ProductBean;
 import com.ipd.taxiu.bean.ProductBrandBean;
@@ -1336,6 +1337,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.SHARE_USER)
     Observable<BaseResult<String>> shareUser(@Field("USER_ID") String USER_ID);
+
+    /**
+     * 宠物宝典
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.PET_BIBLE)
+    Observable<BaseResult<List<PetBibleBean>>> petBible(@Field("USER_ID") String USER_ID);
 
 
     //tools

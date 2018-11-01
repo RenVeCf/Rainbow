@@ -231,12 +231,13 @@ public interface HttpUrl {
     String RECOMMEND_INFO = "app_user/recomInfo.do";
     String RECOMMEND_EARNINGS = "app_commend_income/getList.do";
 
-
     String WEB_INFO = "app_text/getInfo.do";
 
     //消息
     String NEWS = "app_news/getList.do";
 
+    //宠物宝典
+    String PET_BIBLE = "app_pet_treasure/getList.do";
 
     //分享
     String SHARE_TAXIU = "app_show/share.do";
