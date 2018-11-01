@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.ipd.taxiu.bean.CommentReplyBean
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.ui.activity.referral.HomepageActivity
 import com.ipd.taxiu.ui.activity.talk.TalkDetailActivity
 import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.CommentSortLayout
@@ -118,6 +120,9 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                     }
                 }
 
+                holder.itemView.civ_publisher_avatar.setOnClickListener {
+                    HomepageActivity.launch(context as Activity,detailData.USER_ID)
+                }
 
             }
             ItemType.COMMENT -> {

@@ -20,6 +20,7 @@ import com.ipd.taxiu.bean.TaxiuDetailBean
 import com.ipd.taxiu.bean.VideoShowBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
+import com.ipd.taxiu.ui.activity.referral.HomepageActivity
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.User
@@ -169,6 +170,10 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                         context.getShareDialogClick(detailData)
                                 .SinaOnclick()
                     }
+                }
+
+                holder.itemView.civ_publisher_avatar.setOnClickListener {
+                    HomepageActivity.launch(context as Activity,detailData.USER_ID)
                 }
 
             }

@@ -2,7 +2,7 @@ package com.ipd.taxiu.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.UserHomeBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
@@ -36,22 +36,23 @@ import com.ipd.taxiu.ui.activity.referral.ReferralCodeActivity;
 import com.ipd.taxiu.ui.activity.setting.MyCollectActivity;
 import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 import com.ipd.taxiu.ui.activity.setting.SocialContactActivity;
+import com.ipd.taxiu.widget.CircleMenuLayout;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import static com.ipd.taxiu.platform.http.HttpUrl.IMAGE_URL;
 
 
 /**
  * Created by Miss on 2018/7/19
  */
-public class PersonFragment extends BaseFragment implements View.OnClickListener, MinePresenter.IUserInfoView {
-    private RelativeLayout rl_all_order, rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_off_the_stocks;
-    private RelativeLayout rl_return_record, rl_setting, rl_message, rl_referral, rl_delivery_address, rl_pet_bible,
-            rl_my_pet, rl_pet_housekeeper, rl_published_taxiu, rl_mine_classroom, rl_mine_join_topic, rl_mine_talk;
+public class PersonFragment extends BaseFragment implements View.OnClickListener, MinePresenter.IUserHomeView {
+    private CircleMenuLayout rl_wait_pay, rl_wait_shipments, rl_wait_delivery, rl_my_group, rl_published_taxiu, rl_mine_classroom,
+            rl_mine_join_topic, rl_mine_talk, rl_return_record, rl_message;
+    private RelativeLayout rl_all_order, rl_off_the_stocks;
+    private RelativeLayout rl_setting, rl_referral, rl_delivery_address, rl_pet_bible,
+            rl_my_pet, rl_pet_housekeeper;
     private LinearLayout ll_sign_in, ll_my_collect, ll_my_fans, ll_attention_num;
-    private RelativeLayout rl_my_group, rl_my_integral, rl_discount_coupon, rl_my_balance;
+    private RelativeLayout rl_my_integral, rl_discount_coupon, rl_my_balance;
     private RelativeLayout rl_header;
 
     private MinePresenter mPresenter;
@@ -93,7 +94,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void loadData() {
-        mPresenter.getUserInfo();
+        mPresenter.getUserHome();
     }
 
     @Override
@@ -270,16 +271,27 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void getInfoSuccess(@NotNull UserBean data) {
+    public void getInfoSuccess(@NotNull UserHomeBean data) {
         if (data != null) {
             ImageLoader.loadImgFromLocal(getContext(), HttpUrl.IMAGE_URL + data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
-            if (data.TAG != "") {
+            if (!TextUtils.isEmpty(data.TAG)) {
                 tv_signature.setText(data.TAG);
             }
             tv_attention_num.setText(data.ATTENTION_NUM + "");
             tv_collect_num.setText(data.COLLECT_NUM + "");
             tv_fans_num.setText(data.FANS_NUM + "");
+
+            rl_wait_pay.setCircleNum(data.WAIT_PAY);
+            rl_wait_shipments.setCircleNum(data.WAIT_SEND);
+            rl_wait_delivery.setCircleNum(data.WAIT_RECEIPT);
+            rl_my_group.setCircleNum(data.TEAM_NUM);
+            rl_published_taxiu.setCircleNum(data.SHOW_NUM);
+            rl_mine_classroom.setCircleNum(data.CLASS_NUM);
+            rl_mine_join_topic.setCircleNum(data.TOPIC_NUM);
+            rl_mine_talk.setCircleNum(data.QUESTION_NUM);
+            rl_return_record.setCircleNum(data.REFUND_NUM);
+            rl_message.setCircleNum(data.NEWS_NUM);
         }
     }
 

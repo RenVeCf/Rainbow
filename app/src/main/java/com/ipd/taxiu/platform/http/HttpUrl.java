@@ -181,6 +181,7 @@ public interface HttpUrl {
     String ADDRESS_DELETE = "app_address/delete.do";
 
     //mine
+    String USER_HOME = "app_user/home.do";
     String GET_USER_INFO = "app_user/getInfo.do";
     String UPDATE_PWD = "app_user/updatePwd.do";
     String USER_UPDATE = "app_user/update.do";

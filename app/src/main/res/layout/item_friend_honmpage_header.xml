@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView style="@style/HomeCardStyle">
@@ -17,13 +18,12 @@
 
                 <TextView
                     android:id="@+id/tv_friend_nickname"
+                    style="@style/TitleTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/base_padding"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/base_text_size"
-                    android:textStyle="bold" />
+                    tools:text="娜可露露"
+                    android:layout_marginTop="@dimen/base_padding" />
 
                 <LinearLayout
                     android:id="@+id/ll_friend_info"
@@ -54,6 +54,7 @@
                             android:layout_marginLeft="@dimen/base_padding"
                             android:textColor="@color/black"
                             android:textSize="@dimen/base_text_size"
+                            tools:text="0"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -84,6 +85,7 @@
                             android:layout_marginLeft="@dimen/base_padding"
                             android:textColor="@color/black"
                             android:textSize="@dimen/base_text_size"
+                            tools:text="0"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -107,6 +109,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/base_padding"
                         android:textColor="@color/black"
+                        android:singleLine="true"
+                        tools:text="发送到反倒是发送发送到发送反倒是发送到发送范德萨范德萨反倒是"
                         android:textSize="@dimen/base_text_size" />
 
                     <ImageView

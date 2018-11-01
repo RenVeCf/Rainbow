@@ -79,6 +79,7 @@ import com.ipd.taxiu.bean.TopicDetailBean;
 import com.ipd.taxiu.bean.UpdatePwdBean;
 import com.ipd.taxiu.bean.UploadResultBean;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.bean.UserHomeBean;
 import com.ipd.taxiu.bean.VersionBean;
 import com.ipd.taxiu.bean.WebBean;
 import com.ipd.taxiu.bean.WechatBean;
@@ -1047,6 +1048,10 @@ public interface ApiService {
      * @param USER_ID
      * @return
      */
+    @FormUrlEncoded
+    @POST(HttpUrl.USER_HOME)
+    Observable<BaseResult<UserHomeBean>> getUserHome(@Field("USER_ID") String USER_ID);
+
     @FormUrlEncoded
     @POST(HttpUrl.GET_USER_INFO)
     Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") String USER_ID);

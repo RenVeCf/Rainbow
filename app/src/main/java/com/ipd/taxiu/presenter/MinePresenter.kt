@@ -1,9 +1,6 @@
 package com.ipd.taxiu.presenter
 
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.OtherBean
-import com.ipd.taxiu.bean.UpdatePwdBean
-import com.ipd.taxiu.bean.UserBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -15,6 +12,22 @@ Created by Miss on 2018/8/17
 class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     override fun initModel() {
         mModel = BasicModel()
+    }
+
+    fun getUserHome() {
+        if (mView !is IUserHomeView) return
+        val view = mView as IUserHomeView
+
+        mModel?.getNormalRequestData(ApiManager.getService().getUserHome(GlobalParam.getUserId()),
+                object : Response<BaseResult<UserHomeBean>>() {
+                    override fun _onNext(result: BaseResult<UserHomeBean>) {
+                        if (result.code == 0) {
+                            view.getInfoSuccess(result.data)
+                        } else {
+                            view.getInfoFail(result.msg)
+                        }
+                    }
+                })
     }
 
     fun getUserInfo() {
@@ -104,6 +117,11 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
+
+    interface IUserHomeView {
+        fun getInfoSuccess(data: UserHomeBean)
+        fun getInfoFail(errMsg: String)
+    }
 
     interface IUserInfoView {
         fun getInfoSuccess(data: UserBean)

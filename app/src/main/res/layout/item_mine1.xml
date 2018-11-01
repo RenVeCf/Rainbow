@@ -18,7 +18,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_my_group"
                     style="@style/MineMenuTopStyle">
 
@@ -30,15 +30,13 @@
                         android:src="@mipmap/my_spell_group" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/SmallTextStyle"
                         android:layout_below="@id/my_spell_group"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/small_padding"
-                        android:text="@string/my_spell_group"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size" />
-                </RelativeLayout>
+                        android:text="@string/my_spell_group" />
+
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_discount_coupon"
@@ -114,7 +112,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_published_taxiu"
                     style="@style/MineMenuBottomStyle">
 
@@ -126,17 +124,14 @@
                         android:src="@mipmap/ta_xiu" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/SmallTextStyle"
                         android:layout_below="@id/ta_xiu"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/small_padding"
-                        android:text="@string/ta_xiu"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size" />
-                </RelativeLayout>
+                        android:text="@string/ta_xiu" />
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_mine_classroom"
                     style="@style/MineMenuBottomStyle">
 
@@ -156,9 +151,9 @@
                         android:text="@string/classroom"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
-                </RelativeLayout>
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_mine_join_topic"
                     style="@style/MineMenuBottomStyle">
 
@@ -178,9 +173,9 @@
                         android:text="@string/topics"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
-                </RelativeLayout>
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_mine_talk"
                     style="@style/MineMenuBottomStyle">
 
@@ -200,7 +195,7 @@
                         android:text="@string/questions_answers"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
-                </RelativeLayout>
+                </com.ipd.taxiu.widget.CircleMenuLayout>
             </LinearLayout>
 
         </LinearLayout>

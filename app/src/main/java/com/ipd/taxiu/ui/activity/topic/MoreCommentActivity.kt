@@ -11,6 +11,7 @@ import com.ipd.taxiu.event.UpdateTaxiuDetailCommentEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.presenter.store.MoreCommentPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.ui.activity.referral.HomepageActivity
 import com.ipd.taxiu.widget.CommentsView
 import com.ipd.taxiu.widget.ReplyDialog
 import kotlinx.android.synthetic.main.activity_more_recommend.*
@@ -69,6 +70,10 @@ class MoreCommentActivity : BaseUIActivity(), MoreCommentPresenter.IMoreCommentV
 
     override fun loadDetailSuccess(needProgress: Boolean, info: MoreCommentReplyBean) {
         if (needProgress) showContent()
+        civ_sub_publisher_avatar.setOnClickListener {
+            HomepageActivity.launch(mActivity, info.USER_ID)
+        }
+
         ImageLoader.loadAvatar(mActivity, info.LOGO, civ_sub_publisher_avatar)
         tv_nickname.text = info.NICKNAME
         tv_answer_content.text = info.CONTENT

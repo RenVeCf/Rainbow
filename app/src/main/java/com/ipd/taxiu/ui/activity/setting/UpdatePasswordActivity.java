@@ -1,15 +1,12 @@
 package com.ipd.taxiu.ui.activity.setting;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 
@@ -20,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * Created by Miss on 2018/7/24
  * 修改登录密码
  */
-public class UpdatePasswordActivity extends BaseUIActivity implements View.OnClickListener,MinePresenter.IUpdatePwdView{
+public class UpdatePasswordActivity extends BaseUIActivity implements View.OnClickListener, MinePresenter.IUpdatePwdView {
     private TextView btn_submit;
     private TextView tips;
     private EditText et_original_password, et_new_password, et_affirm_new_password;
@@ -46,7 +43,7 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
     protected void onViewAttach() {
         super.onViewAttach();
         mPresenter = new MinePresenter();
-        mPresenter.attachView(this,this);
+        mPresenter.attachView(this, this);
     }
 
     @Override
@@ -79,12 +76,12 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
         String affirmPassword = et_affirm_new_password.getText().toString();
         switch (v.getId()) {
             case R.id.btn_submit:
-                if (originalPassword.equals("")){
+                if (originalPassword.equals("")) {
                     tips.setVisibility(View.VISIBLE);
                     tips.setText("原密码不能为空");
                     return;
                 }
-                if (!CommonUtils.passwordIsLegal(newPassword)){
+                if (!CommonUtils.passwordIsLegal(newPassword)) {
                     tips.setVisibility(View.VISIBLE);
                     tips.setText("请输入新登录密码(数字+字母组合)");
                     return;
@@ -99,7 +96,7 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
                     tips.setText("两次密码不一致");
                     return;
                 }
-                mPresenter.updatePwd(newPassword,originalPassword);
+                mPresenter.updatePwd(newPassword, originalPassword);
                 break;
 
         }
@@ -108,7 +105,7 @@ public class UpdatePasswordActivity extends BaseUIActivity implements View.OnCli
     @Override
     public void updateSuccess() {
         tips.setVisibility(View.GONE);
-        toastShow("修改成功");
+        toastShow(true, "修改成功");
         finish();
     }
 

@@ -24,7 +24,7 @@
                 android:paddingBottom="@dimen/base_padding"
                 android:paddingTop="@dimen/base_padding">
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_pay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -45,21 +45,9 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
-                    <TextView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_toRightOf="@id/wait_pay"
-                        android:background="@drawable/shape_message_bg"
-                        android:layout_marginLeft="3dp"
-                        android:gravity="center"
-                        android:text="99+"
-                        android:textColor="@color/white"
-                        android:textSize="8sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_shipments"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -80,20 +68,9 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                    <TextView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_toRightOf="@id/wait_shipments"
-                        android:background="@drawable/shape_message_bg"
-                        android:layout_marginLeft="3dp"
-                        android:gravity="center"
-                        android:text="99+"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:visibility="invisible" />
-                </RelativeLayout>
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
-                <RelativeLayout
+                <com.ipd.taxiu.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_delivery"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -114,18 +91,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                    <TextView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_toRightOf="@id/wait_delivery"
-                        android:background="@drawable/shape_message_bg"
-                        android:layout_marginLeft="3dp"
-                        android:gravity="center"
-                        android:text="99+"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:visibility="invisible" />
-                </RelativeLayout>
+                </com.ipd.taxiu.widget.CircleMenuLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_off_the_stocks"
@@ -148,17 +114,6 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                    <TextView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_toRightOf="@id/off_the_stocks"
-                        android:background="@drawable/shape_message_bg"
-                        android:layout_marginLeft="3dp"
-                        android:gravity="center"
-                        android:text="1"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:visibility="invisible" />
                 </RelativeLayout>
 
                 <View

@@ -13,6 +13,7 @@ import com.ipd.taxiu.bean.CommentReplyBean
 import com.ipd.taxiu.bean.TopicCommentReplyBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.ui.activity.PictureLookActivity
+import com.ipd.taxiu.ui.activity.referral.HomepageActivity
 import com.ipd.taxiu.utils.ReplyType
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.User
@@ -88,6 +89,10 @@ class TopicPeopleCommentAdapter(val context: Context, val detailData: CommentDet
 
                 //关注
                 setAttent(position, holder.itemView.ll_attent)
+
+                holder.itemView.civ_publisher_avatar.setOnClickListener {
+                    HomepageActivity.launch(context as Activity,detailData.USER_ID)
+                }
 
             }
             ItemType.COMMENT -> {
