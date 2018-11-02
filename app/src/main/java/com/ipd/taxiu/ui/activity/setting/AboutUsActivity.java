@@ -13,8 +13,6 @@ import com.ipd.taxiu.utils.HtmlImageGetter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Miss on 2018/7/24
@@ -23,7 +21,6 @@ import butterknife.ButterKnife;
 public class AboutUsActivity extends BaseUIActivity implements TextPresenter.ITextView{
     private TextPresenter mPresenter;
 
-    @BindView(R.id.company_explain)
     TextView textView;
 
     @Override
@@ -47,8 +44,8 @@ public class AboutUsActivity extends BaseUIActivity implements TextPresenter.ITe
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         initToolbar();
+        textView = findViewById(R.id.company_explain);
     }
 
     @Override

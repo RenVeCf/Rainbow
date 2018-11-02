@@ -20,8 +20,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -30,7 +28,7 @@ import kotlin.jvm.functions.Function1;
  * Created by jumpbox on 2017/8/7.
  */
 
-public class PictureLookActivity extends BaseActivity {
+public class PictureLookActivity extends BaseActivity implements View.OnClickListener {
 
     private ArrayList<String> mPictureList;
     private int mCurPos;
@@ -69,8 +67,8 @@ public class PictureLookActivity extends BaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         view_pager = findViewById(R.id.view_pager);
+        tv_index = findViewById(R.id.tv_index);
         tv_index = findViewById(R.id.tv_index);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -96,6 +94,8 @@ public class PictureLookActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        findViewById(R.id.iv_back).setOnClickListener(this);
+
         view_pager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -170,7 +170,7 @@ public class PictureLookActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:

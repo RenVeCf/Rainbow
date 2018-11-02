@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.KeyEvent
 import com.ipd.jumpbox.jumpboxlibrary.utils.LoadingUtils
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.trimvideo.TrimVideoListener
@@ -65,6 +66,7 @@ class VideoTrimmerActivity : BaseUIActivity(), TrimVideoListener {
     }
 
     override fun onStartTrim() {
+        LogUtils.e("tag", "onStartTrim")
         LoadingUtils.show(mActivity, "裁剪中...")
         LoadingUtils.setOnKeyListener { dialog, keyCode, event ->
             if (event.keyCode == KeyEvent.KEYCODE_BACK) {
@@ -76,10 +78,10 @@ class VideoTrimmerActivity : BaseUIActivity(), TrimVideoListener {
 
     override fun onFinishTrim(url: String) {
         LoadingUtils.dismiss()
-        if (!TextUtils.isEmpty(url)){
+        if (!TextUtils.isEmpty(url)) {
             VideoCoverActivity.launch(mActivity, url)
             finish()
-        }else{
+        } else {
             toastShow("视频不存在")
         }
     }
@@ -92,4 +94,6 @@ class VideoTrimmerActivity : BaseUIActivity(), TrimVideoListener {
     override fun onCancel() {
         finish()
     }
+
+
 }

@@ -51,7 +51,7 @@ object TrimVideoUtil {
         val command = cmd.split(" ").toTypedArray()
 
         callback.onStartTrim()
-        FFmpegApi.exec(command, { ret ->
+        FFmpegApi.exec(command) { ret ->
             FFmpegApi.removeListener()
             UiThreadExecutor.runTask("", {
                 if (ret == 0) {
@@ -61,7 +61,7 @@ object TrimVideoUtil {
                 }
             }, 0L)
 
-        })
+        }
 
     }
 

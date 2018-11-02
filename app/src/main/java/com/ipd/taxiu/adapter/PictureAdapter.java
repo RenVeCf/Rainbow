@@ -29,8 +29,6 @@ import com.ipd.taxiu.widget.RoundImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by jumpbox on 2017/7/23.
@@ -147,18 +145,17 @@ public class PictureAdapter extends BaseAdapter<PictureAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.iv_image)
         RoundImageView iv_image;
-        @BindView(R.id.progress_bar)
         ProgressBar progress_bar;
-        @BindView(R.id.tv_error)
         TextView tv_error;
-        @BindView(R.id.iv_delete)
         ImageView iv_delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            iv_image = itemView.findViewById(R.id.iv_image);
+            progress_bar = itemView.findViewById(R.id.progress_bar);
+            tv_error = itemView.findViewById(R.id.tv_error);
+            iv_delete = itemView.findViewById(R.id.iv_delete);
         }
     }
 

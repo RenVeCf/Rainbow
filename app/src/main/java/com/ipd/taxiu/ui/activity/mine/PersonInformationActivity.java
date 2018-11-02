@@ -1,32 +1,22 @@
 package com.ipd.taxiu.ui.activity.mine;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.bean.BaseResult;
-import com.ipd.taxiu.bean.LocalPictureBean;
-import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.bean.UserBean;
 import com.ipd.taxiu.imageload.ImageLoader;
-import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.platform.http.HttpUpload;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
@@ -39,20 +29,9 @@ import com.ipd.taxiu.widget.PickerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 
 /**
@@ -66,16 +45,12 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     private String path = "";
 
     private MinePresenter mPresenter;
-    @BindView(R.id.civ_header)
     CircleImageView civ_header;
 
-    @BindView(R.id.tv_nickname)
     EditText tv_nickname;
 
-    @BindView(R.id.et_phone_number)
     TextView et_phone_number;
 
-    @BindView(R.id.et_name)
     EditText et_name;
 
     @Override
@@ -85,12 +60,15 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         initToolbar();
         tv_birthday = findViewById(R.id.tv_birthday);
         tv_sex = findViewById(R.id.tv_sex);
         tv_how_long = findViewById(R.id.tv_how_long);
         tv_person_tag = findViewById(R.id.tv_person_tag);
+        civ_header = findViewById(R.id.civ_header);
+        tv_nickname = findViewById(R.id.tv_nickname);
+        et_phone_number = findViewById(R.id.et_phone_number);
+        et_name = findViewById(R.id.et_name);
     }
 
     @Override
@@ -176,7 +154,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 break;
             case R.id.tv_person_tag:
                 Intent intent = new Intent(this, EditTagActivity.class);
-                intent.putExtra("Tag",tv_person_tag.getText().toString());
+                intent.putExtra("Tag", tv_person_tag.getText().toString());
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
         }
@@ -233,7 +211,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     @Override
     public void getInfoSuccess(@NotNull UserBean data) {
         if (data != null) {
-            ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL+data.LOGO, civ_header);
+            ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL + data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
             et_phone_number.setText(data.PHONE);
             et_name.setText(data.USERNAME);

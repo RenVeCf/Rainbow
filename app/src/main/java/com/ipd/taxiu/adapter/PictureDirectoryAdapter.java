@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.LocalDirectoryBean;
 import com.ipd.taxiu.imageload.ImageLoader;
@@ -16,8 +15,6 @@ import com.ipd.taxiu.utils.BaseAdapter;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by jumpbox on 2017/7/23.
@@ -42,7 +39,7 @@ public class PictureDirectoryAdapter extends BaseAdapter<PictureDirectoryAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv_directory_name.setText(list.get(position).showName);
-        ImageLoader.loadImgFromLocal(mContext,list.get(position).firstPicturePath,holder.iv_local_picture);
+        ImageLoader.loadImgFromLocal(mContext, list.get(position).firstPicturePath, holder.iv_local_picture);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,14 +55,13 @@ public class PictureDirectoryAdapter extends BaseAdapter<PictureDirectoryAdapter
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_directory_name)
         TextView tv_directory_name;
-        @BindView(R.id.iv_local_picture)
         ImageView iv_local_picture;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            tv_directory_name = itemView.findViewById(R.id.tv_directory_name);
+            iv_local_picture = itemView.findViewById(R.id.iv_local_picture);
         }
     }
 }

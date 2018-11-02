@@ -22,8 +22,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Miss on 2018/7/27
@@ -34,25 +32,18 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
     private PetPresenter mPresenter;
     private int petId, petKindId;
 
-    @BindView(R.id.civ_header)
     CircleImageView civ_header;
 
-    @BindView(R.id.tv_pet_name)
     TextView tv_pet_name;
 
-    @BindView(R.id.tv_pet_kind)
     TextView tv_pet_kind;
 
-    @BindView(R.id.tv_pet_birthday)
     TextView tv_pet_birthday;
 
-    @BindView(R.id.tv_pet_sex)
     TextView tv_pet_sex;
 
-    @BindView(R.id.tv_pet_status)
     TextView tv_pet_status;
 
-    @BindView(R.id.icon_sex)
     ImageView icon_sex;
 
     @Override
@@ -62,11 +53,17 @@ public class PetInformationActivity extends BaseUIActivity implements View.OnCli
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         initToolbar();
         petId = getIntent().getIntExtra("PET_ID", 0);
         petKindId = getIntent().getIntExtra("PET_TYPE_ID", 0);
         btn_delete_pet = findViewById(R.id.btn_delete_pet);
+        civ_header = findViewById(R.id.civ_header);
+        tv_pet_name = findViewById(R.id.tv_pet_name);
+        tv_pet_kind = findViewById(R.id.tv_pet_kind);
+        tv_pet_birthday = findViewById(R.id.tv_pet_birthday);
+        tv_pet_sex = findViewById(R.id.tv_pet_sex);
+        tv_pet_status = findViewById(R.id.tv_pet_status);
+        icon_sex = findViewById(R.id.icon_sex);
     }
 
     @Override

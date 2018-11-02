@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.bean.LocalPictureBean;
 import com.ipd.taxiu.bean.PictureBean;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.ui.activity.PhotoSelectActivity;
@@ -27,8 +26,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by jumpbox on 2017/7/23.
@@ -109,12 +106,12 @@ public class PictureEvaluateAdapter extends BaseAdapter<PictureEvaluateAdapter.V
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mOnClickListener != null){
+                if (mOnClickListener != null) {
                     mOnClickListener.onClick();
                 }
                 if (position == list.size()) {
                     //添加图片
-                   choosePicture();
+                    choosePicture();
                 }
 //                else {
 //                    lookPicture();
@@ -125,7 +122,7 @@ public class PictureEvaluateAdapter extends BaseAdapter<PictureEvaluateAdapter.V
         holder.iv_delete_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 showDeleteDialog(position);
+                showDeleteDialog(position);
             }
         });
     }
@@ -140,18 +137,17 @@ public class PictureEvaluateAdapter extends BaseAdapter<PictureEvaluateAdapter.V
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.iv_image)
         RoundImageView iv_image;
-        @BindView(R.id.progress_bar)
         ProgressBar progress_bar;
-        @BindView(R.id.tv_error)
         TextView tv_error;
-        @BindView(R.id.iv_delete_picture)
         ImageView iv_delete_picture;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            iv_image = itemView.findViewById(R.id.iv_image);
+            progress_bar = itemView.findViewById(R.id.progress_bar);
+            tv_error = itemView.findViewById(R.id.tv_error);
+            iv_delete_picture = itemView.findViewById(R.id.iv_delete_picture);
         }
     }
 

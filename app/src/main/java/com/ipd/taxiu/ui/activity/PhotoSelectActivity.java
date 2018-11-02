@@ -38,15 +38,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
  * Created by jumpbox on 2017/8/4.
  */
 
-public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPresenter.IPhotoSelectView, LocalPictureAdapter.OnItemSelectChangeListener, LocalPictureAdapter.OnTakePhotoListener {
+public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPresenter.IPhotoSelectView, LocalPictureAdapter.OnItemSelectChangeListener, LocalPictureAdapter.OnTakePhotoListener, View.OnClickListener {
 
     private int mMaxSize;
     public static final int REQUEST_CODE = 955;
@@ -63,12 +59,10 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
         activity.startActivityForResult(intent, requestCode);
     }
 
-    @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
-    @BindView(R.id.tv_selected)
     TextView tv_selected;
-    @BindView(R.id.tv_preview)
     TextView tv_preview;
+    TextView tv_directory;
 
 
     @Override
@@ -104,8 +98,11 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         initToolbar();
+        recycler_view = findViewById(R.id.recycler_view);
+        tv_selected = findViewById(R.id.tv_selected);
+        tv_preview = findViewById(R.id.tv_preview);
+        tv_directory = findViewById(R.id.tv_directory);
         mMaxSize = getIntent().getIntExtra("maxSize", 9);
     }
 
@@ -116,6 +113,9 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
 
     @Override
     protected void initListener() {
+        tv_directory.setOnClickListener(this);
+        tv_selected.setOnClickListener(this);
+        tv_preview.setOnClickListener(this);
 
     }
 
@@ -133,8 +133,6 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
         setOrNotifyAdapter();
     }
 
-    @BindView(R.id.tv_directory)
-    TextView tv_directory;
 
     @Override
     public void loadAllDirectorySuccess(final List<LocalDirectoryBean> directoryList) {
@@ -188,7 +186,7 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
 
     }
 
-    @OnClick({R.id.tv_directory, R.id.tv_selected, R.id.tv_preview})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_directory:

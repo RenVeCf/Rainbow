@@ -1,29 +1,16 @@
 package com.ipd.taxiu.ui.activity.mine;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
-import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
-import com.ipd.taxiu.platform.global.GlobalApplication;
 import com.ipd.taxiu.ui.BaseUIActivity;
-import com.ipd.taxiu.widget.ChooseSexDialog;
-import com.ipd.taxiu.widget.PickerUtil;
-import com.ipd.taxiu.widget.SettingHeaderDialog;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -32,7 +19,6 @@ import butterknife.ButterKnife;
  */
 public class EditTagActivity extends BaseUIActivity {
     private String tag;
-    @BindView(R.id.et_signature)
     EditText editText;
 
     @Override
@@ -42,9 +28,9 @@ public class EditTagActivity extends BaseUIActivity {
 
     @Override
     protected void initView(@Nullable Bundle bundle) {
-        ButterKnife.bind(this);
         initToolbar();
         tag = getIntent().getStringExtra("Tag");
+        editText = findViewById(R.id.et_signature);
     }
 
     @Override
@@ -74,7 +60,7 @@ public class EditTagActivity extends BaseUIActivity {
         if (id == R.id.item_save) {
             Intent intent = new Intent();
             intent.putExtra("signature", editText.getText().toString());
-            setResult(RESULT_OK,intent);
+            setResult(RESULT_OK, intent);
             finish();
         }
         return super.onOptionsItemSelected(item);
