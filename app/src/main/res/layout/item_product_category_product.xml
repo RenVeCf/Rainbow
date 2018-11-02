@@ -9,8 +9,7 @@
     <ImageView
         android:id="@+id/iv_category_img"
         android:layout_width="@dimen/product_category_img_size"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:0.58"
+        android:layout_height="@dimen/product_category_img_size"
         android:scaleType="fitXY"
         android:src="@mipmap/category_img"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -118,7 +118,7 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
 
 
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().storeGuessLike(StoreIndexBean.DOG, StoreType.GUESS_LIKE_INDEX, Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
+        return ApiManager.getService().cartRecommend(Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -147,8 +147,8 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
                 data?.addAll(0, mCartList!!)
             }
             data?.add(RecommendProductHeaderBean())//为您推荐
-            data?.addAll(result?.data ?: arrayListOf<ProductBean>())
         }
+        data?.addAll(result?.data ?: arrayListOf<ProductBean>())
     }
 
     override fun onRecommendProductItemClick(productBean: ProductBean) {

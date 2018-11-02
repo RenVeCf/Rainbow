@@ -10,18 +10,14 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ConfirmOrderProductAdapter
 import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.event.ChooseAddressEvent
+import com.ipd.taxiu.event.ChooseCouponEvent
 import com.ipd.taxiu.event.UpdateCartEvent
-import com.ipd.taxiu.platform.global.GlobalParam
-import com.ipd.taxiu.platform.http.ApiManager
-import com.ipd.taxiu.platform.http.Response
-import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.presenter.store.ConfirmOrderPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.address.DeliveryAddressActivity
 import com.ipd.taxiu.utils.AlipayUtils
 import com.ipd.taxiu.utils.WeChatUtils
 import com.ipd.taxiu.widget.ChoosePayTypeLayout
-import com.ipd.taxiu.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.layout_choose_address.*
 import kotlinx.android.synthetic.main.layout_confirm_order_other_info.*
@@ -102,7 +98,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     override fun loadData() {
         showProgress()
         if (mType == NORMAL) {
-            mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId,mIsGroup)
+            mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId, mIsGroup)
         } else {
             mPresenter?.spellCash(mActivityId, mNum, mProductId, mFormId)
         }
@@ -140,9 +136,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             val payType = choose_pay_type_layout.getPayType()
 
             if (mType == NORMAL) {
-                mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, 0, 0)
+                mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
             } else if (mType == SPELL) {
-                mPresenter?.spellConfirmOrder(mActivityId, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, 0, 0)
+                mPresenter?.spellConfirmOrder(mActivityId, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
             }
         }
         cv_address.setOnClickListener {
@@ -150,19 +146,21 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         }
         ll_coupon.setOnClickListener {
             //优惠券
-            ApiManager.getService().cartCoupon(GlobalParam.getUserIdOrJump(), mCartIds, mIsCart, mNum, mProductId, mFormId)
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<List<ExchangeBean>>>(mActivity, true) {
-                        override fun _onNext(result: BaseResult<List<ExchangeBean>>) {
-                            if (result.code == 0) {
-                                val couponDialog = ProductCouponDialog(mActivity)
-                                couponDialog.setData(result.data)
-                                couponDialog.show()
-                            } else {
-                                toastShow(result.msg)
-                            }
-                        }
-                    })
+            CartCouponActivity.launch(mActivity, mCartIds, mIsCart, mNum, mProductId, mFormId)
+//            ApiManager.getService().cartCoupon(GlobalParam.getUserIdOrJump(), mCartIds, mIsCart, mNum, mProductId, mFormId)
+//                    .compose(RxScheduler.applyScheduler())
+//                    .subscribe(object : Response<BaseResult<List<ExchangeBean>>>(mActivity, true) {
+//                        override fun _onNext(result: BaseResult<List<ExchangeBean>>) {
+//                            if (result.code == 0) {
+//                                val couponDialog = ProductCouponDialog(mActivity)
+//                                couponDialog.setData(result.data)
+//                                couponDialog.show()
+//                            } else {
+//                                toastShow(result.msg)
+//                            }
+//                        }
+//                    })
+
         }
 
         rg_invoice.setOnCheckedChangeListener { group, checkedId ->
@@ -181,7 +179,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
 
     }
 
+    private var mCartInfo: CartCashBean? = null
     override fun loadCartCashSuccess(info: CartCashBean) {
+        mCartInfo = info
         tv_product_info.text = "共${info.PRODUCT_NUM}件商品"
         tv_total_product_price.text = "￥${info.PRODUCT_TOTAL}"
         tv_express_fee.text = "+￥${info.POST_FEE}"
@@ -190,7 +190,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         tv_coupon_deduction.text = "￥${info.PREFER_FEE}"
 
         setAddressInfo(info.ADDRESS_DATA)
-        setCouponInfo(info.EXCHANGE_DATA)
+        setCouponInfo(couponInfo = info.EXCHANGE_DATA)
 
         //提示
         if (TextUtils.isEmpty(info.COUPON_TIP)) {
@@ -206,13 +206,43 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         })
 
         showContent()
-
     }
 
-    private fun setCouponInfo(couponInfo: ExchangeBean?) {
-        if (couponInfo != null && couponInfo!!.EXCHANGE_ID != 0) {
-            tv_coupon_use.setTextColor(resources.getColor(R.color.red))
-            tv_coupon_use.text = "满${couponInfo.SATISFY_PRICE}减${couponInfo.PRICE}"
+    private var mUseCoupon = 0
+    private var mCouponId = 0
+    private fun setCouponInfo(type: Int = 0, couponInfo: ExchangeBean?) {
+        if (type == 0) {
+            mUseCoupon = 0
+            mCouponId = 0
+            if (couponInfo != null && couponInfo!!.EXCHANGE_ID != 0) {
+                tv_coupon_use.setTextColor(resources.getColor(R.color.red))
+                tv_coupon_use.text = "满${couponInfo.SATISFY_PRICE}减${couponInfo.PRICE}"
+            } else {
+                tv_coupon_use.setTextColor(resources.getColor(R.color.LightGrey))
+                tv_coupon_use.text = "无优惠券可用"
+            }
+        } else {
+            if (couponInfo != null) {
+                mUseCoupon = 2
+                mCouponId = couponInfo.EXCHANGE_ID
+                tv_coupon_use.setTextColor(resources.getColor(R.color.red))
+                tv_coupon_use.text = "满${couponInfo.SATISFY_PRICE}减${couponInfo.PRICE}"
+
+                tv_actual_price.text = "￥${(mCartInfo?.PRODUCT_TOTAL
+                        ?: "0").toFloat().plus((mCartInfo?.POST_FEE
+                        ?: "0").toFloat().minus(couponInfo.PRICE.toFloat()))}"
+                tv_coupon_deduction.text = "￥${couponInfo.PRICE}"
+            } else {
+                mUseCoupon = 1
+                mCouponId = 0
+                tv_coupon_use.setTextColor(resources.getColor(R.color.LightGrey))
+                tv_coupon_use.text = "不使用优惠券"
+
+                tv_actual_price.text = "￥${(mCartInfo?.PRODUCT_TOTAL
+                        ?: "0").toFloat().plus((mCartInfo?.POST_FEE ?: "0").toFloat())}"
+                tv_coupon_deduction.text = "￥0.00"
+            }
+
         }
     }
 
@@ -277,6 +307,11 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     @Subscribe
     fun onMainEvent(event: ChooseAddressEvent) {
         setAddressInfo(event.addressInfo)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: ChooseCouponEvent) {
+        setCouponInfo(1, event.couponInfo)
     }
 
     override fun onDestroy() {

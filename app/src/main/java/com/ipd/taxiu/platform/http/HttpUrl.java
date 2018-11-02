@@ -67,6 +67,7 @@ public interface HttpUrl {
     String CART_CASH = "app_cart/toCash.do";
     String CART_COUPON = "app_cart/couponList.do";
     String CART_CONFIRM_ORDER = "app_cart/submit.do";
+    String CART_RECOMMEND = "app_shop/recomList.do";
 
 
     //order

@@ -891,6 +891,13 @@ public interface ApiService {
                                                         @Field("PRODUCT_ID") int PRODUCT_ID,
                                                         @Field("FORM_ID") int FORM_ID);
 
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CART_RECOMMEND)
+    Observable<BaseResult<List<ProductBean>>> cartRecommend(@Field("COUNT") int count,
+                                                            @Field("USER_ID") String user_id,
+                                                            @Field("PAGE") int page);
+
     /**
      * order
      */

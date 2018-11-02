@@ -101,6 +101,7 @@
 
         <!-- trade-->
         <activity android:name=".ui.activity.trade.ConfirmOrderActivity" />
+        <activity android:name=".ui.activity.trade.CartCouponActivity" />
 
         <!-- store-->
         <activity android:name=".ui.activity.store.StoreSecondIndexActivity" />

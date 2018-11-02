@@ -25,8 +25,9 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
 
     object ItemType {
         const val TITLE = 0
-        const val CONTENT = 1
         const val ALL = 2
+        const val PRODUCT = 1
+        const val BRAND = 3
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -37,8 +38,11 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
             is ProductCategoryAllBean -> {
                 ItemType.ALL
             }
+            is ProductCategoryChildBean.TIPBean -> {
+                ItemType.PRODUCT
+            }
             else -> {
-                ItemType.CONTENT
+                ItemType.BRAND
             }
         }
     }
@@ -50,6 +54,9 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
             }
             ItemType.ALL -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category_all, parent, false))
+            }
+            ItemType.PRODUCT -> {
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category_product, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_category, parent, false))
@@ -76,7 +83,7 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
                     }
                 }
             }
-            ItemType.CONTENT -> {
+            else -> {
                 val info = list!![position]
                 if (info is ProductCategoryChildBean.TIPBean) {
                     ImageLoader.loadNoPlaceHolderImg(context, info.ICON, holder.itemView.iv_category_img)
@@ -92,6 +99,7 @@ class ProductCategoryAdapter(val context: Context, private val list: List<Any>?,
                     }
                 }
             }
+
         }
 
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.ipd.taxiu.widget.TwitterRefreshHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_refresh_header"
     android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tvRefresh"
             android:background="@mipmap/refresh_icon" />
 
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tvRefresh"
             android:background="@mipmap/qq_refresh_success" />
 
@@ -34,10 +35,10 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tvRefresh"
+            wheel:matProg_barColor="?attr/colorPrimaryDark"
             wheel:matProg_barWidth="2dp"
-            wheel:matProg_barColor="#333"
             wheel:matProg_progressIndeterminate="true" />
 
         <TextView
@@ -46,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textColor="?attr/colorPrimaryDark" />
+            android:textColor="#333"
+            tools:text="下拉开始刷新" />
     </RelativeLayout>
 
 </com.ipd.taxiu.widget.TwitterRefreshHeaderView>
