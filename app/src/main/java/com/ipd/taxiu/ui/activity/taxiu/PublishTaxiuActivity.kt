@@ -116,13 +116,33 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
         }
     }
 
+
     private var lables: List<TaxiuLableBean>? = null
     override fun loadTaxiuLableSuccess(lables: List<TaxiuLableBean>) {
         this.lables = lables
-        lables.forEach {
-            lable_layout.addView(it)
+
+        setLable()
+        ll_lable_title.setOnClickListener {
+            isShowMore = !isShowMore
+            iv_show_more.setImageResource(if (isShowMore) R.mipmap.arrow_top_gray else R.mipmap.arrow_bottom_gray)
+            setLable()
         }
 
+    }
+
+    private var isShowMore: Boolean = false
+    private val maxNum = 10
+    private fun setLable() {
+        lable_layout.removeAllViews()
+        if (lables?.size ?: 0 > maxNum && !isShowMore) {
+            for (index in 0 until maxNum) {
+                lable_layout.addView(lables!![index])
+            }
+        } else {
+            lables?.forEach {
+                lable_layout.addView(it)
+            }
+        }
     }
 
     override fun loadTaxiuLableFail(errMsg: String) {
