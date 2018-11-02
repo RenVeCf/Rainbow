@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,7 @@
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
         android:paddingTop="@dimen/small_padding"
-        android:paddingBottom="@dimen/small_padding"/>
+        android:paddingBottom="@dimen/small_padding" />
 
     <TextView
         android:id="@+id/tv_coupon_name"
@@ -19,35 +20,37 @@
         android:background="@color/white"
         android:padding="@dimen/base_padding" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl_coupon_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_coupon_name"
         android:background="@color/white"
-        android:paddingBottom="@dimen/base_padding"
-        android:paddingLeft="@dimen/base_padding">
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding">
 
         <TextView
             android:id="@+id/tv_integral_num"
             style="@style/BaseTextStyle"
-            android:textColor="@color/red" />
+            android:textColor="@color/red"
+            tools:text="100" />
 
         <TextView
             style="@style/SmallTextStyle"
             android:layout_marginLeft="@dimen/small_padding"
-            android:layout_toRightOf="@id/tv_integral_num"
             android:text="积分"
             android:textColor="@color/text_gray" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/btn_exchange"
         android:layout_below="@id/rl_coupon_info"
         android:layout_marginTop="@dimen/small_padding"
-        android:scrollbars="none"
-        android:layout_above="@id/btn_exchange">
+        android:scrollbars="none">
 
         <RelativeLayout
 
@@ -95,8 +98,8 @@
         android:layout_margin="@dimen/base_padding"
         android:background="@drawable/shape_buy_bg"
         android:gravity="center"
-        android:paddingBottom="@dimen/small_padding"
-        android:paddingTop="@dimen/small_padding"
+        android:paddingTop="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding"
         android:text="我要兑换"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />

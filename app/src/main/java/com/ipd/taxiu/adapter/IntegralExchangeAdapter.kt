@@ -27,10 +27,10 @@ class IntegralExchangeAdapter(val context: Context, private val data: List<Excha
         holder?.itemView?.tv_integral_num?.text = data[position].SCORE.toString()
         var category:Int = data[position].CATEGORY
         if (category == 1) {
-            holder?.itemView?.tv_discount_coupon_name?.text = data[position].SATISFY_PRICE.toString() + "元 单品类优惠券"
+            holder?.itemView?.tv_discount_coupon_name?.text = data[position].PRICE.toString() + "元 单品类优惠券"
         }
         if (category == 2) {
-            holder?.itemView?.tv_discount_coupon_name?.text = data[position].SATISFY_PRICE.toString() + "元 全品类优惠券"
+            holder?.itemView?.tv_discount_coupon_name?.text = data[position].PRICE.toString() + "元 全品类优惠券"
         }
         ImageLoader.loadImgFromLocal(context,HttpUrl.IMAGE_URL+data[position].LOGO, holder?.itemView?.iv_discount_coupon)
 

@@ -210,7 +210,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     }
 
     private fun setCouponInfo(couponInfo: ExchangeBean?) {
-        if (couponInfo != null && couponInfo!!.COUPON_ID != 0) {
+        if (couponInfo != null && couponInfo!!.EXCHANGE_ID != 0) {
             tv_coupon_use.setTextColor(resources.getColor(R.color.red))
             tv_coupon_use.text = "满${couponInfo.SATISFY_PRICE}减${couponInfo.PRICE}"
         }

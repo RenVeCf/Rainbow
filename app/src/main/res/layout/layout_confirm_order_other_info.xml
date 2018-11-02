@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:button="@drawable/selector_invoice_cb"
             android:paddingLeft="5dp"
-            android:text="企业"
+            android:text="单位"
             android:textColor="@color/LightGrey" />
 
 

@@ -28,7 +28,11 @@ class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?, val 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_image)
         mContentView.iv_play.visibility = if (info.isVideo) View.VISIBLE else View.GONE
         mContentView.setOnClickListener {
-            BannerUtils.setBannerItemClick(context, info)
+            if (itemClick != null) {
+                itemClick.invoke(position, info)
+            } else {
+                BannerUtils.setBannerItemClick(context, info)
+            }
         }
         container.addView(mContentView)
         return mContentView

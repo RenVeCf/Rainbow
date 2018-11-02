@@ -2,6 +2,7 @@ package com.ipd.taxiu
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.activity.account.LoginActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
+
 
 /**
  * Created by jumpbox on 2018/5/9.
@@ -27,9 +29,17 @@ class WelcomeActivity : BaseActivity() {
     override fun getBaseLayout(): Int = R.layout.activity_welcome
 
     override fun initView(bundle: Bundle?) {
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+        if (Build.VERSION.SDK_INT in 12..18) { // lower api
+            val v = this.window.decorView
+            v.systemUiVisibility = View.GONE
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            val decorView = window.decorView
+            val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN)
+            decorView.systemUiVisibility = uiOptions
+
+        }
     }
 
     override fun loadData() {

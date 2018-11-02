@@ -19,6 +19,7 @@ package com.ipd.taxiu.bean;
  * "STATUS": 1
  */
 public class ExchangeBean {
+    public int EXCHANGE_ID;
     public int COUPON_ID;
     public int KIND;
     public int CATEGORY;

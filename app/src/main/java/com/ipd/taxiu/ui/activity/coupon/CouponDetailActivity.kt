@@ -82,10 +82,10 @@ class CouponDetailActivity : BaseUIActivity(), CouponPresenter.ICouponInfoView, 
     override fun getInfoSuccess(data: ExchangeBean) {
         val category = data.CATEGORY
         if (category == 1) {
-            tv_coupon_name.text = data.SATISFY_PRICE.toString() + "元 单品类优惠券"
+            tv_coupon_name.text = data.PRICE.toString() + "元 单品类优惠券"
         }
         if (category == 2) {
-            tv_coupon_name.text = data.SATISFY_PRICE.toString() + "元 全品类优惠券"
+            tv_coupon_name.text = data.PRICE.toString() + "元 全品类优惠券"
         }
         tv_integral_num.text = data.SCORE.toString()
         tv_instructions.text = Html.fromHtml(data.CONTENT, HtmlImageGetter(this, tv_instructions), null)

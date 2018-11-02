@@ -5,10 +5,10 @@
     style="@style/SmallTextStyle"
     android:background="@drawable/selector_product_model_lable"
     android:gravity="center"
-    android:paddingBottom="6dp"
-    android:paddingLeft="@dimen/small_padding"
-    android:paddingRight="@dimen/small_padding"
-    android:paddingTop="6dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="4dp"
     android:text="泰迪犬"
     android:textColor="@drawable/selector_product_model_lable_text_color" />
 

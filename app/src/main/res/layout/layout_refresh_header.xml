@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="48dp"
             android:layout_toLeftOf="@+id/tvRefresh"
-            android:background="@mipmap/twitter_pull_arrow" />
+            android:background="@mipmap/refresh_icon" />
 
         <ImageView
             android:id="@+id/ivSuccess"
@@ -37,7 +37,7 @@
             android:layout_marginRight="48dp"
             android:layout_toLeftOf="@+id/tvRefresh"
             wheel:matProg_barWidth="2dp"
-            wheel:matProg_barColor="?attr/colorPrimaryDark"
+            wheel:matProg_barColor="#333"
             wheel:matProg_progressIndeterminate="true" />
 
         <TextView
