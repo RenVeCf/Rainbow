@@ -28,6 +28,7 @@ public class ExchangeHisBean {
     public int SATISFY_PRICE;
     public int SCORE;
     public int PRODUCT_ID;
+    public int FORM_ID;
     public String CONTENT;
     public int TYPE;
     public String START_TIME;

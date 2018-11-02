@@ -16,6 +16,7 @@ import com.ipd.taxiu.bean.ClassRoomResult;
 import com.ipd.taxiu.bean.CommentDetailBean;
 import com.ipd.taxiu.bean.CommentResult;
 import com.ipd.taxiu.bean.EarningsResult;
+import com.ipd.taxiu.bean.EvaluateResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.FlashSaleProductBean;
@@ -678,12 +679,12 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_EVALUATE_LIST)
-    Observable<BaseResult<List<ProductEvaluateBean>>> storeProductEvaluateList(@Field("USER_ID") String user_id,
-                                                                               @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                                               @Field("FORM_ID") int FORM_ID,
-                                                                               @Field("TYPE") int TYPE,
-                                                                               @Field("PAGE") int PAGE,
-                                                                               @Field("COUNT") int COUNT);
+    Observable<EvaluateResult<List<ProductEvaluateBean>>> storeProductEvaluateList(@Field("USER_ID") String user_id,
+                                                                                   @Field("PRODUCT_ID") int PRODUCT_ID,
+                                                                                   @Field("FORM_ID") int FORM_ID,
+                                                                                   @Field("TYPE") int TYPE,
+                                                                                   @Field("PAGE") int PAGE,
+                                                                                   @Field("COUNT") int COUNT);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_EVALUATE_LABLE_LIST)
@@ -846,7 +847,8 @@ public interface ApiService {
                                                   @Field("IS_CART") int IS_CART,
                                                   @Field("NUM") int NUM,
                                                   @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                  @Field("FORM_ID") int FORM_ID);
+                                                  @Field("FORM_ID") int FORM_ID,
+                                                  @Field("IS_GROUP") int IS_GROUP);
 
     @FormUrlEncoded
     @POST(HttpUrl.CART_COUPON)

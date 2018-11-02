@@ -17,8 +17,8 @@ class ConfirmOrderPresenter : BasePresenter<ConfirmOrderPresenter.IConfirmOrderV
     }
 
 
-    fun cartCash(cartIds: String, isCart: Int, num: Int, productId: Int, formId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().cartCash(GlobalParam.getUserIdOrJump(), cartIds, 0, 0, 0, isCart, num, productId, formId),
+    fun cartCash(cartIds: String, isCart: Int, num: Int, productId: Int, formId: Int, isGroup: Boolean) {
+        mModel?.getNormalRequestData(ApiManager.getService().cartCash(GlobalParam.getUserIdOrJump(), cartIds, 0, 0, 0, isCart, num, productId, formId, if (isGroup) 1 else 0),
                 object : Response<BaseResult<CartCashBean>>() {
                     override fun _onNext(result: BaseResult<CartCashBean>) {
                         if (result.code == 0) {

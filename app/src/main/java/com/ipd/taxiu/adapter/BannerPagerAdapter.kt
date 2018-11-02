@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BannerBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.utils.BannerUtils
 import kotlinx.android.synthetic.main.layout_banner.view.*
 
 class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?, val itemClick: ((pos: Int, info: BannerBean) -> Unit)? = null) : PagerAdapter() {
@@ -27,7 +28,7 @@ class BannerPagerAdapter(val context: Context, val list: List<BannerBean>?, val 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_image)
         mContentView.iv_play.visibility = if (info.isVideo) View.VISIBLE else View.GONE
         mContentView.setOnClickListener {
-            itemClick?.invoke(position, info)
+            BannerUtils.setBannerItemClick(context, info)
         }
         container.addView(mContentView)
         return mContentView

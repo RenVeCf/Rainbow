@@ -14,6 +14,7 @@ public class OrderBean {
     public String POST_INFO;
     public int PAYWAY;
     public String PAY_FEE;
+    public String PAYABLE_FEE;
     @SerializedName("STATUS")
     public int status;
     public List<ProductBean> PRODUCT_LIST;

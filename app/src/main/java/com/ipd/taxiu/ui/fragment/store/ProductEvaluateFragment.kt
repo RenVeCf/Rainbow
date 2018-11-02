@@ -8,9 +8,7 @@ import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ProductEvaluateAdapter
-import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.ProductEvaluateBean
-import com.ipd.taxiu.bean.ProductEvaluateLableBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -22,7 +20,7 @@ import com.ipd.taxiu.widget.ProgressLayout
 import kotlinx.android.synthetic.main.fragment_product_evaluate_list.view.*
 import rx.Observable
 
-class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean>>, ProductEvaluateBean>() {
+class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluateBean>>, Any>() {
     companion object {
         fun newInstance(productId: Int, formId: Int): ProductEvaluateFragment {
             val topicListFragment = ProductEvaluateFragment()
@@ -97,12 +95,12 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
     }
 
 
-    override fun loadListData(): Observable<BaseResult<List<ProductEvaluateBean>>> {
+    override fun loadListData(): Observable<EvaluateResult<List<ProductEvaluateBean>>> {
         val type = mScreenList?.get(mContentView.product_evaluate_view.getCheckedPos())?.TYPE ?: 0
         return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, type, page, Constant.PAGE_SIZE)
     }
 
-    override fun isNoMoreData(result: BaseResult<List<ProductEvaluateBean>>): Int {
+    override fun isNoMoreData(result: EvaluateResult<List<ProductEvaluateBean>>): Int {
         if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
             return EMPTY_DATA
         } else if (result.data == null || result.data.isEmpty()) {
@@ -118,11 +116,11 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
                 //itemClick
 
             })
-            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-                    outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
-                }
-            })
+//            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
+//                override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+//                    outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
+//                }
+//            })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -130,7 +128,10 @@ class ProductEvaluateFragment : ListFragment<BaseResult<List<ProductEvaluateBean
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: BaseResult<List<ProductEvaluateBean>>) {
+    override fun addData(isRefresh: Boolean, result: EvaluateResult<List<ProductEvaluateBean>>) {
+        if (isRefresh) {
+            data?.add(ProductEvaluateHeaderBean(result.total, result.GOOD_PERCENT))
+        }
         data?.addAll(result?.data ?: arrayListOf())
     }
 

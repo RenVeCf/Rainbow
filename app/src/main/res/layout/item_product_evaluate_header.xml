@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/small_padding"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_evaluate_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/layout_option_package">
+
+
+        <TextView
+            android:id="@+id/tv_evaluate_num"
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            tools:text="商品评价（4672）" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="好评率"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            android:id="@+id/tv_evaluate_percent"
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/red"
+            tools:text="98%" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/ViewLine"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding" />
+
+
+</LinearLayout>
+

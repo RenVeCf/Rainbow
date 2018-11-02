@@ -28,8 +28,8 @@
             style="@style/TitleTextStyle"
             android:layout_width="0dp"
             android:layout_marginLeft="@dimen/base_padding"
-            android:layout_marginRight="@dimen/base_padding"
             android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginRight="@dimen/base_padding"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期母犬及幼犬适用 3kg"
@@ -115,11 +115,14 @@
             android:id="@+id/ll_coupon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
             android:orientation="horizontal"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
             app:layout_constraintLeft_toLeftOf="@id/tv_cart_product_name"
             app:layout_constraintRight_toRightOf="@id/tv_cart_product_name"
-            app:layout_constraintTop_toBottomOf="@id/view_line">
+            app:layout_constraintTop_toBottomOf="@id/view_line"
+            app:layout_goneMarginBottom="0dp"
+            app:layout_goneMarginTop="0dp">
 
             <TextView
                 style="@style/SmallTextStyle"
@@ -129,17 +132,17 @@
             <LinearLayout
                 android:id="@+id/ll_coupon_lable"
                 android:layout_width="0dp"
-                android:weightSum="3"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
             </LinearLayout>
 
             <TextView
                 style="@style/SmallTextStyle"
-                android:drawablePadding="5dp"
                 android:drawableRight="@mipmap/arrow_right"
+                android:drawablePadding="5dp"
                 android:text="领券"
                 android:textColor="@color/LightGrey" />
 
@@ -150,7 +153,6 @@
             android:id="@+id/cl_service"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
             android:background="#EFF3F6"
             android:orientation="horizontal"
             android:padding="@dimen/base_padding"
@@ -314,10 +316,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/small_padding"
                 android:background="@drawable/shape_order_btn_cancel"
-                android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
+                android:paddingTop="5dp"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/tv_all_evaluate"
@@ -344,8 +346,8 @@
             android:background="@color/window_bg_color"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/small_padding"
             android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
             app:layout_constraintTop_toBottomOf="@id/fl_evaluate">
 
             <ImageView

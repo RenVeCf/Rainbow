@@ -39,16 +39,18 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             val intent = Intent(activity, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 1)
             intent.putExtra("cartIds", cartIds)
+            intent.putExtra("isGroup", false)
             activity.startActivity(intent)
         }
 
-        fun launch(context: Context, productId: Int, formId: Int, num: Int, type: Int = NORMAL) {
+        fun launch(context: Context, productId: Int, formId: Int, num: Int, isGroup: Boolean, type: Int = NORMAL) {
             val intent = Intent(context, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 0)
             intent.putExtra("productId", productId)
             intent.putExtra("formId", formId)
             intent.putExtra("num", num)
             intent.putExtra("type", type)
+            intent.putExtra("isGroup", isGroup)
             context.startActivity(intent)
         }
 
@@ -60,6 +62,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             intent.putExtra("formId", formId)
             intent.putExtra("num", num)
             intent.putExtra("type", type)
+            intent.putExtra("isGroup", false)
             context.startActivity(intent)
         }
     }
@@ -91,6 +94,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     private val mFormId: Int by lazy { intent.getIntExtra("formId", 0) }
     private val mNum: Int by lazy { intent.getIntExtra("num", 0) }
     private val mCartIds: String by lazy { intent.getStringExtra("cartIds") ?: "" }
+    private val mIsGroup: Boolean by lazy { intent.getBooleanExtra("isGroup", false) }
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
@@ -98,7 +102,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     override fun loadData() {
         showProgress()
         if (mType == NORMAL) {
-            mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId)
+            mPresenter?.cartCash(mCartIds, mIsCart, mNum, mProductId, mFormId,mIsGroup)
         } else {
             mPresenter?.spellCash(mActivityId, mNum, mProductId, mFormId)
         }

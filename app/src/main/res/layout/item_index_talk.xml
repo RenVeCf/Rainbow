@@ -2,13 +2,13 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="4dp"
     app:cardCornerRadius="10dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/base_padding">
 
 
@@ -16,6 +16,7 @@
             android:id="@+id/tv_title"
             style="@style/TitleTextStyle"
             android:ellipsize="end"
+            android:lines="2"
             android:maxLines="2"
             android:text="威尔士可基11个月大，昨天早上吃完狗粮就吐了，没有在意以为吃的没有在意以为吃的"
             app:layout_constraintHorizontal_bias="0"
@@ -46,10 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            app:layout_goneMarginTop="0dp"
             android:gravity="bottom"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/civ_publisher_avatar">
+            app:layout_constraintTop_toBottomOf="@id/civ_publisher_avatar"
+            app:layout_goneMarginTop="0dp">
 
 
             <TextView
@@ -70,7 +71,7 @@
                 style="@style/BaseTextStyle"
                 android:layout_marginLeft="4dp"
                 android:text="积分"
-                android:textColor="@color/LightGrey"/>
+                android:textColor="@color/LightGrey" />
 
         </LinearLayout>
 
@@ -85,8 +86,9 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_answer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/base_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_line">
 
 
@@ -94,6 +96,7 @@
                 android:id="@+id/tv_answer_content"
                 style="@style/BaseTextStyle"
                 android:ellipsize="end"
+                android:lines="3"
                 android:maxLines="3"
                 android:text="可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃可以吃益生菌调理肠胃"
                 android:textColor="@color/LightGrey" />
@@ -105,7 +108,7 @@
                 android:layout_height="@dimen/home_talk_avatar_size"
                 android:layout_marginTop="@dimen/small_padding"
                 android:src="@mipmap/talk_avatar2"
-                app:layout_constraintTop_toBottomOf="@id/tv_answer_content" />
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
             <TextView

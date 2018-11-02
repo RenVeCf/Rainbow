@@ -41,7 +41,7 @@ public class DiscountCouponFragment extends ListFragment<List<ExchangeHisBean>,E
     @NotNull
     @Override
     public Observable<List<ExchangeHisBean>> loadListData() {
-        return ApiManager.getService().couponList(Constant.PAGE_SIZE, GlobalParam.getUserId(),getPage(),0)
+        return ApiManager.getService().couponList(Constant.PAGE_SIZE, GlobalParam.getUserId(),getPage(),1)
                 .map(new Func1<BaseResult<List<ExchangeHisBean>>, List<ExchangeHisBean>>() {
                     @Override
                     public List<ExchangeHisBean> call(BaseResult<List<ExchangeHisBean>> listBaseResult) {

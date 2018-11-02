@@ -87,16 +87,18 @@ class ProductDetailTopFragment : BaseUIFragment() {
                 mContentView.ll_price.visibility = View.VISIBLE
                 mContentView.layout_option_package.visibility = View.GONE
 
-            }
-            StoreType.PRODUCT_GROUP_PRODUCT -> {
+
                 mContentView.ll_price.visibility = View.VISIBLE
 
+                if (mProductInfo.GROUP_LIST != null && mProductInfo.GROUP_LIST.isNotEmpty()) {
+                    //可选套餐
+                    setOptionPackage()
+                }
+
+            }
+            StoreType.PRODUCT_GROUP_PRODUCT -> {
                 //可选套餐
-                mContentView.layout_option_package.visibility = View.VISIBLE
-                mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
-                mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, mProductInfo.GROUP_LIST, {
-                    ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
-                })
+                setOptionPackage()
             }
             else -> {
                 mContentView.ll_price.visibility = View.GONE
@@ -154,9 +156,9 @@ class ProductDetailTopFragment : BaseUIFragment() {
             } else {
                 mContentView.image_recycler_view.visibility = View.VISIBLE
                 mContentView.image_recycler_view.layoutManager = GridLayoutManager(mActivity, 4)
-                mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC), { list, pos ->
+                mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC)) { list, pos ->
                     PictureLookActivity.launch(mActivity, ArrayList(list), pos, PictureLookActivity.URL)
-                })
+                }
             }
 
             mContentView.rl_all_evaluate.setOnClickListener {
@@ -169,6 +171,17 @@ class ProductDetailTopFragment : BaseUIFragment() {
         }
 
 
+    }
+
+    private fun setOptionPackage() {
+        mContentView.layout_option_package.visibility = View.VISIBLE
+        mContentView.package_recycler_view.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+        mContentView.package_recycler_view.adapter = PackageProductAdapter(mActivity, mProductInfo.GROUP_LIST) {
+            ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
+        }
+        mContentView.cb_option_package.setOnCheckedChangeListener { buttonView, isChecked ->
+            mProductInfo.isGroup = isChecked
+        }
     }
 
     override fun initListener() {

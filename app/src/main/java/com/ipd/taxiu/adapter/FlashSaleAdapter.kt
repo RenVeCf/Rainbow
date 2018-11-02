@@ -1,6 +1,7 @@
 package com.ipd.taxiu.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -82,6 +83,7 @@ class FlashSaleAdapter(val context: Context, private val todayProduct: FlashSale
         holder.itemView.tv_cheapest_progress.text = String.format(context.getString(R.string.product_purchase_num), info.BUY_PEOPLE)
         holder.itemView.tv_cheapest_price.text = "￥${info.CURRENT_PRICE}"
         holder.itemView.tv_cheapest_old_price.text = "￥${info.REFER_PRICE}"
+        holder.itemView.tv_cheapest_old_price.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
 
         if (isHeader || mType == StoreType.FLASH_SALE_TODAY) {
             holder.itemView.tv_cheapest_buy.text = "马上抢"

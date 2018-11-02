@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/small_padding"
-    android:paddingTop="@dimen/small_padding">
+    android:paddingTop="@dimen/small_padding"
+    android:paddingBottom="@dimen/small_padding">
 
     <TextView
         android:id="@+id/tv_day"
         style="@style/BaseTextStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:background="@mipmap/sign_in_already_bg"
         android:gravity="center"
@@ -17,11 +19,11 @@
     <TextView
         android:id="@+id/tv_score"
         style="@style/SmallTextStyle"
-        android:layout_marginTop="4dp"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="4dp"
         android:text="3积分"
-        android:textSize="10sp"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="10sp" />
 
 
 </LinearLayout>

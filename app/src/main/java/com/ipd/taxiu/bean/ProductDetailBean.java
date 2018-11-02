@@ -66,6 +66,7 @@ public class ProductDetailBean {
     public int IS_COLLECT;
     public double GOOD_PERCENT;
     public ASSESSDATABean ASSESS_DATA;
+    public boolean isGroup = false;
 
 
     public static class ASSESSDATABean {

@@ -27,6 +27,7 @@ class MessageActivity : BaseUIActivity() {
     override fun getContentLayout(): Int = R.layout.activity_message_index
     override fun getToolbarTitle(): String = "消息"
 
+    private val mPos by lazy { intent?.getIntExtra("pos", 0) ?: 0 }
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
@@ -39,6 +40,7 @@ class MessageActivity : BaseUIActivity() {
 
         }
         tab_layout.setViewPager(view_pager, titles)
+        view_pager.currentItem = mPos
     }
 
     override fun initListener() {

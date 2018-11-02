@@ -5,9 +5,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
+import com.ipd.taxiu.ui.activity.message.MessageActivity
+import com.ipd.taxiu.ui.activity.order.OrderDetailActivity
 import org.json.JSONException
+import org.json.JSONObject
 
 class PushReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -20,20 +24,13 @@ class PushReceiver : BroadcastReceiver() {
                 //JPush用户注册成功
 
             }
-            JPushInterface.ACTION_MESSAGE_RECEIVED == intent.action -> //接受到推送下来的自定义消息
+            JPushInterface.ACTION_MESSAGE_RECEIVED == intent.action -> { //接受到推送下来的自定义消息
                 // Push Talk messages are push down by custom message format
 
-                try {
-                    processMessage(context, bundle!!)
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            JPushInterface.ACTION_NOTIFICATION_RECEIVED == intent.action -> //接受到推送下来的通知
-                try {
-                    processMessage(context, bundle!!)
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
+            }
+            JPushInterface.ACTION_NOTIFICATION_RECEIVED == intent.action -> { //接受到推送下来的通知
+
+            }
             JPushInterface.ACTION_NOTIFICATION_OPENED == intent.action -> //用户点击打开了通知
                 try {
                     processMessage(context, bundle!!)
@@ -59,21 +56,38 @@ class PushReceiver : BroadcastReceiver() {
     private fun processMessage(context: Context, bundle: Bundle) {
         var extras = bundle.getString(JPushInterface.EXTRA_EXTRA)
 //        extras = extras!!.replace("\"".toRegex(), "")//去掉反斜杠
-//        if (!TextUtils.isEmpty(extras)) {
-//            val jsonObject = JSONObject(extras)
-//            //            jsonObject = jsonObject.getJSONObject("extra");
-//            val messageType = jsonObject.getString("type")
-//            if (messageType == "money") {
-//                //未支付的问诊
-//                val topActivity = getTopActivity(context)
-//                if (!TextUtils.isEmpty(topActivity) && !topActivity!!.contains("ImageTextInquiryPayActivity")) {
-//                    val inquiryNo = jsonObject.getString("number")
-//                    val intent = Intent(context, ImageTextInquiryPayActivity::class.java)
-//                    intent.putExtra("inquiryId", inquiryNo)
-//                    openActivity(context, intent)
-//                }
-//            }
-//        }
+        if (!TextUtils.isEmpty(extras)) {
+            val jsonObject = JSONObject(extras)
+            //            jsonObject = jsonObject.getJSONObject("extra");
+            val messageType = jsonObject.getString("TYPE")
+            when (messageType.toInt()) {
+                1 -> {
+                    val category = jsonObject.getString("CATEGORY")
+                    var pos = 0
+                    when (category.toInt()) {
+                        1 -> {
+                            pos = 0
+                        }
+                        2 -> {
+                            pos = 1
+                        }
+                        3 -> {
+                            pos = 2
+                        }
+                    }
+
+                    val intent = Intent(context, MessageActivity::class.java)
+                    intent.putExtra("pos", pos)
+                    openActivity(context, intent)
+                }
+                2 -> {
+                    val orderId = jsonObject.getInt("ORDER_ID")
+                    val intent = Intent(context, OrderDetailActivity::class.java)
+                    intent.putExtra("orderId", orderId)
+                    openActivity(context, intent)
+                }
+            }
+        }
     }
 
 

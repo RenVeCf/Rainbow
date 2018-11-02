@@ -94,6 +94,7 @@
     <string name="delivery_address">收货地址</string>
     <string name="pay_way">支付方式</string>
     <string name="no_return_info">暂无退款退货记录信息</string>
+    <string name="package_product_add_cart">组合商品不可加入购物车，请直接购买</string>
 
 
     <string name="errcode_success">发送成功</string>

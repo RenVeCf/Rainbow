@@ -100,7 +100,11 @@ class ProductDetailActivity : BaseUIActivity() {
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
                 getProductModelInfo(ProductModelDialog.BUY)
             } else {
-                getProductModelInfo(ProductModelDialog.CART)
+                if (mProductInfo?.isGroup == true) {
+                    toastShow(resources.getString(R.string.package_product_add_cart))
+                } else {
+                    getProductModelInfo(ProductModelDialog.CART)
+                }
             }
 
         }
@@ -109,7 +113,11 @@ class ProductDetailActivity : BaseUIActivity() {
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
                 getProductModelInfo(ProductModelDialog.SPELL)
             } else {
-                getProductModelInfo(ProductModelDialog.BUY)
+                if (mProductInfo?.isGroup == true) {
+                    getProductModelInfo(ProductModelDialog.BUY)
+                } else {
+                    getProductModelInfo(ProductModelDialog.BUY)
+                }
             }
         }
 
@@ -141,7 +149,8 @@ class ProductDetailActivity : BaseUIActivity() {
     private fun showProductModelDialog(type: Int) {
         val dialog = ProductModelDialog(mActivity)
         val logos = StringUtils.splitImages(mProductInfo?.LOGO ?: "")
-        dialog.setData(type, if (logos == null || logos.isEmpty()) "" else logos[0], mProductModelResult, mActivityId)
+        dialog.setData(type, if (logos == null || logos.isEmpty()) "" else logos[0], mProductInfo?.isGroup
+                ?: false, mProductModelResult, mActivityId)
         dialog.show()
     }
 

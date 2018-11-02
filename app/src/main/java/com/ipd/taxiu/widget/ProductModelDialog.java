@@ -64,7 +64,7 @@ public class ProductModelDialog extends Dialog {
 
     public static final int CART = 0, BUY = 1, SPELL = 2;
 
-    public void setData(final int type, String logo, final ProductModelResult modelResult, final int activityId) {
+    public void setData(final int type, String logo, final boolean isGroup, final ProductModelResult modelResult, final int activityId) {
         LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
         ViewGroup productLayout = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.item_product_model, null);
         TextView modelView = productLayout.findViewById(R.id.tv_model_name);
@@ -128,7 +128,7 @@ public class ProductModelDialog extends Dialog {
                                         }
                                     });
                         } else if (type == BUY) {
-                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getNORMAL());
+                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), isGroup, ConfirmOrderActivity.Companion.getNORMAL());
                             dismiss();
                         } else {
                             ConfirmOrderActivity.Companion.launch(getContext(), activityId, modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getSPELL());

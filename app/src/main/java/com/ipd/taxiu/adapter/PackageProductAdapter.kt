@@ -26,7 +26,7 @@ class PackageProductAdapter(val context: Context, private val list: List<Product
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_package_product_img)
         holder.itemView.tv_product_name.text = info.PROCUCT_NAME
         holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
 

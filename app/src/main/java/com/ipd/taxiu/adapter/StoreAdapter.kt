@@ -15,6 +15,7 @@ import com.ipd.taxiu.ui.activity.store.flashsale.FlashSaleActivity
 import com.ipd.taxiu.ui.activity.store.grouppurchase.GroupPurchaseActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoIndexActivity
+import com.ipd.taxiu.utils.BannerUtils
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StorePetSpecialType
 import kotlinx.android.synthetic.main.item_lable.view.*
@@ -197,6 +198,16 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 holder.itemView.ll_special_more.setOnClickListener {
                     //查看更多
                     StoreSpecialActivity.launch(context as Activity,specialInfo.TYPE_ID,specialInfo.TYPE_NAME)
+                }
+
+                holder.itemView.iv_special_banner.setOnClickListener {
+                    val bannerBean = BannerBean()
+                    bannerBean.CATEGORY = specialInfo.KIND
+                    bannerBean.URL = specialInfo.URL
+                    bannerBean.CONTENT = specialInfo.CONTENT
+                    bannerBean.PRODUCT_ID = specialInfo.PRODUCT_ID
+                    bannerBean.FORM_ID = specialInfo.FORM_ID
+                    BannerUtils.setBannerItemClick(context,bannerBean)
                 }
 
             }

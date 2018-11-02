@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/package_product_img_height"
     android:layout_height="wrap_content"
     android:background="@color/white">
 
     <com.ipd.taxiu.widget.RoundImageView
-        android:id="@+id/iv_product_img"
-        android:layout_width="@dimen/package_product_img_height"
+        android:id="@+id/iv_package_product_img"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/package_product_img_height"
         android:scaleType="centerCrop"
-        android:src="@mipmap/product_img"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:leftTop_corner_radius="10dp"
         app:rightTop_corner_radius="10dp"
-        app:type="round" />
+        app:type="round"
+        tools:src="@mipmap/product_img" />
 
 
     <android.support.constraint.ConstraintLayout
@@ -23,7 +26,7 @@
         android:padding="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_product_img">
+        app:layout_constraintTop_toBottomOf="@id/iv_package_product_img">
 
         <TextView
             android:id="@+id/tv_product_name"

@@ -1,16 +1,13 @@
 package com.ipd.taxiu.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.OrderBean
 import com.ipd.taxiu.utils.Order
-import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.item_order_list.view.*
 
 /**
@@ -26,7 +23,14 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
     override fun onBindViewHolder(holder: OrderListAdapter.ViewHolder, position: Int) {
         val info = list!![position]
         holder.itemView.tv_order_number.text = info.ORDER_NO
-        holder.itemView.tv_commodity_pay.text = "￥" + info.PAY_FEE
+
+        if (info.status == Order.PAYMENT) {
+            holder.itemView.commodity_pay.text = "应付(含运费) :"
+            holder.itemView.tv_commodity_pay.text = "￥" + info.PAYABLE_FEE
+        } else {
+            holder.itemView.commodity_pay.text = "实付(含运费) :"
+            holder.itemView.tv_commodity_pay.text = "￥" + info.PAY_FEE
+        }
 
         holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.PRODUCT_LIST, {
             itemClickListener.onItemClick(info)

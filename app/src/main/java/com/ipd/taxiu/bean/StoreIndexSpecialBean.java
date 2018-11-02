@@ -16,10 +16,10 @@ public class StoreIndexSpecialBean {
     public String CONTENT;
     public String URL;
     public int PRODUCT_ID;
+    public int FORM_ID;
     public int SORT;
     public String CREATETIME;
     public int STATUS;
     public List<StoreIndexBrandBean> BRAND_LIST;
     public List<ProductBean> PRODUCT_LIST;
-
 }

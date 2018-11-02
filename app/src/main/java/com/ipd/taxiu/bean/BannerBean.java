@@ -3,8 +3,6 @@ package com.ipd.taxiu.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class BannerBean implements Parcelable {
     /**
      * BANNER_ID : 1
@@ -29,6 +27,9 @@ public class BannerBean implements Parcelable {
     public int STATUS;
     public boolean isVideo = false;
     public String videoUrl;
+    public int PRODUCT_ID;
+    public int FORM_ID;
+
 
     public BannerBean() {
     }
@@ -55,6 +56,8 @@ public class BannerBean implements Parcelable {
         STATUS = in.readInt();
         isVideo = in.readByte() != 0;
         videoUrl = in.readString();
+        PRODUCT_ID = in.readInt();
+        FORM_ID = in.readInt();
     }
 
     @Override
@@ -70,6 +73,8 @@ public class BannerBean implements Parcelable {
         dest.writeInt(STATUS);
         dest.writeByte((byte) (isVideo ? 1 : 0));
         dest.writeString(videoUrl);
+        dest.writeInt(PRODUCT_ID);
+        dest.writeInt(FORM_ID);
     }
 
     @Override
