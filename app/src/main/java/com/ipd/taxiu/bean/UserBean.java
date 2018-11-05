@@ -1,5 +1,7 @@
 package com.ipd.taxiu.bean;
 
+import android.text.TextUtils;
+
 /**
  * Created by Miss on 2018/8/17
  * "USER_ID": 1,
@@ -38,7 +40,7 @@ public class UserBean {
     public String BIRTHDAY;
     public int STEP;
     public String PET_TIME;
-    public String TAG;
+    private String TAG;
     public String MY_CODE;
     public String TWO_CODE;
     public String RECOMMEND_CODE;
@@ -50,5 +52,15 @@ public class UserBean {
     public int STATUS;
     public int SORT;
     public int COLLECT_NUM;
+    public int IS_ATTEN;
+    public int IS_SELF;
     public String CREATETIME;
+
+    public String getTag() {
+        if (TextUtils.isEmpty(TAG)) {
+            return "这个人很懒,什么都没留下";
+        } else {
+            return TAG;
+        }
+    }
 }

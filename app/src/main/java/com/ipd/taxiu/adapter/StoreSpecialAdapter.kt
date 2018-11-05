@@ -18,6 +18,7 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
+import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_special_recommend_header.view.*
 import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
@@ -134,6 +135,9 @@ class StoreSpecialAdapter(val context: Context, val areaTitle: String, private v
                 holder.itemView.tv_product_name.text = productInfo.PROCUCT_NAME
                 holder.itemView.tv_product_price.text = "￥${productInfo.CURRENT_PRICE}"
                 holder.itemView.tv_product_price_old.text = "￥${productInfo.REFER_PRICE}"
+                holder.itemView.tv_product_price_old.visibility = if (productInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
+
+
                 holder.itemView.tv_product_evalute.text = "评价 ${productInfo.REPLY}"
                 holder.itemView.tv_product_sales.text = "销量 ${productInfo.BUYNUM}"
 

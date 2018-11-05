@@ -30,25 +30,4 @@ public class CommentDetailBean {
     public UserBean User;
     public int IS_PRAISE;
 
-
-    public static class UserBean {
-        /**
-         * USER_ID : 2
-         * NICKNAME : QQ
-         * LOGO : upload/default/logo.png
-         * TAG : 标签2
-         * CREATETIME : 2018-08-10 13:58:42
-         * IS_ATTEN : 0
-         * IS_SELF : 0
-         */
-
-        public int USER_ID;
-        public String NICKNAME;
-        public String LOGO;
-        public String TAG;
-        public String CREATETIME;
-        public int IS_ATTEN;
-        public int IS_SELF;
-
-    }
 }

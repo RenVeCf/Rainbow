@@ -7,7 +7,11 @@
     <TextView
         android:id="@+id/tv_special_title"
         style="@style/TitleTextStyle"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:background="@color/white"
         android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
         android:text="猫粮专区"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintLeft_toLeftOf="parent"

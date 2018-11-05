@@ -112,6 +112,8 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.tv_cart_product_name.text = mProductInfo.PROCUCT_NAME
         mContentView.tv_price.text = mProductInfo.CURRENT_PRICE
         mContentView.tv_old_price.text = "￥${mProductInfo.REFER_PRICE}"
+        mContentView.tv_old_price.visibility = if (mProductInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
+
 
         if (mProductInfo.POST_FEE == 0) {
             mContentView.tv_express_fee.text = "快递：免运费"

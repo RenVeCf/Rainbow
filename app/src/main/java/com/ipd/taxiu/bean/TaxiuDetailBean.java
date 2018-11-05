@@ -48,25 +48,4 @@ public class TaxiuDetailBean {
     public int COMMENT_NUM;
 
 
-    public static class UserBean {
-        /**
-         * USER_ID : 1
-         * NICKNAME : 主人_TXCW2954
-         * LOGO : http://pic.csjc19.com/upload/default/logo.png
-         * TAG : 标签1
-         * CREATETIME : 2018-07-31 16:54:21
-         * IS_ATTEN : 0
-         * IS_SELF : 1
-         */
-
-        public int USER_ID;
-        public String NICKNAME;
-        public String LOGO;
-        public String TAG;
-        public String CREATETIME;
-        public int IS_ATTEN;
-        public int IS_SELF;
-
-    }
-
 }

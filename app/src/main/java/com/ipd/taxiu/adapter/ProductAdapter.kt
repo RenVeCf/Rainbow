@@ -15,6 +15,7 @@ import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
+import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
@@ -62,6 +63,8 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
                 holder.itemView.tv_product_name.text = info.PROCUCT_NAME
                 holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
                 holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
+                holder.itemView.tv_product_price_old.visibility = if (info.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
+
                 holder.itemView.tv_product_evalute.text = "评价 ${info.REPLY}"
                 holder.itemView.tv_product_sales.text = "销量 ${info.BUYNUM}"
 

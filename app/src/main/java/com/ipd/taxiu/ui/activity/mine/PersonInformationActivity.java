@@ -224,7 +224,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
                 tv_sex.setText("未知");
             }
             tv_how_long.setText(data.PET_TIME);
-            tv_person_tag.setText(data.TAG);
+            tv_person_tag.setText(data.getTag());
         }
 
     }

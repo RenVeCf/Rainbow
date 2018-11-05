@@ -32,7 +32,6 @@ class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>
     private val mTimer: Timer = Timer()
     override fun onViewAttach() {
         super.onViewAttach()
-        mProductTimerTask?.cancel()
         mProductTimerTask = ProductTimerTask()
         mTimer.schedule(mProductTimerTask, Date(System.currentTimeMillis()), 1000L)
     }

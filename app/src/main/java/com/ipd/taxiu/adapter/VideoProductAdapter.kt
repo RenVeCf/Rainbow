@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
@@ -29,6 +30,7 @@ class VideoProductAdapter(val context: Context, private val list: List<ProductBe
         holder.itemView.tv_product_name.text = info.PROCUCT_NAME
         holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
         holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
+        holder.itemView.tv_product_price_old.visibility = if (info.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
         holder.itemView.tv_product_evalute.text = "评价 ${info.REPLY}"
         holder.itemView.tv_product_sales.text = "销量 ${info.FORM_BUYNUM}"
         holder.itemView.setOnClickListener { itemClick.invoke(info) }

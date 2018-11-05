@@ -5,8 +5,8 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TaxiuAdapter
 import com.ipd.taxiu.bean.BaseResult
-import com.ipd.taxiu.bean.OtherBean
 import com.ipd.taxiu.bean.TaxiuBean
+import com.ipd.taxiu.bean.UserBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
@@ -56,8 +56,8 @@ class HomePageFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() 
             checkNeedShowProgress()
             ApiManager.getService().other(GlobalParam.getUserIdOrJump(), mOtherUserId)
                     .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<OtherBean>>() {
-                        override fun _onNext(result: BaseResult<OtherBean>) {
+                    .subscribe(object : Response<BaseResult<UserBean>>() {
+                        override fun _onNext(result: BaseResult<UserBean>) {
                             if (result.code == 0) {
                                 val data = result.data
                                 User.setAttentBtnStyle(mActivity, data.IS_ATTEN, mContentView.ll_attention)
@@ -66,7 +66,7 @@ class HomePageFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() 
                                 }
                                 ImageLoader.loadAvatar(mActivity, data.LOGO, mContentView.civ_header)
                                 mContentView.tv_friend_nickname.text = data.NICKNAME
-                                mContentView.tv_tag.text = data.TAG
+                                mContentView.tv_tag.text = data.tag
                                 mContentView.tv_attention_num.text = data.ATTENTION_NUM.toString() + ""
                                 mContentView.tv_fans_num.text = data.FANS_NUM.toString() + ""
 

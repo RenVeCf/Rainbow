@@ -94,7 +94,7 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 }
                 ImageLoader.loadAvatar(context, detailData.User.LOGO, holder.itemView.civ_publisher_avatar)
                 holder.itemView.tv_nickname.text = detailData.User.NICKNAME
-                holder.itemView.tv_user_desc.text = detailData.User.TAG
+                holder.itemView.tv_user_desc.text = detailData.User.tag
 
                 holder.itemView.ll_attention.setOnClickListener {
                     itemClick.invoke(position, it.id, null)

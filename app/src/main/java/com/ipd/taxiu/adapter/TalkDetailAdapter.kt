@@ -63,7 +63,7 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                 if (!isMine) {
                     ImageLoader.loadAvatar(context, detailData.User.LOGO, holder.itemView.civ_publisher_avatar)
                     holder.itemView.tv_nickname.text = detailData.User.NICKNAME
-                    holder.itemView.tv_user_desc.text = detailData.User.TAG
+                    holder.itemView.tv_user_desc.text = detailData.User.tag
                 }
 
                 holder.itemView.tv_publisher_content.text = detailData.CONTENT

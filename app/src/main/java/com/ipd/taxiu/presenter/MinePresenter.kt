@@ -1,6 +1,9 @@
 package com.ipd.taxiu.presenter
 
-import com.ipd.taxiu.bean.*
+import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.UpdatePwdBean
+import com.ipd.taxiu.bean.UserBean
+import com.ipd.taxiu.bean.UserHomeBean
 import com.ipd.taxiu.model.BasicModel
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -106,8 +109,8 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
         val view = mView as IOtherView
 
         mModel?.getNormalRequestData(ApiManager.getService().other(GlobalParam.getUserId(), otherUserId),
-                object : Response<BaseResult<OtherBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<OtherBean>) {
+                object : Response<BaseResult<UserBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<UserBean>) {
                         if (result.code == 0) {
                             view.onGetOtherSuccess(result.data)
                         } else {
@@ -144,7 +147,7 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IOtherView {
-        fun onGetOtherSuccess(data: OtherBean)
+        fun onGetOtherSuccess(data: UserBean)
         fun onGetOtherFail(errMsg: String)
     }
 }
