@@ -98,7 +98,7 @@ class ProductDetailActivity : BaseUIActivity() {
             //加入购物车
             if (mProductInfo == null) return@setOnClickListener
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
-                getProductModelInfo(ProductModelDialog.BUY)
+                getProductModelInfo(ProductModelDialog.SPELL_NOW)
             } else {
                 if (mProductInfo?.isGroup == true) {
                     toastShow(resources.getString(R.string.package_product_add_cart))
@@ -111,7 +111,7 @@ class ProductDetailActivity : BaseUIActivity() {
         tv_buy.setOnClickListener {
             //立即购买
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
-                getProductModelInfo(ProductModelDialog.SPELL)
+                getProductModelInfo(ProductModelDialog.SPELL_JOIN)
             } else {
                 if (mProductInfo?.isGroup == true) {
                     getProductModelInfo(ProductModelDialog.BUY)

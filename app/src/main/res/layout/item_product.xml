@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:paddingLeft="@dimen/base_padding"
-    android:paddingRight="@dimen/base_padding"
-    android:paddingTop="@dimen/base_padding">
+    android:paddingTop="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding">
 
 
     <com.ipd.taxiu.widget.RoundImageView
@@ -15,18 +15,17 @@
         android:layout_height="@dimen/list_product_img_height"
         android:scaleType="centerCrop"
         android:src="@mipmap/product_img1"
+        app:corner_radius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:leftTop_corner_radius="10dp"
-        app:rightTop_corner_radius="10dp"
         app:type="round" />
 
     <ImageView
         android:id="@+id/iv_new_product"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/new_product_icon"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

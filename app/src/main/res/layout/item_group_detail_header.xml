@@ -118,7 +118,7 @@
                 android:id="@+id/tv_group_purchase_hours"
                 style="@style/SmallTextStyle"
                 android:background="@drawable/shape_time_bg"
-                android:text="15"
+                android:text="00"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                 android:id="@+id/tv_group_purchase_minute"
                 style="@style/SmallTextStyle"
                 android:background="@drawable/shape_time_bg"
-                android:text="15"
+                android:text="00"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 
@@ -148,7 +148,7 @@
                 android:id="@+id/tv_group_purchase_second"
                 style="@style/SmallTextStyle"
                 android:background="@drawable/shape_time_bg"
-                android:text="15"
+                android:text="00"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 

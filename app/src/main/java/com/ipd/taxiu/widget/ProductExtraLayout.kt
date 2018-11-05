@@ -66,10 +66,13 @@ class ProductExtraLayout : FrameLayout {
 
         purchaseView.setBackgroundResource(R.color.colorPrimaryDark)
         purchaseView.tv_flash_sale_price_time.text = "距结束还剩"
-        mSystemTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
-        mTimer = Timer()
-        mFlashSaleTimerTask = FlashSaleTimerTask(purchaseView)
-        mTimer?.schedule(mFlashSaleTimerTask, 0 - mSystemTime % 1000, 1000L)
+        mCurTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
+
+        if (mCurTime < (mProductInfo?.END_TIME_STAMP ?: "0").toLong()) {
+            mTimer = Timer()
+            mFlashSaleTimerTask = FlashSaleTimerTask(purchaseView)
+            mTimer?.schedule(mFlashSaleTimerTask, 0 - mCurTime % 1000, 1000L)
+        }
 
         addView(purchaseView)
     }
@@ -98,7 +101,7 @@ class ProductExtraLayout : FrameLayout {
         addView(clearanceView)
     }
 
-    private var mSystemTime = System.currentTimeMillis()
+    private var mCurTime = System.currentTimeMillis()
     private var mTimer: Timer? = null
     private var mFlashSaleTimerTask: FlashSaleTimerTask? = null
     private fun onProductFlashSale() {
@@ -116,21 +119,27 @@ class ProductExtraLayout : FrameLayout {
         when (mProductInfo?.RUSH_STATE) {
             1 -> {
                 flashSaleView.setBackgroundResource(R.color.medium_sea_green)
-                flashSaleView.tv_flash_sale_price_time.text = "距开始还剩"
-                mSystemTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
                 flashSaleView.tv_flash_sale_price_buy_num.text = String.format(resources.getString(R.string.product_purchase_remind_num), mProductInfo?.REMIND_NUM)
-                mTimer = Timer()
-                mFlashSaleTimerTask = FlashSaleTimerTask(flashSaleView)
-                mTimer?.schedule(mFlashSaleTimerTask, 1000 - mSystemTime % 1000, 1000L)
+                flashSaleView.tv_flash_sale_price_time.text = "距开始还剩"
+                mCurTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
+
+                if (mCurTime < (mProductInfo?.START_TIME_STAMP ?: "0").toLong()) {
+                    mTimer = Timer()
+                    mFlashSaleTimerTask = FlashSaleTimerTask(flashSaleView)
+                    mTimer?.schedule(mFlashSaleTimerTask, 1000 - mCurTime % 1000, 1000L)
+                }
             }
             2 -> {
                 flashSaleView.setBackgroundResource(R.color.colorPrimaryDark)
                 flashSaleView.tv_flash_sale_price_time.text = "距结束还剩"
                 flashSaleView.tv_flash_sale_price_buy_num.text = String.format(resources.getString(R.string.product_purchase_num), mProductInfo?.BUYNUM)
-                mSystemTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
-                mTimer = Timer()
-                mFlashSaleTimerTask = FlashSaleTimerTask(flashSaleView)
-                mTimer?.schedule(mFlashSaleTimerTask, 0 - mSystemTime % 1000, 1000L)
+                mCurTime = (mProductInfo?.SYS_TIME_STAMP ?: "0").toLong()
+
+                if (mCurTime < (mProductInfo?.END_TIME_STAMP ?: "0").toLong()) {
+                    mTimer = Timer()
+                    mFlashSaleTimerTask = FlashSaleTimerTask(flashSaleView)
+                    mTimer?.schedule(mFlashSaleTimerTask, 0 - mCurTime % 1000, 1000L)
+                }
 
             }
             3 -> {
@@ -166,13 +175,13 @@ class ProductExtraLayout : FrameLayout {
             ThreadUtils.runOnUIThread {
                 when (mProductInfo?.RUSH_STATE) {
                     1 -> {
-                        mSystemTime += 1000
+                        mCurTime += 1000
                         val startTime = (mProductInfo?.START_TIME_STAMP ?: "0").toLong()
-                        if (mSystemTime >= startTime) {
+                        if (mCurTime >= startTime) {
                             //刷新数据
                             onRefreshData()
                         } else {
-                            StringUtils.getCountDownByTime(startTime - mSystemTime, { hours, minutes, second ->
+                            StringUtils.getCountDownByTime(startTime - mCurTime, { hours, minutes, second ->
                                 flashSaleView.tv_group_purchase_hours.text = hours
                                 flashSaleView.tv_group_purchase_minute.text = minutes
                                 flashSaleView.tv_group_purchase_second.text = second
@@ -180,13 +189,13 @@ class ProductExtraLayout : FrameLayout {
                         }
                     }
                     2 -> {
-                        mSystemTime += 1000
+                        mCurTime += 1000
                         val endTime = (mProductInfo?.END_TIME_STAMP ?: "0").toLong()
-                        if (mSystemTime >= endTime) {
+                        if (mCurTime >= endTime) {
                             //刷新数据
                             onRefreshData()
                         } else {
-                            StringUtils.getCountDownByTime(endTime - mSystemTime, { hours, minutes, second ->
+                            StringUtils.getCountDownByTime(endTime - mCurTime, { hours, minutes, second ->
                                 flashSaleView.tv_group_purchase_hours.text = hours
                                 flashSaleView.tv_group_purchase_minute.text = minutes
                                 flashSaleView.tv_group_purchase_second.text = second
@@ -196,7 +205,7 @@ class ProductExtraLayout : FrameLayout {
                         }
                     }
                 }
-//                LogUtils.e("tag","system:$mSystemTime--start:${mProductInfo?.START_TIME_STAMP}--end:${mProductInfo?.END_TIME_STAMP}")
+//                LogUtils.e("tag","system:$mCurTime--start:${mProductInfo?.START_TIME_STAMP}--end:${mProductInfo?.END_TIME_STAMP}")
             }
         }
     }

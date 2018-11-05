@@ -11,14 +11,12 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.OrderDetailAdapter
 import com.ipd.taxiu.bean.OrderDetailBean
 import com.ipd.taxiu.bean.WechatBean
-import com.ipd.taxiu.event.PayRequestEvent
-import com.ipd.taxiu.event.PayResultEvent
-import com.ipd.taxiu.event.UpdateOrderDetailEvent
-import com.ipd.taxiu.event.UpdateOrderEvent
+import com.ipd.taxiu.event.*
 import com.ipd.taxiu.presenter.order.OrderDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.ui.activity.web.WebActivity
@@ -266,10 +264,14 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
             }
             R.id.tv_order_button2 -> when (mOrderStatus) {
 //                Order.WAIT_SEND -> startReturnActivity()
-                Order.EVALUATE -> startLogisticsActivity(mOrderDetailInfo?.POST_INFO ?: "")
-                Order.WAIT_RECEIVE -> startLogisticsActivity(mOrderDetailInfo?.POST_INFO ?: "")
+                Order.EVALUATE, Order.WAIT_RECEIVE, Order.FINFISH -> startLogisticsActivity(mOrderDetailInfo?.POST_INFO
+                        ?: "")
             }
             R.id.tv_order_button3 -> {
+                when (mOrderStatus) {
+//                Order.WAIT_SEND -> startReturnActivity()
+                    Order.EVALUATE, Order.FINFISH -> mPresenter?.buyAgain(mOrderId)
+                }
             }
             R.id.tv_order_button4 -> when (mOrderStatus) {
                 Order.PAYMENT -> initpayWayDialog()
@@ -348,6 +350,25 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
     override fun deleteOrderFail(errMsg: String) {
         toastShow(errMsg)
     }
+
+    override fun buyAgainSuccess() {
+        val builder = MessageDialog.Builder(mActivity)
+        builder.setTitle("提示")
+                .setMessage("商品已加入购物车")
+                .setCommit("前往购物车", {
+                    it.dismiss()
+                    EventBus.getDefault().post(UpdateCartEvent())
+                    MainActivity.launch(mActivity, "cart")
+                })
+                .setCancel("取消", {
+                    it.dismiss()
+                }).show()
+    }
+
+    override fun buyAgainFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
 
     override fun orderWechatSuccess(wechatInfo: WechatBean) {
         WeChatUtils.getInstance(mActivity).startPay(wechatInfo)

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
+    android:layout_marginRight="3dp"
     android:layout_height="wrap_content">
 
     <com.ipd.taxiu.widget.RoundImageView
@@ -10,13 +11,14 @@
         android:layout_height="@dimen/special_product_img_height"
         android:scaleType="centerCrop"
         android:src="@mipmap/cart_product_img2"
+        app:corner_radius="5dp"
+        app:layout_constraintBottom_toTopOf="@id/cl_product_info"
         app:layout_constraintTop_toTopOf="parent"
-        app:leftTop_corner_radius="10dp"
-        app:rightTop_corner_radius="10dp"
         app:type="round" />
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_product_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/small_padding"

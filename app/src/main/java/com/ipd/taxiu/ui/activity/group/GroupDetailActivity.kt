@@ -47,7 +47,7 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
 
 
     private var mProductTimerTask: ProductTimerTask? = null
-    private val mTimer: Timer = Timer()
+    private var mTimer: Timer? = null
     private var mPresenter: GroupOrderDetailPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
@@ -97,9 +97,13 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
                 headerView.tv_group.text = "${info.TEAM_NUM}人团，${info.JOIN_NUM}人已参团"
                 headerView.tv_group.setTextColor(resources.getColor(R.color.black))
 
-                //倒计时
-                mProductTimerTask = ProductTimerTask()
-                mTimer.schedule(mProductTimerTask, Date(System.currentTimeMillis()), 1000L)
+                if(System.currentTimeMillis() < info.END_TIME_STAMP.toLong()){
+                    //倒计时
+                    mTimer = Timer()
+                    mProductTimerTask = ProductTimerTask()
+                    mTimer?.schedule(mProductTimerTask, Date(System.currentTimeMillis()), 1000L)
+                }
+
             }
             2 -> {
                 headerView.tv_group.text = "${info.TEAM_NUM}人团，${info.JOIN_NUM}人已参团，拼团成功"
@@ -204,8 +208,8 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
                     val surplusTime = (mGroupOrderDetailBean?.END_TIME_STAMP
                             ?: "0").toLong() - System.currentTimeMillis()
                     if (surplusTime <= 0) {
-                        mTimer?.cancel()
                         mProductTimerTask?.cancel()
+                        mTimer?.cancel()
                         loadData()
                     }
 

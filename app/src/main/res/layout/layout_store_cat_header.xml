@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -42,10 +43,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/fl_adult_cat">
 
-            <ImageView
+            <com.ipd.taxiu.widget.RoundImageView
+                android:id="@+id/iv_cat1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/young_cat" />
+                app:corner_radius="8dp"
+                app:type="round"
+                tools:src="@mipmap/young_cat" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -53,10 +57,11 @@
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:id="@+id/tv_cat1"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
-                android:layout_marginRight="@dimen/small_padding"
                 android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginRight="@dimen/small_padding"
                 android:text="幼猫专区"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -70,10 +75,13 @@
             app:layout_constraintLeft_toRightOf="@id/fl_young_cat"
             app:layout_constraintRight_toRightOf="parent">
 
-            <ImageView
+            <com.ipd.taxiu.widget.RoundImageView
+                android:id="@+id/iv_cat2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/adult_cat" />
+                tools:src="@mipmap/adult_cat"
+                app:corner_radius="8dp"
+                app:type="round" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -81,10 +89,11 @@
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:id="@+id/tv_cat2"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
-                android:layout_marginRight="@dimen/small_padding"
                 android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginRight="@dimen/small_padding"
                 android:text="成猫专区"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

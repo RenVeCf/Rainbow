@@ -1,6 +1,9 @@
 package com.ipd.taxiu.bean;
 
-public class StoreAreaBean {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class StoreAreaBean implements Parcelable {
 
     /**
      * SHOP_AREA_ID : 1
@@ -20,4 +23,41 @@ public class StoreAreaBean {
     public String CREATETIME;
     public int STATUS;
 
+    protected StoreAreaBean(Parcel in) {
+        SHOP_AREA_ID = in.readInt();
+        AREA_NAME = in.readString();
+        CATEGORY = in.readInt();
+        LOGO = in.readString();
+        SORT = in.readInt();
+        CREATETIME = in.readString();
+        STATUS = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(SHOP_AREA_ID);
+        dest.writeString(AREA_NAME);
+        dest.writeInt(CATEGORY);
+        dest.writeString(LOGO);
+        dest.writeInt(SORT);
+        dest.writeString(CREATETIME);
+        dest.writeInt(STATUS);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<StoreAreaBean> CREATOR = new Creator<StoreAreaBean>() {
+        @Override
+        public StoreAreaBean createFromParcel(Parcel in) {
+            return new StoreAreaBean(in);
+        }
+
+        @Override
+        public StoreAreaBean[] newArray(int size) {
+            return new StoreAreaBean[size];
+        }
+    };
 }

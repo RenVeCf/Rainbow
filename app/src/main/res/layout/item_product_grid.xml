@@ -14,12 +14,12 @@
         <com.ipd.taxiu.widget.RoundImageView
             android:id="@+id/iv_product_img"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/grid_product_img_height"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
             android:scaleType="centerCrop"
             android:src="@mipmap/cart_product_img2"
             app:layout_constraintTop_toTopOf="parent"
-            app:leftTop_corner_radius="10dp"
-            app:rightTop_corner_radius="10dp"
+            app:corner_radius="5dp"
             app:type="round" />
 
 

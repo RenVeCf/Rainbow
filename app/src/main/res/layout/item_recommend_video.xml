@@ -9,8 +9,9 @@
 
     <com.ipd.taxiu.widget.RoundImageView
         android:id="@+id/iv_recommend_video"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/store_recommend_video_height"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:0.56"
         android:scaleType="centerCrop"
         android:src="@mipmap/recommend_video_img"
         app:corner_radius="@dimen/base_radius"

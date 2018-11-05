@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import cn.jzvd.Jzvd
 import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.R
@@ -80,6 +81,8 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
         tv_video_viewers.text = info.BROWSE.toString()
         tv_video_time.text = info.TIME_LENGTH
 
+
+        tv_video_product.visibility = if (info.PRODUCT_LIST == null || info.PRODUCT_LIST.isEmpty()) View.GONE else View.VISIBLE
 
         product_recycler_view.adapter = VideoProductAdapter(mActivity, info.PRODUCT_LIST, {
             ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)

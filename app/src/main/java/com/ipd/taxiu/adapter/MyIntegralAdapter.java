@@ -28,7 +28,7 @@ public class MyIntegralAdapter extends RecyclerView.Adapter<MyIntegralAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(View.inflate(mContext,R.layout.item_integral,null));
+        return new ViewHolder(View.inflate(mContext, R.layout.item_integral, null));
     }
 
     @Override
@@ -37,11 +37,11 @@ public class MyIntegralAdapter extends RecyclerView.Adapter<MyIntegralAdapter.Vi
         holder.integral_explain.setText(data.get(position).CONTENT);
         holder.integral_time.setText(data.get(position).CREATETIME);
         int score = data.get(position).SCORE;
-        if (score > 0){
-            holder.integral_money.setText("+"+score);
+        if (score > 0) {
+            holder.integral_money.setText("+" + score);
             holder.integral_money.setTextColor(mContext.getResources().getColor(R.color.earning_text));
-        }else {
-            holder.integral_money.setText("-"+score);
+        } else {
+            holder.integral_money.setText("" + score);
             holder.integral_money.setTextColor(mContext.getResources().getColor(R.color.black));
         }
     }
@@ -52,11 +52,12 @@ public class MyIntegralAdapter extends RecyclerView.Adapter<MyIntegralAdapter.Vi
         return data.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView integral_title;
         TextView integral_explain;
         TextView integral_time;
         TextView integral_money;
+
         public ViewHolder(View itemView) {
             super(itemView);
             integral_title = itemView.findViewById(R.id.integral_title);

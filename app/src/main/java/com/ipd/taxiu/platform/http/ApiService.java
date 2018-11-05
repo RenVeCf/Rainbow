@@ -981,6 +981,12 @@ public interface ApiService {
                                                       @Field("CONTENT") String CONTENT,
                                                       @Field("PIC") String PIC);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_BUY_AGAIN)
+    Observable<BaseResult<OrderDetailBean>> orderBuyAgain(@Field("USER_ID") String user_id,
+                                                          @Field("ORDER_ID") int ORDER_ID);
+
+
     /**
      * return
      */

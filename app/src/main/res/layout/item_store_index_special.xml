@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/tv_special_name"
-            style="@style/BaseTextStyle"
+            style="@style/TitleTextStyle"
             android:text="狗粮专区"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

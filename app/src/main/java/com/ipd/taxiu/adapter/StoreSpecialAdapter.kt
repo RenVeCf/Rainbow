@@ -6,17 +6,20 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.R
-import com.ipd.taxiu.bean.ProductBean
-import com.ipd.taxiu.bean.StoreIndexVideoBean
-import com.ipd.taxiu.bean.StoreProductScreenBean
-import com.ipd.taxiu.bean.StoreSpecialHeaderBean
+import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.platform.global.GlobalApplication
+import com.ipd.taxiu.platform.global.GlobalParam
+import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.Response
+import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.taxiu.utils.IndicatorHelper
-import kotlinx.android.synthetic.main.item_cart_recommend_header.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.item_special_recommend_header.view.*
 import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
@@ -69,7 +72,7 @@ class StoreSpecialAdapter(val context: Context, val areaTitle: String, private v
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_recommend_video, parent, false))
             }
             ItemType.PRODUCT_SCREEN -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cart_recommend_header, parent, false))
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_special_recommend_header, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -140,6 +143,20 @@ class StoreSpecialAdapter(val context: Context, val areaTitle: String, private v
                 holder.itemView.setOnClickListener {
                     //商品详情
                     ProductDetailActivity.launch(context as Activity, productInfo.PRODUCT_ID, productInfo.FORM_ID)
+                }
+
+                holder.itemView.iv_add_to_cart.setOnClickListener {
+                    ApiManager.getService().cartAdd(GlobalParam.getUserIdOrJump(), productInfo.PRODUCT_ID, productInfo.FORM_ID, 1)
+                            .compose(RxScheduler.applyScheduler())
+                            .subscribe(object : Response<BaseResult<Int>>(context, true) {
+                                override fun _onNext(result: BaseResult<Int>) {
+                                    if (result.code == 0) {
+                                        ToastCommom.getInstance().show(GlobalApplication.mContext, true, context.resources.getString(R.string.add_cart_success))
+                                    } else {
+                                        ToastCommom.getInstance().show(GlobalApplication.mContext, result.msg)
+                                    }
+                                }
+                            })
                 }
 
             }

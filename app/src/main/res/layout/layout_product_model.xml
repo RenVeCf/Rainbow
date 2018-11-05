@@ -7,12 +7,14 @@
     android:padding="@dimen/base_padding">
 
 
-    <ImageView
+    <com.ipd.taxiu.widget.RoundImageView
         android:id="@+id/iv_product_img"
         android:layout_width="@dimen/product_model_img_size"
         android:layout_height="@dimen/product_model_img_size"
         android:scaleType="centerCrop"
         android:src="@mipmap/product_img"
+        app:type="round"
+        app:corner_radius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -66,8 +68,8 @@
         android:layout_marginTop="@dimen/small_padding"
         android:background="@drawable/shape_buy_bg"
         android:gravity="center"
-        android:paddingBottom="8dp"
         android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:text="确认"
         android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"

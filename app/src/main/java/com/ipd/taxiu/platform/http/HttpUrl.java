@@ -4,8 +4,10 @@ package com.ipd.taxiu.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-    String WEB_URL = "http://121.199.8.244:9386/";
-    String SERVER_URL = "http://121.199.8.244:9386/TX/";
+//    String WEB_URL = "http://121.199.8.244:9386/";
+//    String SERVER_URL = "http://121.199.8.244:9386/TX/";
+    String WEB_URL = "http://121.199.8.244:9376/";
+    String SERVER_URL = "http://121.199.8.244:9376/TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
     String VIDEO_URL = "http://video.csjc19.com/";
     String APK_DOWNLOAD_URL = "http://121.199.8.244:9386/taxiu/download.html";
@@ -84,6 +86,7 @@ public interface HttpUrl {
     String ORDER_RETURN_INFO = "app_refund/detail.do";
     String ORDER_RETURN_REASON = "app_refund/typeList2.do";
     String ORDER_REQUEST_RETURN = "app_refund/add.do";
+    String ORDER_BUY_AGAIN = "app_order/againBuy.do";
 
     //return
     String RETURN_LIST = "app_refund/getList.do";

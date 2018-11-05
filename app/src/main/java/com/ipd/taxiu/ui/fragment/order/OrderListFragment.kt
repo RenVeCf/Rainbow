@@ -3,10 +3,12 @@ package com.ipd.taxiu.ui.fragment.order
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.OrderListAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.OrderBean
+import com.ipd.taxiu.event.UpdateCartEvent
 import com.ipd.taxiu.event.UpdateOrderEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
@@ -26,7 +28,6 @@ import rx.Observable
  * Created by Miss on 2018/7/19
  */
 class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>(), Order.OrderItemClickListener, OrderPresenter.IOrderOperationView {
-
     companion object {
         fun newInstance(categoryId: Int): OrderListFragment {
             val fragment = OrderListFragment()
@@ -129,7 +130,7 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
     }
 
     override fun onBuyAgain(info: OrderBean) {
-
+        mPresenter?.buyAgain(info.ORDER_ID)
     }
 
     override fun onEvaluate(info: OrderBean) {
@@ -157,6 +158,25 @@ class OrderListFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>()
 
     override fun deleteOrderFail(errMsg: String) {
     }
+
+    override fun buyAgainSuccess() {
+        val builder = MessageDialog.Builder(mActivity)
+        builder.setTitle("提示")
+                .setMessage("商品已加入购物车")
+                .setCommit("前往购物车", {
+                    it.dismiss()
+                    EventBus.getDefault().post(UpdateCartEvent())
+                    MainActivity.launch(mActivity, "cart")
+                })
+                .setCancel("取消", {
+                    it.dismiss()
+                }).show()
+    }
+
+    override fun buyAgainFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
 
     @Subscribe
     fun onMainEvent(event: UpdateOrderEvent) {

@@ -27,7 +27,7 @@ class BalanceBillAdapter(val context: Context, private val data: List<BalanceBil
         holder.itemView.integral_time.text = info.CREATETIME
 
         if (info.CATEGORY == 1 || info.CATEGORY == 3) {
-            holder.itemView.visibility = View.VISIBLE
+            holder.itemView.trading_status.visibility = View.VISIBLE
             holder.itemView.trading_status.text =
                     when (info.STATUS) {
                         1 -> "审核中"
@@ -36,7 +36,7 @@ class BalanceBillAdapter(val context: Context, private val data: List<BalanceBil
                         else -> ""
                     }
         } else {
-            holder.itemView.visibility = View.GONE
+            holder.itemView.trading_status.visibility = View.GONE
         }
 
         holder.itemView.integral_money.text = info.MONEY

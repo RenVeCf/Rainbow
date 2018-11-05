@@ -91,7 +91,9 @@ class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>
                 for (i in firstVisibleItemPosition..lastVisibleItemPosition) {
                     val childView = layoutManager.findViewByPosition(i)
                     if (childView != null) {
-                        val surplusTime = data!![i].endTime - System.currentTimeMillis()
+                        var surplusTime = data!![i].endTime - System.currentTimeMillis()
+                        if (surplusTime < 0) surplusTime = 0
+
                         StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
                             childView.tv_group_purchase_hours.text = hours
                             childView.tv_group_purchase_minute.text = minutes

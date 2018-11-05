@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.StoreAdapter
@@ -15,7 +14,6 @@ import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
-import com.ipd.taxiu.utils.StorePetSpecialType
 import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import rx.Observable
@@ -23,16 +21,18 @@ import rx.Observable
 class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
 
     companion object {
-        fun newInstance(type: Int): StoreSecondIndexFragment {
+        fun newInstance(type: Int, categoryId: Int): StoreSecondIndexFragment {
             val fragment = StoreSecondIndexFragment()
             val bundle = Bundle()
             bundle.putInt("type", type)
+            bundle.putInt("categoryId", categoryId)
             fragment.arguments = bundle
             return fragment
         }
     }
 
     private val mType: Int by lazy { arguments.getInt("type") }
+    private val mCategoryId: Int by lazy { arguments.getInt("categoryId") }
     override fun getContentLayout(): Int = R.layout.fragment_store
 
     override fun needLazyLoad(): Boolean = true
@@ -48,7 +48,7 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()
-            ApiManager.getService().storeSecondIndex(GlobalParam.getUserIdOrJump(), StorePetSpecialType.getParentTypeByType(mType), mType)
+            ApiManager.getService().storeSecondIndex(GlobalParam.getUserIdOrJump(), mType, mCategoryId)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<StoreSecondIndexResultBean>>() {
                         override fun _onNext(result: BaseResult<StoreSecondIndexResultBean>) {

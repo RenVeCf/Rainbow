@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/base_padding"
-    android:paddingTop="@dimen/base_padding">
+    android:paddingTop="@dimen/base_padding"
+    android:paddingBottom="@dimen/base_padding">
 
-    <ImageView
+    <com.ipd.taxiu.widget.RoundImageView
         android:id="@+id/iv_cart_product_img"
-        android:layout_width="@dimen/cart_product_img_width"
+        android:layout_width="@dimen/cart_product_img_height"
         android:layout_height="@dimen/cart_product_img_height"
-        android:layout_marginLeft="@dimen/base_padding"
         android:scaleType="centerCrop"
         android:src="@mipmap/cart_product_img1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:corner_radius="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:type="round" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"

@@ -62,7 +62,8 @@ public class ProductModelDialog extends Dialog {
 
     }
 
-    public static final int CART = 0, BUY = 1, SPELL = 2;
+    //购物车、立即购买、加入拼团、拼团立即购买
+    public static final int CART = 0, BUY = 1, SPELL_JOIN = 2, SPELL_NOW = 3;
 
     public void setData(final int type, String logo, final boolean isGroup, final ProductModelResult modelResult, final int activityId) {
         LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
@@ -83,7 +84,7 @@ public class ProductModelDialog extends Dialog {
         final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
         final CartOperationView operationView = mContentView.findViewById(R.id.operation_view);
         if (modelResult.data != null && !modelResult.data.isEmpty()) {
-            if (type == SPELL) {
+            if (type == SPELL_NOW) {
                 productPriceView.setText("￥" + modelResult.data.get(0).PRICE);
             } else {
                 productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
@@ -93,7 +94,7 @@ public class ProductModelDialog extends Dialog {
         productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
             @Override
             public void onChange(@NotNull ProductModelResult.ProductModelBean modelInfo) {
-                if (type == SPELL) {
+                if (type == SPELL_NOW) {
                     productPriceView.setText("￥" + modelResult.data.get(0).PRICE);
                 } else {
                     productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
@@ -127,7 +128,7 @@ public class ProductModelDialog extends Dialog {
 
                                         }
                                     });
-                        } else if (type == BUY) {
+                        } else if (type == BUY || type == SPELL_NOW) {
                             ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), isGroup, ConfirmOrderActivity.Companion.getNORMAL());
                             dismiss();
                         } else {

@@ -14,12 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.ipd.taxiu.widget.RoundImageView
             android:id="@+id/image_view"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/evaluate_img" />
+            android:src="@mipmap/evaluate_img"
+            app:corner_radius="5dp"
+            app:type="round" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,8 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
         android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding"
         android:layout_marginTop="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
         android:background="@color/full_screen_overlay" />
 
     <EditText

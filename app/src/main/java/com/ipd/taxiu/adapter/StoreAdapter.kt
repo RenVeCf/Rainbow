@@ -123,15 +123,23 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
 
                 holder.itemView.fl_small_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.SMALL_DOG)
+                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 0)
                 }
                 holder.itemView.fl_big_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.BIG_DOG)
+                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 1)
                 }
                 holder.itemView.fl_young_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.YOUNG_DOG)
+                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 2)
                 }
 
+                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[0].LOGO, holder.itemView.iv_dog1)
+                holder.itemView.tv_dog1.text = headerInfo.areaList[0].AREA_NAME
+
+                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[1].LOGO, holder.itemView.iv_dog2)
+                holder.itemView.tv_dog2.text = headerInfo.areaList[1].AREA_NAME
+
+                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[2].LOGO, holder.itemView.iv_dog3)
+                holder.itemView.tv_dog3.text = headerInfo.areaList[2].AREA_NAME
 
 
                 setPublishListener(holder, headerInfo)
@@ -148,11 +156,18 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
 
                 holder.itemView.fl_young_cat.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.YOUNG_CAT)
+                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.CAT, headerInfo.areaList, 0)
                 }
                 holder.itemView.fl_adult_cat.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.ADULT_CAT)
+                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.CAT, headerInfo.areaList, 1)
                 }
+
+                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[0].LOGO, holder.itemView.iv_cat1)
+                holder.itemView.tv_cat1.text = headerInfo.areaList[0].AREA_NAME
+
+                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[1].LOGO, holder.itemView.iv_cat2)
+                holder.itemView.tv_cat2.text = headerInfo.areaList[1].AREA_NAME
+
 
                 setPublishListener(holder, headerInfo)
 
@@ -169,14 +184,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 holder.itemView.second_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
                     //专区
-                    StoreSpecialActivity.launch(context as Activity, it.TYPE_ID,it.TYPE_NAME)
+                    StoreSpecialActivity.launch(context as Activity, it.TYPE_ID, it.TYPE_NAME)
                 })
 
 
             }
             ItemType.SPECIAL -> {
                 val specialInfo = list!![position] as StoreIndexSpecialBean
-                holder.itemView.tv_special_name.text = specialInfo.TYPE_NAME
+                holder.itemView.tv_special_name.text = specialInfo.TYPE_NAME + "专区"
                 ImageLoader.loadNoPlaceHolderImg(context, specialInfo.ICON, holder.itemView.iv_special_icon)
                 ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
 
@@ -197,7 +212,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 })
                 holder.itemView.ll_special_more.setOnClickListener {
                     //查看更多
-                    StoreSpecialActivity.launch(context as Activity,specialInfo.TYPE_ID,specialInfo.TYPE_NAME)
+                    StoreSpecialActivity.launch(context as Activity, specialInfo.TYPE_ID, specialInfo.TYPE_NAME)
                 }
 
                 holder.itemView.iv_special_banner.setOnClickListener {
@@ -207,7 +222,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     bannerBean.CONTENT = specialInfo.CONTENT
                     bannerBean.PRODUCT_ID = specialInfo.PRODUCT_ID
                     bannerBean.FORM_ID = specialInfo.FORM_ID
-                    BannerUtils.setBannerItemClick(context,bannerBean)
+                    BannerUtils.setBannerItemClick(context, bannerBean)
                 }
 
             }
@@ -261,7 +276,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         //专区分类
         holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
             //专区
-            StoreSpecialActivity.launch(context as Activity, it.TYPE_ID,it.TYPE_NAME)
+            StoreSpecialActivity.launch(context as Activity, it.TYPE_ID, it.TYPE_NAME)
         })
 
         holder.itemView.iv_store_purchase.setOnClickListener {

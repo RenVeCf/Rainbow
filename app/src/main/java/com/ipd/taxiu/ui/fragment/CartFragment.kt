@@ -15,7 +15,6 @@ import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.trade.ConfirmOrderActivity
 import com.ipd.taxiu.utils.CartCallback
-import com.ipd.taxiu.utils.StoreType
 import com.ipd.taxiu.widget.MessageDialog
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_cart.view.*
@@ -197,12 +196,17 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
     override fun cartDeleteSuccess(pos: Int, cartProductBean: CartProductBean) {
         mCartList?.remove(cartProductBean)
         data?.removeAt(pos)
+//        if (data?.isEmpty() == true || data?.get(0) is RecommendProductHeaderBean) {
+//            data?.add(0, EmptyCartProductBean())
+//            setOrNotifyAdapter()
+//        } else {
+//            mAdapter?.notifyItemRemoved(pos)
+//        }
+
         if (data?.isEmpty() == true || data?.get(0) is RecommendProductHeaderBean) {
             data?.add(0, EmptyCartProductBean())
-            setOrNotifyAdapter()
-        } else {
-            mAdapter?.notifyItemRemoved(pos)
         }
+        setOrNotifyAdapter()
         onCartProductCheckChange()
     }
 

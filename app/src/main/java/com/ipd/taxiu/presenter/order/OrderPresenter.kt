@@ -65,6 +65,19 @@ open class OrderPresenter<T : OrderPresenter.IOrderOperationView> : BasePresente
                 })
     }
 
+    fun buyAgain(orderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().orderBuyAgain(GlobalParam.getUserId(), orderId),
+                object : Response<BaseResult<OrderDetailBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<OrderDetailBean>) {
+                        if (result.code == 0) {
+                            mView?.buyAgainSuccess()
+                        } else {
+                            mView?.buyAgainFail(result.msg)
+                        }
+                    }
+                })
+    }
+
     interface IOrderOperationView {
         fun cancelOrderSuccess()
         fun cancelOrderFail(errMsg: String)
@@ -72,5 +85,7 @@ open class OrderPresenter<T : OrderPresenter.IOrderOperationView> : BasePresente
         fun receivedOrderFail(errMsg: String)
         fun deleteOrderSuccess()
         fun deleteOrderFail(errMsg: String)
+        fun buyAgainSuccess()
+        fun buyAgainFail(errMsg: String)
     }
 }
