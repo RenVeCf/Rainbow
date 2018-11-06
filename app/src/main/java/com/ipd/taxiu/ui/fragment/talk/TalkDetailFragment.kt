@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TalkDetailAdapter
 import com.ipd.taxiu.bean.CommentResult
-import com.ipd.taxiu.bean.MoreCommentReplyBean
 import com.ipd.taxiu.bean.TalkCommentBean
 import com.ipd.taxiu.bean.TalkDetailBean
 import com.ipd.taxiu.platform.global.Constant
@@ -176,6 +175,8 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                     holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                     var num = holder.itemView.tv_zan.text.toString().toInt()
                     holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                    holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+
                 }
             }
             else -> {
@@ -187,6 +188,8 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                         holder.itemView.iv_answer_zan.isSelected = info.IS_PRAISE == 1
                         var num = holder.itemView.tv_answer_zan_num.text.toString().toInt()
                         holder.itemView.tv_answer_zan_num.text = if (info.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                        holder.itemView.tv_answer_zan_num.isSelected = info.IS_PRAISE == 1
+
                     }
                 }
             }

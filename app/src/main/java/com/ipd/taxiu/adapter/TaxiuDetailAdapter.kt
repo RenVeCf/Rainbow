@@ -119,6 +119,7 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()
                 holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_zan.text = detailData.PRAISE.toString()
+                holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_comment_num.text = "${detailData.COMMENT_NUM}人参与了评论"
 
                 holder.itemView.iv_zan.setOnClickListener {
@@ -187,6 +188,7 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 holder.itemView.tv_comment_reply_num.text = info.REPLY.toString()
                 holder.itemView.tv_comment_zan_num.text = info.PRAISE.toString()
                 holder.itemView.iv_comment_zan.isSelected = info.IS_PRAISE == 1
+                holder.itemView.tv_comment_zan_num.isSelected = info.IS_PRAISE == 1
 
                 val pics = StringUtils.splitImages(info.PIC)
                 if (pics.isNotEmpty()) {

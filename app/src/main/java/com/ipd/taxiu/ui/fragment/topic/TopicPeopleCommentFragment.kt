@@ -3,6 +3,7 @@ package com.ipd.taxiu.ui.fragment.topic
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.TopicPeopleCommentAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.CommentDetailBean
@@ -159,6 +160,8 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                     holder.itemView.iv_comment_zan.isSelected = mDetailData.IS_PRAISE == 1
                     var num = holder.itemView.tv_comment_zan_num.text.toString().toInt()
                     holder.itemView.tv_comment_zan_num.text = if (mDetailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                    holder.itemView.tv_comment_zan_num.setTextColor(if (mDetailData.IS_PRAISE == 1)mActivity.resources.getColor(R.color.colorPrimaryDark) else mActivity.resources.getColor(R.color.LightGrey))
+
                 }
             }
             commentApi.getPraiseReplyCategory() -> {
@@ -171,6 +174,8 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                         holder.itemView.iv_sub_comment_zan.isSelected = info.IS_PRAISE == 1
                         var num = holder.itemView.tv_sub_comment_zan_num.text.toString().toInt()
                         holder.itemView.tv_sub_comment_zan_num.text = if (info.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                        holder.itemView.tv_sub_comment_zan_num.setTextColor(if (info.IS_PRAISE == 1) mActivity.resources.getColor(R.color.colorPrimaryDark) else mActivity.resources.getColor(R.color.LightGrey))
+
                     }
                 }
 

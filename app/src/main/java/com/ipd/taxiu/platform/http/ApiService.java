@@ -20,6 +20,7 @@ import com.ipd.taxiu.bean.EvaluateResult;
 import com.ipd.taxiu.bean.ExchangeBean;
 import com.ipd.taxiu.bean.ExchangeHisBean;
 import com.ipd.taxiu.bean.FlashSaleProductBean;
+import com.ipd.taxiu.bean.FlashSaleTimeBean;
 import com.ipd.taxiu.bean.GroupBean;
 import com.ipd.taxiu.bean.GroupOrderDetailBean;
 import com.ipd.taxiu.bean.HomeResultBean;
@@ -725,6 +726,10 @@ public interface ApiService {
     Observable<BaseResult<List<ProductBean>>> storeProductNew(@Field("USER_ID") String user_id,
                                                               @Field("COUNT") int COUNT,
                                                               @Field("PAGE") int PAGE);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_FLASH_SALE_TIME)
+    Observable<BaseResult<List<FlashSaleTimeBean>>> storeFlashSaleTime(@Field("USER_ID") String user_id);
 
     /**
      * store video

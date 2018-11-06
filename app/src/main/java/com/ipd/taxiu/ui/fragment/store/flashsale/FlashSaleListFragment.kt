@@ -3,7 +3,9 @@ package com.ipd.taxiu.ui.fragment.store.flashsale
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taxiu.adapter.FlashSaleAdapter
 import com.ipd.taxiu.bean.BaseResult
+import com.ipd.taxiu.bean.FlashSaleHeaerInfo
 import com.ipd.taxiu.bean.FlashSaleProductBean
+import com.ipd.taxiu.bean.FlashSaleTimeBean
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
@@ -24,29 +26,60 @@ class FlashSaleListFragment : ListFragment<BaseResult<List<FlashSaleProductBean>
     }
 
 
-    private var mTodayFlashSaleProduct: FlashSaleProductBean? = null
+    private var mFlashSaleHeaerInfo: FlashSaleHeaerInfo? = null
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()
-            ApiManager.getService().storeTodayProductFlashSale(GlobalParam.getUserIdOrJump())
+            Observable.zip(
+                    getTodayFlashSale(),
+                    getFlashSaleTime()
+            ) { t1, t2 ->
+                val flashSaleHeaerInfo = FlashSaleHeaerInfo()
+                if ((t1.code == 0 || t1.code == 10000) && t2.code == 0) {
+                    flashSaleHeaerInfo.todayProduct = t1.data
+                    flashSaleHeaerInfo.timeList = t2.data
+                }
+                flashSaleHeaerInfo
+            }
                     .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<FlashSaleProductBean>>() {
-                        override fun _onNext(result: BaseResult<FlashSaleProductBean>) {
-                            if (result.code == 0) {
-                                mTodayFlashSaleProduct = result.data
-                                getParentListData(isRefresh)
-                            } else {
-                                showError(result.msg)
-                            }
+                    .subscribe(object : Response<FlashSaleHeaerInfo>() {
+                        override fun _onNext(result: FlashSaleHeaerInfo?) {
+                            mFlashSaleHeaerInfo = result
+                            getParentListData(isRefresh)
                         }
 
                         override fun onError(e: Throwable?) {
-                            showError("连接服务器失败")
+                            showError()
                         }
                     })
+
+//                    ApiManager.getService().storeTodayProductFlashSale(GlobalParam.getUserIdOrJump())
+//                    .compose(RxScheduler.applyScheduler())
+//                    .subscribe(object : Response<BaseResult<FlashSaleProductBean>>() {
+//                        override fun _onNext(result: BaseResult<FlashSaleProductBean>) {
+//                            if (result.code == 0 || result.code == 10000) {
+//                                mTodayFlashSaleProduct = result.data
+//                                getParentListData(isRefresh)
+//                            } else {
+//                                showError(result.msg)
+//                            }
+//                        }
+//
+//                        override fun onError(e: Throwable?) {
+//                            showError("连接服务器失败")
+//                        }
+//                    })
         } else {
             super.getListData(isRefresh)
         }
+    }
+
+    private fun getTodayFlashSale(): Observable<BaseResult<FlashSaleProductBean>> {
+        return ApiManager.getService().storeTodayProductFlashSale(GlobalParam.getUserIdOrJump())
+    }
+
+    private fun getFlashSaleTime(): Observable<BaseResult<List<FlashSaleTimeBean>>> {
+        return ApiManager.getService().storeFlashSaleTime(GlobalParam.getUserIdOrJump())
     }
 
     private fun getParentListData(isRefresh: Boolean) {
@@ -69,7 +102,7 @@ class FlashSaleListFragment : ListFragment<BaseResult<List<FlashSaleProductBean>
     private var mAdapter: FlashSaleAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = FlashSaleAdapter(mActivity, mTodayFlashSaleProduct, data, { itemClickType, info ->
+            mAdapter = FlashSaleAdapter(mActivity, data, { itemClickType, info ->
                 when (itemClickType) {
                     FlashSaleAdapter.ItemClickType.ITEM,
                     FlashSaleAdapter.ItemClickType.PURCHASE -> {
@@ -99,17 +132,19 @@ class FlashSaleListFragment : ListFragment<BaseResult<List<FlashSaleProductBean>
                 isCreate = true
                 onRefresh()
             })
+            mAdapter?.setHeaderInfo(mFlashSaleHeaerInfo)
             mAdapter?.mType = mType
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
+            mAdapter?.setHeaderInfo(mFlashSaleHeaerInfo)
             mAdapter?.mType = mType
             mAdapter?.notifyDataSetChanged()
         }
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<FlashSaleProductBean>>) {
-        data?.addAll(result?.data?: arrayListOf())
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
 

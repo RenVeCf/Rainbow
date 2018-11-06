@@ -130,6 +130,7 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
                     holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                     var num = holder.itemView.tv_zan.text.toString().toInt()
                     holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                    holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
                 }
             }
             else -> {
@@ -141,6 +142,8 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
                         holder.itemView.iv_comment_zan.isSelected = info.IS_PRAISE == 1
                         var num = holder.itemView.tv_comment_zan_num.text.toString().toInt()
                         holder.itemView.tv_comment_zan_num.text = if (info.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
+                        holder.itemView.tv_comment_zan_num.isSelected = info.IS_PRAISE == 1
+
                     }
                 }
             }

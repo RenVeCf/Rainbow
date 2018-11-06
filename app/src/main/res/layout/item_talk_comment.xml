@@ -99,7 +99,7 @@
                 style="@style/SmallTextStyle"
                 android:layout_marginLeft="2dp"
                 android:text="3243"
-                android:textColor="@color/LightGrey" />
+                android:textColor="@drawable/selector_detail_zan_color" />
 
         </LinearLayout>
 

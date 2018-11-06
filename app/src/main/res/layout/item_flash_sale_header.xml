@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
 
-    <android.support.v7.widget.CardView style="@style/StoreCardStyle">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_today_product"
+        style="@style/StoreCardStyle">
 
 
         <android.support.constraint.ConstraintLayout
@@ -21,17 +23,17 @@
                 android:id="@+id/iv_cheapest_img"
                 android:layout_width="@dimen/list_product_img_width"
                 android:layout_height="@dimen/list_product_img_height"
-                android:layout_marginBottom="@dimen/small_padding"
                 android:layout_marginLeft="@dimen/small_padding"
                 android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginBottom="@dimen/small_padding"
                 android:scaleType="centerCrop"
-                tools:src="@mipmap/product_img1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:leftTop_corner_radius="10dp"
                 app:rightTop_corner_radius="10dp"
-                app:type="round" />
+                app:type="round"
+                tools:src="@mipmap/product_img1" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
@@ -93,10 +95,10 @@
                     android:id="@+id/tv_cheapest_buy"
                     style="@style/SmallTextStyle"
                     android:background="@drawable/shape_buy_bg"
-                    android:paddingBottom="6dp"
                     android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
                     android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="6dp"
                     android:text="马上抢"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -132,8 +134,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingBottom="@dimen/small_padding"
-            android:paddingTop="@dimen/small_padding">
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding">
 
             <ImageView
                 android:id="@+id/today_icon"
@@ -170,8 +172,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingBottom="@dimen/small_padding"
-            android:paddingTop="@dimen/small_padding">
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding">
 
             <ImageView
                 android:id="@+id/tomorrow_icon"

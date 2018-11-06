@@ -100,6 +100,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_FLASH_SALE_REMIND = "app_activity/toRemind.do";
     String STORE_CLEARANCE_PRODUCT = "app_activity/pullList.do";
     String STORE_NEW_PRODUCT = "app_activity/newList.do";
+    String STORE_FLASH_SALE_TIME = "app_activity/rushTime.do";
 
     //拼团
     String STORE_SPELL = "app_team/getList.do";

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taxiu.R
+import com.ipd.taxiu.bean.FlashSaleHeaerInfo
 import com.ipd.taxiu.bean.FlashSaleProductBean
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.utils.StoreType
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.item_flash_sale_header.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class FlashSaleAdapter(val context: Context, private val todayProduct: FlashSaleProductBean?, private val list: List<FlashSaleProductBean>?, private val itemClick: (itemClickType: Int, info: FlashSaleProductBean) -> Unit, val tabListener: (pos: Int) -> Unit) : RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
+class FlashSaleAdapter(val context: Context, private val list: List<FlashSaleProductBean>?, private val itemClick: (itemClickType: Int, info: FlashSaleProductBean) -> Unit, val tabListener: (pos: Int) -> Unit) : RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
 
     object ItemClickType {
         const val ITEM = 0
@@ -24,18 +25,32 @@ class FlashSaleAdapter(val context: Context, private val todayProduct: FlashSale
         const val CANCEL_REMIND = 3
     }
 
+    private var headerInfo: FlashSaleHeaerInfo? = null
+    fun setHeaderInfo(headerInfo: FlashSaleHeaerInfo?) {
+        this.headerInfo = headerInfo
+    }
 
-    override fun getItemCount(): Int = (list?.size ?: 0).plus(1)
+    override fun getItemCount(): Int = if (headerInfo == null) list?.size ?: 0 else (list?.size
+            ?: 0).plus(1)
 
     object ItemType {
         const val HEADER = 0
         const val CONTENT = 1
     }
 
+
     var mType: Int = StoreType.FLASH_SALE_TODAY
+
+    fun getFixedPosition(pos: Int): Int {
+        if (headerInfo == null) {
+            return pos
+        }
+        return pos - 1
+    }
 
 
     override fun getItemViewType(position: Int): Int {
+        if (headerInfo == null) return ItemType.CONTENT
         return if (position == 0) ItemType.HEADER else ItemType.CONTENT
     }
 
@@ -54,12 +69,22 @@ class FlashSaleAdapter(val context: Context, private val todayProduct: FlashSale
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
-                if (todayProduct == null) {
-                    holder.itemView.cl_today_product.visibility = View.GONE
+                if (headerInfo?.todayProduct == null) {
+                    holder.itemView.cv_today_product.visibility = View.GONE
                 } else {
-                    holder.itemView.cl_today_product.visibility = View.VISIBLE
-                    setItemData(true, holder, todayProduct)
+                    holder.itemView.cv_today_product.visibility = View.VISIBLE
+                    setItemData(true, holder, headerInfo!!.todayProduct)
                 }
+                if (headerInfo?.timeList?.size ?: 0 > 0) {
+                    val todayTimeInfo = headerInfo?.timeList?.get(0)
+                    holder.itemView.today_time.text = todayTimeInfo?.START_TIME + "~" + todayTimeInfo?.END_TIME
+                }
+                if (headerInfo?.timeList?.size ?: 0 > 1) {
+                    val tomorrowTimeInfo = headerInfo?.timeList?.get(1)
+                    holder.itemView.tomorrow_time.text = tomorrowTimeInfo?.START_TIME + "~" + tomorrowTimeInfo?.END_TIME
+                }
+
+
 
                 holder.itemView.tab_layout.setTabListener {
                     tabListener?.invoke(it)
@@ -67,7 +92,7 @@ class FlashSaleAdapter(val context: Context, private val todayProduct: FlashSale
 
             }
             ItemType.CONTENT -> {
-                val info = list!![position - 1]
+                val info = list!![getFixedPosition(position)]
                 setItemData(false, holder, info)
 
                 holder.itemView.setOnClickListener { itemClick.invoke(ItemClickType.ITEM, info) }

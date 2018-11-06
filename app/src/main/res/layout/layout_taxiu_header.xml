@@ -93,7 +93,7 @@
             android:id="@+id/tv_zan"
             style="@style/BaseTextStyle"
             android:text="232"
-            android:textColor="@color/LightGrey"
+            android:textColor="@drawable/selector_detail_zan_color"
             app:layout_constraintLeft_toLeftOf="@id/iv_zan"
             app:layout_constraintRight_toRightOf="@id/iv_zan"
             app:layout_constraintTop_toBottomOf="@id/iv_zan" />
