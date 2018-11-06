@@ -236,7 +236,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     public void updateUserSuccess() {
-        toastShow("保存成功");
+        toastShow(true,"保存成功");
         finish();
     }
 

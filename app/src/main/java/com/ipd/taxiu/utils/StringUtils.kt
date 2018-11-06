@@ -45,6 +45,17 @@ object StringUtils {
         return arrayListOf(fixPicStr)
     }
 
+    fun fixedPicStr(picStr: String): String {
+        if (TextUtils.isEmpty(picStr)) {
+            return picStr
+        }
+        var fixPicStr = picStr
+        if (fixPicStr.last() == ';') {
+            fixPicStr = fixPicStr.substring(0, fixPicStr.length - 1)
+        }
+        return fixPicStr
+    }
+
     fun getPayStrByPayType(payType: Int): String {
         return when (payType) {
             ChoosePayTypeLayout.PayType.ALIPAY -> "支付宝"

@@ -11,6 +11,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ProductBean
 import com.ipd.taxiu.bean.UploadProductEvaluateBean
 import com.ipd.taxiu.imageload.ImageLoader
+import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.widget.RatingBar
 import kotlinx.android.synthetic.main.item_evaluate.view.*
 
@@ -150,7 +151,6 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
             }
 
             var picStr = ""
-
             pictureList.forEach {
                 if (TextUtils.isEmpty(it.url)) {
                     callback.invoke("图片暂未上传成功", null)
@@ -159,10 +159,7 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
                 picStr += "${it.url};"
             }
 
-
-            if (!TextUtils.isEmpty(picStr)) {
-                picStr.substring(0, picStr.length - 1)
-            }
+            picStr = StringUtils.fixedPicStr(picStr)
             list.add(UploadProductEvaluateBean(info.ORDER_DETAIL_ID, content, picStr, 0))
         }
         callback.invoke("", list)

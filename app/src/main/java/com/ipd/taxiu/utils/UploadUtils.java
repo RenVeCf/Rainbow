@@ -21,6 +21,8 @@ import okhttp3.RequestBody;
 public class UploadUtils {
 
     public static Response<UploadResultBean> uploadPic(Context context, boolean needDialog, String filePath, final UploadCallback callback) {
+        BitmapUtil.compressImage(filePath);
+
         final Map<String, RequestBody> requestMap = new HashMap<>();
         requestMap.put("PIC\"; filename=\"" + new File(filePath).getName(),
                 new ProgressRequestBody(RequestBody.create(MediaType.parse("image/png"), new File(filePath)), new ProgressRequestBody.UploadCallbacks() {

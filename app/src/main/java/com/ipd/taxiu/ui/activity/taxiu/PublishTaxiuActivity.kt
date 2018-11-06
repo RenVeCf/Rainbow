@@ -20,6 +20,7 @@ import com.ipd.taxiu.ui.activity.ShootVideoActivity
 import com.ipd.taxiu.ui.activity.VideoActivity
 import com.ipd.taxiu.ui.activity.VideoSelectActivity
 import com.ipd.taxiu.ui.activity.web.WebActivity
+import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.UploadUtils
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
 import com.ipd.taxiu.widget.MessageDialog
@@ -202,6 +203,8 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                     }
                     picStr += "${it.url};"
                 }
+                picStr = StringUtils.fixedPicStr(picStr)
+
                 if (!uploadStatus) {
                     toastShow("图片未上传成功，请先上传图片")
                     return false
