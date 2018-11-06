@@ -18,7 +18,7 @@ class ReturnPictureAdapter(val context: Context, private val list: List<String>?
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_topic_comment_img, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_return_picture_img, parent, false))
 
     }
 
