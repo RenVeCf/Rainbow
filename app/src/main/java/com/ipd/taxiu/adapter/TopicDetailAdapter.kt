@@ -66,8 +66,7 @@ class TopicDetailAdapter(val context: Context, private val detailData: TopicDeta
                 }
                 holder.itemView.tv_topic_title.text = detailData.TITLE
 //                holder.itemView.tv_topic_desc.text = detailData.CONTENT
-                holder.itemView.tv_topic_desc.text = Html.fromHtml(html, HtmlImageGetter(context, holder.itemView.tv_topic_desc), null)
-                holder.itemView.topic_web.loadData(detailData.CONTENT, "text/html; charset=UTF-8", null)
+                holder.itemView.topic_web.loadData(detailData.CONTENT_DETAIL, "text/html; charset=UTF-8", null)
 
                 holder.itemView.tv_taxiu_publish_time.text = detailData.CREATETIME
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()

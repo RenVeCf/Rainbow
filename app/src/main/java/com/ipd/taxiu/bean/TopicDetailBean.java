@@ -23,6 +23,7 @@ public class TopicDetailBean {
     public String TITLE;
     public String LOGO;
     public String CONTENT;
+    public String CONTENT_DETAIL;
     public int PRAISE;
     public int COLLECT;
     public int REPLY;

@@ -4,13 +4,13 @@ package com.ipd.taxiu.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-//    String WEB_URL = "http://121.199.8.244:9386/";
-//    String SERVER_URL = "http://121.199.8.244:9386/TX/";
-    String WEB_URL = "http://121.199.8.244:9376/";
-    String SERVER_URL = "http://121.199.8.244:9376/TX/";
+    //    String BASE_URL = "http://121.199.8.244:9386/";
+    String BASE_URL = "http://121.199.8.244:9376/";
+    String WEB_URL = BASE_URL;
+    String SERVER_URL = BASE_URL + "TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
     String VIDEO_URL = "http://video.csjc19.com/";
-    String APK_DOWNLOAD_URL = "http://121.199.8.244:9386/taxiu/download.html";
+    String APK_DOWNLOAD_URL = BASE_URL + "taxiu/download.html";
 
     //account
     String REGISTER_SMS_CODE = "app_user/sendCode.do";
