@@ -18,7 +18,7 @@
             android:src="@mipmap/share_wechat" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="微信" />
     </LinearLayout>
@@ -37,7 +37,7 @@
             android:src="@mipmap/share_friend" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="朋友圈" />
     </LinearLayout>
@@ -56,7 +56,7 @@
             android:src="@mipmap/share_qq" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="QQ" />
     </LinearLayout>
@@ -75,12 +75,13 @@
             android:src="@mipmap/share_qzone" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="QQ空间" />
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_sina"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -94,7 +95,7 @@
             android:src="@mipmap/share_sina" />
 
         <TextView
-            style="@style/BaseTextStyle"
+            style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="微博" />
     </LinearLayout>

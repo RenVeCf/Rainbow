@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingBottom="@dimen/base_padding"
-            android:paddingTop="@dimen/base_padding">
+            android:paddingTop="@dimen/base_padding"
+            android:paddingBottom="@dimen/base_padding">
 
 
             <com.ipd.taxiu.widget.RoundImageView
@@ -25,8 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_image_height"
                 android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginRight="@dimen/base_padding"
                 android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginRight="@dimen/base_padding"
                 android:scaleType="centerCrop"
                 app:corner_radius="12dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,11 +44,11 @@
             <TextView
                 android:id="@+id/tv_classroom_name"
                 style="@style/TitleTextStyle"
+                android:layout_width="0dp"
                 android:layout_marginTop="@dimen/small_padding"
                 android:ellipsize="end"
-                android:layout_width="0dp"
-                app:layout_constraintRight_toRightOf="@id/iv_classroom_image"
                 app:layout_constraintLeft_toLeftOf="@id/iv_classroom_image"
+                app:layout_constraintRight_toRightOf="@id/iv_classroom_image"
                 app:layout_constraintTop_toBottomOf="@id/iv_classroom_image"
                 tools:text="宠物健康及心理健康咨询课程" />
 
@@ -299,9 +299,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingBottom="6dp"
         android:paddingLeft="@dimen/base_padding"
-        android:paddingTop="6dp">
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
 
         <RelativeLayout
             android:id="@+id/rl_buy"
@@ -310,14 +310,15 @@
             android:layout_weight="3">
 
             <RelativeLayout
+                android:id="@+id/cl_buy"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/shape_buy_bg"
-                android:paddingBottom="6dp"
+                android:background="@drawable/selector_buy"
                 android:paddingLeft="15dp"
+                android:paddingTop="6dp"
                 android:paddingRight="15dp"
-                android:paddingTop="6dp">
+                android:paddingBottom="6dp">
 
 
                 <TextView
@@ -328,11 +329,21 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/tv_buy_now"
                     style="@style/BaseTextStyle"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="购买课堂"
                     android:textColor="@color/white" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_buy_end"
+                    style="@style/BaseTextStyle"
+                    android:layout_centerInParent="true"
+                    android:text="已结束"
+                    android:textColor="@color/white" />
+
             </RelativeLayout>
 
 

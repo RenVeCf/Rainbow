@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import android.view.View
 import cn.sharesdk.framework.Platform
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
@@ -27,7 +28,7 @@ import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_classroom_detail.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import java.util.HashMap
+import java.util.*
 
 class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClassroomDetailView, AlipayUtils.OnPayListener {
 
@@ -73,10 +74,6 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     }
 
     override fun initListener() {
-        rl_buy.setOnClickListener {
-            PayWayDialog(this, R.style.recharge_pay_dialog)
-                    .show()
-        }
     }
 
     override fun loadDetailSuccess(detail: ClassRoomBean) {
@@ -92,6 +89,25 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
         fl_collect.setOnClickListener {
             mPresenter?.toCollect(classroomId)
         }
+
+        cl_buy.isEnabled = detail.CLASS_STATE != 3
+        if (detail.CLASS_STATE == 3) {
+            tv_buy_end.visibility = View.VISIBLE
+            tv_classroom_price.visibility = View.GONE
+            tv_buy_now.visibility = View.GONE
+
+            rl_buy.setOnClickListener {}
+        } else {
+            tv_buy_end.visibility = View.GONE
+            tv_classroom_price.visibility = View.VISIBLE
+            tv_buy_now.visibility = View.VISIBLE
+
+            rl_buy.setOnClickListener {
+                PayWayDialog(this, R.style.recharge_pay_dialog)
+                        .show()
+            }
+        }
+
 
         tv_answer_content.text = Html.fromHtml(detail.CONTENT, HtmlImageGetter(mActivity, tv_answer_content), null)
 

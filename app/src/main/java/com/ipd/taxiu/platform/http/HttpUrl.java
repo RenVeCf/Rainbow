@@ -4,7 +4,7 @@ package com.ipd.taxiu.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-    //    String BASE_URL = "http://121.199.8.244:9386/";
+//        String BASE_URL = "http://121.199.8.244:9386/";
     String BASE_URL = "http://121.199.8.244:9376/";
     String WEB_URL = BASE_URL;
     String SERVER_URL = BASE_URL + "TX/";

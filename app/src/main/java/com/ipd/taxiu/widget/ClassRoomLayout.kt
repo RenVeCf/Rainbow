@@ -10,7 +10,6 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
 import com.ipd.taxiu.imageload.ImageLoader
 import kotlinx.android.synthetic.main.item_classroom.view.*
-import java.util.*
 
 class ClassRoomLayout : FrameLayout {
     constructor(context: Context?) : super(context) {
@@ -36,9 +35,15 @@ class ClassRoomLayout : FrameLayout {
         if (isBuyed) {
             setBtnByStatus(info.CLASS_STATE)
         } else {
-            mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_buy_bg)
-            mContentView.tv_classroom_buy.setTextColor(resources.getColor(R.color.white))
-            mContentView.tv_classroom_buy.text = "￥${info.PRICE}  购买"
+            if (info.CLASS_STATE == 3) {
+                //已结束
+                setBtnByStatus(info.CLASS_STATE)
+            } else {
+                mContentView.tv_classroom_buy.setBackgroundResource(R.drawable.shape_buy_bg)
+                mContentView.tv_classroom_buy.setTextColor(resources.getColor(R.color.white))
+                mContentView.tv_classroom_buy.text = "￥${info.PRICE}  购买"
+            }
+
         }
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, mContentView.iv_classroom_image)
