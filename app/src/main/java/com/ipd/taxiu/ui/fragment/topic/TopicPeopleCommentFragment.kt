@@ -79,7 +79,7 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
     private var mAdapter: TopicPeopleCommentAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = TopicPeopleCommentAdapter(mActivity, mDetailData, data, { pos, replyType, replyId, info, replyInfo ->
+            mAdapter = TopicPeopleCommentAdapter(mActivity, mDetailData, data) { pos, replyType, replyId, info, replyInfo ->
                 //itemClick
                 when (replyType) {
                     ReplyType.MORE_REPLY -> {
@@ -87,7 +87,7 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                     }
                     ReplyType.SECOND_REPLY -> {
                         if (info == null || replyInfo == null) return@TopicPeopleCommentAdapter
-                        ReplyDialog("回复:${replyInfo?.userName}", {
+                        ReplyDialog("回复:${replyInfo?.userName}") {
                             //二级回复
                             commentApi.secondReply(GlobalParam.getUserIdOrJump(), replyId, replyInfo?.USER_ID, it)
                                     .compose(RxScheduler.applyScheduler())
@@ -102,7 +102,7 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                                     })
 
 
-                        }).show(childFragmentManager, MoreCommentActivity::class.java.name)
+                        }.show(childFragmentManager, MoreCommentActivity::class.java.name)
                     }
                     ReplyType.PRAISE_COMMENT -> {
                         //对评论点赞
@@ -119,7 +119,7 @@ class TopicPeopleCommentFragment : ListFragment<BaseResult<List<TopicCommentRepl
                 }
 
 
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {

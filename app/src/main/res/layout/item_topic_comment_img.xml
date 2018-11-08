@@ -9,7 +9,7 @@
     <com.ipd.taxiu.widget.RoundImageView
         android:id="@+id/iv_topic_comment_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/topic_comment_img_height"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         tools:src="@mipmap/topic_detail_image"
         app:corner_radius="12dp"
