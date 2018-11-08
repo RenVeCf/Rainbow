@@ -243,13 +243,13 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
     override fun getPriceValue(): Int = screenLayout?.getPriceValue() ?: 0
     override fun getMinPrice(): Float = mMinPrice
     override fun getMaxPrice(): Float = mMaxPrice
-    override fun getBrandValue(): String = (mScreenMap["品牌"]?.MODULE_ID ?: "").toString()
-    override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.MODULE_ID ?: "").toString()
-    override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.MODULE_ID ?: "").toString()
-    override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.MODULE_ID ?: "").toString()
-    override fun getNetContentValue(): String = (mScreenMap["净含量"]?.MODULE_ID ?: "").toString()
-    override fun getTasteValue(): String = (mScreenMap["口味"]?.MODULE_ID ?: "").toString()
-    override fun getCountryValue(): String = (mScreenMap["国家"]?.MODULE_ID ?: "").toString()
+    override fun getBrandValue(): String = (mScreenMap["品牌"]?.NAME) ?: ""
+    override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.NAME) ?: ""
+    override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.NAME) ?: ""
+    override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.NAME) ?: ""
+    override fun getNetContentValue(): String = (mScreenMap["净含量"]?.NAME) ?: ""
+    override fun getTasteValue(): String = (mScreenMap["口味"]?.NAME) ?: ""
+    override fun getCountryValue(): String = (mScreenMap["国家"]?.NAME) ?: ""
     //    override fun getThingTypeValue(): String = mScreenResult?.type ?: ""
     override fun getThingTypeValue(): String = ""
 }

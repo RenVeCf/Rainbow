@@ -172,14 +172,14 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
         if (resultCode == RESULT_OK) {
             if (requestCode == PictureChooseUtils.PHOTOTAKE) {
                 path = CommonUtils.getPhotoSavePath(this, Environment.DIRECTORY_PICTURES) + "/" + PictureChooseUtils.getPhotoSaveName();
-                CropActivity.launch(this, path);
+                CropActivity.Companion.launch(this, path);
             }
 
             if (requestCode == PictureChooseUtils.PHOTOZOOM) {
                 if (data == null)
                     return;
                 path = BitmapUtils.getInstance().getPath(this, data.getData());
-                CropActivity.launch(this, path);
+                CropActivity.Companion.launch(this, path);
 
             }
 

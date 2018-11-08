@@ -223,14 +223,14 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
         if (resultCode == RESULT_OK) {
             if (requestCode == PictureChooseUtils.PHOTOTAKE) {
                 path = CommonUtils.getPhotoSavePath(this, Environment.DIRECTORY_PICTURES) + "/" + PictureChooseUtils.getPhotoSaveName();
-                CropActivity.launch(this, path);
+                CropActivity.Companion.launch(this, path);
             }
 
             if (requestCode == PictureChooseUtils.PHOTOZOOM) {
                 if (data == null)
                     return;
                 path = BitmapUtils.getInstance().getPath(this, data.getData());
-                CropActivity.launch(this, path);
+                CropActivity.Companion.launch(this, path);
 
             }
 
@@ -320,7 +320,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     @Override
     public void updateSuccess() {
         EventBus.getDefault().post(new UpdateHomeEvent());
-        toastShow("修改成功");
+        toastShow(true,"修改成功");
         finish();
     }
 
@@ -332,7 +332,7 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
     @Override
     public void addSuccess() {
         EventBus.getDefault().post(new UpdateHomeEvent());
-        toastShow("添加成功");
+        toastShow(true,"添加成功");
         finish();
     }
 
