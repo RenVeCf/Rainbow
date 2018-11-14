@@ -130,6 +130,7 @@ class ProductDetailActivity : BaseUIActivity() {
             chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
             chatParams.itemparams.goods_id = mProductId.toString()
             chatParams.itemparams.itemparam = mFromId.toString()
+            chatParams.itemparams.clicktoshow_type = CoreData.CLICK_TO_APP_COMPONENT
             Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
         }
         ll_collect.setOnClickListener {
