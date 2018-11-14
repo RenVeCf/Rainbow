@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import cn.sharesdk.framework.Platform
+import cn.xiaoneng.coreapi.ChatParamsBody
 import cn.xiaoneng.uiapi.Ntalker
+import cn.xiaoneng.utils.CoreData
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
@@ -123,7 +125,12 @@ class ProductDetailActivity : BaseUIActivity() {
 
         ll_kefu.setOnClickListener {
             //客服
-            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", null)
+            val chatParams = ChatParamsBody()
+            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+            chatParams.itemparams.goods_id = mProductId.toString()
+            chatParams.itemparams.itemparam = mFromId.toString()
+            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
         }
         ll_collect.setOnClickListener {
             //收藏

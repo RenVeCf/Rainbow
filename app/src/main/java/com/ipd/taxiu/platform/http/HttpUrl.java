@@ -4,10 +4,11 @@ package com.ipd.taxiu.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
+        String BASE_URL = "http://api.csjc19.com/";
 //        String BASE_URL = "http://121.199.8.244:9386/";
 //    String BASE_URL = "http://121.199.8.244:9376/";
-    String BASE_URL = "http://192.168.0.110:8080/";
-    String WEB_URL = BASE_URL;
+//    String BASE_URL = "http://192.168.0.110:8080/";
+    String WEB_URL = "http://manage.csjc19.com:8080/";
     String SERVER_URL = BASE_URL + "TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";
     String VIDEO_URL = "http://video.csjc19.com/";
@@ -253,6 +254,7 @@ public interface HttpUrl {
     String SHARE_PRODUCT = "app_product/share.do";
     String SHARE_USER = "app_user/share.do";
     String SHARE_VIDEO = "app_tide_video/share.do";
+
 
 
     //html5
