@@ -7,7 +7,7 @@ public interface HttpUrl {
         String BASE_URL = "http://api.csjc19.com/";
 //        String BASE_URL = "http://121.199.8.244:9386/";
 //    String BASE_URL = "http://121.199.8.244:9376/";
-//    String BASE_URL = "http://192.168.0.110:8080/";
+//    String BASE_URL = "http://192.168.0.104:8080/";
     String WEB_URL = "http://manage.csjc19.com:8080/";
     String SERVER_URL = BASE_URL + "TX/";
     String IMAGE_URL = "http://pic.csjc19.com/";

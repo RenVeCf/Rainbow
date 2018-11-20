@@ -11,6 +11,7 @@ import com.ipd.taxiu.adapter.ConfirmOrderProductAdapter
 import com.ipd.taxiu.bean.*
 import com.ipd.taxiu.event.ChooseAddressEvent
 import com.ipd.taxiu.event.ChooseCouponEvent
+import com.ipd.taxiu.event.PayResultEvent
 import com.ipd.taxiu.event.UpdateCartEvent
 import com.ipd.taxiu.presenter.store.ConfirmOrderPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
@@ -312,6 +313,15 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     @Subscribe
     fun onMainEvent(event: ChooseCouponEvent) {
         setCouponInfo(1, event.couponInfo)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: PayResultEvent) {
+        when (event.status) {
+            0 -> onPaySuccess()
+            -1 -> toastShow("支付失败")
+            -2 -> toastShow("取消支付")
+        }
     }
 
     override fun onDestroy() {
