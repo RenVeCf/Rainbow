@@ -102,7 +102,7 @@ object TrimVideoUtil {
                         if (needScale) {
                             try {
                                 bitmap = Bitmap.createScaledBitmap(bitmap, THUMB_WIDTH, THUMB_HEIGHT, false)
-                            } catch (e: IllegalArgumentException) {
+                            } catch (e: Exception) {
                                 e.printStackTrace()
                             }
                         }

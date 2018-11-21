@@ -53,11 +53,13 @@
                 tools:src="@mipmap/small_dog" />
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_dog1"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
@@ -85,11 +87,13 @@
                 app:type="round" />
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_dog2"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
@@ -118,11 +122,13 @@
                 app:type="round" />
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_dog3"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"

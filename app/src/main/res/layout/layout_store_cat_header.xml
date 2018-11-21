@@ -52,11 +52,13 @@
                 tools:src="@mipmap/young_cat" />
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_cat1"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"
@@ -84,11 +86,13 @@
                 app:type="round" />
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_store_pet_kind_bg" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_cat2"
                 style="@style/BaseTextStyle"
                 android:layout_gravity="right|top"

@@ -149,6 +149,7 @@ public class VideoTrimmerView extends FrameLayout implements IVideoTrimmerView {
                         UiThreadExecutor.runTask("", new Runnable() {
                             @Override
                             public void run() {
+                                if (bitmap == null) return;
                                 mVideoThumbAdapter.addBitmap(bitmap);
                             }
                         }, 0L);

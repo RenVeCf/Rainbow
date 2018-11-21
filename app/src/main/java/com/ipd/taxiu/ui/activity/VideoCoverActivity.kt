@@ -66,7 +66,10 @@ class VideoCoverActivity : BaseUIActivity(), VideoCoverAdapter.VideoCoverListene
 
         TrimVideoUtil.backgroundShootVideoThumb(mActivity, Uri.parse(videoPath), duration / 1000, 0, duration.toLong(), false,
                 SingleCallback { bitmap, pos ->
-                    UiThreadExecutor.runTask("", { mCoverAdapter.addBitmap(bitmap) }, 0L)
+                    UiThreadExecutor.runTask("", {
+                        if (bitmap == null) return@runTask
+                        mCoverAdapter.addBitmap(bitmap)
+                    }, 0L)
                 })
     }
 
