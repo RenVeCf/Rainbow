@@ -16,6 +16,7 @@ import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.ui.activity.topic.TopicDetailActivity
 import com.ipd.taxiu.utils.HtmlImageGetter
 import com.ipd.taxiu.utils.StringUtils
+import com.ipd.taxiu.utils.WebUtils
 import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_share_menu.view.*
@@ -66,7 +67,7 @@ class TopicDetailAdapter(val context: Context, private val detailData: TopicDeta
                 }
                 holder.itemView.tv_topic_title.text = detailData.TITLE
 //                holder.itemView.tv_topic_desc.text = detailData.CONTENT
-                holder.itemView.topic_web.loadData(detailData.CONTENT_DETAIL, "text/html; charset=UTF-8", null)
+                holder.itemView.topic_web.loadData(WebUtils.getHtmlData(detailData.CONTENT_DETAIL), "text/html; charset=UTF-8", null)
 
                 holder.itemView.tv_taxiu_publish_time.text = detailData.CREATETIME
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()

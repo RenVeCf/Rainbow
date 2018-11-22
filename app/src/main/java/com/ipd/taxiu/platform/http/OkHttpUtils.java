@@ -13,6 +13,7 @@ public class OkHttpUtils {
     private final static long RESPONSE_CACHE_SIZE = 10 * 1024 * 1024;
     private final static long HTTP_CONNECT_TIMEOUT = 10;
     private final static long HTTP_READ_TIMEOUT = 30;
+    private final static long HTTP_WRITE_TIMEOUT = 30;
 
     private static OkHttpClient singleton;
 
@@ -27,8 +28,9 @@ public class OkHttpUtils {
                     OkHttpClient.Builder builder = new OkHttpClient.Builder();
                     builder.connectTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.SECONDS)
                             .readTimeout(HTTP_READ_TIMEOUT, TimeUnit.SECONDS)
-                            .addInterceptor(new RequestInterceptor())
-                            .addInterceptor(logInterceptor);
+                            .writeTimeout(HTTP_WRITE_TIMEOUT, TimeUnit.SECONDS)
+                            .addInterceptor(logInterceptor)
+                            .addInterceptor(new RequestInterceptor());
 
                     singleton = builder.build();
                 }

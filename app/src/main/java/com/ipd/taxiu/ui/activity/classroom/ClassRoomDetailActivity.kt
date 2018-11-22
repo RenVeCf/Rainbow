@@ -17,10 +17,7 @@ import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.presenter.store.ClassroomDetailPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
-import com.ipd.taxiu.utils.AlipayUtils
-import com.ipd.taxiu.utils.HtmlImageGetter
-import com.ipd.taxiu.utils.ShareCallback
-import com.ipd.taxiu.utils.WeChatUtils
+import com.ipd.taxiu.utils.*
 import com.ipd.taxiu.widget.ChoosePayTypeLayout
 import com.ipd.taxiu.widget.PayWayDialog
 import com.ipd.taxiu.widget.ShareDialog
@@ -109,7 +106,8 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
         }
 
 
-        tv_answer_content.text = Html.fromHtml(detail.CONTENT, HtmlImageGetter(mActivity, tv_answer_content), null)
+//        tv_answer_content.text = Html.fromHtml(detail.CONTENT, HtmlImageGetter(mActivity, tv_answer_content), null)
+        web_view.loadData(WebUtils.getHtmlData(detail.CONTENT), "text/html; charset=UTF-8", null)
 
         fl_share.setOnClickListener {
             val dialog = ShareDialog(mActivity)

@@ -29,4 +29,13 @@ object WebUtils {
                 })
     }
 
+
+    fun getHtmlData(bodyHTML: String): String {
+        val head = "<head>" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> " +
+                "<style>img{max-width:100% !important; width:auto; height:auto;}</style>" +
+                "</head>"
+        return "<html>$head<body style:'height:auto;max-width: 100%; width:auto;'>$bodyHTML</body></html>"
+    }
+
 }

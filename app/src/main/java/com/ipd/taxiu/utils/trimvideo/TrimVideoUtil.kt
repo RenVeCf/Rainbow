@@ -177,7 +177,7 @@ object TrimVideoUtil {
             val height = mmr.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)//高
             callback.invoke(0, width, height)
         } catch (ex: Exception) {
-            callback.invoke(1, "0", "0")
+            callback.invoke(0, "0", "0")
         } finally {
             mmr.release()
         }
