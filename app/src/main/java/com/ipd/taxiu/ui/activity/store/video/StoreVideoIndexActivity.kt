@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.View
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.StoreVideoBean
@@ -57,19 +58,23 @@ class StoreVideoIndexActivity : BaseUIActivity() {
                         val todayResult = result[0] as BaseResult<StoreVideoBean>
                         val tabsResult = result[1] as BaseResult<List<StoreVideoTabBean>>
                         when {
-                            todayResult.code != 0 -> showError(todayResult.msg)
                             tabsResult.code != 0 -> showError(tabsResult.msg)
                             else -> {
                                 showContent()
-                                val todayInfo = todayResult.data
-                                cl_content.setOnClickListener {
-                                    //今日推荐视频详情
-                                    StoreVideoDetailActivity.launch(mActivity, todayInfo.VIDEO_ID.toString())
+                                if (todayResult.code != 0 || todayResult == null || todayResult.data == null){
+                                    stickynavlayout_topview.visibility = View.GONE
+                                }else{
+                                    stickynavlayout_topview.visibility = View.VISIBLE
+                                    val todayInfo = todayResult.data
+                                    cl_content.setOnClickListener {
+                                        //今日推荐视频详情
+                                        StoreVideoDetailActivity.launch(mActivity, todayInfo.VIDEO_ID.toString())
+                                    }
+                                    ImageLoader.loadNoPlaceHolderImg(mActivity, todayInfo.LOGO, iv_image)
+                                    tv_taxiu_name.text = todayInfo.TITLE
+                                    tv_video_viewers.text = todayInfo.BROWSE.toString()
+                                    tv_video_time.text = todayInfo.TIME_LENGTH
                                 }
-                                ImageLoader.loadNoPlaceHolderImg(mActivity, todayInfo.LOGO, iv_image)
-                                tv_taxiu_name.text = todayInfo.TITLE
-                                tv_video_viewers.text = todayInfo.BROWSE.toString()
-                                tv_video_time.text = todayInfo.TIME_LENGTH
 
                                 setupTabs(tabsResult.data)
                             }

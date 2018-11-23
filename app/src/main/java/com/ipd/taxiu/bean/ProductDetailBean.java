@@ -11,12 +11,12 @@ public class ProductDetailBean {
     public String PRODUCT_NUMBER;
     public int KIND;
     public int PULL_CATEGORY;
-    public int SHOP_TYPE;
+    public String SHOP_TYPE;
     public String BRAND;
-    public int CATEGORY;
+    public String CATEGORY;
     public String LOGO;
-    public int AREA;
-    public int AREA_CATEGORY;
+    public String AREA;
+    public String AREA_CATEGORY;
     public String THING_TYPE;
     public String APPLY;
     public String SIZE;
@@ -32,7 +32,7 @@ public class ProductDetailBean {
     public String SHELF_LIFE;
     public String VALID_TIME;
     public String AGE;
-    public int POST_FEE;
+    public String POST_FEE;
     public int BUYNUM;
     public int COLLECT;
     public int REPLY;

@@ -115,13 +115,13 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.tv_old_price.visibility = if (mProductInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
 
 
-        if (mProductInfo.POST_FEE == 0) {
+        if (mProductInfo.POST_FEE.toFloat() == 0f) {
             mContentView.tv_express_fee.text = "快递：免运费"
         } else {
             mContentView.tv_express_fee.text = "快递：￥${mProductInfo.POST_FEE}"
         }
         mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
-        mContentView.tv_ship_address.text = mProductInfo.SEND_CITY
+        mContentView.tv_ship_address.text = mProductInfo.SEND_PROV + mProductInfo.SEND_CITY
 
 
         //优惠券
