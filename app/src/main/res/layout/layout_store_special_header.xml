@@ -46,7 +46,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_store_menu">
 
-        <include layout="@layout/layout_store_small_banner" />
+        <include layout="@layout/layout_store_special_small_banner" />
 
     </android.support.constraint.ConstraintLayout>
 

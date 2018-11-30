@@ -7,11 +7,14 @@ import com.ipd.taxiu.adapter.MessageAdapter
 import com.ipd.taxiu.adapter.OtherMessageAdapter
 import com.ipd.taxiu.bean.BaseResult
 import com.ipd.taxiu.bean.MessageBean
+import com.ipd.taxiu.event.UpdateUserInfoEvent
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.account.BindingPhoneActivity
 import com.ipd.taxiu.ui.activity.web.WebActivity
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
 /**
@@ -59,6 +62,9 @@ class MessageFragment : ListFragment<BaseResult<List<MessageBean>>, MessageBean>
         if (categoryId == 1 || categoryId == 2) {
             if (mAdapter == null) {
                 mAdapter = MessageAdapter(context, data, {
+                    if (it.CATEGORY == 2 && it.TYPE == 3) {
+                        BindingPhoneActivity.launch(mActivity)
+                    }
 
                 })
                 recycler_view.layoutManager = LinearLayoutManager(context)
@@ -81,6 +87,13 @@ class MessageFragment : ListFragment<BaseResult<List<MessageBean>>, MessageBean>
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<MessageBean>>) {
         data?.addAll(result?.data ?: arrayListOf())
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateUserInfoEvent) {
+        if (categoryId == 2) {
+            onRefresh(true)
+        }
     }
 
 

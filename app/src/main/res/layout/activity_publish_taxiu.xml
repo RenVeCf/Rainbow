@@ -120,12 +120,19 @@
 
             <TextView
                 style="@style/BaseTextStyle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@mipmap/choose_taxiu_lable_icon"
                 android:drawablePadding="5dp"
                 android:text="选择标签" />
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/LightGrey"
+                android:layout_marginLeft="4dp"
+                android:text="(最多3个)" />
 
             <ImageView
                 android:id="@+id/iv_show_more"

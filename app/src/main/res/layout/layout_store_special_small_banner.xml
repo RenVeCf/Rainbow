@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ipd.taxiu.widget.AutoScrollerViewPager
+        android:id="@+id/store_banner_small"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:0.26"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginRight="@dimen/base_padding"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/small_banner_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/store_banner_small"
+        app:layout_constraintLeft_toLeftOf="@id/store_banner_small"
+        app:layout_constraintRight_toRightOf="@id/store_banner_small" />
+
+</android.support.constraint.ConstraintLayout>

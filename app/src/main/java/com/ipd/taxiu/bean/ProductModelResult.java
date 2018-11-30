@@ -32,6 +32,7 @@ public class ProductModelResult extends BaseResult<List<ProductModelResult.Produ
         public String CURRENT_PRICE;
         public String PRICE;
         public String REFER_PRICE;
+        public String LOGO;
         public int STOCK;
         public int IS_CHOSEN;
 

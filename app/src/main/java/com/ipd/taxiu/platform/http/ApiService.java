@@ -30,7 +30,6 @@ import com.ipd.taxiu.bean.MessageBean;
 import com.ipd.taxiu.bean.MoreCommentReplyBean;
 import com.ipd.taxiu.bean.OrderBean;
 import com.ipd.taxiu.bean.OrderDetailBean;
-import com.ipd.taxiu.bean.OtherBean;
 import com.ipd.taxiu.bean.PayResult;
 import com.ipd.taxiu.bean.PetBean;
 import com.ipd.taxiu.bean.PetBibleBean;
@@ -152,6 +151,19 @@ public interface ApiService {
                                                    @Field("OPENID") String OPENID,
                                                    @Field("LOGO") String LOGO,
                                                    @Field("NICKNAME") String NICKNAME);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SKIP_BINDING_PHONE)
+    Observable<BaseResult<LoginBean>> skipBindingPhone(@Field("TYPE") int TYPE,
+                                                       @Field("OPENID") String OPENID,
+                                                       @Field("LOGO") String LOGO,
+                                                       @Field("NICKNAME") String NICKNAME);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BINDING_PHONE_SKIP_USER)
+    Observable<BaseResult<LoginBean>> BindingPhoneSkipUser(@Field("USER_ID") String USER_ID,
+                                                           @Field("PHONE") String PHONE,
+                                                           @Field("CODE") String CODE);
 
     @FormUrlEncoded
     @POST(HttpUrl.BINDING_PHONE_SMS_CODE)
@@ -1122,7 +1134,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.OTHER)
     Observable<BaseResult<UserBean>> other(@Field("USER_ID") String USER_ID,
-                                            @Field("OTHER_USER_ID") int OTHER_USER_ID);
+                                           @Field("OTHER_USER_ID") int OTHER_USER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.OTHER_TAXIU)

@@ -36,19 +36,30 @@
             app:layout_constraintTop_toBottomOf="@id/media_recycler_view" />
 
 
-        <TextView
-            android:id="@+id/tv_taxiu_lable"
-            style="@style/SmallTextStyle"
+        <!--<TextView-->
+            <!--android:id="@+id/tv_taxiu_lable"-->
+            <!--style="@style/SmallTextStyle"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:background="@drawable/shape_taxiu_lable"-->
+            <!--android:paddingBottom="3dp"-->
+            <!--android:paddingLeft="@dimen/small_padding"-->
+            <!--android:paddingRight="@dimen/small_padding"-->
+            <!--android:paddingTop="3dp"-->
+            <!--android:text="流浪狗"-->
+            <!--android:textColor="@color/white"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc" />-->
+
+        <com.ipd.taxiu.widget.TaxiuLableShowLayout
+            android:id="@+id/taxiu_lable_show_layout"
             android:layout_marginTop="4dp"
-            android:background="@drawable/shape_taxiu_lable"
-            android:paddingBottom="3dp"
-            android:paddingLeft="@dimen/small_padding"
-            android:paddingRight="@dimen/small_padding"
-            android:paddingTop="3dp"
-            android:text="流浪狗"
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc" />
+            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc"
+            />
+
 
 
         <TextView
@@ -58,7 +69,7 @@
             android:text="03-27 14:42"
             android:textColor="@color/LightGrey"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_lable" />
+            app:layout_constraintTop_toBottomOf="@id/taxiu_lable_show_layout" />
 
         <TextView
             android:id="@+id/tv_viewers_num"

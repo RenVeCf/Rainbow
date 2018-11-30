@@ -174,14 +174,26 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                 toastShow("请输入您此刻的想法")
                 return false
             }
-            if (checkedPos == -1) {
-                toastShow("请选择标签")
+//            if (checkedPos == -1) {
+//                toastShow("请选择标签")
+//                return false
+//            }
+//            if (checkedPos >= lables?.size ?: 0) {
+//                return false
+//            }
+//            val lableInfo = lables!![checkedPos]
+            if (checkedPos.isEmpty()) {
+                toastShow("至少选择一项标签")
                 return false
             }
-            if (checkedPos >= lables?.size ?: 0) {
-                return false
+
+            var lableInfo = ""
+            checkedPos.forEach {
+                lableInfo += lables!![it].SHOW_TIP_ID.toString() + ","
             }
-            val lableInfo = lables!![checkedPos]
+            lableInfo = StringUtils.fixedPicStr(lableInfo)
+
+
             if (!cb_user_agent.isChecked) {
                 toastShow("请阅读并同意《版权说明》")
                 return false
@@ -209,7 +221,7 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                     toastShow("图片未上传成功，请先上传图片")
                     return false
                 }
-                mPresenter?.publishTaxiuImage(content, picStr, lableInfo.SHOW_TIP_ID)
+                mPresenter?.publishTaxiuImage(content, picStr, lableInfo)
             } else {
                 //视频
                 if (videoEvent == null) {
@@ -225,7 +237,7 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
                             }
 
                             override fun uploadSuccess(resultBean: UploadResultBean) {
-                                mPresenter?.publishTaxiuVideo(content, videoEvent!!.videoCover, resultBean.data, lableInfo.SHOW_TIP_ID, width, height)
+                                mPresenter?.publishTaxiuVideo(content, videoEvent!!.videoCover, resultBean.data, lableInfo, width, height)
                             }
 
                             override fun uploadFail(errMsg: String) {

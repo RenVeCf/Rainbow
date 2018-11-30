@@ -72,16 +72,28 @@ public class ProductModelDialog extends Dialog {
         modelView.setText(modelResult.modelName);
 
         final ProductModelView productModelView = productLayout.findViewById(R.id.product_model_view);
+
+        final ImageView productImageView = mContentView.findViewById(R.id.iv_product_img);
+        final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
+        productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
+            @Override
+            public void onChange(@NotNull ProductModelResult.ProductModelBean modelInfo) {
+                ImageLoader.loadNoPlaceHolderImg(getContext(),modelInfo.LOGO, productImageView);
+                if (type == SPELL_NOW) {
+                    productPriceView.setText("￥" + modelInfo.PRICE);
+                } else {
+                    productPriceView.setText("￥" + modelInfo.CURRENT_PRICE);
+                }
+            }
+        });
+
         for (int j = 0; j < modelResult.data.size(); j++) {
             productModelView.addView(modelResult.data.get(j));
         }
         ll_product_model.addView(productLayout);
 
 
-        final ImageView productImageView = mContentView.findViewById(R.id.iv_product_img);
-        ImageLoader.loadNoPlaceHolderImg(getContext(), logo, productImageView);
 
-        final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
         final CartOperationView operationView = mContentView.findViewById(R.id.operation_view);
         if (modelResult.data != null && !modelResult.data.isEmpty()) {
             if (type == SPELL_NOW) {
@@ -91,16 +103,6 @@ public class ProductModelDialog extends Dialog {
             }
 
         }
-        productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
-            @Override
-            public void onChange(@NotNull ProductModelResult.ProductModelBean modelInfo) {
-                if (type == SPELL_NOW) {
-                    productPriceView.setText("￥" + modelResult.data.get(0).PRICE);
-                } else {
-                    productPriceView.setText("￥" + modelResult.data.get(0).CURRENT_PRICE);
-                }
-            }
-        });
 
         mContentView.findViewById(R.id.tv_add_cart)
                 .setOnClickListener(new View.OnClickListener() {

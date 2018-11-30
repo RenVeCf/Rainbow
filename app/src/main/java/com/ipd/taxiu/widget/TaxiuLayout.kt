@@ -37,7 +37,8 @@ class TaxiuLayout : FrameLayout {
 
     fun setData(info: TaxiuBean) {
         mContentView.tv_taxiu_name.text = info.CONTENT
-        mContentView.tv_taxiu_lable.text = info.TIP
+//        mContentView.tv_taxiu_lable.text = info.TIP
+        mContentView.taxiu_lable_show_layout.setLableInfo(info.ShowTipList)
 
 
         if (TextUtils.isEmpty(info.URL)) {

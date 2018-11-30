@@ -22,6 +22,8 @@ public interface HttpUrl {
     String PHONE_LOGIN_SMS_CODE = "app_user/sendCode2.do";
     String BINDING_PHONE_SMS_CODE = "app_user/bindCode.do";
     String BINDING_PHONE = "app_user/bind.do";
+    String BINDING_PHONE_SKIP_USER = "app_user/toBind.do";
+    String SKIP_BINDING_PHONE = "app_user/jumpBind.do";
     String FORGET_PASSWORD = "app_user/forgetPwd.do";
     String THIRD_LOGIN = "app_user/open.do";
 

@@ -114,7 +114,9 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                 }
 
                 holder.itemView.tv_taxiu_desc.text = detailData.CONTENT
-                holder.itemView.tv_taxiu_lable.text = detailData.TIP
+//                holder.itemView.tv_taxiu_lable.text = detailData.TIP
+                holder.itemView.taxiu_lable_show_layout.setLableInfo(detailData.ShowTipList)
+
                 holder.itemView.tv_taxiu_publish_time.text = detailData.CREATETIME
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()
                 holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1

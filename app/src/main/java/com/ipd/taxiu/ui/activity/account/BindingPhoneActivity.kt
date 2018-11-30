@@ -5,13 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.MainActivity
 import com.ipd.taxiu.R
+import com.ipd.taxiu.event.UpdateUserInfoEvent
 import com.ipd.taxiu.presenter.AccountPresenter
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.TimeCountHelper
 import kotlinx.android.synthetic.main.activity_phone_login.*
+import kotlinx.android.synthetic.main.bind_phone_toolbar.*
+import org.greenrobot.eventbus.EventBus
 
 class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneView, TextWatcher {
 
@@ -24,7 +28,15 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
             intent.putExtra("nickname", nickname)
             activity.startActivity(intent)
         }
+
+        fun launch(activity: Activity) {
+            val intent = Intent(activity, BindingPhoneActivity::class.java)
+            intent.putExtra("needSkip", false)
+            activity.startActivity(intent)
+        }
     }
+
+    override fun getToolbarLayout(): Int = R.layout.bind_phone_toolbar
 
     override fun getToolbarTitle(): String = "绑定手机号"
 
@@ -35,6 +47,7 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
     private val mOpenId by lazy { intent.getStringExtra("openId") }
     private val mLogo by lazy { intent.getStringExtra("logo") }
     private val mNickname by lazy { intent.getStringExtra("nickname") }
+    private val mNeedSkip by lazy { intent.getBooleanExtra("needSkip", true) }
     private var mPresenter: AccountPresenter<AccountPresenter.IBindingPhoneView>? = null
     override fun onViewAttach() {
         super.onViewAttach()
@@ -51,6 +64,7 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
     override fun initView(bundle: Bundle?) {
         initToolbar()
         btn_login.text = "绑定"
+        tv_skip.visibility = if (mNeedSkip) View.VISIBLE else View.GONE
     }
 
     override fun loadData() {
@@ -71,7 +85,15 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
         btn_login.setOnClickListener {
             val phone = et_phone.text.toString().trim()
             val code = et_sms.text.toString().trim()
-            mPresenter?.bindingPhone(mType, phone, code, mOpenId, mLogo, mNickname)
+            if (mNeedSkip) {
+                mPresenter?.bindingPhone(mType, phone, code, mOpenId, mLogo, mNickname)
+            } else {
+                mPresenter?.bindingPhoneSkipUser(phone, code)
+            }
+        }
+
+        tv_skip.setOnClickListener {
+            mPresenter?.skipBindPhone(mType, mOpenId, mLogo, mNickname)
         }
 
     }
@@ -122,6 +144,12 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
     override fun getSmsCodeFail(errMsg: String) {
         initCodeBtn()
         toastShow(errMsg)
+    }
+
+    override fun bindingSkipUserSuccess() {
+        EventBus.getDefault().post(UpdateUserInfoEvent())
+        toastShow(true, "绑定成功")
+        finish()
     }
 
     override fun bindingSuccess() {

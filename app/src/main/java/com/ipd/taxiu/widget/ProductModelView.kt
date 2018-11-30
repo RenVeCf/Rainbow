@@ -23,10 +23,12 @@ class ProductModelView : FlowLayout {
 
         if (modelInfo.IS_CHOSEN == 1) {
             mCurCheckedPos = childPos
+            mOnCheckedChangeListener?.onChange(modelInfo)
         }
 
         addView(childView)
         setChecked(childPos, childPos == mCurCheckedPos)
+
         childView.setOnClickListener {
             if (childPos == mCurCheckedPos) return@setOnClickListener
             setChecked(mCurCheckedPos, false)

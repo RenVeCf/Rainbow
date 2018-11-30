@@ -1,6 +1,7 @@
 package com.ipd.taxiu.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class TaxiuBean implements Serializable{
 
@@ -45,5 +46,6 @@ public class TaxiuBean implements Serializable{
     public String CREATETIME;
     public String USER_NICKNAME;
     public String USER_LOGO;
+    public List<String> ShowTipList;
 
 }

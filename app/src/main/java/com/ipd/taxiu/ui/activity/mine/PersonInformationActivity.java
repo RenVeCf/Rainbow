@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils;
@@ -16,16 +18,20 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils;
 import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.UserBean;
+import com.ipd.taxiu.event.UpdateUserInfoEvent;
 import com.ipd.taxiu.imageload.ImageLoader;
 import com.ipd.taxiu.platform.http.HttpUpload;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseUIActivity;
 import com.ipd.taxiu.ui.activity.CropActivity;
+import com.ipd.taxiu.ui.activity.account.BindingPhoneActivity;
 import com.ipd.taxiu.utils.PictureChooseUtils;
 import com.ipd.taxiu.widget.ChooseSexDialog;
 import com.ipd.taxiu.widget.PickerUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,6 +58,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     TextView et_phone_number;
 
     EditText et_name;
+    ImageView iv_bind_arrow;
 
     @Override
     protected int getContentLayout() {
@@ -69,11 +76,13 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
         tv_nickname = findViewById(R.id.tv_nickname);
         et_phone_number = findViewById(R.id.et_phone_number);
         et_name = findViewById(R.id.et_name);
+        iv_bind_arrow = findViewById(R.id.iv_bind_arrow);
     }
 
     @Override
     protected void onViewAttach() {
         super.onViewAttach();
+        EventBus.getDefault().register(this);
         mPresenter = new MinePresenter();
         mPresenter.attachView(this, this);
     }
@@ -81,6 +90,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
     @Override
     protected void onViewDetach() {
         super.onViewDetach();
+        EventBus.getDefault().unregister(this);
         mPresenter.detachView();
         mPresenter = null;
     }
@@ -213,7 +223,28 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
         if (data != null) {
             ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL + data.LOGO, civ_header);
             tv_nickname.setText(data.NICKNAME);
-            et_phone_number.setText(data.PHONE);
+            if (TextUtils.isEmpty(data.PHONE)) {
+                et_phone_number.setText("");
+                iv_bind_arrow.setVisibility(View.VISIBLE);
+
+                findViewById(R.id.rl_phone_number).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        BindingPhoneActivity.Companion.launch(getMActivity());
+                    }
+                });
+            } else {
+                et_phone_number.setText(data.PHONE);
+                iv_bind_arrow.setVisibility(View.GONE);
+
+                findViewById(R.id.rl_phone_number).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+
             et_name.setText(data.USERNAME);
             tv_birthday.setText(data.BIRTHDAY);
             if (data.GENDER == 1) {
@@ -236,7 +267,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
     @Override
     public void updateUserSuccess() {
-        toastShow(true,"保存成功");
+        toastShow(true, "保存成功");
         finish();
     }
 
@@ -245,4 +276,9 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
         toastShow(errMsg);
     }
 
+
+    @Subscribe
+    public void onMainEvent(UpdateUserInfoEvent event){
+        loadData();
+    }
 }

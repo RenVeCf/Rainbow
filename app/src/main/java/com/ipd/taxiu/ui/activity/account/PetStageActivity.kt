@@ -30,7 +30,7 @@ class PetStageActivity : BaseUIActivity() {
 
     override fun initToolbar() {
         super.initToolbar()
-        toolbar?.navigationIcon = null
+//        toolbar?.navigationIcon = null
     }
 
     override fun initView(bundle: Bundle?) {

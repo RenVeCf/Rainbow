@@ -223,6 +223,55 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
 
     }
 
+    fun bindingPhoneSkipUser(phone: String, code: String) {
+        if (mView !is IBindingPhoneView) return
+        val view = mView as IBindingPhoneView
+
+        if (!CommonUtils.isMobileNO(phone)) {
+            view.bindingFail("请输入正确的手机号")
+            return
+        } else if (code.length < Constant.SMS_CODE_LENGHT) {
+            view.bindingFail("请输入正确的验证码")
+            return
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().BindingPhoneSkipUser(GlobalParam.getUserIdOrJump(), phone, code),
+                object : Response<BaseResult<LoginBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<LoginBean>) {
+                        if (result.code == 0) {
+                            loginSuccess(result.data)
+                            view.bindingSkipUserSuccess()
+                        } else {
+                            view.bindingFail(result.msg)
+                        }
+                    }
+                })
+
+    }
+
+    fun skipBindPhone(type: Int, openId: String, logo: String, nickname: String) {
+        if (mView !is IBindingPhoneView) return
+        val view = mView as IBindingPhoneView
+
+        if (TextUtils.isEmpty(openId)) {
+            view.bindingFail("openId为空")
+            return
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().skipBindingPhone(type, openId, logo, nickname),
+                object : Response<BaseResult<LoginBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<LoginBean>) {
+                        if (result.code == 0) {
+                            loginSuccess(result.data)
+                            view.bindingSuccess()
+                        } else {
+                            view.bindingFail(result.msg)
+                        }
+                    }
+                })
+
+    }
+
 
     fun getSmsCode(phone: String, type: String) {
         if (mView !is BaseSmsCodeView) return
@@ -335,6 +384,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     interface IBindingPhoneView : BaseSmsCodeView {
         fun bindingSuccess()
         fun bindingFail(errMsg: String)
+        fun bindingSkipUserSuccess()
     }
 
 

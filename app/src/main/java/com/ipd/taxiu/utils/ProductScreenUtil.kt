@@ -20,9 +20,9 @@ object ProductScreenUtil {
         if (resuleData.SIZE_DATA != null) {
             screenList.add(resuleData.SIZE_DATA)
         }
-        if (resuleData.TYPE_DATA != null) {
-            screenList.add(resuleData.TYPE_DATA)
-        }
+//        if (resuleData.TYPE_DATA != null) {
+//            screenList.add(resuleData.TYPE_DATA)
+//        }
         if (resuleData.NET_DATA != null) {
             screenList.add(resuleData.NET_DATA)
         }

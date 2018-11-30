@@ -45,6 +45,7 @@ public class TaxiuDetailBean {
     public int IS_PRAISE;
     public int IS_COLLECT;
     public List<TaxiuLableBean> TipList;
+    public List<String> ShowTipList;
     public int COMMENT_NUM;
 
 
