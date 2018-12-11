@@ -1,5 +1,6 @@
 package com.ipd.taxiu.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AddressBean
+import com.ipd.taxiu.ui.activity.address.AddAddressActivity
 import kotlinx.android.synthetic.main.item_delivery_address.view.*
 
 /**
@@ -23,9 +25,16 @@ class DeliveryAddressAdapter(val context: Context, private val data: List<Addres
     override fun getItemCount(): Int = data?.size ?: 0
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        if (data[position].STATUS == 2) holder?.itemView?.tv_default?.visibility = View.VISIBLE
+        if (data[position].STATUS == 2) {
+            holder?.itemView?.tv_default?.visibility = View.VISIBLE
+        } else {
+            holder?.itemView?.tv_default?.visibility = View.GONE
+        }
         holder?.itemView?.setOnClickListener {
             itemClick.invoke(data[position])
+        }
+        holder?.itemView?.iv_edit_address?.setOnClickListener {
+            AddAddressActivity.launch(context as Activity, 2, data[position].ADDRESS_ID)
         }
 
         holder?.itemView?.tv_delivery_name?.text = data[position].RECIPIENT

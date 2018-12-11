@@ -133,7 +133,7 @@ class AddBankCardActivity : BaseUIActivity(), BankPresenter.IBankView {
 
     override fun addBankSuccess() {
         EventBus.getDefault().post(UpdateBankCardEvent())
-        toastShow("添加成功")
+        toastShow(true,"添加成功")
         finish()
     }
 
@@ -143,7 +143,7 @@ class AddBankCardActivity : BaseUIActivity(), BankPresenter.IBankView {
 
     override fun changeBankSuccess() {
         EventBus.getDefault().post(UpdateBankCardEvent())
-        toastShow("修改成功")
+        toastShow(true,"修改成功")
         finish()
     }
 

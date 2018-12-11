@@ -268,18 +268,21 @@ public class PhotoSelectActivity extends BaseUIActivity implements PhotoSelectPr
         switch (requestCode) {
             case PictureChooseUtils.PHOTOTAKE:// 拍照
                 //通知系统有新图片
-                try {
-                    String uriStr = MediaStore.Images.Media.insertImage(getContentResolver(), mPhotoSavePath, "share_pic", null);
-                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    Uri uri = Uri.fromFile(new File(uriStr));
-                    intent.setData(uri);
-                    sendBroadcast(intent);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if (new File((mPhotoSavePath)).exists()) {
+                    try {
+                        MediaStore.Images.Media.insertImage(getMActivity().getContentResolver(), mPhotoSavePath, new File(mPhotoSavePath).getName(), null);
+                        // 最后通知图库更新
+                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + mPhotoSavePath));
+                        sendBroadcast(intent);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    this.data.add(1, new LocalPictureBean(mPhotoSavePath, Environment.DIRECTORY_PICTURES));
+                    setOrNotifyAdapter();
                 }
 
-                this.data.add(1, new LocalPictureBean(mPhotoSavePath, Environment.DIRECTORY_PICTURES));
-                setOrNotifyAdapter();
                 break;
         }
 

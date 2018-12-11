@@ -1,6 +1,6 @@
 package com.ipd.taxiu.ui.activity
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
@@ -27,11 +27,11 @@ import kotlinx.android.synthetic.main.layout_video_preview.view.*
 class PictureAndVideoPreviewActivity : BaseActivity() {
 
     companion object {
-        fun launch(activity: Activity, pictureList: ArrayList<BannerBean>, curPos: Int = 0) {
-            val intent = Intent(activity, PictureAndVideoPreviewActivity::class.java)
+        fun launch(context: Context, pictureList: ArrayList<BannerBean>, curPos: Int = 0) {
+            val intent = Intent(context, PictureAndVideoPreviewActivity::class.java)
             intent.putParcelableArrayListExtra("list", pictureList)
             intent.putExtra("curPos", curPos)
-            activity.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 

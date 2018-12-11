@@ -133,6 +133,7 @@
             android:layout_toRightOf="@id/tv_detailed_address"
             android:layout_below="@id/line3"
             android:layout_marginTop="@dimen/base_padding"
+            android:maxLength="100"
             android:background="@null"
             android:hint="请输入如：街道、门牌号等"
             android:maxLines="2"

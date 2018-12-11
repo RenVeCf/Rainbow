@@ -74,7 +74,10 @@ class ScreenLayout : ConstraintLayout {
         }
 
         ll_sales.setOnClickListener {
-            switchSortType(ScreenType.SALE_SORT)
+            when (mSortType) {
+                ScreenType.SALE_SORT -> switchSortType(ScreenType.NONE)
+                else -> switchSortType(ScreenType.SALE_SORT)
+            }
         }
         ll_price.setOnClickListener {
             when (mSortType) {

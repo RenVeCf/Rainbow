@@ -83,7 +83,7 @@ class PublishTaxiuCommentActivity : BaseUIActivity() {
                         override fun _onNext(result: BaseResult<TaxiuCommentBean>) {
                             if (result.code == 0) {
                                 EventBus.getDefault().post(UpdateTaxiuCommentEvent())
-                                toastShow("发布成功")
+                                toastShow(true,"发布成功")
                                 finish()
                             } else {
                                 toastShow(result.msg)

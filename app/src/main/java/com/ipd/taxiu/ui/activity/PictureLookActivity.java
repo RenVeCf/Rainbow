@@ -119,7 +119,7 @@ public class PictureLookActivity extends BaseActivity implements View.OnClickLis
                         ImageLoader.loadImgFromLocal(getMActivity(), imagePath, photoView);
                     } else {
                         tv_save.setVisibility(View.VISIBLE);
-                        ImageLoader.loadImgWithPlaceHolder(getMActivity(), imagePath, R.mipmap.banner_default, photoView);
+                        ImageLoader.loadNoPlaceHolderImg(getMActivity(), imagePath, photoView);
 
                         tv_save.setOnClickListener(new View.OnClickListener() {
                             @Override

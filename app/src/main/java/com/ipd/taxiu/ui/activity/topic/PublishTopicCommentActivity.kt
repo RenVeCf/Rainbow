@@ -83,7 +83,7 @@ class PublishTopicCommentActivity : BaseUIActivity() {
                         override fun _onNext(result: BaseResult<TopicCommentBean>) {
                             if (result.code == 0) {
                                 EventBus.getDefault().post(UpdateTopicCommentEvent())
-                                toastShow("发布成功")
+                                toastShow(true,"发布成功")
                                 finish()
                             } else {
                                 toastShow(result.msg)

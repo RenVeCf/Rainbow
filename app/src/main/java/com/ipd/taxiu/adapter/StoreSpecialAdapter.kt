@@ -17,6 +17,7 @@ import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.activity.store.ProductDetailActivity
 import com.ipd.taxiu.ui.activity.store.video.StoreVideoDetailActivity
+import com.ipd.taxiu.ui.activity.store.video.StoreVideoIndexActivity
 import com.ipd.taxiu.utils.IndicatorHelper
 import com.ipd.taxiu.utils.StoreType
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -117,7 +118,6 @@ class StoreSpecialAdapter(val context: Context, val areaTitle: String, private v
                     //视频详情
                     StoreVideoDetailActivity.launch(context as Activity, it.VIDEO_ID.toString())
                 })
-
             }
             ItemType.PRODUCT_SCREEN -> {
 //                holder.itemView.screen_layout.disallowClickable()

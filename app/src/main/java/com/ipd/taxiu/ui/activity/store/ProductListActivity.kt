@@ -180,6 +180,11 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                         mMinPrice = if (!TextUtils.isEmpty(minPrice)) minPrice.toFloat() else 0f
                                         mMaxPrice = if (!TextUtils.isEmpty(maxPrice)) maxPrice.toFloat() else 0f
 
+                                        if (mMinPrice > mMaxPrice){
+                                            toastShow("最低价格不能大于最高价格")
+                                            return@setOnClickListener
+                                        }
+
 
                                         for (index in 1..cl_screen.childCount) {
                                             if (cl_screen.getChildAt(index) !is ProductExpertScreenLayout) {

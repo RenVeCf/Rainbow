@@ -87,7 +87,7 @@ public class ReplyDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
-                sendBackListener.sendBack(replyView.getText().toString());
+                sendBackListener.sendBack(replyView.getText().toString().trim());
             }
         });
         replyView.setFocusable(true);

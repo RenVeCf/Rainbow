@@ -14,6 +14,7 @@ import com.ipd.taxiu.platform.http.ApiManager
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.balance.AddBankCardActivity
 import kotlinx.android.synthetic.main.layout_bank_card.view.*
+import kotlinx.android.synthetic.main.layout_empty_bank.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
@@ -86,13 +87,13 @@ class BankCardFragment : ListFragment<BaseResult<List<BankCardBean>>, BankCardBe
 
     override fun initListener() {
         super.initListener()
-        progress_layout.btn_add_card.setOnClickListener(this)
+        progress_layout.emptyView.btn_add_card_empty.setOnClickListener(this)
         mContentView.btn_add_card.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btn_add_card -> AddBankCardActivity.launch(mActivity, 1)
+            R.id.btn_add_card, R.id.btn_add_card_empty -> AddBankCardActivity.launch(mActivity, 1)
         }
     }
 

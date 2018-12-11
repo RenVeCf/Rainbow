@@ -43,7 +43,6 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
             switch (resp.errCode) {
                 case 0:
                     //支付成功
-                    EventBus.getDefault().post(resultEvent);
                     this.finish();
                     resultEvent.status = 0;
                     break;

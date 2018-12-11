@@ -1,6 +1,7 @@
 package com.ipd.taxiu.ui.fragment
 
 import android.text.TextUtils
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.CartAdapter
 import com.ipd.taxiu.bean.*
@@ -188,7 +189,7 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
                 isAllChecked = false
             }
         }
-        mContentView.tv_cart_total_price.text = totalPrice.toString()
+        mContentView.tv_cart_total_price.text = CommonUtils.beautifulDouble(totalPrice)
         mContentView.tv_confirm.text = "结算($checkedNum)"
         mContentView.cb_all_check.isChecked = isAllChecked
     }

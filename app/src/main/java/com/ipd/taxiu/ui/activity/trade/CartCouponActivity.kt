@@ -43,7 +43,7 @@ class CartCouponActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, CartCouponFragment.newInstance(mCartIds, mIsCart, mProductId, mFormId, mNum)).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, CartCouponFragment.newInstance(mCartIds, mIsCart,mNum, mProductId, mFormId)).commit()
     }
 
     override fun initListener() {

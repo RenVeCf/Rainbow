@@ -106,7 +106,11 @@ class WithdrawDepositActivity : BaseUIActivity(), TextWatcher {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        val balance = tv_account_balance.text.toString().toDouble()
+        val balanceStr = tv_account_balance.text.toString()
+        if (TextUtils.isEmpty(balanceStr)){
+            return
+        }
+        val balance = balanceStr.toDouble()
         if (s.toString() != "") {
             if (s.toString().toDouble() in 100.0..balance) {
                 btn_confirm.setBackgroundResource(R.drawable.shape_btn_enable)

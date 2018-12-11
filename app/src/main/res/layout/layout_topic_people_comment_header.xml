@@ -87,8 +87,6 @@
             style="@style/SmallTextStyle"
             android:layout_width="0dp"
             android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:maxLines="3"
             android:text="毛孩子都天生自带萌属性，有些则有自己独特的撒娇卖萌方式:抱着人腿或手臂就不松手，是小妖精变得吧"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

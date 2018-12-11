@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScreenFlowLayout extends ViewGroup {
-	public int horizontalSpac = DensityUtil.dip2px(getContext(),12);
-	public int verticalSpac = DensityUtil.dip2px(getContext(),12);
+	public int horizontalSpac = DensityUtil.dip2px(getContext(), 12);
+	public int verticalSpac = DensityUtil.dip2px(getContext(), 12);
 	public static final String TAG = "FlowLayout";
 	public static final int LINE_MAX_NUM = 3;
 
@@ -55,8 +55,8 @@ public class ScreenFlowLayout extends ViewGroup {
 					lineList.add(line);
 				}
 			} else {
-				// 判断该行所有子view宽度是否大于控件宽度
-				if (line.viewList.size()>= LINE_MAX_NUM) {
+				// 判断该行所有子view宽度是否大于最多显示数量
+				if (line.viewList.size() >= LINE_MAX_NUM) {
 					lineList.add(line);
 					// 新建行
 					line = new Line();
@@ -80,13 +80,10 @@ public class ScreenFlowLayout extends ViewGroup {
 		for (int i = 0; i < lineList.size(); i++) {
 			height += lineList.get(i).height;
 		}
-//		height += lineList.size() * verticalSpac + verticalSpac;
 		height += lineList.size() * verticalSpac;
 		setMeasuredDimension(width, height);
 
 	}
-
-
 
 
 	@Override
@@ -103,12 +100,12 @@ public class ScreenFlowLayout extends ViewGroup {
 			}
 
 			List<View> viewList = line.viewList;
-			int remainWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight() - line.width;
-			float perSpace = remainWidth / LINE_MAX_NUM;
 
 			for (int j = 0; j < viewList.size(); j++) {
 				View chilidView = viewList.get(j);// 取出每个子view
-				int widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) (chilidView.getMeasuredWidth() + perSpace),
+				float widthf = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight()) / (float) LINE_MAX_NUM;
+				int width = (int) (widthf - j * horizontalSpac);
+				int widthMeasureSpec = MeasureSpec.makeMeasureSpec(width,
 						MeasureSpec.EXACTLY);
 				chilidView.measure(widthMeasureSpec, 0);
 

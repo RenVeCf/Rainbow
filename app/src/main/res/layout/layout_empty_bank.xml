@@ -30,7 +30,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/btn_add_card"
+        android:id="@+id/btn_add_card_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

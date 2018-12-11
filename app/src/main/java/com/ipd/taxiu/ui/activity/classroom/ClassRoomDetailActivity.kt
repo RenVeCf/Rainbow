@@ -11,6 +11,7 @@ import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.ClassRoomBean
 import com.ipd.taxiu.bean.WechatBean
 import com.ipd.taxiu.event.PayRequestEvent
+import com.ipd.taxiu.event.PayResultEvent
 import com.ipd.taxiu.event.UpdateCollectClassroomEvent
 import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.global.Constant
@@ -179,6 +180,16 @@ class ClassRoomDetailActivity : BaseUIActivity(), ClassroomDetailPresenter.IClas
     override fun classroomBalanceSuccess(orderNo: String) {
         mOrderNo = orderNo
         onPaySuccess()
+    }
+
+
+    @Subscribe
+    fun onMainEvent(event: PayResultEvent) {
+        when (event.status) {
+            0 -> onPaySuccess()
+            1 -> toastShow("支付失败")
+            2 -> toastShow("取消支付")
+        }
     }
 
     override fun onPaySuccess() {

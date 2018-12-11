@@ -60,12 +60,12 @@ class ExchangeRecordDetailActivity : BaseUIActivity(), CouponPresenter.IExchange
         ImageLoader.loadImgFromLocal(this, HttpUrl.IMAGE_URL + data.LOGO, iv_record_header)
         var category = data.CATEGORY
         if (category == 1) {
-            tv_record_title.text = data.SATISFY_PRICE.toString() + "元 单品类优惠券"
+            tv_record_title.text = data.PRICE.toString() + "元 单品类优惠券"
         }
         if (category == 2) {
-            tv_record_title.text = data.SATISFY_PRICE.toString() + "元 全品类优惠券"
+            tv_record_title.text = data.PRICE.toString() + "元 全品类优惠券"
         }
-        tv_record_explain.text = "满" + data.PRICE.toString() + "减" + data.SATISFY_PRICE
+        tv_record_explain.text = "满" + data.SATISFY_PRICE.toString() + "减" + data.PRICE
         tv_record_integral.text = data.SCORE.toString()
         tv_exchange_time.text = "兑换时间："+data.CREATETIME
         tv_instructions.text = Html.fromHtml(data.CONTENT, HtmlImageGetter(this,tv_instructions),null)

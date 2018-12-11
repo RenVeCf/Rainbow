@@ -30,7 +30,9 @@ public class OkHttpUtils {
                             .readTimeout(HTTP_READ_TIMEOUT, TimeUnit.SECONDS)
                             .writeTimeout(HTTP_WRITE_TIMEOUT, TimeUnit.SECONDS)
                             .addInterceptor(logInterceptor)
-                            .addInterceptor(new RequestInterceptor());
+                            .addInterceptor(new RequestInterceptor())
+                            .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+                            .hostnameVerifier(SSLSocketClient.getHostnameVerifier());
 
                     singleton = builder.build();
                 }

@@ -106,7 +106,9 @@ public abstract class Response<T> extends Subscriber<T> {
             return;
         try {
             e.printStackTrace();
-            if (e instanceof ConnectException || e instanceof UnknownHostException) {
+            if (e instanceof UnknownHostException) {
+                ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), "暂无网络~");
+            } else if (e instanceof ConnectException) {
                 ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), "连接服务器失败");
             } else if (e instanceof SocketTimeoutException) {
                 ToastCommom.getInstance().show(GlobalApplication.Companion.getMContext(), "连接超时");

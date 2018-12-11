@@ -3,6 +3,7 @@
     android:id="@+id/ll_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
     android:background="@drawable/shape_pay_way_bg">
 
     <RelativeLayout

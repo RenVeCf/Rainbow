@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom;
 import com.ipd.taxiu.R;
+import com.ipd.taxiu.bean.BannerBean;
 import com.ipd.taxiu.bean.BaseResult;
 import com.ipd.taxiu.bean.ProductModelResult;
 import com.ipd.taxiu.event.UpdateCartEvent;
@@ -24,10 +25,13 @@ import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.ApiManager;
 import com.ipd.taxiu.platform.http.Response;
 import com.ipd.taxiu.platform.http.RxScheduler;
+import com.ipd.taxiu.ui.activity.PictureAndVideoPreviewActivity;
 import com.ipd.taxiu.ui.activity.trade.ConfirmOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 
 public class ProductModelDialog extends Dialog {
@@ -77,13 +81,22 @@ public class ProductModelDialog extends Dialog {
         final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
         productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
             @Override
-            public void onChange(@NotNull ProductModelResult.ProductModelBean modelInfo) {
-                ImageLoader.loadNoPlaceHolderImg(getContext(),modelInfo.LOGO, productImageView);
+            public void onChange(@NotNull final ProductModelResult.ProductModelBean modelInfo) {
+                ImageLoader.loadNoPlaceHolderImg(getContext(), modelInfo.LOGO, productImageView);
                 if (type == SPELL_NOW) {
                     productPriceView.setText("￥" + modelInfo.PRICE);
                 } else {
                     productPriceView.setText("￥" + modelInfo.CURRENT_PRICE);
                 }
+
+                productImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ArrayList<BannerBean> list = new ArrayList<>();
+                        list.add(new BannerBean(modelInfo.LOGO));
+                        PictureAndVideoPreviewActivity.Companion.launch(getContext(), list, 0);
+                    }
+                });
             }
         });
 
@@ -91,7 +104,6 @@ public class ProductModelDialog extends Dialog {
             productModelView.addView(modelResult.data.get(j));
         }
         ll_product_model.addView(productLayout);
-
 
 
         final CartOperationView operationView = mContentView.findViewById(R.id.operation_view);

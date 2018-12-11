@@ -88,7 +88,7 @@ public class SettingActivity extends BaseUIActivity implements View.OnClickListe
 //                startActivity(intent);
                 break;
             case R.id.tv_service_phone:
-                initDialog("确认要拨打客服电话吗？","他嗅宠物官方客服电话： "+phoneNum,"确认拨打","暂不拨打");
+                initDialog("确认要拨打客服电话吗？","它嗅宠物官方客服电话： "+phoneNum,"确认拨打","暂不拨打");
                 break;
             case R.id.rl_clear_cache:
                 clearCacheDialog();

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -148,8 +149,14 @@ public class AddPetActivity extends BaseUIActivity implements View.OnClickListen
                 sex = 2;
             }
         }
-        String nickname = tv_nickname.getText().toString();
-        String statusStr = tv_status.getText().toString();
+        String nickname = tv_nickname.getText().toString().trim();
+        if (TextUtils.isEmpty(nickname)){
+            toastShow("请输入宠物昵称");
+            return false;
+        }
+
+
+        String statusStr = tv_status.getText().toString().trim();
         int status = 0;
         if (statusStr != "") {
             if (statusStr.equals("正常")) {

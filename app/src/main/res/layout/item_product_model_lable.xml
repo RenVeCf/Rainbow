@@ -9,6 +9,8 @@
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
     android:paddingTop="4dp"
+    android:ellipsize="end"
+    android:singleLine="true"
     android:text="泰迪犬"
     android:textColor="@drawable/selector_product_model_lable_text_color" />
 

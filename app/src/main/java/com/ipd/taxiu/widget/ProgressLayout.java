@@ -202,8 +202,13 @@ public class ProgressLayout extends RelativeLayout {
     public void setEmptyViewRes(int emptyViewRes) {
         this.emptyGroup = LayoutInflater.from(getContext()).inflate(emptyViewRes, this, false);
     }
+
     public View getEmptyViewRes(int emptyViewRes) {
         this.emptyGroup = LayoutInflater.from(getContext()).inflate(emptyViewRes, this, false);
+        return this.emptyGroup;
+    }
+
+    public View getEmptyView() {
         return this.emptyGroup;
     }
 

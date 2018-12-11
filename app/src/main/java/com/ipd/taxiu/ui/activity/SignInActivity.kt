@@ -52,7 +52,7 @@ class SignInActivity : BaseUIActivity(), SignInPresenter.ISignInView {
             mPresenter?.signIn()
         }
 
-        tv_integral.setOnClickListener {
+        cl_integral_content.setOnClickListener {
             val intent = Intent(this, MyIntegralActivity::class.java)
             startActivity(intent)
         }

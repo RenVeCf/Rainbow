@@ -299,28 +299,29 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         WebActivity.launch(mActivity, WebActivity.URL, expressUrl, "物流动态")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        //如果是【已完成】 添加申请退货选择
-        return when (mOrderStatus) {
-            Order.EVALUATE -> {
-                menuInflater.inflate(R.menu.order_sales_return, menu)
-                true
-            }
-            else -> false
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) {
-            val id = item.itemId
-            if (id == R.id.order_sales_return) {
-                val intent = Intent(this, RequestReturnActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        //如果是【已完成】 添加申请退货选择
+//        return when (mOrderStatus) {
+//            Order.EVALUATE -> {
+//                menuInflater.inflate(R.menu.order_sales_return, menu)
+//                true
+//            }
+//            else -> false
+//        }
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//        if (item != null) {
+//            val id = item.itemId
+//            if (id == R.id.order_sales_return) {
+//                RequestReturnMoneyActivity.launch(mActivity,mOrderId,)
+//                val intent = Intent(this, RequestReturnActivity::class.java)
+//                startActivity(intent)
+//                return true
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     override fun cancelOrderSuccess() {
         EventBus.getDefault().post(UpdateOrderEvent(intArrayOf(1)))
@@ -410,7 +411,7 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
     fun onMainEvent(event: PayResultEvent) {
         when {
             event.status == 0 -> onPaySuccess()
-            event.status == -2 -> toastShow("已取消支付")
+            event.status == 2 -> toastShow("已取消支付")
             else -> toastShow("支付失败")
         }
     }

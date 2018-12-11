@@ -135,10 +135,15 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
             } else {
                 gender = 0;
             }
-            String nickname = tv_nickname.getText().toString();
-            String pet_time = tv_how_long.getText().toString();
-            String tag = tv_person_tag.getText().toString();
-            String username = et_name.getText().toString();
+            String nickname = tv_nickname.getText().toString().trim();
+            if (TextUtils.isEmpty(nickname)) {
+                toastShow("请输入用户昵称");
+                return false;
+            }
+
+            String pet_time = tv_how_long.getText().toString().trim();
+            String tag = tv_person_tag.getText().toString().trim();
+            String username = et_name.getText().toString().trim();
             mPresenter.updateUser(birthday, gender, HttpUpload.getLogo(), nickname, pet_time, tag, username);
         }
         return super.onOptionsItemSelected(item);
@@ -278,7 +283,7 @@ public class PersonInformationActivity extends BaseUIActivity implements View.On
 
 
     @Subscribe
-    public void onMainEvent(UpdateUserInfoEvent event){
+    public void onMainEvent(UpdateUserInfoEvent event) {
         loadData();
     }
 }

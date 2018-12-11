@@ -3,8 +3,10 @@ package com.ipd.taxiu.ui.activity.address
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.bean.AddressBean
 import com.ipd.taxiu.event.UpdateAddressEvent
@@ -145,7 +147,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
 
     override fun initListener() {
         btn_save.setOnClickListener {
-            val address: String = et_detailed_address.text.toString()
+            val address: String = et_detailed_address.text.toString().trim()
 
             var cityString: String = tv_choose_city.text.toString()
             if (!cityString.isEmpty()) {
@@ -154,8 +156,22 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
                 dist = strs[2]
                 prov = strs[0]
             }
-            val recipient: String = et_recipients.text.toString()
-            val tel = et_phone_number.text.toString()
+            val recipient: String = et_recipients.text.toString().trim()
+            val tel = et_phone_number.text.toString().trim()
+
+            if (TextUtils.isEmpty(recipient)) {
+                toastShow("请输入收货人姓名")
+                return@setOnClickListener
+            }
+            if (!CommonUtils.isMobileNO(tel)) {
+                toastShow("请输入正确的手机号")
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(address)) {
+                toastShow("详细地址不能为空")
+                return@setOnClickListener
+            }
+
             val userId = GlobalParam.getUserId()
             if (addressType == 1) {
                 getStatus()

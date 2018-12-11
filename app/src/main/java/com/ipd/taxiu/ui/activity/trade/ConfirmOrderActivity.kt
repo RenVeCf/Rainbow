@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.adapter.ConfirmOrderProductAdapter
 import com.ipd.taxiu.bean.*
@@ -229,9 +230,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
                 tv_coupon_use.setTextColor(resources.getColor(R.color.red))
                 tv_coupon_use.text = "满${couponInfo.SATISFY_PRICE}减${couponInfo.PRICE}"
 
-                tv_actual_price.text = "￥${(mCartInfo?.PRODUCT_TOTAL
-                        ?: "0").toFloat().plus((mCartInfo?.POST_FEE
-                        ?: "0").toFloat().minus(couponInfo.PRICE.toFloat()))}"
+                tv_actual_price.text = "￥${CommonUtils.beautifulDouble((mCartInfo?.PRODUCT_TOTAL
+                        ?: "0").toDouble().plus((mCartInfo?.POST_FEE
+                        ?: "0").toDouble().minus(couponInfo.PRICE.toDouble())))}"
                 tv_coupon_deduction.text = "￥${couponInfo.PRICE}"
             } else {
                 mUseCoupon = 1
@@ -239,8 +240,8 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
                 tv_coupon_use.setTextColor(resources.getColor(R.color.LightGrey))
                 tv_coupon_use.text = "不使用优惠券"
 
-                tv_actual_price.text = "￥${(mCartInfo?.PRODUCT_TOTAL
-                        ?: "0").toFloat().plus((mCartInfo?.POST_FEE ?: "0").toFloat())}"
+                tv_actual_price.text = "￥${CommonUtils.beautifulDouble((mCartInfo?.PRODUCT_TOTAL
+                        ?: "0").toDouble().plus((mCartInfo?.POST_FEE ?: "0").toDouble()))}"
                 tv_coupon_deduction.text = "￥0.00"
             }
 
@@ -271,7 +272,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             ChoosePayTypeLayout.PayType.ALIPAY -> {
                 AlipayUtils.getInstance().alipayByData(mActivity, payResult?.info, object : AlipayUtils.OnPayListener {
                     override fun onPaySuccess() {
-                        onPaySuccess()
+                        this@ConfirmOrderActivity.onPaySuccess()
                     }
 
                     override fun onPayWait() {
@@ -319,8 +320,8 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     fun onMainEvent(event: PayResultEvent) {
         when (event.status) {
             0 -> onPaySuccess()
-            -1 -> toastShow("支付失败")
-            -2 -> toastShow("取消支付")
+            1 -> toastShow("支付失败")
+            2 -> toastShow("取消支付")
         }
     }
 
