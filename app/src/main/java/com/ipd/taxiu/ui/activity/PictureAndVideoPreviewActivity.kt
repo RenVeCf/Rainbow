@@ -77,6 +77,7 @@ class PictureAndVideoPreviewActivity : BaseActivity() {
                 if (bannerInfo.isVideo) {
                     contentView = LayoutInflater.from(mActivity).inflate(R.layout.layout_video_preview, container, false)
                     contentView.video_player.setUp(HttpUrl.VIDEO_URL + bannerInfo.videoUrl, "", Jzvd.SCREEN_WINDOW_FULLSCREEN)
+                    contentView.video_player.startButton.performClick()
                 } else {
                     contentView = LayoutInflater.from(mActivity).inflate(R.layout.layout_preview, container, false)
                     val photoView = contentView.findViewById<View>(R.id.photo_view) as PhotoView
