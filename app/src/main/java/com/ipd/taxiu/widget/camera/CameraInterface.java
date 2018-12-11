@@ -508,6 +508,11 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     //启动录像
     public void startRecord(Surface surface, float screenProp, ErrorCallback callback) {
+        if (mCamera == null || firstFrame_data == null){
+            callback.onError();
+            return;
+        }
+
         mCamera.setPreviewCallback(null);
         final int nowAngle = (angle + 90) % 360;
         //获取第一帧图片
@@ -623,15 +628,11 @@ public class CameraInterface implements Camera.PreviewCallback {
         } catch (IllegalStateException e) {
             e.printStackTrace();
             Log.i("CJT", "startRecord IllegalStateException");
-            if (this.errorLisenter != null) {
-                this.errorLisenter.onError();
-            }
+            callback.onError();
         } catch (IOException e) {
             e.printStackTrace();
             Log.i("CJT", "startRecord IOException");
-            if (this.errorLisenter != null) {
-                this.errorLisenter.onError();
-            }
+            callback.onError();
         } catch (RuntimeException e) {
             Log.i("CJT", "startRecord RuntimeException");
         }

@@ -9,7 +9,9 @@ import android.view.SurfaceHolder
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.VideoView
+import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.taxiu.R
+import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
 import com.ipd.taxiu.widget.camera.CameraInterface
@@ -102,9 +104,8 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
     }
 
     private fun resetFlashlightBtn() {
-        iv_flashlight.setImageResource(if (mFlashlightIsOpen) R.mipmap.flashlight_off else R.mipmap.flashlight_on)
         CameraInterface.getInstance().setFlashMode(if (mFlashlightIsOpen) Camera.Parameters.FLASH_MODE_TORCH else Camera.Parameters.FLASH_MODE_OFF)
-
+        iv_flashlight.setImageResource(if (mFlashlightIsOpen) R.mipmap.flashlight_off else R.mipmap.flashlight_on)
     }
 
     private fun resetCameraControllLayout() {
@@ -188,6 +189,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
     }
 
     override fun onError() {
+        ToastCommom.getInstance().show(GlobalApplication.mContext,"录制失败...")
         setShootState(ShootState.NONE)
     }
 
