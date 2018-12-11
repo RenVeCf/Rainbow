@@ -92,7 +92,9 @@
         <activity android:name=".ui.activity.classroom.OwnedClassRoomActivity" />
 
         <!-- taxiu-->
-        <activity android:name=".ui.activity.taxiu.TaxiuDetailActivity" />
+        <activity
+            android:name=".ui.activity.taxiu.TaxiuDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".ui.activity.taxiu.PublishTaxiuActivity"
             android:launchMode="singleTask" />
@@ -116,7 +118,9 @@
         <activity android:name=".ui.activity.store.NewProductListActivity" />
         <activity android:name=".ui.activity.store.ClearanceProductActivity" />
         <activity android:name=".ui.activity.store.video.StoreVideoIndexActivity" />
-        <activity android:name=".ui.activity.store.video.StoreVideoDetailActivity" />
+        <activity
+            android:name=".ui.activity.store.video.StoreVideoDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".ui.activity.store.ProductCategoryActivity" />
 
 

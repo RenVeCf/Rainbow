@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -234,6 +235,38 @@ public class CommonUtils {
         } else {
             return text;
         }
+    }
+
+    /**
+     * 最多2位小数   120.0  120.1
+     * 如果上千(>= 1000)并且是整数就显示整数部分 3224 3224.2
+     *
+     * @param d
+     * @return
+     */
+    public static String beautifulDouble(double d) {
+        String str = String.valueOf(d);
+        try {
+            if (str.contains(".")) {
+                String s = str.split("\\.")[1];
+                int length = s.length();
+                if (length > 1) {
+                    BigDecimal big = new BigDecimal(d);
+                    double res = big.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    DecimalFormat df = new DecimalFormat("######0.00");
+                    return df.format(res);
+                }
+                if (d >= 1000) {
+                    //小数部分是0
+                    if (Integer.parseInt(s) == 0) {
+                        return (int) d + "";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return d + "";
     }
 
 }

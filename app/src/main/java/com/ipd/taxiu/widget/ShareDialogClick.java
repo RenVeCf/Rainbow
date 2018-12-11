@@ -119,6 +119,7 @@ public class ShareDialogClick implements ShareDialog.ShareDialogOnclickListener,
     public void QQZoneOnclick() {
         Platform.ShareParams sp = new QZone.ShareParams();
         sp.setTitle(shareTitle);
+        sp.setTitleUrl(shareTitleUrl); // 标题的超链接
         sp.setText(shareText);
         if (TextUtils.isEmpty(shareLogoUrl)) {
             sp.setImagePath(LOGO_IMG_PATH);
