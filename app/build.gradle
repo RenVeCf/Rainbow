@@ -135,6 +135,9 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation ('com.github.tbruyelle:rxpermissions:0.10.2', {
+        exclude group: 'com.android.support'
+    })
 
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'

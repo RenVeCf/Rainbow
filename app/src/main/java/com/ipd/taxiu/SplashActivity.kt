@@ -1,11 +1,14 @@
 package com.ipd.taxiu
 
+import android.Manifest
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.View
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.BaseActivity
 import com.ipd.taxiu.ui.activity.account.LoginActivity
+import com.tbruyelle.rxpermissions2.RxPermissions
 import rx.Observable
 import rx.Subscriber
 import java.util.concurrent.TimeUnit
@@ -25,29 +28,48 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun loadData() {
-        Observable.timer(3000, TimeUnit.MILLISECONDS)
-                .compose(RxScheduler.applyScheduler())
-                .subscribe(object : Subscriber<Long>() {
-                    override fun onError(e: Throwable?) {
-                    }
+        RxPermissions(this)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .subscribe {
+                    if (it) {
+                        Observable.timer(3000, TimeUnit.MILLISECONDS)
+                                .compose(RxScheduler.applyScheduler())
+                                .subscribe(object : Subscriber<Long>() {
+                                    override fun onError(e: Throwable?) {
+                                    }
 
-                    override fun onNext(t: Long?) {
-                    }
+                                    override fun onNext(t: Long?) {
+                                    }
 
-                    override fun onCompleted() {
-                        if (GlobalParam.getFirstEnter()) {
-                            WelcomeActivity.launch(mActivity)
-                        } else {
-                            if (GlobalParam.isLogin()) {
-                                MainActivity.launch(mActivity)
-                            } else {
-                                LoginActivity.launch(mActivity)
-                            }
-                        }
-                        finish()
-                    }
+                                    override fun onCompleted() {
+                                        if (GlobalParam.getFirstEnter()) {
+                                            WelcomeActivity.launch(mActivity)
+                                        } else {
+                                            if (GlobalParam.isLogin()) {
+                                                MainActivity.launch(mActivity)
+                                            } else {
+                                                LoginActivity.launch(mActivity)
+                                            }
+                                        }
+                                        finish()
+                                    }
 
-                })
+                                })
+                    } else {
+                        val builder = AlertDialog.Builder(mActivity)
+                        builder.setMessage("需要开启以下权限才能使用")
+                                .setPositiveButton("确定") { dialog, which ->
+                                    loadData()
+                                }
+                                .setNegativeButton("取消") { dialog, which ->
+                                    finish()
+                                }.show()
+                    }
+                }
+
+
     }
 
     override fun initListener() {

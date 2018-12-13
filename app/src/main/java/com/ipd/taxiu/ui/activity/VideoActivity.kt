@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.View
 import cn.jzvd.Jzvd
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseActivity
@@ -23,26 +24,17 @@ class VideoActivity : BaseActivity() {
     private var mVideoUrl = ""
     override fun getBaseLayout(): Int = R.layout.activity_video_watch
 
-    override fun setActivityScreenOrientation() {
-//        val width = intent.getIntExtra("width", 0)
-//        val height = intent.getIntExtra("height", 0)
-//        if (width == 0 || height == 0) {
-//            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-//            return
-//        }
-//        requestedOrientation = if (width > height) {
-//            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-//        } else {
-//            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-//        }
-    }
-
     override fun initView(bundle: Bundle?) {
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+
         mVideoUrl = intent.getStringExtra("videoUrl")
 
         videoplayer.setUp(mVideoUrl,
                 "",
                 Jzvd.SCREEN_WINDOW_FULLSCREEN)
+        videoplayer.startButton.performClick()
 
     }
 

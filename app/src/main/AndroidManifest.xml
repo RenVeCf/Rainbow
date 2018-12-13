@@ -61,7 +61,7 @@
         <activity
             android:name=".ui.activity.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:theme="@style/FullScreenStyle" />
         <activity android:name=".ui.activity.ShootVideoActivity" />
 
         <!-- account-->

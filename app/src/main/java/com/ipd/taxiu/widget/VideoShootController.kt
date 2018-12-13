@@ -189,6 +189,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
     }
 
     override fun onError() {
+        mTimer.cancel()
         ToastCommom.getInstance().show(GlobalApplication.mContext,"录制失败...")
         setShootState(ShootState.NONE)
     }
