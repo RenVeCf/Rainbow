@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.View
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.VideoView
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
@@ -15,6 +16,7 @@ import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
 import com.ipd.taxiu.widget.camera.CameraInterface
+import com.ipd.taxiu.widget.camera.ShootVideoLayout
 import com.ipd.taxiu.widget.camera.listener.LifecycleListener
 import com.ipd.taxiu.widget.camera.listener.RecordResultListener
 import kotlinx.android.synthetic.main.activity_shoot_video.view.*
@@ -30,6 +32,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
     private var mFlashlightIsOpen = false
     private var mShootState = ShootState.NONE
     private lateinit var mVideoView: VideoView
+    private lateinit var mCameraLayout: ViewGroup
     private var screenProp = 1f
     private val mTimer: RecordCountDownTimer by lazy { RecordCountDownTimer(TrimVideoUtil.VIDEO_MAX_TIME * 1000L, 100L) }   //录制定时器 }
     private var mVideoDuration = 0L
@@ -60,7 +63,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
         resetFlashlightBtn()
 
         iv_switch_camera.setOnClickListener {
-            CameraInterface.getInstance().switchCamera(mVideoView.holder, screenProp)
+            CameraInterface.getInstance().switchCamera(mCameraLayout, mVideoView.holder, screenProp)
         }
 
         iv_flashlight.setOnClickListener {
@@ -134,6 +137,10 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
         mVideoView.holder.addCallback(this)
     }
 
+    fun setCameraLayout(camera_layout: ShootVideoLayout) {
+        mCameraLayout = camera_layout
+    }
+
     fun setRecordResultListener(listener: RecordResultListener) {
         mRecordResultListener = listener
     }
@@ -141,7 +148,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
 
     override fun onResume() {
         CameraInterface.getInstance().registerSensorManager(context)
-        CameraInterface.getInstance().doStartPreview(mVideoView.holder, screenProp)
+        CameraInterface.getInstance().doStartPreview(mCameraLayout, mVideoView.holder, screenProp)
 
     }
 
@@ -173,7 +180,7 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
     }
 
     override fun cameraHasOpened() {
-        CameraInterface.getInstance().doStartPreview(mVideoView.holder, screenProp)
+        CameraInterface.getInstance().doStartPreview(mCameraLayout, mVideoView.holder, screenProp)
     }
 
     /**
@@ -190,14 +197,14 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
 
     override fun onError() {
         mTimer.cancel()
-        ToastCommom.getInstance().show(GlobalApplication.mContext,"录制失败...")
+        ToastCommom.getInstance().show(GlobalApplication.mContext, "录制失败...")
         setShootState(ShootState.NONE)
     }
 
     fun setShootState(state: Int) {
         mShootState = state
         resetCameraControllLayout()
-        if (mShootState == ShootState.NONE){
+        if (mShootState == ShootState.NONE) {
             updateProgress(TrimVideoUtil.VIDEO_MAX_TIME * 1000L)
         }
     }
@@ -224,5 +231,6 @@ class VideoShootController : RelativeLayout, SurfaceHolder.Callback, CameraInter
             tv_cur_time.text = "$second.$millisecond"
         })
     }
+
 
 }

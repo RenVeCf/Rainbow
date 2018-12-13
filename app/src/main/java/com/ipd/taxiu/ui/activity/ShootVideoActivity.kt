@@ -27,16 +27,20 @@ class ShootVideoActivity : BaseUIActivity(), RecordResultListener {
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
-        camera_layout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                camera_layout.viewTreeObserver.removeGlobalOnLayoutListener(this)
-                val params = camera_layout.layoutParams
-                params.width = camera_layout.measuredWidth
-                params.height = params.width
-                camera_layout.layoutParams = params
-            }
-
-        })
+//        camera_layout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+//            override fun onGlobalLayout() {
+//                camera_layout.viewTreeObserver.removeGlobalOnLayoutListener(this)
+//                val params = camera_layout.layoutParams
+//                params.width = camera_layout.measuredWidth
+//                params.height = params.width
+//                camera_layout.layoutParams = params
+//
+//
+//
+//            }
+//
+//        })
+        video_controller.setCameraLayout(camera_layout)
         video_controller.setVideoView(video_preview)
         video_controller.setRecordResultListener(this)
 

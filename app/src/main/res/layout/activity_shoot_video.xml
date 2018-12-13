@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,7 @@
     <com.ipd.taxiu.widget.camera.ShootVideoLayout
         android:id="@+id/camera_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="match_parent"
         android:background="@android:color/black"
         android:gravity="center">
 
@@ -23,110 +23,126 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
     </com.ipd.taxiu.widget.camera.ShootVideoLayout>
 
 
-    <com.ipd.taxiu.widget.VideoShootController
-        android:id="@+id/video_controller"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        <View
+            android:id="@+id/holder_view"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:max="15"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1" />
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/rl_center"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:gravity="bottom">
+        <com.ipd.taxiu.widget.VideoShootController
+            android:id="@+id/video_controller"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/holder_view">
 
-            <TextView
-                android:id="@+id/tv_cur_time"
-                style="@style/TitleTextStyle"
-                android:text="0.0"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:max="15"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            <TextView
-                style="@style/BaseTextStyle"
-                android:text="  S / 15s"
-                android:textColor="#888888" />
-        </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_center"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-            <ImageView
-                android:id="@+id/iv_flashlight"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/small_padding"
-                android:paddingRight="@dimen/small_padding"
-                android:src="@mipmap/flashlight_on" />
+                android:layout_above="@id/rl_center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:gravity="bottom">
 
-            <ImageView
-                android:id="@+id/iv_switch_camera"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_cur_time"
+                    style="@style/TitleTextStyle"
+                    android:text="0.0"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="  S / 15s"
+                    android:textColor="#888888" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_center"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/small_padding"
-                android:paddingRight="@dimen/small_padding"
-                android:src="@mipmap/switch_camera" />
-        </RelativeLayout>
+                android:layout_centerInParent="true">
 
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rl_center"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="2dp">
+                <ImageView
+                    android:id="@+id/iv_flashlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:paddingRight="@dimen/small_padding"
+                    android:src="@mipmap/flashlight_on" />
 
+                <ImageView
+                    android:id="@+id/iv_switch_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:paddingRight="@dimen/small_padding"
+                    android:src="@mipmap/switch_camera" />
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/iv_video_cancel"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/small_padding"
-                android:src="@mipmap/video_cancel" />
-
-            <ImageView
-                android:id="@+id/iv_camera_controll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@mipmap/camera_start" />
-
-            <ImageView
-                android:id="@+id/iv_video_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/small_padding"
-                android:src="@mipmap/video_finish" />
-
-        </RelativeLayout>
+                android:layout_below="@id/rl_center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp">
 
 
-    </com.ipd.taxiu.widget.VideoShootController>
+                <ImageView
+                    android:id="@+id/iv_video_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/small_padding"
+                    android:src="@mipmap/video_cancel" />
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/iv_camera_controll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/camera_start" />
+
+                <ImageView
+                    android:id="@+id/iv_video_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/small_padding"
+                    android:src="@mipmap/video_finish" />
+
+            </RelativeLayout>
+
+
+        </com.ipd.taxiu.widget.VideoShootController>
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

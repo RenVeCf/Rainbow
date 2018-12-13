@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.ThreadUtils;
@@ -282,11 +283,11 @@ public class CameraInterface implements Camera.PreviewCallback {
     public void setFlashMode(String flashMode) {
         if (mCamera == null)
             return;
-        try{
+        try {
             Camera.Parameters params = mCamera.getParameters();
             params.setFlashMode(flashMode);
             mCamera.setParameters(params);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -350,7 +351,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
     }
 
-    public synchronized void switchCamera(SurfaceHolder holder, float screenProp) {
+    public synchronized void switchCamera(ViewGroup camera_layout, SurfaceHolder holder, float screenProp) {
         if (SELECTED_CAMERA == CAMERA_POST_POSITION) {
             SELECTED_CAMERA = CAMERA_FRONT_POSITION;
         } else {
@@ -366,13 +367,13 @@ public class CameraInterface implements Camera.PreviewCallback {
                 e.printStackTrace();
             }
         }
-        doStartPreview(holder, screenProp);
+        doStartPreview(camera_layout, holder, screenProp);
     }
 
     /**
      * doStartPreview
      */
-    public void doStartPreview(SurfaceHolder holder, float screenProp) {
+    public void doStartPreview(ViewGroup camera_layout, SurfaceHolder holder, float screenProp) {
         if (isPreviewing) {
             Log.i("tag", "doStartPreview isPreviewing");
         }
@@ -387,11 +388,20 @@ public class CameraInterface implements Camera.PreviewCallback {
             try {
                 mParams = mCamera.getParameters();
                 Camera.Size previewSize = CameraParamUtil.getInstance().getPreviewSize(mParams
-                        .getSupportedPreviewSizes(), 1000, screenProp);
+                        .getSupportedPreviewSizes(), 720, screenProp);
                 Camera.Size pictureSize = CameraParamUtil.getInstance().getPictureSize(mParams
                         .getSupportedPictureSizes(), 1200, screenProp);
 
                 mParams.setPreviewSize(previewSize.width, previewSize.height);
+
+                ViewGroup.LayoutParams params = camera_layout.getLayoutParams();
+                params.width = camera_layout.getMeasuredWidth();
+                int maybeHeight = (int) ((float) camera_layout.getMeasuredWidth() / (float) previewSize.width * previewSize.height);
+                if (maybeHeight < params.width) {
+                    maybeHeight = params.width;
+                }
+                params.height = maybeHeight;
+                camera_layout.setLayoutParams(params);
 
                 preview_width = previewSize.width;
                 preview_height = previewSize.height;
@@ -512,7 +522,7 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     //启动录像
     public void startRecord(Surface surface, float screenProp, ErrorCallback callback) {
-        if (mCamera == null || firstFrame_data == null){
+        if (mCamera == null || firstFrame_data == null) {
             callback.onError();
             return;
         }
@@ -568,10 +578,10 @@ public class CameraInterface implements Camera.PreviewCallback {
 
         Camera.Size videoSize;
         if (mParams.getSupportedVideoSizes() == null) {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedPreviewSizes(), 1000,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedPreviewSizes(), 720,
                     screenProp);
         } else {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedVideoSizes(), 1000,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedVideoSizes(), 720,
                     screenProp);
         }
         Log.i(TAG, "setVideoSize    width = " + videoSize.width + "height = " + videoSize.height);

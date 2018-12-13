@@ -41,14 +41,14 @@ public class CameraParamUtil {
         int i = 0;
         for (Camera.Size s : list) {
 //            if ((s.width > th) && equalRate(s, rate)) {
-            if (s.width > th) {
+            if ((s.width > th) && equalRate(s, rate) && s.height >= s.width) {
                 Log.i(TAG, "MakeSure Preview :w = " + s.width + " h = " + s.height);
                 break;
             }
             i++;
         }
         if (i == list.size()) {
-            return getBestSize(list, rate);
+            return getBestSize(list, th, rate);
         } else {
             return list.get(i);
         }
@@ -78,6 +78,20 @@ public class CameraParamUtil {
             Camera.Size cur = list.get(i);
             float prop = (float) cur.width / (float) cur.height;
             if (Math.abs(rate - prop) < previewDisparity) {
+                previewDisparity = Math.abs(rate - prop);
+                index = i;
+            }
+        }
+        return list.get(index);
+    }
+
+    private Camera.Size getBestSize(List<Camera.Size> list, int th, float rate) {
+        float previewDisparity = 100;
+        int index = list.size() - 1;
+        for (int i = 0; i < list.size(); i++) {
+            Camera.Size cur = list.get(i);
+            float prop = (float) cur.width / (float) cur.height;
+            if (Math.abs(rate - prop) < previewDisparity && cur.width > th) {
                 previewDisparity = Math.abs(rate - prop);
                 index = i;
             }
