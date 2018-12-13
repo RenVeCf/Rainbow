@@ -61,9 +61,11 @@ class SplashActivity : BaseActivity() {
                         val builder = AlertDialog.Builder(mActivity)
                         builder.setMessage("需要开启以下权限才能使用")
                                 .setPositiveButton("确定") { dialog, which ->
+                                    dialog.dismiss()
                                     loadData()
                                 }
                                 .setNegativeButton("取消") { dialog, which ->
+                                    dialog.dismiss()
                                     finish()
                                 }.show()
                     }

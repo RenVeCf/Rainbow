@@ -40,7 +40,8 @@ public class CameraParamUtil {
         Collections.sort(list, sizeComparator);
         int i = 0;
         for (Camera.Size s : list) {
-            if ((s.width > th) && equalRate(s, rate)) {
+//            if ((s.width > th) && equalRate(s, rate)) {
+            if (s.width > th) {
                 Log.i(TAG, "MakeSure Preview :w = " + s.width + " h = " + s.height);
                 break;
             }

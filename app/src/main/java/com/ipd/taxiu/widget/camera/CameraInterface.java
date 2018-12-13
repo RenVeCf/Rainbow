@@ -282,9 +282,13 @@ public class CameraInterface implements Camera.PreviewCallback {
     public void setFlashMode(String flashMode) {
         if (mCamera == null)
             return;
-        Camera.Parameters params = mCamera.getParameters();
-        params.setFlashMode(flashMode);
-        mCamera.setParameters(params);
+        try{
+            Camera.Parameters params = mCamera.getParameters();
+            params.setFlashMode(flashMode);
+            mCamera.setParameters(params);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -564,10 +568,10 @@ public class CameraInterface implements Camera.PreviewCallback {
 
         Camera.Size videoSize;
         if (mParams.getSupportedVideoSizes() == null) {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedPreviewSizes(), 600,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedPreviewSizes(), 1000,
                     screenProp);
         } else {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedVideoSizes(), 600,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedVideoSizes(), 1000,
                     screenProp);
         }
         Log.i(TAG, "setVideoSize    width = " + videoSize.width + "height = " + videoSize.height);
@@ -576,6 +580,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         } else {
             mediaRecorder.setVideoSize(videoSize.width, videoSize.height);
         }
+
 //        if (SELECTED_CAMERA == CAMERA_FRONT_POSITION) {
 //            mediaRecorder.setOrientationHint(270);
 //        } else {

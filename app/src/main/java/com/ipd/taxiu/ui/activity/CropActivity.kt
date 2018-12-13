@@ -13,6 +13,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taxiu.R
 import com.ipd.taxiu.platform.global.GlobalApplication
 import com.ipd.taxiu.ui.BaseUIActivity
+import com.ipd.taxiu.utils.BitmapUtil
 import com.ipd.taxiu.utils.PictureChooseUtils
 import com.steelkiwi.cropiwa.AspectRatio
 import com.steelkiwi.cropiwa.config.CropIwaSaveConfig
@@ -45,6 +46,8 @@ class CropActivity : BaseUIActivity() {
 
     public override fun initView(savedInstanceState: Bundle?) {
         initToolbar()
+        BitmapUtil.compressImage(mPath)
+
         crop_image_view
                 .configureOverlay()
                 .setDynamicCrop(false)

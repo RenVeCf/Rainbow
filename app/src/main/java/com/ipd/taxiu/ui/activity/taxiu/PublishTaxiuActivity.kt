@@ -1,8 +1,10 @@
 package com.ipd.taxiu.ui.activity.taxiu
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
@@ -24,6 +26,7 @@ import com.ipd.taxiu.utils.StringUtils
 import com.ipd.taxiu.utils.UploadUtils
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
 import com.ipd.taxiu.widget.MessageDialog
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_publish_taxiu.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -65,6 +68,31 @@ class PublishTaxiuActivity : BaseUIActivity(), PublishTaxiuPresenter.IPublishTax
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
+        checkPermission()
+    }
+
+    private fun checkPermission() {
+        RxPermissions(this)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .subscribe {
+                    if (it) {
+
+                    } else {
+                        val builder = AlertDialog.Builder(mActivity)
+                        builder.setMessage("请先打开相机权限")
+                                .setPositiveButton("确定") { dialog, which ->
+                                    dialog.dismiss()
+                                    checkPermission()
+                                }
+                                .setNegativeButton("取消") { dialog, which ->
+                                    dialog.dismiss()
+                                    finish()
+                                }.show()
+
+                    }
+                }
     }
 
     override fun loadData() {
