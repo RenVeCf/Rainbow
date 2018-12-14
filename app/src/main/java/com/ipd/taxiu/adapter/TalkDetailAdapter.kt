@@ -75,8 +75,10 @@ class TalkDetailAdapter(val context: Context, private val isMine: Boolean, priva
                 holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_zan.text = detailData.PRAISE.toString()
                 holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
+                holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
 
-                holder.itemView.iv_zan.setOnClickListener {
+                holder.itemView.ll_zan.setOnClickListener {
                     itemClick.invoke(position, it.id, null, null)
                 }
 

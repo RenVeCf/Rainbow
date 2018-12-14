@@ -109,7 +109,7 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                         }
 
                     }
-                    R.id.iv_zan -> {
+                    R.id.ll_zan -> {
                         //内容点赞
                         mPresenter?.praise(pos, CommentType.TALK_PRAISE, detailData.QUESTION_ID)
 
@@ -176,6 +176,8 @@ class TalkDetailFragment : ListFragment<CommentResult<List<TalkCommentBean>>, Ta
                     var num = holder.itemView.tv_zan.text.toString().toInt()
                     holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
                     holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
 
                 }
             }

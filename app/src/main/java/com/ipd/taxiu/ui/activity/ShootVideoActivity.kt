@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.ViewTreeObserver
 import com.ipd.taxiu.R
 import com.ipd.taxiu.ui.BaseUIActivity
 import com.ipd.taxiu.utils.trimvideo.TrimVideoUtil
@@ -52,7 +51,7 @@ class ShootVideoActivity : BaseUIActivity(), RecordResultListener {
     override fun initListener() {
     }
 
-    private var mVideoPath:String? = null
+    private var mVideoPath: String? = null
     override fun onRecodResult(isShort: Boolean, path: String?, firstFrame: Bitmap?) {
         if (isShort) {
             toastShow("录制时间不能少于${TrimVideoUtil.MIN_SHOOT_DURATION / 1000}秒")
@@ -60,12 +59,35 @@ class ShootVideoActivity : BaseUIActivity(), RecordResultListener {
         }
         mVideoPath = path
     }
+
     override fun onConfirm() {
-        if (TextUtils.isEmpty(mVideoPath)){
+        if (TextUtils.isEmpty(mVideoPath)) {
             return
         }
-        VideoCoverActivity.launch(mActivity,mVideoPath!!)
+        VideoCoverActivity.launch(mActivity, mVideoPath!!)
         finish()
+
+//        TrimVideoUtil.ratioTrim(mVideoPath!!, TrimVideoUtil.getTrimmedVideoPath(mActivity),object : TrimVideoListener{
+//            override fun onStartTrim() {
+//                LoadingUtils.show(mActivity,"处理中...")
+//            }
+//
+//            override fun onFinishTrim(url: String) {
+//                LoadingUtils.dismiss()
+//                VideoCoverActivity.launch(mActivity,url)
+//                finish()
+//            }
+//
+//            override fun onErrorTrim() {
+//                LoadingUtils.dismiss()
+//                toastShow("视频处理失败...")
+//            }
+//
+//            override fun onCancel() {
+//                LoadingUtils.dismiss()
+//            }
+//
+//        })
     }
 
     override fun onResume() {

@@ -9,17 +9,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/share_wechat" />
+            android:src="@mipmap/share_wechat_small" />
 
         <TextView
+            android:layout_marginLeft="@dimen/base_padding"
             style="@style/SmallTextStyle"
-            android:layout_marginTop="3dp"
             android:text="微信" />
     </LinearLayout>
 
@@ -28,17 +30,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/share_friend" />
+            android:src="@mipmap/share_friend_small" />
 
         <TextView
             style="@style/SmallTextStyle"
-            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/small_padding"
             android:text="朋友圈" />
     </LinearLayout>
 
@@ -48,16 +52,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/share_qq" />
+            android:src="@mipmap/share_qq_small" />
 
         <TextView
             style="@style/SmallTextStyle"
-            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/small_padding"
             android:text="QQ" />
     </LinearLayout>
 
@@ -66,17 +72,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/share_qzone" />
+            android:src="@mipmap/share_qzone_small" />
 
         <TextView
             style="@style/SmallTextStyle"
-            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/small_padding"
             android:text="QQ空间" />
     </LinearLayout>
 

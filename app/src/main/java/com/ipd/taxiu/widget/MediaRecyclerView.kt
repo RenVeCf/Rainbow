@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
+import com.ipd.taxiu.adapter.MediaPictureAdapter
+import com.ipd.taxiu.adapter.MediaVideoAdapter
+import com.ipd.taxiu.adapter.MediaVideoPlayAdapter
 
 class MediaRecyclerView : RecyclerView {
     constructor(context: Context?) : super(context)
@@ -36,18 +39,31 @@ class MediaRecyclerView : RecyclerView {
     }
 
     override fun setAdapter(adapter: Adapter<*>?) {
-        val itemCount = adapter?.itemCount
-        layoutManager = when (itemCount) {
-            1 -> {
-                LinearLayoutManager(context)
-            }
-            2 -> {
-                GridLayoutManager(context, 2)
-            }
-            else -> {
-                GridLayoutManager(context, 3)
-            }
-        }
+//        val itemCount = adapter?.itemCount
+        layoutManager =
+//                when (itemCount) {
+//            1 -> {
+//                LinearLayoutManager(context)
+//            }
+//            2 -> {
+//                GridLayoutManager(context, 2)
+//            }
+//            else -> {
+//                GridLayoutManager(context, 3)
+//            }
+//        }
+                when (adapter) {
+                    is MediaVideoAdapter,
+                    is MediaVideoPlayAdapter -> {
+                        LinearLayoutManager(context)
+                    }
+                    is MediaPictureAdapter -> {
+                        GridLayoutManager(context, 3)
+                    }
+                    else -> {
+                        GridLayoutManager(context, 3)
+                    }
+                }
 
         val curItemDecoration = getItemDecorationAt(0)
         if (curItemDecoration == null) {

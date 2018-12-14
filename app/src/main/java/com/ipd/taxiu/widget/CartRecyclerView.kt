@@ -2,10 +2,17 @@ package com.ipd.taxiu.widget
 
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.view.ViewGroup
+import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
+import com.ipd.taxiu.R
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+import com.yanzhenjie.recyclerview.swipe.widget.DefaultItemDecoration
+import kotlinx.android.synthetic.main.item_evaluate.view.*
 
-class CartRecyclerView : RecyclerView {
+class CartRecyclerView : SwipeMenuRecyclerView {
     object CartType {
         const val EMPTY_CART = 1
         const val CART_PRODUCT = 2
@@ -26,7 +33,13 @@ class CartRecyclerView : RecyclerView {
         init()
     }
 
+//    private var itemDecoration:DefaultItemDecoration? = null
     private fun init() {
+//        if (itemDecoration == null){
+//            itemDecoration = DefaultItemDecoration(resources.getColor(R.color.transparent), 2, 2, CartType.RECOMMEND_PRODUCT_HEADER)
+//            addItemDecoration(itemDecoration)
+//        }
+
         val gridLayoutManager = GridLayoutManager(context, 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
@@ -42,7 +55,28 @@ class CartRecyclerView : RecyclerView {
             }
         }
         layoutManager = gridLayoutManager
-    }
 
+        setSwipeMenuCreator { leftMenu, rightMenu, position ->
+            when (adapter.getItemViewType(position)) {
+                CartType.CART_PRODUCT -> {
+                    val deleteItem = SwipeMenuItem(context)
+                    deleteItem.text = "删除"
+                    deleteItem.setTextColor(resources.getColor(R.color.white))
+                    deleteItem.setBackground(R.drawable.shape_cart_delete)
+                    deleteItem.height = ViewGroup.LayoutParams.MATCH_PARENT
+                    deleteItem.width = DensityUtil.dip2px(context,50f)
+                    rightMenu.addMenuItem(deleteItem)
+                }
+                else -> {
+
+                }
+            }
+        }
+
+        setSwipeMenuItemClickListener { menuBridge, position ->
+            menuBridge.closeMenu()
+            LogUtils.e("tag","delete product")
+        }
+    }
 
 }

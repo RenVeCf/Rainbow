@@ -18,7 +18,7 @@ import com.ipd.taxiu.utils.CommentType
 import com.ipd.taxiu.widget.CommentSortLayout
 import kotlinx.android.synthetic.main.item_topic_comment.view.*
 import kotlinx.android.synthetic.main.layout_post_user.view.*
-import kotlinx.android.synthetic.main.layout_topic_header.view.*
+import kotlinx.android.synthetic.main.layout_taxiu_header.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
@@ -131,6 +131,8 @@ class TaxiuDetailFragment : ListFragment<CommentResult<List<TaxiuCommentBean>>, 
                     var num = holder.itemView.tv_zan.text.toString().toInt()
                     holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
                     holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
                 }
             }
             else -> {

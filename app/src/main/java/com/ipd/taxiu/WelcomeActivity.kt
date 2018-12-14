@@ -59,12 +59,7 @@ class WelcomeActivity : BaseActivity() {
                 imageView.setImageResource(images[position])
                 imageView.setOnClickListener {
                     if (position == images.size - 1) {
-                        GlobalParam.setFirstEnter(false)
-                        if (GlobalParam.isLogin()) {
-                            MainActivity.launch(mActivity)
-                        } else {
-                            LoginActivity.launch(mActivity)
-                        }
+                        jmpNext()
                     }
 
                 }
@@ -78,7 +73,19 @@ class WelcomeActivity : BaseActivity() {
         }
     }
 
+    private fun jmpNext() {
+        GlobalParam.setFirstEnter(false)
+        if (GlobalParam.isLogin()) {
+            MainActivity.launch(mActivity)
+        } else {
+            LoginActivity.launch(mActivity)
+        }
+    }
+
     override fun initListener() {
+        tv_skip.setOnClickListener {
+            jmpNext()
+        }
     }
 
 

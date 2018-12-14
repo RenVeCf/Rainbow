@@ -71,13 +71,15 @@ class TopicDetailAdapter(val context: Context, private val detailData: TopicDeta
 
                 holder.itemView.tv_taxiu_publish_time.text = detailData.CREATETIME
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()
+                holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_zan.text = detailData.PRAISE.toString()
                 holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_comment_join_num.text = "${detailData.COMMENT_NUM}人参与了该话题的讨论"
 
 
-                holder.itemView.iv_zan.setOnClickListener {
+                holder.itemView.ll_zan.setOnClickListener {
                     itemClick.invoke(position, holder.itemView.iv_zan.id, null)
                 }
 

@@ -79,23 +79,47 @@
             app:layout_constraintTop_toTopOf="@id/tv_taxiu_publish_time"
             tools:text="3452" />
 
-        <ImageView
-            android:id="@+id/iv_zan"
+        <LinearLayout
+            android:id="@+id/ll_zan"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/selector_detail_zan"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_publish_time" />
+            android:gravity="center"
+            android:background="@drawable/selector_detail_zan_bg"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="@dimen/base_padding"
+            android:paddingBottom="@dimen/base_padding"
+            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_publish_time"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_zan"
-            style="@style/BaseTextStyle"
-            android:textColor="@drawable/selector_detail_zan_color"
-            app:layout_constraintLeft_toLeftOf="@id/iv_zan"
-            app:layout_constraintRight_toRightOf="@id/iv_zan"
-            app:layout_constraintTop_toBottomOf="@id/iv_zan"
-            tools:text="232" />
+
+            <ImageView
+                android:id="@+id/iv_zan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_detail_zan"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flow_layout" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/base_padding"
+                android:id="@+id/tv_zan"
+                style="@style/BaseTextStyle"
+                android:text="232"
+                android:textColor="@drawable/selector_detail_zan_color"
+                app:layout_constraintLeft_toLeftOf="@id/iv_zan"
+                app:layout_constraintRight_toRightOf="@id/iv_zan"
+                app:layout_constraintTop_toBottomOf="@id/iv_zan" />
+
+            <TextView
+                android:id="@+id/tv_zan_extra"
+                style="@style/BaseTextStyle"
+                android:text="人点赞"
+                android:textColor="@drawable/selector_detail_zan_color" />
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 

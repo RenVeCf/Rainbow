@@ -85,13 +85,13 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ItemType.HEADER -> {
-                holder.itemView.flow_layout.removeAllViews()
-                //标签
-                detailData.TipList.forEach {
-                    val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.flow_layout, false) as TextView
-                    lableView.text = it.TIP
-                    holder.itemView.flow_layout.addView(lableView)
-                }
+//                holder.itemView.flow_layout.removeAllViews()
+//                //标签
+//                detailData.TipList.forEach {
+//                    val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.flow_layout, false) as TextView
+//                    lableView.text = it.TIP
+//                    holder.itemView.flow_layout.addView(lableView)
+//                }
                 ImageLoader.loadAvatar(context, detailData.User.LOGO, holder.itemView.civ_publisher_avatar)
                 holder.itemView.tv_nickname.text = detailData.User.NICKNAME
                 holder.itemView.tv_user_desc.text = detailData.User.tag
@@ -119,12 +119,14 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
 
                 holder.itemView.tv_taxiu_publish_time.text = detailData.CREATETIME
                 holder.itemView.tv_viewers_num.text = detailData.BROWSE.toString()
+                holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.iv_zan.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_zan.text = detailData.PRAISE.toString()
                 holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
                 holder.itemView.tv_comment_num.text = "${detailData.COMMENT_NUM}人参与了评论"
 
-                holder.itemView.iv_zan.setOnClickListener {
+                holder.itemView.ll_zan.setOnClickListener {
                     itemClick.invoke(position, holder.itemView.iv_zan.id, null)
                 }
 

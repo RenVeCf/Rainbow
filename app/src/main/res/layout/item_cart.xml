@@ -1,114 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="4dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="1px">
+    android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/base_padding">
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1px">
 
-        <CheckBox
-            android:id="@+id/cb_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_cart_product_cb"
-            android:clickable="false"
-            android:enabled="false"
-            android:focusable="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.ipd.taxiu.widget.RoundImageView
-            android:id="@+id/iv_cart_product_img"
-            android:layout_width="@dimen/cart_product_img_height"
-            android:layout_height="@dimen/cart_product_img_height"
-            android:layout_marginLeft="@dimen/base_padding"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/cart_product_img1"
-            app:corner_radius="5dp"
-            app:layout_constraintLeft_toRightOf="@id/cb_product"
-            app:type="round" />
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/cart_product_img_height"
-            android:layout_marginLeft="@dimen/small_padding"
-            app:layout_constraintLeft_toRightOf="@id/iv_cart_product_img"
-            app:layout_constraintRight_toRightOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_padding">
 
-            <TextView
-                android:id="@+id/tv_cart_product_name"
-                style="@style/SmallTextStyle"
-                android:layout_width="0dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="牛油果Avoderm 成犬粮鸡肉糙米配方狗粮 30磅/13.6kg"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/iv_cart_product_delete"
+            <CheckBox
+                android:id="@+id/cb_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cart_product_cb"
+                android:clickable="false"
+                android:enabled="false"
+                android:focusable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_cart_product_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/small_padding"
-                android:paddingTop="4dp"
-                android:paddingBottom="@dimen/small_padding"
-                android:src="@mipmap/cart_delete"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_cart_product_name" />
+            <com.ipd.taxiu.widget.RoundImageView
+                android:id="@+id/iv_cart_product_img"
+                android:layout_width="@dimen/cart_product_img_height"
+                android:layout_height="@dimen/cart_product_img_height"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/cart_product_img1"
+                app:corner_radius="5dp"
+                app:layout_constraintLeft_toRightOf="@id/cb_product"
+                app:type="round" />
 
-            <TextView
-                android:id="@+id/tv_cart_product_spec"
-                style="@style/SmallTextStyle"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="口味:鸡肉味"
-                android:textColor="@color/LightGrey"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_cart_product_name" />
+                android:layout_height="@dimen/cart_product_img_height"
+                android:layout_marginLeft="@dimen/small_padding"
+                app:layout_constraintLeft_toRightOf="@id/iv_cart_product_img"
+                app:layout_constraintRight_toRightOf="parent">
 
-            <TextView
-                android:id="@+id/tv_cart_product_lable"
-                style="@style/SmallTextStyle"
-                android:layout_width="wrap_content"
-                android:background="@drawable/shape_buy_bg"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="上新"
-                android:textColor="@color/white"
-                android:textSize="9sp"
-                app:layout_constraintBottom_toTopOf="@id/tv_cart_product_price"
-                app:layout_constraintTop_toBottomOf="@id/tv_cart_product_spec" />
+                <TextView
+                    android:id="@+id/tv_cart_product_name"
+                    style="@style/SmallTextStyle"
+                    android:layout_width="0dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="牛油果Avoderm 成犬粮鸡肉糙米配方狗粮 30磅/13.6kg"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/iv_cart_product_delete"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_cart_product_price"
-                style="@style/SmallTextStyle"
-                android:layout_width="wrap_content"
-                android:text="￥588"
-                android:textColor="@color/red"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                <ImageView
+                    android:id="@+id/iv_cart_product_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="@dimen/small_padding"
+                    android:src="@mipmap/cart_delete"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_cart_product_name" />
 
-            <com.ipd.taxiu.widget.CartOperationView
-                android:id="@+id/cart_operation_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                <TextView
+                    android:id="@+id/tv_cart_product_spec"
+                    style="@style/SmallTextStyle"
+                    android:layout_width="0dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="口味:鸡肉味"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cart_product_name" />
+
+                <TextView
+                    android:id="@+id/tv_cart_product_lable"
+                    style="@style/SmallTextStyle"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/shape_buy_bg"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="上新"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_cart_product_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cart_product_spec" />
+
+                <TextView
+                    android:id="@+id/tv_cart_product_price"
+                    style="@style/SmallTextStyle"
+                    android:layout_width="wrap_content"
+                    android:text="￥588"
+                    android:textColor="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <com.ipd.taxiu.widget.CartOperationView
+                    android:id="@+id/cart_operation_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
 
 
         </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>
 
-
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>

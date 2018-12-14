@@ -65,6 +65,33 @@ object TrimVideoUtil {
 
     }
 
+    fun ratioTrim(inputPath: String, outputPath: String, callback: TrimVideoListener) {
+//        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val outputName = "taXiu_ratio_cut.mp4"
+        val outputFile = File("$outputPath/$outputName")
+        if (outputFile.exists()) {
+            outputFile.delete()
+        }
+
+        //裁剪-精确裁剪
+        val cmd = "ffmpeg -i $inputPath -vf scale=iw:iw ${outputFile.absolutePath}"
+        val command = cmd.split(" ").toTypedArray()
+
+        callback.onStartTrim()
+        FFmpegApi.exec(command) { ret ->
+            FFmpegApi.removeListener()
+            UiThreadExecutor.runTask("", {
+                if (ret == 0) {
+                    callback.onFinishTrim(outputFile.absolutePath)
+                } else {
+                    callback.onErrorTrim()
+                }
+            }, 0L)
+
+        }
+
+    }
+
 
     fun backgroundShootVideoThumb(context: Context, videoUri: Uri, totalThumbsCount: Int, startPosition: Long,
                                   endPosition: Long, callback: SingleCallback<Bitmap, Int>) {

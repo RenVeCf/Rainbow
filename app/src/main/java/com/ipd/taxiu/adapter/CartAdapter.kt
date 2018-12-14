@@ -42,7 +42,7 @@ class CartAdapter(val context: Context, private val list: List<Any>?, val cartCa
             CartRecyclerView.CartType.EMPTY_CART -> ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_empty_cart, parent, false))
             CartRecyclerView.CartType.CART_PRODUCT -> ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false))
             CartRecyclerView.CartType.RECOMMEND_PRODUCT_HEADER -> ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cart_recommend_header, parent, false))
-            else -> ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_grid, parent, false))
+            else -> ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cart_product_grid, parent, false))
         }
     }
 

@@ -17,49 +17,49 @@
         app:layout_constraintTop_toBottomOf="@id/layout_post_user">
 
 
-        <com.ipd.taxiu.widget.MediaRecyclerView
-            android:id="@+id/media_recycler_view"
+        <TextView
+            android:id="@+id/tv_taxiu_desc"
+            style="@style/TitleTextStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:text="对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_taxiu_desc"
-            style="@style/SmallTextStyle"
+
+        <com.ipd.taxiu.widget.MediaRecyclerView
+            android:id="@+id/media_recycler_view"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding"
-            android:text="对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n对很多第一次晋升铲屎官的人来说，既当爹又当妈的照顾毛孩子并不轻松\n"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/media_recycler_view" />
+            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc" />
 
 
         <!--<TextView-->
-            <!--android:id="@+id/tv_taxiu_lable"-->
-            <!--style="@style/SmallTextStyle"-->
-            <!--android:layout_marginTop="4dp"-->
-            <!--android:background="@drawable/shape_taxiu_lable"-->
-            <!--android:paddingBottom="3dp"-->
-            <!--android:paddingLeft="@dimen/small_padding"-->
-            <!--android:paddingRight="@dimen/small_padding"-->
-            <!--android:paddingTop="3dp"-->
-            <!--android:text="流浪狗"-->
-            <!--android:textColor="@color/white"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc" />-->
+        <!--android:id="@+id/tv_taxiu_lable"-->
+        <!--style="@style/SmallTextStyle"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:background="@drawable/shape_taxiu_lable"-->
+        <!--android:paddingBottom="3dp"-->
+        <!--android:paddingLeft="@dimen/small_padding"-->
+        <!--android:paddingRight="@dimen/small_padding"-->
+        <!--android:paddingTop="3dp"-->
+        <!--android:text="流浪狗"-->
+        <!--android:textColor="@color/white"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc" />-->
 
         <com.ipd.taxiu.widget.TaxiuLableShowLayout
             android:id="@+id/taxiu_lable_show_layout"
-            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_taxiu_desc"
-            />
-
+            app:layout_constraintTop_toBottomOf="@id/media_recycler_view" />
 
 
         <TextView
@@ -84,6 +84,7 @@
 
         <com.ipd.taxiu.widget.FlowLayout
             android:id="@+id/flow_layout"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/base_padding"
@@ -91,23 +92,48 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_taxiu_publish_time" />
 
-        <ImageView
-            android:id="@+id/iv_zan"
+
+        <LinearLayout
+            android:id="@+id/ll_zan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/selector_detail_zan"
+            android:background="@drawable/selector_detail_zan_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:paddingTop="@dimen/base_padding"
+            android:paddingRight="25dp"
+            android:paddingBottom="@dimen/base_padding"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/flow_layout" />
+            app:layout_constraintTop_toBottomOf="@id/flow_layout">
 
-        <TextView
-            android:id="@+id/tv_zan"
-            style="@style/BaseTextStyle"
-            android:text="232"
-            android:textColor="@drawable/selector_detail_zan_color"
-            app:layout_constraintLeft_toLeftOf="@id/iv_zan"
-            app:layout_constraintRight_toRightOf="@id/iv_zan"
-            app:layout_constraintTop_toBottomOf="@id/iv_zan" />
+
+            <ImageView
+                android:id="@+id/iv_zan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_detail_zan"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flow_layout" />
+
+            <TextView
+                android:id="@+id/tv_zan"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:text="232"
+                android:textColor="@drawable/selector_detail_zan_color"
+                app:layout_constraintLeft_toLeftOf="@id/iv_zan"
+                app:layout_constraintRight_toRightOf="@id/iv_zan"
+                app:layout_constraintTop_toBottomOf="@id/iv_zan" />
+
+            <TextView
+                android:id="@+id/tv_zan_extra"
+                style="@style/BaseTextStyle"
+                android:text="人点赞"
+                android:textColor="@drawable/selector_detail_zan_color" />
+        </LinearLayout>
 
 
         <RelativeLayout
@@ -115,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding"
-            app:layout_constraintTop_toBottomOf="@id/tv_zan">
+            app:layout_constraintTop_toBottomOf="@id/ll_zan">
 
             <include layout="@layout/layout_share_menu" />
         </RelativeLayout>
@@ -129,10 +155,10 @@
         android:background="@color/window_bg_color"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/small_padding"
         android:paddingLeft="@dimen/base_padding"
-        android:paddingRight="@dimen/base_padding"
         android:paddingTop="@dimen/small_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingBottom="@dimen/small_padding"
         app:layout_constraintTop_toBottomOf="@id/cl_top">
 
 

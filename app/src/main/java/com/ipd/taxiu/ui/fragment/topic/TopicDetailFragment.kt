@@ -126,6 +126,8 @@ class TopicDetailFragment : ListFragment<CommentResult<List<TopicCommentBean>>, 
                     var num = holder.itemView.tv_zan.text.toString().toInt()
                     holder.itemView.tv_zan.text = if (detailData.IS_PRAISE == 1) "${num + 1}" else "${num - 1}"
                     holder.itemView.tv_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.ll_zan.isSelected = detailData.IS_PRAISE == 1
+                    holder.itemView.tv_zan_extra.isSelected = detailData.IS_PRAISE == 1
 
                 }
             }
