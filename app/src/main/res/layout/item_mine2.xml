@@ -63,6 +63,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/rl_pet_housekeeper"
                     style="@style/MineMenuTopStyle">
 
@@ -105,18 +106,11 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
                 </com.ipd.taxiu.widget.CircleMenuLayout>
-            </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/rl_delivery_address"
-                    style="@style/MineMenuBottomStyle">
+                    style="@style/MineMenuTopStyle">
 
                     <ImageView
                         android:id="@+id/shipping_address"
@@ -135,6 +129,38 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
                 </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/rl_delivery_address"-->
+                    <!--style="@style/MineMenuBottomStyle">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/shipping_address"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:src="@mipmap/shipping_address" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/shipping_address"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="@dimen/small_padding"-->
+                        <!--android:text="@string/shipping_address"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="@dimen/small_text_size" />-->
+                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/rl_referral"

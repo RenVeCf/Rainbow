@@ -154,10 +154,10 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
         ImageLoader.loadImgFromLocal(mActivity, HttpUrl.IMAGE_URL + data.LOGO, civ_avatar)
         tv_name.text = data.NICKNAME
         if (data.GENDER == 1) {
-            tv_phone.text = "我是男孩纸"
+            tv_phone.text = "我是男孩子"
         }
         if (data.GENDER == 2) {
-            tv_phone.text = "我是女孩纸"
+            tv_phone.text = "我是女孩子"
         }
         tv_age.text = data.MONTH_NUM.toString() + "个月" + data.DAY_NUM + "天"
     }

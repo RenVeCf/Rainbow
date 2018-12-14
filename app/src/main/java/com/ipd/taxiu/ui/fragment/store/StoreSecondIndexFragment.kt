@@ -15,7 +15,7 @@ import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.utils.StoreType
-import kotlinx.android.synthetic.main.fragment_store.view.*
+import kotlinx.android.synthetic.main.fragment_store_second.view.*
 import rx.Observable
 
 class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
@@ -33,7 +33,7 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
 
     private val mType: Int by lazy { arguments.getInt("type") }
     private val mCategoryId: Int by lazy { arguments.getInt("categoryId") }
-    override fun getContentLayout(): Int = R.layout.fragment_store
+    override fun getContentLayout(): Int = R.layout.fragment_store_second
 
     override fun needLazyLoad(): Boolean = true
 

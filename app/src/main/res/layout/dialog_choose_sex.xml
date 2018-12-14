@@ -39,11 +39,12 @@
                 android:id="@+id/iv_sex_boy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/sex_boy"
+                android:src="@mipmap/sex_boy2"
                 android:layout_centerHorizontal="true"/>
             <TextView
                 android:id="@+id/sex_boy"
                 style="@style/BaseTextStyle"
+                android:visibility="gone"
                 android:layout_below="@id/iv_sex_boy"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="@dimen/base_padding"/>
@@ -56,9 +57,10 @@
                 android:id="@+id/iv_sex_girl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/sex_girl"
+                android:src="@mipmap/sex_girl2"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:visibility="gone"
                 android:id="@+id/sex_girl"
                 style="@style/BaseTextStyle"
                 android:paddingTop="@dimen/base_padding"

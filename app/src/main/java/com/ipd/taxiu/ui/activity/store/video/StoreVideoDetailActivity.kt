@@ -75,6 +75,7 @@ class StoreVideoDetailActivity : BaseUIActivity(), StoreVideoDetailPresenter.ISt
         mDetailInfo = info
         showContent()
         video_player.setUp(HttpUrl.VIDEO_URL + info.URL, "", Jzvd.SCREEN_WINDOW_NORMAL)
+        video_player.startButton.performClick()
         ImageLoader.loadNoPlaceHolderImg(mActivity, info.LOGO, video_player.thumbImageView)
 
         tv_taxiu_name.text = info.TITLE

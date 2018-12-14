@@ -65,6 +65,7 @@ class TaxiuDetailAdapter(val context: Context, private val detailData: TaxiuDeta
                     Jzvd.releaseAllVideos()
                 }
             }
+            view?.findViewById<View>(R.id.start)?.performClick()
         }
 
     }
