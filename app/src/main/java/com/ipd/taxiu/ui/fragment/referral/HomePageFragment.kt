@@ -11,9 +11,11 @@ import com.ipd.taxiu.imageload.ImageLoader
 import com.ipd.taxiu.platform.global.Constant
 import com.ipd.taxiu.platform.global.GlobalParam
 import com.ipd.taxiu.platform.http.ApiManager
+import com.ipd.taxiu.platform.http.HttpUrl
 import com.ipd.taxiu.platform.http.Response
 import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
+import com.ipd.taxiu.ui.activity.PictureLookActivity
 import com.ipd.taxiu.ui.activity.taxiu.TaxiuDetailActivity
 import com.ipd.taxiu.utils.User
 import com.ipd.taxiu.widget.ProgressLayout
@@ -65,6 +67,10 @@ class HomePageFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() 
                                     attention(mOtherUserId)
                                 }
                                 ImageLoader.loadAvatar(mActivity, data.LOGO, mContentView.civ_header)
+                                mContentView.civ_header.setOnClickListener {
+                                    PictureLookActivity.launch(mActivity, arrayListOf(HttpUrl.IMAGE_URL + data.LOGO))
+                                }
+
                                 mContentView.tv_friend_nickname.text = data.NICKNAME
                                 mContentView.tv_tag.text = data.tag
                                 mContentView.tv_attention_num.text = data.ATTENTION_NUM.toString() + ""
@@ -137,7 +143,7 @@ class HomePageFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() 
     }
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<TaxiuBean>>) {
-        data?.addAll(result?.data?: arrayListOf())
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
 }

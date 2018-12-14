@@ -100,10 +100,14 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
             }
         }
 
-        iv_collect.setOnClickListener {
+        circle_collect.setOnClickListener {
             //收藏
             mPresenter?.toCollect(taxiuId)
 
+        }
+
+        circle_comment.setOnClickListener {
+            TaxiuAllCommentActivity.launch(mActivity, taxiuId, isAdmin)
         }
 
     }
@@ -113,6 +117,7 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
     override fun loadDetailSuccess(detail: TaxiuDetailBean) {
         showContent()
         detailInfo = detail
+        circle_comment.setCircleNum(detailInfo?.REPLY ?: 0)
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
 
         val fragment = TaxiuDetailFragment.newInstance(taxiuId)
@@ -126,7 +131,7 @@ class TaxiuDetailActivity : BaseUIActivity(), TaxiuDetailPresenter.ITaxiuDetailV
                 dialog.show()
             }
         } else {
-            iv_bottom_share.setOnClickListener {
+            circle_share.setOnClickListener {
                 val dialog = ShareDialog(mActivity)
                 dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
                 dialog.show()

@@ -10,9 +10,15 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.taxiu.R
 
 class CircleMenuLayout : RelativeLayout {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    private var mRightMargin = DensityUtil.dip2px(context, 8f)
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs,0)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        val a = context.obtainStyledAttributes(attrs, R.styleable.CircleMenuLayout, defStyleAttr, 0)
+        mRightMargin = a.getDimensionPixelSize(R.styleable.CircleMenuLayout_circleRightMargin, 0)
+        a.recycle()
+    }
 
 
     private val mCircleTextView: TextView by lazy {
@@ -20,7 +26,7 @@ class CircleMenuLayout : RelativeLayout {
         val params = RelativeLayout.LayoutParams(DensityUtil.dip2px(context, 15f), DensityUtil.dip2px(context, 15f))
         params.addRule(ALIGN_PARENT_RIGHT)
         params.addRule(ALIGN_PARENT_TOP)
-        params.rightMargin = DensityUtil.dip2px(context, 8f)
+        params.rightMargin = mRightMargin
         textView.layoutParams = params
         textView.setBackgroundResource(R.drawable.shape_message_bg)
         textView.setTextColor(resources.getColor(R.color.white))

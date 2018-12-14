@@ -99,6 +99,10 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
                         }).show()
             }
         }
+        circle_comment.setOnClickListener {
+            if (detailInfo == null) return@setOnClickListener
+            TalkAllCommentActivity.launch(mActivity, talkId, isAdmin, detailInfo!!.IS_SURE)
+        }
 
     }
 
@@ -106,12 +110,14 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
     override fun loadDetailSuccess(detail: TalkDetailBean) {
         detailInfo = detail
 
+        circle_comment.setCircleNum(detailInfo?.REPLY ?: 0)
+
         if (isAdmin) {
             ll_bottom_menu.visibility = View.GONE
         }
 
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
-        iv_collect.setOnClickListener {
+        circle_collect.setOnClickListener {
             mPresenter?.toCollect(talkId)
         }
 
@@ -145,7 +151,7 @@ class TalkDetailActivity : BaseUIActivity(), TalkDetailPresenter.ITalkDetailView
                 dialog.show()
             }
         } else {
-            iv_bottom_share.setOnClickListener {
+            circle_share.setOnClickListener {
                 val dialog = ShareDialog(mActivity)
                 dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
                 dialog.show()

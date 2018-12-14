@@ -80,11 +80,13 @@
         <activity android:name=".ui.activity.topic.PublishTopicCommentActivity" />
         <activity android:name=".ui.activity.topic.TopicPeopleCommentActivity" />
         <activity android:name=".ui.activity.topic.MoreCommentActivity" />
+        <activity android:name=".ui.activity.topic.TopicAllCommentActivity" />
 
         <!-- talk-->
         <activity android:name=".ui.activity.talk.TalkIndexActivity" />
         <activity android:name=".ui.activity.talk.TalkDetailActivity" />
         <activity android:name=".ui.activity.talk.PublishTalkActivity" />
+        <activity android:name=".ui.activity.talk.TalkAllCommentActivity" />
 
         <!-- classRoom-->
         <activity android:name=".ui.activity.classroom.ClassRoomIndexActivity" />
@@ -99,6 +101,7 @@
             android:name=".ui.activity.taxiu.PublishTaxiuActivity"
             android:launchMode="singleTask" />
         <activity android:name=".ui.activity.taxiu.PublishTaxiuCommentActivity" />
+        <activity android:name=".ui.activity.taxiu.TaxiuAllCommentActivity" />
 
 
         <!-- trade-->

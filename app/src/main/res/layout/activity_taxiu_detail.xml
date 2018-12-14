@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
     <FrameLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
 
     <LinearLayout
@@ -26,35 +27,60 @@
             style="@style/BaseEditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
             android:layout_marginLeft="@dimen/small_padding"
-            android:layout_marginRight="@dimen/small_padding"
             android:layout_marginTop="6dp"
-            android:layout_weight="1"
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_marginBottom="6dp"
+            android:layout_weight="5"
             android:background="@drawable/shape_comment_edit_bg"
             android:drawableLeft="@mipmap/join_comment_icon"
             android:drawablePadding="10dp"
             android:hint="添加一条评论"
-            android:paddingBottom="@dimen/small_padding"
             android:paddingLeft="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
             android:paddingRight="@dimen/small_padding"
-            android:paddingTop="@dimen/small_padding" />
+            android:paddingBottom="@dimen/small_padding" />
 
 
-        <ImageView
-            android:id="@+id/iv_comment"
+        <com.ipd.taxiu.widget.CircleMenuLayout
+            android:id="@+id/circle_comment"
             style="@style/BottomMenuStyle"
-            android:src="@mipmap/bottom_menu_comment" />
+            app:circleRightMargin="0dp">
 
-        <ImageView
-            android:id="@+id/iv_collect"
-            style="@style/BottomMenuStyle"
-            android:src="@drawable/selector_collect" />
+            <ImageView
+                android:id="@+id/iv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/bottom_menu_comment" />
 
-        <ImageView
-            android:id="@+id/iv_bottom_share"
-            style="@style/BottomMenuStyle"
-            android:src="@mipmap/menu_share_icon" />
+        </com.ipd.taxiu.widget.CircleMenuLayout>
+
+
+        <com.ipd.taxiu.widget.CircleMenuLayout
+            android:id="@+id/circle_collect"
+            style="@style/BottomMenuStyle">
+
+            <ImageView
+                android:id="@+id/iv_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/selector_collect" />
+        </com.ipd.taxiu.widget.CircleMenuLayout>
+
+
+        <com.ipd.taxiu.widget.CircleMenuLayout
+            android:id="@+id/circle_share"
+            style="@style/BottomMenuStyle">
+
+            <ImageView
+                android:id="@+id/iv_bottom_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/menu_share_icon" />
+        </com.ipd.taxiu.widget.CircleMenuLayout>
 
 
     </LinearLayout>

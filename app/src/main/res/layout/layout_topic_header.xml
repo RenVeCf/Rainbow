@@ -34,6 +34,7 @@
         <TextView
             android:id="@+id/tv_topic_title"
             style="@style/TitleTextStyle"
+            android:lineSpacingExtra="4dp"
             app:layout_constraintLeft_toLeftOf="parent"
             tools:text="哪一刻让你觉得铲屎官不好当？" />
 

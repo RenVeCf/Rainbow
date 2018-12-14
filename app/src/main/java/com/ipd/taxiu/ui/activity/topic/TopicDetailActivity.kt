@@ -20,7 +20,7 @@ import com.ipd.taxiu.widget.ShareDialog
 import com.ipd.taxiu.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_topic_detail.*
 import org.greenrobot.eventbus.EventBus
-import java.util.HashMap
+import java.util.*
 
 class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailView {
 
@@ -66,6 +66,10 @@ class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailV
             //参与话题
             PublishTopicCommentActivity.launch(mActivity, topicId)
         }
+        circle_comment.setOnClickListener {
+            //全部评论
+            TopicAllCommentActivity.launch(mActivity, topicId)
+        }
     }
 
 
@@ -73,8 +77,10 @@ class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailV
     override fun loadDetailSuccess(detail: TopicDetailBean) {
         showContent()
         detailInfo = detail
+
+        circle_comment.setCircleNum(detailInfo?.REPLY ?: 0)
         iv_collect.isSelected = detailInfo?.IS_COLLECT ?: 0 == 1
-        iv_collect.setOnClickListener {
+        circle_collect.setOnClickListener {
             mPresenter?.toCollect(detail.TOPIC_ID)
         }
 
@@ -84,7 +90,7 @@ class TopicDetailActivity : BaseUIActivity(), TopicDetailPresenter.ITopicDetailV
         supportFragmentManager.beginTransaction().replace(R.id.fl_container, fragment).commit()
 
 
-        iv_bottom_share.setOnClickListener {
+        circle_share.setOnClickListener {
             val dialog = ShareDialog(mActivity)
             dialog.setShareDialogOnClickListener(getShareDialogClick(detail))
             dialog.show()

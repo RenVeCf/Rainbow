@@ -46,4 +46,8 @@
             <enum name="Full" value="1" />
         </attr>
     </declare-styleable>
+    <declare-styleable name="CircleMenuLayout">
+        <!--尺寸值-->
+        <attr name="circleRightMargin" format="dimension" />
+    </declare-styleable>
 </resources>
