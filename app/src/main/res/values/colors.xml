@@ -10,6 +10,7 @@
     <color name="main_tab_color">#FFFFFF</color>
     <color name="dialog_bg_color">#CCFFFFFF</color>
     <color name="window_bg_color">#ECF0F0</color>
+    <color name="guide_bg_color">#77000000</color>
     <color name="line_color">#DDDEDF</color>
     <color name="rangoon_green">#C2CCD3</color>
     <color name="home_checked_color">#19A0B7</color>

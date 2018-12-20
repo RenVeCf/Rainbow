@@ -18,8 +18,15 @@ import com.ipd.taxiu.platform.http.RxScheduler
 import com.ipd.taxiu.ui.ListFragment
 import com.ipd.taxiu.ui.activity.account.PetStageActivity
 import com.ipd.taxiu.ui.activity.pet.AddPetActivity
+import com.ipd.taxiu.utils.GuideUtil
+import com.ipd.taxiu.widget.guideview.GuideBuilder
+import com.ipd.taxiu.widget.guideview.component.GuideClassroomComponent
+import com.ipd.taxiu.widget.guideview.component.GuideTaXiuComponent
+import com.ipd.taxiu.widget.guideview.component.GuideTalkComponent
+import com.ipd.taxiu.widget.guideview.component.GuideTopicComponent
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.layout_home_header_expanded.*
+import kotlinx.android.synthetic.main.layout_home_header_expanded.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
@@ -129,6 +136,7 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
             mAdapter = HomeAdapter(mActivity, data)
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
+            showGuideView()
         } else {
             mAdapter?.notifyDataSetChanged()
         }
@@ -196,4 +204,73 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
         onRefresh()
     }
 
+
+    fun showGuideView() {
+        if (!GlobalParam.getFirstEnterHome()) return
+        mContentView.ll_to_add_pet.post {
+            if (!GlobalParam.getFirstEnterHome()) return@post
+            GlobalParam.setFirstEnterHome(false)
+            GuideUtil.getAddPetGuide(R.id.ll_to_add_pet, object : GuideBuilder.OnVisibilityChangedListener {
+                override fun onShown() {
+                }
+
+                override fun onDismiss() {
+                    GuideUtil.getStoreGuide(R.id.ll_store, object : GuideBuilder.OnVisibilityChangedListener {
+                        override fun onShown() {
+                        }
+
+                        override fun onDismiss() {
+                            GuideUtil.getHomeCategoryGuide(R.id.ll_topic, GuideTopicComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                override fun onShown() {
+
+                                }
+
+                                override fun onDismiss() {
+                                    GuideUtil.getHomeCategoryGuide(R.id.ll_taxiu, GuideTaXiuComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                        override fun onShown() {
+
+                                        }
+
+                                        override fun onDismiss() {
+                                            GuideUtil.getHomeCategoryGuide(R.id.ll_talk, GuideTalkComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                                override fun onShown() {
+
+                                                }
+
+                                                override fun onDismiss() {
+                                                    GuideUtil.getHomeCategoryGuide(R.id.ll_classroom, GuideClassroomComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                                        override fun onShown() {
+
+                                                        }
+
+                                                        override fun onDismiss() {
+                                                            GuideUtil.getMineGuide(R.id.ll_mine, object : GuideBuilder.OnVisibilityChangedListener {
+                                                                override fun onShown() {
+
+                                                                }
+
+                                                                override fun onDismiss() {
+                                                                }
+
+                                                            }).show(mActivity)
+                                                        }
+
+                                                    }).show(mActivity)
+                                                }
+
+                                            }).show(mActivity)
+                                        }
+
+                                    }).show(mActivity)
+                                }
+
+                            }).show(mActivity)
+                        }
+
+                    }).show(mActivity)
+
+                }
+            }).show(mActivity)
+        }
+    }
 }

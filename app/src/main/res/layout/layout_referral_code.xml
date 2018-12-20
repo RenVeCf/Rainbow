@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="@dimen/base_padding">
 
@@ -39,20 +40,31 @@
             android:textSize="@dimen/base_text_size" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_qr_code"
-        android:scaleType="fitXY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/qr_code"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_code"
+        android:layout_width="match_parent"
         android:layout_below="@id/rl_header"
-        android:padding="@dimen/base_padding"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/iv_qr_code"
+            android:scaleType="fitXY"
+            android:layout_width="210dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@mipmap/qr_code"
+            android:padding="@dimen/base_padding"
+            android:layout_centerHorizontal="true"/>
+
+    </android.support.constraint.ConstraintLayout>
     <TextView
         android:id="@+id/btn_invite_friends"
         android:layout_width="@dimen/registration_date_item_height"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_qr_code"
+        android:layout_below="@id/cl_code"
         android:layout_marginTop="@dimen/base_padding"
         android:background="@drawable/shape_buy_bg"
         android:text="邀请好友"

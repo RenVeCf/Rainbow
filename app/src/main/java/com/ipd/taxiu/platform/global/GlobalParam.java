@@ -12,6 +12,22 @@ import com.ipd.taxiu.ui.activity.account.LoginActivity;
 public class GlobalParam {
 
 
+    public static boolean getFirstEnterMine() {
+        return SharedPreferencesUtil.getBooleanData(GlobalApplication.Companion.getMContext(), "firstEnterMine", true);
+    }
+
+    public static void setFirstEnterMine(boolean isfirst) {
+        SharedPreferencesUtil.saveBooleanData(GlobalApplication.Companion.getMContext(), "firstEnterMine", isfirst);
+    }
+
+    public static boolean getFirstEnterHome() {
+        return SharedPreferencesUtil.getBooleanData(GlobalApplication.Companion.getMContext(), "firstEnterHome", true);
+    }
+
+    public static void setFirstEnterHome(boolean isfirst) {
+        SharedPreferencesUtil.saveBooleanData(GlobalApplication.Companion.getMContext(), "firstEnterHome", isfirst);
+    }
+
     public static boolean getFirstEnter() {
         return SharedPreferencesUtil.getBooleanData(GlobalApplication.Companion.getMContext(), "firstEnter", true);
     }

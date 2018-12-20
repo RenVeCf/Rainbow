@@ -2,16 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:padding="@dimen/small_padding"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.ipd.taxiu.widget.RoundImageView
         android:id="@+id/iv_category_img"
         android:layout_width="@dimen/product_category_img_size"
         android:layout_height="@dimen/product_category_img_size"
-        android:scaleType="fitXY"
-        android:src="@mipmap/category_img"
+        app:corner_radius="8dp"
+        app:type="round"
+        tools:src="@mipmap/category_img"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

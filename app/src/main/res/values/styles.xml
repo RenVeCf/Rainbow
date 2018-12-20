@@ -180,6 +180,13 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+
+    <style name="HomeMenuImgStyle">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
     <style name="MineOrderMenuImgStyle">
         <item name="android:layout_width">25dp</item>
         <item name="android:layout_height">25dp</item>

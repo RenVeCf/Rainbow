@@ -56,7 +56,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun loadData() {
-        checkIsSignIn()
+        if (!GlobalParam.getFirstEnterHome()){
+            checkIsSignIn()
+        }
         //版本检测
         VersionUtils.check(mActivity)
     }

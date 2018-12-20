@@ -13,6 +13,7 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.taxiu.R;
 import com.ipd.taxiu.bean.UserHomeBean;
 import com.ipd.taxiu.imageload.ImageLoader;
+import com.ipd.taxiu.platform.global.GlobalParam;
 import com.ipd.taxiu.platform.http.HttpUrl;
 import com.ipd.taxiu.presenter.MinePresenter;
 import com.ipd.taxiu.ui.BaseFragment;
@@ -36,7 +37,9 @@ import com.ipd.taxiu.ui.activity.referral.ReferralCodeActivity;
 import com.ipd.taxiu.ui.activity.setting.MyCollectActivity;
 import com.ipd.taxiu.ui.activity.setting.SettingActivity;
 import com.ipd.taxiu.ui.activity.setting.SocialContactActivity;
+import com.ipd.taxiu.utils.GuideUtil;
 import com.ipd.taxiu.widget.CircleMenuLayout;
+import com.ipd.taxiu.widget.guideview.GuideBuilder;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -292,7 +295,44 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             rl_mine_talk.setCircleNum(data.QUESTION_NUM);
             rl_return_record.setCircleNum(data.REFUND_NUM);
             rl_message.setCircleNum(data.NEWS_NUM);
+
+            showGuideView();
+
         }
+    }
+
+    private void showGuideView() {
+        if (!GlobalParam.getFirstEnterMine()) return;
+        ll_sign_in.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!GlobalParam.getFirstEnterMine()) return;
+                GlobalParam.setFirstEnterMine(false);
+                GuideUtil.INSTANCE.getSignGuide(R.id.ll_sign_in, new GuideBuilder.OnVisibilityChangedListener() {
+                    @Override
+                    public void onShown() {
+                    }
+
+                    @Override
+                    public void onDismiss() {
+                        GuideUtil.INSTANCE.getIntegralGuide(R.id.rl_my_integral, new GuideBuilder.OnVisibilityChangedListener() {
+                            @Override
+                            public void onShown() {
+
+                            }
+
+                            @Override
+                            public void onDismiss() {
+
+                            }
+                        }).show(getMActivity());
+
+
+                    }
+                }).show(getMActivity());
+
+            }
+        });
     }
 
     @Override

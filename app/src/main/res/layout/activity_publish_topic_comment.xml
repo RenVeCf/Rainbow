@@ -12,7 +12,7 @@
         android:background="@color/white"
         android:gravity="left|top"
         android:hint="填写参与内容"
-        android:maxLength="300"
+        android:maxLength="500"
         android:padding="@dimen/base_padding"
         app:layout_constraintTop_toTopOf="parent" />
 

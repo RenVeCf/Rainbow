@@ -81,6 +81,4 @@ class PetStageActivity : BaseUIActivity() {
         return "1"
     }
 
-    override fun onBackPressed() {
-    }
 }
