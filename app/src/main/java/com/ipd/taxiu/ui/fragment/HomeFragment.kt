@@ -210,67 +210,76 @@ class HomeFragment : ListFragment<BaseResult<List<TaxiuBean>>, Any>() {
         mContentView.ll_to_add_pet.post {
             if (!GlobalParam.getFirstEnterHome()) return@post
             GlobalParam.setFirstEnterHome(false)
-            GuideUtil.getAddPetGuide(R.id.ll_to_add_pet, object : GuideBuilder.OnVisibilityChangedListener {
-                override fun onShown() {
-                }
+            if (mContentView.ll_to_add_pet.visibility == View.GONE) {
+                showExtraGuideView()
+            } else {
+                GuideUtil.getAddPetGuide(R.id.ll_to_add_pet, object : GuideBuilder.OnVisibilityChangedListener {
+                    override fun onShown() {
+                    }
 
-                override fun onDismiss() {
-                    GuideUtil.getStoreGuide(R.id.ll_store, object : GuideBuilder.OnVisibilityChangedListener {
-                        override fun onShown() {
-                        }
+                    override fun onDismiss() {
+                        showExtraGuideView()
+                    }
 
-                        override fun onDismiss() {
-                            GuideUtil.getHomeCategoryGuide(R.id.ll_topic, GuideTopicComponent(), object : GuideBuilder.OnVisibilityChangedListener {
-                                override fun onShown() {
-
-                                }
-
-                                override fun onDismiss() {
-                                    GuideUtil.getHomeCategoryGuide(R.id.ll_taxiu, GuideTaXiuComponent(), object : GuideBuilder.OnVisibilityChangedListener {
-                                        override fun onShown() {
-
-                                        }
-
-                                        override fun onDismiss() {
-                                            GuideUtil.getHomeCategoryGuide(R.id.ll_talk, GuideTalkComponent(), object : GuideBuilder.OnVisibilityChangedListener {
-                                                override fun onShown() {
-
-                                                }
-
-                                                override fun onDismiss() {
-                                                    GuideUtil.getHomeCategoryGuide(R.id.ll_classroom, GuideClassroomComponent(), object : GuideBuilder.OnVisibilityChangedListener {
-                                                        override fun onShown() {
-
-                                                        }
-
-                                                        override fun onDismiss() {
-                                                            GuideUtil.getMineGuide(R.id.ll_mine, object : GuideBuilder.OnVisibilityChangedListener {
-                                                                override fun onShown() {
-
-                                                                }
-
-                                                                override fun onDismiss() {
-                                                                }
-
-                                                            }).show(mActivity)
-                                                        }
-
-                                                    }).show(mActivity)
-                                                }
-
-                                            }).show(mActivity)
-                                        }
-
-                                    }).show(mActivity)
-                                }
-
-                            }).show(mActivity)
-                        }
-
-                    }).show(mActivity)
-
-                }
-            }).show(mActivity)
+                }).show(mActivity)
+            }
         }
+    }
+
+    fun showExtraGuideView() {
+        GuideUtil.getStoreGuide(R.id.ll_store, object : GuideBuilder.OnVisibilityChangedListener {
+            override fun onShown() {
+            }
+
+            override fun onDismiss() {
+                GuideUtil.getHomeCategoryGuide(R.id.ll_topic, GuideTopicComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                    override fun onShown() {
+
+                    }
+
+                    override fun onDismiss() {
+                        GuideUtil.getHomeCategoryGuide(R.id.ll_taxiu, GuideTaXiuComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                            override fun onShown() {
+
+                            }
+
+                            override fun onDismiss() {
+                                GuideUtil.getHomeCategoryGuide(R.id.ll_talk, GuideTalkComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                    override fun onShown() {
+
+                                    }
+
+                                    override fun onDismiss() {
+                                        GuideUtil.getHomeCategoryGuide(R.id.ll_classroom, GuideClassroomComponent(), object : GuideBuilder.OnVisibilityChangedListener {
+                                            override fun onShown() {
+
+                                            }
+
+                                            override fun onDismiss() {
+                                                GuideUtil.getMineGuide(R.id.ll_mine, object : GuideBuilder.OnVisibilityChangedListener {
+                                                    override fun onShown() {
+
+                                                    }
+
+                                                    override fun onDismiss() {
+                                                    }
+
+                                                }).show(mActivity)
+                                            }
+
+                                        }).show(mActivity)
+                                    }
+
+                                }).show(mActivity)
+                            }
+
+                        }).show(mActivity)
+                    }
+
+                }).show(mActivity)
+            }
+
+        }).show(mActivity)
+
     }
 }

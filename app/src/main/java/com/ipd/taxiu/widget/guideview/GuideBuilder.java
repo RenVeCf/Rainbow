@@ -18,11 +18,11 @@ import java.util.List;
  * </p>
  * <p>
  * 接下来是在相对于这个targetRect的区域绘制一些图片或者文字。我们把这样一张图片或者文字抽象成一个Component接口
- * {@link com.blog.www.guideview.Component},设置文字或者图片等
- * {@link com.blog.www.guideview.Component#getView(android.view.LayoutInflater)}
+ * {@link Component},设置文字或者图片等
+ * {@link Component#getView(android.view.LayoutInflater)}
  * . 所有的图片文字都是相对于targetRect来定义的。可以设定额外的x，
- * {@link com.blog.www.guideview.Component#getXOffset()} ;y偏移量,
- * {@link com.blog.www.guideview.Component#getYOffset()}。
+ * {@link Component#getXOffset()} ;y偏移量,
+ * {@link Component#getYOffset()}。
  * </p>
  * <p>
  * 可以对遮罩系统设置可见状态的发生变化时的监听回调
