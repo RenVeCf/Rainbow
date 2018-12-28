@@ -31,7 +31,10 @@ class StoreSecondIndexActivity : BaseUIActivity() {
     private val mType: Int by lazy { intent.getIntExtra("type", StorePetSpecialType.DOG) }
     private val mPos: Int by lazy { intent.getIntExtra("pos", 0) }
     private val mAreaList: ArrayList<StoreAreaBean> by lazy { intent.getParcelableArrayListExtra<StoreAreaBean>("areaList") }
-    private val mCategoryId by lazy { mAreaList?.get(mPos)?.CATEGORY }
+//    private val mAreaId by lazy {
+//        mAreaList?.get(mPos)?.SHOP_AREA_ID
+//    }
+
     override fun initView(bundle: Bundle?) {
 
     }
@@ -39,7 +42,7 @@ class StoreSecondIndexActivity : BaseUIActivity() {
     override fun loadData() {
         view_pager.adapter = object : CurFragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return StoreSecondIndexFragment.newInstance(mType, mCategoryId)
+                return StoreSecondIndexFragment.newInstance(mType, mAreaList[position].SHOP_AREA_ID)
             }
 
             override fun getCount(): Int {

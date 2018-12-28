@@ -25,14 +25,14 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
             val fragment = StoreSecondIndexFragment()
             val bundle = Bundle()
             bundle.putInt("type", type)
-            bundle.putInt("categoryId", categoryId)
+            bundle.putInt("areaId", categoryId)
             fragment.arguments = bundle
             return fragment
         }
     }
 
     private val mType: Int by lazy { arguments.getInt("type") }
-    private val mCategoryId: Int by lazy { arguments.getInt("categoryId") }
+    private val mAreaId: Int by lazy { arguments.getInt("areaId") }
     override fun getContentLayout(): Int = R.layout.fragment_store_second
 
     override fun needLazyLoad(): Boolean = true
@@ -48,7 +48,7 @@ class StoreSecondIndexFragment : ListFragment<BaseResult<List<ProductBean>>, Any
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()
-            ApiManager.getService().storeSecondIndex(GlobalParam.getUserIdOrJump(), mType, mCategoryId)
+            ApiManager.getService().storeSecondIndex(GlobalParam.getUserIdOrJump(), mType, mAreaId)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<StoreSecondIndexResultBean>>() {
                         override fun _onNext(result: BaseResult<StoreSecondIndexResultBean>) {

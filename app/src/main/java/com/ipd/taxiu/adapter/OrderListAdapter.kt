@@ -40,9 +40,10 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
         }
 
 
+
+        holder.itemView.order_status.text = Order.getOrderStrByStatus(info.status)
         when (info.status) {
             Order.PAYMENT -> {
-                holder.itemView.order_status.text = "待付款"
                 holder.itemView.tv_confirm.text = "付款"
                 holder.itemView.tv_cancel.text = "取消"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
@@ -58,7 +59,6 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 }
             }
             Order.WAIT_SEND -> {
-                holder.itemView.order_status.text = "待发货"
                 holder.itemView.tv_cancel.visibility = View.GONE
                 holder.itemView.tv_confirm.text = "详情"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
@@ -74,7 +74,6 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 }
             }
             Order.WAIT_RECEIVE -> {
-                holder.itemView.order_status.text = "待收货"
                 holder.itemView.tv_confirm.text = "收货"
                 holder.itemView.tv_cancel.text = "物流"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
@@ -90,7 +89,6 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 }
             }
             Order.EVALUATE -> {
-                holder.itemView.order_status.text = "待评价"
                 holder.itemView.tv_confirm.text = "评价"
                 holder.itemView.tv_cancel.text = "再次购买"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
@@ -106,7 +104,6 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 }
             }
             Order.FINFISH -> {
-                holder.itemView.order_status.text = "已完成"
                 holder.itemView.tv_confirm.text = "再次购买"
                 holder.itemView.tv_confirm.visibility = View.VISIBLE
                 holder.itemView.tv_cancel.visibility = View.GONE
@@ -119,6 +116,16 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
                 }
             }
             else -> {
+                holder.itemView.tv_confirm.text = "再次购买"
+                holder.itemView.tv_confirm.visibility = View.VISIBLE
+                holder.itemView.tv_cancel.visibility = View.GONE
+
+                holder.itemView.tv_confirm.setOnClickListener {
+                    //再次购买
+                    itemClickListener.onBuyAgain(info)
+                }
+                holder.itemView.tv_cancel.setOnClickListener {
+                }
             }
         }
 
