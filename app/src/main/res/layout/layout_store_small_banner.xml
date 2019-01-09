@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.ipd.taxiu.widget.AutoScrollerViewPager
+    <com.ipd.rainbow.widget.AutoScrollerViewPager
         android:id="@+id/store_banner_small"
         android:layout_width="match_parent"
         android:layout_height="0dp"

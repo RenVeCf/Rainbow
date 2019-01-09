@@ -37,7 +37,7 @@
     </RelativeLayout>
 
 
-    <com.ipd.taxiu.widget.ChoosePayTypeLayout
+    <com.ipd.rainbow.widget.ChoosePayTypeLayout
         android:id="@+id/choose_pay_type_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -153,7 +153,7 @@
         </LinearLayout>
 
 
-    </com.ipd.taxiu.widget.ChoosePayTypeLayout>
+    </com.ipd.rainbow.widget.ChoosePayTypeLayout>
 
     <TextView
         android:id="@+id/btn_confirm"

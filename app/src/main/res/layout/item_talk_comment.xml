@@ -104,7 +104,7 @@
 
     </LinearLayout>
 
-    <com.ipd.taxiu.widget.CommentsView
+    <com.ipd.rainbow.widget.CommentsView
         android:id="@+id/comments_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

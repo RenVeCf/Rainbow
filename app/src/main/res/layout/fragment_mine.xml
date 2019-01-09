@@ -24,7 +24,7 @@
                 android:paddingBottom="@dimen/base_padding"
                 android:paddingTop="@dimen/base_padding">
 
-                <com.ipd.taxiu.widget.CircleMenuLayout
+                <com.ipd.rainbow.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_pay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -45,9 +45,9 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                </com.ipd.taxiu.widget.CircleMenuLayout>
+                </com.ipd.rainbow.widget.CircleMenuLayout>
 
-                <com.ipd.taxiu.widget.CircleMenuLayout
+                <com.ipd.rainbow.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_shipments"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -68,9 +68,9 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                </com.ipd.taxiu.widget.CircleMenuLayout>
+                </com.ipd.rainbow.widget.CircleMenuLayout>
 
-                <com.ipd.taxiu.widget.CircleMenuLayout
+                <com.ipd.rainbow.widget.CircleMenuLayout
                     android:id="@+id/rl_wait_delivery"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
 
-                </com.ipd.taxiu.widget.CircleMenuLayout>
+                </com.ipd.rainbow.widget.CircleMenuLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_off_the_stocks"

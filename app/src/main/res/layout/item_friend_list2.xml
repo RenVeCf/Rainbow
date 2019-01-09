@@ -42,7 +42,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/tv_taxiu_lable">
 
-                <com.ipd.taxiu.widget.RoundImageView
+                <com.ipd.rainbow.widget.RoundImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -53,7 +53,7 @@
                     android:layout_marginRight="@dimen/base_padding"
                     android:layout_marginBottom="@dimen/base_padding"/>
 
-                <com.ipd.taxiu.widget.RoundImageView
+                <com.ipd.rainbow.widget.RoundImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -63,7 +63,7 @@
                     android:layout_marginTop="@dimen/base_padding"
                     android:layout_marginBottom="@dimen/base_padding"/>
 
-                <com.ipd.taxiu.widget.RoundImageView
+                <com.ipd.rainbow.widget.RoundImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"

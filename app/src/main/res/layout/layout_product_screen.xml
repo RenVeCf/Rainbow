@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ipd.taxiu.widget.ScreenLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ipd.rainbow.widget.ScreenLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/screen_layout"
     android:layout_width="match_parent"
@@ -120,4 +120,4 @@
 
     </LinearLayout>
 
-</com.ipd.taxiu.widget.ScreenLayout>
+</com.ipd.rainbow.widget.ScreenLayout>

@@ -35,7 +35,7 @@
 
     <android.support.v7.widget.CardView style="@style/HomeCardStyle">
 
-        <com.ipd.taxiu.widget.TaxiuLayout
+        <com.ipd.rainbow.widget.TaxiuLayout
             android:id="@+id/taxiu_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

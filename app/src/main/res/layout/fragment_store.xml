@@ -19,7 +19,7 @@
             android:id="@+id/swipe_refresh_header"
             layout="@layout/layout_refresh_header"></include>
 
-        <com.ipd.taxiu.widget.StoreRecyclerView
+        <com.ipd.rainbow.widget.StoreRecyclerView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

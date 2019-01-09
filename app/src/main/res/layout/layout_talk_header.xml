@@ -158,7 +158,7 @@
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 
-    <com.ipd.taxiu.widget.CommentSortLayout
+    <com.ipd.rainbow.widget.CommentSortLayout
         android:id="@+id/ll_comment_sort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
             android:textColor="@color/colorPrimaryDark" />
 
 
-    </com.ipd.taxiu.widget.CommentSortLayout>
+    </com.ipd.rainbow.widget.CommentSortLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

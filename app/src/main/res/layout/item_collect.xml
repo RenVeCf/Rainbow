@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.ipd.taxiu.widget.RoundImageView
+        <com.ipd.rainbow.widget.RoundImageView
             android:id="@+id/iv_product_img"
             android:layout_width="match_parent"
             android:layout_height="@dimen/grid_product_img_height"

@@ -101,7 +101,7 @@
             style="@style/ViewLine"
             app:layout_constraintTop_toBottomOf="@id/ll_tab" />
 
-        <com.ipd.taxiu.widget.NoScrollViewPager
+        <com.ipd.rainbow.widget.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/base_padding">
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

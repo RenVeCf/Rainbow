@@ -8,7 +8,7 @@
     android:padding="@dimen/base_padding">
 
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_group_purchase_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_image_height"

@@ -45,7 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
-        <com.ipd.taxiu.widget.TopicLayout
+        <com.ipd.rainbow.widget.TopicLayout
             android:id="@+id/topic_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

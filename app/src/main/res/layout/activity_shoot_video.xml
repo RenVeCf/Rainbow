@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ipd.taxiu.widget.camera.ShootVideoLayout
+    <com.ipd.rainbow.widget.camera.ShootVideoLayout
         android:id="@+id/camera_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,14 +18,14 @@
             android:layout_height="match_parent" />
 
 
-        <com.ipd.taxiu.widget.camera.FoucsView
+        <com.ipd.rainbow.widget.camera.FoucsView
             android:id="@+id/fouce_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="invisible" />
 
-    </com.ipd.taxiu.widget.camera.ShootVideoLayout>
+    </com.ipd.rainbow.widget.camera.ShootVideoLayout>
 
 
     <android.support.constraint.ConstraintLayout
@@ -40,7 +40,7 @@
             app:layout_constraintDimensionRatio="1:1" />
 
 
-        <com.ipd.taxiu.widget.VideoShootController
+        <com.ipd.rainbow.widget.VideoShootController
             android:id="@+id/video_controller"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -141,7 +141,7 @@
             </RelativeLayout>
 
 
-        </com.ipd.taxiu.widget.VideoShootController>
+        </com.ipd.rainbow.widget.VideoShootController>
 
     </android.support.constraint.ConstraintLayout>
 

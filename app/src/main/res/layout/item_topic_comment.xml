@@ -30,7 +30,7 @@
         app:layout_constraintLeft_toRightOf="@id/civ_commenter_avatar"
         app:layout_constraintTop_toTopOf="@id/civ_commenter_avatar" />
 
-    <com.ipd.taxiu.widget.MediaRecyclerView
+    <com.ipd.rainbow.widget.MediaRecyclerView
         android:id="@+id/image_media_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

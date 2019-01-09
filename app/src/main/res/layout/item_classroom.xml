@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_classroom_image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_image_height"

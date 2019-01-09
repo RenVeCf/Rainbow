@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_package_product_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/package_product_img_height"

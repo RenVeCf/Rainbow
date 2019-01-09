@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.ipd.taxiu.widget.PictureRecyclerView
+    <com.ipd.rainbow.widget.PictureRecyclerView
         android:id="@+id/picture_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

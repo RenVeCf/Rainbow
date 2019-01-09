@@ -154,7 +154,7 @@
 
         </LinearLayout>
 
-        <com.ipd.taxiu.widget.NotVerticalScrollRecyclerView
+        <com.ipd.rainbow.widget.NotVerticalScrollRecyclerView
             android:id="@+id/member_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

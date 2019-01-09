@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ipd.taxiu">
+    package="com.ipd.rainbow">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,7 +24,7 @@
 
 
     <application
-        android:name=".platform.global.GlobalApplication"
+        android:name="com.ipd.rainbow.platform.global.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -35,7 +35,7 @@
 
         <activity-alias
             android:name=".launcher"
-            android:targetActivity=".SplashActivity">
+            android:targetActivity="com.ipd.rainbow.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,162 +44,162 @@
         </activity-alias>
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.ipd.rainbow.SplashActivity"
             android:theme="@style/FullScreenStyle" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.ipd.rainbow.WelcomeActivity"
             android:theme="@style/FullScreenStyle" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.ipd.rainbow.MainActivity"
             android:launchMode="singleTask" />
 
-        <activity android:name=".ui.activity.SignInActivity" />
-        <activity android:name=".ui.activity.SearchActivity" />
-        <activity android:name=".ui.activity.web.WebActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.SignInActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.SearchActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.web.WebActivity" />
 
         <!-- video -->
         <activity
-            android:name=".ui.activity.VideoActivity"
+            android:name="com.ipd.rainbow.ui.activity.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/FullScreenStyle" />
-        <activity android:name=".ui.activity.ShootVideoActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.ShootVideoActivity" />
 
         <!-- account-->
-        <activity android:name=".ui.activity.account.LoginActivity" />
-        <activity android:name=".ui.activity.account.PhoneLoginActivity" />
-        <activity android:name=".ui.activity.account.RegisterActivity" />
-        <activity android:name=".ui.activity.account.LostPwdActivity" />
-        <activity android:name=".ui.activity.account.PetStageActivity" />
-        <activity android:name=".ui.activity.account.PetKindActivity" />
-        <activity android:name=".ui.activity.account.PetKindListActivity" />
-        <activity android:name=".ui.activity.account.BindingPhoneActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.LoginActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.PhoneLoginActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.RegisterActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.LostPwdActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.PetStageActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.PetKindActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.PetKindListActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.account.BindingPhoneActivity" />
 
         <!-- topic-->
-        <activity android:name=".ui.activity.topic.TopicIndexActivity" />
-        <activity android:name=".ui.activity.topic.TopicDetailActivity" />
-        <activity android:name=".ui.activity.topic.PublishTopicCommentActivity" />
-        <activity android:name=".ui.activity.topic.TopicPeopleCommentActivity" />
-        <activity android:name=".ui.activity.topic.MoreCommentActivity" />
-        <activity android:name=".ui.activity.topic.TopicAllCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.TopicIndexActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.TopicDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.PublishTopicCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.TopicPeopleCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.MoreCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.topic.TopicAllCommentActivity" />
 
         <!-- talk-->
-        <activity android:name=".ui.activity.talk.TalkIndexActivity" />
-        <activity android:name=".ui.activity.talk.TalkDetailActivity" />
-        <activity android:name=".ui.activity.talk.PublishTalkActivity" />
-        <activity android:name=".ui.activity.talk.TalkAllCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.talk.TalkIndexActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.talk.TalkDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.talk.PublishTalkActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.talk.TalkAllCommentActivity" />
 
         <!-- classRoom-->
-        <activity android:name=".ui.activity.classroom.ClassRoomIndexActivity" />
-        <activity android:name=".ui.activity.classroom.ClassRoomDetailActivity" />
-        <activity android:name=".ui.activity.classroom.OwnedClassRoomActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.classroom.ClassRoomIndexActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.classroom.ClassRoomDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.classroom.OwnedClassRoomActivity" />
 
         <!-- taxiu-->
         <activity
-            android:name=".ui.activity.taxiu.TaxiuDetailActivity"
+            android:name="com.ipd.rainbow.ui.activity.taxiu.TaxiuDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".ui.activity.taxiu.PublishTaxiuActivity"
+            android:name="com.ipd.rainbow.ui.activity.taxiu.PublishTaxiuActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".ui.activity.taxiu.PublishTaxiuCommentActivity" />
-        <activity android:name=".ui.activity.taxiu.TaxiuAllCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.taxiu.PublishTaxiuCommentActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.taxiu.TaxiuAllCommentActivity" />
 
 
         <!-- trade-->
-        <activity android:name=".ui.activity.trade.ConfirmOrderActivity" />
-        <activity android:name=".ui.activity.trade.CartCouponActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.trade.ConfirmOrderActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.trade.CartCouponActivity" />
 
         <!-- store-->
-        <activity android:name=".ui.activity.store.StoreSecondIndexActivity" />
-        <activity android:name=".ui.activity.store.StoreSpecialActivity" />
-        <activity android:name=".ui.activity.store.StoreSearchActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSecondIndexActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSpecialActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSearchActivity" />
         <activity
-            android:name=".ui.activity.store.ProductListActivity"
+            android:name="com.ipd.rainbow.ui.activity.store.ProductListActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".ui.activity.store.ProductDetailActivity" />
-        <activity android:name=".ui.activity.store.flashsale.FlashSaleActivity" />
-        <activity android:name=".ui.activity.store.grouppurchase.GroupPurchaseActivity" />
-        <activity android:name=".ui.activity.store.NewProductListActivity" />
-        <activity android:name=".ui.activity.store.ClearanceProductActivity" />
-        <activity android:name=".ui.activity.store.video.StoreVideoIndexActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.ProductDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.flashsale.FlashSaleActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.NewProductListActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.ClearanceProductActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.video.StoreVideoIndexActivity" />
         <activity
-            android:name=".ui.activity.store.video.StoreVideoDetailActivity"
+            android:name="com.ipd.rainbow.ui.activity.store.video.StoreVideoDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name=".ui.activity.store.ProductCategoryActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.ProductCategoryActivity" />
 
 
         <!-- 裁剪-->
-        <activity android:name=".ui.activity.CropActivity" />
-        <activity android:name=".ui.activity.PhotoSelectActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.CropActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.PhotoSelectActivity" />
         <activity
-            android:name=".ui.activity.PictureLookActivity"
+            android:name="com.ipd.rainbow.ui.activity.PictureLookActivity"
             android:theme="@style/FullScreenStyle" />
         <activity
-            android:name=".ui.activity.PictureAndVideoPreviewActivity"
+            android:name="com.ipd.rainbow.ui.activity.PictureAndVideoPreviewActivity"
             android:theme="@style/FullScreenStyle" />
 
-        <activity android:name=".ui.activity.VideoSelectActivity" />
-        <activity android:name=".ui.activity.VideoTrimmerActivity" />
-        <activity android:name=".ui.activity.VideoCoverActivity" />
-        <activity android:name=".ui.activity.VideoCoverCropActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.VideoSelectActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.VideoTrimmerActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.VideoCoverActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.VideoCoverCropActivity" />
 
 
         <!-- 订单 -->
-        <activity android:name=".ui.activity.order.MyOrderActivity" />
-        <activity android:name=".ui.activity.order.OrderDetailActivity" />
-        <activity android:name=".ui.activity.order.LogisticsDetailActivity" />
-        <activity android:name=".ui.activity.order.EvaluateActivity" />
-        <activity android:name=".ui.activity.order.RequestReturnActivity" />
-        <activity android:name=".ui.activity.order.RequestReturnMoneyActivity" />
-        <activity android:name=".ui.activity.order.ReturnMoneyCommodityActivity" />
-        <activity android:name=".ui.activity.order.ReturnDetailActivity" />
-        <activity android:name=".ui.activity.order.ReturnRecordDetailActivity" />
-        <activity android:name=".ui.activity.order.ExpressInfoActivity" />
-        <activity android:name=".ui.activity.order.ReturnNoPassActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.MyOrderActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.OrderDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.LogisticsDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.EvaluateActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.RequestReturnActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.RequestReturnMoneyActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.ReturnMoneyCommodityActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.ReturnDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.ReturnRecordDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.ExpressInfoActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.order.ReturnNoPassActivity" />
 
         <!-- 设置-->
-        <activity android:name=".ui.activity.setting.SettingActivity" />
-        <activity android:name=".ui.activity.setting.UpdatePasswordActivity" />
-        <activity android:name=".ui.activity.setting.AboutUsActivity" />
-        <activity android:name=".ui.activity.setting.CommonProblemActivity" />
-        <activity android:name=".ui.activity.message.MessageActivity" />
-        <activity android:name=".ui.activity.referral.ReferralCodeActivity" />
-        <activity android:name=".ui.activity.referral.FriendListActivity" />
-        <activity android:name=".ui.activity.referral.HomepageActivity" />
-        <activity android:name=".ui.activity.referral.RecommendEarningsActivity" />
-        <activity android:name=".ui.activity.address.AddAddressActivity" />
-        <activity android:name=".ui.activity.address.DeliveryAddressActivity" />
-        <activity android:name=".ui.activity.mine.PersonInformationActivity" />
-        <activity android:name=".ui.activity.pet.PetBibleActivity" />
-        <activity android:name=".ui.activity.pet.MyPetActivity" />
-        <activity android:name=".ui.activity.pet.PetInformationActivity" />
-        <activity android:name=".ui.activity.pet.AddPetActivity" />
-        <activity android:name=".ui.activity.mine.EditTagActivity" />
-        <activity android:name=".ui.activity.setting.MyCollectActivity" />
-        <activity android:name=".ui.activity.setting.SocialContactActivity" />
-        <activity android:name=".ui.activity.group.GroupBookingActivity" />
-        <activity android:name=".ui.activity.group.GroupDetailActivity" />
-        <activity android:name=".ui.activity.coupon.MyIntegralActivity" />
-        <activity android:name=".ui.activity.coupon.IntegralRuleActivity" />
-        <activity android:name=".ui.activity.coupon.IntegralExchangeActivity" />
-        <activity android:name=".ui.activity.coupon.CouponDetailActivity" />
-        <activity android:name=".ui.activity.coupon.ExchangeRecordActivity" />
-        <activity android:name=".ui.activity.coupon.ExchangeRecordDetailActivity" />
-        <activity android:name=".ui.activity.coupon.DiscountCouponActivity" />
-        <activity android:name=".ui.activity.balance.MyBalanceActivity" />
-        <activity android:name=".ui.activity.balance.BalanceBillActivity" />
-        <activity android:name=".ui.activity.balance.WithdrawDepositActivity" />
-        <activity android:name=".ui.activity.balance.BankCardActivity" />
-        <activity android:name=".ui.activity.balance.AddBankCardActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.SettingActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.UpdatePasswordActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.AboutUsActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.CommonProblemActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.message.MessageActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.referral.ReferralCodeActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.referral.FriendListActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.referral.HomepageActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.referral.RecommendEarningsActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.address.AddAddressActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.PersonInformationActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.pet.PetBibleActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.pet.MyPetActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.pet.PetInformationActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.pet.AddPetActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.EditTagActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.MyCollectActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.setting.SocialContactActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.group.GroupBookingActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.group.GroupDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.MyIntegralActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.IntegralRuleActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.IntegralExchangeActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.CouponDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.ExchangeRecordActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.ExchangeRecordDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.coupon.DiscountCouponActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.balance.MyBalanceActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.balance.BalanceBillActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.balance.WithdrawDepositActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.balance.BankCardActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.balance.AddBankCardActivity" />
         <activity android:name=".ui.activity.balance.UpdateBankCardActivity" />
 
         <!-- mine-->
-        <activity android:name=".ui.activity.mine.published.PublishedTaxiuActivity" />
-        <activity android:name=".ui.activity.mine.published.MineClassRoomActivity" />
-        <activity android:name=".ui.activity.mine.published.MineJoinTopicActivity" />
-        <activity android:name=".ui.activity.mine.published.PublishedTalkActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.published.PublishedTaxiuActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.published.MineClassRoomActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.published.MineJoinTopicActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.published.PublishedTalkActivity" />
 
-        <activity android:name=".ui.activity.message.MessageDetailActivity" />
-        <activity android:name=".ui.activity.pet.ChoosePetActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.message.MessageDetailActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.pet.ChoosePetActivity" />
 
 
         <!-- 小能 -->
@@ -252,7 +252,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.ipd.taxiu.fileprovider"
+            android:authorities="com.ipd.rainbow.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -263,7 +263,7 @@
 
         <!-- jpush -->
         <receiver
-            android:name=".receiver.PushReceiver"
+            android:name="com.ipd.rainbow.receiver.PushReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -297,14 +297,14 @@
 
         <!-- 微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.ipd.rainbow.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
-            android:name=".wxapi.WXPayEntryActivity"
+            android:name="com.ipd.rainbow.wxapi.WXPayEntryActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="behind" />

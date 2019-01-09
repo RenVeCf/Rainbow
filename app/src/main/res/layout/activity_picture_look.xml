@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <com.ipd.taxiu.widget.ViewPagerFix
+    <com.ipd.rainbow.widget.ViewPagerFix
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

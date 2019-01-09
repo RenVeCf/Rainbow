@@ -17,7 +17,7 @@
     <!--android:layout_height="match_parent" />-->
 
 
-    <com.ipd.taxiu.widget.WithOutTouchJzvd
+    <com.ipd.rainbow.widget.WithOutTouchJzvd
         android:id="@+id/videoplayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

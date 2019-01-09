@@ -86,7 +86,7 @@
 
 
 
-                <com.ipd.taxiu.widget.ScreenLableView
+                <com.ipd.rainbow.widget.ScreenLableView
                     android:id="@+id/price_flow_layout"
                     app:layout_constraintTop_toBottomOf="@id/et_min_price"
                     android:layout_width="match_parent"

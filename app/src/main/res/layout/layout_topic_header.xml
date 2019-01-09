@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_topic_image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/topic_image_height"
@@ -136,7 +136,7 @@
     </RelativeLayout>
 
 
-    <com.ipd.taxiu.widget.CommentSortLayout
+    <com.ipd.rainbow.widget.CommentSortLayout
         android:id="@+id/ll_comment_sort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:textColor="@color/colorPrimaryDark" />
 
 
-    </com.ipd.taxiu.widget.CommentSortLayout>
+    </com.ipd.rainbow.widget.CommentSortLayout>
 
     <RelativeLayout
         android:layout_width="0dp"

@@ -42,7 +42,7 @@
             android:paddingBottom="@dimen/small_padding" />
 
 
-        <com.ipd.taxiu.widget.CircleMenuLayout
+        <com.ipd.rainbow.widget.CircleMenuLayout
             android:id="@+id/circle_comment"
             style="@style/BottomMenuStyle"
             app:circleRightMargin="0dp">
@@ -54,10 +54,10 @@
                 android:layout_centerInParent="true"
                 android:src="@mipmap/bottom_menu_comment" />
 
-        </com.ipd.taxiu.widget.CircleMenuLayout>
+        </com.ipd.rainbow.widget.CircleMenuLayout>
 
 
-        <com.ipd.taxiu.widget.CircleMenuLayout
+        <com.ipd.rainbow.widget.CircleMenuLayout
             android:id="@+id/circle_collect"
             style="@style/BottomMenuStyle">
 
@@ -67,10 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@drawable/selector_collect" />
-        </com.ipd.taxiu.widget.CircleMenuLayout>
+        </com.ipd.rainbow.widget.CircleMenuLayout>
 
 
-        <com.ipd.taxiu.widget.CircleMenuLayout
+        <com.ipd.rainbow.widget.CircleMenuLayout
             android:id="@+id/circle_share"
             style="@style/BottomMenuStyle">
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/menu_share_icon" />
-        </com.ipd.taxiu.widget.CircleMenuLayout>
+        </com.ipd.rainbow.widget.CircleMenuLayout>
 
 
     </LinearLayout>

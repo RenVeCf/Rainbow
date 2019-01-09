@@ -17,7 +17,7 @@
             android:clipChildren="false"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.ipd.taxiu.widget.DisallowEditText
+            <com.ipd.rainbow.widget.DisallowEditText
                 android:id="@+id/et_content"
                 style="@style/BaseEditTextStyle"
                 android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <com.ipd.taxiu.widget.RoundImageView
+                    <com.ipd.rainbow.widget.RoundImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/upload_video"
@@ -72,7 +72,7 @@
                     android:visibility="gone">
 
 
-                    <com.ipd.taxiu.widget.RoundImageView
+                    <com.ipd.rainbow.widget.RoundImageView
                         android:id="@+id/iv_video_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -100,7 +100,7 @@
             </RelativeLayout>
 
 
-            <com.ipd.taxiu.widget.PictureRecyclerView
+            <com.ipd.rainbow.widget.PictureRecyclerView
                 android:id="@+id/picture_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
 
         </LinearLayout>
 
-        <com.ipd.taxiu.widget.TaxiuLableView
+        <com.ipd.rainbow.widget.TaxiuLableView
             android:id="@+id/lable_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

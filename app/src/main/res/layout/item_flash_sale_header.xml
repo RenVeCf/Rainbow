@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
 
-            <com.ipd.taxiu.widget.RoundImageView
+            <com.ipd.rainbow.widget.RoundImageView
                 android:id="@+id/iv_cheapest_img"
                 android:layout_width="@dimen/list_product_img_width"
                 android:layout_height="@dimen/list_product_img_height"
@@ -53,7 +53,7 @@
                     android:maxLines="2"
                     tools:text="法国皇家ROYAL CANIN中型犬" />
 
-                <com.ipd.taxiu.widget.PercentTextProgressBar
+                <com.ipd.rainbow.widget.PercentTextProgressBar
                     android:id="@+id/sale_progress"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="100dp"
@@ -122,7 +122,7 @@
     </android.support.v7.widget.CardView>
 
 
-    <com.ipd.taxiu.widget.FlashSaleTabLayout
+    <com.ipd.rainbow.widget.FlashSaleTabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -204,6 +204,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-    </com.ipd.taxiu.widget.FlashSaleTabLayout>
+    </com.ipd.rainbow.widget.FlashSaleTabLayout>
 
 </LinearLayout>

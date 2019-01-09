@@ -10,7 +10,7 @@
         style="@style/SmallTextStyle"
         android:text="口味" />
 
-    <com.ipd.taxiu.widget.ProductModelView
+    <com.ipd.rainbow.widget.ProductModelView
         android:layout_marginTop="5dp"
         android:id="@+id/product_model_view"
         android:layout_width="match_parent"

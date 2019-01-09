@@ -7,14 +7,14 @@
     android:background="@color/window_bg_color"
     android:orientation="vertical">
 
-    <com.ipd.taxiu.widget.ProductEvaluateView
+    <com.ipd.rainbow.widget.ProductEvaluateView
         android:id="@+id/product_evaluate_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:padding="@dimen/base_padding" />
 
-    <com.ipd.taxiu.widget.ProgressLayout
+    <com.ipd.rainbow.widget.ProgressLayout
         android:id="@+id/evaluate_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,6 +42,6 @@
                 layout="@layout/layout_load_footer"></include>
 
         </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
-    </com.ipd.taxiu.widget.ProgressLayout>
+    </com.ipd.rainbow.widget.ProgressLayout>
 
 </LinearLayout>

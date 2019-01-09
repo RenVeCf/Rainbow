@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/civ_avatar"
         tools:text="很大一包哦，快递很快，还没给狗狗吃，给狗狗换个品牌吃，看起来不错，吃了以后再来评价" />
 
-    <com.ipd.taxiu.widget.MediaRecyclerView
+    <com.ipd.rainbow.widget.MediaRecyclerView
         android:id="@+id/image_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

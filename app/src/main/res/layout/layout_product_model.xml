@@ -7,7 +7,7 @@
     android:padding="@dimen/base_padding">
 
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_product_img"
         android:layout_width="@dimen/product_model_img_size"
         android:layout_height="@dimen/product_model_img_size"
@@ -68,7 +68,7 @@
             android:text="数量" />
 
 
-        <com.ipd.taxiu.widget.CartOperationView
+        <com.ipd.rainbow.widget.CartOperationView
             android:id="@+id/operation_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

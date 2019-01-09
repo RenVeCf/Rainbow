@@ -41,7 +41,7 @@
         android:textSize="@dimen/small_text_size" />
 
 
-    <com.ipd.taxiu.widget.RatingBar
+    <com.ipd.rainbow.widget.RatingBar
         android:id="@+id/rating_star2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/small_text_size" />
 
-    <com.ipd.taxiu.widget.RatingBar
+    <com.ipd.rainbow.widget.RatingBar
         android:id="@+id/rating_star1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
         android:textSize="@dimen/small_text_size" />
 
 
-    <com.ipd.taxiu.widget.RatingBar
+    <com.ipd.rainbow.widget.RatingBar
         android:id="@+id/rating_star3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

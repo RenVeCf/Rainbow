@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ipd.taxiu.widget.ChoosePayTypeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ipd.rainbow.widget.ChoosePayTypeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/choose_pay_type_layout"
@@ -129,4 +129,4 @@
     </LinearLayout>
 
 
-</com.ipd.taxiu.widget.ChoosePayTypeLayout>
+</com.ipd.rainbow.widget.ChoosePayTypeLayout>

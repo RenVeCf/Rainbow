@@ -30,7 +30,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.ipd.taxiu.widget.RoundImageView
+            <com.ipd.rainbow.widget.RoundImageView
                 android:id="@+id/iv_cart_product_img"
                 android:layout_width="@dimen/cart_product_img_height"
                 android:layout_height="@dimen/cart_product_img_height"
@@ -104,7 +104,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent" />
 
-                <com.ipd.taxiu.widget.CartOperationView
+                <com.ipd.rainbow.widget.CartOperationView
                     android:id="@+id/cart_operation_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

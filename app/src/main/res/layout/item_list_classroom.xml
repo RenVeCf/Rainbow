@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/base_padding">
 
-        <com.ipd.taxiu.widget.ClassRoomLayout
+        <com.ipd.rainbow.widget.ClassRoomLayout
             android:id="@+id/classroom_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -11,7 +11,7 @@ apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.ipd.taxiu"
+        applicationId "com.ipd.rainbow"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

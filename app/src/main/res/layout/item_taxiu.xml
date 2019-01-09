@@ -15,7 +15,7 @@
         android:text="养壮壮6年了，我坚持每天按摩额头印堂，因为反倒是发送 发送"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.ipd.taxiu.widget.TaxiuLableShowLayout
+    <com.ipd.rainbow.widget.TaxiuLableShowLayout
         android:id="@+id/taxiu_lable_show_layout"
         android:layout_width="match_parent"
         android:layout_marginTop="4dp"
@@ -35,7 +35,7 @@
         <!--android:textColor="@color/white" />-->
 
 
-    <com.ipd.taxiu.widget.MediaRecyclerView
+    <com.ipd.rainbow.widget.MediaRecyclerView
         android:id="@+id/media_recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

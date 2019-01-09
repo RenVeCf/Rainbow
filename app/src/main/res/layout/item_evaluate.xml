@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.ipd.taxiu.widget.RoundImageView
+        <com.ipd.rainbow.widget.RoundImageView
             android:id="@+id/image_view"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:text="法国皇家ROYAL CANIN A3优选幼犬粮哺乳期 母犬及幼犬试用 8KG" />
 
-            <com.ipd.taxiu.widget.RatingBar
+            <com.ipd.rainbow.widget.RatingBar
                 android:id="@+id/product_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <com.ipd.taxiu.widget.PictureRecyclerView
+        <com.ipd.rainbow.widget.PictureRecyclerView
             android:id="@+id/picture_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

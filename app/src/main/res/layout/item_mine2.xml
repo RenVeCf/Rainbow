@@ -85,7 +85,7 @@
                         android:textSize="@dimen/small_text_size" />
                 </RelativeLayout>
 
-                <com.ipd.taxiu.widget.CircleMenuLayout
+                <com.ipd.rainbow.widget.CircleMenuLayout
                     android:id="@+id/rl_return_record"
                     style="@style/MineMenuTopStyle">
 
@@ -105,7 +105,7 @@
                         android:text="@string/return_record"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
-                </com.ipd.taxiu.widget.CircleMenuLayout>
+                </com.ipd.rainbow.widget.CircleMenuLayout>
 
 
                 <RelativeLayout
@@ -184,7 +184,7 @@
                         android:textSize="@dimen/small_text_size" />
                 </RelativeLayout>
 
-                <com.ipd.taxiu.widget.CircleMenuLayout
+                <com.ipd.rainbow.widget.CircleMenuLayout
                     android:id="@+id/rl_message"
                     style="@style/MineMenuBottomStyle">
 
@@ -204,7 +204,7 @@
                         android:text="@string/message"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size" />
-                </com.ipd.taxiu.widget.CircleMenuLayout>
+                </com.ipd.rainbow.widget.CircleMenuLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_setting"

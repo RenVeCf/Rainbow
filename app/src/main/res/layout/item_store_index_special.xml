@@ -45,7 +45,7 @@
             app:layout_constraintLeft_toRightOf="@id/tv_special_name"
             app:layout_constraintTop_toTopOf="@id/tv_special_name" />
 
-        <com.ipd.taxiu.widget.FlowLayout
+        <com.ipd.rainbow.widget.FlowLayout
             android:id="@+id/lable_flow_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_special_name" />
 
-        <com.ipd.taxiu.widget.RoundImageView
+        <com.ipd.rainbow.widget.RoundImageView
             android:id="@+id/iv_special_banner"
             android:layout_width="0dp"
             android:layout_height="@dimen/store_banner_height_small"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@id/lable_flow_layout"
             app:type="round" />
 
-        <com.ipd.taxiu.widget.NotVerticalScrollRecyclerView
+        <com.ipd.rainbow.widget.NotVerticalScrollRecyclerView
             android:id="@+id/special_product_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

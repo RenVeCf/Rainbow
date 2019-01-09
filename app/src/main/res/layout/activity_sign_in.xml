@@ -97,7 +97,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <com.ipd.taxiu.widget.SignInView
+        <com.ipd.rainbow.widget.SignInView
             android:id="@+id/sign_in_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
                 app:layout_constraintTop_toBottomOf="@id/ll_sign_in_title" />
 
 
-        </com.ipd.taxiu.widget.SignInView>
+        </com.ipd.rainbow.widget.SignInView>
 
         <LinearLayout
             android:layout_width="0dp"

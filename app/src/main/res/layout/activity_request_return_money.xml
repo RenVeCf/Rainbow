@@ -17,7 +17,7 @@
             android:background="@color/white"
             android:padding="@dimen/base_padding">
 
-            <com.ipd.taxiu.widget.RoundImageView
+            <com.ipd.rainbow.widget.RoundImageView
                 android:id="@+id/iv_product_img"
                 android:layout_width="@dimen/list_product_img_width"
                 android:layout_height="@dimen/list_product_img_height"
@@ -96,7 +96,7 @@
                 android:layout_centerVertical="true"
                 android:text="申请数量" />
 
-            <com.ipd.taxiu.widget.CartOperationView
+            <com.ipd.rainbow.widget.CartOperationView
                 android:id="@+id/cart_operation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                 android:textSize="@dimen/small_text_size" />
 
 
-            <com.ipd.taxiu.widget.PictureRecyclerView
+            <com.ipd.rainbow.widget.PictureRecyclerView
                 android:id="@+id/picture_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

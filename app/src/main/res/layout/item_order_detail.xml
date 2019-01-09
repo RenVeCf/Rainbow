@@ -22,7 +22,7 @@
         android:layout_below="@id/line1"
         android:layout_marginTop="@dimen/small_padding">
 
-        <com.ipd.taxiu.widget.RoundImageView
+        <com.ipd.rainbow.widget.RoundImageView
             android:id="@+id/iv_commodity_head"
             android:layout_width="@dimen/list_product_img_width"
             android:layout_height="@dimen/list_product_img_height"

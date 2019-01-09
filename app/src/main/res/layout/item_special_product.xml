@@ -5,7 +5,7 @@
     android:layout_marginRight="3dp"
     android:layout_height="wrap_content">
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_product_img"
         android:layout_width="@dimen/special_product_img_height"
         android:layout_height="@dimen/special_product_img_height"

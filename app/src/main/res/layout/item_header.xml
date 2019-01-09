@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.ipd.taxiu.widget.PetLifeLineView
+            <com.ipd.rainbow.widget.PetLifeLineView
                 android:id="@+id/pet_life_line_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

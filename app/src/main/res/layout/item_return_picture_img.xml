@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
 
-    <com.ipd.taxiu.widget.RoundImageView
+    <com.ipd.rainbow.widget.RoundImageView
         android:id="@+id/iv_topic_comment_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"

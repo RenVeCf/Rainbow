@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <com.ipd.taxiu.widget.ScrollCenterRecyclerView
+    <com.ipd.rainbow.widget.ScrollCenterRecyclerView
         android:id="@+id/parent_category_view"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         android:background="#EFF3F6" />
 
 
-    <com.ipd.taxiu.widget.ProgressLayout
+    <com.ipd.rainbow.widget.ProgressLayout
         android:id="@+id/child_progress_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             app:layoutManager="android.support.v7.widget.GridLayoutManager"
             app:spanCount="3" />
-    </com.ipd.taxiu.widget.ProgressLayout>
+    </com.ipd.rainbow.widget.ProgressLayout>
 
 
 </LinearLayout>

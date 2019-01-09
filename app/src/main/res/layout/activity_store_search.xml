@@ -19,7 +19,7 @@
             style="@style/BaseTextStyle"
             android:text="热门搜索" />
 
-        <com.ipd.taxiu.widget.FlowLayout
+        <com.ipd.rainbow.widget.FlowLayout
             android:id="@+id/hot_search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/history_search_title" />
 
-        <com.ipd.taxiu.widget.FlowLayout
+        <com.ipd.rainbow.widget.FlowLayout
             android:id="@+id/history_search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
