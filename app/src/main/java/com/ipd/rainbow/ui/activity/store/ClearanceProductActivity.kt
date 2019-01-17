@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ipd.rainbow.R
 import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.fragment.store.ClearanceProductFragment
-import kotlinx.android.synthetic.main.activity_topic_index.*
+import kotlinx.android.synthetic.main.activity_tab_container.*
 
 class ClearanceProductActivity : BaseUIActivity() {
 
@@ -21,7 +21,7 @@ class ClearanceProductActivity : BaseUIActivity() {
 
     override fun getToolbarTitle(): String = "商品清仓"
 
-    override fun getContentLayout(): Int = R.layout.activity_topic_index
+    override fun getContentLayout(): Int = R.layout.activity_tab_container
 
     override fun initView(bundle: Bundle?) {
         initToolbar()

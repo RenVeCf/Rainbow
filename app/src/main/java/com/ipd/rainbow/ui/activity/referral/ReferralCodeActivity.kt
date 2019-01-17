@@ -1,6 +1,5 @@
 package com.ipd.rainbow.ui.activity.referral
 
-import android.content.Intent
 import android.os.Bundle
 import cn.sharesdk.framework.Platform
 import com.ipd.rainbow.R
@@ -18,7 +17,7 @@ import com.ipd.rainbow.utils.ShareCallback
 import com.ipd.rainbow.widget.ShareDialog
 import com.ipd.rainbow.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.layout_referral_code.*
-import java.util.HashMap
+import java.util.*
 
 /**
  * Created by Miss on 2018/7/25
@@ -88,14 +87,6 @@ class ReferralCodeActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
-        tv_friend_list.setOnClickListener {
-            intent = Intent(this, FriendListActivity::class.java)
-            startActivity(intent)
-        }
-        tv_recommend_earning!!.setOnClickListener {
-            intent = Intent(this, RecommendEarningsActivity::class.java)
-            startActivity(intent)
-        }
     }
 
 

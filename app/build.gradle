@@ -148,6 +148,4 @@ dependencies {
     implementation project(':jumpboxlibrary')
     implementation project(':wheelview')
     implementation project(':pickerview')
-    implementation project(':ffmpeg')
-    implementation project(':xiaonengChatUI')
 }

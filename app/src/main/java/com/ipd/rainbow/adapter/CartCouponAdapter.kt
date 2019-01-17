@@ -26,7 +26,6 @@ class CartCouponAdapter(val context: Context, private val list: List<ExchangeBea
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_coupon, parent, false))
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -52,7 +51,6 @@ class CartCouponAdapter(val context: Context, private val list: List<ExchangeBea
                             }
                         }
                     })
-
         }
 
 

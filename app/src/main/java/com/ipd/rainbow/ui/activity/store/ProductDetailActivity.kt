@@ -7,9 +7,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import cn.sharesdk.framework.Platform
-import cn.xiaoneng.coreapi.ChatParamsBody
-import cn.xiaoneng.uiapi.Ntalker
-import cn.xiaoneng.utils.CoreData
 import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.BaseResult
@@ -125,13 +122,13 @@ class ProductDetailActivity : BaseUIActivity() {
 
         ll_kefu.setOnClickListener {
             //客服
-            val chatParams = ChatParamsBody()
-            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
-            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
-            chatParams.itemparams.goods_id = mProductId.toString()
-            chatParams.itemparams.itemparam = mFromId.toString()
-            chatParams.itemparams.clicktoshow_type = CoreData.CLICK_TO_APP_COMPONENT
-            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
+//            val chatParams = ChatParamsBody()
+//            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+//            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+//            chatParams.itemparams.goods_id = mProductId.toString()
+//            chatParams.itemparams.itemparam = mFromId.toString()
+//            chatParams.itemparams.clicktoshow_type = CoreData.CLICK_TO_APP_COMPONENT
+//            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
         }
         ll_collect.setOnClickListener {
             //收藏

@@ -9,16 +9,13 @@ import android.support.v4.app.FragmentTransaction
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
-import com.ipd.rainbow.bean.BaseResult
-import com.ipd.rainbow.bean.SignInInfoBean
 import com.ipd.rainbow.platform.global.GlobalParam
-import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
-import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.BaseActivity
-import com.ipd.rainbow.ui.fragment.*
+import com.ipd.rainbow.ui.fragment.CartFragment
+import com.ipd.rainbow.ui.fragment.LiveFragment
+import com.ipd.rainbow.ui.fragment.MineFragment
+import com.ipd.rainbow.ui.fragment.StoreFragment
 import com.ipd.rainbow.utils.VersionUtils
-import com.ipd.rainbow.widget.PublishTaxiuDialog
 import com.ipd.rainbow.widget.SignInPopup
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -56,7 +53,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun loadData() {
-        if (!GlobalParam.getFirstEnterHome()){
+        if (!GlobalParam.getFirstEnterHome()) {
             checkIsSignIn()
         }
         //版本检测
@@ -67,15 +64,15 @@ class MainActivity : BaseActivity() {
      * 是否签到
      */
     private fun checkIsSignIn() {
-        ApiManager.getService().signInInfo(GlobalParam.getUserIdOrJump())
-                .compose(RxScheduler.applyScheduler())
-                .subscribe(object : Response<BaseResult<SignInInfoBean>>() {
-                    override fun _onNext(result: BaseResult<SignInInfoBean>) {
-                        if (result.code == 0 && result.data.STATUS == 0) {
-                            showSignInView()
-                        }
-                    }
-                })
+//        ApiManager.getService().signInInfo(GlobalParam.getUserIdOrJump())
+//                .compose(RxScheduler.applyScheduler())
+//                .subscribe(object : Response<BaseResult<SignInInfoBean>>() {
+//                    override fun _onNext(result: BaseResult<SignInInfoBean>) {
+//                        if (result.code == 0 && result.data.STATUS == 0) {
+//                            showSignInView()
+//                        }
+//                    }
+//                })
     }
 
     private fun showSignInView() {
@@ -88,11 +85,6 @@ class MainActivity : BaseActivity() {
                 changePage(index)
             }
         }
-
-        iv_taxiu_checked.setOnClickListener {
-            PublishTaxiuDialog(mActivity).show()
-
-        }//发布它秀
     }
 
 
@@ -102,19 +94,17 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_home, ll_store, ll_taxiu, ll_cart, ll_mine) }
+    private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_store, ll_taxiu, ll_cart, ll_msg, ll_mine) }
     private fun setTabChecked(pos: Int) {
-        tabs[2].visibility = if (pos == 2) View.INVISIBLE else View.VISIBLE
-        iv_taxiu_checked.visibility = if (pos == 2) View.VISIBLE else View.GONE
+        if (pos == 3) {
+            return
+        }
 
         tabs.forEachIndexed { index, layout ->
             layout.getChildAt(0).isSelected = pos == index
             layout.getChildAt(1).isSelected = pos == index
             if (pos == index) {
                 var animView: View = layout.getChildAt(0)
-                if (pos == 2) {
-                    animView = iv_taxiu_checked
-                }
                 val mainTabAnim = AnimationUtils.loadAnimation(mActivity, R.anim.main_tab_anim)
                 animView.startAnimation(mainTabAnim)
             }
@@ -122,11 +112,10 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private var homeFragment: HomeFragment? = null
     private var storeFragment: StoreFragment? = null
-    private var taxiuFragment: TaxiuFragment? = null
+    private var liveFragment: LiveFragment? = null
     private var cartFragment: CartFragment? = null
-    private var mineFragment: PersonFragment? = null
+    private var mineFragment: MineFragment? = null
 
     /**
      * 选中的页面
@@ -134,35 +123,33 @@ class MainActivity : BaseActivity() {
      * @param position
      */
     private fun setTabSelection(position: Int) {
+        if (position == 3) {
+            return
+        }
+
         val transaction = fragmentManager.beginTransaction()
         hideFragments(transaction)
         when (position) {
-            0 -> if (homeFragment == null) {
-                homeFragment = HomeFragment()
-                transaction.add(R.id.fl_container, homeFragment)
-            } else {
-                transaction.show(homeFragment)
-            }
-            1 -> if (storeFragment == null) {
+            0 -> if (storeFragment == null) {
                 storeFragment = StoreFragment()
                 transaction.add(R.id.fl_container, storeFragment)
             } else {
                 transaction.show(storeFragment)
             }
-            2 -> if (taxiuFragment == null) {
-                taxiuFragment = TaxiuFragment()
-                transaction.add(R.id.fl_container, taxiuFragment)
+            1 -> if (liveFragment == null) {
+                liveFragment = LiveFragment()
+                transaction.add(R.id.fl_container, liveFragment)
             } else {
-                transaction.show(taxiuFragment)
+                transaction.show(liveFragment)
             }
-            3 -> if (cartFragment == null) {
+            2 -> if (cartFragment == null) {
                 cartFragment = CartFragment()
                 transaction.add(R.id.fl_container, cartFragment)
             } else {
                 transaction.show(cartFragment)
             }
             4 -> if (mineFragment == null) {
-                mineFragment = PersonFragment()
+                mineFragment = MineFragment()
                 transaction.add(R.id.fl_container, mineFragment)
             } else {
                 transaction.show(mineFragment)
@@ -177,14 +164,11 @@ class MainActivity : BaseActivity() {
      * 隐藏所有的页面
      */
     private fun hideFragments(transaction: FragmentTransaction) {
-        if (homeFragment != null) {
-            transaction.hide(homeFragment)
-        }
         if (storeFragment != null) {
             transaction.hide(storeFragment)
         }
-        if (taxiuFragment != null) {
-            transaction.hide(taxiuFragment)
+        if (liveFragment != null) {
+            transaction.hide(liveFragment)
         }
         if (cartFragment != null) {
             transaction.hide(cartFragment)
@@ -198,16 +182,11 @@ class MainActivity : BaseActivity() {
     override fun onAttachFragment(fragment: Fragment?) {
         if (fragment == null) return
         when (fragment) {
-            is HomeFragment -> homeFragment = fragment
             is StoreFragment -> storeFragment = fragment
-            is TaxiuFragment -> taxiuFragment = fragment
+            is LiveFragment -> liveFragment = fragment
             is CartFragment -> cartFragment = fragment
-            is PersonFragment -> mineFragment = fragment
+            is MineFragment -> mineFragment = fragment
         }
-    }
-
-    fun switchToTaxiu() {
-        changePage(2)
     }
 
     fun switchToStore() {

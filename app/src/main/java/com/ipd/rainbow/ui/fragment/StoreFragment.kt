@@ -3,9 +3,6 @@ package com.ipd.rainbow.ui.fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import cn.xiaoneng.coreapi.ChatParamsBody
-import cn.xiaoneng.uiapi.Ntalker
-import cn.xiaoneng.utils.CoreData
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.StoreAdapter
 import com.ipd.rainbow.bean.*
@@ -131,11 +128,11 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
 
         mContentView.iv_scroll_kefu.setOnClickListener {
             //客服
-            val chatParams = ChatParamsBody()
-            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
-            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
-            chatParams.itemparams.clicktoshow_type = CoreData.CLICK_TO_APP_COMPONENT
-            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
+//            val chatParams = ChatParamsBody()
+//            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+//            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
+//            chatParams.itemparams.clicktoshow_type = CoreData.CLICK_TO_APP_COMPONENT
+//            Ntalker.getBaseInstance().startChat(mActivity, Constant.XIAONENG_KEFU_ID, "客服接待", chatParams)
         }
 
     }

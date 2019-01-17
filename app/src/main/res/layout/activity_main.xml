@@ -29,23 +29,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
-            <LinearLayout
-                android:id="@+id/ll_home"
-                style="@style/HomeTab">
-
-                <ImageView
-                    android:id="@+id/iv_home"
-                    style="@style/HomeTabImageStyle"
-                    android:src="@drawable/selector_home_tab" />
-
-                <TextView
-                    android:id="@+id/tv_home"
-                    style="@style/HomeTabTextStyle"
-                    android:text="主页" />
-
-            </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_store"
                 style="@style/HomeTab">
@@ -58,7 +41,7 @@
                 <TextView
                     android:id="@+id/tv_store"
                     style="@style/HomeTabTextStyle"
-                    android:text="商城" />
+                    android:text="首页" />
 
             </LinearLayout>
 
@@ -97,6 +80,23 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_msg"
+                style="@style/HomeTab">
+
+                <ImageView
+                    android:id="@+id/iv_msg"
+                    style="@style/HomeTabImageStyle"
+                    android:src="@drawable/selector_mine_tab" />
+
+                <TextView
+                    android:id="@+id/tv_msg"
+                    style="@style/HomeTabTextStyle"
+                    android:text="消息" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/ll_mine"
                 style="@style/HomeTab">
 
@@ -117,17 +117,6 @@
 
 
     </FrameLayout>
-
-
-    <ImageView
-        android:id="@+id/iv_taxiu_checked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@mipmap/taxiu_checked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

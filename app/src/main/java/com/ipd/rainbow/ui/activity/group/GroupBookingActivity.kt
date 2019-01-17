@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ipd.rainbow.R
 import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.fragment.group.GroupFragment
-import kotlinx.android.synthetic.main.activity_talk_index.*
+import kotlinx.android.synthetic.main.activity_group_index.*
 
 /**
 Created by Miss on 2018/8/10

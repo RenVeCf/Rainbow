@@ -3,16 +3,14 @@ package com.ipd.rainbow.ui.fragment
 import android.os.Bundle
 import com.ipd.rainbow.R
 import com.ipd.rainbow.ui.BaseUIFragment
-import kotlinx.android.synthetic.main.base_toolbar.view.*
+import com.ipd.rainbow.ui.activity.mine.UserInfoActivity
+import kotlinx.android.synthetic.main.fragment_mine_new.view.*
 
 class MineFragment : BaseUIFragment() {
 
-    override fun getContentLayout(): Int = R.layout.fragment_store
+    override fun getTitleLayout(): Int = -1
 
-    override fun initTitle() {
-        super.initTitle()
-        mHeaderView.tv_title.text = "我的"
-    }
+    override fun getContentLayout(): Int = R.layout.fragment_mine_new
 
     override fun initView(bundle: Bundle?) {
 
@@ -22,6 +20,9 @@ class MineFragment : BaseUIFragment() {
     }
 
     override fun initListener() {
+        mContentView.civ_avatar.setOnClickListener {
+            UserInfoActivity.launch(mActivity)
+        }
     }
 
 }

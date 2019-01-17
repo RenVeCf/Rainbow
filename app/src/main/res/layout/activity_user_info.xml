@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              tools:context=".MainActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/ll_avatar"
+                    style="@style/BaseTableStyle">
+
+                <TextView
+                        style="@style/BaseTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="头像"/>
+
+                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+                        android:id="@+id/civ_avatar"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@mipmap/avatar_default"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_padding"
+                        android:src="@mipmap/arrow_right"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:layout_marginRight="@dimen/base_padding"
+                    style="@style/ViewLine"/>
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                        style="@style/BaseTextStyle"
+                        android:text="昵称"/>
+
+                <EditText
+                        android:id="@+id/et_nickname"
+                        style="@style/BaseEditTextStyle"
+                        android:gravity="right"
+                        android:hint="请输入"
+                        android:maxLength="12"
+                        android:singleLine="true"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="@dimen/base_padding"
+                android:layout_marginRight="@dimen/base_padding"
+                style="@style/ViewLine"/>
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="手机号"/>
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:text="17592859285"
+                    android:maxLength="12"
+                    android:singleLine="true"/>
+
+
+            </LinearLayout>
+
+            <View
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:layout_marginRight="@dimen/base_padding"
+                    style="@style/ViewLine"/>
+
+            <LinearLayout android:id="@+id/ll_sex" style="@style/BaseTableStyle">
+
+                <TextView
+                        style="@style/BaseTextStyle"
+                        android:text="性别"/>
+
+                <TextView
+                        android:id="@+id/tv_sex"
+                        style="@style/BaseEditTextStyle"
+                        android:gravity="right"
+                        android:hint="请选择"
+                        android:maxLength="12"
+                        android:singleLine="true"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_padding"
+                        android:src="@mipmap/arrow_right"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

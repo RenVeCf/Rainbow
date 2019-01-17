@@ -49,6 +49,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_voice_code"
         style="@style/BaseTextStyle"
         android:text="语音验证码"

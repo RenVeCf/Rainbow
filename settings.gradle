@@ -1,2 +1,1 @@
-include ':app',':jumpboxlibrary',':wheelview',':pickerview','ffmpeg'
-include ':xiaonengChatUI'
+include ':app',':jumpboxlibrary',':wheelview',':pickerview'

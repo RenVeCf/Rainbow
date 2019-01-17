@@ -62,6 +62,7 @@
     <TextView
         android:id="@+id/tv_voice_code"
         style="@style/BaseTextStyle"
+        android:visibility="gone"
         android:text="语音验证码"
         android:textColor="@color/voice_code_text_color"
         app:layout_constraintRight_toRightOf="@id/et_password"

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.imageload.ImageLoader
-import kotlinx.android.synthetic.main.item_topic_comment_img.view.*
+import kotlinx.android.synthetic.main.item_return_picture_img.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -25,7 +25,7 @@ class ReturnPictureAdapter(val context: Context, private val list: List<String>?
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadNoPlaceHolderImg(context, info, holder.itemView.iv_topic_comment_image)
+        ImageLoader.loadNoPlaceHolderImg(context, info, holder.itemView.iv_image)
         if (itemClick != null) {
             holder.itemView.setOnClickListener {
                 itemClick.invoke(list, position)

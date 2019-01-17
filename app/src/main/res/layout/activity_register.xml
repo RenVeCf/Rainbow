@@ -86,6 +86,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_voice_code"
         style="@style/BaseTextStyle"
         android:text="语音验证码"
@@ -115,7 +116,7 @@
         <TextView
             android:id="@+id/tv_user_agent"
             style="@style/SmallTextStyle"
-            android:text="《它嗅宠物用户协议》"
+            android:text="《彩虹购用户协议》"
             android:textColor="#3792FB" />
     </LinearLayout>
 

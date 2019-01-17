@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Process
 import android.support.multidex.MultiDexApplication
 import cn.jpush.android.api.JPushInterface
-import cn.xiaoneng.uiapi.Ntalker
 import com.mob.MobSDK
 import com.tencent.bugly.crashreport.CrashReport
 import kotlin.properties.Delegates
@@ -49,7 +48,7 @@ class GlobalApplication : MultiDexApplication() {
 //        LeakCanary.install(this)
 
         CrashReport.initCrashReport(applicationContext, "5236c8068d", false)
-        Ntalker.getBaseInstance().initSDK(mContext, Constant.XIAONENG_ID, Constant.XIAONENG_SDK_KEY)
+//        Ntalker.getBaseInstance().initSDK(mContext, Constant.XIAONENG_ID, Constant.XIAONENG_SDK_KEY)
         JPushInterface.init(this)
 
         MobSDK.init(this)

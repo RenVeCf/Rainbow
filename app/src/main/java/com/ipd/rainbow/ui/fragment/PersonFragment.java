@@ -13,7 +13,6 @@ import com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView;
 import com.ipd.rainbow.R;
 import com.ipd.rainbow.bean.UserHomeBean;
 import com.ipd.rainbow.imageload.ImageLoader;
-import com.ipd.rainbow.platform.global.GlobalParam;
 import com.ipd.rainbow.platform.http.HttpUrl;
 import com.ipd.rainbow.presenter.MinePresenter;
 import com.ipd.rainbow.ui.BaseFragment;
@@ -24,22 +23,11 @@ import com.ipd.rainbow.ui.activity.coupon.DiscountCouponActivity;
 import com.ipd.rainbow.ui.activity.coupon.MyIntegralActivity;
 import com.ipd.rainbow.ui.activity.group.GroupBookingActivity;
 import com.ipd.rainbow.ui.activity.message.MessageActivity;
-import com.ipd.rainbow.ui.activity.mine.PersonInformationActivity;
-import com.ipd.rainbow.ui.activity.mine.published.MineClassRoomActivity;
-import com.ipd.rainbow.ui.activity.mine.published.MineJoinTopicActivity;
-import com.ipd.rainbow.ui.activity.mine.published.PublishedTalkActivity;
-import com.ipd.rainbow.ui.activity.mine.published.PublishedTaxiuActivity;
 import com.ipd.rainbow.ui.activity.order.MyOrderActivity;
 import com.ipd.rainbow.ui.activity.order.ReturnMoneyCommodityActivity;
-import com.ipd.rainbow.ui.activity.pet.MyPetActivity;
-import com.ipd.rainbow.ui.activity.pet.PetBibleActivity;
 import com.ipd.rainbow.ui.activity.referral.ReferralCodeActivity;
-import com.ipd.rainbow.ui.activity.setting.MyCollectActivity;
 import com.ipd.rainbow.ui.activity.setting.SettingActivity;
-import com.ipd.rainbow.ui.activity.setting.SocialContactActivity;
-import com.ipd.rainbow.utils.GuideUtil;
 import com.ipd.rainbow.widget.CircleMenuLayout;
-import com.ipd.rainbow.widget.guideview.GuideBuilder;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -175,33 +163,29 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 DeliveryAddressActivity.Companion.launch(getMActivity(), DeliveryAddressActivity.Companion.getNORMAL());
                 break;
             case R.id.rl_header:
-                intent1 = new Intent(getActivity(), PersonInformationActivity.class);
-                startActivity(intent1);
+//                intent1 = new Intent(getActivity(), PersonInformationActivity.class);
+//                startActivity(intent1);
                 break;
             case R.id.rl_pet_bible:
-                intent1 = new Intent(getActivity(), PetBibleActivity.class);
-                startActivity(intent1);
                 break;
             case R.id.rl_my_pet:
-                intent1 = new Intent(getActivity(), MyPetActivity.class);
-                startActivity(intent1);
                 break;
             case R.id.ll_sign_in:
                 SignInActivity.Companion.launch(getMActivity());
                 break;
             case R.id.ll_my_collect:
-                intent1 = new Intent(getActivity(), MyCollectActivity.class);
-                startActivity(intent1);
+//                intent1 = new Intent(getActivity(), MyCollectActivity.class);
+//                startActivity(intent1);
                 break;
             case R.id.ll_my_fans:
-                intent1 = new Intent(getActivity(), SocialContactActivity.class);
-                intent1.putExtra("TYPE", 2);
-                startActivity(intent1);
+//                intent1 = new Intent(getActivity(), SocialContactActivity.class);
+//                intent1.putExtra("TYPE", 2);
+//                startActivity(intent1);
                 break;
             case R.id.ll_attention_num:
-                intent1 = new Intent(getActivity(), SocialContactActivity.class);
-                intent1.putExtra("TYPE", 1);
-                startActivity(intent1);
+//                intent1 = new Intent(getActivity(), SocialContactActivity.class);
+//                intent1.putExtra("TYPE", 1);
+//                startActivity(intent1);
                 break;
             case R.id.rl_my_group:
                 GroupBookingActivity.Companion.launch(getMActivity());
@@ -210,16 +194,16 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 toastShow("此功能暂未开发，敬请期待");
                 break;
             case R.id.rl_published_taxiu:
-                PublishedTaxiuActivity.Companion.launch(getMActivity());
+//                PublishedTaxiuActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_mine_classroom:
-                MineClassRoomActivity.Companion.launch(getMActivity());
+//                MineClassRoomActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_mine_join_topic:
-                MineJoinTopicActivity.Companion.launch(getMActivity());
+//                MineJoinTopicActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_mine_talk:
-                PublishedTalkActivity.Companion.launch(getMActivity());
+//                PublishedTalkActivity.Companion.launch(getMActivity());
                 break;
             case R.id.rl_my_integral:
                 intent1 = new Intent(getActivity(), MyIntegralActivity.class);
@@ -302,37 +286,6 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void showGuideView() {
-        if (!GlobalParam.getFirstEnterMine()) return;
-        ll_sign_in.post(new Runnable() {
-            @Override
-            public void run() {
-                if (!GlobalParam.getFirstEnterMine()) return;
-                GlobalParam.setFirstEnterMine(false);
-                GuideUtil.INSTANCE.getSignGuide(R.id.ll_sign_in, new GuideBuilder.OnVisibilityChangedListener() {
-                    @Override
-                    public void onShown() {
-                    }
-
-                    @Override
-                    public void onDismiss() {
-                        GuideUtil.INSTANCE.getIntegralGuide(R.id.rl_my_integral, new GuideBuilder.OnVisibilityChangedListener() {
-                            @Override
-                            public void onShown() {
-
-                            }
-
-                            @Override
-                            public void onDismiss() {
-
-                            }
-                        }).show(getMActivity());
-
-
-                    }
-                }).show(getMActivity());
-
-            }
-        });
     }
 
     @Override
