@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingBottom="@dimen/base_padding"
+    android:background="@color/white"
+    android:paddingRight="15dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cl_header"
+        android:layout_marginTop="-10dp">
+
+        <com.ipd.rainbow.widget.RoundImageView
+            android:id="@+id/iv_live_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@mipmap/live_pic"
+            app:corner_radius="5dp"
+            app:layout_constraintDimensionRatio="1:0.5"
+            app:type="round" />
+
+        <ImageView
+            android:id="@+id/iv_live_online"
+            style="@style/SmallTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/shape_live_attent"
+            android:src="@mipmap/live_online"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginLeft="6dp"
+            android:text="5873人在看"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_live_online"
+            app:layout_constraintLeft_toRightOf="@id/iv_live_online"
+            app:layout_constraintTop_toTopOf="@id/iv_live_online" />
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_marginBottom="6dp"
+            android:text="好吃，吃不胖的童年味道"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/iv_live_online"
+            app:layout_constraintLeft_toLeftOf="@id/iv_live_online"
+
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+            android:id="@+id/civ_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/avatar_default"
+            app:border_color1="@color/white"
+            app:border_width1="2dp" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginBottom="5dp"
+            android:text="昨夜星辰"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/civ_avatar"
+            app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+            app:layout_constraintTop_toTopOf="@id/civ_avatar" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginBottom="5dp"
+            android:text="关注"
+            android:background="@drawable/shape_live_attent"
+            android:textColor="#EA1C41"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/civ_avatar"
+            app:layout_constraintTop_toTopOf="@id/civ_avatar" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</RelativeLayout>

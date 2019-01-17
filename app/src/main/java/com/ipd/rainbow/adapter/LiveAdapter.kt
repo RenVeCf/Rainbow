@@ -16,7 +16,7 @@ class LiveAdapter(val context: Context, private val list: List<Any>?, private va
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list_taxiu, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_live, parent, false))
 
     }
 

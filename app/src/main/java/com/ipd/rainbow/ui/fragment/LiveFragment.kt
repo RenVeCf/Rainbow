@@ -32,9 +32,7 @@ class LiveFragment : BaseUIFragment() {
 
 
     override fun initListener() {
-        mContentView.tv_search.setOnClickListener {
-            //            SearchActivity.launch(mActivity, SearchActivity.SearchType.TAXIU)
-        }
+
     }
 
 }
