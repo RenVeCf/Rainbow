@@ -15,7 +15,7 @@ Created by Miss on 2018/8/13
 消息
  */
 class MessageActivity : BaseUIActivity() {
-    val titles = arrayOf("订单消息", "系统消息", "其他消息")
+    val titles = arrayOf("订单消息", "系统消息", "活动消息")
 
     companion object {
         fun launch(activity: Activity) {

@@ -61,12 +61,12 @@ class MessageFragment : ListFragment<BaseResult<List<MessageBean>>, MessageBean>
     override fun setOrNotifyAdapter() {
         if (categoryId == 1 || categoryId == 2) {
             if (mAdapter == null) {
-                mAdapter = MessageAdapter(context, data, {
+                mAdapter = MessageAdapter(context, data) {
                     if (it.CATEGORY == 2 && it.TYPE == 3) {
                         BindingPhoneActivity.launch(mActivity)
                     }
 
-                })
+                }
                 recycler_view.layoutManager = LinearLayoutManager(context)
                 recycler_view.adapter = mAdapter
             } else {
@@ -74,9 +74,9 @@ class MessageFragment : ListFragment<BaseResult<List<MessageBean>>, MessageBean>
             }
         } else if (categoryId == 3) {
             if (otherMessageAdapter == null) {
-                otherMessageAdapter = OtherMessageAdapter(context, data, {
+                otherMessageAdapter = OtherMessageAdapter(context, data) {
                     WebActivity.launch(mActivity, WebActivity.HTML, it.CONTENT, it.TITLE)
-                })
+                }
                 recycler_view.layoutManager = LinearLayoutManager(context)
                 recycler_view.adapter = otherMessageAdapter
             } else {
