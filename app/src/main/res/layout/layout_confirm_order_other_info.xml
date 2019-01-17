@@ -36,6 +36,7 @@
     </LinearLayout>
 
     <View
+        android:visibility="gone"
         android:id="@+id/view_line"
         style="@style/ViewLine"
         android:layout_marginTop="@dimen/small_padding"
@@ -43,6 +44,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_invoice_title"
         style="@style/BaseTextStyle"
         android:layout_marginTop="@dimen/small_padding"
@@ -50,6 +52,7 @@
         app:layout_constraintTop_toBottomOf="@id/view_line" />
 
     <RadioGroup
+        android:visibility="gone"
         android:id="@+id/rg_invoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -66,4 +66,22 @@
         app:layout_constraintTop_toTopOf="@id/tv_express_fee_title" />
 
 
+    <TextView
+        android:id="@+id/tv_tax_fee_title"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="税费:"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_express_fee_title" />
+
+    <TextView
+        android:id="@+id/tv_tax_fee"
+        style="@style/BaseTextStyle"
+        android:text="+￥150.00"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_tax_fee_title" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -1,29 +1,29 @@
 package com.ipd.rainbow.ui.fragment
 
+import android.os.Bundle
 import android.text.TextUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
+import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.CartAdapter
-import com.ipd.rainbow.bean.*
+import com.ipd.rainbow.bean.BaseResult
+import com.ipd.rainbow.bean.CartProductBean
 import com.ipd.rainbow.event.UpdateCartEvent
-import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
-import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.presenter.store.CartPresenter
 import com.ipd.rainbow.ui.ListFragment
-import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
 import com.ipd.rainbow.ui.activity.trade.ConfirmOrderActivity
 import com.ipd.rainbow.utils.CartCallback
 import com.ipd.rainbow.widget.MessageDialog
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_cart.view.*
+import kotlinx.android.synthetic.main.layout_empty_cart.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
-class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCallback, CartPresenter.ICartView {
+class CartFragment : ListFragment<BaseResult<List<CartProductBean>>, CartProductBean>(), CartCallback, CartPresenter.ICartView {
 
     override fun getTitleLayout(): Int = R.layout.base_toolbar
 
@@ -50,12 +50,25 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
         mHeaderView.tv_title.text = "购物车"
     }
 
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        val emptyView = layoutInflater.inflate(R.layout.layout_empty_cart, getProgressLayout(), false)
+        emptyView.tv_go_shopping.setOnClickListener {
+            //商城
+            if (mActivity is MainActivity) {
+                (mActivity as MainActivity).switchToStore()
+            }
+        }
+        getProgressLayout().setEmptyViewRes(emptyView)
+        setLoadMoreEnable(false)
+    }
+
     override fun initListener() {
         super.initListener()
         mContentView.tv_confirm.setOnClickListener {
             //结算
             var cartIds = ""
-            mCartList?.forEach {
+            data?.forEach {
                 if (it.isChecked) {
                     cartIds += "${it.CART_ID},"
                 }
@@ -71,13 +84,13 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
 
         mContentView.ll_all_check.setOnClickListener {
             //全选、反选
-            if (mCartList == null || mCartList!!.isEmpty()) {
+            if (data == null || data!!.isEmpty()) {
                 toastShow("购物车空空如也~~")
                 return@setOnClickListener
             }
             val check = !mContentView.cb_all_check.isChecked
             mContentView.cb_all_check.isChecked = check
-            mCartList?.forEach {
+            data?.forEach {
                 it.isChecked = check
             }
             mAdapter?.notifyDataSetChanged()
@@ -85,44 +98,15 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
         }
     }
 
-    private var mCartList: ArrayList<CartProductBean>? = null
-    override fun getListData(isRefresh: Boolean) {
-        if (isRefresh) {
-            checkNeedShowProgress()
-            ApiManager.getService().cartList(GlobalParam.getUserIdOrJump())
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<List<CartProductBean>>>() {
-                        override fun _onNext(result: BaseResult<List<CartProductBean>>) {
-                            if (result.code == 0 || result.code == 10000) {
-                                mCartList = ArrayList(result?.data ?: arrayListOf())
-                                getParentListData(isRefresh)
-                            } else {
-                                showError(result.msg)
-                            }
 
-                        }
-
-                        override fun onError(e: Throwable?) {
-                            showError("连接服务器失败")
-                        }
-
-                    })
-        } else {
-            super.getListData(isRefresh)
-        }
+    override fun loadListData(): Observable<BaseResult<List<CartProductBean>>> {
+        return ApiManager.getService().cartList(GlobalParam.getUserIdOrJump())
     }
 
-    private fun getParentListData(isRefresh: Boolean) {
-        super.getListData(isRefresh)
-    }
-
-
-    override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().cartRecommend(Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
-    }
-
-    override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
-        if (page > INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+    override fun isNoMoreData(result: BaseResult<List<CartProductBean>>): Int {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
+            return EMPTY_DATA
+        } else if (result.data == null || result.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
@@ -138,34 +122,25 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: BaseResult<List<ProductBean>>) {
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<CartProductBean>>) {
         if (isRefresh) {
             onCartProductCheckChange()
-            if (mCartList == null || mCartList!!.isEmpty()) {
-                data?.add(0, EmptyCartProductBean())//空购物车
-            } else {
-                data?.addAll(0, mCartList!!)
-            }
-            data?.add(RecommendProductHeaderBean())//为您推荐
         }
-        data?.addAll(result?.data ?: arrayListOf<ProductBean>())
+        data?.addAll(0, result?.data ?: arrayListOf())
     }
 
-    override fun onRecommendProductItemClick(productBean: ProductBean) {
-        ProductDetailActivity.launch(mActivity, productBean.PRODUCT_ID, productBean.FORM_ID)
-    }
 
     override fun onDelete(pos: Int, cartProductBean: CartProductBean) {
         MessageDialog.Builder(mActivity)
                 .setTitle("提示")
                 .setMessage("确定删除该商品吗?")
-                .setCommit("确定", {
+                .setCommit("确定") {
                     it.dismiss()
                     mPresenter?.deleteCartProduct(pos, cartProductBean)
-                })
-                .setCancel("再想想", {
+                }
+                .setCancel("再想想") {
                     it.dismiss()
-                }).show()
+                }.show()
     }
 
     override fun onCartProductNumChange(cartId: Int, num: Int, callback: (isSuccess: Boolean) -> Unit) {
@@ -173,7 +148,7 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
     }
 
     override fun onCartProductCheckChange() {
-        if (mCartList == null || mCartList!!.isEmpty()) {
+        if (data == null || data!!.isEmpty()) {
             mContentView.tv_cart_total_price.text = "0.0"
             mContentView.tv_confirm.text = "结算(0)"
             return
@@ -181,7 +156,7 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
         var checkedNum = 0
         var totalPrice = 0.0
         var isAllChecked = true
-        mCartList?.forEach {
+        data?.forEach {
             if (it.isChecked) {
                 checkedNum += it.NUM
                 totalPrice += it.SUB_TOTAL.toDouble()
@@ -195,17 +170,10 @@ class CartFragment : ListFragment<BaseResult<List<ProductBean>>, Any>(), CartCal
     }
 
     override fun cartDeleteSuccess(pos: Int, cartProductBean: CartProductBean) {
-        mCartList?.remove(cartProductBean)
         data?.removeAt(pos)
-//        if (data?.isEmpty() == true || data?.get(0) is RecommendProductHeaderBean) {
-//            data?.add(0, EmptyCartProductBean())
-//            setOrNotifyAdapter()
-//        } else {
-//            mAdapter?.notifyItemRemoved(pos)
-//        }
 
-        if (data?.isEmpty() == true || data?.get(0) is RecommendProductHeaderBean) {
-            data?.add(0, EmptyCartProductBean())
+        if (data?.isEmpty() == true) {
+            getProgressLayout().showEmpty()
         }
         setOrNotifyAdapter()
         onCartProductCheckChange()

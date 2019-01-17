@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.ui.BaseActivity
+import com.ipd.rainbow.ui.activity.message.MessageActivity
 import com.ipd.rainbow.ui.fragment.CartFragment
 import com.ipd.rainbow.ui.fragment.LiveFragment
 import com.ipd.rainbow.ui.fragment.MineFragment
@@ -97,6 +98,8 @@ class MainActivity : BaseActivity() {
     private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_store, ll_taxiu, ll_cart, ll_msg, ll_mine) }
     private fun setTabChecked(pos: Int) {
         if (pos == 3) {
+            //消息
+            MessageActivity.launch(mActivity)
             return
         }
 
@@ -190,7 +193,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun switchToStore() {
-        changePage(1)
+        changePage(0)
     }
 
 
