@@ -174,8 +174,8 @@
         android:layout_marginTop="@dimen/cart_operation_height"
         android:background="@drawable/shape_buy_bg"
         android:text="保存"
-        android:paddingBottom="@dimen/small_padding"
-        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/base_padding"
+        android:paddingTop="@dimen/base_padding"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />

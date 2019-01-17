@@ -35,20 +35,22 @@
                 android:textStyle="bold"
                 android:textColor="#573B0C"
                 android:padding="@dimen/base_padding"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/btn_withdraw_deposit"
             style="@style/BaseTextStyle"
-            android:layout_width="160dp"
+            android:layout_width="250dp"
             android:layout_below="@id/rl_account_balance"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-40dp"
-            android:background="@drawable/shape_buy_bg"
+            android:layout_marginTop="-50dp"
+            android:background="@drawable/shape_withdraw_bg"
             android:gravity="center"
+            android:layout_height="50dp"
             android:paddingBottom="@dimen/small_padding"
             android:paddingTop="@dimen/small_padding"
+            android:textSize="16sp"
             android:text="我要提现"
             android:textColor="@color/white" />
 
@@ -67,7 +69,7 @@
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="账户余额"/>
+                android:text="余额账单"/>
             <TextView
                 android:id="@+id/btn_my_bank_card"
                 style="@style/BaseTextStyle"

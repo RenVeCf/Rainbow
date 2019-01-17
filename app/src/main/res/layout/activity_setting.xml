@@ -1,193 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rl_update_password"
+    <LinearLayout
+        android:layout_marginTop="@dimen/small_padding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="@dimen/base_padding">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_update_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="修改登录密码"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
 
-        <ImageView
-            android:id="@+id/iv_to_update_password"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_update_password"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:src="@mipmap/arrow_right" />
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
 
-        <ImageView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_update_password"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="账户与安全"
+                android:textColor="@color/black" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/small_padding"
+                android:src="@mipmap/icon_lock" />
+
+            <ImageView
+                android:id="@+id/iv_to_update_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/ViewLine"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_address"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/iv_to_update_password"
-            android:src="@mipmap/icon_lock" />
-    </RelativeLayout>
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="我的收货地址"
+                android:textColor="@color/black" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/ll_about_us"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于我们"
+                android:textColor="@color/black" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/ViewLine"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_service_phone"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="客服电话"
+                android:textColor="@color/black" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/small_padding"
+                android:src="@mipmap/icon_service_phone" />
+
+            <TextView
+                android:id="@+id/tv_service_phone"
+                style="@style/BaseTextStyle"
+                android:text="400 000 0000"
+                android:textColor="@color/colorPrimaryDark" />
+
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/ViewLine"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_common_problem"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="常见问题"
+                android:textColor="@color/black" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/ViewLine"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_clear_cache"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="清除缓存"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/tv_cache"
+                style="@style/BaseTextStyle"
+                android:textColor="@color/LightGrey" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <View
-        android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_below="@id/rl_update_password"
-        android:background="@color/full_screen_overlay"
-        android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding"/>
-
-    <RelativeLayout
-        android:id="@+id/rl_about_us"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
-
-        <TextView
-            android:id="@+id/tv_about_us"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="关于我们"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:src="@mipmap/arrow_right" />
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_below="@id/rl_about_us"
-        android:background="@color/full_screen_overlay"
-        android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding" />
-
-    <RelativeLayout
-        android:id="@+id/rl_service_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line2"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
-
-        <TextView
-            android:id="@+id/service_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="客服电话"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
-            android:id="@+id/tv_service_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:text="400 000 0000"
-            android:textColor="@color/colorPrimaryDark" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/tv_service_phone"
-            android:src="@mipmap/icon_service_phone" />
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line3"
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_below="@id/rl_service_phone"
-        android:background="@color/full_screen_overlay"
-        android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding" />
-
-    <RelativeLayout
-        android:id="@+id/rl_common_problem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line3"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
-
-        <TextView
-            android:id="@+id/tv_common_problem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="常见问题"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:src="@mipmap/arrow_right" />
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line4"
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_below="@id/rl_common_problem"
-        android:background="@color/full_screen_overlay"
-        android:layout_marginLeft="@dimen/base_padding"
-        android:layout_marginRight="@dimen/base_padding" />
-
-    <RelativeLayout
-        android:id="@+id/rl_clear_cache"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line4"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding">
-
-        <TextView
-            android:id="@+id/tv_clear_cache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清除缓存"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
-
-        <TextView
-            android:id="@+id/tv_cache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/base_text_size" />
-    </RelativeLayout>
-
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/exit_account"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="#EA1C41"
         android:gravity="center"
         android:text="退出当前登录账户"
         android:textColor="@color/white"
         android:textSize="@dimen/base_text_size" />
-</RelativeLayout>
+</LinearLayout>
