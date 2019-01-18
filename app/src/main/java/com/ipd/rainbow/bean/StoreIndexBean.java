@@ -9,7 +9,6 @@ public class StoreIndexBean {
 
     public StoreIndexHeaderBean headerInfo;
     public List<StoreIndexSpecialBean> specialList;
-    public StoreIndexVideoBean recommendVideo;
     public List<ProductBean> productList;
 
     public StoreIndexBean(int type) {
