@@ -28,10 +28,8 @@ class StoreRecyclerView : RecyclerView {
                 if (adapter == null) return gridLayoutManager.spanCount
                 val itemViewType = adapter.getItemViewType(position)
                 return when (itemViewType) {
-                    StoreAdapter.ItemType.HEADER_CAT, StoreAdapter.ItemType.HEADER_DOG, StoreAdapter.ItemType.SECOND_HEADER -> gridLayoutManager.spanCount
+                    StoreAdapter.ItemType.HEADER -> gridLayoutManager.spanCount
                     StoreAdapter.ItemType.SPECIAL -> gridLayoutManager.spanCount
-                    StoreAdapter.ItemType.RECOMMEND_VIDEO -> gridLayoutManager.spanCount
-                    StoreAdapter.ItemType.RECOMMEND_PRODUCT_HEADER -> gridLayoutManager.spanCount
                     else -> 1
                 }
             }

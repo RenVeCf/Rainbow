@@ -8,27 +8,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.rainbow.R
-import com.ipd.rainbow.bean.*
+import com.ipd.rainbow.bean.BannerBean
+import com.ipd.rainbow.bean.ProductBean
+import com.ipd.rainbow.bean.StoreIndexHeaderBean
+import com.ipd.rainbow.bean.StoreIndexSpecialBean
 import com.ipd.rainbow.imageload.ImageLoader
-import com.ipd.rainbow.ui.activity.store.*
+import com.ipd.rainbow.ui.activity.store.ClearanceProductActivity
+import com.ipd.rainbow.ui.activity.store.NewProductListActivity
+import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
+import com.ipd.rainbow.ui.activity.store.ProductListActivity
 import com.ipd.rainbow.ui.activity.store.flashsale.FlashSaleActivity
-import com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity
-import com.ipd.rainbow.ui.activity.store.video.StoreVideoDetailActivity
 import com.ipd.rainbow.ui.activity.store.video.StoreVideoIndexActivity
 import com.ipd.rainbow.utils.BannerUtils
 import com.ipd.rainbow.utils.IndicatorHelper
-import com.ipd.rainbow.utils.StorePetSpecialType
 import kotlinx.android.synthetic.main.item_lable.view.*
 import kotlinx.android.synthetic.main.item_product_grid.view.*
 import kotlinx.android.synthetic.main.item_store_index_special.view.*
-import kotlinx.android.synthetic.main.item_store_recommend_video.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
-import kotlinx.android.synthetic.main.layout_store_cat_header.view.*
-import kotlinx.android.synthetic.main.layout_store_dog_header.view.*
+import kotlinx.android.synthetic.main.layout_store_header.view.*
 import kotlinx.android.synthetic.main.layout_store_home_function.view.*
-import kotlinx.android.synthetic.main.layout_store_menu.view.*
-import kotlinx.android.synthetic.main.layout_store_second_header.view.*
-import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -36,12 +34,8 @@ import kotlinx.android.synthetic.main.layout_store_small_banner.view.*
 class StoreAdapter(val context: Context, private val list: List<Any>?, val onPetTypeChange: (type: Int) -> Unit) : RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
 
     object ItemType {
-        const val HEADER_DOG: Int = 0
-        const val HEADER_CAT: Int = 1
-        const val SECOND_HEADER: Int = 6
+        const val HEADER: Int = 0
         const val SPECIAL: Int = 2
-        const val RECOMMEND_VIDEO: Int = 3
-        const val RECOMMEND_PRODUCT_HEADER: Int = 4
         const val RECOMMEND_PRODUCT: Int = 5
     }
 
@@ -55,23 +49,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         val info = list!![position]
         return when (info) {
             is StoreIndexHeaderBean -> {//头部
-                if ((info).type == StoreIndexBean.DOG) {
-                    ItemType.HEADER_DOG
-                } else {
-                    ItemType.HEADER_CAT
-                }
-            }
-            is StoreSecondIndexHeaderBean -> {//二级页面头部
-                ItemType.SECOND_HEADER
+                ItemType.HEADER
             }
             is StoreIndexSpecialBean -> {//专区
                 ItemType.SPECIAL
-            }
-            is StoreIndexVideoBean -> {//视频
-                ItemType.RECOMMEND_VIDEO
-            }
-            is StoreRecommendProductHeaderBean -> {//推荐商品头部
-                ItemType.RECOMMEND_PRODUCT_HEADER
             }
             else -> {//推荐商品
                 ItemType.RECOMMEND_PRODUCT
@@ -82,23 +63,11 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return when (viewType) {
-            ItemType.HEADER_DOG -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_store_dog_header, parent, false))
-            }
-            ItemType.HEADER_CAT -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_store_cat_header, parent, false))
-            }
-            ItemType.SECOND_HEADER -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_store_second_header, parent, false))
+            ItemType.HEADER -> {
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_store_header, parent, false))
             }
             ItemType.SPECIAL -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_index_special, parent, false))
-            }
-            ItemType.RECOMMEND_VIDEO -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_recommend_video, parent, false))
-            }
-            ItemType.RECOMMEND_PRODUCT_HEADER -> {
-                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_store_recommend_header, parent, false))
             }
             else -> {
                 ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_grid, parent, false))
@@ -111,84 +80,18 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            ItemType.HEADER_DOG -> {
+            ItemType.HEADER -> {
                 val headerInfo = list!![position] as StoreIndexHeaderBean
 
-                holder.itemView.tv_dog_store_menu_title.setTextColor(context.resources.getColor(R.color.colorPrimaryDark))
-                holder.itemView.tv_cat_store_menu_title.setTextColor(context.resources.getColor(R.color.LightGrey))
-                holder.itemView.ll_dog.isSelected = true
-                holder.itemView.ll_dog.setOnClickListener { }
-                holder.itemView.ll_cat.setOnClickListener {
-                    onPetTypeChange(StoreIndexBean.CAT)
-                }
-
-                holder.itemView.fl_small_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 0)
-                }
-                holder.itemView.fl_big_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 1)
-                }
-                holder.itemView.fl_young_dog.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.DOG, headerInfo.areaList, 2)
-                }
-
-                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[0].LOGO, holder.itemView.iv_dog1)
-                holder.itemView.tv_dog1.text = headerInfo.areaList[0].AREA_NAME
-
-                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[1].LOGO, holder.itemView.iv_dog2)
-                holder.itemView.tv_dog2.text = headerInfo.areaList[1].AREA_NAME
-
-                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[2].LOGO, holder.itemView.iv_dog3)
-                holder.itemView.tv_dog3.text = headerInfo.areaList[2].AREA_NAME
-
-
-                setPublishListener(holder, headerInfo)
-            }
-            ItemType.HEADER_CAT -> {
-                val headerInfo = list!![position] as StoreIndexHeaderBean
-
-                holder.itemView.tv_cat_store_menu_title.setTextColor(context.resources.getColor(R.color.colorPrimaryDark))
-                holder.itemView.tv_dog_store_menu_title.setTextColor(context.resources.getColor(R.color.LightGrey))
-                holder.itemView.ll_cat.isSelected = true
-                holder.itemView.ll_cat.setOnClickListener { }
-                holder.itemView.ll_dog.setOnClickListener {
-                    onPetTypeChange(StoreIndexBean.DOG)
-                }
-
-                holder.itemView.fl_young_cat.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.CAT, headerInfo.areaList, 0)
-                }
-                holder.itemView.fl_adult_cat.setOnClickListener {
-                    StoreSecondIndexActivity.launch(context as Activity, StorePetSpecialType.CAT, headerInfo.areaList, 1)
-                }
-
-                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[0].LOGO, holder.itemView.iv_cat1)
-                holder.itemView.tv_cat1.text = headerInfo.areaList[0].AREA_NAME
-
-                ImageLoader.loadNoPlaceHolderImg(context, headerInfo.areaList[1].LOGO, holder.itemView.iv_cat2)
-                holder.itemView.tv_cat2.text = headerInfo.areaList[1].AREA_NAME
-
-
-                setPublishListener(holder, headerInfo)
-
-            }
-            ItemType.SECOND_HEADER -> {
-                val headerInfo = list!![position] as StoreSecondIndexHeaderBean
-
-                holder.itemView.store_banner.adapter = BannerPagerAdapter(context, headerInfo.bannerList)
-                IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                        .setIndicator(context, headerInfo.bannerList.size, holder.itemView.store_banner, holder.itemView.store_banner_indicator, null)
-                if (!holder.itemView.store_banner.isAutoScroll) {
-                    holder.itemView.store_banner.startAutoScroll()
-                }
-
-                holder.itemView.second_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
+                //菜单
+                holder.itemView.store_menu.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList) {
                     //专区
-//                    StoreSpecialActivity.launch(context as Activity, it.TYPE_ID, it.TYPE_NAME)
-                    ProductListActivity.launch(context as Activity, "", shopTypeId = it.TYPE_ID)
-                })
+//                    ProductListActivity.launch(context as Activity, "", shopTypeId = it.TYPE_ID)
+                }
 
 
+
+                setPublishListener(holder, headerInfo)
             }
             ItemType.SPECIAL -> {
                 val specialInfo = list!![position] as StoreIndexSpecialBean
@@ -207,10 +110,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     holder.itemView.lable_flow_layout.addView(lableView)
                 }
                 holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST, {
+                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST) {
                     //商品详情
                     ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
-                })
+                }
                 holder.itemView.ll_special_more.setOnClickListener {
                     //查看更多
 //                    StoreSpecialActivity.launch(context as Activity, specialInfo.TYPE_ID, specialInfo.TYPE_NAME)
@@ -226,17 +129,6 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     bannerBean.FORM_ID = specialInfo.FORM_ID
                     BannerUtils.setBannerItemClick(context, bannerBean)
                 }
-
-            }
-            ItemType.RECOMMEND_VIDEO -> {
-                val recommendInfo = list!![position] as StoreIndexVideoBean
-                holder.itemView.recommend_video_recycler_view.adapter = StoreIndexRecommendVideoAdapter(context, recommendInfo.videoList, {
-                    //视频详情
-                    StoreVideoDetailActivity.launch(context as Activity, it.VIDEO_ID.toString())
-                })
-
-            }
-            ItemType.RECOMMEND_PRODUCT_HEADER -> {
 
             }
             else -> {
@@ -267,38 +159,20 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
             holder.itemView.store_banner.startAutoScroll()
         }
 
-        //下方小banner
-        holder.itemView.store_banner_small.adapter = SmallBannerPagerAdapter(context, headerInfo.smallBannerList)
-        IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
-                .setIndicator(context, headerInfo.smallBannerList.size, holder.itemView.store_banner_small, holder.itemView.small_banner_indicator, null)
-        if (!holder.itemView.store_banner_small.isAutoScroll) {
-            holder.itemView.store_banner_small.startAutoScroll()
-        }
-
-        //专区分类
-        holder.itemView.dog_category_recycler_view.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList, {
-            //专区
-            StoreSpecialActivity.launch(context as Activity, it.TYPE_ID, it.TYPE_NAME)
-        })
-
-        holder.itemView.iv_store_purchase.setOnClickListener {
-            //限时抢购
+        holder.itemView.iv_store_vip.setOnClickListener {
+            //彩虹购VIP
             FlashSaleActivity.launch(context as Activity)
-        }
-        holder.itemView.iv_store_spell.setOnClickListener {
-            //团购
-            GroupPurchaseActivity.launch(context as Activity)
         }
         holder.itemView.iv_store_new.setOnClickListener {
             //上新
             NewProductListActivity.launch(context as Activity)
         }
-        holder.itemView.iv_store_clear.setOnClickListener {
-            //清仓
+        holder.itemView.iv_store_group.setOnClickListener {
+            //团购
             ClearanceProductActivity.launch(context as Activity)
         }
-        holder.itemView.iv_store_video.setOnClickListener {
-            //视频
+        holder.itemView.iv_store_stock.setOnClickListener {
+            //库存
             StoreVideoIndexActivity.launch(context as Activity, headerInfo.type)
         }
     }

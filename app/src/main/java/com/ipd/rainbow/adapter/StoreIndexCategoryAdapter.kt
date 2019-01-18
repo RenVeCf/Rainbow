@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.StoreIndexCategoryBean
+import com.ipd.rainbow.bean.StoreMenuBean
 import com.ipd.rainbow.imageload.ImageLoader
 import kotlinx.android.synthetic.main.item_store_menu_category.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class StoreIndexCategoryAdapter(val context: Context, private val list: List<StoreIndexCategoryBean>?, private val itemClick: (info: StoreIndexCategoryBean) -> Unit) : RecyclerView.Adapter<StoreIndexCategoryAdapter.ViewHolder>() {
+class StoreIndexCategoryAdapter(val context: Context, private val list: List<StoreMenuBean>?, private val itemClick: (info: StoreMenuBean) -> Unit) : RecyclerView.Adapter<StoreIndexCategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -25,8 +26,9 @@ class StoreIndexCategoryAdapter(val context: Context, private val list: List<Sto
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
-        holder.itemView.tv_category_name.text = info.TYPE_NAME
+        holder.itemView.iv_category_img.setImageResource(info.res)
+//        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
+        holder.itemView.tv_category_name.text = info.name
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

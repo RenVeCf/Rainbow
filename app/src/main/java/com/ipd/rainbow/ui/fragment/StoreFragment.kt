@@ -12,7 +12,6 @@ import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.ListFragment
-import com.ipd.rainbow.ui.activity.store.ProductCategoryActivity
 import com.ipd.rainbow.ui.activity.store.StoreSearchActivity
 import com.ipd.rainbow.utils.StoreType
 import com.ipd.rainbow.widget.StoreGiftGetSuccessPopup
@@ -37,10 +36,10 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
                 .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
                     override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
                         if (result.code == 0) {
-                            StoreGiftPopup(mActivity, {
+                            StoreGiftPopup(mActivity) {
                                 //领取礼包
                                 takeItGift(it)
-                            }).showPopupWindow()
+                            }.showPopupWindow()
                         }
                     }
                 })
@@ -74,16 +73,22 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
                                 mStoreIndexInfo.headerInfo = StoreIndexHeaderBean(mType)
                                 //banner
                                 mStoreIndexInfo.headerInfo.bannerList = data.BANNER_LIST
-                                //分类
-                                mStoreIndexInfo.headerInfo.categoryList = data.TYPE_LIST
+                                //菜单
+                                val storeMenu = listOf(
+                                        StoreMenuBean(0, R.mipmap.menu_rainbow_vip, "彩虹会员"),
+                                        StoreMenuBean(0, R.mipmap.menu_group_purchase, "超值团购"),
+                                        StoreMenuBean(0, R.mipmap.menu_bag, "时尚包包"),
+                                        StoreMenuBean(0, R.mipmap.menu_headgear, "精品首饰"),
+                                        StoreMenuBean(0, R.mipmap.menu_food, "休闲食品"),
+                                        StoreMenuBean(0, R.mipmap.menu_kitchen, "品质厨房"),
+                                        StoreMenuBean(0, R.mipmap.menu_bed, "床上用品"),
+                                        StoreMenuBean(0, R.mipmap.menu_life_use, "生活日用")
+                                )
+                                mStoreIndexInfo.headerInfo.categoryList = storeMenu
                                 //区域分区
                                 mStoreIndexInfo.headerInfo.areaList = data.AREA_LIST
-                                //小banner
-                                mStoreIndexInfo.headerInfo.smallBannerList = data.SEASON_BANNER_LIST
                                 //专区
                                 mStoreIndexInfo.specialList = data.PRODUCT_LIST.map { it.TYPE_DATA }
-                                //推荐视频
-                                mStoreIndexInfo.recommendVideo = StoreIndexVideoBean(data.VIDEO_LIST)
 
                                 getParentListData(isRefresh)
                             } else {
@@ -119,11 +124,8 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
         mContentView.iv_scroll_top.setOnClickListener {
             recycler_view.smoothScrollToPosition(0)
         }
-        mHeaderView.tv_search.setOnClickListener {
+        mHeaderView.ll_search.setOnClickListener {
             StoreSearchActivity.launch(mActivity)
-        }
-        mHeaderView.iv_category.setOnClickListener {
-            ProductCategoryActivity.launch(mActivity)
         }
 
         mContentView.iv_scroll_kefu.setOnClickListener {
@@ -152,11 +154,11 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     private var mAdapter: StoreAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = StoreAdapter(mActivity, data, { type ->
+            mAdapter = StoreAdapter(mActivity, data) { type ->
                 mType = type
                 isCreate = true
                 onRefresh()
-            })
+            }
             recycler_view.adapter = mAdapter
         } else {
             mAdapter?.notifyDataSetChanged()
@@ -167,8 +169,6 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
         if (isRefresh) {
             data?.add(mStoreIndexInfo.headerInfo)
             data?.addAll(mStoreIndexInfo.specialList)
-            data?.add(mStoreIndexInfo.recommendVideo)
-            data?.add(StoreRecommendProductHeaderBean())
         }
         data?.addAll(result?.data ?: arrayListOf())
     }
