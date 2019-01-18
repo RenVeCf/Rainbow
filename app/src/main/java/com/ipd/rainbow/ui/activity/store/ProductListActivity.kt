@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.rainbow.R
-import com.ipd.rainbow.adapter.ProductAdapter
 import com.ipd.rainbow.bean.ProductExpertScreenBean
 import com.ipd.rainbow.bean.ScreenResult
 import com.ipd.rainbow.platform.global.GlobalParam
@@ -96,6 +95,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 
     private lateinit var mFragment: ProductListFragment
     override fun loadData() {
+
         mFragment = ProductListFragment.newInstance()
         mFragment.setProductScreenView(this)
         supportFragmentManager.beginTransaction().replace(R.id.fl_container, mFragment).commit()
@@ -103,11 +103,13 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 
     private val mInflater: LayoutInflater by lazy { LayoutInflater.from(mActivity) }
     override fun initListener() {
+
         iv_back.setOnClickListener { finish() }
-        iv_show_type.setOnClickListener {
-            val curShowType = mFragment.switchShowType()
-            iv_show_type.setImageResource(if (curShowType == ProductAdapter.ItemType.LIST) R.mipmap.product_list_list else R.mipmap.product_list_grid)
-        }
+//        iv_show_type.setOnClickListener {
+//
+//            val curShowType = mFragment.switchShowType()
+//            iv_show_type.setImageResource(if (curShowType == ProductAdapter.ItemType.LIST) R.mipmap.product_list_list else R.mipmap.product_list_grid)
+//        }
 
         screenLayout?.setSortTypeChangeListener(object : ScreenLayout.OnSortTypeChangeListener {
             override fun onChange(sortType: ScreenLayout.ScreenType) {
@@ -180,12 +182,10 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                         mMinPrice = if (!TextUtils.isEmpty(minPrice)) minPrice.toFloat() else 0f
                                         mMaxPrice = if (!TextUtils.isEmpty(maxPrice)) maxPrice.toFloat() else 0f
 
-                                        if (mMinPrice > mMaxPrice){
-                                            toastShow("最低价格不能大于最高价格")
-                                            return@setOnClickListener
-                                        }
-
-
+//                                        if (mMinPrice > mMaxPrice){
+//                                            toastShow("最低价格不能大于最高价格")
+//                                            return@setOnClickListener
+//                                        }
                                         for (index in 1..cl_screen.childCount) {
                                             if (cl_screen.getChildAt(index) !is ProductExpertScreenLayout) {
                                                 continue
@@ -200,19 +200,15 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                             }
                                         }
                                         LogUtils.e("tag", "mScreenMap:$mScreenMap")
-
                                         //切换图标及刷新页面
                                         screenLayout?.onExpertSort()
                                         drawer_layout.closeDrawer(Gravity.END)
                                     }
-
                                     tv_screen_reset.setOnClickListener {
                                         //重置
                                         onReset()
                                     }
-
                                     drawer_layout.openDrawer(Gravity.END)
-
                                 } else {
                                     toastShow(result.msg)
                                 }
@@ -221,7 +217,6 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
             } else {
                 drawer_layout.openDrawer(Gravity.END)
             }
-
         }
 
 //        val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -30,7 +30,7 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
         const val GRID = 1
     }
 
-    var mType: Int = ItemType.LIST
+    var mType: Int = ItemType.GRID
 
     fun switchShowType(): Int {
         mType = if (mType == ItemType.LIST) ItemType.GRID else ItemType.LIST

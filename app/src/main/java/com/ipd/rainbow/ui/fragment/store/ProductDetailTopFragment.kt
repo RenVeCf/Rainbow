@@ -6,23 +6,15 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.TextView
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.BannerPagerAdapter
 import com.ipd.rainbow.adapter.MediaPictureAdapter
 import com.ipd.rainbow.adapter.PackageProductAdapter
 import com.ipd.rainbow.bean.BannerBean
-import com.ipd.rainbow.bean.BaseResult
-import com.ipd.rainbow.bean.ExchangeBean
 import com.ipd.rainbow.bean.ProductDetailBean
 import com.ipd.rainbow.imageload.ImageLoader
-import com.ipd.rainbow.platform.global.GlobalParam
-import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
-import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.BaseUIFragment
 import com.ipd.rainbow.ui.activity.PictureAndVideoPreviewActivity
 import com.ipd.rainbow.ui.activity.PictureLookActivity
@@ -30,7 +22,6 @@ import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
 import com.ipd.rainbow.utils.IndicatorHelper
 import com.ipd.rainbow.utils.StoreType
 import com.ipd.rainbow.utils.StringUtils
-import com.ipd.rainbow.widget.ProductCouponDialog
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
 import kotlinx.android.synthetic.main.item_product_evaluate.view.*
 import kotlinx.android.synthetic.main.layout_option_package.view.*
@@ -123,20 +114,20 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
         mContentView.tv_ship_address.text = mProductInfo.SEND_PROV + mProductInfo.SEND_CITY
 
-
-        //优惠券
-        val layoutInflater = LayoutInflater.from(mActivity)
-        if (mProductInfo.COUPON_LIST == null || mProductInfo.COUPON_LIST.isEmpty()) {
-            mContentView.ll_coupon.visibility = View.GONE
-        } else {
-            mContentView.ll_coupon.visibility = View.VISIBLE
-            mProductInfo.COUPON_LIST.forEachIndexed { index, info ->
-                if (index >= 3) return@forEachIndexed
-                val couponLableView = layoutInflater.inflate(R.layout.item_product_coupon_lable, mContentView.ll_coupon_lable, false) as TextView
-                couponLableView.text = "满${info.SATISFY_PRICE}减${info.PRICE}"
-                mContentView.ll_coupon_lable.addView(couponLableView)
-            }
-        }
+//
+//        //优惠券
+//        val layoutInflater = LayoutInflater.from(mActivity)
+//        if (mProductInfo.COUPON_LIST == null || mProductInfo.COUPON_LIST.isEmpty()) {
+//            mContentView.ll_coupon.visibility = View.GONE
+//        } else {
+//            mContentView.ll_coupon.visibility = View.VISIBLE
+//            mProductInfo.COUPON_LIST.forEachIndexed { index, info ->
+//                if (index >= 3) return@forEachIndexed
+//                val couponLableView = layoutInflater.inflate(R.layout.item_product_coupon_lable, mContentView.ll_coupon_lable, false) as TextView
+//                couponLableView.text = "满${info.SATISFY_PRICE}减${info.PRICE}"
+//                mContentView.ll_coupon_lable.addView(couponLableView)
+//            }
+//        }
 
 
         //评价
@@ -187,22 +178,22 @@ class ProductDetailTopFragment : BaseUIFragment() {
     }
 
     override fun initListener() {
-        mContentView.ll_coupon.setOnClickListener {
-            //领券
-            ApiManager.getService().storeProductCoupon(GlobalParam.getUserIdOrJump(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<List<ExchangeBean>>>(mActivity, true) {
-                        override fun _onNext(result: BaseResult<List<ExchangeBean>>) {
-                            if (result.code == 0) {
-                                val couponDialog = ProductCouponDialog(mActivity)
-                                couponDialog.setData(result.data)
-                                couponDialog.show()
-                            } else {
-                                toastShow(result.msg)
-                            }
-                        }
-                    })
-        }
+//        mContentView.ll_coupon.setOnClickListener {
+//            //领券
+//            ApiManager.getService().storeProductCoupon(GlobalParam.getUserIdOrJump(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
+//                    .compose(RxScheduler.applyScheduler())
+//                    .subscribe(object : Response<BaseResult<List<ExchangeBean>>>(mActivity, true) {
+//                        override fun _onNext(result: BaseResult<List<ExchangeBean>>) {
+//                            if (result.code == 0) {
+//                                val couponDialog = ProductCouponDialog(mActivity)
+//                                couponDialog.setData(result.data)
+//                                couponDialog.show()
+//                            } else {
+//                                toastShow(result.msg)
+//                            }
+//                        }
+//                    })
+//        }
 
     }
 

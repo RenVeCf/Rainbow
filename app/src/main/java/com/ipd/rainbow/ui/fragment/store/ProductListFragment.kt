@@ -95,7 +95,8 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
                 //商品详情
                 ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
             })
-            recycler_view.layoutManager = LinearLayoutManager(mActivity)
+            //recycler_view.layoutManager = LinearLayoutManager(mActivity)
+            recycler_view.layoutManager = GridLayoutManager(mActivity, 2)
             recycler_view.adapter = mAdapter
         } else {
             mAdapter?.notifyDataSetChanged()
