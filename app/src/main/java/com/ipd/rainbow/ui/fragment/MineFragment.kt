@@ -9,6 +9,7 @@ import com.ipd.rainbow.ui.activity.coupon.DiscountCouponActivity
 import com.ipd.rainbow.ui.activity.coupon.MyIntegralActivity
 import com.ipd.rainbow.ui.activity.group.GroupBookingActivity
 import com.ipd.rainbow.ui.activity.mine.UserInfoActivity
+import com.ipd.rainbow.ui.activity.mine.VipActivity
 import com.ipd.rainbow.ui.activity.order.MyOrderActivity
 import com.ipd.rainbow.ui.activity.order.ReturnMoneyCommodityActivity
 import com.ipd.rainbow.ui.activity.setting.SettingActivity
@@ -45,6 +46,10 @@ class MineFragment : BaseUIFragment() {
         }
         mContentView.rl_all_order.setOnClickListener {
             startOrder(0)
+        }
+        mContentView.ll_vip.setOnClickListener {
+            //vip
+            VipActivity.launch(mActivity)
         }
         mContentView.ll_group_purchase.setOnClickListener {
             //我的拼团
