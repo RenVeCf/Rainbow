@@ -27,29 +27,40 @@
         app:spanCount="4" />
 
 
-    <FrameLayout
-        android:id="@+id/fl_special"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_new_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_padding"
         app:layout_constraintTop_toBottomOf="@id/store_menu">
 
+        <include layout="@layout/item_store_today_new" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_sales_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/cl_new_product">
+
+        <include layout="@layout/item_store_today_sales" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_marginBottom="@dimen/small_padding"
+        android:id="@+id/fl_special"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/cl_sales_product">
+
         <include layout="@layout/layout_store_home_function" />
 
 
     </FrameLayout>
-
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_special">
-
-        <include layout="@layout/layout_store_small_banner" />
-
-    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

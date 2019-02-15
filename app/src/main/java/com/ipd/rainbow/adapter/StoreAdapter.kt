@@ -24,6 +24,8 @@ import com.ipd.rainbow.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.item_lable.view.*
 import kotlinx.android.synthetic.main.item_product_grid.view.*
 import kotlinx.android.synthetic.main.item_store_index_special.view.*
+import kotlinx.android.synthetic.main.item_store_today_new.view.*
+import kotlinx.android.synthetic.main.item_store_today_sales.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
 import kotlinx.android.synthetic.main.layout_store_header.view.*
 import kotlinx.android.synthetic.main.layout_store_home_function.view.*
@@ -90,45 +92,66 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
 
 
+                val productList = ArrayList<ProductBean>()
+                for (index in 0 until 10) {
+                    val productBean = ProductBean()
+                    productBean.LOGO = "/upload/product/20190125/cklfxara5ldbd0yggqvk0vfnfxzqnu5k.jpg"
+                    productBean.PROCUCT_NAME = "测试1"
+                    productBean.CURRENT_PRICE = "590.00"
+                    productList.add(productBean)
+                }
+                holder.itemView.new_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                holder.itemView.new_product_recycler_view.adapter = StoreNewProductAdapter(context, productList) {
+
+                }
+
+                holder.itemView.sales_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                holder.itemView.sales_product_recycler_view.adapter = StoreNewProductAdapter(context, productList) {
+
+                }
+
+
 
                 setPublishListener(holder, headerInfo)
             }
             ItemType.SPECIAL -> {
                 val specialInfo = list!![position] as StoreIndexSpecialBean
-                holder.itemView.tv_special_name.text = specialInfo.TYPE_NAME + "专区"
-                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.ICON, holder.itemView.iv_special_icon)
-                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
 
-                holder.itemView.lable_flow_layout.removeAllViews()
-                specialInfo.BRAND_LIST.forEach { info ->
-                    val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.lable_flow_layout, false)
-                    lableView.tv_lable_name.text = info.BRAND_NAME
-                    lableView.setOnClickListener {
-                        //商品列表
-                        ProductListActivity.launch(context as Activity, searchKey = info.BRAND_NAME)
-                    }
-                    holder.itemView.lable_flow_layout.addView(lableView)
-                }
-                holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST) {
-                    //商品详情
-                    ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
-                }
-                holder.itemView.ll_special_more.setOnClickListener {
-                    //查看更多
-//                    StoreSpecialActivity.launch(context as Activity, specialInfo.TYPE_ID, specialInfo.TYPE_NAME)
-                    ProductListActivity.launch(context as Activity, specialInfo.TYPE_NAME, areaTypeId = specialInfo.TYPE_ID)
-                }
 
-                holder.itemView.iv_special_banner.setOnClickListener {
-                    val bannerBean = BannerBean()
-                    bannerBean.CATEGORY = specialInfo.KIND
-                    bannerBean.URL = specialInfo.URL
-                    bannerBean.CONTENT = specialInfo.CONTENT
-                    bannerBean.PRODUCT_ID = specialInfo.PRODUCT_ID
-                    bannerBean.FORM_ID = specialInfo.FORM_ID
-                    BannerUtils.setBannerItemClick(context, bannerBean)
-                }
+//                holder.itemView.tv_special_name.text = specialInfo.TYPE_NAME + "专区"
+//                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.ICON, holder.itemView.iv_special_icon)
+//                ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
+//
+//                holder.itemView.lable_flow_layout.removeAllViews()
+//                specialInfo.BRAND_LIST.forEach { info ->
+//                    val lableView = LayoutInflater.from(context).inflate(R.layout.item_lable, holder.itemView.lable_flow_layout, false)
+//                    lableView.tv_lable_name.text = info.BRAND_NAME
+//                    lableView.setOnClickListener {
+//                        //商品列表
+//                        ProductListActivity.launch(context as Activity, searchKey = info.BRAND_NAME)
+//                    }
+//                    holder.itemView.lable_flow_layout.addView(lableView)
+//                }
+//                holder.itemView.special_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+//                holder.itemView.special_product_recycler_view.adapter = SpecialProductAdapter(context, specialInfo.PRODUCT_LIST) {
+//                    //商品详情
+//                    ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
+//                }
+//                holder.itemView.ll_special_more.setOnClickListener {
+//                    //查看更多
+////                    StoreSpecialActivity.launch(context as Activity, specialInfo.TYPE_ID, specialInfo.TYPE_NAME)
+//                    ProductListActivity.launch(context as Activity, specialInfo.TYPE_NAME, areaTypeId = specialInfo.TYPE_ID)
+//                }
+//
+//                holder.itemView.iv_special_banner.setOnClickListener {
+//                    val bannerBean = BannerBean()
+//                    bannerBean.CATEGORY = specialInfo.KIND
+//                    bannerBean.URL = specialInfo.URL
+//                    bannerBean.CONTENT = specialInfo.CONTENT
+//                    bannerBean.PRODUCT_ID = specialInfo.PRODUCT_ID
+//                    bannerBean.FORM_ID = specialInfo.FORM_ID
+//                    BannerUtils.setBannerItemClick(context, bannerBean)
+//                }
 
             }
             else -> {

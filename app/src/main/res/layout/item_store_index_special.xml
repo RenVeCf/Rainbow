@@ -1,108 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/StoreCardStyle">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/small_padding"
+    android:background="@color/white">
 
-    <android.support.constraint.ConstraintLayout
+    <ImageView
+        android:id="@+id/iv_special_banner"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/special_banner"
+        app:layout_constraintDimensionRatio="1:0.44"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_special_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/base_padding">
-
-        <View
-            style="@style/ViewLine"
-            android:layout_width="45dp"
-            android:layout_height="3px"
-            android:layout_marginRight="@dimen/base_padding"
-            android:background="#EFEFEF"
-            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
-            app:layout_constraintRight_toLeftOf="@id/iv_special_icon"
-            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
-
-        <ImageView
-            android:id="@+id/iv_special_icon"
-            android:layout_width="22dp"
-            android:layout_height="13dp"
-            android:layout_marginRight="@dimen/small_padding"
-            android:src="@mipmap/special_dog_food"
-            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
-            app:layout_constraintRight_toLeftOf="@id/tv_special_name"
-            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
+        android:background="@mipmap/special_name_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/iv_special_banner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_special_banner">
 
         <TextView
-            android:id="@+id/tv_special_name"
-            style="@style/TitleTextStyle"
-            android:text="狗粮专区"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            style="@style/BaseTextStyle"
+            android:text="时尚包包"
+            android:textColor="#FF365D"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <View
-            style="@style/ViewLine"
-            android:layout_width="45dp"
-            android:layout_height="3px"
-            android:layout_marginLeft="@dimen/base_padding"
-            android:background="#EFEFEF"
-            app:layout_constraintBottom_toBottomOf="@id/tv_special_name"
-            app:layout_constraintLeft_toRightOf="@id/tv_special_name"
-            app:layout_constraintTop_toTopOf="@id/tv_special_name" />
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_marginTop="3dp"
+            android:text="你想要的包包，这里都有"
+            android:textColor="#666666" />
 
-        <com.ipd.rainbow.widget.FlowLayout
-            android:id="@+id/lable_flow_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/base_padding"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_special_name" />
+    </LinearLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ll_sales_product_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="4dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ll_sales_product_right"
+        app:layout_constraintTop_toBottomOf="@id/ll_special_info">
 
         <com.ipd.rainbow.widget.RoundImageView
-            android:id="@+id/iv_special_banner"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/store_banner_height_small"
-            android:layout_marginTop="@dimen/small_padding"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/store_special_banner"
-            app:corner_radius="@dimen/base_radius"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lable_flow_layout"
+            android:id="@+id/iv_special_product_left"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/special_product_left"
+            app:border_color="@color/white"
+            app:border_width="2dp"
+            app:corner_radius="3dp"
+            app:layout_constraintDimensionRatio="1:1.15"
             app:type="round" />
 
-        <com.ipd.rainbow.widget.NotVerticalScrollRecyclerView
-            android:id="@+id/special_product_recycler_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
-            app:layout_constraintTop_toBottomOf="@id/iv_special_banner" />
+        <TextView
+            android:id="@+id/tv_special_product_left_name"
+            style="@style/BaseTextStyle"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
+            android:text="PINKO品高女包 2018秋冬新色小酒神飞鸟包燕子包"
+            app:layout_constraintTop_toBottomOf="@id/iv_special_product_left" />
 
-
-        <LinearLayout
-            android:id="@+id/ll_special_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
-            android:background="@drawable/shape_store_special_more_bg"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="4dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/special_product_recycler_view">
-
-            <TextView
-                style="@style/SmallTextStyle"
-                android:text="查看更多"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:src="@mipmap/arrow_right_primary_dark" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_special_product_left_price"
+            style="@style/BaseTextStyle"
+            android:text="￥1300"
+            android:textColor="#E3002B"
+            app:layout_constraintTop_toBottomOf="@id/tv_special_product_left_name" />
 
 
     </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ll_sales_product_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="@dimen/small_padding"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/ll_sales_product_left"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ll_sales_product_left">
+
+        <com.ipd.rainbow.widget.RoundImageView
+            android:id="@+id/iv_special_product_right"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/special_product_right"
+            app:border_color="@color/white"
+            app:border_width="2dp"
+            app:corner_radius="3dp"
+            app:layout_constraintDimensionRatio="1:1.15"
+            app:type="round" />
+
+        <TextView
+            android:id="@+id/tv_special_product_right_name"
+            style="@style/BaseTextStyle"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
+            android:text="普拉达PRADA格纹皮质徽章链条单肩女包1BD107"
+            app:layout_constraintTop_toBottomOf="@id/iv_special_product_right" />
+
+        <TextView
+            android:id="@+id/tv_special_product_right_price"
+            style="@style/BaseTextStyle"
+            android:text="￥1300"
+            android:textColor="#E3002B"
+            app:layout_constraintTop_toBottomOf="@id/tv_special_product_right_name" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_special_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="4dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_sales_product_left">
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:text="了解更多" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/arrow_right_gray_icon" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

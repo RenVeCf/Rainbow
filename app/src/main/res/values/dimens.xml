@@ -27,7 +27,7 @@
     <dimen name="package_product_img_height">110dp</dimen>
     <dimen name="list_product_img_height">95dp</dimen>
     <dimen name="list_product_img_width">95dp</dimen>
-    <dimen name="special_product_img_height">100dp</dimen>
+    <dimen name="special_product_img_height">112dp</dimen>
     <dimen name="cart_operation_height">30dp</dimen>
     <dimen name="store_recommend_video_height">80dp</dimen>
     <dimen name="evaluate_avatar_size">40dp</dimen>

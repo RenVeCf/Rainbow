@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:id="@+id/ll_new_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_padding">
+
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="每日上新"
+            android:textColor="#EA1C41"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"
+            android:background="#DADADA" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginRight="@dimen/small_padding"
+            android:text="每天"
+            android:textColor="#666666" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:background="@drawable/shape_time_bg"
+            android:padding="3dp"
+            android:text="12"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text=":"
+            android:textColor="#666666" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:background="@drawable/shape_time_bg"
+            android:padding="3dp"
+            android:text="30"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="1"
+            android:text="准时上新"
+            android:textColor="#666666" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginRight="@dimen/small_padding"
+                android:text="更多"
+                android:textColor="#666666" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.ipd.rainbow.widget.NotVerticalScrollRecyclerView
+        android:id="@+id/new_product_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@id/ll_new_top" />
+
+
+</android.support.constraint.ConstraintLayout>
