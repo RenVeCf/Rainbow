@@ -60,7 +60,7 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
 
             })
             ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.image_view)
-            holder.itemView.tv_commodity_name.text = info.PROCUCT_NAME
+            holder.itemView.tv_commodity_name.text = info.NAME
 
             holder.itemView.product_star.star = info.star
             holder.itemView.product_star.setOnRatingChangeListener {
@@ -160,7 +160,7 @@ class EvaluateAdapter(val context: Context, private val data: List<ProductBean>?
             }
 
             picStr = StringUtils.fixedPicStr(picStr)
-            list.add(UploadProductEvaluateBean(info.ORDER_DETAIL_ID, content, picStr, 0))
+            list.add(UploadProductEvaluateBean(info.PRODUCT_ID, content, picStr, 0))
         }
         callback.invoke("", list)
     }

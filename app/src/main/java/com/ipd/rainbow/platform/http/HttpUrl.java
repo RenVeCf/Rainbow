@@ -4,13 +4,10 @@ package com.ipd.rainbow.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-        String BASE_URL = "https://api.csjc19.com/";
-//        String BASE_URL = "http://192.168.0.111:8080/";
-//        String BASE_URL = "http://121.199.8.244:9386/";
-//    String BASE_URL = "http://121.199.8.244:9376/";
+    String BASE_URL = "http://121.199.8.244:9391/";
     String WEB_URL = "https://manage.csjc19.com:8080/";
-    String SERVER_URL = BASE_URL + "TX/";
-    String IMAGE_URL = "https://pic.csjc19.com/";
+    String SERVER_URL = BASE_URL + "Rainbow/";
+    String IMAGE_URL = BASE_URL;
     String VIDEO_URL = "https://video.csjc19.com/";
     String APK_DOWNLOAD_URL = BASE_URL + "taxiu/download.html";
 
@@ -19,8 +16,6 @@ public interface HttpUrl {
     String REGISTER = "app_user/register.do";
     String LOGIN = "app_user/login.do";
     String PHONE_LOGIN = "app_user/verifyCode.do";
-    String PHONE_LOGIN_SMS_CODE = "app_user/sendCode2.do";
-    String BINDING_PHONE_SMS_CODE = "app_user/bindCode.do";
     String BINDING_PHONE = "app_user/bind.do";
     String BINDING_PHONE_SKIP_USER = "app_user/toBind.do";
     String SKIP_BINDING_PHONE = "app_user/jumpBind.do";
@@ -45,7 +40,7 @@ public interface HttpUrl {
     String STORE_GIFT_TAKE_IT = "app_shop/toGift.do";
     String STORE_INDEX = "app_shop/home.do";
     String STORE_SECOND_INDEX = "app_shop/typeArea.do";
-    String STORE_GUESS_LIST = "app_shop/likeList.do";
+    String STORE_GUESS_LIST = "app_shop/getList.do";
     String STORE_PARENT_SHOP_TYPE = "app_shop_type/getList.do";
     String STORE_CHILD_SHOP_TYPE = "app_shop/shopType2.do";
     String STORE_BRAND_LIST = "app_brand/getList.do";
@@ -256,7 +251,6 @@ public interface HttpUrl {
     String SHARE_PRODUCT = "app_product/share.do";
     String SHARE_USER = "app_user/share.do";
     String SHARE_VIDEO = "app_tide_video/share.do";
-
 
 
     //html5

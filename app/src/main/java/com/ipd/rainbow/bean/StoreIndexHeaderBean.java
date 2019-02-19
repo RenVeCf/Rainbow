@@ -3,14 +3,11 @@ package com.ipd.rainbow.bean;
 import java.util.List;
 
 public class StoreIndexHeaderBean {
-    public int type;
     public List<BannerBean> bannerList;
+    public List<ProductBean> todayNew;
+    public List<ProductBean> todaySale;
     public List<StoreMenuBean> categoryList;
-    public List<StoreAreaBean> areaList;
+//    public List<StoreAreaBean> areaList;
 
 
-    public StoreIndexHeaderBean(int type) {
-        this.type = type;
-
-    }
 }

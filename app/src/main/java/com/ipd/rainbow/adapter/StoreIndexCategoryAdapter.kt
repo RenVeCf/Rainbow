@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.rainbow.R
-import com.ipd.rainbow.bean.StoreIndexCategoryBean
 import com.ipd.rainbow.bean.StoreMenuBean
 import com.ipd.rainbow.imageload.ImageLoader
 import kotlinx.android.synthetic.main.item_store_menu_category.view.*
@@ -26,9 +25,8 @@ class StoreIndexCategoryAdapter(val context: Context, private val list: List<Sto
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-        holder.itemView.iv_category_img.setImageResource(info.res)
-//        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
-        holder.itemView.tv_category_name.text = info.name
+        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_category_img)
+        holder.itemView.tv_category_name.text = info.NAME
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -76,11 +76,11 @@ class BindingPhoneActivity : BaseUIActivity(), AccountPresenter.IBindingPhoneVie
 
         tv_get_sms.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone, "1")
+            mPresenter?.getSmsCode(phone, "5")
         }
         tv_voice_code.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone, "2")
+            mPresenter?.getSmsCode(phone, "5")
         }
         btn_login.setOnClickListener {
             val phone = et_phone.text.toString().trim()

@@ -27,7 +27,7 @@ class ConfirmOrderProductAdapter(val context: Context, private val list: List<Ca
         val info = list!![position]
 
         ImageLoader.loadNoPlaceHolderImg(context, info.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
-        holder.itemView.tv_cart_product_name.text = info.PRODUCT.PROCUCT_NAME
+        holder.itemView.tv_cart_product_name.text = info.PRODUCT.NAME
         holder.itemView.tv_cart_product_spec.text = info.PRODUCT.TASTE
         holder.itemView.tv_cart_product_price.text = "￥" + info.PRODUCT.CURRENT_PRICE
         holder.itemView.tv_product_num.text = "数量：x" + info.NUM

@@ -36,11 +36,11 @@ class ClearanceProductAdapter(val context: Context, private val mType: Int, priv
         holder.itemView.tv_product_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
-        holder.itemView.tv_cart_product_name.text = info.PROCUCT_NAME
+        holder.itemView.tv_cart_product_name.text = info.NAME
         holder.itemView.tv_price.text = info.CURRENT_PRICE
-        holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
+        holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
         //临期清仓显示有效期
-        holder.itemView.tv_product_sales.text = if (mType == 2) "有效期至 ${info.END_TIME}" else "库存 ${info.STOCK}"
+//        holder.itemView.tv_product_sales.text = if (mType == 2) "有效期至 ${info.END_TIME}" else "库存 ${info.STOCK}"
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -1,32 +1,40 @@
 package com.ipd.rainbow.bean;
 
 public class ProductBean {
-    public boolean isNew = false;
-    public int ORDER_ID;
-    public int ORDER_DETAIL_ID;
+
+
+    /**
+     * USER_ID : 1
+     * PRODUCT_ID : 2
+     * FORM_ID : 3
+     * NAME : 商品1
+     * LOGO : /upload/default/product.png
+     * KIND : 2
+     * CURRENT_PRICE : 85.5
+     * PRICE : 100
+     * DISCOUNT : 0.9
+     * SALE : 0
+     * ASSESS : 0
+     * LEVEL : 
+     */
+
+    public int USER_ID;
     public int PRODUCT_ID;
-    public String PROCUCT_NAME;
-    public String PRODUCT_NUMBER;
-    public String BRAND;
-    public String LOGO;
     public int FORM_ID;
-    public int REPLY;
-    public String NET_CONTENT;
+    public String NAME;
+    public String LOGO;
+    public int KIND;
     public String CURRENT_PRICE;
     public String PRICE;
-    public String REFER_PRICE;
-    public String DEAL_PRICE;
-    public String FORM_GROUP_PRICE;
-    public String STOCK;
-    public String START_TIME;
-    public String END_TIME;
-    public String BUYNUM;
-    public String BUY_NUM;
-    public String FORM_BUYNUM;
-    public String TASTE;
-    public int KIND;
-    public int STATUS;
+    public String DISCOUNT;
+    public int SALE;
+    public int ASSESS;
+    public String LEVEL;
+
+    //暂时占位
+    public boolean isNew;
     public float star;
+    public String TASTE;
 
     public String getKindStr() {
         String str = "";

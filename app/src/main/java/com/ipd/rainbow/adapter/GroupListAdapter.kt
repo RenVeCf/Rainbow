@@ -46,7 +46,7 @@ class GroupListAdapter(val context: Context, private val data: List<GroupBean>?,
         holder.itemView.tv_confirm.setOnClickListener {
             val dialog = ShareDialog(context)
             dialog.setShareDialogOnClickListener(ShareDialogClick()
-                    .setShareTitle(info.PRODUCT_LIST[0].PROCUCT_NAME)
+                    .setShareTitle(info.PRODUCT_LIST[0].NAME)
                     .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
                     .setShareLogoUrl(HttpUrl.IMAGE_URL + info.PRODUCT_LIST[0].LOGO)
                     .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)

@@ -60,21 +60,21 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             //商品信息
             final ProductBean info = data.get(position);
             ImageLoader.loadNoPlaceHolderImg(mContext, info.LOGO, holder.iv_commodity_head);
-            holder.tv_commodity_name.setText(info.PROCUCT_NAME);
+            holder.tv_commodity_name.setText(info.NAME);
             holder.tv_commodity_explain.setText(info.TASTE);
             holder.tv_commodity_price.setText("￥" + info.CURRENT_PRICE);
-            holder.tv_commodity_num.setText("数量：x" + info.BUY_NUM);
+            holder.tv_commodity_num.setText("数量：x" + info.SALE);
 
-            if (info.STATUS == Order.PAYMENT) {
-                holder.tv_apply_return.setVisibility(View.GONE);
-            } else {
-                holder.tv_apply_return.setVisibility(View.VISIBLE);
-            }
+//            if (info.STATUS == Order.PAYMENT) {
+//                holder.tv_apply_return.setVisibility(View.GONE);
+//            } else {
+//                holder.tv_apply_return.setVisibility(View.VISIBLE);
+//            }
 
             holder.tv_apply_return.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RequestReturnMoneyActivity.Companion.launch((Activity) mContext, info.ORDER_ID, info.ORDER_DETAIL_ID);
+//                    RequestReturnMoneyActivity.Companion.launch((Activity) mContext, info.ORDER_ID, info.ORDER_DETAIL_ID);
                 }
             });
         }

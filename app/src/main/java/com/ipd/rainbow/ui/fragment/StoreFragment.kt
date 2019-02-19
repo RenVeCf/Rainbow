@@ -13,7 +13,6 @@ import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.ListFragment
 import com.ipd.rainbow.ui.activity.store.StoreSearchActivity
-import com.ipd.rainbow.utils.StoreType
 import com.ipd.rainbow.widget.StoreGiftGetSuccessPopup
 import com.ipd.rainbow.widget.StoreGiftPopup
 import kotlinx.android.synthetic.main.fragment_store.view.*
@@ -28,22 +27,22 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     private lateinit var mStoreIndexInfo: StoreIndexBean
 
 
-    override fun loadDataWhenVisible() {
-        super.loadDataWhenVisible()
-        //商城礼包
-        ApiManager.getService().storeGift(GlobalParam.getUserIdOrJump())
-                .compose(RxScheduler.applyScheduler())
-                .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
-                    override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
-                        if (result.code == 0) {
-                            StoreGiftPopup(mActivity) {
-                                //领取礼包
-                                takeItGift(it)
-                            }.showPopupWindow()
-                        }
-                    }
-                })
-    }
+//    override fun loadDataWhenVisible() {
+//        super.loadDataWhenVisible()
+//        //商城礼包
+//        ApiManager.getService().storeGift(GlobalParam.getUserIdOrJump())
+//                .compose(RxScheduler.applyScheduler())
+//                .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
+//                    override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
+//                        if (result.code == 0) {
+//                            StoreGiftPopup(mActivity) {
+//                                //领取礼包
+//                                takeItGift(it)
+//                            }.showPopupWindow()
+//                        }
+//                    }
+//                })
+//    }
 
     private fun takeItGift(popup: StoreGiftPopup) {
         ApiManager.getService().storeGiftTakeIt(GlobalParam.getUserIdOrJump())
@@ -63,32 +62,34 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()
-            ApiManager.getService().storeIndex(GlobalParam.getUserIdOrJump(), mType)
+            ApiManager.getService().storeIndex(GlobalParam.getUserIdOrJump())
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
                         override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
                             if (result.code == 0) {
                                 val data = result.data
-                                mStoreIndexInfo = StoreIndexBean(mType)
-                                mStoreIndexInfo.headerInfo = StoreIndexHeaderBean(mType)
+                                mStoreIndexInfo = StoreIndexBean()
+                                mStoreIndexInfo.headerInfo = StoreIndexHeaderBean()
                                 //banner
                                 mStoreIndexInfo.headerInfo.bannerList = data.BANNER_LIST
                                 //菜单
-                                val storeMenu = listOf(
-                                        StoreMenuBean(0, R.mipmap.menu_rainbow_vip, "彩虹会员"),
-                                        StoreMenuBean(0, R.mipmap.menu_group_purchase, "超值团购"),
-                                        StoreMenuBean(0, R.mipmap.menu_bag, "时尚包包"),
-                                        StoreMenuBean(0, R.mipmap.menu_headgear, "精品首饰"),
-                                        StoreMenuBean(0, R.mipmap.menu_food, "休闲食品"),
-                                        StoreMenuBean(0, R.mipmap.menu_kitchen, "品质厨房"),
-                                        StoreMenuBean(0, R.mipmap.menu_bed, "床上用品"),
-                                        StoreMenuBean(0, R.mipmap.menu_life_use, "生活日用")
-                                )
-                                mStoreIndexInfo.headerInfo.categoryList = storeMenu
+
+//                                val storeMenu = listOf(
+//                                        StoreMenuBean(0, R.mipmap.menu_rainbow_vip, "彩虹会员"),
+//                                        StoreMenuBean(0, R.mipmap.menu_group_purchase, "超值团购"),
+//                                        StoreMenuBean(0, R.mipmap.menu_bag, "时尚包包"),
+//                                        StoreMenuBean(0, R.mipmap.menu_headgear, "精品首饰"),
+//                                        StoreMenuBean(0, R.mipmap.menu_food, "休闲食品"),
+//                                        StoreMenuBean(0, R.mipmap.menu_kitchen, "品质厨房"),
+//                                        StoreMenuBean(0, R.mipmap.menu_bed, "床上用品"),
+//                                        StoreMenuBean(0, R.mipmap.menu_life_use, "生活日用")
+//                                )
+                                mStoreIndexInfo.headerInfo.categoryList = data.TYPE_LIST
+                                mStoreIndexInfo.headerInfo.todayNew = data.NEW_PRODUCT_LIST
                                 //区域分区
-                                mStoreIndexInfo.headerInfo.areaList = data.AREA_LIST
+                                mStoreIndexInfo.headerInfo.todaySale = data.RUSH_PRODUCT_LIST
                                 //专区
-                                mStoreIndexInfo.specialList = data.PRODUCT_LIST.map { it.TYPE_DATA }
+                                mStoreIndexInfo.specialList = data.TYPE_PRODUCT_LIST
 
                                 getParentListData(isRefresh)
                             } else {
@@ -139,9 +140,8 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
 
     }
 
-    private var mType = StoreIndexBean.DOG
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().storeGuessLike(mType, StoreType.GUESS_LIKE_INDEX, Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
+        return ApiManager.getService().storeGuessLike(Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -155,7 +155,6 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
             mAdapter = StoreAdapter(mActivity, data) { type ->
-                mType = type
                 isCreate = true
                 onRefresh()
             }

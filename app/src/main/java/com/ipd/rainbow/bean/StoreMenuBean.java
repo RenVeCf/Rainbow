@@ -1,13 +1,24 @@
 package com.ipd.rainbow.bean;
 
 public class StoreMenuBean {
-    public int type;
-    public int res;
-    public String name;
 
-    public StoreMenuBean(int type, int res, String name) {
-        this.type = type;
-        this.res = res;
-        this.name = name;
-    }
+    /**
+     * TYPE_ID : 2
+     * NAME : 超值团购
+     * CATEGORY : 0
+     * PARENT : 0
+     * LOGO : upload/default/icon.png
+     * PIC : upload/default/typepic.png
+     * SORT : 0
+     * STATUS : 0
+     */
+
+    public int TYPE_ID;
+    public String NAME;
+    public String CATEGORY;
+    public String PARENT;
+    public String LOGO;
+    public String PIC;
+    public String SORT;
+    public String STATUS;
 }

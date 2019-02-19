@@ -27,10 +27,10 @@ class OrderProductAdapter(val context: Context, private val list: List<ProductBe
         val info = list!![position]
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_cart_product_img)
-        holder.itemView.tv_cart_product_name.text = info.PROCUCT_NAME
+        holder.itemView.tv_cart_product_name.text = info.NAME
         holder.itemView.tv_cart_product_spec.text = info.TASTE
         holder.itemView.tv_cart_product_price.text = "￥" + info.CURRENT_PRICE
-        holder.itemView.tv_product_num.text = "数量：x" + info.BUY_NUM
+        holder.itemView.tv_product_num.text = "数量：x" + info.SALE
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -51,10 +51,10 @@ class GroupDetailAdapter(val context: Context, private val data: List<ProductBea
             //商品信息
             val info = data!![if (haveHeaderView()) position - 1 else position]
             ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_commodity_head)
-            holder.itemView.tv_commodity_name.text = info.PROCUCT_NAME
+            holder.itemView.tv_commodity_name.text = info.NAME
             holder.itemView.tv_commodity_explain.text = info.TASTE
             holder.itemView.tv_commodity_price.text = "￥" + info.CURRENT_PRICE
-            holder.itemView.tv_commodity_num.text = "数量：x" + info.BUY_NUM
+            holder.itemView.tv_commodity_num.text = "数量：x" + info.SALE
             holder.itemView.tv_apply_return.visibility = View.GONE
         }
     }

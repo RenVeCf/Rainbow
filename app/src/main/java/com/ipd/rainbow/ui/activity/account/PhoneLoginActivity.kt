@@ -53,11 +53,11 @@ class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, T
 
         tv_get_sms.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone,"1")
+            mPresenter?.getSmsCode(phone,"3")
         }
         tv_voice_code.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone,"2")
+            mPresenter?.getSmsCode(phone,"3")
         }
         btn_login.setOnClickListener {
             val phone = et_phone.text.toString().trim()

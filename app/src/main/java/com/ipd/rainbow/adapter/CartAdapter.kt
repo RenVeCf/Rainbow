@@ -27,7 +27,7 @@ class CartAdapter(val context: Context, private val list: List<CartProductBean>?
         val cartProductInfo = list!![position]
 
         ImageLoader.loadNoPlaceHolderImg(context, cartProductInfo.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
-        holder.itemView.tv_cart_product_name.text = cartProductInfo.PRODUCT.PROCUCT_NAME
+        holder.itemView.tv_cart_product_name.text = cartProductInfo.PRODUCT.NAME
         holder.itemView.tv_cart_product_spec.text = cartProductInfo.PRODUCT.TASTE
         holder.itemView.tv_cart_product_lable.text = cartProductInfo.PRODUCT.TASTE
         holder.itemView.tv_cart_product_price.text = "￥${cartProductInfo.PRODUCT.CURRENT_PRICE}"

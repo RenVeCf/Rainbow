@@ -139,11 +139,6 @@ public interface ApiService {
 
 
     @FormUrlEncoded
-    @POST(HttpUrl.PHONE_LOGIN_SMS_CODE)
-    Observable<BaseResult<String>> phoneLoginSmsCode(@Field("PHONE") String PHONE,
-                                                     @Field("TYPE") String TYPE);
-
-    @FormUrlEncoded
     @POST(HttpUrl.BINDING_PHONE)
     Observable<BaseResult<LoginBean>> bindingPhone(@Field("PHONE") String PHONE,
                                                    @Field("CODE") String CODE,
@@ -165,10 +160,6 @@ public interface ApiService {
                                                            @Field("PHONE") String PHONE,
                                                            @Field("CODE") String CODE);
 
-    @FormUrlEncoded
-    @POST(HttpUrl.BINDING_PHONE_SMS_CODE)
-    Observable<BaseResult<String>> bindingPhoneSmsCode(@Field("PHONE") String PHONE,
-                                                       @Field("TYPE") String TYPE);
 
     @FormUrlEncoded
     @POST(HttpUrl.PHONE_LOGIN)
@@ -574,8 +565,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_INDEX)
-    Observable<BaseResult<StoreIndexResultBean>> storeIndex(@Field("USER_ID") String USER_ID,
-                                                            @Field("CATEGORY") int CATEGORY);
+    Observable<BaseResult<StoreIndexResultBean>> storeIndex(@Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_SECOND_INDEX)
@@ -586,9 +576,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_GUESS_LIST)
-    Observable<BaseResult<List<ProductBean>>> storeGuessLike(@Field("CATEGORY") int CATEGORY,
-                                                             @Field("AREA_ID") int AREA_ID,
-                                                             @Field("COUNT") int count,
+    Observable<BaseResult<List<ProductBean>>> storeGuessLike(@Field("COUNT") int count,
                                                              @Field("USER_ID") String user_id,
                                                              @Field("PAGE") int page);
 

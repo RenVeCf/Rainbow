@@ -3,17 +3,12 @@ package com.ipd.rainbow.bean;
 import java.util.List;
 
 public class StoreIndexBean {
-    public static int DOG = 1, CAT = 2;
 
-    public int type;
 
     public StoreIndexHeaderBean headerInfo;
     public List<StoreIndexSpecialBean> specialList;
     public List<ProductBean> productList;
 
-    public StoreIndexBean(int type) {
-        this.type = type;
-    }
 
 //    public void buildSpecialList() {
 //        specialList = new ArrayList<>();

@@ -54,11 +54,11 @@ class LostPwdActivity : BaseUIActivity(), TextWatcher, AccountPresenter.IForgetP
 
         tv_get_sms.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone, "1")
+            mPresenter?.getSmsCode(phone, "4")
         }
         tv_voice_code.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone, "2")
+            mPresenter?.getSmsCode(phone, "4")
         }
 
         btn_find.setOnClickListener {

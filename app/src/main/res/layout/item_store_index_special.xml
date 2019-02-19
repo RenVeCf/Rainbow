@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/iv_special_banner">
 
         <TextView
+            android:id="@+id/tv_special_name"
             style="@style/BaseTextStyle"
             android:text="时尚包包"
             android:textColor="#FF365D"
@@ -35,6 +36,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_special_desc"
             style="@style/SmallTextStyle"
             android:layout_marginTop="3dp"
             android:text="你想要的包包，这里都有"

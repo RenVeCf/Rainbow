@@ -27,7 +27,7 @@ class PackageProductAdapter(val context: Context, private val list: List<Product
         val info = list!![position]
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_package_product_img)
-        holder.itemView.tv_product_name.text = info.PROCUCT_NAME
+        holder.itemView.tv_product_name.text = info.NAME
         holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
 
         holder.itemView.setOnClickListener {

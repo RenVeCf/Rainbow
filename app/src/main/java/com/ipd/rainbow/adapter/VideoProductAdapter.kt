@@ -27,12 +27,12 @@ class VideoProductAdapter(val context: Context, private val list: List<ProductBe
         holder.itemView.iv_new_product.visibility = if (info.isNew) View.VISIBLE else View.GONE
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
-        holder.itemView.tv_product_name.text = info.PROCUCT_NAME
+        holder.itemView.tv_product_name.text = info.NAME
         holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
-        holder.itemView.tv_product_price_old.text = "￥${info.REFER_PRICE}"
+        holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
         holder.itemView.tv_product_price_old.visibility = if (info.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
-        holder.itemView.tv_product_evalute.text = "评价 ${info.REPLY}"
-        holder.itemView.tv_product_sales.text = "销量 ${info.FORM_BUYNUM}"
+        holder.itemView.tv_product_evalute.text = "评价 ${info.ASSESS}"
+        holder.itemView.tv_product_sales.text = "销量 ${info.SALE}"
         holder.itemView.setOnClickListener { itemClick.invoke(info) }
 
     }

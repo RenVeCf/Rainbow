@@ -283,12 +283,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         }
 
         mModel?.getNormalRequestData(
-                when (mView) {
-                    is IRegisterView -> ApiManager.getService().registerSmsCode(phone, type)
-                    is IPhoneLoginView, is IForgetPasswordView -> ApiManager.getService().phoneLoginSmsCode(phone, type)
-                    is IBindingPhoneView -> ApiManager.getService().bindingPhoneSmsCode(phone, type)
-                    else -> ApiManager.getService().registerSmsCode(phone, type)
-                },
+                ApiManager.getService().registerSmsCode(phone, type),
                 object : Response<BaseResult<String>>(mContext, true) {
                     override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 0) {
