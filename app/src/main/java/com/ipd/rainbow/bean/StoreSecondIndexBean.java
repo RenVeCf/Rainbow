@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreSecondIndexBean {
-    public StoreSecondIndexHeaderBean headerInfo;
     public List<StoreIndexSpecialBean> specialList;
     public StoreIndexVideoBean recommendVideo;
     public List<ProductBean> productList;

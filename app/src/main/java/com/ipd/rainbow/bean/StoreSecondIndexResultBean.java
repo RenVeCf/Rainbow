@@ -6,7 +6,6 @@ public class StoreSecondIndexResultBean {
 
 
     public List<BannerBean> BANNER_LIST;
-    public List<StoreIndexCategoryBean> TYPE_LIST;
     public List<PRODUCTLISTBeanX> PRODUCT_LIST;
     public List<StoreVideoBean> VIDEO_LIST;
 
