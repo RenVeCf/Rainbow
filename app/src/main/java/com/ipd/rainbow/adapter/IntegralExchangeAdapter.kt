@@ -24,17 +24,18 @@ class IntegralExchangeAdapter(val context: Context, private val data: List<Excha
     override fun getItemCount(): Int = data?.size ?:0
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.itemView?.tv_integral_num?.text = data[position].SCORE.toString()
-        var category:Int = data[position].CATEGORY
+        val info = data[position]
+        holder?.itemView?.tv_integral_num?.text = info.SCORE.toString()
+        var category:Int = info.CATEGORY
         if (category == 1) {
-            holder?.itemView?.tv_discount_coupon_name?.text = data[position].PRICE.toString() + "元 单品类优惠券"
+            holder?.itemView?.tv_discount_coupon_name?.text = info.PRICE.toString() + "元 单品类优惠券"
         }
         if (category == 2) {
-            holder?.itemView?.tv_discount_coupon_name?.text = data[position].PRICE.toString() + "元 全品类优惠券"
+            holder?.itemView?.tv_discount_coupon_name?.text = info.PRICE.toString() + "元 全品类优惠券"
         }
-        ImageLoader.loadImgFromLocal(context,HttpUrl.IMAGE_URL+data[position].LOGO, holder?.itemView?.iv_discount_coupon)
+        ImageLoader.loadImgFromLocal(context,HttpUrl.IMAGE_URL+info.LOGO, holder?.itemView?.iv_discount_coupon)
 
-        holder?.itemView?.setOnClickListener { CouponDetailActivity.launch(context as Activity,data[position].COUPON_ID) }
+        holder?.itemView?.setOnClickListener { CouponDetailActivity.launch(context as Activity,info.COUPON_ID) }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

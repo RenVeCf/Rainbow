@@ -10,7 +10,7 @@ public class TaxiuCommentBean {
      * SHOW_ID : 1
      * USER_ID : 2
      * CONTENT : 我的评论内容我的评论内容我的评论内容我的评论内容
-     * PIC : 1.png;2.png
+     * PICS : 1.png;2.png
      * PRAISE : 0
      * BROWSE : 0
      * REPLY : 1

@@ -14,7 +14,7 @@ public class TaxiuDetailBean {
      * CONTENT : 我的发布内容我的发布内容我的发布内容我的发布内容
      * LOGO :
      * URL :
-     * PIC : 1.png;2.png
+     * PICS : 1.png;2.png
      * PRAISE : 0
      * BROWSE : 0
      * SORT : 1

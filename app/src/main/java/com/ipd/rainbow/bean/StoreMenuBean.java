@@ -8,7 +8,7 @@ public class StoreMenuBean {
      * CATEGORY : 0
      * PARENT : 0
      * LOGO : upload/default/icon.png
-     * PIC : upload/default/typepic.png
+     * PICS : upload/default/typepic.png
      * SORT : 0
      * STATUS : 0
      */

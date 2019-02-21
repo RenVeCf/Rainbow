@@ -22,12 +22,11 @@ public class ProductDetailBean {
     public String SIZE;
     public String PET_TYPE;
     public String CONTENT;
-    public String PIC;
+    public String PICS;
     public String VIDEO;
     public String VIDEO_URL;
     public String COUNTRY;
-    public String SEND_PROV;
-    public String SEND_CITY;
+    public String ADDRESS;
     public String ORIGIN;
     public String SHELF_LIFE;
     public String VALID_TIME;
@@ -65,44 +64,25 @@ public class ProductDetailBean {
     public String JOIN_STATUS;
     public int IS_COLLECT;
     public double GOOD_PERCENT;
-    public ASSESSDATABean ASSESS_DATA;
+    public List<ProductEvaluateBean> ASSESS_LIST;
     public boolean isGroup = false;
 
 
-    public static class ASSESSDATABean {
+    public static class ProductEvaluateBean {
+
+
         /**
-         * ASSESS_ID : 4
-         * ORDER_ID : 18
-         * USER_ID : 1
-         * PRODUCT_ID : 1
-         * FORM_ID : 1
-         * ORDER_DETAIL_ID : 0
-         * CONTENT : 我的评价1
-         * PIC : 1.png
-         * DESC_SCORE : 5
-         * WL_SCORE : 5
-         * SERVICE_SCORE : 5
+         * USER_NICKNAME : CHG5770
+         * USER_LOGO : upload/user/20190219/2fcd54e4cc6a46cdbff09b9bfb8ce015.png
+         * CONTENT : ljkl
+         * PIC : upload/user/20190219/8493f6859221468d86a8fcc7e2b7ee7e.jpg
          * TOTAL_SCORE : 5
-         * CREATETIME : 2018.10.15 12:00
-         * USER_NICKNAME : 主人_TXCW9370
-         * USER_LOGO : /upload/default/logo.png
          */
 
-        public int ASSESS_ID;
-        public int ORDER_ID;
-        public int USER_ID;
-        public int PRODUCT_ID;
-        public int FORM_ID;
-        public int ORDER_DETAIL_ID;
-        public String CONTENT;
-        public String PIC;
-        public int DESC_SCORE;
-        public int WL_SCORE;
-        public int SERVICE_SCORE;
-        public int TOTAL_SCORE;
-        public String CREATETIME;
         public String USER_NICKNAME;
         public String USER_LOGO;
-
+        public String CONTENT;
+        public String PIC;
+        public float TOTAL_SCORE;
     }
 }

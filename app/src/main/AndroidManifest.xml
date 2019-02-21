@@ -139,6 +139,7 @@
         <activity android:name="com.ipd.rainbow.ui.activity.mine.UserInfoActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.message.MessageDetailActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.mine.VipActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.mine.MineCollectActivity" />
 
         <!-- jpush -->
         <receiver

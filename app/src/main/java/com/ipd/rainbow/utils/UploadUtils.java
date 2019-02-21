@@ -24,7 +24,7 @@ public class UploadUtils {
         BitmapUtil.compressImage(filePath);
 
         final Map<String, RequestBody> requestMap = new HashMap<>();
-        requestMap.put("PIC\"; filename=\"" + new File(filePath).getName(),
+        requestMap.put("PICS\"; filename=\"" + new File(filePath).getName(),
                 new ProgressRequestBody(RequestBody.create(MediaType.parse("image/png"), new File(filePath)), new ProgressRequestBody.UploadCallbacks() {
                     @Override
                     public void onProgressUpdate(int percentage) {

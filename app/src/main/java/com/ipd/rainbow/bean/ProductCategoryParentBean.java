@@ -8,7 +8,7 @@ public class ProductCategoryParentBean {
      * CATEGORY : 1
      * ICON : /upload/shop/icon1.png
      * LOGO : upload/default/dog.png
-     * PIC : /upload/shop/pic.png
+     * PICS : /upload/shop/pic.png
      * KIND : 0
      * BRAND_IDS : 1,2,3,4,5,6,7,8
      * CONTENT : 

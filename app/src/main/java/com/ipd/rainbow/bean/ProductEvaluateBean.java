@@ -10,7 +10,7 @@ public class ProductEvaluateBean {
      * FORM_ID : 1
      * ORDER_DETAIL_ID : 0
      * CONTENT : 我的评价1
-     * PIC : 1.png
+     * PICS : 1.png
      * DESC_SCORE : 5
      * WL_SCORE : 5
      * SERVICE_SCORE : 5

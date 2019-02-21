@@ -14,7 +14,7 @@ public class ReturnBean {
      * APPLY_NUM : 1
      * REASON : 买错了
      * CONTENT : 内容
-     * PIC : 
+     * PICS :
      * CREATETIME : 2018-10-16 13:12:56
      * CHECK_INFO : 
      * CHECKTIME : 

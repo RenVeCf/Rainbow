@@ -87,14 +87,16 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
 
 
+                //每日上新
                 holder.itemView.new_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.new_product_recycler_view.adapter = StoreNewProductAdapter(context, headerInfo.todayNew) {
-
+                    ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 }
 
+                //今日特价
                 holder.itemView.sales_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.sales_product_recycler_view.adapter = StoreNewProductAdapter(context, headerInfo.todaySale) {
-
+                    ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 }
 
 
@@ -102,6 +104,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 setPublishListener(holder, headerInfo)
             }
             ItemType.SPECIAL -> {
+                //活动专区
                 val specialInfo = list!![position] as StoreIndexSpecialBean
 
                 ImageLoader.loadNoPlaceHolderImg(context, specialInfo.PIC, holder.itemView.iv_special_banner)
@@ -115,6 +118,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 } else {
                     val leftProduct = productList[0]
                     val rightProduct = if (productList.size >= 2) productList[1] else null
+
+                    holder.itemView.ll_sales_product_left.setOnClickListener {
+                        ProductDetailActivity.launch(context as Activity, leftProduct.PRODUCT_ID, leftProduct.FORM_ID)
+                    }
+                    holder.itemView.ll_sales_product_right.setOnClickListener {
+                        if (rightProduct == null) return@setOnClickListener
+                        ProductDetailActivity.launch(context as Activity, rightProduct.PRODUCT_ID, rightProduct.FORM_ID)
+                    }
 
                     //left
                     holder.itemView.ll_sales_product_left.visibility = View.VISIBLE
@@ -136,6 +147,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 }
             }
             else -> {
+                //商品列表
                 val productInfo = list!![position] as ProductBean
                 ImageLoader.loadNoPlaceHolderImg(context, productInfo.LOGO, holder.itemView.iv_product_img)
                 holder.itemView.tv_product_name.text = productInfo.NAME

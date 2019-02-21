@@ -8,7 +8,7 @@ public class TopicCommentBean {
      * TOPIC_ID : 1
      * USER_ID : 1
      * CONTENT : 参与话题讨论1
-     * PIC :
+     * PICS :
      * PRAISE : 1
      * REPLY : 0
      * BROWSE : 0
