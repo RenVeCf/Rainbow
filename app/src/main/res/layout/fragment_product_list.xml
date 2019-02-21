@@ -46,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/scroll_top"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
@@ -53,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_padding"
+            android:visibility="gone"
             android:src="@mipmap/store_index_icon"
             app:layout_constraintBottom_toTopOf="@id/iv_scroll_top" />
 

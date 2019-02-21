@@ -32,6 +32,7 @@
         android:paddingBottom="@dimen/small_padding"
         android:paddingLeft="@dimen/small_padding"
         android:paddingRight="@dimen/small_padding"
+        android:layout_marginRight="15dp"
         android:paddingTop="@dimen/small_padding"
         android:singleLine="true" />
 
@@ -40,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:visibility="gone"
         android:paddingLeft="@dimen/base_padding"
         android:paddingRight="@dimen/base_padding"
         android:src="@mipmap/product_list_grid" />

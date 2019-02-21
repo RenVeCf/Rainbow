@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/base_padding"
+
                 android:paddingRight="@dimen/base_padding">
 
 
