@@ -594,7 +594,7 @@ public interface ApiService {
                                                       @Field("CATEGORY") String CATEGORY,
                                                       @Field("REASON") String REASON,
                                                       @Field("CONTENT") String CONTENT,
-                                                      @Field("PIC") String PIC);
+                                                      @Field("PICS") String PIC);
 
     @FormUrlEncoded
     @POST(HttpUrl.ORDER_BUY_AGAIN)

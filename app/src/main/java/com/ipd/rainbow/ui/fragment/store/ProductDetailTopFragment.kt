@@ -51,7 +51,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
     }
 
     override fun loadData() {
-        val bannerList = ArrayList(StringUtils.splitImages(mProductInfo.PIC).map { BannerBean(it) })
+        val bannerList = ArrayList(StringUtils.splitImages(mProductInfo.PICS).map { BannerBean(it) })
         if (!TextUtils.isEmpty(mProductInfo.VIDEO)) {
             bannerList.add(0, BannerBean(mProductInfo.VIDEO, true, mProductInfo.VIDEO_URL))
         }
@@ -112,7 +112,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
             mContentView.tv_express_fee.text = "快递：￥${mProductInfo.POST_FEE}"
         }
         mContentView.tv_sales.text = "月销${mProductInfo.BUYNUM}件"
-        mContentView.tv_ship_address.text = mProductInfo.SEND_PROV + mProductInfo.SEND_CITY
+        mContentView.tv_ship_address.text = mProductInfo.ADDRESS
 
 //
 //        //优惠券
@@ -131,37 +131,37 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
 
         //评价
-        mContentView.tv_evaluate_num.text = "商品评价（${mProductInfo.REPLY}）"
-        mContentView.tv_evaluate_percent.text = "${(mProductInfo.GOOD_PERCENT * 100).toInt()}%"
-        if (mProductInfo.ASSESS_DATA == null || mProductInfo.ASSESS_DATA!!.ASSESS_ID == 0) {
-            mContentView.fl_evaluate.visibility = View.GONE
-        } else {
-            mContentView.fl_evaluate.visibility = View.VISIBLE
-            val evaluateInfo = mProductInfo.ASSESS_DATA
-            ImageLoader.loadAvatar(mActivity, evaluateInfo.USER_LOGO, mContentView.civ_avatar)
-            mContentView.tv_username.text = evaluateInfo.USER_NICKNAME
-            mContentView.tv_evaluate_time.text = evaluateInfo.CREATETIME
-            mContentView.tv_answer_content.text = evaluateInfo.CONTENT
-            mContentView.rating_star.setStar(evaluateInfo.TOTAL_SCORE.toFloat())
-
-            if (TextUtils.isEmpty(evaluateInfo.PIC)) {
-                mContentView.image_recycler_view.visibility = View.GONE
-            } else {
-                mContentView.image_recycler_view.visibility = View.VISIBLE
-                mContentView.image_recycler_view.layoutManager = GridLayoutManager(mActivity, 4)
-                mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC)) { list, pos ->
-                    PictureLookActivity.launch(mActivity, ArrayList(list), pos, PictureLookActivity.URL)
-                }
-            }
-
-            mContentView.rl_all_evaluate.setOnClickListener {
-                //全部评价
-                if (mActivity is ProductDetailActivity) {
-                    (mActivity as ProductDetailActivity).switchToEvaluate()
-                }
-            }
-
-        }
+//        mContentView.tv_evaluate_num.text = "商品评价（${mProductInfo.REPLY}）"
+//        mContentView.tv_evaluate_percent.text = "${(mProductInfo.GOOD_PERCENT * 100).toInt()}%"
+//        if (mProductInfo.ASSESS_DATA == null || mProductInfo.ASSESS_DATA!!.ASSESS_ID == 0) {
+//            mContentView.fl_evaluate.visibility = View.GONE
+//        } else {
+//            mContentView.fl_evaluate.visibility = View.VISIBLE
+//            val evaluateInfo = mProductInfo.ASSESS_DATA
+//            ImageLoader.loadAvatar(mActivity, evaluateInfo.USER_LOGO, mContentView.civ_avatar)
+//            mContentView.tv_username.text = evaluateInfo.USER_NICKNAME
+//            mContentView.tv_evaluate_time.text = evaluateInfo.CREATETIME
+//            mContentView.tv_answer_content.text = evaluateInfo.CONTENT
+//            mContentView.rating_star.setStar(evaluateInfo.TOTAL_SCORE.toFloat())
+//
+//            if (TextUtils.isEmpty(evaluateInfo.PIC)) {
+//                mContentView.image_recycler_view.visibility = View.GONE
+//            } else {
+//                mContentView.image_recycler_view.visibility = View.VISIBLE
+//                mContentView.image_recycler_view.layoutManager = GridLayoutManager(mActivity, 4)
+//                mContentView.image_recycler_view.adapter = MediaPictureAdapter(mActivity, StringUtils.splitImages(evaluateInfo.PIC)) { list, pos ->
+//                    PictureLookActivity.launch(mActivity, ArrayList(list), pos, PictureLookActivity.URL)
+//                }
+//            }
+//
+//            mContentView.rl_all_evaluate.setOnClickListener {
+//                //全部评价
+//                if (mActivity is ProductDetailActivity) {
+//                    (mActivity as ProductDetailActivity).switchToEvaluate()
+//                }
+//            }
+//
+//        }
 
 
     }

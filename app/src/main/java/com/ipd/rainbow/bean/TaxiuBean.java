@@ -15,7 +15,7 @@ public class TaxiuBean implements Serializable{
      * CONTENT : 我的发布内容我的发布内容我的发布内容我的发布内容
      * LOGO : 
      * URL : 
-     * PIC : upload/default/dog.png;upload/default/cat.png
+     * PICS : upload/default/dog.png;upload/default/cat.png
      * COLLECT : 1
      * REPLY : 0
      * PRAISE : 1
