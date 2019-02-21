@@ -10,6 +10,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.BitmapUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.UploadResultBean
+import com.ipd.rainbow.bean.UserBean
 import com.ipd.rainbow.event.UpdateUserInfoEvent
 import com.ipd.rainbow.imageload.ImageLoader
 import com.ipd.rainbow.presenter.mine.UserPresenter
@@ -18,7 +19,6 @@ import com.ipd.rainbow.ui.activity.CropActivity
 import com.ipd.rainbow.utils.PictureChooseUtils
 import com.ipd.rainbow.utils.UploadUtils
 import com.ipd.rainbow.widget.ChooseSexDialog
-import com.tencent.bugly.crashreport.biz.UserInfoBean
 import kotlinx.android.synthetic.main.activity_user_info.*
 import org.greenrobot.eventbus.EventBus
 import java.io.File
@@ -57,8 +57,8 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
     }
 
     override fun loadData() {
-//        showProgress()
-//        mPresenter?.loadUserInfo()
+        showProgress()
+        mPresenter?.loadUserInfo()
     }
 
     override fun initListener() {
@@ -145,15 +145,15 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
     }
 
 
-    override fun loadUserInfoSuccess(info: UserInfoBean) {
-//        ImageLoader.loadAvatar(mActivity, HttpUrl.IMAGE_URL + info.LOGO, civ_avatar)
-//        et_nickname.setText(info.NICKNAME)
-//        tv_sex.text = when (info.SEX) {
-//            "0" -> "男"
-//            "1" -> "女"
-//            else -> ""
-//        }
-//        tv_phone.text = info.PHONE
+    override fun loadUserInfoSuccess(info: UserBean) {
+        ImageLoader.loadAvatar(mActivity, info.LOGO, civ_avatar)
+        et_nickname.setText(info.NICKNAME)
+        tv_sex.text = when (info.GENDER) {
+            "0" -> "男"
+            "1" -> "女"
+            else -> ""
+        }
+        tv_phone.text = info.PHONE
         showContent()
     }
 

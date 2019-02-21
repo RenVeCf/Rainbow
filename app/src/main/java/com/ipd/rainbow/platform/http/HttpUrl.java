@@ -39,7 +39,6 @@ public interface HttpUrl {
     String STORE_GIFT = "app_shop/getGift.do";
     String STORE_GIFT_TAKE_IT = "app_shop/toGift.do";
     String STORE_INDEX = "app_shop/home.do";
-    String STORE_SECOND_INDEX = "app_shop/typeArea.do";
     String STORE_GUESS_LIST = "app_shop/getList.do";
     String STORE_PARENT_SHOP_TYPE = "app_shop_type/getList.do";
     String STORE_CHILD_SHOP_TYPE = "app_shop/shopType2.do";
@@ -225,11 +224,7 @@ public interface HttpUrl {
     String AVAILABLE_INTEGRAL = "app_user/validScore.do";
 
     //收藏
-    String COLLECT_PRODUCT = "app_collect/proList.do";
-    String COLLECT_TAXIU = "app_collect/showList.do";
-    String COLLECT_CLASSROOM = "app_collect/classList.do";
-    String COLLECT_TOPIC = "app_collect/topicList.do";
-    String COLLECT_TALK = "app_collect/questionList.do";
+    String COLLECT_PRODUCT = "app_product/collectList.do";
 
     //推荐
     String RECOMMEND_INFO = "app_user/recomInfo.do";

@@ -65,23 +65,6 @@ class MinePresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun updateUser(birthday: String, gender: Int, logo: String, nickname: String, pet_time: String,
-                   tag: String, username: String) {
-        if (mView !is IUpdateUserView) return
-        val view = mView as IUpdateUserView
-
-        mModel?.getNormalRequestData(ApiManager.getService().updateUser(birthday, gender, logo, nickname
-                , pet_time, tag, username, GlobalParam.getUserId()),
-                object : Response<BaseResult<UpdatePwdBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<UpdatePwdBean>) {
-                        if (result.code == 0) {
-                            view.updateUserSuccess()
-                        } else {
-                            view.updateUserFail(result.msg)
-                        }
-                    }
-                })
-    }
 
     //关注或取消关注
     fun attention(attenId: Int) {
