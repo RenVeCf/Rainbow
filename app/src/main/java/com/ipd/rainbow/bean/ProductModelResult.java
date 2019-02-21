@@ -1,40 +1,33 @@
 package com.ipd.rainbow.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class ProductModelResult extends BaseResult<List<ProductModelResult.ProductModelBean>> {
-    @SerializedName("data2")
-    public String modelName;
-
 
     public static class ProductModelBean {
 
+
         /**
-         * FORM_ID : 3
-         * PRODUCT_ID : 1
-         * KIND : 4
-         * NET_CONTENT : 3.00
-         * TASTE : 鸡肉味
-         * CURRENT_PRICE : 8
-         * PRICE : 8
-         * REFER_PRICE : 25
+         * FORM_ID : 4
+         * PRODUCT_ID : 2
+         * LOGO : /upload/default/product.png
+         * CURRENT_PRICE : 102.6
+         * PRICE : 120
+         * DISCOUNT : 0.9
+         * NET_CONTENT : 1
+         * NORM : 所有人
          * STOCK : 100
-         * IS_CHOSEN : 0
          */
 
         public int FORM_ID;
         public int PRODUCT_ID;
-        public int KIND;
-        public String NET_CONTENT;
-        public String TASTE;
-        public String CURRENT_PRICE;
-        public String PRICE;
-        public String REFER_PRICE;
         public String LOGO;
+        public double CURRENT_PRICE;
+        public int PRICE;
+        public double DISCOUNT;
+        public int NET_CONTENT;
+        public String NORM;
         public int STOCK;
-        public int IS_CHOSEN;
 
     }
 }

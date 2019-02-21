@@ -20,8 +20,12 @@ public class ProductBean {
 
     public int USER_ID;
     public int PRODUCT_ID;
+    public int ORDER_ID;
+    public int ORDER_DETAIL_ID;
+    public int STATUS;
     public int FORM_ID;
     public String NAME;
+    public String NORM;
     public String LOGO;
     public int KIND;
     public String CURRENT_PRICE;
@@ -29,12 +33,12 @@ public class ProductBean {
     public String DISCOUNT;
     public int SALE;
     public int ASSESS;
+    public int BUY_NUM;
     public String LEVEL;
 
     //暂时占位
     public boolean isNew;
     public float star;
-    public String TASTE;
 
     public String getKindStr() {
         String str = "";

@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv_model_name"
         style="@style/SmallTextStyle"
-        android:text="口味" />
+        android:text="规格" />
 
     <com.ipd.rainbow.widget.ProductModelView
         android:layout_marginTop="5dp"

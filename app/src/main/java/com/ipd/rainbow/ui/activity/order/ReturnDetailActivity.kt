@@ -82,7 +82,7 @@ class ReturnDetailActivity : BaseUIActivity() {
     private fun loadReturnDetailSuccess(info: ReturnDetailBean) {
         ImageLoader.loadNoPlaceHolderImg(mActivity, info.ORDER_DETAIL.LOGO, iv_product_img)
         tv_product_name.text = info.ORDER_DETAIL.NAME
-        tv_product_explane.text = info.ORDER_DETAIL.TASTE
+        tv_product_explane.text = info.ORDER_DETAIL.NORM
         tv_product_price.text = "￥${info.ORDER_DETAIL.CURRENT_PRICE}"
         tv_buyed_num.text = "x${info.ORDER_DETAIL.SALE}"
         tv_apply_num.text = "x${info.APPLY_NUM}"

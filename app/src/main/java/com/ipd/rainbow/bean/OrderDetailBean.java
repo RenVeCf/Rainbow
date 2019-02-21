@@ -42,6 +42,7 @@ public class OrderDetailBean {
     public int PAYWAY;
     public String RECEIVE_NAME;
     public String RECEIVE_PHONE;
+    public String RECEIVE_IDENTITY;
     public String PROV;
     public String CITY;
     public String DIST;
@@ -53,6 +54,7 @@ public class OrderDetailBean {
     public String TOTAL;
     public String PREFER_FEE;
     public String POST_FEE;
+    public String TAX_FEE;
     public String PAY_FEE;
     public String PAYABLE_FEE;
     public String POST_NUM;

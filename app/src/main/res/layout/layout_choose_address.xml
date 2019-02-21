@@ -64,13 +64,20 @@
             app:layout_constraintTop_toBottomOf="@id/tv_address_title" />
 
         <TextView
+            android:id="@+id/tv_receiver_card"
+            style="@style/SmallTextStyle"
+            android:layout_marginTop="4dp"
+            android:text="身份证号:54543534543"
+            app:layout_constraintTop_toBottomOf="@id/tv_receiver_info" />
+
+        <TextView
             android:id="@+id/tv_receive_address"
             style="@style/SmallTextStyle"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="上海 上海市 青浦区 华徐公路999号1号楼2楼ipd"
-            app:layout_constraintTop_toBottomOf="@id/tv_receiver_info" />
+            app:layout_constraintTop_toBottomOf="@id/tv_receiver_card" />
 
         <ImageView
             android:layout_width="wrap_content"

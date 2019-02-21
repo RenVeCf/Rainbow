@@ -158,6 +158,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
             }
             val recipient: String = et_recipients.text.toString().trim()
             val tel = et_phone_number.text.toString().trim()
+            val cardNumber = et_card_number.text.toString().trim()
 
             if (TextUtils.isEmpty(recipient)) {
                 toastShow("请输入收货人姓名")
@@ -165,6 +166,10 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
             }
             if (!CommonUtils.isMobileNO(tel)) {
                 toastShow("请输入正确的手机号")
+                return@setOnClickListener
+            }
+            if (cardNumber.length != 18) {
+                toastShow("请输入正确的身份证号码")
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(address)) {
@@ -175,10 +180,10 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
             val userId = GlobalParam.getUserId()
             if (addressType == 1) {
                 getStatus()
-                mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, userId)
+                mPresenter?.addAddress(address, city, dist, prov, recipient, status, tel, cardNumber, userId)
             } else if (addressType == 2) {
                 getStatus()
-                mPresenterUpdate?.getAddressUpdate(address, city, dist, prov, recipient, status, tel, userId, addressId)
+                mPresenterUpdate?.getAddressUpdate(address, city, dist, prov, recipient, status, tel,cardNumber, userId, addressId)
             }
         }
 
@@ -204,6 +209,7 @@ class AddAddressActivity : BaseUIActivity(), AddressPresenter.IAddAddressView,
         et_phone_number.setText(data.TEL.toString())
         tv_choose_city.text = data.PROV + " " + data.CITY + " " + data.DIST
         et_detailed_address.setText(data.ADDRESS)
+        et_card_number.setText(data.IDENTITY)
         cb_default.isChecked = data.STATUS != 1
     }
 

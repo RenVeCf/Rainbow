@@ -128,8 +128,8 @@ class RequestReturnMoneyActivity : BaseUIActivity(), RequestReturnPresenter.IReq
         mOrderStatus = info.ORDER_STATUS
 
         ImageLoader.loadNoPlaceHolderImg(mActivity, info.ORDER_DETAIL.LOGO, iv_product_img)
-        tv_product_name.text = info.ORDER_DETAIL.PROCUCT_NAME
-        tv_product_explane.text = info.ORDER_DETAIL.TASTE
+        tv_product_name.text = info.ORDER_DETAIL.NAME
+        tv_product_explane.text = info.ORDER_DETAIL.NORM
         tv_product_price.text = "￥${info.ORDER_DETAIL.CURRENT_PRICE}"
         tv_buyed_num.text = "x${info.ORDER_DETAIL.BUY_NUM}"
         cart_operation_view.setMaxNum(info.ORDER_DETAIL.BUY_NUM)

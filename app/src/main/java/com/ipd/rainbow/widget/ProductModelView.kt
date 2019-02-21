@@ -13,18 +13,13 @@ class ProductModelView : FlowLayout {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?) : super(context)
 
-    private var mCurCheckedPos = -1
+    private var mCurCheckedPos = 0
 
 
     fun addView(modelInfo: ProductModelResult.ProductModelBean) {
         val childView = LayoutInflater.from(context).inflate(R.layout.item_product_model_lable, this, false) as TextView
-        childView.text = modelInfo.TASTE
+        childView.text = modelInfo.NORM
         val childPos = childCount
-
-        if (modelInfo.IS_CHOSEN == 1) {
-            mCurCheckedPos = childPos
-            mOnCheckedChangeListener?.onChange(modelInfo)
-        }
 
         addView(childView)
         setChecked(childPos, childPos == mCurCheckedPos)

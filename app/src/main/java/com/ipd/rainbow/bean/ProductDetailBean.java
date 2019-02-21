@@ -1,5 +1,7 @@
 package com.ipd.rainbow.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class ProductDetailBean {
@@ -7,6 +9,7 @@ public class ProductDetailBean {
 
     public int PRODUCT_ID;
     public int ACTIVITY_ID;
+    @SerializedName("NAME")
     public String PROCUCT_NAME;
     public String PRODUCT_NUMBER;
     public int KIND;

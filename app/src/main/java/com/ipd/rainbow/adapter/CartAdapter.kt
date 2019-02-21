@@ -28,8 +28,7 @@ class CartAdapter(val context: Context, private val list: List<CartProductBean>?
 
         ImageLoader.loadNoPlaceHolderImg(context, cartProductInfo.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
         holder.itemView.tv_cart_product_name.text = cartProductInfo.PRODUCT.NAME
-        holder.itemView.tv_cart_product_spec.text = cartProductInfo.PRODUCT.TASTE
-        holder.itemView.tv_cart_product_lable.text = cartProductInfo.PRODUCT.TASTE
+        holder.itemView.tv_cart_product_spec.text = cartProductInfo.PRODUCT.NORM
         holder.itemView.tv_cart_product_price.text = "￥${cartProductInfo.PRODUCT.CURRENT_PRICE}"
         holder.itemView.cart_operation_view.setNum(cartProductInfo.NUM)
 
@@ -51,8 +50,8 @@ class CartAdapter(val context: Context, private val list: List<CartProductBean>?
             }
         })
 
-        holder.itemView.tv_cart_product_lable.visibility = if (cartProductInfo.PRODUCT.KIND == 1) View.GONE else View.VISIBLE
-        holder.itemView.tv_cart_product_lable.text = cartProductInfo.PRODUCT.kindStr
+//        holder.itemView.tv_cart_product_lable.visibility = if (cartProductInfo.PRODUCT.KIND == 1) View.GONE else View.VISIBLE
+//        holder.itemView.tv_cart_product_lable.text = cartProductInfo.PRODUCT.kindStr
 
         holder.itemView.cb_product.isChecked = cartProductInfo.isChecked
         holder.itemView.setOnClickListener {

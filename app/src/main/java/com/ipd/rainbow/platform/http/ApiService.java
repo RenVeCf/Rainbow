@@ -283,8 +283,7 @@ public interface ApiService {
     @POST(HttpUrl.STORE_PRODUCT_MODEL)
     Observable<ProductModelResult> storeProductModel(@Field("USER_ID") String user_id,
                                                      @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                     @Field("FORM_ID") int FORM_ID,
-                                                     @Field("ACTIVITY_ID") int ACTIVITY_ID);
+                                                     @Field("FORM_ID") int FORM_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_COUPON)
@@ -648,6 +647,7 @@ public interface ApiService {
                                                    @Field("RECIPIENT") String RECIPIENT,
                                                    @Field("STATUS") int STATUS,
                                                    @Field("TEL") Long TEL,
+                                                   @Field("IDENTITY") String IDENTITY,
                                                    @Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
@@ -669,6 +669,7 @@ public interface ApiService {
                                                       @Field("RECIPIENT") String RECIPIENT,
                                                       @Field("STATUS") int STATUS,
                                                       @Field("TEL") String TEL,
+                                                      @Field("IDENTITY") String IDENTITY,
                                                       @Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 

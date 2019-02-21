@@ -38,6 +38,7 @@ class DeliveryAddressAdapter(val context: Context, private val data: List<Addres
         }
 
         holder?.itemView?.tv_delivery_name?.text = data[position].RECIPIENT
+        holder?.itemView?.tv_card_number?.text = "身份证号:${data[position].IDENTITY}"
         holder?.itemView?.tv_delivery_phone?.text = CommonUtils.getEncryPhone(data[position].TEL.toString())
         holder?.itemView?.tv_delivery_address?.text = data[position].PROV + data[position].CITY + data[position].DIST + data[position].ADDRESS
     }

@@ -33,10 +33,23 @@
             android:layout_below="@id/tv_commodity_price"
             android:layout_marginTop="@dimen/small_padding"
             android:text="+￥00" />
-
         <TextView
             style="@style/SmallTextStyle"
             android:layout_below="@id/tv_commodity_freight"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="税费：" />
+
+        <TextView
+            android:id="@+id/tv_tax_fee"
+            style="@style/SmallTextStyle"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_commodity_freight"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="+￥00" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_below="@id/tv_tax_fee"
             android:layout_marginTop="@dimen/small_padding"
             android:text="优惠券抵扣：" />
 
@@ -44,7 +57,7 @@
             android:id="@+id/tv_discount_coupon"
             style="@style/SmallTextStyle"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_commodity_freight"
+            android:layout_below="@id/tv_tax_fee"
             android:layout_marginTop="@dimen/small_padding"
             android:text="-￥20.00" />
 
@@ -74,6 +87,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_padding"

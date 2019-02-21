@@ -102,6 +102,7 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         val headerView = LayoutInflater.from(this).inflate(R.layout.item_order_detail_header, null)
         headerView.tv_delivery_name.text = info.RECEIVE_NAME
         headerView.tv_delivery_phone.text = info.RECEIVE_PHONE
+        headerView.tv_delivery_card.text = "身份证号:${info.RECEIVE_IDENTITY}"
         headerView.tv_address.text = "${info.PROV} ${info.CITY} ${info.DIST} ${info.ADDRESS}"
         headerView.commodity_number.text = "共${info.PRODUCT_LIST.size}件商品"
         mAdapter?.addHeaderView(headerView)
@@ -110,6 +111,7 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         val footerView = LayoutInflater.from(this).inflate(R.layout.item_order_detail_footer, null)
         footerView.tv_commodity_price.text = "￥${info.TOTAL}"
         footerView.tv_commodity_freight.text = "+￥${info.POST_FEE}"
+        footerView.tv_tax_fee.text = "+￥${info.TAX_FEE}"
         footerView.tv_discount_coupon.text = "-￥${info.PREFER_FEE}"
         if (info.STATUS == Order.PAYMENT) {
             footerView.actual_price.text = "订单应付金额："
@@ -119,21 +121,22 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
             footerView.tv_actual_price.text = "￥${info.PAY_FEE}"
         }
 
-        footerView.tv_invoice_information.text = when (info.INVOICE_TYPE) {
-            1 -> "个人"
-            2 -> "单位"
-            else -> "不开票"
-        }
+//        footerView.tv_invoice_information.text = when (info.INVOICE_TYPE) {
+//            1 -> "个人"
+//            2 -> "单位"
+//            else -> "不开票"
+//        }
+//
+//        if (info.INVOICE_TYPE == 2) {
+//            footerView.tv_invoice_title.visibility = View.VISIBLE
+//            footerView.tv_invoice_tax_no.visibility = View.VISIBLE
+//            footerView.tv_actual_price.text = "发票抬头：${info.INVOICE_HEAD}"
+//            footerView.tv_invoice_tax_no.text = "公司税号：${info.INVOICE_NUM}"
+//        } else {
+//            footerView.tv_invoice_title.visibility = View.GONE
+//            footerView.tv_invoice_tax_no.visibility = View.GONE
+//        }
 
-        if (info.INVOICE_TYPE == 2) {
-            footerView.tv_invoice_title.visibility = View.VISIBLE
-            footerView.tv_invoice_tax_no.visibility = View.VISIBLE
-            footerView.tv_actual_price.text = "发票抬头：${info.INVOICE_HEAD}"
-            footerView.tv_invoice_tax_no.text = "公司税号：${info.INVOICE_NUM}"
-        } else {
-            footerView.tv_invoice_title.visibility = View.GONE
-            footerView.tv_invoice_tax_no.visibility = View.GONE
-        }
         footerView.tv_order_code.text = info.ORDER_NO
 
         footerView.tv_copy.setOnClickListener {

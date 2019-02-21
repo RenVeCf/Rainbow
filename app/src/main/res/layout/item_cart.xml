@@ -50,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/tv_cart_product_name"
-                    style="@style/SmallTextStyle"
+                    style="@style/BaseTextStyle"
                     android:layout_width="0dp"
                     android:ellipsize="end"
                     android:maxLines="2"
@@ -80,9 +80,11 @@
                     android:textColor="@color/LightGrey"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_cart_product_price"
                     app:layout_constraintTop_toBottomOf="@id/tv_cart_product_name" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_cart_product_lable"
                     style="@style/SmallTextStyle"
                     android:layout_width="wrap_content"
@@ -97,7 +99,7 @@
 
                 <TextView
                     android:id="@+id/tv_cart_product_price"
-                    style="@style/SmallTextStyle"
+                    style="@style/BaseTextStyle"
                     android:layout_width="wrap_content"
                     android:text="￥588"
                     android:textColor="@color/red"

@@ -25,16 +25,6 @@ public interface HttpUrl {
     //home
     String HOME = "app_show/home.do";
 
-    //pet
-    String PET_STAGE = "app_user/updateStep.do";
-    String PET_KIND_LIST = "app_pet/typeList.do";
-    String PET_GET_LIST = "app_pet/getList.do";
-    String PET_GET_INFO = "app_pet/getInfo.do";
-    String PET_UPDATE = "app_pet/update.do";
-    String PET_ADD = "app_pet/add.do";
-    String PET_DELETE = "app_pet/delete.do";
-
-
     //store
     String STORE_GIFT = "app_shop/getGift.do";
     String STORE_GIFT_TAKE_IT = "app_shop/toGift.do";
@@ -53,7 +43,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_MODEL = "app_product/formList.do";
     String STORE_PRODUCT_COUPON = "app_product/couponList.do";
     String STORE_TAKE_IT_COUPON = "app_product/toExchange.do";
-    String STORE_PRODUCT_COLLECT = "app_product/toCollect.do";
+    String STORE_PRODUCT_COLLECT = "app_collect/toCollect.do";
     String STORE_AREA_INDEX = "app_shop/area.do";
     String STORE_PRODUCT_EVALUATE_LIST = "app_assess/getList.do";
     String STORE_PRODUCT_EVALUATE_LABLE_LIST = "app_assess/assessFilter.do";
@@ -66,7 +56,7 @@ public interface HttpUrl {
     String CART_DELETE = "app_cart/delete.do";
     String CART_CASH = "app_cart/toCash.do";
     String CART_COUPON = "app_cart/couponList.do";
-    String CART_CONFIRM_ORDER = "app_cart/submit.do";
+    String CART_CONFIRM_ORDER = "app_order/submit.do";
     String CART_RECOMMEND = "app_shop/recomList.do";
 
 
@@ -107,60 +97,8 @@ public interface HttpUrl {
     String SPELL_MINE_LIST = "app_team/selfList.do";
     String SPELL_ORDER_DETAIL = "app_team/getInfo.do";
 
-    //store video
-    String STORE_TODAY_RECOMMEND_VIDEO = "app_tide_video/todayRecom.do";
-    String STORE_VIDEO_TABS = "app_tide_video/videoGroup.do";
-    String STORE_VIDEO_LIST = "app_tide_video/getList.do";
-
     //taxiu
-    String TAXIU_LABLE_LIST = "app_show/tipList.do";
     String TAXIU_LIST = "app_show/getList.do";
-    String PUBLISH_TAXIU = "app_show/add.do";
-    String TAXIU_DETAIL = "app_show/getInfo.do";
-    String TAXIU_COMMENT = "app_show/commentList.do";
-    String TAXIU_TO_COMMENT = "app_show/toComment.do";
-    String TAXIU_PRAISE = "app_show/toPraise.do";
-    String TAXIU_COLLECT = "app_show/toCollect.do";
-    String TAXIU_COMMENT_DETAIL = "app_show/getComment.do";
-    String TAXIU_REPLY_LIST = "app_show/replyList.do";
-    String TAXIU_REPLY_MORE = "app_show/replyMore.do";
-    String TAXIU_FIRST_REPLY = "app_show/toReply.do";
-    String TAXIU_SECOND_REPLY = "app_show/toReplyMore.do";
-    String TAXIU_GET_PET = "app_show/getPet.do";
-    String TAXIU_MINE_LIST = "app_show/selfList.do";
-    String TAXIU_DELETE = "app_show/delete.do";
-
-    //话题
-    String TOPIC_LIST = "app_topic/getList.do";
-    String TOPIC_DETAIL = "app_topic/getInfo.do";
-    String TOPIC_COMMENT = "app_topic/commentList.do";
-    String TOPIC_TO_COMMENT = "app_topic/toComment.do";
-    String TOPIC_COMMENT_DETAIL = "app_topic/getComment.do";
-    String TOPIC_REPLY_LIST = "app_topic/replyList.do";
-    String TOPIC_REPLY_MORE = "app_topic/replyMore.do";
-    String TOPIC_FIRST_REPLY = "app_topic/toReply.do";
-    String TOPIC_SECOND_REPLY = "app_topic/toReplyMore.do";
-
-    //问答
-    String PUBLISH_TALK = "app_question/add.do";
-    String TALK_LIST = "app_question/getList.do";
-    String TALK_MINE_LIST = "app_question/selfList.do";
-    String TALK_DETAIL = "app_question/getInfo.do";
-    String TALK_COMMENT = "app_question/commentList.do";
-    String TALK_TO_COMMENT = "app_question/toComment.do";
-    String TALK_FIRST_REPLY = "app_question/toReply.do";
-    String TALK_SECOND_REPLY = "app_question/toReplyMore.do";
-    String TALK_REPLY_MORE = "app_question/replyMore.do";
-    String TALK_BEST_ANSWER = "app_question/setBest.do";
-    String TALK_DELETE = "app_question/delete.do";
-
-    //课堂
-    String CLASS_ROOM_LIST = "app_class_room/getList.do";
-    String CLASS_ROOM_DETAIL = "app_class_room/getInfo.do";
-    String CLASS_ROOM_BUYED_LIST = "app_class_room/orderList.do";
-    String CLASS_ROOM_PAY = "app_class_room/buy.do";
-    String CLASS_ROOM_ORDER_DETAIL = "app_class_room/orderInfo.do";
-
 
     //signin
     String SIGN_IN_INFO = "app_sign/getInfo.do";
@@ -234,9 +172,6 @@ public interface HttpUrl {
 
     //消息
     String NEWS = "app_news/getList.do";
-
-    //宠物宝典
-    String PET_BIBLE = "app_pet_treasure/getList.do";
 
     //分享
     String SHARE_TAXIU = "app_show/share.do";

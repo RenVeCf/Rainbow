@@ -69,11 +69,9 @@ public class ProductModelDialog extends Dialog {
     //购物车、立即购买、加入拼团、拼团立即购买
     public static final int CART = 0, BUY = 1, SPELL_JOIN = 2, SPELL_NOW = 3;
 
-    public void setData(final int type, String logo, final boolean isGroup, final ProductModelResult modelResult, final int activityId) {
+    public void setData(final int type, final boolean isGroup, final ProductModelResult modelResult) {
         LinearLayout ll_product_model = mContentView.findViewById(R.id.ll_product_model);
         ViewGroup productLayout = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.item_product_model, null);
-        TextView modelView = productLayout.findViewById(R.id.tv_model_name);
-        modelView.setText(modelResult.modelName);
 
         final ProductModelView productModelView = productLayout.findViewById(R.id.product_model_view);
 
@@ -146,7 +144,7 @@ public class ProductModelDialog extends Dialog {
                             ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), isGroup, ConfirmOrderActivity.Companion.getNORMAL());
                             dismiss();
                         } else {
-                            ConfirmOrderActivity.Companion.launch(getContext(), activityId, modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getSPELL());
+                            ConfirmOrderActivity.Companion.launch(getContext(), modelInfo.PRODUCT_ID, modelInfo.FORM_ID, operationView.getNum(), ConfirmOrderActivity.Companion.getSPELL());
                             dismiss();
                         }
 

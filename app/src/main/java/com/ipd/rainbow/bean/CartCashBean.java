@@ -22,6 +22,7 @@ public class CartCashBean {
     public int PRODUCT_NUM;
     public String PRODUCT_TOTAL;
     public String POST_FEE;
+    public String TAX_FEE;
     public String COUPON_TIP;
     public ExchangeBean EXCHANGE_DATA;
     public String PAY_FEE;

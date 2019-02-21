@@ -19,6 +19,7 @@ public class AddressBean {
     public String DIST;
     public String PROV;
     public String RECIPIENT;
+    public String IDENTITY;
     public int STATUS;
     public Long TEL;
     public int USER_ID;

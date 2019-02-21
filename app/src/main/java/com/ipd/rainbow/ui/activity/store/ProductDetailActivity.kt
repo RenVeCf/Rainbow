@@ -25,7 +25,6 @@ import com.ipd.rainbow.ui.fragment.store.ProductDetailFragment
 import com.ipd.rainbow.ui.fragment.store.ProductEvaluateFragment
 import com.ipd.rainbow.utils.ShareCallback
 import com.ipd.rainbow.utils.StoreType
-import com.ipd.rainbow.utils.StringUtils
 import com.ipd.rainbow.widget.ProductModelDialog
 import com.ipd.rainbow.widget.ShareDialog
 import com.ipd.rainbow.widget.ShareDialogClick
@@ -51,7 +50,6 @@ class ProductDetailActivity : BaseUIActivity() {
 
     private val mProductId by lazy { intent.getIntExtra("productId", -1) }
     private val mFromId by lazy { intent.getIntExtra("fromId", -1) }
-    var mActivityId = -1
 
     override fun getToolbarLayout(): Int = R.layout.product_detail_toolbar
 
@@ -153,16 +151,13 @@ class ProductDetailActivity : BaseUIActivity() {
 
     private fun showProductModelDialog(type: Int) {
         val dialog = ProductModelDialog(mActivity)
-        val logos = StringUtils.splitImages(mProductInfo?.LOGO ?: "")
-        dialog.setData(type, if (logos == null || logos.isEmpty()) "" else logos[0], mProductInfo?.isGroup
-                ?: false, mProductModelResult, mActivityId)
+        dialog.setData(type, mProductInfo?.isGroup ?: false, mProductModelResult)
         dialog.show()
     }
 
     private fun getProductModelInfo(type: Int) {
-        if (mActivityId == -1) return
         if (mProductModelResult == null) {
-            ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId, mActivityId)
+            ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<ProductModelResult>(mActivity, true) {
                         override fun _onNext(result: ProductModelResult) {
@@ -200,7 +195,6 @@ class ProductDetailActivity : BaseUIActivity() {
 
     fun setProductDetail(info: ProductDetailBean) {
         mProductInfo = info
-        mActivityId = mProductInfo?.ACTIVITY_ID ?: -1
         setCollect(mProductInfo?.IS_COLLECT == 1)
 
         if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {

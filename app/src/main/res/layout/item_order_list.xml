@@ -61,7 +61,7 @@
         android:layout_below="@id/line2"
         android:layout_centerVertical="true"
         android:layout_marginTop="15dp"
-        android:text="实付(含运费) : " />
+        android:text="实付(含运/税费) : " />
 
     <TextView
         android:id="@+id/tv_commodity_pay"
@@ -70,7 +70,7 @@
         android:layout_marginTop="15dp"
         android:layout_toRightOf="@id/commodity_pay"
         android:text="￥188.88"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/red" />
 
     <TextView
         android:id="@+id/tv_confirm"

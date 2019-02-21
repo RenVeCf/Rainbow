@@ -69,11 +69,20 @@
             tools:text="176****5640" />
 
         <TextView
+            android:id="@+id/tv_delivery_card"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_delivery_name"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_delivery_address"
+            tools:text="身份证号:432432432" />
+
+        <TextView
             android:id="@+id/tv_address"
             style="@style/BaseTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_delivery_phone"
+            android:layout_below="@id/tv_delivery_card"
             android:layout_marginLeft="@dimen/base_padding"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/iv_delivery_address"

@@ -25,10 +25,10 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
         holder.itemView.tv_order_number.text = info.ORDER_NO
 
         if (info.status == Order.PAYMENT) {
-            holder.itemView.commodity_pay.text = "应付(含运费) :"
+            holder.itemView.commodity_pay.text = "应付(含运/税费) :"
             holder.itemView.tv_commodity_pay.text = "￥" + info.PAYABLE_FEE
         } else {
-            holder.itemView.commodity_pay.text = "实付(含运费) :"
+            holder.itemView.commodity_pay.text = "实付(含运/税费) :"
             holder.itemView.tv_commodity_pay.text = "￥" + info.PAY_FEE
         }
 

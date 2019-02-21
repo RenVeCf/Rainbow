@@ -52,10 +52,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             context.startActivity(intent)
         }
 
-        fun launch(context: Context, activityId: Int, productId: Int, formId: Int, num: Int, type: Int = SPELL) {
+        fun launch(context: Context, productId: Int, formId: Int, num: Int, type: Int = SPELL) {
             val intent = Intent(context, ConfirmOrderActivity::class.java)
             intent.putExtra("isCart", 0)
-            intent.putExtra("activityId", activityId)
             intent.putExtra("productId", productId)
             intent.putExtra("formId", formId)
             intent.putExtra("num", num)
@@ -187,6 +186,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         tv_product_info.text = "共${info.PRODUCT_NUM}件商品"
         tv_total_product_price.text = "￥${info.PRODUCT_TOTAL}"
         tv_express_fee.text = "+￥${info.POST_FEE}"
+        tv_tax_fee.text = "+￥${info.TAX_FEE}"
         tv_wallet_balance.text = "余额：￥${info.BALANCE}"
         tv_actual_price.text = "￥${info.PAY_FEE}"
         tv_coupon_deduction.text = "￥${info.PREFER_FEE}"
@@ -258,6 +258,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             cl_has_not_address.visibility = View.GONE
             cl_has_address.visibility = View.VISIBLE
             tv_receiver_info.text = "${addressInfo.RECIPIENT}    ${addressInfo.TEL}"
+            tv_receiver_card.text = "身份证号:${addressInfo.IDENTITY}"
             tv_receive_address.text = "${addressInfo.PROV} ${addressInfo.CITY} ${addressInfo.DIST} ${addressInfo.ADDRESS}"
         }
     }

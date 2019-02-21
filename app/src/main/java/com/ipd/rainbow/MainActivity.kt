@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
         val action = intent?.getStringExtra("action")
         when (action) {
             "cart" -> {
-                changePage(3)
+                changePage(2)
             }
         }
 

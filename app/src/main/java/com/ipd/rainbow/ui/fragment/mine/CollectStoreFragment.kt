@@ -33,8 +33,6 @@ class CollectStoreFragment : ListFragment<BaseResult<List<ProductBean>>, Product
         EventBus.getDefault().unregister(this)
     }
 
-    override fun needLazyLoad() = true
-
 
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
