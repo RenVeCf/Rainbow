@@ -15,7 +15,7 @@ public class ProductBean {
      * DISCOUNT : 0.9
      * SALE : 0
      * ASSESS : 0
-     * LEVEL : 
+     * LEVEL :
      */
 
     public int USER_ID;
@@ -36,27 +36,33 @@ public class ProductBean {
     public int BUY_NUM;
     public String LEVEL;
 
-    //暂时占位
-    public boolean isNew;
     public float star;
+
+    public boolean isNew() {
+        return KIND == 2;
+    }
+
+    public boolean isSales() {
+        return KIND == 1;
+    }
 
     public String getKindStr() {
         String str = "";
         switch (KIND) {
-            case 1:
+            case 0:
                 str = "普通";
                 break;
+            case 1:
+                str = "特价";
+                break;
             case 2:
-                str = "抢购";
-                break;
-            case 3:
-                str = "清仓";
-                break;
-            case 4:
                 str = "上新";
                 break;
-            case 5:
-                str = "组合";
+            case 3:
+                str = "库存";
+                break;
+            case 4:
+                str = "团购";
                 break;
         }
         return str;

@@ -69,8 +69,6 @@
         <activity android:name="com.ipd.rainbow.ui.activity.trade.CartCouponActivity" />
 
         <!-- store-->
-        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSecondIndexActivity" />
-        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSpecialActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSearchActivity" />
         <activity
             android:name="com.ipd.rainbow.ui.activity.store.ProductListActivity"
@@ -80,11 +78,8 @@
         <activity android:name="com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.NewProductListActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.ClearanceProductActivity" />
-        <activity android:name="com.ipd.rainbow.ui.activity.store.video.StoreVideoIndexActivity" />
-        <activity
-            android:name="com.ipd.rainbow.ui.activity.store.video.StoreVideoDetailActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.ProductCategoryActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSalesActivity" />
 
 
         <!-- 裁剪-->

@@ -6,17 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
 import com.ipd.rainbow.R
-import com.ipd.rainbow.bean.BaseResult
 import com.ipd.rainbow.bean.ProductBean
 import com.ipd.rainbow.imageload.ImageLoader
-import com.ipd.rainbow.platform.global.GlobalApplication
-import com.ipd.rainbow.platform.global.GlobalParam
-import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
-import com.ipd.rainbow.platform.http.RxScheduler
-import kotlinx.android.synthetic.main.item_product_new.view.*
+import kotlinx.android.synthetic.main.item_product_sales.view.*
+import kotlinx.android.synthetic.main.item_product_sales_grid.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -25,38 +19,68 @@ class NewProductAdapter(val context: Context, private val list: List<ProductBean
 
     override fun getItemCount(): Int = list?.size ?: 0
 
+    object ItemType {
+        const val LIST = 0
+        const val GRID = 1
+    }
+
+    var mType: Int = ItemType.LIST
+
+    override fun getItemViewType(position: Int): Int {
+        return mType
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_new, parent, false))
+        return when (viewType) {
+            ItemType.LIST -> {
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_sales, parent, false))
+            }
+            else -> {
+                ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product_sales_grid, parent, false))
+            }
+        }
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-        holder.itemView.tv_product_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+        when (getItemViewType(position)) {
+            ProductAdapter.ItemType.LIST -> {
+                holder.itemView.iv_new_product.visibility = if (info.isNew) View.VISIBLE else View.GONE
 
-        ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
-        holder.itemView.tv_product_name.text = info.NAME
-        holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
-        holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
-        holder.itemView.tv_product_sales.text = "已售 ${info.SALE}"
+                if (info.isSales) {
+                    //是否为特价
+                    holder.itemView.tv_product_price_old.visibility = View.VISIBLE
+                    holder.itemView.tv_product_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+                    holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
+                } else {
+                    holder.itemView.tv_product_price_old.visibility = View.GONE
+                }
 
+                ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
+                holder.itemView.tv_product_name.text = info.NAME
+                holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
+            }
+            ProductAdapter.ItemType.GRID -> {
+                holder.itemView.iv_new_product_grid.visibility = if (info.isNew) View.VISIBLE else View.GONE
+
+                if (info.isSales) {
+                    //是否为特价
+                    holder.itemView.tv_product_old_price_grid.visibility = View.VISIBLE
+                    holder.itemView.tv_product_old_price_grid.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+                    holder.itemView.tv_product_old_price_grid.text = "￥${info.PRICE}"
+                } else {
+                    holder.itemView.tv_product_old_price_grid.visibility = View.GONE
+                }
+
+                ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img_grid)
+                holder.itemView.tv_product_name_grid.text = info.NAME
+                holder.itemView.tv_product_price_grid.text = info.CURRENT_PRICE
+            }
+        }
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)
-        }
-        holder.itemView.iv_add_to_cart.setOnClickListener {
-            ApiManager.getService().cartAdd(GlobalParam.getUserIdOrJump(), info.PRODUCT_ID, info.FORM_ID, 1)
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<Int>>(context, true) {
-                        override fun _onNext(result: BaseResult<Int>) {
-                            if (result.code == 0) {
-                                ToastCommom.getInstance().show(GlobalApplication.mContext, true, context.resources.getString(R.string.add_cart_success))
-                            } else {
-                                ToastCommom.getInstance().show(GlobalApplication.mContext, result.msg)
-                            }
-                        }
-                    })
         }
     }
 

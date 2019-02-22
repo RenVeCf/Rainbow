@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:paddingLeft="@dimen/base_padding"
-    android:paddingRight="@dimen/base_padding"
-    android:paddingTop="@dimen/base_padding">
+    android:paddingTop="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding">
 
 
     <com.ipd.rainbow.widget.RoundImageView
@@ -14,7 +15,7 @@
         android:layout_width="@dimen/list_product_img_width"
         android:layout_height="@dimen/list_product_img_height"
         android:scaleType="centerCrop"
-        android:src="@mipmap/product_img1"
+        tools:src="@mipmap/product_img1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:leftTop_corner_radius="10dp"
@@ -53,39 +54,20 @@
         <TextView
             android:id="@+id/tv_product_price"
             style="@style/BaseTextStyle"
-            android:layout_width="0dp"
-            android:layout_marginBottom="4dp"
             android:text="￥71.00"
             android:textColor="@color/red"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_product_sales" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/tv_product_price_old"
             style="@style/SmallTextStyle"
-            android:layout_width="0dp"
-            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_marginLeft="@dimen/base_padding"
             android:text="￥81.00"
-            app:layout_constraintBottom_toBottomOf="@id/tv_product_price"
-            app:layout_constraintLeft_toRightOf="@id/tv_product_price" />
-
-        <TextView
-            android:id="@+id/tv_product_sales"
-            style="@style/SmallTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="已售 1312"
             android:textColor="@color/LightGrey"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toRightOf="@id/tv_product_price" />
 
-        <ImageView
-            android:id="@+id/iv_add_to_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/add_to_cart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
 

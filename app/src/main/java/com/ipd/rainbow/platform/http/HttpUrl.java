@@ -38,7 +38,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_PARAM = "app_product/proParam.do";
     String STORE_SEARCH_HISTORY = "app_product/searchHis.do";
     String STORE_CLEAR_SEARCH_HISTORY = "app_product/clearHis.do";
-    String STORE_PRODUCT_LIST = "app_shop/productAll.do";
+    String STORE_PRODUCT_LIST = "app_shop/getList.do";
     String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
     String STORE_PRODUCT_MODEL = "app_product/formList.do";
     String STORE_PRODUCT_COUPON = "app_product/couponList.do";
@@ -83,15 +83,15 @@ public interface HttpUrl {
     String RETURN_COMMIT_EXPRESS = "app_refund/toPost.do";
 
     //store activity
+    String STORE_PRODUCT_SALES = "app_product/activityList.do";
     String STORE_TODAY_PRODUCT_FLASH_SALE = "app_activity/bestPrefer.do";
     String STORE_PRODUCT_FLASH_SALE = "app_activity/getList.do";
     String STORE_PRODUCT_FLASH_SALE_REMIND = "app_activity/toRemind.do";
     String STORE_CLEARANCE_PRODUCT = "app_activity/pullList.do";
-    String STORE_NEW_PRODUCT = "app_activity/newList.do";
     String STORE_FLASH_SALE_TIME = "app_activity/rushTime.do";
 
     //拼团
-    String STORE_SPELL = "app_team/getList.do";
+    String STORE_SPELL = "app_product/teamList.do";
     String STORE_SPELL_CASH = "app_cart/toTeamCash.do";
     String STORE_SPELL_CONFIRM_ORDER = "app_cart/submitTeam.do";
     String SPELL_MINE_LIST = "app_team/selfList.do";

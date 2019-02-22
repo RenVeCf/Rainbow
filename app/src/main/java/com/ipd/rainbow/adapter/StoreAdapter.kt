@@ -13,9 +13,11 @@ import com.ipd.rainbow.bean.StoreIndexHeaderBean
 import com.ipd.rainbow.bean.StoreIndexSpecialBean
 import com.ipd.rainbow.imageload.ImageLoader
 import com.ipd.rainbow.ui.activity.store.ClearanceProductActivity
-import com.ipd.rainbow.ui.activity.store.NewProductListActivity
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
+import com.ipd.rainbow.ui.activity.store.ProductListActivity
+import com.ipd.rainbow.ui.activity.store.StoreSalesActivity
 import com.ipd.rainbow.ui.activity.store.flashsale.FlashSaleActivity
+import com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity
 import com.ipd.rainbow.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.item_product_grid.view.*
 import kotlinx.android.synthetic.main.item_store_index_special.view.*
@@ -81,19 +83,27 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 val headerInfo = list!![position] as StoreIndexHeaderBean
 
                 //菜单
-                holder.itemView.store_menu.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList) {
-                    //专区
-//                    ProductListActivity.launch(context as Activity, "", shopTypeId = it.TYPE_ID)
+                holder.itemView.store_menu.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList) { pos, info ->
+                    when (pos) {
+                        1 -> GroupPurchaseActivity.launch(context as Activity)
+                        else -> ProductListActivity.launch(context as Activity, typeId = info.TYPE_ID, typeTitle = info.NAME)
+                    }
                 }
 
 
                 //每日上新
+                holder.itemView.ll_today_new_more.setOnClickListener {
+                    StoreSalesActivity.launch(context as Activity, 0)
+                }
                 holder.itemView.new_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.new_product_recycler_view.adapter = StoreNewProductAdapter(context, headerInfo.todayNew) {
                     ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 }
 
                 //今日特价
+                holder.itemView.ll_today_sales_more.setOnClickListener {
+                    StoreSalesActivity.launch(context as Activity, 1)
+                }
                 holder.itemView.sales_product_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 holder.itemView.sales_product_recycler_view.adapter = StoreNewProductAdapter(context, headerInfo.todaySale) {
                     ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
@@ -181,15 +191,15 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
         }
         holder.itemView.iv_store_new.setOnClickListener {
             //上新
-            NewProductListActivity.launch(context as Activity)
+            StoreSalesActivity.launch(context as Activity, 0)
         }
         holder.itemView.iv_store_group.setOnClickListener {
             //团购
-            ClearanceProductActivity.launch(context as Activity)
+            GroupPurchaseActivity.launch(context as Activity)
         }
         holder.itemView.iv_store_stock.setOnClickListener {
             //库存
-
+            StoreSalesActivity.launch(context as Activity, 2)
         }
     }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    android:navigationIcon="@mipmap/back">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            app:tl_indicator_color="@color/colorPrimaryDark"
+            app:tl_indicator_corner_radius="20dp"
+            app:tl_indicator_style="BLOCK"
+            app:tl_tab_space_equal="true"
+            app:tl_indicator_width="75dp"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textUnselectColor="@color/black"/>
+
+
+        <ImageView
+            android:id="@+id/iv_show_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="right|center"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:src="@mipmap/product_list_grid" />
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.Toolbar>
+
+

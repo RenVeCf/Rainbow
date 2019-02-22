@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary"
-    android:gravity="center_vertical"
     android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
     android:navigationIcon="@mipmap/back"
     android:orientation="horizontal">
 
@@ -17,36 +18,63 @@
         android:paddingRight="@dimen/base_padding"
         android:src="@mipmap/back" />
 
-    <TextView
-        android:id="@+id/et_search"
-        style="@style/BaseEditTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/shape_comment_edit_bg"
-        android:drawableLeft="@mipmap/search_icon"
-        android:drawablePadding="10dp"
-        android:hint="搜索关键字"
-        android:imeOptions="actionSearch"
-        android:maxLength="20"
-        android:paddingBottom="@dimen/small_padding"
-        android:paddingLeft="@dimen/small_padding"
-        android:paddingRight="@dimen/small_padding"
-        android:layout_marginRight="15dp"
-        android:paddingTop="@dimen/small_padding"
-        android:singleLine="true" />
 
-    <ImageView
-        android:id="@+id/iv_show_type"
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/et_search"
+            style="@style/BaseEditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_comment_edit_bg"
+            android:drawableLeft="@mipmap/search_icon"
+            android:drawablePadding="10dp"
+            android:hint="搜索关键字"
+            android:imeOptions="actionSearch"
+            android:maxLength="20"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/iv_show_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:src="@mipmap/product_list_grid"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:visibility="gone"
-        android:paddingLeft="@dimen/base_padding"
-        android:paddingRight="@dimen/base_padding"
-        android:src="@mipmap/product_list_grid" />
+        android:text="title"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
 
 

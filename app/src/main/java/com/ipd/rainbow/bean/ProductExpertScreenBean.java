@@ -1,40 +1,21 @@
 package com.ipd.rainbow.bean;
 
-import java.util.List;
-
 public class ProductExpertScreenBean {
 
+
     /**
-     * MODULE_ID : 1
-     * NAME : 冠能
+     * TYPE : 2
+     * COMMON_ID : 17
+     * COMMON_NAME : 首饰1
      */
-    public String TITLE;
-    public List<ScreenInfo> LIST;
 
-    public static class ScreenInfo {
+    public int TYPE;
+    public int COMMON_ID;
+    public String COMMON_NAME;
+    public boolean isChecked = false;
 
-        public int MODULE_ID;
-        public String NAME;
-        public String MIN_PRICE;
-        public String MAX_PRICE;
-
-        public ScreenInfo(int MODULE_ID, String NAME) {
-            this.MODULE_ID = MODULE_ID;
-            this.NAME = NAME;
-        }
-
-        public ScreenInfo() {
-        }
-
-        @Override
-        public String toString() {
-            return "ScreenInfo{" +
-                    "MODULE_ID=" + MODULE_ID +
-                    ", NAME='" + NAME + '\'' +
-                    ", MIN_PRICE='" + MIN_PRICE + '\'' +
-                    ", MAX_PRICE='" + MAX_PRICE + '\'' +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "{COMMON_ID=" + COMMON_ID + ", COMMON_NAME='" + COMMON_NAME + "}";
     }
-
 }

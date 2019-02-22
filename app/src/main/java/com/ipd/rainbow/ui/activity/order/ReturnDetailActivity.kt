@@ -84,7 +84,7 @@ class ReturnDetailActivity : BaseUIActivity() {
         tv_product_name.text = info.ORDER_DETAIL.NAME
         tv_product_explane.text = info.ORDER_DETAIL.NORM
         tv_product_price.text = "￥${info.ORDER_DETAIL.CURRENT_PRICE}"
-        tv_buyed_num.text = "x${info.ORDER_DETAIL.SALE}"
+        tv_buyed_num.text = "x${info.ORDER_DETAIL.BUY_NUM}"
         tv_apply_num.text = "x${info.APPLY_NUM}"
         tv_order_code.text = info.ORDER_NO
         tv_pay_money.text = "￥${info.ORDER_PAY_FEE}"

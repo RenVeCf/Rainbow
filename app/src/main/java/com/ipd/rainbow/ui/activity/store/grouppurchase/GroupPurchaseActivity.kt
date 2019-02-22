@@ -16,7 +16,7 @@ class GroupPurchaseActivity : BaseUIActivity() {
         }
     }
 
-    override fun getToolbarTitle(): String = "优惠团购"
+    override fun getToolbarTitle(): String = "超值团购"
     override fun getContentLayout(): Int = R.layout.activity_container
 
     override fun initView(bundle: Bundle?) {

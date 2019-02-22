@@ -64,10 +64,10 @@ class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>
                     outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
                 }
             })
-            mAdapter = PurchaseProductAdapter(mActivity, data, {
+            mAdapter = PurchaseProductAdapter(mActivity, data) {
                 //商品详情
                 ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -86,23 +86,23 @@ class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>
             val layoutManager = recycler_view.layoutManager as LinearLayoutManager
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
-            mActivity.runOnUiThread({
+            mActivity.runOnUiThread {
                 for (i in firstVisibleItemPosition..lastVisibleItemPosition) {
                     val childView = layoutManager.findViewByPosition(i)
                     if (childView != null) {
                         var surplusTime = data!![i].endTime - System.currentTimeMillis()
                         if (surplusTime < 0) surplusTime = 0
 
-                        StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
+                        StringUtils.getCountDownByTime(surplusTime) { hours, minutes, second ->
                             childView.tv_group_purchase_hours.text = hours
                             childView.tv_group_purchase_minute.text = minutes
                             childView.tv_group_purchase_second.text = second
-                        })
+                        }
 
                     }
 
                 }
-            })
+            }
 
 
         }

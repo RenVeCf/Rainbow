@@ -255,28 +255,18 @@ public interface ApiService {
     Observable<BaseResult<List<ProductBean>>> storeProductList(@Field("USER_ID") String user_id,
                                                                @Field("COUNT") int COUNT,
                                                                @Field("PAGE") int PAGE,
-                                                               @Field("BRAND") String BRAND,
+                                                               @Field("BRAND_IDS") String BRAND_IDS,
                                                                @Field("COMPOSITE") int COMPOSITE,
                                                                @Field("KEYWORDS") String KEYWORDS,
-                                                               @Field("MAX_PRICE") float MAX_PRICE,
-                                                               @Field("MIN_PRICE") float MIN_PRICE,
                                                                @Field("PRICE_SORT") int PRICE_SORT,
                                                                @Field("SALES") int SALES,
-                                                               @Field("APPLY") String APPLY,
-                                                               @Field("SIZE") String SIZE,
-                                                               @Field("PET_TYPE") String PET_TYPE,
-                                                               @Field("NET_CONTENT") String NET_CONTENT,
-                                                               @Field("TASTE") String TASTE,
-                                                               @Field("COUNTRY") String COUNTRY,
-                                                               @Field("THING_TYPE") String THING_TYPE,
-                                                               @Field("AREA_TYPE_ID") int AREA_TYPE_ID,
-                                                               @Field("SHOP_TYPE_ID") int SHOP_TYPE_ID);
+                                                               @Field("COUNTRY_IDS") String COUNTRY_IDS,
+                                                               @Field("TYPE_IDS") int TYPE_IDS,
+                                                               @Field("CHILD_TYPE_IDS") String CHILD_TYPE_IDS);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_PRODUCT_EXPERT_SCREEN)
     Observable<ScreenResult> storeProductExpertScreen(@Field("USER_ID") String user_id,
-                                                      @Field("KEYWORDS") String KEYWORDS,
-                                                      @Field("AREA_ID") int AREA_ID,
                                                       @Field("TYPE_ID") int TYPE_ID);
 
     @FormUrlEncoded
@@ -351,10 +341,11 @@ public interface ApiService {
                                                                     @Field("CATEGORY") int CATEGORY);
 
     @FormUrlEncoded
-    @POST(HttpUrl.STORE_NEW_PRODUCT)
-    Observable<BaseResult<List<ProductBean>>> storeProductNew(@Field("USER_ID") String user_id,
-                                                              @Field("COUNT") int COUNT,
-                                                              @Field("PAGE") int PAGE);
+    @POST(HttpUrl.STORE_PRODUCT_SALES)
+    Observable<BaseResult<List<ProductBean>>> storeProductSales(@Field("USER_ID") String user_id,
+                                                                @Field("KIND") int KIND,
+                                                                @Field("COUNT") int COUNT,
+                                                                @Field("PAGE") int PAGE);
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_FLASH_SALE_TIME)

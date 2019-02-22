@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_store_menu_category.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class StoreIndexCategoryAdapter(val context: Context, private val list: List<StoreMenuBean>?, private val itemClick: (info: StoreMenuBean) -> Unit) : RecyclerView.Adapter<StoreIndexCategoryAdapter.ViewHolder>() {
+class StoreIndexCategoryAdapter(val context: Context, private val list: List<StoreMenuBean>?, private val itemClick: (pos: Int, info: StoreMenuBean) -> Unit) : RecyclerView.Adapter<StoreIndexCategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -29,7 +29,7 @@ class StoreIndexCategoryAdapter(val context: Context, private val list: List<Sto
         holder.itemView.tv_category_name.text = info.NAME
 
         holder.itemView.setOnClickListener {
-            itemClick.invoke(info)
+            itemClick.invoke(position,info)
         }
     }
 

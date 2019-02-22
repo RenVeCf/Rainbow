@@ -63,20 +63,13 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         val compositeValue = mScreenView?.getCompositeValue() ?: 0
         val saleValue = mScreenView?.getSaleValue() ?: 0
         val priceValue = mScreenView?.getPriceValue() ?: 0
-        val maxPrice = mScreenView?.getMaxPrice() ?: 0f
-        val minPrice = mScreenView?.getMinPrice() ?: 0f
         val brandValue = mScreenView?.getBrandValue() ?: ""
-        val applyValue = mScreenView?.getApplyValue() ?: ""
-        val sizeValue = mScreenView?.getSizeValue() ?: ""
-        val petTypeValue = mScreenView?.getPetTypeValue() ?: ""
-        val netContentValue = mScreenView?.getNetContentValue() ?: ""
-        val tasteValue = mScreenView?.getTasteValue() ?: ""
+        val categoryValue = mScreenView?.getCategoryValue() ?: ""
         val countryValue = mScreenView?.getCountryValue() ?: ""
-        val thingTypeValue = mScreenView?.getThingTypeValue() ?: ""
 
         return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
-                compositeValue, mParent.mSearchKey, maxPrice, minPrice, priceValue, saleValue,
-                applyValue, sizeValue, petTypeValue, netContentValue, tasteValue, countryValue, thingTypeValue, mParent.mAreaTypeId, mParent.mShopTypeId)
+                compositeValue, mParent.mSearchKey, priceValue, saleValue,
+                countryValue, mParent.mTypeId, categoryValue)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -91,10 +84,10 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
     private var mAdapter: ProductAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ProductAdapter(mActivity, data, {
+            mAdapter = ProductAdapter(mActivity, data) {
                 //商品详情
                 ProductDetailActivity.launch(mActivity, it.PRODUCT_ID, it.FORM_ID)
-            })
+            }
             //recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.layoutManager = GridLayoutManager(mActivity, 2)
             recycler_view.adapter = mAdapter

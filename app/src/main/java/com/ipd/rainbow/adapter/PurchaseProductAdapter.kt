@@ -34,11 +34,11 @@ class PurchaseProductAdapter(val context: Context, private val list: List<Purcha
 
 
         val surplusTime = info.endTime - System.currentTimeMillis()
-        StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
+        StringUtils.getCountDownByTime(surplusTime) { hours, minutes, second ->
             holder.itemView.tv_group_purchase_hours.text = hours
             holder.itemView.tv_group_purchase_minute.text = minutes
             holder.itemView.tv_group_purchase_second.text = second
-        })
+        }
 
         if (info.JOIN_STATUS == 0){
             holder.itemView.tv_group_purchase_buy.setBackgroundResource(R.drawable.shape_buy_bg)

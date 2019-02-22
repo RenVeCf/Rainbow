@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
-import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ProductExpertScreenBean
@@ -17,7 +17,6 @@ import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.BaseActivity
 import com.ipd.rainbow.ui.fragment.store.ProductListFragment
-import com.ipd.rainbow.utils.ProductScreenUtil
 import com.ipd.rainbow.utils.ProductScreenView
 import com.ipd.rainbow.widget.ProductExpertScreenLayout
 import com.ipd.rainbow.widget.ScreenLayout
@@ -28,11 +27,11 @@ import kotlinx.android.synthetic.main.product_list_toolbar.*
 class ProductListActivity : BaseActivity(), ProductScreenView {
 
     companion object {
-        fun launch(activity: Activity, searchKey: String = "", areaTypeId: Int = 0, shopTypeId: Int = 0) {
+        fun launch(activity: Activity, searchKey: String = "", typeId: Int = 0, typeTitle: String = "") {
             val intent = Intent(activity, ProductListActivity::class.java)
             intent.putExtra("searchKey", searchKey)
-            intent.putExtra("areaTypeId", areaTypeId)
-            intent.putExtra("shopTypeId", shopTypeId)
+            intent.putExtra("typeId", typeId)
+            intent.putExtra("typeTitle", typeTitle)
             activity.startActivity(intent)
         }
     }
@@ -41,50 +40,53 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
         super.onNewIntent(intent)
         LogUtils.e("tag", intent.toString())
         mSearchKey = intent?.getStringExtra("searchKey") ?: ""
-        mAreaTypeId = intent?.getIntExtra("areaTypeId", 0) ?: 0
-        mShopTypeId = intent?.getIntExtra("shopTypeId", 0) ?: 0
+        mTypeId = intent?.getIntExtra("typeId", 0) ?: 0
+        mTypeTitle = intent?.getStringExtra("typeTitle") ?: ""
         onReset()
     }
 
     override fun getBaseLayout(): Int = R.layout.activity_product_list
 
     var mSearchKey: String = ""
-    var mAreaTypeId: Int = 0
-    var mShopTypeId: Int = 0
+    var mTypeId: Int = 0
+    var mTypeTitle: String = ""
     var screenLayout: ScreenLayout? = null
     private var mScreenResult: ScreenResult? = null
-    private var mMinPrice = 0f
-    private var mMaxPrice = 0f
     //保存已勾选的筛选条件
-    private val mScreenMap: HashMap<String, ProductExpertScreenBean.ScreenInfo> = hashMapOf()
+    private val mScreenMap: HashMap<String, List<ProductExpertScreenBean>> = hashMapOf()
 
     /**
      * 重置筛选条件
      */
     private fun onReset() {
-        et_search.text = mSearchKey
+        setHeader()
         mScreenResult = null
-        price_flow_layout.clearCheck()
-        price_flow_layout.removeAllViews()
-        et_min_price.setText("")
-        et_max_price.setText("")
 
-        mMinPrice = 0f
-        mMaxPrice = 0f
         mScreenMap.clear()
-        if (cl_screen.childCount > 1) {
-            cl_screen.removeViews(1, cl_screen.childCount - 1)
-        }
+        cl_screen.removeAllViews()
 
         drawer_layout.closeDrawer(Gravity.END)
         screenLayout?.onCancelExpertSort()
     }
 
+
+    private fun setHeader() {
+        if (mTypeId <= 0) {
+            ll_search.visibility = View.VISIBLE
+            tv_title.visibility = View.GONE
+            et_search.text = mSearchKey
+        } else {
+            ll_search.visibility = View.GONE
+            tv_title.visibility = View.VISIBLE
+            tv_title.text = mTypeTitle
+        }
+    }
+
     override fun initView(bundle: Bundle?) {
         mSearchKey = intent.getStringExtra("searchKey")
-        mAreaTypeId = intent.getIntExtra("areaTypeId", 0)
-        mShopTypeId = intent.getIntExtra("shopTypeId", 0)
-        et_search.text = mSearchKey
+        mTypeId = intent.getIntExtra("typeId", 0)
+        mTypeTitle = intent.getStringExtra("typeTitle")
+        setHeader()
 
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
@@ -107,7 +109,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
         iv_back.setOnClickListener { finish() }
 //        iv_show_type.setOnClickListener {
 //
-//            val curShowType = mFragment.switchShowType()
+//            val curShowType = mFragment.setShowType()
 //            iv_show_type.setImageResource(if (curShowType == ProductAdapter.ItemType.LIST) R.mipmap.product_list_list else R.mipmap.product_list_grid)
 //        }
 
@@ -135,31 +137,15 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 //                    }
 
             if (mScreenResult == null) {
-                ApiManager.getService().storeProductExpertScreen(GlobalParam.getUserIdOrJump(), mSearchKey, mAreaTypeId, mShopTypeId)
+                ApiManager.getService().storeProductExpertScreen(GlobalParam.getUserIdOrJump(), mTypeId)
                         .compose(RxScheduler.applyScheduler())
                         .subscribe(object : Response<ScreenResult>(mActivity, true) {
                             override fun _onNext(result: ScreenResult) {
                                 if (result.code == 0) {
                                     mScreenResult = result
-                                    //price
-                                    price_flow_layout.setCheckedChangeListener {
-                                        if (it == null) {
-                                            et_min_price.setText("")
-                                            et_max_price.setText("")
-                                        } else {
-                                            et_min_price.setText(it.MIN_PRICE)
-                                            et_max_price.setText(it.MAX_PRICE)
-                                        }
-                                    }
-
-                                    if (result.data.PRICE_DATA != null) {
-                                        result.data.PRICE_DATA.LIST.forEach {
-                                            price_flow_layout.addView(it, true)
-                                        }
-                                    }
 
                                     //其他条件
-                                    val storeScreenProductList = ProductScreenUtil.getStoreScreenProductList(result.data)
+                                    val storeScreenProductList = result.data
                                     storeScreenProductList.forEach {
                                         val productExpertScreenLayout = mInflater.inflate(R.layout.item_product_expert_screen, cl_screen, false) as ProductExpertScreenLayout
                                         productExpertScreenLayout.tag = it.TITLE
@@ -168,31 +154,14 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
                                     }
 
                                     tv_screen_confirm.setOnClickListener {
-                                        //确定
-                                        var minPrice = et_min_price.text.toString().trim()
-                                        var maxPrice = et_max_price.text.toString().trim()
-
-//                                        val pos = price_flow_layout.getCheckedScreenInfo()
-//                                        if (pos != -1) {
-//                                            val screenInfo = result.data.PRICE_DATA.LIST[pos]
-//                                            minPrice = screenInfo.MIN_PRICE
-//                                            maxPrice = screenInfo.MAX_PRICE
-//                                        }
-
-                                        mMinPrice = if (!TextUtils.isEmpty(minPrice)) minPrice.toFloat() else 0f
-                                        mMaxPrice = if (!TextUtils.isEmpty(maxPrice)) maxPrice.toFloat() else 0f
-
-//                                        if (mMinPrice > mMaxPrice){
-//                                            toastShow("最低价格不能大于最高价格")
-//                                            return@setOnClickListener
-//                                        }
-                                        for (index in 1..cl_screen.childCount) {
+                                        //确定筛选
+                                        for (index in 0..cl_screen.childCount) {
                                             if (cl_screen.getChildAt(index) !is ProductExpertScreenLayout) {
                                                 continue
                                             }
                                             val productExpertScreenLayout = cl_screen.getChildAt(index) as ProductExpertScreenLayout
                                             val screenInfo = productExpertScreenLayout.getCheckedScreenInfo()
-                                            if (screenInfo != null) {
+                                            if (screenInfo != null && screenInfo.isNotEmpty()) {
                                                 //保存到map中(key:筛选分类名称,value:选中的子分类信息)
                                                 mScreenMap[productExpertScreenLayout.tag.toString()] = screenInfo
                                             } else {
@@ -241,15 +210,17 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
     override fun getCompositeValue(): Int = screenLayout?.getCompositeValue() ?: 0
     override fun getSaleValue(): Int = screenLayout?.getSaleValue() ?: 0
     override fun getPriceValue(): Int = screenLayout?.getPriceValue() ?: 0
-    override fun getMinPrice(): Float = mMinPrice
-    override fun getMaxPrice(): Float = mMaxPrice
-    override fun getBrandValue(): String = (mScreenMap["品牌"]?.NAME) ?: ""
-    override fun getApplyValue(): String = (mScreenMap["适用阶段"]?.NAME) ?: ""
-    override fun getSizeValue(): String = (mScreenMap["宠物体型"]?.NAME) ?: ""
-    override fun getPetTypeValue(): String = (mScreenMap["宠物品种"]?.NAME) ?: ""
-    override fun getNetContentValue(): String = (mScreenMap["净含量"]?.NAME) ?: ""
-    override fun getTasteValue(): String = (mScreenMap["口味"]?.NAME) ?: ""
-    override fun getCountryValue(): String = (mScreenMap["国家"]?.NAME) ?: ""
-    //    override fun getThingTypeValue(): String = mScreenResult?.type ?: ""
-    override fun getThingTypeValue(): String = ""
+
+    override fun getBrandValue(): String = getScreenValueIds(mScreenMap["品牌"])
+    override fun getCategoryValue(): String = getScreenValueIds(mScreenMap["分类"])
+    override fun getCountryValue(): String = getScreenValueIds(mScreenMap["国家"])
+
+    private fun getScreenValueIds(list: List<ProductExpertScreenBean>?): String {
+        var ids = ""
+        list?.forEachIndexed { index, info ->
+            ids += info.COMMON_ID
+            if (index < list.size - 1) ids += ","
+        }
+        return ids
+    }
 }

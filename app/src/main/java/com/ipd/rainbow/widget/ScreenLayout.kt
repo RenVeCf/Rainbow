@@ -65,12 +65,12 @@ class ScreenLayout : ConstraintLayout {
         initWidgetByType()
 
         ll_normal.setOnClickListener {
-            SynthesizeScreenView(context as Activity, mSortType, this, backgroundView, { pos, isSelected ->
+            SynthesizeScreenView(context as Activity, mSortType, this, backgroundView) { pos, isSelected ->
                 when (pos) {
                     0 -> switchSortType(if (isSelected) ScreenType.NORMAL_SORT else ScreenType.NONE)
                     1 -> switchSortType(if (isSelected) ScreenType.COMMENT_SORT else ScreenType.NONE)
                 }
-            }).showView()
+            }.showView()
         }
 
         ll_sales.setOnClickListener {
