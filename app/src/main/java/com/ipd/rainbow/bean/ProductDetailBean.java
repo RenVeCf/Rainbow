@@ -84,5 +84,6 @@ public class ProductDetailBean {
         public String CONTENT;
         public String PIC;
         public float TOTAL_SCORE;
+        public int ASSESS_ID;
     }
 }

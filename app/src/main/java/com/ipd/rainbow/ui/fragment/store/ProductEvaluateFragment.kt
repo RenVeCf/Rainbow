@@ -15,6 +15,7 @@ import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.ui.ListFragment
+import com.ipd.rainbow.ui.activity.store.ProductEvaluateActivity
 import com.ipd.rainbow.widget.ProgressLayout
 import kotlinx.android.synthetic.main.fragment_product_evaluate_list.view.*
 import kotlinx.android.synthetic.main.item_product_evaluate_header.view.*
@@ -66,20 +67,20 @@ class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluate
         if (mAdapter == null) {
             mAdapter = ProductEvaluateAdapter(mActivity, data) {
                 //itemClick
-
+                ProductEvaluateActivity.launch(mActivity, it.ASSESS_ID)
             }
             recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
                     val position = parent.getChildAdapterPosition(view)
-                    outRect.top = DensityUtil.dip2px(mActivity,4f)
-                    outRect.bottom = DensityUtil.dip2px(mActivity,4f)
+                    outRect.top = DensityUtil.dip2px(mActivity, 4f)
+                    outRect.bottom = DensityUtil.dip2px(mActivity, 4f)
                     if (position % 2 == 0) {
-                        outRect.left = DensityUtil.dip2px(mActivity,8f)
-                        outRect.right = DensityUtil.dip2px(mActivity,4f)
+                        outRect.left = DensityUtil.dip2px(mActivity, 8f)
+                        outRect.right = DensityUtil.dip2px(mActivity, 4f)
                     } else {
-                        outRect.left = DensityUtil.dip2px(mActivity,4f)
-                        outRect.right = DensityUtil.dip2px(mActivity,8f)
+                        outRect.left = DensityUtil.dip2px(mActivity, 4f)
+                        outRect.right = DensityUtil.dip2px(mActivity, 8f)
                     }
                 }
             })

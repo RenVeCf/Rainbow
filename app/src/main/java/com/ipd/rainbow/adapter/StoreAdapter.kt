@@ -12,7 +12,6 @@ import com.ipd.rainbow.bean.ProductBean
 import com.ipd.rainbow.bean.StoreIndexHeaderBean
 import com.ipd.rainbow.bean.StoreIndexSpecialBean
 import com.ipd.rainbow.imageload.ImageLoader
-import com.ipd.rainbow.ui.activity.store.ClearanceProductActivity
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
 import com.ipd.rainbow.ui.activity.store.ProductListActivity
 import com.ipd.rainbow.ui.activity.store.StoreSalesActivity
@@ -155,6 +154,11 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     }
 
                 }
+
+                holder.itemView.ll_special_more.setOnClickListener {//查看更多
+                    ProductListActivity.launch(context as Activity, typeId = specialInfo.TYPE_ID, typeTitle = specialInfo.NAME)
+                }
+
             }
             else -> {
                 //商品列表

@@ -1,6 +1,5 @@
 package com.ipd.rainbow.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ProductDetailBean
 import com.ipd.rainbow.imageload.ImageLoader
-import com.ipd.rainbow.ui.activity.PictureLookActivity
 import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_product_detail_evaluate.view.*
 
@@ -30,14 +28,18 @@ class ProductDetailEvaluateAdapter(val context: Context, private val data: List<
             ImageLoader.loadNoPlaceHolderImg(context, pics[0], holder.itemView.iv_evaluate_img)
             holder.itemView.tv_evaluate_num.text = "${pics.size}张"
 
-            holder.itemView.iv_evaluate_img.setOnClickListener {
-                PictureLookActivity.launch(context as Activity, ArrayList(pics),0,PictureLookActivity.URL)
-            }
+//            holder.itemView.iv_evaluate_img.setOnClickListener {
+//                PictureLookActivity.launch(context as Activity, ArrayList(pics),0,PictureLookActivity.URL)
+//            }
 
         }
         ImageLoader.loadNoPlaceHolderImg(context, info.USER_LOGO, holder.itemView.civ_avatar)
         holder.itemView.tv_nickname.text = info.USER_NICKNAME
         holder.itemView.tv_content.text = info.CONTENT
+
+        holder.itemView.setOnClickListener {
+            itemClick?.invoke(info)
+        }
 
     }
 

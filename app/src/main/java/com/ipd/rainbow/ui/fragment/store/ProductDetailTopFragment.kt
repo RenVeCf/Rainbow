@@ -13,6 +13,7 @@ import com.ipd.rainbow.bean.ProductDetailBean
 import com.ipd.rainbow.ui.BaseUIFragment
 import com.ipd.rainbow.ui.activity.PictureAndVideoPreviewActivity
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
+import com.ipd.rainbow.ui.activity.store.ProductEvaluateActivity
 import com.ipd.rainbow.utils.IndicatorHelper
 import com.ipd.rainbow.utils.StoreType
 import com.ipd.rainbow.utils.StringUtils
@@ -101,7 +102,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
             val evaluateList = mProductInfo.ASSESS_LIST
 
             mContentView.evaluate_recycler_view.adapter = ProductDetailEvaluateAdapter(mActivity, evaluateList) {
-
+                ProductEvaluateActivity.launch(mActivity, it.ASSESS_ID)
             }
 
         }

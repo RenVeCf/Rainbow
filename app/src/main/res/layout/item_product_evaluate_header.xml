@@ -11,7 +11,10 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="@dimen/base_padding">
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/base_padding">
 
 
         <TextView
@@ -19,6 +22,7 @@
             style="@style/BaseTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textSize="14sp"
             tools:text="商品评价（4672）" />
 
 

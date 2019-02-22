@@ -76,10 +76,10 @@
         <activity android:name="com.ipd.rainbow.ui.activity.store.ProductDetailActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.flashsale.FlashSaleActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity" />
-        <activity android:name="com.ipd.rainbow.ui.activity.store.NewProductListActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.ClearanceProductActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.ProductCategoryActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.store.StoreSalesActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.store.ProductEvaluateActivity" />
 
 
         <!-- 裁剪-->

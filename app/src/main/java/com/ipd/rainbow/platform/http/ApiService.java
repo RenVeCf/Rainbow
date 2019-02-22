@@ -305,6 +305,11 @@ public interface ApiService {
                                                                                    @Field("PAGE") int PAGE,
                                                                                    @Field("COUNT") int COUNT);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.STORE_PRODUCT_EVALUATE_DETAIL)
+    Observable<BaseResult<ProductEvaluateBean>> storeProductEvaluateDetail(@Field("USER_ID") String user_id,
+                                                                           @Field("ASSESS_ID") int ASSESS_ID);
+
 
     /**
      * 商品活动

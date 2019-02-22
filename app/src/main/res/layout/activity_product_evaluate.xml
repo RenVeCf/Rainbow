@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <com.ipd.rainbow.widget.AutoScrollerViewPager
+            android:id="@+id/evaluate_banner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:0.73"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@mipmap/banner_default" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/base_padding"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            app:layout_constraintTop_toBottomOf="@id/evaluate_banner">
+
+
+            <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+                android:id="@+id/civ_avatar"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                tools:src="@mipmap/talk_avatar1" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="7dp"
+                android:text="雪山之鹰"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/civ_avatar"
+                app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                app:layout_constraintTop_toTopOf="@id/civ_avatar" />
+
+            <com.hedgehog.ratingbar.RatingBar
+                android:id="@+id/rating_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:clickable="false"
+                app:layout_constraintRight_toRightOf="parent"
+                app:starEmpty="@mipmap/evaluate_star"
+                app:starFill="@mipmap/evaluate_star_checked"
+                app:starImageHeight="12dp"
+                app:starImageWidth="15dp" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/small_padding"
+                android:ellipsize="end"
+                android:text="专门使用过再来评价。第一次不会用，没涂凝胶，那电流的…道有………哈哈，然后赶紧联系客服，客服给发了视频…说前三次需要充电十几个小时才可以用。充好用了感觉不错，没有电的感觉。后面长期使用了我来追评。"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civ_avatar" />
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/small_padding"
+                android:ellipsize="end"
+                android:text="2018.12.20  14:32:49"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
