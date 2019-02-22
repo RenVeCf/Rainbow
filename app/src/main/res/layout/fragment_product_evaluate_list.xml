@@ -7,12 +7,7 @@
     android:background="@color/window_bg_color"
     android:orientation="vertical">
 
-    <com.ipd.rainbow.widget.ProductEvaluateView
-        android:id="@+id/product_evaluate_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/base_padding" />
+    <include layout="@layout/item_product_evaluate_header" />
 
     <com.ipd.rainbow.widget.ProgressLayout
         android:id="@+id/evaluate_progress_layout"

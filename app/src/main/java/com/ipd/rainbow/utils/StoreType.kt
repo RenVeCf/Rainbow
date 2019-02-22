@@ -19,12 +19,11 @@ object StoreType {
     const val FLASH_SALE_TOMORROW = 2
 
     //商品类型
-    const val PRODUCT_NORMAL = 1//普通商品
-    const val PRODUCT_FLASH_SALE = 2//限时抢购
-    const val PRODUCT_CLEARANCE = 3//清仓
-    const val PRODUCT_NEW = 4//新品上新
-    const val PRODUCT_GROUP_PRODUCT = 5//组合商品
-    const val PRODUCT_GROUP_PURCHASE = 6//拼团
+    const val PRODUCT_NORMAL = 0//普通商品
+    const val PRODUCT_TODAY_SALES = 1//限时抢购
+    const val PRODUCT_TODAY_NEW = 2//新品上新
+    const val PRODUCT_STOCK = 3//优选库存
+    const val PRODUCT_GROUP_PURCHASE = 4//拼团
 
 
     fun getGuessLikeTypeBySpecial(specialType: Int): Int {

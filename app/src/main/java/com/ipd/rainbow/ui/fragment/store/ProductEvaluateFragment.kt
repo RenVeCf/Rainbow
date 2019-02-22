@@ -1,22 +1,26 @@
 package com.ipd.rainbow.ui.fragment.store
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.View
+import com.ipd.jumpbox.jumpboxlibrary.utils.DensityUtil
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.ProductEvaluateAdapter
-import com.ipd.rainbow.bean.*
+import com.ipd.rainbow.bean.EvaluateResult
+import com.ipd.rainbow.bean.ProductEvaluateBean
 import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
-import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.ui.ListFragment
-import com.ipd.rainbow.widget.ProductEvaluateView
 import com.ipd.rainbow.widget.ProgressLayout
 import kotlinx.android.synthetic.main.fragment_product_evaluate_list.view.*
+import kotlinx.android.synthetic.main.item_product_evaluate_header.view.*
 import rx.Observable
 
-class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluateBean>>, Any>() {
+class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluateBean>>, ProductEvaluateBean>() {
     companion object {
         fun newInstance(productId: Int, formId: Int): ProductEvaluateFragment {
             val topicListFragment = ProductEvaluateFragment()
@@ -43,57 +47,9 @@ class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluate
         getProgressLayout().setEmptyViewRes(R.layout.layout_empty_evaluate)
     }
 
-    override fun initListener() {
-        super.initListener()
-        mContentView.product_evaluate_view.setOnCheckedChangeListener(object : ProductEvaluateView.OnCheckedChangeListener {
-            override fun onChange(modelInfo: ProductEvaluateLableBean) {
-                onRefresh(true)
-            }
-
-        })
-    }
-
-
-    private var mScreenList: List<ProductEvaluateLableBean>? = null
-    override fun getListData(isRefresh: Boolean) {
-        if (mScreenList == null) {
-            checkNeedShowProgress()
-            ApiManager.getService().storeProductEvaluateLable(GlobalParam.getUserIdOrJump(), mProductId, mFormId)
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<List<ProductEvaluateLableBean>>>() {
-                        override fun _onNext(result: BaseResult<List<ProductEvaluateLableBean>>) {
-                            if (result.code == 0) {
-                                mScreenList = result?.data ?: arrayListOf()
-
-                                mScreenList?.forEach {
-                                    mContentView.product_evaluate_view.addView(it)
-                                }
-
-                                getParentListData(isRefresh)
-                            } else {
-                                showError(result.msg)
-                            }
-
-                        }
-
-                        override fun onError(e: Throwable?) {
-                            showError("连接服务器失败")
-                        }
-
-                    })
-        } else {
-            super.getListData(isRefresh)
-        }
-    }
-
-    private fun getParentListData(isRefresh: Boolean) {
-        super.getListData(isRefresh)
-    }
-
 
     override fun loadListData(): Observable<EvaluateResult<List<ProductEvaluateBean>>> {
-        val type = mScreenList?.get(mContentView.product_evaluate_view.getCheckedPos())?.TYPE ?: 0
-        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, type, page, Constant.PAGE_SIZE)
+        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, 0, page, Constant.PAGE_SIZE)
     }
 
     override fun isNoMoreData(result: EvaluateResult<List<ProductEvaluateBean>>): Int {
@@ -108,16 +64,26 @@ class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluate
     private var mAdapter: ProductEvaluateAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = ProductEvaluateAdapter(mActivity, data, {
+            mAdapter = ProductEvaluateAdapter(mActivity, data) {
                 //itemClick
 
+            }
+            recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
+                    val position = parent.getChildAdapterPosition(view)
+                    outRect.top = DensityUtil.dip2px(mActivity,4f)
+                    outRect.bottom = DensityUtil.dip2px(mActivity,4f)
+                    if (position % 2 == 0) {
+                        outRect.left = DensityUtil.dip2px(mActivity,8f)
+                        outRect.right = DensityUtil.dip2px(mActivity,4f)
+                    } else {
+                        outRect.left = DensityUtil.dip2px(mActivity,4f)
+                        outRect.right = DensityUtil.dip2px(mActivity,8f)
+                    }
+                }
             })
-//            recycler_view.addItemDecoration(object : RecyclerView.ItemDecoration() {
-//                override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-//                    outRect?.bottom = DensityUtil.dip2px(mActivity, 8f)
-//                }
-//            })
-            recycler_view.layoutManager = LinearLayoutManager(mActivity)
+
             recycler_view.adapter = mAdapter
         } else {
             mAdapter?.notifyDataSetChanged()
@@ -126,7 +92,7 @@ class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluate
 
     override fun addData(isRefresh: Boolean, result: EvaluateResult<List<ProductEvaluateBean>>) {
         if (isRefresh) {
-            data?.add(ProductEvaluateHeaderBean(result.total, result.GOOD_PERCENT))
+            mContentView.tv_evaluate_num.text = "商品评价（${result.total}）"
         }
         data?.addAll(result?.data ?: arrayListOf())
     }

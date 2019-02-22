@@ -31,7 +31,6 @@ import com.ipd.rainbow.bean.ProductCategoryChildBean;
 import com.ipd.rainbow.bean.ProductCategoryParentBean;
 import com.ipd.rainbow.bean.ProductDetailBean;
 import com.ipd.rainbow.bean.ProductEvaluateBean;
-import com.ipd.rainbow.bean.ProductEvaluateLableBean;
 import com.ipd.rainbow.bean.ProductModelResult;
 import com.ipd.rainbow.bean.ProductParamBean;
 import com.ipd.rainbow.bean.ProvinceBean;
@@ -305,12 +304,6 @@ public interface ApiService {
                                                                                    @Field("TYPE") int TYPE,
                                                                                    @Field("PAGE") int PAGE,
                                                                                    @Field("COUNT") int COUNT);
-
-    @FormUrlEncoded
-    @POST(HttpUrl.STORE_PRODUCT_EVALUATE_LABLE_LIST)
-    Observable<BaseResult<List<ProductEvaluateLableBean>>> storeProductEvaluateLable(@Field("USER_ID") String user_id,
-                                                                                     @Field("PRODUCT_ID") int PRODUCT_ID,
-                                                                                     @Field("FORM_ID") int FORM_ID);
 
 
     /**

@@ -36,8 +36,9 @@ public class ProductDetailBean {
     public String AGE;
     public String POST_FEE;
     public int BUYNUM;
+    public int SALE;
     public int COLLECT;
-    public int REPLY;
+    public int ASSESS;
     public int REMIND_NUM;
     public String START_TIME;
     public String END_TIME;
@@ -51,13 +52,9 @@ public class ProductDetailBean {
     public String TASTE;
     public String CURRENT_PRICE;
     public String PRICE;
-    public String REFER_PRICE;
-    public String DEAL_PRICE;
-    public String FORM_GROUP_PRICE;
     public int STOCK;
     public List<ExchangeBean> COUPON_LIST;
     public List<ProductBean> GROUP_LIST;
-    public int RUSH_STATE;
     public String SYS_TIME;
     public String SYS_TIME_STAMP;
     public String START_TIME_STAMP;
