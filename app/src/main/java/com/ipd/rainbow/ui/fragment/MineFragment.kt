@@ -2,6 +2,7 @@ package com.ipd.rainbow.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.UserHomeBean
 import com.ipd.rainbow.event.UpdateUserInfoEvent
@@ -29,8 +30,7 @@ class MineFragment : BaseUIFragment(), MinePresenter.IUserHomeView {
         mContentView.rl_wait_pay.setCircleNum(data.WAIT_PAY)
         mContentView.rl_wait_shipments.setCircleNum(data.WAIT_SEND)
         mContentView.rl_wait_delivery.setCircleNum(data.WAIT_RECEIPT)
-
-
+        mContentView.iv_open_vip.visibility = if (data.OPEN_VIP == 0) View.GONE else View.VISIBLE
     }
 
     override fun getInfoFail(errMsg: String) {

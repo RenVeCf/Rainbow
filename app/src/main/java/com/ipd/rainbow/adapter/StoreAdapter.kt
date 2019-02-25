@@ -191,7 +191,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
         holder.itemView.iv_store_vip.setOnClickListener {
             //彩虹购VIP
-            FlashSaleActivity.launch(context as Activity)
+            ProductListActivity.launch(context as Activity, typeId = 1, typeTitle = "彩虹会员专享")
         }
         holder.itemView.iv_store_new.setOnClickListener {
             //上新

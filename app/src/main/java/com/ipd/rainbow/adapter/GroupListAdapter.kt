@@ -68,9 +68,9 @@ class GroupListAdapter(val context: Context, private val data: List<GroupBean>?,
             dialog.show()
         }
 
-        holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.PRODUCT_LIST, {
+        holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.PRODUCT_LIST) {
             itemClick?.invoke(info)
-        })
+        }
 
         holder.itemView.setOnClickListener {
             itemClick?.invoke(info)

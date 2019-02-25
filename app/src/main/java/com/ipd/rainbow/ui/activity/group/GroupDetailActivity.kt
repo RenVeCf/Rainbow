@@ -89,6 +89,7 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
         val headerView = LayoutInflater.from(this).inflate(R.layout.item_group_detail_header, null)
         headerView.tv_delivery_name.text = info.RECEIVE_NAME
         headerView.tv_delivery_phone.text = info.RECEIVE_PHONE
+        headerView.tv_delivery_card.text = "身份证号:${info.RECEIVE_IDENTITY}"
         headerView.tv_address.text = "${info.PROV} ${info.CITY} ${info.DIST} ${info.ADDRESS}"
         headerView.commodity_number.text = "共${info.PRODUCT_LIST.size}件商品"
 
@@ -152,6 +153,7 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
         val footerView = LayoutInflater.from(this).inflate(R.layout.item_order_detail_footer, null)
         footerView.tv_commodity_price.text = "￥${info.TOTAL}"
         footerView.tv_commodity_freight.text = "+￥${info.POST_FEE}"
+        footerView.tv_tax_fee.text = "+￥${info.TAX_FEE}"
         footerView.tv_discount_coupon.text = "-￥${info.PREFER_FEE}"
         footerView.actual_price.text = "订单实付金额："
         footerView.tv_actual_price.text = "￥${info.PAY_FEE}"

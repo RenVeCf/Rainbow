@@ -1,6 +1,9 @@
 package com.ipd.rainbow.ui.activity.referral
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import cn.sharesdk.framework.Platform
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.BaseResult
@@ -16,6 +19,7 @@ import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.utils.ShareCallback
 import com.ipd.rainbow.widget.ShareDialog
 import com.ipd.rainbow.widget.ShareDialogClick
+import kotlinx.android.synthetic.main.activity_referral_code.*
 import kotlinx.android.synthetic.main.layout_referral_code.*
 import java.util.*
 
@@ -24,9 +28,25 @@ import java.util.*
  * 我的推荐码
  */
 class ReferralCodeActivity : BaseUIActivity() {
-    override fun getToolbarTitle() = "我的推荐码"
+
+
+    companion object {
+        fun launch(activity: Activity) {
+            val intent = Intent(activity, ReferralCodeActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
+
+    override fun getToolbarLayout(): Int = R.layout.referral_toolbar
+    override fun getToolbarTitle() = "我的二维码"
 
     override fun getContentLayout() = R.layout.activity_referral_code
+
+    override fun initToolbar() {
+        super.initToolbar()
+        val toolbar: Toolbar? = findViewById(R.id.toolbar)
+        toolbar?.setNavigationIcon(R.mipmap.back_referral)
+    }
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
@@ -45,32 +65,13 @@ class ReferralCodeActivity : BaseUIActivity() {
                             tv_recommend_code.text = "推荐码:${info.MY_CODE}"
                             ImageLoader.loadNoPlaceHolderImg(mActivity, info.TWO_CODE, iv_qr_code)
 
-
-                            btn_invite_friends.setOnClickListener {
-                                val dialog = ShareDialog(mActivity)
-                                dialog.setShareDialogOnClickListener(ShareDialogClick()
-                                        .setShareTitle(Constant.SHARE_INVITE_TITLE)
-                                        .setShareContent(Constant.SHARE_INVITE_CONTENT)
-                                        .setShareLogoUrl("")
-                                        .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
-                                        .setCallback(object : ShareDialogClick.MainPlatformActionListener {
-                                            override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
-                                                toastShow(true, "分享成功")
-                                                ShareCallback.shareUser()
-                                            }
-
-                                            override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
-                                                toastShow("分享失败")
-                                            }
-
-                                            override fun onCancel(platform: Platform?, i: Int) {
-                                                toastShow("取消分享")
-                                            }
-
-                                        }))
-                                dialog.show()
-
+                            iv_wechat.setOnClickListener {
+                                getShareClick().WechatOnclick()
                             }
+                            iv_friend.setOnClickListener {
+                                getShareClick().momentsOnclick()
+                            }
+
 
                             showContent()
                         } else {
@@ -84,6 +85,29 @@ class ReferralCodeActivity : BaseUIActivity() {
                 })
 
 
+    }
+
+    private fun getShareClick(): ShareDialogClick {
+        return ShareDialogClick()
+                .setShareTitle(Constant.SHARE_INVITE_TITLE)
+                .setShareContent(Constant.SHARE_INVITE_CONTENT)
+                .setShareLogoUrl("")
+                .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                        toastShow(true, "分享成功")
+                        ShareCallback.shareUser()
+                    }
+
+                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                        toastShow("分享失败")
+                    }
+
+                    override fun onCancel(platform: Platform?, i: Int) {
+                        toastShow("取消分享")
+                    }
+
+                })
     }
 
     override fun initListener() {

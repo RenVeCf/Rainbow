@@ -205,6 +205,7 @@
                     android:textColor="#666666" />
 
                 <ImageView
+                    android:id="@+id/iv_open_vip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="center"

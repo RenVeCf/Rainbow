@@ -54,7 +54,7 @@
             android:id="@+id/commodity_pay"
             style="@style/BaseTextStyle"
             android:layout_centerVertical="true"
-            android:text="实付(含运费) : "
+            android:text="实付(含运/税费) : "
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
 

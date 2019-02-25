@@ -8,9 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@mipmap/vip_info_bg">
@@ -33,7 +33,19 @@
                     android:layout_marginTop="25dp"
                     android:src="@mipmap/avatar_default" />
 
+                <ImageView
+                    android:id="@+id/iv_vip_ewm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/vip_erm"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true"
+                    />
+
                 <LinearLayout
+                    android:id="@+id/ll_user_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/civ_avatar"
@@ -42,6 +54,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_nickname"
                         style="@style/BaseTextStyle"
                         android:text="小新来了_"
                         android:textSize="18sp" />
@@ -58,6 +71,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/tv_level"
                             style="@style/BaseTextStyle"
                             android:background="@drawable/shape_vip_level_bg"
                             android:paddingLeft="10dp"
@@ -69,6 +83,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_level_desc"
                         style="@style/BaseTextStyle"
                         android:layout_marginTop="12dp"
                         android:text="您还不是彩虹会员"
@@ -80,295 +95,87 @@
 
             </RelativeLayout>
 
-            <RadioGroup
-                android:id="@+id/rg_level"
+            <!--<RadioGroup-->
+                <!--android:id="@+id/rg_level"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/rb_level_one"-->
+                    <!--style="@style/BaseTextStyle"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/selector_vip_tab"-->
+                    <!--android:button="@null"-->
+                    <!--android:checked="true"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingTop="@dimen/small_padding"-->
+                    <!--android:paddingBottom="@dimen/small_padding"-->
+                    <!--android:text="白金会员"-->
+                    <!--android:textColor="@drawable/selector_vip_tab_text_color"-->
+                    <!--android:textSize="17sp" />-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/rb_level_two"-->
+                    <!--style="@style/BaseTextStyle"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/selector_vip_tab"-->
+                    <!--android:button="@null"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingTop="@dimen/small_padding"-->
+                    <!--android:paddingBottom="@dimen/small_padding"-->
+                    <!--android:text="铂金会员"-->
+                    <!--android:textColor="@drawable/selector_vip_tab_text_color"-->
+                    <!--android:textSize="17sp" />-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/rb_level_three"-->
+                    <!--style="@style/BaseTextStyle"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/selector_vip_tab"-->
+                    <!--android:button="@null"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingTop="@dimen/small_padding"-->
+                    <!--android:paddingBottom="@dimen/small_padding"-->
+                    <!--android:text="钻石会员"-->
+                    <!--android:textColor="@drawable/selector_vip_tab_text_color"-->
+                    <!--android:textSize="17sp" />-->
+
+
+            <!--</RadioGroup>-->
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tab_layout"
+                app:layout_constraintTop_toBottomOf="@id/rl_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="48dp"
+                android:layout_gravity="top"
+                android:background="@color/colorPrimary"
+                app:tl_indicator_color="#FFC600"
+                app:tl_indicator_margin_left="2dp"
+                app:tl_indicator_margin_right="2dp"
+                app:tl_indicator_style="NORMAL"
+                app:tl_tab_space_equal="true"
+                app:tl_textSelectColor="#EA1C41"
+                app:tl_textUnselectColor="#999999" />
 
-                <RadioButton
-                    android:id="@+id/rb_level_one"
-                    style="@style/BaseTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_tab"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding"
-                    android:text="白金会员"
-                    android:textColor="@drawable/selector_vip_tab_text_color"
-                    android:textSize="17sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_level_two"
-                    style="@style/BaseTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_tab"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding"
-                    android:text="铂金会员"
-                    android:textColor="@drawable/selector_vip_tab_text_color"
-                    android:textSize="17sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_level_three"
-                    style="@style/BaseTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_tab"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding"
-                    android:text="钻石会员"
-                    android:textColor="@drawable/selector_vip_tab_text_color"
-                    android:textSize="17sp" />
-
-
-            </RadioGroup>
-
-
-            <LinearLayout
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginTop="@dimen/base_padding"
-                android:layout_marginRight="@dimen/base_padding"
-                android:layout_marginBottom="@dimen/base_padding"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_lable_bg"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding">
+            </android.support.v4.view.ViewPager>
 
-                    <TextView
-                        style="@style/BaseTextStyle"
-                        android:text="包月" />
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="￥"
-                            android:textColor="#EA1C41"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="58.0"
-                            android:textColor="#EA1C41"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/SmallTextStyle"
-                        android:gravity="center"
-                        android:text="开通自动续费\n每月仅¥40.0 "
-                        android:textColor="#666666" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/base_padding"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_lable_bg"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding">
-
-                    <TextView
-                        style="@style/BaseTextStyle"
-                        android:text="包月" />
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="￥"
-                            android:textColor="#EA1C41"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="58.0"
-                            android:textColor="#EA1C41"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/SmallTextStyle"
-                        android:gravity="center"
-                        android:text="开通自动续费\n每月仅¥40.0 "
-                        android:textColor="#666666" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/base_padding"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_vip_lable_bg"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding">
-
-                    <TextView
-                        style="@style/BaseTextStyle"
-                        android:text="包月" />
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="￥"
-                            android:textColor="#EA1C41"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            style="@style/BaseTextStyle"
-                            android:text="58.0"
-                            android:textColor="#EA1C41"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/SmallTextStyle"
-                        android:gravity="center"
-                        android:text="开通自动续费\n每月仅¥40.0 "
-                        android:textColor="#666666" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginRight="@dimen/base_padding"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/cb_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/selector_cart_product_cb"
-                    android:checked="true" />
-
-                <TextView
-                    style="@style/BaseTextStyle"
-                    android:layout_marginLeft="@dimen/small_padding"
-                    android:text="使用余额自动续费" />
-
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/btn_register"
-                style="@style/AccountBtnStyle"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/base_padding"
-                android:background="@drawable/shape_vip_recharge_btn"
-                android:text="立即升级"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="38dp">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/vip_hint_bg"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_vip_info"
-                    app:layout_constraintLeft_toLeftOf="@id/tv_vip_info"
-                    app:layout_constraintRight_toRightOf="@id/tv_vip_info" />
-
-                <TextView
-                    android:id="@+id/tv_vip_info"
-                    style="@style/BaseTextStyle"
-                    android:text="白金会员专属特权"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </android.support.constraint.ConstraintLayout>
-
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginTop="@dimen/base_padding"
-                android:layout_marginRight="@dimen/base_padding" />
-
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="38dp">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/vip_hint_bg"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_fee_info"
-                    app:layout_constraintLeft_toLeftOf="@id/tv_fee_info"
-                    app:layout_constraintRight_toRightOf="@id/tv_fee_info" />
-
-                <TextView
-                    android:id="@+id/tv_fee_info"
-                    style="@style/BaseTextStyle"
-                    android:text="白金会员资费说明"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </android.support.constraint.ConstraintLayout>
-
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_padding"
-                android:layout_marginTop="@dimen/base_padding"
-                android:layout_marginRight="@dimen/base_padding" />
 
 
         </LinearLayout>
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
 
 </LinearLayout>

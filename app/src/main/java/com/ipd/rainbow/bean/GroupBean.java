@@ -26,11 +26,10 @@ public class GroupBean {
     public int USER_ID;
     public String ORDER_NO;
     public int PAYWAY;
-    public int PAYABLE_FEE;
-    public int PAY_FEE;
+    public String PAYABLE_FEE;
+    public String PAY_FEE;
     public int TEAM_NUM;
     public int JOIN_NUM;
-    public int NOT_ENOUGH;
     public int TEAM_STATUS;
     public List<ProductBean> PRODUCT_LIST;
 

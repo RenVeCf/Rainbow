@@ -59,6 +59,7 @@ import com.ipd.rainbow.bean.UploadResultBean;
 import com.ipd.rainbow.bean.UserBean;
 import com.ipd.rainbow.bean.UserHomeBean;
 import com.ipd.rainbow.bean.VersionBean;
+import com.ipd.rainbow.bean.VipInfoBean;
 import com.ipd.rainbow.bean.WebBean;
 import com.ipd.rainbow.bean.WechatBean;
 import com.ipd.rainbow.bean.WithdrawHintBean;
@@ -665,9 +666,6 @@ public interface ApiService {
 
     /**
      * user
-     *
-     * @param USER_ID
-     * @return
      */
     @FormUrlEncoded
     @POST(HttpUrl.USER_HOME)
@@ -676,6 +674,30 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.GET_USER_INFO)
     Observable<BaseResult<UserBean>> getUserInfo(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.VIP_INFO)
+    Observable<BaseResult<VipInfoBean>> getVipInfo(@Field("USER_ID") String USER_ID);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RECHARGE_VIP)
+    Observable<PayResult<String>> rechargeVip(@Field("USER_ID") String USER_ID,
+                                              @Field("LEVEL") int LEVEL,
+                                              @Field("TYPE") int TYPE,
+                                              @Field("AUTO_PAY") int AUTO_PAY,
+                                              @Field("PAYWAY") int PAYWAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RECHARGE_VIP)
+    Observable<PayResult<WechatBean>> rechargeVipWechat(@Field("USER_ID") String USER_ID,
+                                                        @Field("LEVEL") int LEVEL,
+                                                        @Field("TYPE") int TYPE,
+                                                        @Field("AUTO_PAY") int AUTO_PAY,
+                                                        @Field("PAYWAY") int PAYWAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CLOSE_VIP_AUTO_PAY)
+    Observable<BaseResult<UpdatePwdBean>> closeVipAutoPay(@Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
     @POST(HttpUrl.UPDATE_PWD)

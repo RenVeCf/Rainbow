@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.ipd.rainbow.widget.SingleChoiceLayout
+            android:id="@+id/single_choice_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"
+            android:layout_marginBottom="@dimen/base_padding"
+            android:orientation="horizontal">
+
+
+        </com.ipd.rainbow.widget.SingleChoiceLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_auto_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cart_product_cb"
+                android:checked="true" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:text="使用余额自动续费" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/AccountBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/base_padding"
+            android:background="@drawable/shape_vip_recharge_btn"
+            android:text="立即升级"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="38dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/vip_hint_bg"
+                app:layout_constraintBottom_toBottomOf="@id/tv_vip_info"
+                app:layout_constraintLeft_toLeftOf="@id/tv_vip_info"
+                app:layout_constraintRight_toRightOf="@id/tv_vip_info" />
+
+            <TextView
+                android:id="@+id/tv_vip_info"
+                style="@style/BaseTextStyle"
+                android:text="白金会员专属特权"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </android.support.constraint.ConstraintLayout>
+
+        <WebView
+            android:id="@+id/wv_vip_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="38dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/vip_hint_bg"
+                app:layout_constraintBottom_toBottomOf="@id/tv_fee_info"
+                app:layout_constraintLeft_toLeftOf="@id/tv_fee_info"
+                app:layout_constraintRight_toRightOf="@id/tv_fee_info" />
+
+            <TextView
+                android:id="@+id/tv_fee_info"
+                style="@style/BaseTextStyle"
+                android:text="白金会员资费说明"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </android.support.constraint.ConstraintLayout>
+
+        <WebView
+            android:id="@+id/wv_vip_fee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+    </LinearLayout>
+</ScrollView>

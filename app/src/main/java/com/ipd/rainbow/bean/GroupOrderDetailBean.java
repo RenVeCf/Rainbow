@@ -10,13 +10,13 @@ public class GroupOrderDetailBean {
     public int PAYWAY;
     public String RECEIVE_NAME;
     public String RECEIVE_PHONE;
+    public String RECEIVE_IDENTITY;
     public String PROV;
     public String CITY;
     public String DIST;
     public String ADDRESS;
     public int TEAM_NUM;
     public int JOIN_NUM;
-    public int NOT_ENOUGH;
     public int TEAM_STATUS;
     public int PRODUCT_NUM;
     public int INVOICE_TYPE;
@@ -25,6 +25,7 @@ public class GroupOrderDetailBean {
     public String TOTAL;
     public String PREFER_FEE;
     public String POST_FEE;
+    public String TAX_FEE;
     public String PAYABLE_FEE;
     public String PAY_FEE;
     public String CREATETIME;

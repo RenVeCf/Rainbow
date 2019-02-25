@@ -52,9 +52,9 @@ class GroupFragment : ListFragment<BaseResult<List<GroupBean>>, GroupBean>() {
     private var mAdapter: GroupListAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = GroupListAdapter(context, data, {
+            mAdapter = GroupListAdapter(context, data) {
                 GroupDetailActivity.launch(mActivity, it.ORDER_ID)
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(context)
             recycler_view.adapter = mAdapter
         } else {

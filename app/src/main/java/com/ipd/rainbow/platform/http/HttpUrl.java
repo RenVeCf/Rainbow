@@ -92,8 +92,8 @@ public interface HttpUrl {
 
     //拼团
     String STORE_SPELL = "app_product/teamList.do";
-    String STORE_SPELL_CASH = "app_cart/toTeamCash.do";
-    String STORE_SPELL_CONFIRM_ORDER = "app_cart/submitTeam.do";
+    String STORE_SPELL_CASH = "app_order/toTeamCash.do";
+    String STORE_SPELL_CONFIRM_ORDER = "app_order/submitTeam.do";
     String SPELL_MINE_LIST = "app_team/selfList.do";
     String SPELL_ORDER_DETAIL = "app_team/getInfo.do";
 
@@ -124,6 +124,9 @@ public interface HttpUrl {
     //mine
     String USER_HOME = "app_user/home.do";
     String GET_USER_INFO = "app_user/getInfo.do";
+    String VIP_INFO = "app_user/userInfo.do";
+    String RECHARGE_VIP = "app_user/goUp.do";
+    String CLOSE_VIP_AUTO_PAY = "app_user/closeAutoPay.do";
     String UPDATE_PWD = "app_user/updatePwd.do";
     String USER_UPDATE = "app_user/update.do";
     String FRIEND_LIST = "app_user/friendList.do";
