@@ -14,7 +14,6 @@ import com.ipd.rainbow.event.UpdateUserInfoEvent
 import com.ipd.rainbow.imageload.ImageLoader
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
-import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.presenter.VipPresenter
 import com.ipd.rainbow.ui.BaseUIActivity
@@ -31,6 +30,8 @@ import kotlinx.android.synthetic.main.layout_vip_recharge_type.view.*
 import kotlinx.android.synthetic.main.vip_toolbar.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import rx.Observable
+import rx.Subscriber
 
 
 class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
@@ -70,10 +71,28 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
 
     override fun loadData() {
         showProgress()
-        ApiManager.getService().getVipInfo(GlobalParam.getUserIdOrJump())
-                .compose(RxScheduler.applyScheduler())
-                .subscribe(object : Response<BaseResult<VipInfoBean>>() {
-                    override fun _onNext(result: BaseResult<VipInfoBean>) {
+
+        Observable.zip(ApiManager.getService().getVipInfo(GlobalParam.getUserIdOrJump(), "0"),
+                ApiManager.getService().getVipPriceInfo(GlobalParam.getUserIdOrJump(), "1")
+        ) { t1, t2 ->
+            if (t1.code == 0 && t2.code == 0) {
+                t1.data.VIP_LIST.forEach { t1Info ->
+                    t2.data.forEach { t2Info ->
+                        if (t1Info.LEVEL == t2Info.LEVEL) {
+                            t1Info.AUTO_PAY_LIST = t2Info.LIST
+                        }
+                    }
+                }
+
+                t1
+            } else {
+                t1.code = if (t1.code == 0) t2.code else t1.code
+                t1.msg = if (t1.code == 0) t2.msg else t1.msg
+                t1
+            }
+        }.compose(RxScheduler.applyScheduler())
+                .subscribe(object : Subscriber<BaseResult<VipInfoBean>>() {
+                    override fun onNext(result: BaseResult<VipInfoBean>) {
                         if (result.code == 0) {
                             setContent(result.data)
                             showContent()
@@ -82,10 +101,31 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
                         }
                     }
 
+                    override fun onCompleted() {
+                    }
+
                     override fun onError(e: Throwable?) {
                         showError()
                     }
+
                 })
+
+//        ApiManager.getService().getVipInfo(GlobalParam.getUserIdOrJump(), "0")
+//                .compose(RxScheduler.applyScheduler())
+//                .subscribe(object : Response<BaseResult<VipInfoBean>>() {
+//                    override fun _onNext(result: BaseResult<VipInfoBean>) {
+//                        if (result.code == 0) {
+//                            setContent(result.data)
+//                            showContent()
+//                        } else {
+//                            showError(result.msg)
+//                        }
+//                    }
+//
+//                    override fun onError(e: Throwable?) {
+//                        showError()
+//                    }
+//                })
     }
 
     private var mPayInfo: VipPayInfo? = null
@@ -119,11 +159,11 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
             val builder = MessageDialog.Builder(mActivity)
             builder.setTitle("功能提醒")
                     .setMessage("请确认是否关闭自动续费功能")
-                    .setCommit("确认"){
+                    .setCommit("确认") {
                         it.dismiss()
                         mPresenter?.closeAutoPay()
                     }
-                    .setCancel("取消"){
+                    .setCancel("取消") {
                         it.dismiss()
                     }.show()
         }
@@ -134,19 +174,28 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
 
             override fun getCount(): Int = info.VIP_LIST.size
 
-            override fun instantiateItem(container: ViewGroup?, position: Int): Any {
-                val vipInfo = info.VIP_LIST[position]
+            private fun setPriceInfo(contentView: View, info: VipInfoBean.VipLevelBean, isAutoPay: Boolean) {
+                contentView.single_choice_layout.removeAllViews()
 
-                val contentView = mInflater.inflate(R.layout.layout_vip_recharge, container, false)
-
-
-                vipInfo.LIST.forEachIndexed { index, vipDesc ->
+                val list = if (isAutoPay) info.AUTO_PAY_LIST else info.LIST
+                list.forEachIndexed { index, vipDesc ->
                     if (index >= 3) return@forEachIndexed
                     val typeView = mInflater.inflate(R.layout.layout_vip_recharge_type, contentView.single_choice_layout, false)
                     typeView.tv_type_name.text = vipDesc.TYPE_NAME
                     typeView.tv_type_price.text = vipDesc.CURRENT_PRICE
                     typeView.tv_type_desc.text = vipDesc.CONTENT
                     contentView.single_choice_layout.addView(typeView)
+                }
+            }
+
+            override fun instantiateItem(container: ViewGroup?, position: Int): Any {
+                val vipInfo = info.VIP_LIST[position]
+
+                val contentView = mInflater.inflate(R.layout.layout_vip_recharge, container, false)
+
+                setPriceInfo(contentView, vipInfo, contentView.cb_auto_pay.isChecked)
+                contentView.cb_auto_pay.setOnCheckedChangeListener { buttonView, isChecked ->
+                    setPriceInfo(contentView, vipInfo, isChecked)
                 }
 
 

@@ -39,10 +39,10 @@ public class VipInfoBean {
     public String LEVEL_CONTENT;
     public String VIP_EXCLUSIVE;
     public String VIP_DESC;
-    public List<VIPLISTBean> VIP_LIST;
+    public List<VipLevelBean> VIP_LIST;
 
 
-    public static class VIPLISTBean {
+    public static class VipLevelBean {
         /**
          * LEVEL : 1
          * LEVEL_NAME : 白金会员
@@ -55,10 +55,11 @@ public class VipInfoBean {
         public String LEVEL_NAME;
         public String VIP_EXCLUSIVE;
         public String VIP_DESC;
-        public List<LISTBean> LIST;
+        public List<VipPriceBean> LIST;
+        public List<VipPriceBean> AUTO_PAY_LIST;
 
 
-        public static class LISTBean {
+        public static class VipPriceBean {
             /**
              * TYPE : 1
              * LEVEL : 1

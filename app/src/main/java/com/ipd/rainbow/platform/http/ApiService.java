@@ -259,7 +259,7 @@ public interface ApiService {
                                                                @Field("COMPOSITE") int COMPOSITE,
                                                                @Field("KEYWORDS") String KEYWORDS,
                                                                @Field("PRICE_SORT") int PRICE_SORT,
-                                                               @Field("SALES") int SALES,
+                                                               @Field("SALE") int SALES,
                                                                @Field("COUNTRY_IDS") String COUNTRY_IDS,
                                                                @Field("TYPE_IDS") int TYPE_IDS,
                                                                @Field("CHILD_TYPE_IDS") String CHILD_TYPE_IDS);
@@ -677,7 +677,13 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.VIP_INFO)
-    Observable<BaseResult<VipInfoBean>> getVipInfo(@Field("USER_ID") String USER_ID);
+    Observable<BaseResult<VipInfoBean>> getVipInfo(@Field("USER_ID") String USER_ID,
+                                                   @Field("AUTO_PAY") String AUTO_PAY);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.VIP_PRICE_INFO)
+    Observable<BaseResult<List<VipInfoBean.VipLevelBean>>> getVipPriceInfo(@Field("USER_ID") String USER_ID,
+                                                                           @Field("AUTO_PAY") String AUTO_PAY);
 
     @FormUrlEncoded
     @POST(HttpUrl.RECHARGE_VIP)

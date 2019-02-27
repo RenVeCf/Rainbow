@@ -38,7 +38,7 @@ public interface HttpUrl {
     String STORE_PRODUCT_PARAM = "app_product/proParam.do";
     String STORE_SEARCH_HISTORY = "app_product/searchHis.do";
     String STORE_CLEAR_SEARCH_HISTORY = "app_product/clearHis.do";
-    String STORE_PRODUCT_LIST = "app_shop/getList.do";
+    String STORE_PRODUCT_LIST = "app_product/getList.do";
     String STORE_PRODUCT_EXPERT_SCREEN = "app_shop/proFilter.do";
     String STORE_PRODUCT_MODEL = "app_product/formList.do";
     String STORE_PRODUCT_COUPON = "app_product/couponList.do";
@@ -125,6 +125,7 @@ public interface HttpUrl {
     String USER_HOME = "app_user/home.do";
     String GET_USER_INFO = "app_user/getInfo.do";
     String VIP_INFO = "app_user/userInfo.do";
+    String VIP_PRICE_INFO = "app_user/upInfo.do";
     String RECHARGE_VIP = "app_user/goUp.do";
     String CLOSE_VIP_AUTO_PAY = "app_user/closeAutoPay.do";
     String UPDATE_PWD = "app_user/updatePwd.do";
