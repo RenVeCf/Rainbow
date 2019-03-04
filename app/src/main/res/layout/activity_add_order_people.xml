@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv_recipients"
             android:background="@null"
-            android:hint="请输入真实姓名"
+            android:hint="请输入订购人真实姓名"
             android:maxLength="10"
             android:maxLines="1"
             android:textColor="@color/black"
@@ -58,7 +58,7 @@
             android:layout_marginTop="@dimen/base_padding"
             android:layout_toRightOf="@id/tv_phone_number"
             android:background="@null"
-            android:hint="请输入联系手机"
+            android:hint="请输入订购人手机号"
             android:inputType="number"
             android:maxLength="11"
             android:maxLines="1"
@@ -73,72 +73,32 @@
             android:layout_marginTop="@dimen/base_padding"
             android:background="@color/full_screen_overlay" />
 
-        <RelativeLayout
-            android:id="@+id/rl_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line5"
-            android:layout_marginTop="@dimen/base_padding">
-
-            <TextView
-                android:id="@+id/tv_the_city"
-                android:layout_width="@dimen/add_address_hint_width"
-                android:layout_height="wrap_content"
-                android:text="所在城市："
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/base_text_size" />
-
-            <TextView
-                android:id="@+id/tv_choose_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/iv_choose_city"
-                android:layout_toRightOf="@id/tv_the_city"
-                android:hint="请选择"
-                android:textColor="@color/black"
-                android:textSize="@dimen/base_text_size" />
-
-            <ImageView
-                android:id="@+id/iv_choose_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/base_padding"
-                android:src="@mipmap/arrow_right" />
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/line3"
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:layout_below="@id/rl_address"
-            android:layout_marginTop="@dimen/base_padding"
-            android:background="@color/full_screen_overlay" />
-
         <TextView
-            android:id="@+id/tv_detailed_address"
+            android:id="@+id/tv_card_number"
             android:layout_width="@dimen/add_address_hint_width"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line3"
+            android:layout_below="@id/line5"
             android:layout_marginTop="@dimen/base_padding"
-            android:text="详细地址："
+            android:text="身份证号："
             android:textColor="@color/text_gray"
             android:textSize="@dimen/base_text_size" />
 
         <EditText
-            android:id="@+id/et_detailed_address"
+            android:id="@+id/et_card_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line3"
+            android:layout_below="@id/line5"
             android:layout_marginTop="@dimen/base_padding"
-            android:layout_toRightOf="@id/tv_detailed_address"
+            android:layout_toRightOf="@id/tv_card_number"
             android:background="@null"
-            android:hint="请输入如：街道、门牌号等"
-            android:maxLength="100"
-            android:maxLines="2"
+            android:digits="0123456789Xx"
+            android:hint="请输入订购人身份证号码"
+            android:inputType="number"
+            android:maxLength="18"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -153,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="设为默认收货地址"
+            android:text="设为默认订购人"
             android:textColor="@color/black"
             android:textSize="@dimen/base_text_size" />
 

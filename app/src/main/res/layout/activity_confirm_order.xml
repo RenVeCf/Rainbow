@@ -40,10 +40,23 @@
 
                 </android.support.v7.widget.CardView>
 
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_order_people"
+                    style="@style/ConfirmOrderCardStyle"
+                    app:layout_constraintTop_toBottomOf="@id/cv_address">
+
+                    <include
+                        android:id="@+id/layout_address"
+                        layout="@layout/layout_choose_order_people" />
+
+
+                </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_product"
                     style="@style/ConfirmOrderCardStyle"
-                    app:layout_constraintTop_toBottomOf="@id/cv_address">
+                    app:layout_constraintTop_toBottomOf="@id/cv_order_people">
 
                     <include layout="@layout/layout_order_product" />
 

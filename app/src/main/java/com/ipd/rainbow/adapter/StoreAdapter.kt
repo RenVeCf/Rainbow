@@ -118,7 +118,7 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 //分类海报
                 val categoryPic = arrayListOf(holder.itemView.iv_store_vip, holder.itemView.iv_store_new, holder.itemView.iv_store_group, holder.itemView.iv_store_stock)
                 categoryPic.forEachIndexed { index, imageView ->
-                    var logo = headerInfo.categoryPicList?.get(index)?.LOGO
+                    var logo = headerInfo.categoryPicList?.get(index)?.PIC
                     if (!TextUtils.isEmpty(logo)) {
                         ImageLoader.loadNoPlaceHolderImg(context, logo, imageView)
                     }

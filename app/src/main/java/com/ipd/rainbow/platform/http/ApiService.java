@@ -24,6 +24,7 @@ import com.ipd.rainbow.bean.LoginBean;
 import com.ipd.rainbow.bean.MessageBean;
 import com.ipd.rainbow.bean.OrderBean;
 import com.ipd.rainbow.bean.OrderDetailBean;
+import com.ipd.rainbow.bean.OrderPeopleBean;
 import com.ipd.rainbow.bean.PayResult;
 import com.ipd.rainbow.bean.ProductBean;
 import com.ipd.rainbow.bean.ProductBrandBean;
@@ -637,7 +638,6 @@ public interface ApiService {
                                                    @Field("RECIPIENT") String RECIPIENT,
                                                    @Field("STATUS") int STATUS,
                                                    @Field("TEL") Long TEL,
-                                                   @Field("IDENTITY") String IDENTITY,
                                                    @Field("USER_ID") String USER_ID);
 
     @FormUrlEncoded
@@ -659,10 +659,51 @@ public interface ApiService {
                                                       @Field("RECIPIENT") String RECIPIENT,
                                                       @Field("STATUS") int STATUS,
                                                       @Field("TEL") String TEL,
-                                                      @Field("IDENTITY") String IDENTITY,
                                                       @Field("USER_ID") String USER_ID,
                                                       @Field("ADDRESS_ID") String ADDRESS_ID);
 
+
+    /**
+     * address
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_LIST_ORDER_PEOPLE)
+    Observable<BaseResult<List<OrderPeopleBean>>> getListOrderPeople(@Field("COUNT") int count,
+                                                                     @Field("USER_ID") String user_id,
+                                                                     @Field("PAGE") int page);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ADD_ORDER_PEOPLE)
+    Observable<BaseResult<OrderPeopleBean>> addOrderPeople(@Field("TRUENAME") String TRUENAME,
+                                                           @Field("STATUS") int STATUS,
+                                                           @Field("PHONE") Long TEL,
+                                                           @Field("IDENTITY") String IDENTITY,
+                                                           @Field("USER_ID") String USER_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.GET_ORDER_PEOPLE_INFO)
+    Observable<BaseResult<OrderPeopleBean>> getOrderPeopleInfo(@Field("USER_ID") String USER_ID,
+                                                               @Field("SUBSCRIBER_ID") String SUBSCRIBER_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_PEOPLE_DELETE)
+    Observable<BaseResult<OrderPeopleBean>> orderPeopleDelete(@Field("USER_ID") String USER_ID,
+                                                              @Field("SUBSCRIBER_ID") String ADDRESS_ID);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_PEOPLE_UPDATE)
+    Observable<BaseResult<OrderPeopleBean>> orderPeopleUpdate(@Field("TRUENAME") String TRUENAME,
+                                                          @Field("STATUS") int STATUS,
+                                                          @Field("PHONE") String TEL,
+                                                          @Field("IDENTITY") String IDENTITY,
+                                                          @Field("USER_ID") String USER_ID,
+                                                          @Field("SUBSCRIBER_ID") String SUBSCRIBER_ID);
 
     /**
      * user

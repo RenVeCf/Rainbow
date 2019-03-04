@@ -120,6 +120,14 @@ public interface HttpUrl {
     String GET_ADDRESS_INFO = "app_address/getInfo.do";
     String ADDRESS_UPDATE = "app_address/update.do";
     String ADDRESS_DELETE = "app_address/delete.do";
+    //orderPeople
+    String ADD_ORDER_PEOPLE = "app_subscriber/add.do";
+    String GET_LIST_ORDER_PEOPLE = "app_subscriber/getList.do";
+    String GET_ORDER_PEOPLE_INFO = "app_subscriber/getInfo.do";
+    String ORDER_PEOPLE_UPDATE = "app_subscriber/update.do";
+    String ORDER_PEOPLE_DELETE = "app_subscriber/delete.do";
+
+
 
     //mine
     String USER_HOME = "app_user/home.do";

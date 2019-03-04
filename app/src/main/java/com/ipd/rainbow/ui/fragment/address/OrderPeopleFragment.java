@@ -5,16 +5,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.ipd.rainbow.R;
-import com.ipd.rainbow.adapter.DeliveryAddressAdapter;
-import com.ipd.rainbow.bean.AddressBean;
+import com.ipd.rainbow.adapter.OrderPeopleAdapter;
 import com.ipd.rainbow.bean.BaseResult;
-import com.ipd.rainbow.event.ChooseAddressEvent;
-import com.ipd.rainbow.event.UpdateAddressEvent;
+import com.ipd.rainbow.bean.OrderPeopleBean;
+import com.ipd.rainbow.event.ChooseOrderPeopleEvent;
+import com.ipd.rainbow.event.UpdateOrderPeopleEvent;
 import com.ipd.rainbow.platform.global.GlobalParam;
 import com.ipd.rainbow.platform.http.ApiManager;
 import com.ipd.rainbow.ui.ListFragment;
-import com.ipd.rainbow.ui.activity.address.AddAddressActivity;
+import com.ipd.rainbow.ui.activity.address.AddOrderPeopleActivity;
 import com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity;
+import com.ipd.rainbow.ui.activity.address.OrderPeopleActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -32,10 +33,10 @@ import rx.functions.Func1;
 /**
  * Created by Miss on 2018/8/17
  */
-public class OrderPeopleFragment extends ListFragment<List<AddressBean>, AddressBean> {
-    private DeliveryAddressAdapter mAdapter;
+public class OrderPeopleFragment extends ListFragment<List<OrderPeopleBean>, OrderPeopleBean> {
+    private OrderPeopleAdapter mAdapter;
     private View view;
-    private List<AddressBean> bean;
+    private List<OrderPeopleBean> bean;
 
 
     public static OrderPeopleFragment newInstance(int type) {
@@ -75,7 +76,7 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
 
 
     @Override
-    public int isNoMoreData(List<AddressBean> result) {
+    public int isNoMoreData(List<OrderPeopleBean> result) {
         if (result == null || result.isEmpty()) {
             if (getPage() == getINIT_PAGE()) {
                 return getEMPTY_DATA();
@@ -89,14 +90,14 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
     @Override
     public void setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = new DeliveryAddressAdapter(getContext(), getData(), new Function1<AddressBean, Unit>() {
+            mAdapter = new OrderPeopleAdapter(getContext(), getData(), new Function1<OrderPeopleBean, Unit>() {
                 @Override
-                public Unit invoke(AddressBean addressBean) {
-                    if (mType == DeliveryAddressActivity.Companion.getNORMAL()) {
-                        AddAddressActivity.Companion.launch(getMActivity(), 2, addressBean.ADDRESS_ID);
-                    } else if (mType == DeliveryAddressActivity.Companion.getCHOOSE()) {
+                public Unit invoke(OrderPeopleBean addressBean) {
+                    if (mType == OrderPeopleActivity.Companion.getNORMAL()) {
+                        AddOrderPeopleActivity.Companion.launch(getMActivity(), 2, addressBean.SUBSCRIBER_ID);
+                    } else if (mType == OrderPeopleActivity.Companion.getCHOOSE()) {
                         //选择地址
-                        EventBus.getDefault().post(new ChooseAddressEvent(addressBean));
+                        EventBus.getDefault().post(new ChooseOrderPeopleEvent(addressBean));
                         getMActivity().finish();
                     }
                     return null;
@@ -110,7 +111,7 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
     }
 
     @Override
-    public void addData(boolean isRefresh, List<AddressBean> result) {
+    public void addData(boolean isRefresh, List<OrderPeopleBean> result) {
         getData().addAll(result);
     }
 
@@ -120,14 +121,14 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
         view.findViewById(R.id.btn_add_address).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
+                AddOrderPeopleActivity.Companion.launch(getMActivity(), 1, "");
             }
         });
 
         getMRootView().findViewById(R.id.btn_add_address).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddAddressActivity.Companion.launch(getMActivity(), 1, "");
+                AddOrderPeopleActivity.Companion.launch(getMActivity(), 1, "");
             }
         });
 
@@ -136,11 +137,11 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
 
     @NotNull
     @Override
-    public Observable<List<AddressBean>> loadListData() {
-        return ApiManager.getService().getListAddress(10, GlobalParam.getUserId(), getPage())
-                .map(new Func1<BaseResult<List<AddressBean>>, List<AddressBean>>() {
+    public Observable<List<OrderPeopleBean>> loadListData() {
+        return ApiManager.getService().getListOrderPeople(10, GlobalParam.getUserId(), getPage())
+                .map(new Func1<BaseResult<List<OrderPeopleBean>>, List<OrderPeopleBean>>() {
                     @Override
-                    public List<AddressBean> call(BaseResult<List<AddressBean>> listBaseResult) {
+                    public List<OrderPeopleBean> call(BaseResult<List<OrderPeopleBean>> listBaseResult) {
                         bean = new ArrayList<>();
                         if (listBaseResult.code == 0) {
                             bean.addAll(listBaseResult.data);
@@ -151,7 +152,7 @@ public class OrderPeopleFragment extends ListFragment<List<AddressBean>, Address
     }
 
     @Subscribe
-    public void onMainEvent(UpdateAddressEvent event) {
+    public void onMainEvent(UpdateOrderPeopleEvent event) {
         setCreate(true);
         onRefresh();
     }

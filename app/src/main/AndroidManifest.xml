@@ -115,6 +115,7 @@
         <activity android:name="com.ipd.rainbow.ui.activity.address.AddAddressActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.address.OrderPeopleActivity" />
+        <activity android:name="com.ipd.rainbow.ui.activity.address.AddOrderPeopleActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.group.GroupBookingActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.group.GroupDetailActivity" />
         <activity android:name="com.ipd.rainbow.ui.activity.coupon.MyIntegralActivity" />

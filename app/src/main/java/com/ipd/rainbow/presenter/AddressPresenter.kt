@@ -16,7 +16,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
         mModel = BasicModel()
     }
 
-    fun addAddress(address: String, city: String, dist: String, prov: String, recipient: String, status: Int, tel: String, cardNumber: String, user_id: String) {
+    fun addAddress(address: String, city: String, dist: String, prov: String, recipient: String, status: Int, tel: String, user_id: String) {
         if (mView !is IAddAddressView) return
         val view = mView as IAddAddressView
         if (recipient == "") {
@@ -36,7 +36,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
             return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().addAddress(address, city, dist, prov, recipient, status, tel.toLong(), cardNumber, user_id),
+        mModel?.getNormalRequestData(ApiManager.getService().addAddress(address, city, dist, prov, recipient, status, tel.toLong(), user_id),
                 object : Response<BaseResult<AddressBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<AddressBean>) {
                         if (result.code == 0) {
@@ -97,7 +97,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     fun getAddressUpdate(address: String, city: String, dist: String, prov: String,
-                         recipient: String, status: Int, tel: String, cardNumber: String, userId: String, addressId: String) {
+                         recipient: String, status: Int, tel: String, userId: String, addressId: String) {
         if (mView !is IAddressUpdateView) return
         val view = mView as IAddressUpdateView
         if (recipient == "") {
@@ -117,7 +117,7 @@ class AddressPresenter<V> : BasePresenter<V, BasicModel>() {
             return
         }
         mModel?.getNormalRequestData(ApiManager.getService().addressUpdate(address, city, dist, prov,
-                recipient, status, tel, cardNumber, userId, addressId),
+                recipient, status, tel, userId, addressId),
                 object : Response<BaseResult<AddressBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<AddressBean>) {
                         if (result.code == 0) {

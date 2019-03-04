@@ -67,31 +67,41 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/base_text_size" />
 
-        <TextView
-            android:id="@+id/tv_confirm"
-            style="@style/BaseTextStyle"
+        <LinearLayout
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/small_padding"
-            android:background="@drawable/shape_order_btn_confirm"
-            android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="5dp"
-            android:text="邀请好友"
-            android:textColor="@color/colorPrimaryDark" />
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_cancel"
-            style="@style/BaseTextStyle"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/tv_confirm"
-            android:background="@drawable/shape_order_btn_cancel"
-            android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="5dp"
-            android:text="详情" />
+            <TextView
+                android:id="@+id/tv_cancel"
+                style="@style/BaseTextStyle"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tv_confirm"
+                android:background="@drawable/shape_order_btn_cancel"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:text="详情" />
+
+
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                style="@style/BaseTextStyle"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:background="@drawable/shape_order_btn_confirm"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:text="邀请好友"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 </RelativeLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/base_padding"
+    android:layout_marginTop="@dimen/base_padding"
+    android:layout_marginRight="@dimen/base_padding"
+    android:background="@drawable/shape_card_view">
+
+    <RelativeLayout
+        android:id="@+id/rl_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/big_padding">
+
+        <TextView
+            android:id="@+id/tv_delivery_name"
+            style="@style/BaseTextStyle"
+            tools:text="刘飞" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:id="@+id/tv_delivery_phone"
+            android:layout_marginLeft="@dimen/big_padding"
+            android:layout_toRightOf="@id/tv_delivery_name"
+            tools:text="175012343203" />
+
+        <TextView
+            android:id="@+id/tv_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/big_padding"
+            android:layout_toRightOf="@id/tv_delivery_phone"
+            android:background="@drawable/shape_address_default"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:text="默认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_text_size"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:id="@+id/tv_card_number"
+            android:layout_below="@id/tv_delivery_name"
+            android:layout_marginTop="@dimen/small_padding"
+            android:paddingRight="@dimen/cart_operation_height"
+            tools:text="身份证号:3020340234024" />
+
+        <ImageView
+            android:id="@+id/iv_edit_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingTop="@dimen/base_padding"
+            android:paddingBottom="@dimen/base_padding"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/edit_address" />
+    </RelativeLayout>
+
+</RelativeLayout>

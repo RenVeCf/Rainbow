@@ -46,7 +46,7 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
     override fun getToolbarTitle(): String = "拼团详情"
 
 
-    private var mProductTimerTask: ProductTimerTask? = null
+//    private var mProductTimerTask: ProductTimerTask? = null
     private var mTimer: Timer? = null
     private var mPresenter: GroupOrderDetailPresenter? = null
     override fun onViewAttach() {
@@ -60,8 +60,8 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
         mPresenter?.detachView()
         mPresenter = null
 
-        mProductTimerTask?.cancel()
-        mProductTimerTask = null
+//        mProductTimerTask?.cancel()
+//        mProductTimerTask = null
         mTimer?.cancel()
     }
 
@@ -98,12 +98,12 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
                 headerView.tv_group.text = "${info.TEAM_NUM}人团，${info.JOIN_NUM}人已参团"
                 headerView.tv_group.setTextColor(resources.getColor(R.color.black))
 
-                if(System.currentTimeMillis() < info.END_TIME_STAMP.toLong()){
-                    //倒计时
-                    mTimer = Timer()
-                    mProductTimerTask = ProductTimerTask()
-                    mTimer?.schedule(mProductTimerTask, Date(System.currentTimeMillis()), 1000L)
-                }
+//                if(System.currentTimeMillis() < info.END_TIME_STAMP.toLong()){
+//                    //倒计时
+//                    mTimer = Timer()
+//                    mProductTimerTask = ProductTimerTask()
+//                    mTimer?.schedule(mProductTimerTask, Date(System.currentTimeMillis()), 1000L)
+//                }
 
             }
             2 -> {
@@ -121,30 +121,30 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
 
         })
 
-        headerView.btn_invite_friends.setOnClickListener {
-            val dialog = ShareDialog(mActivity)
-            dialog.setShareDialogOnClickListener(ShareDialogClick()
-                    .setShareTitle(info.PRODUCT_LIST[0].NAME)
-                    .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
-                    .setShareLogoUrl(HttpUrl.IMAGE_URL + info.PRODUCT_LIST[0].LOGO)
-                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
-                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
-                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
-                            toastShow(true, "分享成功")
-                            ShareCallback.shareProduct(info.PRODUCT_LIST[0].PRODUCT_ID, info.PRODUCT_LIST[0].FORM_ID)
-                        }
-
-                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
-                            toastShow("分享失败")
-                        }
-
-                        override fun onCancel(platform: Platform?, i: Int) {
-                            toastShow("取消分享")
-                        }
-
-                    }))
-            dialog.show()
-        }
+//        headerView.btn_invite_friends.setOnClickListener {
+//            val dialog = ShareDialog(mActivity)
+//            dialog.setShareDialogOnClickListener(ShareDialogClick()
+//                    .setShareTitle(info.PRODUCT_LIST[0].NAME)
+//                    .setShareContent(Constant.SHARE_PRODUCT_CONTENT)
+//                    .setShareLogoUrl(HttpUrl.IMAGE_URL + info.PRODUCT_LIST[0].LOGO)
+//                    .setShareUrl(HttpUrl.APK_DOWNLOAD_URL)
+//                    .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+//                        override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+//                            toastShow(true, "分享成功")
+//                            ShareCallback.shareProduct(info.PRODUCT_LIST[0].PRODUCT_ID, info.PRODUCT_LIST[0].FORM_ID)
+//                        }
+//
+//                        override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+//                            toastShow("分享失败")
+//                        }
+//
+//                        override fun onCancel(platform: Platform?, i: Int) {
+//                            toastShow("取消分享")
+//                        }
+//
+//                    }))
+//            dialog.show()
+//        }
 
         adapter.addHeaderView(headerView)
 
@@ -200,29 +200,29 @@ class GroupDetailActivity : BaseUIActivity(), GroupOrderDetailPresenter.IGroupOr
         showError(errMsg)
     }
 
-    internal inner class ProductTimerTask : TimerTask() {
-        override fun run() {
-            if (recycler_view_order_detail.layoutManager == null) return
-            val layoutManager = recycler_view_order_detail.layoutManager as LinearLayoutManager
-            mActivity.runOnUiThread({
-                val childView = layoutManager.findViewByPosition(0)
-                if (childView != null) {
-                    val surplusTime = (mGroupOrderDetailBean?.END_TIME_STAMP
-                            ?: "0").toLong() - System.currentTimeMillis()
-                    if (surplusTime <= 0) {
-                        mProductTimerTask?.cancel()
-                        mTimer?.cancel()
-                        loadData()
-                    }
-
-                    StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
-                        childView.tv_group_purchase_hours.text = hours
-                        childView.tv_group_purchase_minute.text = minutes
-                        childView.tv_group_purchase_second.text = second
-                    })
-
-                }
-            })
-        }
-    }
+//    internal inner class ProductTimerTask : TimerTask() {
+//        override fun run() {
+//            if (recycler_view_order_detail.layoutManager == null) return
+//            val layoutManager = recycler_view_order_detail.layoutManager as LinearLayoutManager
+//            mActivity.runOnUiThread({
+//                val childView = layoutManager.findViewByPosition(0)
+//                if (childView != null) {
+//                    val surplusTime = (mGroupOrderDetailBean?.END_TIME_STAMP
+//                            ?: "0").toLong() - System.currentTimeMillis()
+//                    if (surplusTime <= 0) {
+//                        mProductTimerTask?.cancel()
+//                        mTimer?.cancel()
+//                        loadData()
+//                    }
+//
+//                    StringUtils.getCountDownByTime(surplusTime, { hours, minutes, second ->
+//                        childView.tv_group_purchase_hours.text = hours
+//                        childView.tv_group_purchase_minute.text = minutes
+//                        childView.tv_group_purchase_second.text = second
+//                    })
+//
+//                }
+//            })
+//        }
+//    }
 }
