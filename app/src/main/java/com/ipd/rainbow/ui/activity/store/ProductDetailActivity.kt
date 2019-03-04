@@ -120,6 +120,7 @@ class ProductDetailActivity : BaseUIActivity() {
 
         ll_kefu.setOnClickListener {
             //客服
+            toastShow("暂未开放")
 //            val chatParams = ChatParamsBody()
 //            chatParams.itemparams.appgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
 //            chatParams.itemparams.clientgoodsinfo_type = CoreData.SHOW_GOODS_BY_ID
@@ -137,6 +138,13 @@ class ProductDetailActivity : BaseUIActivity() {
                             if (result.code == 0) {
                                 EventBus.getDefault().post(UpdateCollectProductEvent())
                                 iv_collect.isSelected = !iv_collect.isSelected
+                                tv_collect.isSelected = !tv_collect.isSelected
+                                if (iv_collect.isSelected){
+                                    toastShow(true,"收藏成功!")
+                                }else{
+                                    toastShow(true,"取消收藏成功！")
+                                }
+
                             } else {
                                 toastShow(result.msg)
                             }
@@ -191,6 +199,7 @@ class ProductDetailActivity : BaseUIActivity() {
     fun setCollect(isCollect: Boolean) {
         ll_collect.isEnabled = true
         iv_collect.isSelected = isCollect
+        tv_collect.isSelected = isCollect
     }
 
     fun setProductDetail(info: ProductDetailBean) {

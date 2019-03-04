@@ -37,6 +37,9 @@ class MainActivity : BaseActivity() {
             "cart" -> {
                 changePage(2)
             }
+            "index" -> {
+                changePage(0)
+            }
         }
 
     }

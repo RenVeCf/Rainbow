@@ -51,6 +51,7 @@ public class ProductDetailBean {
     public String NET_CONTENT;
     public String TASTE;
     public String CURRENT_PRICE;
+    public String PRICE_AREA;
     public String PRICE;
     public int STOCK;
     public List<ExchangeBean> COUPON_LIST;

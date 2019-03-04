@@ -29,7 +29,7 @@ class PurchaseProductAdapter(val context: Context, private val list: List<Purcha
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_group_purchase_img)
         holder.itemView.tv_group_purchase_name.text = info.PROCUCT_NAME
-        holder.itemView.tv_group_purchase_price.text = "￥" + info.CURRENT_PRICE
+        holder.itemView.tv_group_purchase_price.text = "￥" + info.PRICE_AREA
         holder.itemView.tv_group_purchase_info.text = "${info.TEAM_NUM}人团，${info.JOIN_NUM}人已参团"
 
 

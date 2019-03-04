@@ -75,7 +75,7 @@ class MessageFragment : ListFragment<BaseResult<List<MessageBean>>, MessageBean>
         } else if (categoryId == 3) {
             if (otherMessageAdapter == null) {
                 otherMessageAdapter = OtherMessageAdapter(context, data) {
-                    WebActivity.launch(mActivity, WebActivity.HTML, it.CONTENT, it.TITLE)
+                    WebActivity.launch(mActivity, WebActivity.HTML, it.CONTENT, "详情")
                 }
                 recycler_view.layoutManager = LinearLayoutManager(context)
                 recycler_view.adapter = otherMessageAdapter

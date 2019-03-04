@@ -62,10 +62,11 @@
                 android:src="@drawable/selector_collect" />
 
             <TextView
+                android:id="@+id/tv_collect"
                 style="@style/SmallTextStyle"
                 android:layout_marginTop="3dp"
                 android:text="收藏"
-                android:textColor="@color/LightGrey" />
+                android:textColor="@drawable/selector_collect_text_color" />
         </LinearLayout>
 
         <TextView

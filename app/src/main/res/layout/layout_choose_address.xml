@@ -66,6 +66,7 @@
         <TextView
             android:id="@+id/tv_receiver_card"
             style="@style/SmallTextStyle"
+            android:visibility="gone"
             android:layout_marginTop="4dp"
             android:text="身份证号:54543534543"
             app:layout_constraintTop_toBottomOf="@id/tv_receiver_info" />

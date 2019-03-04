@@ -14,6 +14,7 @@ public class PurchaseProductBean {
     public String NET_CONTENT;
     public String CURRENT_PRICE;
     public String PRICE;
+    public String PRICE_AREA;
     public int STOCK;
     public String START_TIME;
     public String END_TIME;

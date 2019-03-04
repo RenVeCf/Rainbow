@@ -39,7 +39,14 @@
         android:id="@+id/tv_type_desc"
         style="@style/SmallTextStyle"
         android:gravity="center"
-        android:text="开通自动续费\n每月仅¥40.0 "
+        android:text="开通自动续费"
+        android:textColor="#666666" />
+
+    <TextView
+        android:id="@+id/tv_type_sub_price"
+        style="@style/SmallTextStyle"
+        android:gravity="center"
+        android:text="每月仅¥40.0 "
         android:textColor="#666666" />
 
 </LinearLayout>

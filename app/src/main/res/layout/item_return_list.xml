@@ -23,6 +23,7 @@
         android:textColor="@color/LightGrey" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_return_type"
         style="@style/SmallTextStyle"
         android:layout_alignParentRight="true"

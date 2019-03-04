@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textSize="14sp"
-            tools:text="商品评价（4672）" />
+            android:text="商品评价（0）" />
 
 
     </LinearLayout>

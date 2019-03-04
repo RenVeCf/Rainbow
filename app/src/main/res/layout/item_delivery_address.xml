@@ -42,16 +42,8 @@
 
         <TextView
             style="@style/SmallTextStyle"
-            android:id="@+id/tv_card_number"
-            android:layout_below="@id/tv_delivery_name"
-            android:layout_marginTop="@dimen/small_padding"
-            android:paddingRight="@dimen/cart_operation_height"
-            tools:text="身份证号:3020340234024" />
-
-        <TextView
-            style="@style/SmallTextStyle"
             android:id="@+id/tv_delivery_address"
-            android:layout_below="@id/tv_card_number"
+            android:layout_below="@id/tv_delivery_name"
             android:layout_marginTop="@dimen/small_padding"
             android:paddingRight="@dimen/cart_operation_height"
             tools:text="反倒是了房间睡雷锋精神的积分商店发送" />

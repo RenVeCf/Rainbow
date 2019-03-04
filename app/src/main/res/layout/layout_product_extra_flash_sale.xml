@@ -20,8 +20,10 @@
         android:id="@+id/tv_flash_sale_price"
         style="@style/SmallTextStyle"
         android:textColor="@color/white"
-        android:textSize="26sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/tv_price_unit"
         tools:text="61.00" />
 

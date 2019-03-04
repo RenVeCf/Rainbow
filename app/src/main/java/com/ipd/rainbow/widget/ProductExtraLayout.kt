@@ -58,7 +58,7 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductGroupPurchase() {
         val purchaseView = mInflater.inflate(R.layout.layout_product_extra_flash_sale, this, false)
-        purchaseView.tv_flash_sale_price.text = mProductInfo?.CURRENT_PRICE
+        purchaseView.tv_flash_sale_price.text = mProductInfo?.PRICE_AREA
         purchaseView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         purchaseView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         purchaseView.tv_flash_sale_price_buy_num.text = "${mProductInfo?.TEAM_NUM}人团，${mProductInfo?.JOIN_NUM}人已参团"
@@ -78,7 +78,7 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductNew() {
         val newView = mInflater.inflate(R.layout.layout_product_extra_clearance, this, false)
-        newView.tv_clearance_price.text = mProductInfo?.CURRENT_PRICE
+        newView.tv_clearance_price.text = mProductInfo?.PRICE_AREA
         newView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         newView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         newView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.BUYNUM)
@@ -88,7 +88,7 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductClearance() {
         val clearanceView = mInflater.inflate(R.layout.layout_product_extra_clearance, this, false)
-        clearanceView.tv_clearance_price.text = mProductInfo?.CURRENT_PRICE
+        clearanceView.tv_clearance_price.text = mProductInfo?.PRICE_AREA
         clearanceView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         clearanceView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         when {
@@ -111,7 +111,7 @@ class ProductExtraLayout : FrameLayout {
 
         visibility = View.VISIBLE
         val flashSaleView = mInflater.inflate(R.layout.layout_product_extra_flash_sale, this, false)
-        flashSaleView.tv_flash_sale_price.text = mProductInfo?.CURRENT_PRICE
+        flashSaleView.tv_flash_sale_price.text = mProductInfo?.PRICE_AREA
         flashSaleView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         flashSaleView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
 

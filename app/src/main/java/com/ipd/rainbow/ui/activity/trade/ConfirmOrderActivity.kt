@@ -10,18 +10,17 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.ConfirmOrderProductAdapter
 import com.ipd.rainbow.bean.*
-import com.ipd.rainbow.event.ChooseAddressEvent
-import com.ipd.rainbow.event.ChooseCouponEvent
-import com.ipd.rainbow.event.PayResultEvent
-import com.ipd.rainbow.event.UpdateCartEvent
+import com.ipd.rainbow.event.*
 import com.ipd.rainbow.presenter.store.ConfirmOrderPresenter
 import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity
+import com.ipd.rainbow.ui.activity.address.OrderPeopleActivity
 import com.ipd.rainbow.utils.AlipayUtils
 import com.ipd.rainbow.utils.WeChatUtils
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.layout_choose_address.*
+import kotlinx.android.synthetic.main.layout_choose_order_people.*
 import kotlinx.android.synthetic.main.layout_confirm_order_other_info.*
 import kotlinx.android.synthetic.main.layout_order_product.*
 import kotlinx.android.synthetic.main.layout_pay_type.*
@@ -113,6 +112,10 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
                 toastShow("请选择收货地址")
                 return@setOnClickListener
             }
+            if (mOrderPeopleInfo == null) {
+                toastShow("请选择订购人信息")
+                return@setOnClickListener
+            }
             //发票
             var companyHeader = ""
             var companyTaxNo = ""
@@ -137,13 +140,16 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             val payType = choose_pay_type_layout.getPayType()
 
             if (mType == NORMAL) {
-                mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
+                mPresenter?.confirmOrder(mCartIds, mIsCart, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID,mOrderPeopleInfo!!.SUBSCRIBER_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
             } else if (mType == SPELL) {
-                mPresenter?.spellConfirmOrder(mActivityId, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
+                mPresenter?.spellConfirmOrder(mActivityId, mNum, mProductId, mFormId, mAddressInfo!!.ADDRESS_ID,mOrderPeopleInfo!!.SUBSCRIBER_ID, companyHeader, companyTaxNo, invoiceType, payType, mUseCoupon, mCouponId)
             }
         }
         cv_address.setOnClickListener {
             DeliveryAddressActivity.launch(this, DeliveryAddressActivity.CHOOSE)
+        }
+        cv_order_people.setOnClickListener {
+            OrderPeopleActivity.launch(this, OrderPeopleActivity.CHOOSE)
         }
         ll_coupon.setOnClickListener {
             //优惠券
@@ -192,6 +198,7 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
         tv_coupon_deduction.text = "￥${info.PREFER_FEE}"
 
         setAddressInfo(info.ADDRESS_DATA)
+        setOrderPeopleInfo(info.SUBSCRIBER_DATA)
         setCouponInfo(couponInfo = info.EXCHANGE_DATA)
 
         //提示
@@ -203,9 +210,9 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
             iv_hint_close.setOnClickListener { rl_hint.visibility = View.GONE }
         }
 
-        product_recycler_view.adapter = ConfirmOrderProductAdapter(mActivity, info.PRODUCT_LIST, {
+        product_recycler_view.adapter = ConfirmOrderProductAdapter(mActivity, info.PRODUCT_LIST) {
 
-        })
+        }
 
         showContent()
     }
@@ -264,6 +271,24 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     }
 
 
+    private var mOrderPeopleInfo: OrderPeopleBean? = null
+    private fun setOrderPeopleInfo(orderPeopleInfo: OrderPeopleBean?) {
+        if (orderPeopleInfo?.SUBSCRIBER_ID == null) {
+            cl_has_order_people.visibility = View.GONE
+            cl_has_not_order_people.visibility = View.VISIBLE
+
+        } else {
+            mOrderPeopleInfo = orderPeopleInfo
+
+            cl_has_order_people.visibility = View.VISIBLE
+            cl_has_not_order_people.visibility = View.GONE
+            tv_order_people_info.text = orderPeopleInfo.TRUENAME + "    " + CommonUtils.getEncryPhone(orderPeopleInfo.PHONE)
+            tv_order_people_card.text = "身份证号:" + orderPeopleInfo.IDENTITY
+
+        }
+    }
+
+
     override fun loadCartCashFail(errMsg: String) {
         showError(errMsg)
     }
@@ -310,6 +335,11 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     @Subscribe
     fun onMainEvent(event: ChooseAddressEvent) {
         setAddressInfo(event.addressInfo)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: ChooseOrderPeopleEvent) {
+        setOrderPeopleInfo(event.addressInfo)
     }
 
     @Subscribe

@@ -52,7 +52,6 @@
             android:layout_centerHorizontal="true"
             android:padding="@dimen/base_padding"
             android:scaleType="fitXY"
-            android:src="@mipmap/qr_code"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

@@ -184,6 +184,11 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
                     typeView.tv_type_name.text = vipDesc.TYPE_NAME
                     typeView.tv_type_price.text = vipDesc.CURRENT_PRICE
                     typeView.tv_type_desc.text = vipDesc.CONTENT
+                    if (!isAutoPay){
+                        typeView.tv_type_sub_price.text = "每月仅￥${vipDesc.CURRENT_PRICE}"
+                    }else{
+                        typeView.tv_type_sub_price.text = if (index == 0)"每月仅￥${vipDesc.CURRENT_PRICE}" else "原价￥${vipDesc.PRICE}"
+                    }
                     contentView.single_choice_layout.addView(typeView)
                 }
             }

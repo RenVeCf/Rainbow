@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ExchangeHisBean
 import com.ipd.rainbow.ui.activity.store.ProductCategoryActivity
@@ -40,7 +41,7 @@ class DiscountExchangeAdapter(val context: Context, private val data: List<Excha
                     ProductDetailActivity.launch(context as Activity, info.PRODUCT_ID, info.FORM_ID)
                 }
                 2 -> {
-                    ProductCategoryActivity.launch(context as Activity)
+                    MainActivity.launch(context as Activity,"index")
                 }
             }
         }

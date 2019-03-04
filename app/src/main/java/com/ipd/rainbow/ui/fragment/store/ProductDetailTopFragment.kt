@@ -36,7 +36,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
             override fun onGlobalLayout() {
                 mContentView.store_banner.viewTreeObserver.removeGlobalOnLayoutListener(this)
                 val params = mContentView.store_banner.layoutParams
-                params.height = mContentView.store_banner.measuredWidth
+                params.height = (mContentView.store_banner.measuredWidth * 0.6).toInt()
                 mContentView.store_banner.requestLayout()
 
             }
@@ -79,7 +79,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
         mContentView.rl_product_extra.setProductInfo(mProductInfo)
         mContentView.tv_cart_product_name.text = mProductInfo.PROCUCT_NAME
-        mContentView.tv_price.text = mProductInfo.CURRENT_PRICE
+        mContentView.tv_price.text = mProductInfo.PRICE_AREA
         mContentView.tv_old_price.text = "￥${mProductInfo.PRICE}"
 //        mContentView.tv_old_price.visibility = if (mProductInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
 
@@ -95,7 +95,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
         //评价
         mContentView.tv_evaluate_num.text = "商品评价（${mProductInfo.ASSESS}）"
-        if (mProductInfo.ASSESS_LIST == null) {
+        if (mProductInfo.ASSESS_LIST == null || mProductInfo.ASSESS_LIST.isEmpty()) {
             mContentView.evaluate_recycler_view.visibility = View.GONE
         } else {
             mContentView.evaluate_recycler_view.visibility = View.VISIBLE

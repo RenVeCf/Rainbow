@@ -24,8 +24,8 @@ public class ExchangeHisBean {
     public String  USER_ID;
     public int KIND;
     public int CATEGORY;
-    public int PRICE;
-    public int SATISFY_PRICE;
+    public String PRICE;
+    public String SATISFY_PRICE;
     public int SCORE;
     public int PRODUCT_ID;
     public int FORM_ID;

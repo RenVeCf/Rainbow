@@ -66,5 +66,6 @@ public class OrderDetailBean {
     public String POST_INFO;
     public int STATUS;
     public List<ProductBean> PRODUCT_LIST;
+    public OrderPeopleBean SUBSCRIBER_DATA;
 
 }

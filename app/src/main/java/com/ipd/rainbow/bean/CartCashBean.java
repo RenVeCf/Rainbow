@@ -19,6 +19,7 @@ public class CartCashBean {
      */
 
     public AddressBean ADDRESS_DATA;
+    public OrderPeopleBean SUBSCRIBER_DATA;
     public int PRODUCT_NUM;
     public String PRODUCT_TOTAL;
     public String POST_FEE;

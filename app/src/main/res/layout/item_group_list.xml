@@ -64,7 +64,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/commodity_pay"
             android:text="￥188.88"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/red"
             android:textSize="@dimen/base_text_size" />
 
         <LinearLayout

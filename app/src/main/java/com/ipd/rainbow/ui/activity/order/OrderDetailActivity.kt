@@ -104,6 +104,18 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
         headerView.tv_delivery_phone.text = info.RECEIVE_PHONE
         headerView.tv_delivery_card.text = "身份证号:${info.RECEIVE_IDENTITY}"
         headerView.tv_address.text = "${info.PROV} ${info.CITY} ${info.DIST} ${info.ADDRESS}"
+
+        //订购人
+        if (info.SUBSCRIBER_DATA == null){
+            headerView.rl_order_people.visibility = View.GONE
+        }else{
+            headerView.rl_order_people.visibility = View.VISIBLE
+            headerView.tv_order_people_name.text = info.SUBSCRIBER_DATA.TRUENAME
+            headerView.tv_order_people_phone.text = info.SUBSCRIBER_DATA.PHONE
+            headerView.tv_order_people_card.text = "身份证号:${info.SUBSCRIBER_DATA.IDENTITY}"
+        }
+
+
         headerView.commodity_number.text = "共${info.PRODUCT_LIST.size}件商品"
         mAdapter?.addHeaderView(headerView)
 

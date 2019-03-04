@@ -69,6 +69,7 @@
             tools:text="176****5640" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_delivery_card"
             style="@style/BaseTextStyle"
             android:layout_below="@id/tv_delivery_name"
@@ -94,11 +95,63 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/address_line" />
 
+    <RelativeLayout
+        android:id="@+id/rl_order_people"
+        android:layout_marginTop="@dimen/base_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/base_padding">
+
+        <ImageView
+            android:id="@+id/iv_order_people_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/order_people_icon" />
+
+        <TextView
+            android:id="@+id/tv_order_people"
+            style="@style/TitleTextStyle"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_toRightOf="@id/iv_order_people_icon"
+            android:text="订购人" />
+
+        <TextView
+            android:id="@+id/tv_order_people_name"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_order_people"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_order_people_icon"
+            tools:text="黄埔正雄" />
+
+        <TextView
+            android:id="@+id/tv_order_people_phone"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_order_people"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/tv_order_people_name"
+            tools:text="176****5640" />
+
+        <TextView
+            android:id="@+id/tv_order_people_card"
+            style="@style/BaseTextStyle"
+            android:layout_below="@id/tv_order_people_name"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toRightOf="@id/iv_order_people_icon"
+            tools:text="身份证号:432432432" />
+
+    </RelativeLayout>
+
+
     <TextView
         android:id="@+id/commodity_number"
         style="@style/BaseTextStyle"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/small_padding"
+        android:layout_marginTop="@dimen/base_padding"
         android:background="@color/white"
         android:padding="@dimen/small_padding"
         android:text="共1件商品" />
