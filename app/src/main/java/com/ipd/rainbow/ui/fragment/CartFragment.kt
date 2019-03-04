@@ -158,7 +158,8 @@ class CartFragment : ListFragment<BaseResult<List<CartProductBean>>, CartProduct
         var isAllChecked = true
         data?.forEach {
             if (it.isChecked) {
-                checkedNum += it.NUM
+//                checkedNum += it.NUM
+                checkedNum += 1
                 totalPrice += it.SUB_TOTAL.toDouble()
             } else {
                 isAllChecked = false

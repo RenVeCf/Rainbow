@@ -11,11 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.ui.BaseActivity
-import com.ipd.rainbow.ui.activity.message.MessageActivity
-import com.ipd.rainbow.ui.fragment.CartFragment
-import com.ipd.rainbow.ui.fragment.LiveFragment
-import com.ipd.rainbow.ui.fragment.MineFragment
-import com.ipd.rainbow.ui.fragment.StoreFragment
+import com.ipd.rainbow.ui.fragment.*
 import com.ipd.rainbow.utils.VersionUtils
 import com.ipd.rainbow.widget.SignInPopup
 import kotlinx.android.synthetic.main.activity_main.*
@@ -97,11 +93,11 @@ class MainActivity : BaseActivity() {
 
     private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_store, ll_taxiu, ll_cart, ll_msg, ll_mine) }
     private fun setTabChecked(pos: Int) {
-        if (pos == 3) {
-            //消息
-            MessageActivity.launch(mActivity)
-            return
-        }
+//        if (pos == 3) {
+//            //消息
+//            MessageActivity.launch(mActivity)
+//            return
+//        }
 
         tabs.forEachIndexed { index, layout ->
             layout.getChildAt(0).isSelected = pos == index
@@ -118,6 +114,7 @@ class MainActivity : BaseActivity() {
     private var storeFragment: StoreFragment? = null
     private var liveFragment: LiveFragment? = null
     private var cartFragment: CartFragment? = null
+    private var messageFragment: HomeMessageFragment? = null
     private var mineFragment: MineFragment? = null
 
     /**
@@ -126,10 +123,6 @@ class MainActivity : BaseActivity() {
      * @param position
      */
     private fun setTabSelection(position: Int) {
-        if (position == 3) {
-            return
-        }
-
         val transaction = fragmentManager.beginTransaction()
         hideFragments(transaction)
         when (position) {
@@ -150,6 +143,12 @@ class MainActivity : BaseActivity() {
                 transaction.add(R.id.fl_container, cartFragment)
             } else {
                 transaction.show(cartFragment)
+            }
+            3 -> if (messageFragment == null) {
+                messageFragment = HomeMessageFragment()
+                transaction.add(R.id.fl_container, messageFragment)
+            } else {
+                transaction.show(messageFragment)
             }
             4 -> if (mineFragment == null) {
                 mineFragment = MineFragment()
@@ -176,6 +175,9 @@ class MainActivity : BaseActivity() {
         if (cartFragment != null) {
             transaction.hide(cartFragment)
         }
+        if (messageFragment != null) {
+            transaction.hide(messageFragment)
+        }
         if (mineFragment != null) {
             transaction.hide(mineFragment)
         }
@@ -188,12 +190,17 @@ class MainActivity : BaseActivity() {
             is StoreFragment -> storeFragment = fragment
             is LiveFragment -> liveFragment = fragment
             is CartFragment -> cartFragment = fragment
+            is HomeMessageFragment -> messageFragment = fragment
             is MineFragment -> mineFragment = fragment
         }
     }
 
     fun switchToStore() {
         changePage(0)
+    }
+
+    fun switchToLive() {
+        changePage(1)
     }
 
 

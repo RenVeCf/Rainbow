@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ProductBean
 import com.ipd.rainbow.bean.StoreIndexHeaderBean
@@ -15,7 +17,6 @@ import com.ipd.rainbow.imageload.ImageLoader
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
 import com.ipd.rainbow.ui.activity.store.ProductListActivity
 import com.ipd.rainbow.ui.activity.store.StoreSalesActivity
-import com.ipd.rainbow.ui.activity.store.flashsale.FlashSaleActivity
 import com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity
 import com.ipd.rainbow.utils.IndicatorHelper
 import kotlinx.android.synthetic.main.item_product_grid.view.*
@@ -81,6 +82,12 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
             ItemType.HEADER -> {
                 val headerInfo = list!![position] as StoreIndexHeaderBean
 
+                holder.itemView.iv_live.setOnClickListener {
+                    if (context is MainActivity) {
+                        context.switchToLive()
+                    }
+                }
+
                 //菜单
                 holder.itemView.store_menu.adapter = StoreIndexCategoryAdapter(context, headerInfo.categoryList) { pos, info ->
                     when (pos) {
@@ -108,6 +115,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     ProductDetailActivity.launch(context as Activity, it.PRODUCT_ID, it.FORM_ID)
                 }
 
+                //分类海报
+                val categoryPic = arrayListOf(holder.itemView.iv_store_vip, holder.itemView.iv_store_new, holder.itemView.iv_store_group, holder.itemView.iv_store_stock)
+                categoryPic.forEachIndexed { index, imageView ->
+                    var logo = headerInfo.categoryPicList?.get(index)?.LOGO
+                    if (!TextUtils.isEmpty(logo)) {
+                        ImageLoader.loadNoPlaceHolderImg(context, logo, imageView)
+                    }
+                }
 
 
                 setPublishListener(holder, headerInfo)
@@ -155,7 +170,8 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
 
                 }
 
-                holder.itemView.ll_special_more.setOnClickListener {//查看更多
+                holder.itemView.ll_special_more.setOnClickListener {
+                    //查看更多
                     ProductListActivity.launch(context as Activity, typeId = specialInfo.TYPE_ID, typeTitle = specialInfo.NAME)
                 }
 

@@ -39,26 +39,30 @@
         <TextView
             style="@style/BaseTextStyle"
             android:background="@drawable/shape_time_bg"
-            android:padding="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:text="12"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white"/>
 
 
         <TextView
             style="@style/BaseTextStyle"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
             android:text=":"
             android:textColor="#666666" />
 
         <TextView
             style="@style/BaseTextStyle"
             android:background="@drawable/shape_time_bg"
-            android:padding="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:text="30"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
 
         <TextView

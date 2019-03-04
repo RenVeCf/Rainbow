@@ -1,6 +1,7 @@
 package com.ipd.rainbow.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,8 @@ class StoreNewProductAdapter(val context: Context, private val list: List<Produc
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
         holder.itemView.tv_product_name.text = info.NAME
         holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
+        holder.itemView.tv_old_product_price.text = "￥${info.PRICE}"
+        holder.itemView.tv_old_product_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
 
         holder.itemView.setOnClickListener {

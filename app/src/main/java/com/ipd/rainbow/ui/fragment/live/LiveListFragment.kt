@@ -5,11 +5,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.rainbow.adapter.LiveAdapter
 import com.ipd.rainbow.bean.BaseResult
 import com.ipd.rainbow.bean.TaxiuBean
-import com.ipd.rainbow.platform.global.Constant
-import com.ipd.rainbow.platform.global.GlobalParam
-import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.ui.ListFragment
 import rx.Observable
+import java.util.concurrent.TimeUnit
 
 class LiveListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() {
     companion object {
@@ -26,7 +24,15 @@ class LiveListFragment : ListFragment<BaseResult<List<TaxiuBean>>, TaxiuBean>() 
 
     private val categoryId: Int by lazy { arguments.getInt("categoryId", 0) }
     override fun loadListData(): Observable<BaseResult<List<TaxiuBean>>> {
-        return ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "")
+//        return ApiManager.getService().taxiuList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, categoryId, "")
+        return Observable.timer(3000L, TimeUnit.MILLISECONDS)
+                .map<BaseResult<List<TaxiuBean>>> {
+                    val list = ArrayList<TaxiuBean>()
+                    for (index in 0 until 10) {
+                        list.add(TaxiuBean())
+                    }
+                    BaseResult(0, list)
+                }
     }
 
     override fun isNoMoreData(result: BaseResult<List<TaxiuBean>>): Int {

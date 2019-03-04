@@ -13,21 +13,23 @@
     <ImageView
         android:id="@+id/iv_store_vip"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:scaleType="fitXY"
         android:src="@mipmap/store_spell"
-        app:layout_constraintHorizontal_weight="0.6"
+        app:layout_constraintHorizontal_weight="6"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_store_new"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_store_new"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_marginLeft="@dimen/small_padding"
         android:scaleType="fitXY"
         android:src="@mipmap/store_new"
-        app:layout_constraintDimensionRatio="1w:0.6h"
+        app:layout_constraintBottom_toBottomOf="@id/iv_store_vip"
+        app:layout_constraintHorizontal_weight="4"
         app:layout_constraintLeft_toRightOf="@id/iv_store_vip"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_store_vip" />
@@ -35,11 +37,10 @@
     <ImageView
         android:id="@+id/iv_store_group"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="110dp"
         android:layout_marginTop="@dimen/small_padding"
         android:scaleType="fitXY"
         android:src="@mipmap/store_group_purchase"
-        app:layout_constraintDimensionRatio="1:0.6"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/iv_store_stock"
         app:layout_constraintTop_toBottomOf="@id/iv_store_new" />
@@ -47,12 +48,11 @@
     <ImageView
         android:id="@+id/iv_store_stock"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="110dp"
         android:layout_marginLeft="@dimen/small_padding"
         android:scaleType="fitXY"
         android:src="@mipmap/store_stock"
         app:layout_constraintBottom_toBottomOf="@id/iv_store_group"
-        app:layout_constraintDimensionRatio="1:0.6"
         app:layout_constraintLeft_toRightOf="@id/iv_store_group"
         app:layout_constraintRight_toRightOf="parent" />
 

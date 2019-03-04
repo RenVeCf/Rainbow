@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginTop="@dimen/small_padding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_padding"
         android:background="@color/white"
         android:orientation="vertical">
 
@@ -37,6 +37,35 @@
 
             <ImageView
                 android:id="@+id/iv_to_update_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/ViewLine"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_marginRight="@dimen/base_padding" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_order_people"
+            style="@style/BaseTableStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/base_padding">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="我的订购人"
+                android:textColor="@color/black" />
+
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/arrow_right" />

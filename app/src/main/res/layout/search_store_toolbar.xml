@@ -26,7 +26,7 @@
         android:background="@drawable/shape_comment_edit_bg"
         android:drawableLeft="@mipmap/search_icon"
         android:drawablePadding="10dp"
-        android:hint="搜索关键字"
+        android:hint="搜索商品"
         android:imeOptions="actionSearch"
         android:maxLength="20"
         android:paddingBottom="@dimen/small_padding"

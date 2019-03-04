@@ -33,7 +33,7 @@
             style="@style/BaseTextStyle"
             android:layout_marginLeft="@dimen/small_padding"
             android:background="@drawable/shape_comment_edit_bg"
-            android:hint="大家都在搜 双十二优惠" />
+            android:hint="搜索商品" />
     </LinearLayout>
 
 

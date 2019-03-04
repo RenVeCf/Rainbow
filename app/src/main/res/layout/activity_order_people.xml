@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipe_load_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_add_address">
+
+        <include
+            android:id="@+id/swipe_refresh_header"
+            layout="@layout/layout_refresh_header"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        <include
+            android:id="@+id/swipe_load_more_footer"
+            layout="@layout/layout_load_footer"></include>
+
+    </com.ipd.jumpbox.jumpboxlibrary.widget.swipetoloadlayout.SwipeToLoadLayout>
+
+    <TextView
+        android:id="@+id/btn_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/base_padding"
+        android:background="@drawable/shape_buy_bg"
+        android:gravity="center"
+        android:paddingBottom="@dimen/base_padding"
+        android:paddingTop="@dimen/base_padding"
+        android:text="添加订购人"
+        android:textColor="@color/white"
+        android:textSize="@dimen/base_text_size" />
+</RelativeLayout>

@@ -9,6 +9,7 @@ import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.HttpUrl
 import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity
+import com.ipd.rainbow.ui.activity.address.OrderPeopleActivity
 import com.ipd.rainbow.ui.activity.web.WebActivity
 import com.ipd.rainbow.utils.CleanMessageUtil
 import com.ipd.rainbow.widget.MessageDialog
@@ -43,6 +44,10 @@ class SettingActivity : BaseUIActivity() {
             //修改密码
             val intent = Intent(this, UpdatePasswordActivity::class.java)
             startActivity(intent)
+        }
+        ll_order_people.setOnClickListener {
+            //订购人
+            OrderPeopleActivity.launch(mActivity, OrderPeopleActivity.NORMAL)
         }
         ll_address.setOnClickListener {
             //收货地址

@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/iv_category_img"
-        android:scaleType="center"
+        android:scaleType="centerInside"
         android:layout_width="@dimen/store_menu_category_img_size"
         android:layout_height="@dimen/store_menu_category_img_size"
         tools:src="@mipmap/menu_rainbow_vip" />

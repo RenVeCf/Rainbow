@@ -22,7 +22,7 @@ import com.ipd.rainbow.R;
 public class ShareDialog extends Dialog implements View.OnClickListener {
     private LinearLayout share_wechat, share_friend, share_qq, share_qzone, share_weibo, ll_close;
     private TextView icon_title;
-    private String mIconTitle = "将内容分享至";
+    private String mIconTitle = "分享至";
 
 
     public ShareDialog(@NonNull Context context) {

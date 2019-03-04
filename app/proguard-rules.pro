@@ -149,15 +149,10 @@
  }
 
 
- ##ffmpeg
- -dontwarn com.ipd.ffmpeg.**
- -keep class com.ipd.ffmpeg.**{*;}
- -keep interface com.ipd.ffmpeg.**{*;}
-
  ##bean
- -dontwarn com.ipd.taxiu.bean.**
- -keep class com.ipd.taxiu.bean.**{*;}
- -keep interface com.ipd.taxiu.bean.**{*;}
+ -dontwarn com.ipd.rainbow.bean.**
+ -keep class com.ipd.rainbow.bean.**{*;}
+ -keep interface com.ipd.rainbow.bean.**{*;}
 
  ##kotlin
  -dontwarn kotlin.**

@@ -69,7 +69,7 @@
             android:id="@+id/civ_avatar"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@mipmap/avatar_default"
+            android:src="@mipmap/live_avatar"
             app:border_color1="@color/white"
             app:border_width1="2dp" />
 

@@ -85,6 +85,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
 //                                        StoreMenuBean(0, R.mipmap.menu_life_use, "生活日用")
 //                                )
                                 mStoreIndexInfo.headerInfo.categoryList = data.TYPE_LIST
+                                mStoreIndexInfo.headerInfo.categoryPicList = data.PIC_LIST
                                 mStoreIndexInfo.headerInfo.todayNew = data.NEW_PRODUCT_LIST
                                 //区域分区
                                 mStoreIndexInfo.headerInfo.todaySale = data.RUSH_PRODUCT_LIST

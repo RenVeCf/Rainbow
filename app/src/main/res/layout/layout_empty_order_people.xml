@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg_color">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/empty_order_people"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:text="暂无订购人"
+        android:textColor="@color/LightGrey"
+        android:layout_below="@id/iv_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base_padding"/>
+    <TextView
+        android:id="@+id/btn_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加订购人"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/base_text_size"
+        android:background="@drawable/shape_buy_bg"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/base_padding"/>
+</RelativeLayout>
