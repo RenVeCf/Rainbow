@@ -184,10 +184,10 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
                     typeView.tv_type_name.text = vipDesc.TYPE_NAME
                     typeView.tv_type_price.text = vipDesc.CURRENT_PRICE
                     typeView.tv_type_desc.text = vipDesc.CONTENT
-                    if (!isAutoPay){
+                    if (!isAutoPay) {
                         typeView.tv_type_sub_price.text = "每月仅￥${vipDesc.CURRENT_PRICE}"
-                    }else{
-                        typeView.tv_type_sub_price.text = if (index == 0)"每月仅￥${vipDesc.CURRENT_PRICE}" else "原价￥${vipDesc.PRICE}"
+                    } else {
+                        typeView.tv_type_sub_price.text = if (index == 0) "每月仅￥${vipDesc.CURRENT_PRICE}" else "原价￥${vipDesc.PRICE}"
                     }
                     contentView.single_choice_layout.addView(typeView)
                 }
@@ -197,6 +197,12 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
                 val vipInfo = info.VIP_LIST[position]
 
                 val contentView = mInflater.inflate(R.layout.layout_vip_recharge, container, false)
+
+                if (position >= 2) {
+                    contentView.ll_info.visibility = View.GONE
+                } else {
+                    contentView.ll_info.visibility = View.VISIBLE
+                }
 
                 setPriceInfo(contentView, vipInfo, contentView.cb_auto_pay.isChecked)
                 contentView.cb_auto_pay.setOnCheckedChangeListener { buttonView, isChecked ->

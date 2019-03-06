@@ -1,6 +1,8 @@
 package com.ipd.rainbow.utils
 
 import android.text.TextUtils
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
+import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
 
 object StringUtils {
@@ -62,6 +64,29 @@ object StringUtils {
             ChoosePayTypeLayout.PayType.WECHAT -> "微信"
             ChoosePayTypeLayout.PayType.BALANCE -> "余额"
             else -> ""
+        }
+    }
+
+
+    fun priceNeedEncry(price: String, kind: Int): Boolean {
+        if (GlobalParam.isLogin()) {
+            return false
+        }
+        return when (kind) {
+            StoreType.FLASH_SALE_TODAY, StoreType.PRODUCT_TODAY_NEW -> {
+                true
+            }
+            else -> false
+        }
+    }
+
+    fun getEncryPrice(needSymbol: Boolean, price: String, kind: Int): String {
+        return if (priceNeedEncry(price, kind)) {
+            LogUtils.e("tag", "****")
+            "****"
+        } else {
+            LogUtils.e("tag","￥$price")
+            if (needSymbol) "￥$price" else price
         }
     }
 

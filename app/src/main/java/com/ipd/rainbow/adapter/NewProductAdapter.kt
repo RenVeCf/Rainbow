@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ProductBean
 import com.ipd.rainbow.imageload.ImageLoader
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_product_sales.view.*
 import kotlinx.android.synthetic.main.item_product_sales_grid.view.*
 
@@ -59,7 +60,7 @@ class NewProductAdapter(val context: Context, private val list: List<ProductBean
 
                 ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
                 holder.itemView.tv_product_name.text = info.NAME
-                holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
+                holder.itemView.tv_product_price.text = "${StringUtils.getEncryPrice(true, info.CURRENT_PRICE, info.KIND)}"
             }
             ProductAdapter.ItemType.GRID -> {
                 holder.itemView.iv_new_product_grid.visibility = if (info.isNew) View.VISIBLE else View.GONE
@@ -75,7 +76,9 @@ class NewProductAdapter(val context: Context, private val list: List<ProductBean
 
                 ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img_grid)
                 holder.itemView.tv_product_name_grid.text = info.NAME
-                holder.itemView.tv_product_price_grid.text = info.CURRENT_PRICE
+
+                holder.itemView.tv_price_unit.visibility = if (StringUtils.priceNeedEncry(info.CURRENT_PRICE, info.KIND)) View.GONE else View.VISIBLE
+                holder.itemView.tv_product_price_grid.text = StringUtils.getEncryPrice(false, info.CURRENT_PRICE, info.KIND)
             }
         }
 

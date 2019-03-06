@@ -16,7 +16,7 @@ class StoreSearchPresenter : BasePresenter<StoreSearchPresenter.IStoreSearchView
 
 
     fun loadSearchHistory() {
-        mModel?.getNormalRequestData(ApiManager.getService().storeSearchHistory(GlobalParam.getUserIdOrJump()),
+        mModel?.getNormalRequestData(ApiManager.getService().storeSearchHistory(GlobalParam.getRequestUserId()),
                 object : Response<StoreSearchHistroyBean>() {
                     override fun _onNext(result: StoreSearchHistroyBean) {
                         if (result.code == 0) {
@@ -32,7 +32,7 @@ class StoreSearchPresenter : BasePresenter<StoreSearchPresenter.IStoreSearchView
     }
 
     fun clearSearchHistory() {
-        mModel?.getNormalRequestData(ApiManager.getService().storeClearSearchHistory(GlobalParam.getUserIdOrJump()),
+        mModel?.getNormalRequestData(ApiManager.getService().storeClearSearchHistory(GlobalParam.getRequestUserId()),
                 object : Response<BaseResult<ProductDetailBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<ProductDetailBean>) {
                         if (result.code == 0) {

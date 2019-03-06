@@ -15,7 +15,7 @@ class StoreProductDetailPresenter : BasePresenter<StoreProductDetailPresenter.IS
 
 
     fun loadProductDetail(productId: Int, formId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().storeProductDetail(GlobalParam.getUserIdOrJump(), productId, formId),
+        mModel?.getNormalRequestData(ApiManager.getService().storeProductDetail(GlobalParam.getRequestUserId(), productId, formId),
                 object : Response<BaseResult<ProductDetailBean>>() {
                     override fun _onNext(result: BaseResult<ProductDetailBean>) {
                         if (result.code == 0) {

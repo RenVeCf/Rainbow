@@ -8,7 +8,6 @@ import android.text.TextWatcher
 import cn.jpush.android.api.JPushInterface
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
-import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.platform.global.GlobalApplication
 import com.ipd.rainbow.presenter.AccountPresenter
@@ -72,6 +71,10 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
         iv_alipay.setOnClickListener {
             mPresenter?.alipayLogin(mActivity)
         }
+
+        iv_back.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun thirdAuthSuccess(type: Int, token: String, userLogo: String, username: String) {
@@ -93,7 +96,7 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
 
     override fun loginSuccess() {
         toastShow(true, "登录成功")
-        MainActivity.launch(mActivity)
+//        MainActivity.launch(mActivity)
         finish()
     }
 
@@ -119,6 +122,14 @@ class LoginActivity : BaseActivity(), AccountPresenter.ILoginView, TextWatcher {
     override fun onDestroy() {
         super.onDestroy()
         AlipayUtils.getInstance().release()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 101 && resultCode == 102) {
+            finish()
+        }
+
     }
 
 }

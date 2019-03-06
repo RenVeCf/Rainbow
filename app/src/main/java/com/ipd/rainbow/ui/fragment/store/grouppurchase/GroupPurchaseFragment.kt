@@ -44,7 +44,7 @@ class GroupPurchaseFragment : ListFragment<BaseResult<List<PurchaseProductBean>>
     }
 
     override fun loadListData(): Observable<BaseResult<List<PurchaseProductBean>>> {
-        return ApiManager.getService().storeSpell(GlobalParam.getUserId(), Constant.PAGE_SIZE, page)
+        return ApiManager.getService().storeSpell(GlobalParam.getRequestUserId(), Constant.PAGE_SIZE, page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<PurchaseProductBean>>): Int {

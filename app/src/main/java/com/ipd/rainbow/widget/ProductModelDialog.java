@@ -77,6 +77,8 @@ public class ProductModelDialog extends Dialog {
 
         final ImageView productImageView = mContentView.findViewById(R.id.iv_product_img);
         final TextView productPriceView = mContentView.findViewById(R.id.tv_cart_product_price);
+        ImageLoader.loadNoPlaceHolderImg(getContext(), modelResult.data.get(0).LOGO, productImageView);
+
         productModelView.setOnCheckedChangeListener(new ProductModelView.OnCheckedChangeListener() {
             @Override
             public void onChange(@NotNull final ProductModelResult.ProductModelBean modelInfo) {

@@ -50,7 +50,7 @@ class ProductEvaluateFragment : ListFragment<EvaluateResult<List<ProductEvaluate
 
 
     override fun loadListData(): Observable<EvaluateResult<List<ProductEvaluateBean>>> {
-        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getUserId(), mProductId, mFormId, 0, page, Constant.PAGE_SIZE)
+        return ApiManager.getService().storeProductEvaluateList(GlobalParam.getRequestUserId(), mProductId, mFormId, 0, page, Constant.PAGE_SIZE)
     }
 
     override fun isNoMoreData(result: EvaluateResult<List<ProductEvaluateBean>>): Int {

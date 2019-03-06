@@ -6,6 +6,7 @@ import android.view.View
 import com.ipd.rainbow.R
 import com.ipd.rainbow.adapter.StoreAdapter
 import com.ipd.rainbow.bean.*
+import com.ipd.rainbow.event.LoginSuccessEvent
 import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
@@ -17,6 +18,8 @@ import com.ipd.rainbow.widget.StoreGiftGetSuccessPopup
 import com.ipd.rainbow.widget.StoreGiftPopup
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import kotlinx.android.synthetic.main.store_toolbar.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
 class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
@@ -25,6 +28,17 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     override fun getContentLayout(): Int = R.layout.fragment_store
 
     private lateinit var mStoreIndexInfo: StoreIndexBean
+
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
 
 
 //    override fun loadDataWhenVisible() {
@@ -62,7 +76,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     override fun getListData(isRefresh: Boolean) {
         if (isRefresh) {
             checkNeedShowProgress()
-            ApiManager.getService().storeIndex(GlobalParam.getUserIdOrJump())
+            ApiManager.getService().storeIndex(GlobalParam.getRequestUserId())
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<StoreIndexResultBean>>() {
                         override fun _onNext(result: BaseResult<StoreIndexResultBean>) {
@@ -142,7 +156,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
     }
 
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().storeGuessLike(Constant.PAGE_SIZE, GlobalParam.getUserIdOrJump(), page)
+        return ApiManager.getService().storeGuessLike(Constant.PAGE_SIZE, GlobalParam.getRequestUserId(), page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -171,6 +185,11 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
             data?.addAll(mStoreIndexInfo.specialList)
         }
         data?.addAll(result?.data ?: arrayListOf())
+    }
+
+    @Subscribe
+    fun onMainEvent(event: LoginSuccessEvent) {
+        onRefresh(true)
     }
 
 

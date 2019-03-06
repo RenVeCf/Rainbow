@@ -67,7 +67,7 @@ class ProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductB
         val categoryValue = mScreenView?.getCategoryValue() ?: ""
         val countryValue = mScreenView?.getCountryValue() ?: ""
 
-        return ApiManager.getService().storeProductList(GlobalParam.getUserIdOrJump(), Constant.PAGE_SIZE, page, brandValue,
+        return ApiManager.getService().storeProductList(GlobalParam.getRequestUserId(), Constant.PAGE_SIZE, page, brandValue,
                 compositeValue, mParent.mSearchKey, priceValue, saleValue,
                 countryValue, mParent.mTypeId, categoryValue)
     }

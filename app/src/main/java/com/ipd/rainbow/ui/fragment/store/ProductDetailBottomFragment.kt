@@ -84,7 +84,7 @@ class ProductDetailBottomFragment : BaseFragment() {
     }
 
     private fun loadProductParam() {
-        ApiManager.getService().storeProductParam(GlobalParam.getUserIdOrJump(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
+        ApiManager.getService().storeProductParam(GlobalParam.getRequestUserId(), mProductInfo?.PRODUCT_ID, mProductInfo?.FORM_ID)
                 .compose(RxScheduler.applyScheduler())
                 .subscribe(object : Response<BaseResult<List<ProductParamBean>>>(mActivity, true) {
                     override fun _onNext(result: BaseResult<List<ProductParamBean>>) {

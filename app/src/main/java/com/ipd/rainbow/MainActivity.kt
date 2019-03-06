@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
+import com.ipd.rainbow.platform.global.AuthUtils
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.ui.BaseActivity
 import com.ipd.rainbow.ui.fragment.*
@@ -34,6 +35,10 @@ class MainActivity : BaseActivity() {
         super.onNewIntent(intent)
         val action = intent?.getStringExtra("action")
         when (action) {
+            "main" -> {
+                changePage(0)
+                storeFragment?.onRefresh(true)
+            }
             "cart" -> {
                 changePage(2)
             }
@@ -89,6 +94,10 @@ class MainActivity : BaseActivity() {
 
 
     private fun changePage(pos: Int) {
+        if (intArrayOf(2, 3, 4).contains(pos)) {
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return
+        }
+
         setTabChecked(pos)
         setTabSelection(pos)
     }
@@ -96,12 +105,6 @@ class MainActivity : BaseActivity() {
 
     private val tabs: Array<LinearLayout> by lazy { arrayOf(ll_store, ll_taxiu, ll_cart, ll_msg, ll_mine) }
     private fun setTabChecked(pos: Int) {
-//        if (pos == 3) {
-//            //消息
-//            MessageActivity.launch(mActivity)
-//            return
-//        }
-
         tabs.forEachIndexed { index, layout ->
             layout.getChildAt(0).isSelected = pos == index
             layout.getChildAt(1).isSelected = pos == index

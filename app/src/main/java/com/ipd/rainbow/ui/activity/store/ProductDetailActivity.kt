@@ -14,6 +14,7 @@ import com.ipd.rainbow.bean.ExchangeBean
 import com.ipd.rainbow.bean.ProductDetailBean
 import com.ipd.rainbow.bean.ProductModelResult
 import com.ipd.rainbow.event.UpdateCollectProductEvent
+import com.ipd.rainbow.platform.global.AuthUtils
 import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
@@ -93,6 +94,7 @@ class ProductDetailActivity : BaseUIActivity() {
 
         tv_add_cart.setOnClickListener {
             //加入购物车
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return@setOnClickListener
             if (mProductInfo == null) return@setOnClickListener
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
                 getProductModelInfo(ProductModelDialog.SPELL_NOW)
@@ -107,6 +109,7 @@ class ProductDetailActivity : BaseUIActivity() {
         }
         tv_buy.setOnClickListener {
             //立即购买
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return@setOnClickListener
             if (mProductInfo?.KIND == StoreType.PRODUCT_GROUP_PURCHASE) {
                 getProductModelInfo(ProductModelDialog.SPELL_JOIN)
             } else {
@@ -131,6 +134,7 @@ class ProductDetailActivity : BaseUIActivity() {
         }
         ll_collect.setOnClickListener {
             //收藏
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return@setOnClickListener
             ApiManager.getService().storeProductCollect(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<ExchangeBean>>(mActivity, true) {
@@ -139,10 +143,10 @@ class ProductDetailActivity : BaseUIActivity() {
                                 EventBus.getDefault().post(UpdateCollectProductEvent())
                                 iv_collect.isSelected = !iv_collect.isSelected
                                 tv_collect.isSelected = !tv_collect.isSelected
-                                if (iv_collect.isSelected){
-                                    toastShow(true,"收藏成功!")
-                                }else{
-                                    toastShow(true,"取消收藏成功！")
+                                if (iv_collect.isSelected) {
+                                    toastShow(true, "收藏成功!")
+                                } else {
+                                    toastShow(true, "取消收藏成功！")
                                 }
 
                             } else {
@@ -153,6 +157,7 @@ class ProductDetailActivity : BaseUIActivity() {
 
         }
         iv_cart.setOnClickListener {
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return@setOnClickListener
             MainActivity.launch(mActivity, "cart")
         }
     }
@@ -165,7 +170,7 @@ class ProductDetailActivity : BaseUIActivity() {
 
     private fun getProductModelInfo(type: Int) {
         if (mProductModelResult == null) {
-            ApiManager.getService().storeProductModel(GlobalParam.getUserIdOrJump(), mProductId, mFromId)
+            ApiManager.getService().storeProductModel(GlobalParam.getRequestUserId(), mProductId, mFromId)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<ProductModelResult>(mActivity, true) {
                         override fun _onNext(result: ProductModelResult) {
@@ -214,6 +219,7 @@ class ProductDetailActivity : BaseUIActivity() {
         }
 
         iv_share.setOnClickListener {
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) return@setOnClickListener
             val dialog = ShareDialog(mActivity)
             dialog.setShareDialogOnClickListener(ShareDialogClick()
                     .setShareTitle(info.PROCUCT_NAME)

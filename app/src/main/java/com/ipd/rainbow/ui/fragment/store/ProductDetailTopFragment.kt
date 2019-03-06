@@ -10,6 +10,7 @@ import com.ipd.rainbow.adapter.BannerPagerAdapter
 import com.ipd.rainbow.adapter.ProductDetailEvaluateAdapter
 import com.ipd.rainbow.bean.BannerBean
 import com.ipd.rainbow.bean.ProductDetailBean
+import com.ipd.rainbow.event.LoginSuccessEvent
 import com.ipd.rainbow.ui.BaseUIFragment
 import com.ipd.rainbow.ui.activity.PictureAndVideoPreviewActivity
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
@@ -19,11 +20,24 @@ import com.ipd.rainbow.utils.StoreType
 import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.fragment_product_detail_top.view.*
 import kotlinx.android.synthetic.main.layout_store_banner.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class ProductDetailTopFragment : BaseUIFragment() {
     override fun getTitleLayout(): Int = -1
 
     override fun getContentLayout(): Int = R.layout.fragment_product_detail_top
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
 
     private lateinit var mProductInfo: ProductDetailBean
     fun setDetailData(info: ProductDetailBean) {
@@ -79,7 +93,8 @@ class ProductDetailTopFragment : BaseUIFragment() {
 
         mContentView.rl_product_extra.setProductInfo(mProductInfo)
         mContentView.tv_cart_product_name.text = mProductInfo.PROCUCT_NAME
-        mContentView.tv_price.text = mProductInfo.PRICE_AREA
+        mContentView.tv_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo.PRICE_AREA, mProductInfo.KIND))View.GONE else View.VISIBLE
+        mContentView.tv_price.text = StringUtils.getEncryPrice(false,mProductInfo.PRICE_AREA, mProductInfo.KIND)
         mContentView.tv_old_price.text = "￥${mProductInfo.PRICE}"
 //        mContentView.tv_old_price.visibility = if (mProductInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
 
@@ -124,6 +139,13 @@ class ProductDetailTopFragment : BaseUIFragment() {
     override fun onDestroy() {
         super.onDestroy()
         mContentView.store_banner.stopAutoScroll()
+    }
+
+    @Subscribe
+    fun onMainEvent(event: LoginSuccessEvent) {
+        mContentView.tv_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo.PRICE_AREA, mProductInfo.KIND))View.GONE else View.VISIBLE
+        mContentView.tv_price.text = StringUtils.getEncryPrice(false,mProductInfo.PRICE_AREA, mProductInfo.KIND)
+        mContentView.rl_product_extra.setProductInfo(mProductInfo)
     }
 
 }

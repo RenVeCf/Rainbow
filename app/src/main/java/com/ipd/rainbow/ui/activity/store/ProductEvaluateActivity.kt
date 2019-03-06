@@ -40,7 +40,7 @@ class ProductEvaluateActivity : BaseUIActivity() {
     private val mEvaluateId by lazy { intent.getIntExtra("evaluateId", 0) }
     override fun loadData() {
         showProgress()
-        ApiManager.getService().storeProductEvaluateDetail(GlobalParam.getUserIdOrJump(), mEvaluateId)
+        ApiManager.getService().storeProductEvaluateDetail(GlobalParam.getRequestUserId(), mEvaluateId)
                 .compose(RxScheduler.applyScheduler())
                 .subscribe(object : Response<BaseResult<ProductEvaluateBean>>() {
                     override fun _onNext(result: BaseResult<ProductEvaluateBean>) {

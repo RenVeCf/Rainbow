@@ -7,12 +7,15 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.rainbow.adapter.NewProductAdapter
 import com.ipd.rainbow.bean.BaseResult
 import com.ipd.rainbow.bean.ProductBean
+import com.ipd.rainbow.event.LoginSuccessEvent
 import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.ui.ListFragment
 import com.ipd.rainbow.ui.activity.store.ProductDetailActivity
 import com.ipd.rainbow.ui.activity.store.StoreSalesActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
 class SalesProductListFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>() {
@@ -27,10 +30,20 @@ class SalesProductListFragment : ListFragment<BaseResult<List<ProductBean>>, Pro
         }
     }
 
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
 
     private val mType by lazy { arguments.getInt("type") }
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
-        return ApiManager.getService().storeProductSales(GlobalParam.getUserIdOrJump(), mType, Constant.PAGE_SIZE, page)
+        return ApiManager.getService().storeProductSales(GlobalParam.getRequestUserId(), mType, Constant.PAGE_SIZE, page)
     }
 
     override fun isNoMoreData(result: BaseResult<List<ProductBean>>): Int {
@@ -82,6 +95,12 @@ class SalesProductListFragment : ListFragment<BaseResult<List<ProductBean>>, Pro
 
     override fun addData(isRefresh: Boolean, result: BaseResult<List<ProductBean>>) {
         data?.addAll(result?.data ?: arrayListOf())
+    }
+
+
+    @Subscribe
+    fun onMainEvent(event: LoginSuccessEvent) {
+        setOrNotifyAdapter()
     }
 
 

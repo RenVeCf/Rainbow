@@ -55,11 +55,12 @@ public class CommonUtils {
      * 验证手机格式
      */
     public static boolean passwordIsLegal(String password) {
-        String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+//        String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
         if (TextUtils.isEmpty(password) || password.length() < 6 || password.length() > 16)
             return false;
-        else
-            return password.matches(regex);
+//        else
+//            return password.matches(regex);
+        return true;
     }
 
     public static void callPhone(Context context, String phone) {

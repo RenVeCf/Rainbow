@@ -137,7 +137,7 @@ class ProductListActivity : BaseActivity(), ProductScreenView {
 //                    }
 
             if (mScreenResult == null) {
-                ApiManager.getService().storeProductExpertScreen(GlobalParam.getUserIdOrJump(), mTypeId)
+                ApiManager.getService().storeProductExpertScreen(GlobalParam.getRequestUserId(), mTypeId)
                         .compose(RxScheduler.applyScheduler())
                         .subscribe(object : Response<ScreenResult>(mActivity, true) {
                             override fun _onNext(result: ScreenResult) {

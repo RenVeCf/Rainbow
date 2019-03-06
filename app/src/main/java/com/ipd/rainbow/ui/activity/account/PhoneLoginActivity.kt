@@ -18,7 +18,7 @@ class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, T
     companion object {
         fun launch(activity: Activity) {
             val intent = Intent(activity, PhoneLoginActivity::class.java)
-            activity.startActivity(intent)
+            activity.startActivityForResult(intent,101)
         }
     }
 
@@ -53,11 +53,11 @@ class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, T
 
         tv_get_sms.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone,"3")
+            mPresenter?.getSmsCode(phone, "3")
         }
         tv_voice_code.setOnClickListener {
             val phone = et_phone.text.toString().trim()
-            mPresenter?.getSmsCode(phone,"3")
+            mPresenter?.getSmsCode(phone, "3")
         }
         btn_login.setOnClickListener {
             val phone = et_phone.text.toString().trim()
@@ -116,10 +116,10 @@ class PhoneLoginActivity : BaseUIActivity(), AccountPresenter.IPhoneLoginView, T
     }
 
     override fun loginSuccess() {
-        toastShow(true,"登录成功")
-        val intent = Intent(mActivity, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
+        toastShow(true, "登录成功")
+//        MainActivity.launch(mActivity)
+        setResult(102)
+        finish()
     }
 
     override fun loginFail(errMsg: String) {

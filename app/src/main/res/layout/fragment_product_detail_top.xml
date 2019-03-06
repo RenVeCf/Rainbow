@@ -50,6 +50,7 @@
             app:layout_goneMarginTop="0dp">
 
             <TextView
+                android:id="@+id/tv_price_unit"
                 style="@style/SmallTextStyle"
                 android:text="￥"
                 android:textColor="#EA1C41" />

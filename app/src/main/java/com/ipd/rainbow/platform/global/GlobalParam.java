@@ -55,6 +55,13 @@ public class GlobalParam {
         }
         return userId;
     }
+    public static String getRequestUserId() {
+        String userId = getUserId();
+        if (TextUtils.isEmpty(userId)){
+            return "0";
+        }
+        return userId;
+    }
 
 
     public static void onExitUser() {
@@ -72,8 +79,8 @@ public class GlobalParam {
         String userId = getUserId();
         if (TextUtils.isEmpty(userId)) {
             Intent intent = new Intent(GlobalApplication.Companion.getMContext(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             GlobalApplication.Companion.getMContext().startActivity(intent);
             return false;
         }

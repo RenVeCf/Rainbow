@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.ProductBean
 import com.ipd.rainbow.imageload.ImageLoader
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_special_product.view.*
 
 /**
@@ -29,7 +30,9 @@ class StoreNewProductAdapter(val context: Context, private val list: List<Produc
 
         ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
         holder.itemView.tv_product_name.text = info.NAME
-        holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
+        holder.itemView.tv_product_price.text = StringUtils.getEncryPrice(true, info.CURRENT_PRICE, info.KIND)
+
+
         holder.itemView.tv_old_product_price.text = "￥${info.PRICE}"
         holder.itemView.tv_old_product_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 

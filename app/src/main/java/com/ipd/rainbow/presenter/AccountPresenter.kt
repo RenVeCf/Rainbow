@@ -14,6 +14,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.ThreadUtils
 import com.ipd.rainbow.bean.BaseResult
 import com.ipd.rainbow.bean.LoginBean
 import com.ipd.rainbow.bean.RegisterBean
+import com.ipd.rainbow.event.LoginSuccessEvent
 import com.ipd.rainbow.model.BasicModel
 import com.ipd.rainbow.platform.global.Constant
 import com.ipd.rainbow.platform.global.GlobalApplication
@@ -21,6 +22,7 @@ import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.utils.AlipayUtils
+import org.greenrobot.eventbus.EventBus
 import java.util.*
 
 
@@ -353,6 +355,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     private fun loginSuccess(loginResult: LoginBean) {
         JPushInterface.setAlias(GlobalApplication.mContext, loginResult.USER_ID, "TX_${loginResult.USER_ID}")
         GlobalParam.saveUserId(loginResult.USER_ID.toString())
+        EventBus.getDefault().post(LoginSuccessEvent())
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
+import com.ipd.rainbow.MainActivity
 import com.ipd.rainbow.R
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.platform.http.HttpUrl
@@ -114,7 +115,7 @@ class SettingActivity : BaseUIActivity() {
         builder.setPositiveButton("确定") { dialog, which ->
             dialog.dismiss()
             GlobalParam.onExitUser()
-            GlobalParam.isLoginOrJump()
+            MainActivity.launch(mActivity, "main")
         }
         builder.show()
     }

@@ -58,7 +58,13 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductGroupPurchase() {
         val purchaseView = mInflater.inflate(R.layout.layout_product_extra_flash_sale, this, false)
-        purchaseView.tv_flash_sale_price.text = mProductInfo?.PRICE_AREA
+
+        purchaseView.tv_flash_sale_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo?.PRICE_AREA
+                        ?: "", mProductInfo?.KIND
+                        ?: StoreType.PRODUCT_NORMAL)) View.GONE else View.VISIBLE
+        purchaseView.tv_flash_sale_price.text = StringUtils.getEncryPrice(false, mProductInfo?.PRICE_AREA
+                ?: "", mProductInfo?.KIND ?: StoreType.PRODUCT_NORMAL)
+
         purchaseView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         purchaseView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         purchaseView.tv_flash_sale_price_buy_num.text = "${mProductInfo?.TEAM_NUM}人团，${mProductInfo?.JOIN_NUM}人已参团"
@@ -78,7 +84,14 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductNew() {
         val newView = mInflater.inflate(R.layout.layout_product_extra_clearance, this, false)
-        newView.tv_clearance_price.text = mProductInfo?.PRICE_AREA
+
+        newView.tv_clearance_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo?.PRICE_AREA
+                        ?: "", mProductInfo?.KIND
+                        ?: StoreType.PRODUCT_NORMAL)) View.GONE else View.VISIBLE
+        newView.tv_clearance_price.text = StringUtils.getEncryPrice(false,mProductInfo?.PRICE_AREA
+                ?: "", mProductInfo?.KIND ?: StoreType.PRODUCT_NORMAL)
+
+
         newView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         newView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         newView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.BUYNUM)
@@ -88,7 +101,14 @@ class ProductExtraLayout : FrameLayout {
 
     private fun onProductClearance() {
         val clearanceView = mInflater.inflate(R.layout.layout_product_extra_clearance, this, false)
-        clearanceView.tv_clearance_price.text = mProductInfo?.PRICE_AREA
+
+        clearanceView.tv_clearance_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo?.PRICE_AREA
+                        ?: "", mProductInfo?.KIND
+                        ?: StoreType.PRODUCT_NORMAL)) View.GONE else View.VISIBLE
+        clearanceView.tv_clearance_price.text = StringUtils.getEncryPrice(false,mProductInfo?.PRICE_AREA
+                ?: "", mProductInfo?.KIND ?: StoreType.PRODUCT_NORMAL)
+
+
         clearanceView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         clearanceView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         when {
@@ -111,7 +131,15 @@ class ProductExtraLayout : FrameLayout {
 
         visibility = View.VISIBLE
         val flashSaleView = mInflater.inflate(R.layout.layout_product_extra_flash_sale, this, false)
-        flashSaleView.tv_flash_sale_price.text = mProductInfo?.PRICE_AREA
+
+
+        flashSaleView.tv_flash_sale_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo?.PRICE_AREA
+                        ?: "", mProductInfo?.KIND
+                        ?: StoreType.PRODUCT_NORMAL)) View.GONE else View.VISIBLE
+        flashSaleView.tv_flash_sale_price.text = StringUtils.getEncryPrice(false,mProductInfo?.PRICE_AREA
+                ?: "", mProductInfo?.KIND ?: StoreType.PRODUCT_NORMAL)
+
+
         flashSaleView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         flashSaleView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
 
@@ -171,7 +199,7 @@ class ProductExtraLayout : FrameLayout {
     inner class FlashSaleTimerTask(private val flashSaleView: View) : TimerTask() {
         override fun run() {
             ThreadUtils.runOnUIThread {
-//                when (mProductInfo?.RUSH_STATE) {
+                //                when (mProductInfo?.RUSH_STATE) {
 //                    1 -> {
 //                        mCurTime += 1000
 //                        val startTime = (mProductInfo?.START_TIME_STAMP ?: "0").toLong()
@@ -187,20 +215,20 @@ class ProductExtraLayout : FrameLayout {
 //                        }
 //                    }
 //                    2 -> {
-                        mCurTime += 1000
-                        val endTime = (mProductInfo?.END_TIME_STAMP ?: "0").toLong()
-                        if (mCurTime >= endTime) {
-                            //刷新数据
-                            onRefreshData()
-                        } else {
-                            StringUtils.getCountDownByTime(endTime - mCurTime) { hours, minutes, second ->
-                                flashSaleView.tv_group_purchase_hours.text = hours
-                                flashSaleView.tv_group_purchase_minute.text = minutes
-                                flashSaleView.tv_group_purchase_second.text = second
-                            }
-                            mFlashSaleTimerTask?.scheduledExecutionTime()
+                mCurTime += 1000
+                val endTime = (mProductInfo?.END_TIME_STAMP ?: "0").toLong()
+                if (mCurTime >= endTime) {
+                    //刷新数据
+                    onRefreshData()
+                } else {
+                    StringUtils.getCountDownByTime(endTime - mCurTime) { hours, minutes, second ->
+                        flashSaleView.tv_group_purchase_hours.text = hours
+                        flashSaleView.tv_group_purchase_minute.text = minutes
+                        flashSaleView.tv_group_purchase_second.text = second
+                    }
+                    mFlashSaleTimerTask?.scheduledExecutionTime()
 
-                        }
+                }
 //                    }
 //                }
 //                LogUtils.e("tag","system:$mCurTime--start:${mProductInfo?.START_TIME_STAMP}--end:${mProductInfo?.END_TIME_STAMP}")

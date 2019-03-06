@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/tv_price_unit"
+        android:id="@+id/tv_flash_sale_price_unit"
         style="@style/SmallTextStyle"
         android:layout_marginBottom="4dp"
         android:text="￥"
@@ -24,7 +24,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tv_price_unit"
+        app:layout_constraintLeft_toRightOf="@id/tv_flash_sale_price_unit"
         tools:text="61.00" />
 
     <TextView

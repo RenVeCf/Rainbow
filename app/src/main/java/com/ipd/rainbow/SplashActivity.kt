@@ -47,11 +47,11 @@ class SplashActivity : BaseActivity() {
 //                                        if (GlobalParam.getFirstEnter()) {
 //                                            WelcomeActivity.launch(mActivity)
 //                                        } else {
-                                            if (GlobalParam.isLogin()) {
+//                                            if (GlobalParam.isLogin()) {
                                                 MainActivity.launch(mActivity)
-                                            } else {
-                                                LoginActivity.launch(mActivity)
-                                            }
+//                                            } else {
+//                                                LoginActivity.launch(mActivity)
+//                                            }
 //                                        }
                                         finish()
                                     }
