@@ -16,6 +16,7 @@ import com.ipd.rainbow.platform.http.ApiManager
 import com.ipd.rainbow.platform.http.Response
 import com.ipd.rainbow.platform.http.RxScheduler
 import com.ipd.rainbow.utils.StoreType
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
@@ -89,9 +90,12 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
             ItemType.GRID -> {
                 ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
                 holder.itemView.tv_product_name.text = info.NAME
-                holder.itemView.tv_product_price.text = "${info.CURRENT_PRICE}"
-                holder.itemView.tv_product_evalute.text = "评价 ${info.ASSESS}"
-                holder.itemView.tv_product_sales.text = "销量 ${info.SALE}"
+
+                holder.itemView.tv_product_unit.visibility = if (StringUtils.priceNeedEncry(info.CURRENT_PRICE, info.KIND)) View.GONE else View.VISIBLE
+                holder.itemView.tv_product_price.text = StringUtils.getEncryPrice(false, info.CURRENT_PRICE, info.KIND)
+
+                holder.itemView.tv_product_evalute.text = "评 ${info.ASSESS}"
+                holder.itemView.tv_product_sales.text = "销 ${info.SALE}"
 
             }
         }

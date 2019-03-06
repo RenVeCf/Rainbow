@@ -19,6 +19,7 @@ import com.ipd.rainbow.ui.activity.store.ProductListActivity
 import com.ipd.rainbow.ui.activity.store.StoreSalesActivity
 import com.ipd.rainbow.ui.activity.store.grouppurchase.GroupPurchaseActivity
 import com.ipd.rainbow.utils.IndicatorHelper
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_product_grid.view.*
 import kotlinx.android.synthetic.main.item_store_index_special.view.*
 import kotlinx.android.synthetic.main.item_store_today_new.view.*
@@ -181,7 +182,10 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                 val productInfo = list!![position] as ProductBean
                 ImageLoader.loadNoPlaceHolderImg(context, productInfo.LOGO, holder.itemView.iv_product_img)
                 holder.itemView.tv_product_name.text = productInfo.NAME
-                holder.itemView.tv_product_price.text = "${productInfo.PRICE}"
+
+                holder.itemView.tv_product_unit.visibility =  if (StringUtils.priceNeedEncry(productInfo.CURRENT_PRICE, productInfo.KIND)) View.GONE else View.VISIBLE
+                holder.itemView.tv_product_price.text = StringUtils.getEncryPrice(false, productInfo.CURRENT_PRICE, productInfo.KIND)
+
                 holder.itemView.tv_product_evalute.text = "评 ${productInfo.ASSESS}"
                 holder.itemView.tv_product_sales.text = "售 ${productInfo.SALE}"
 

@@ -50,6 +50,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_product_name">
 
                 <TextView
+                    android:id="@+id/tv_product_unit"
                     style="@style/BaseTextStyle"
                     android:text="￥"
                     android:textSize="10sp"

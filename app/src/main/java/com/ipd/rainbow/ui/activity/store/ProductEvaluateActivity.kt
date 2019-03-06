@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.ipd.rainbow.R
-import com.ipd.rainbow.adapter.BannerPagerAdapter
+import com.ipd.rainbow.adapter.EvaluateBannerPagerAdapter
 import com.ipd.rainbow.bean.BannerBean
 import com.ipd.rainbow.bean.BaseResult
 import com.ipd.rainbow.bean.ProductEvaluateBean
@@ -47,7 +47,7 @@ class ProductEvaluateActivity : BaseUIActivity() {
                         if (result.code == 0) {
                             val info = result.data
                             val bannerList = StringUtils.splitImages(info.PIC)
-                            evaluate_banner.adapter = BannerPagerAdapter(mActivity, bannerList.map { BannerBean(it) }) { pos, info ->
+                            evaluate_banner.adapter = EvaluateBannerPagerAdapter(mActivity, bannerList.map { BannerBean(it) }) { pos, info ->
                                 PictureLookActivity.launch(mActivity, ArrayList(bannerList), 0, PictureLookActivity.URL)
                             }
 
