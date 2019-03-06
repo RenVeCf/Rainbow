@@ -66,7 +66,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.store_banner.adapter = BannerPagerAdapter(context, bannerList) { pos, info ->
             PictureAndVideoPreviewActivity.launch(mActivity, bannerList, pos)
         }
-        IndicatorHelper.newInstance().setRes(R.mipmap.boutique_selected, R.mipmap.boutique_unselected)
+        IndicatorHelper.newInstance().setRes(R.mipmap.product_boutique_selected, R.mipmap.product_boutique_unselected)
                 .setIndicator(context, bannerList.size, mContentView.store_banner, mContentView.store_banner_indicator, object : IndicatorHelper.MyPagerChangeListener {
                     override fun onPageSelected(pos: Int) {
                     }

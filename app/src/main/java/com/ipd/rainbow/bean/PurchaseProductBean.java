@@ -2,9 +2,12 @@ package com.ipd.rainbow.bean;
 
 import android.text.TextUtils;
 
+import com.google.gson.annotations.SerializedName;
+
 public class PurchaseProductBean {
 
     public int PRODUCT_ID;
+    @SerializedName("NAME")
     public String PROCUCT_NAME;
     public String PRODUCT_NUMBER;
     public int KIND;

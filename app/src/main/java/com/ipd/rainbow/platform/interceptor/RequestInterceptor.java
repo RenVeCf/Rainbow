@@ -46,9 +46,9 @@ public class RequestInterceptor implements Interceptor {
         requestJsonObj.addProperty("sign", MD5.getMessageDigest((timeStr + dataString).getBytes()));
 
 
-        RequestBody newRequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestJsonObj.toString());
+        RequestBody newRequestBody = RequestBody.create(MediaType.parse("application/json"), requestJsonObj.toString());
         Request.Builder builder = request.newBuilder();
-        builder.post(newRequestBody);
+        builder.method(request.method(),newRequestBody);
         return chain.proceed(builder.build());
     }
 

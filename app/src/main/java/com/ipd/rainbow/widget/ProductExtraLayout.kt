@@ -94,7 +94,7 @@ class ProductExtraLayout : FrameLayout {
 
         newView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         newView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
-        newView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.BUYNUM)
+        newView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.SALE)
 
         addView(newView)
     }
@@ -113,7 +113,7 @@ class ProductExtraLayout : FrameLayout {
         clearanceView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
         when {
             mProductInfo?.PULL_CATEGORY == 2 -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.store_gift_coupon_date), mProductInfo?.VALID_TIME)
-            mProductInfo?.PULL_CATEGORY == 4 -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.BUYNUM)
+            mProductInfo?.PULL_CATEGORY == 4 -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.SALE)
             else -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_stock), mProductInfo?.STOCK)
         }
 

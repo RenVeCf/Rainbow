@@ -1,5 +1,6 @@
 package com.ipd.rainbow.ui.fragment
 
+import android.os.AsyncTask
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -118,6 +119,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, Any>() {
                         }
 
                     })
+
         } else {
             super.getListData(isRefresh)
         }
