@@ -53,7 +53,7 @@ class NewProductAdapter(val context: Context, private val list: List<ProductBean
                     //是否为特价
                     holder.itemView.tv_product_price_old.visibility = View.VISIBLE
                     holder.itemView.tv_product_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-                    holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
+                    holder.itemView.tv_product_price_old.text = "￥${StringUtils.formatPrice(info.PRICE)}"
                 } else {
                     holder.itemView.tv_product_price_old.visibility = View.GONE
                 }
@@ -69,7 +69,7 @@ class NewProductAdapter(val context: Context, private val list: List<ProductBean
                     //是否为特价
                     holder.itemView.tv_product_old_price_grid.visibility = View.VISIBLE
                     holder.itemView.tv_product_old_price_grid.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-                    holder.itemView.tv_product_old_price_grid.text = "￥${info.PRICE}"
+                    holder.itemView.tv_product_old_price_grid.text = "￥${StringUtils.formatPrice(info.PRICE)}"
                 } else {
                     holder.itemView.tv_product_old_price_grid.visibility = View.GONE
                 }

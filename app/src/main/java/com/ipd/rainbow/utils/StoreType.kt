@@ -24,6 +24,7 @@ object StoreType {
     const val PRODUCT_TODAY_NEW = 2//新品上新
     const val PRODUCT_STOCK = 3//优选库存
     const val PRODUCT_GROUP_PURCHASE = 4//拼团
+    const val PRODUCT_VIP = 5//会员专享
 
 
     fun getGuessLikeTypeBySpecial(specialType: Int): Int {

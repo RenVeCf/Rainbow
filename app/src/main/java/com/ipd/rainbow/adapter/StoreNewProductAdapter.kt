@@ -33,7 +33,7 @@ class StoreNewProductAdapter(val context: Context, private val list: List<Produc
         holder.itemView.tv_product_price.text = StringUtils.getEncryPrice(true, info.CURRENT_PRICE, info.KIND)
 
 
-        holder.itemView.tv_old_product_price.text = "￥${info.PRICE}"
+        holder.itemView.tv_old_product_price.text = "￥${StringUtils.formatPrice(info.PRICE)}"
         holder.itemView.tv_old_product_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
 

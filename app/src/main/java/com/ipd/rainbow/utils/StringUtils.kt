@@ -4,6 +4,7 @@ import android.text.TextUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
+import java.lang.Exception
 
 object StringUtils {
     val ss = 1000
@@ -80,13 +81,26 @@ object StringUtils {
         }
     }
 
+    fun formatPrice(price: String): String {
+        val priceD = price.toDouble()
+        val priceI = Math.floor(priceD)
+        if (priceD == priceI) {
+            return priceI.toInt().toString()
+        }
+        return price
+    }
+
     fun getEncryPrice(needSymbol: Boolean, price: String, kind: Int): String {
-        return if (priceNeedEncry(price, kind)) {
-            LogUtils.e("tag", "****")
+        var formatPrice = price
+        try {
+            formatPrice = formatPrice(price)
+        } catch (e: Exception) {
+            LogUtils.v("exception", "format Exception...")
+        }
+        return if (priceNeedEncry(formatPrice, kind)) {
             "****"
         } else {
-            LogUtils.e("tag","￥$price")
-            if (needSymbol) "￥$price" else price
+            if (needSymbol) "￥$formatPrice" else formatPrice
         }
     }
 

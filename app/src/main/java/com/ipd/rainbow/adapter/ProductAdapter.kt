@@ -62,8 +62,8 @@ class ProductAdapter(val context: Context, private val list: List<ProductBean>?,
 
                 ImageLoader.loadNoPlaceHolderImg(context, info.LOGO, holder.itemView.iv_product_img)
                 holder.itemView.tv_product_name.text = info.NAME
-                holder.itemView.tv_product_price.text = "￥${info.CURRENT_PRICE}"
-                holder.itemView.tv_product_price_old.text = "￥${info.PRICE}"
+                holder.itemView.tv_product_price.text = "￥${StringUtils.formatPrice(info.CURRENT_PRICE)}"
+                holder.itemView.tv_product_price_old.text = "￥${StringUtils.formatPrice(info.PRICE)}"
                 holder.itemView.tv_product_price_old.visibility = if (info.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
 
                 holder.itemView.tv_product_evalute.text = "评价 ${info.ASSESS}"

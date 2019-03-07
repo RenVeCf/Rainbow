@@ -81,7 +81,7 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.store_banner.startAutoScroll()
 
         when (mProductInfo.KIND) {
-            StoreType.PRODUCT_NORMAL -> {
+            StoreType.PRODUCT_NORMAL,StoreType.PRODUCT_VIP -> {
                 mContentView.ll_price.visibility = View.VISIBLE
             }
             else -> {

@@ -10,6 +10,7 @@ import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.OrderPeopleBean
 import com.ipd.rainbow.ui.activity.address.AddAddressActivity
+import com.ipd.rainbow.ui.activity.address.AddOrderPeopleActivity
 import kotlinx.android.synthetic.main.item_order_people.view.*
 
 /**
@@ -34,7 +35,7 @@ class OrderPeopleAdapter(val context: Context, private val data: List<OrderPeopl
             itemClick.invoke(data[position])
         }
         holder?.itemView?.iv_edit_address?.setOnClickListener {
-            AddAddressActivity.launch(context as Activity, 2, data[position].SUBSCRIBER_ID)
+            AddOrderPeopleActivity.launch(context as Activity, 2, data[position].SUBSCRIBER_ID)
         }
 
         holder?.itemView?.tv_delivery_name?.text = data[position].TRUENAME

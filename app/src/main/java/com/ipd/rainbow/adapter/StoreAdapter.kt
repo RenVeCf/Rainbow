@@ -156,14 +156,14 @@ class StoreAdapter(val context: Context, private val list: List<Any>?, val onPet
                     holder.itemView.ll_sales_product_left.visibility = View.VISIBLE
                     ImageLoader.loadNoPlaceHolderImg(context, leftProduct.LOGO, holder.itemView.iv_special_product_left)
                     holder.itemView.tv_special_product_left_name.text = leftProduct.NAME
-                    holder.itemView.tv_special_product_left_price.text = "￥${leftProduct.CURRENT_PRICE}"
+                    holder.itemView.tv_special_product_left_price.text = "￥${StringUtils.formatPrice(leftProduct.CURRENT_PRICE)}"
 
                     //right
                     if (rightProduct != null) {
                         holder.itemView.ll_sales_product_right.visibility = View.VISIBLE
                         ImageLoader.loadNoPlaceHolderImg(context, rightProduct.LOGO, holder.itemView.iv_special_product_right)
                         holder.itemView.tv_special_product_right_name.text = rightProduct.NAME
-                        holder.itemView.tv_special_product_right_price.text = "￥${rightProduct.CURRENT_PRICE}"
+                        holder.itemView.tv_special_product_right_price.text = "￥${StringUtils.formatPrice(rightProduct.CURRENT_PRICE)}"
 
                     } else {
                         holder.itemView.ll_sales_product_right.visibility = View.GONE
