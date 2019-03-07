@@ -4,7 +4,6 @@ import android.text.TextUtils
 import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.rainbow.platform.global.GlobalParam
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
-import java.lang.Exception
 
 object StringUtils {
     val ss = 1000
@@ -85,7 +84,8 @@ object StringUtils {
         val priceD = price.toDouble()
         val priceI = Math.floor(priceD)
         if (priceD == priceI) {
-            return priceI.toInt().toString()
+            val formatPrice = priceI.toInt().toString()
+            return formatPrice
         }
         return price
     }
