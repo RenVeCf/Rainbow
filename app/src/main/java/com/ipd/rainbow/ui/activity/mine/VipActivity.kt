@@ -19,6 +19,7 @@ import com.ipd.rainbow.presenter.VipPresenter
 import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.activity.referral.ReferralCodeActivity
 import com.ipd.rainbow.utils.AlipayUtils
+import com.ipd.rainbow.utils.StringUtils
 import com.ipd.rainbow.utils.WeChatUtils
 import com.ipd.rainbow.utils.WebUtils
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
@@ -182,12 +183,12 @@ class VipActivity : BaseUIActivity(), VipPresenter.IVipView {
                     if (index >= 3) return@forEachIndexed
                     val typeView = mInflater.inflate(R.layout.layout_vip_recharge_type, contentView.single_choice_layout, false)
                     typeView.tv_type_name.text = vipDesc.TYPE_NAME
-                    typeView.tv_type_price.text = vipDesc.CURRENT_PRICE
+                    typeView.tv_type_price.text = StringUtils.formatPrice(vipDesc.CURRENT_PRICE)
                     typeView.tv_type_desc.text = vipDesc.CONTENT
                     if (!isAutoPay) {
-                        typeView.tv_type_sub_price.text = "每月仅￥${vipDesc.CURRENT_PRICE}"
+                        typeView.tv_type_sub_price.text = "每月仅￥${StringUtils.formatPrice(vipDesc.CURRENT_PRICE)}"
                     } else {
-                        typeView.tv_type_sub_price.text = if (index == 0) "每月仅￥${vipDesc.CURRENT_PRICE}" else "原价￥${vipDesc.PRICE}"
+                        typeView.tv_type_sub_price.text = if (index == 0) "每月仅￥${StringUtils.formatPrice(vipDesc.CURRENT_PRICE)}" else "原价￥${StringUtils.formatPrice(vipDesc.PRICE)}"
                     }
                     contentView.single_choice_layout.addView(typeView)
                 }
