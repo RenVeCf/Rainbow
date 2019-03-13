@@ -15,6 +15,7 @@ import com.ipd.rainbow.presenter.store.CartPresenter
 import com.ipd.rainbow.ui.ListFragment
 import com.ipd.rainbow.ui.activity.trade.ConfirmOrderActivity
 import com.ipd.rainbow.utils.CartCallback
+import com.ipd.rainbow.utils.StringUtils
 import com.ipd.rainbow.widget.MessageDialog
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_cart.view.*
@@ -149,7 +150,7 @@ class CartFragment : ListFragment<BaseResult<List<CartProductBean>>, CartProduct
 
     override fun onCartProductCheckChange() {
         if (data == null || data!!.isEmpty()) {
-            mContentView.tv_cart_total_price.text = "0.0"
+            mContentView.tv_cart_total_price.text = "0"
             mContentView.tv_confirm.text = "结算(0)"
             return
         }
@@ -165,7 +166,7 @@ class CartFragment : ListFragment<BaseResult<List<CartProductBean>>, CartProduct
                 isAllChecked = false
             }
         }
-        mContentView.tv_cart_total_price.text = CommonUtils.beautifulDouble(totalPrice)
+        mContentView.tv_cart_total_price.text = StringUtils.formatPrice(CommonUtils.beautifulDouble(totalPrice))
         mContentView.tv_confirm.text = "结算($checkedNum)"
         mContentView.cb_all_check.isChecked = isAllChecked
     }

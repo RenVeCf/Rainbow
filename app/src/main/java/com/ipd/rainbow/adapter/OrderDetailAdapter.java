@@ -14,6 +14,7 @@ import com.ipd.rainbow.bean.ProductBean;
 import com.ipd.rainbow.imageload.ImageLoader;
 import com.ipd.rainbow.ui.activity.order.RequestReturnMoneyActivity;
 import com.ipd.rainbow.utils.Order;
+import com.ipd.rainbow.utils.StringUtils;
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             ImageLoader.loadNoPlaceHolderImg(mContext, info.LOGO, holder.iv_commodity_head);
             holder.tv_commodity_name.setText(info.NAME);
             holder.tv_commodity_explain.setText(info.NORM);
-            holder.tv_commodity_price.setText("￥" + info.CURRENT_PRICE);
+            holder.tv_commodity_price.setText("￥" + StringUtils.INSTANCE.formatPrice(info.CURRENT_PRICE));
             holder.tv_commodity_num.setText("数量：x" + info.BUY_NUM);
 
             if (info.STATUS == Order.EVALUATE || info.STATUS == Order.FINFISH) {

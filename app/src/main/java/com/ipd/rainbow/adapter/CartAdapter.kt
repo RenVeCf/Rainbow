@@ -9,6 +9,7 @@ import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.CartProductBean
 import com.ipd.rainbow.imageload.ImageLoader
 import com.ipd.rainbow.utils.CartCallback
+import com.ipd.rainbow.utils.StringUtils
 import com.ipd.rainbow.widget.CartOperationView
 import kotlinx.android.synthetic.main.item_cart.view.*
 
@@ -29,7 +30,7 @@ class CartAdapter(val context: Context, private val list: List<CartProductBean>?
         ImageLoader.loadNoPlaceHolderImg(context, cartProductInfo.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
         holder.itemView.tv_cart_product_name.text = cartProductInfo.PRODUCT.NAME
         holder.itemView.tv_cart_product_spec.text = cartProductInfo.PRODUCT.NORM
-        holder.itemView.tv_cart_product_price.text = "￥${cartProductInfo.PRODUCT.CURRENT_PRICE}"
+        holder.itemView.tv_cart_product_price.text = "￥${StringUtils.formatPrice(cartProductInfo.PRODUCT.CURRENT_PRICE)}"
         holder.itemView.cart_operation_view.setNum(cartProductInfo.NUM)
 
         holder.itemView.cart_operation_view.setOnCartNumChangeListener(object : CartOperationView.OnCartNumChangeListener {

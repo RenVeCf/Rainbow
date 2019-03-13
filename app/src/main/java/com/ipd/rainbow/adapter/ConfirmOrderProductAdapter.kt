@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.CartProductBean
 import com.ipd.rainbow.imageload.ImageLoader
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_confirm_order_product.view.*
 
 /**
@@ -29,7 +30,7 @@ class ConfirmOrderProductAdapter(val context: Context, private val list: List<Ca
         ImageLoader.loadNoPlaceHolderImg(context, info.PRODUCT.LOGO, holder.itemView.iv_cart_product_img)
         holder.itemView.tv_cart_product_name.text = info.PRODUCT.NAME
         holder.itemView.tv_cart_product_spec.text = info.PRODUCT.NORM
-        holder.itemView.tv_cart_product_price.text = "￥" + info.PRODUCT.CURRENT_PRICE
+        holder.itemView.tv_cart_product_price.text = "￥" + StringUtils.formatPrice(info.PRODUCT.CURRENT_PRICE)
         holder.itemView.tv_product_num.text = "数量：x" + info.NUM
 
         holder.itemView.setOnClickListener {

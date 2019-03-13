@@ -95,14 +95,14 @@ class ProductDetailTopFragment : BaseUIFragment() {
         mContentView.tv_cart_product_name.text = mProductInfo.PROCUCT_NAME
         mContentView.tv_price_unit.visibility = if (StringUtils.priceNeedEncry(mProductInfo.PRICE_AREA, mProductInfo.KIND))View.GONE else View.VISIBLE
         mContentView.tv_price.text = StringUtils.getEncryPrice(false,mProductInfo.PRICE_AREA, mProductInfo.KIND)
-        mContentView.tv_old_price.text = "￥${mProductInfo.PRICE}"
+        mContentView.tv_old_price.text = "￥${StringUtils.formatPrice(mProductInfo.PRICE)}"
 //        mContentView.tv_old_price.visibility = if (mProductInfo.KIND == StoreType.PRODUCT_NORMAL) View.GONE else View.VISIBLE
 
 
         if (mProductInfo.POST_FEE.toFloat() == 0f) {
             mContentView.tv_express_fee.text = "快递：免运费"
         } else {
-            mContentView.tv_express_fee.text = "快递：￥${mProductInfo.POST_FEE}"
+            mContentView.tv_express_fee.text = "快递：￥${StringUtils.formatPrice(mProductInfo.POST_FEE)}"
         }
         mContentView.tv_sales.text = "月销${mProductInfo.SALE}件"
         mContentView.tv_ship_address.text = mProductInfo.ADDRESS

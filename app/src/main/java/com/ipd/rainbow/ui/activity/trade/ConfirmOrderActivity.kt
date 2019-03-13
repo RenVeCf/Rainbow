@@ -16,6 +16,7 @@ import com.ipd.rainbow.ui.BaseUIActivity
 import com.ipd.rainbow.ui.activity.address.DeliveryAddressActivity
 import com.ipd.rainbow.ui.activity.address.OrderPeopleActivity
 import com.ipd.rainbow.utils.AlipayUtils
+import com.ipd.rainbow.utils.StringUtils
 import com.ipd.rainbow.utils.WeChatUtils
 import com.ipd.rainbow.widget.ChoosePayTypeLayout
 import kotlinx.android.synthetic.main.activity_confirm_order.*
@@ -190,12 +191,12 @@ class ConfirmOrderActivity : BaseUIActivity(), ConfirmOrderPresenter.IConfirmOrd
     override fun loadCartCashSuccess(info: CartCashBean) {
         mCartInfo = info
         tv_product_info.text = "共${info.PRODUCT_NUM}件商品"
-        tv_total_product_price.text = "￥${info.PRODUCT_TOTAL}"
-        tv_express_fee.text = "+￥${info.POST_FEE}"
-        tv_tax_fee.text = "+￥${info.TAX_FEE}"
-        tv_wallet_balance.text = "余额：￥${info.BALANCE}"
-        tv_actual_price.text = "￥${info.PAY_FEE}"
-        tv_coupon_deduction.text = "￥${info.PREFER_FEE}"
+        tv_total_product_price.text = "￥${StringUtils.formatPrice(info.PRODUCT_TOTAL)}"
+        tv_express_fee.text = "+￥${StringUtils.formatPrice(info.POST_FEE)}"
+        tv_tax_fee.text = "+￥${StringUtils.formatPrice(info.TAX_FEE)}"
+        tv_wallet_balance.text = "余额：￥${StringUtils.formatPrice(info.BALANCE)}"
+        tv_actual_price.text = "￥${StringUtils.formatPrice(info.PAY_FEE)}"
+        tv_coupon_deduction.text = "￥${StringUtils.formatPrice(info.PREFER_FEE)}"
 
         setAddressInfo(info.ADDRESS_DATA)
         setOrderPeopleInfo(info.SUBSCRIBER_DATA)

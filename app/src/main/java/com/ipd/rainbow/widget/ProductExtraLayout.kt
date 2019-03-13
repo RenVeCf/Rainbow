@@ -66,7 +66,7 @@ class ProductExtraLayout : FrameLayout {
                 ?: "", mProductInfo?.KIND ?: StoreType.PRODUCT_NORMAL)
 
         purchaseView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-        purchaseView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
+        purchaseView.tv_flash_sale_price_old.text = "￥${StringUtils.formatPrice(mProductInfo?.PRICE ?: "")}"
         purchaseView.tv_flash_sale_price_buy_num.text = "${mProductInfo?.TEAM_NUM}人团，${mProductInfo?.JOIN_NUM}人已参团"
 
         purchaseView.setBackgroundResource(R.color.colorPrimaryDark)
@@ -93,7 +93,7 @@ class ProductExtraLayout : FrameLayout {
 
 
         newView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-        newView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
+        newView.tv_clearance_price_old.text = "￥${StringUtils.formatPrice(mProductInfo?.PRICE ?: "")}"
         newView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.SALE)
 
         addView(newView)
@@ -110,7 +110,7 @@ class ProductExtraLayout : FrameLayout {
 
 
         clearanceView.tv_clearance_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-        clearanceView.tv_clearance_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
+        clearanceView.tv_clearance_price_old.text = "￥${StringUtils.formatPrice(mProductInfo?.PRICE ?: "")}"
         when {
             mProductInfo?.PULL_CATEGORY == 2 -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.store_gift_coupon_date), mProductInfo?.VALID_TIME)
             mProductInfo?.PULL_CATEGORY == 4 -> clearanceView.tv_clearance_buy_num.text = String.format(resources.getString(R.string.product_sales), mProductInfo?.SALE)
@@ -141,7 +141,7 @@ class ProductExtraLayout : FrameLayout {
 
 
         flashSaleView.tv_flash_sale_price_old.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-        flashSaleView.tv_flash_sale_price_old.text = "￥${mProductInfo?.PRICE ?: ""}"
+        flashSaleView.tv_flash_sale_price_old.text = "￥${StringUtils.formatPrice(mProductInfo?.PRICE ?: "")}"
 
 //        when (mProductInfo?.RUSH_STATE) {
 //            1 -> {

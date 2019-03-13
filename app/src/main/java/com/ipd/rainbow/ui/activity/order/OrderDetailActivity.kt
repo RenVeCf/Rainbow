@@ -121,16 +121,16 @@ class OrderDetailActivity : BaseUIActivity(), View.OnClickListener, OrderDetailP
 
 
         val footerView = LayoutInflater.from(this).inflate(R.layout.item_order_detail_footer, null)
-        footerView.tv_commodity_price.text = "￥${info.TOTAL}"
-        footerView.tv_commodity_freight.text = "+￥${info.POST_FEE}"
-        footerView.tv_tax_fee.text = "+￥${info.TAX_FEE}"
-        footerView.tv_discount_coupon.text = "-￥${info.PREFER_FEE}"
+        footerView.tv_commodity_price.text = "￥${StringUtils.formatPrice(info.TOTAL)}"
+        footerView.tv_commodity_freight.text = "+￥${StringUtils.formatPrice(info.POST_FEE)}"
+        footerView.tv_tax_fee.text = "+￥${StringUtils.formatPrice(info.TAX_FEE)}"
+        footerView.tv_discount_coupon.text = "-￥${StringUtils.formatPrice(info.PREFER_FEE)}"
         if (info.STATUS == Order.PAYMENT) {
             footerView.actual_price.text = "订单应付金额："
-            footerView.tv_actual_price.text = "￥${info.PAYABLE_FEE}"
+            footerView.tv_actual_price.text = "￥${StringUtils.formatPrice(info.PAYABLE_FEE)}"
         } else {
             footerView.actual_price.text = "订单实付金额："
-            footerView.tv_actual_price.text = "￥${info.PAY_FEE}"
+            footerView.tv_actual_price.text = "￥${StringUtils.formatPrice(info.PAY_FEE)}"
         }
 
 //        footerView.tv_invoice_information.text = when (info.INVOICE_TYPE) {

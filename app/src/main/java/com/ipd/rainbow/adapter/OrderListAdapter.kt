@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ipd.rainbow.R
 import com.ipd.rainbow.bean.OrderBean
 import com.ipd.rainbow.utils.Order
+import com.ipd.rainbow.utils.StringUtils
 import kotlinx.android.synthetic.main.item_order_list.view.*
 
 /**
@@ -26,10 +27,10 @@ class OrderListAdapter(private val context: Context, private val list: List<Orde
 
         if (info.status == Order.PAYMENT) {
             holder.itemView.commodity_pay.text = "应付(含运/税费) :"
-            holder.itemView.tv_commodity_pay.text = "￥" + info.PAYABLE_FEE
+            holder.itemView.tv_commodity_pay.text = "￥" + StringUtils.formatPrice(info.PAYABLE_FEE)
         } else {
             holder.itemView.commodity_pay.text = "实付(含运/税费) :"
-            holder.itemView.tv_commodity_pay.text = "￥" + info.PAY_FEE
+            holder.itemView.tv_commodity_pay.text = "￥" + StringUtils.formatPrice(info.PAY_FEE)
         }
 
         holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.PRODUCT_LIST, {
