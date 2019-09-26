@@ -4,7 +4,7 @@ package com.ipd.rainbow.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-    String BASE_URL = "http://121.199.8.244:9391/";
+    String BASE_URL = "https://rainbowgou.com/";
     String WEB_URL = "https://manage.csjc19.com:8080/";
     String SERVER_URL = BASE_URL + "Rainbow/";
     String IMAGE_URL = BASE_URL;
